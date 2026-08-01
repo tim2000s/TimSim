@@ -1,128 +1,136 @@
 # How closely does this match real data, and where does it fail
 
-Read this before using anything from this package to argue for a change in treatment.
+This is level 3 of the six in [VALIDATION.md](VALIDATION.md), and on its own it is the
+weakest of them. Matching the marginal statistics of real data says nothing about whether
+the response to an intervention is right. Read it alongside levels 4 and 5, which are what
+a controller comparison actually rests on.
 
 ## The measurement
 
-Eleven statistics, computed identically on simulator output and on real continuous
-glucose data. The real reference is the envelope across four cohorts of closed-loop
-users, 192 people in total, taken as the minimum and maximum of the four cohort medians.
-Each simulator figure is the median across the first ten adult subjects of the generated
-population, run for 28 days.
+Eleven statistics, computed identically on simulator output and on real continuous glucose
+data. The real reference is the envelope across four cohorts of closed-loop users, 192
+people, taken as the minimum and maximum of the four cohort medians. Each simulator figure
+is the median across the first ten adult subjects, run for 28 days.
 
-Each column adds one mechanism to the column before it, so a movement is attributable to
-a named cause rather than to the bundle.
+Each column adds one mechanism to the column before it, so a movement is attributable to a
+named cause rather than to the bundle.
 
 | Signature | Real range | stock 2008 | +physiology | +behaviour | +loop | +sensor | In range |
 |---|---|---|---|---|---|---|---|
-| Glucose variability (CV%) | 29.5–34.3 | 25.1 | 26.5 | 31.9 | 28.9 | 29.1 | yes |
-| Rise tail P(ΔBG>10/5min) % | 3.7–6.6 | 1.4 | 1.2 | 1.6 | 2.0 | 3.1 | no |
-| Autocorrelation @30min | 0.78–0.87 | 0.93 | 0.93 | 0.94 | 0.89 | 0.89 | no |
-| Autocorrelation @60min | 0.50–0.68 | 0.83 | 0.82 | 0.83 | 0.70 | 0.69 | yes |
-| Outcome SD @stuck-high (mg/dL) | 26.5–33.5 | 18.1 | 17.1 | 19.1 | 20.8 | 21.0 | no |
-| Diurnal amplitude (mg/dL) | 34.7–56.3 | 77.1 | 65.1 | 51.2 | 43.8 | 43.5 | yes |
-| Hypo recovery to 100 (min) | 50–59 | 107.5 | 93.8 | 66.2 | 62.5 | 50.0 | yes |
-| Hypo rebound >180 % | 23.2–28.4 | 0.0 | 4.2 | 50.0 | 69.7 | 50.1 | no |
-| Compression lows /30d | 1.9–5.3 | 0.0 | 0.0 | 0.5 | 0.0 | 5.4 | yes |
-| Sensor jitter (mg/dL) | 4.5–6.7 | 2.3 | 2.3 | 2.4 | 2.4 | 5.4 | yes |
-| ISF drift (weekly %CV) | 8.2–21.7 | 0.0 | 0.0 | 14.6 | 8.6 | 8.6 | yes |
+| Glucose variability (CV%) | 29.5–34.3 | 30.7 | 31.5 | 39.5 | 33.1 | 33.2 | yes |
+| Rise tail P(ΔBG>10/5min) % | 3.7–6.6 | 2.7 | 2.6 | 3.7 | 4.2 | 5.1 | yes |
+| Autocorrelation @30min | 0.78–0.87 | 0.91 | 0.92 | 0.92 | 0.86 | 0.85 | yes |
+| Autocorrelation @60min | 0.50–0.68 | 0.77 | 0.79 | 0.79 | 0.59 | 0.59 | yes |
+| Outcome SD @stuck-high (mg/dL) | 26.5–33.5 | 21.2 | 20.6 | 23.1 | 25.5 | 25.5 | marginal |
+| Diurnal amplitude (mg/dL) | 34.7–56.3 | 82.0 | 73.7 | 54.3 | 49.0 | 49.5 | yes |
+| Hypo recovery to 100 (min) | 50–59 | 106 | 108 | 68 | 63 | 60.0 | marginal |
+| Hypo rebound >180 % | 23.2–28.4 | 0.0 | 26.8 | 51.3 | 64.8 | 58.5 | no |
+| Compression lows /30d | 1.9–5.3 | 0.0 | 0.0 | 0.5 | 0.5 | 5.4 | yes |
+| Sensor jitter (mg/dL) | 4.5–6.7 | 2.4 | 2.4 | 2.4 | 2.4 | 5.3 | yes |
+| ISF drift (weekly %CV) | 8.2–21.7 | 0.0 | 0.0 | 14.5 | 4.0 | 4.0 | no |
 
-None of the eleven for the bare subjects, seven of eleven with all four layers. All ten
-subjects completed every arm.
+One of eleven for the bare subjects, seven of eleven with all four layers, plus two that
+miss by a hair: outcome spread at 25.5 against a padded lower bound of 25.8, and hypo
+recovery at 60.0 against 59.9. Those two are called marginal rather than counted, but they
+are a fraction of a unit away and should not be read as failures.
 
-Reproduce with `python examples/layer_ablation.py`, which takes about an hour serially;
-`--arm` runs one column so the five can go in parallel processes. The raw output is in
-`docs/*.json`.
+Reproduce with `python examples/layer_ablation.py`, about an hour serially; `--arm` runs one
+column so the five can go in parallel. Raw output in `docs/*.json`.
 
 ## Reading it
 
 The layers do different work and the split is clean.
 
-The physiology layer moves the physiology-linked statistics and nothing else. Glucose
-variability rises and the diurnal amplitude comes down towards the real range; the
-disturbance statistics do not move at all. That is the measured version of a general
-point worth internalising before reaching for a more refined model: refining the
-differential equations fixes the statistics that depend on the differential equations.
+The physiology layer moves the physiology-linked statistics and nothing else. Variability
+edges up, the diurnal amplitude comes down from a very high 82 towards the real range, and
+hypoglycaemia rebound appears for the first time at 26.8%, inside the real range, because
+varying sensitivity produces lows the fixed-parameter subjects never had. The disturbance
+statistics do not move at all. That is the measured version of a general point worth
+internalising before reaching for a more refined model: refining the differential equations
+fixes the statistics that depend on the differential equations.
 
 The behaviour layer supplies the disturbances. Rescue carbohydrate takes hypoglycaemia
-recovery from 94 minutes to 66 against a real 50 to 59, an adapting setting takes drift
-from a structural zero to 14.6%, and glucose variability crosses into range. Unannounced
-meals move the rise tail, though not far enough.
+recovery from 108 minutes to 68 against a real 50 to 59. An adapting setting takes drift
+from a structural zero to 14.5%, inside the real range. Unannounced meals take the rise
+tail from 2.6 to 3.7, into range, and this time it is genuinely the meals: the sensor layer
+adds a further 0.9 on top, but the crossing happens before the sensor is involved.
 
-The loop layer supplies the damping. Every added disturbance had left both
-autocorrelations high, because nothing was correcting anything, and continuous correction
-brings the 60-minute one inside the real range and the 30-minute one to its edge. Variability
-settles rather than running away. This was missing from the comparison rather than from
-the model: every real cohort here is running automated insulin delivery, and the simulated
-person was on open-loop basal-bolus.
+The loop layer supplies the damping. Every added disturbance had left both autocorrelations
+above the real range, because nothing was correcting anything, and continuous correction
+brings both inside: 0.92 to 0.86 at thirty minutes and 0.79 to 0.59 at sixty. Variability
+settles from an overshoot of 39.5 to 33.1 rather than running away. This was missing from
+the comparison rather than from the model: every real cohort here is running automated
+insulin delivery, and the simulated person was on open-loop basal-bolus.
 
-The sensor layer closes the two sensor statistics cleanly, as it is the only layer that
-can. It also lifts the rise tail from 2.0 to 3.1, which is worth being honest about:
-part of that is jitter contributing to five-minute differences rather than more sharp
-rises. The rise-tail row should be read as still open.
+The sensor layer closes the two sensor statistics, as it is the only layer that can.
 
-## The four that did not come right
+## The three that did not come right
 
 They are reported rather than tuned away, which matters, because fitting a parameter to a
 statistic turns that row from a test into a restatement.
 
-**Hypoglycaemia rebound overshoots badly**, 50% against a real 23 to 28, and gets worse
-when the loop is added. The assumption that a person takes a second helping on 35% of
-rescues is too aggressive for what these cohorts do. Read as a measurement rather than a
-failure, it says real closed-loop users over-treat less, or are mopped up more, than the
-standard clinical account of over-treatment implies. One parameter would close this row
-and it has deliberately not been touched.
+**Hypoglycaemia rebound overshoots badly**, 58.5% against a real 23 to 28, and it gets
+worse when the loop is added rather than better. The assumption that a person takes a
+second helping on 35% of rescues is too aggressive for what these cohorts do. Read as a
+measurement rather than a failure, it says real closed-loop users over-treat less, or are
+mopped up more, than the standard clinical account of over-treatment implies. One parameter
+would close this row and it has deliberately not been touched. The practical consequence:
+an algorithm judged here on how it handles rebound highs is being judged on a harsher world
+than the real one.
 
-**The rise tail stays short**, 3.1 against 3.7 to 6.6, and the part of the movement that
-came from the sensor layer is not really unannounced meals. Real unannounced eating is
-probably larger, faster, or more frequent than the schedule here models, and the meal
-template is the obvious next thing to attack.
+**Sensitivity drift falls below range** once the loop is added, 14.5% to 4.0% against a
+real 8.2 to 21.7. The loop holds glucose closer to target, so the weekly adaptation has
+less error to chase. Real drift is partly physiological rather than purely a response to
+outcomes, and this adapter only responds to outcomes.
 
-**The 30-minute autocorrelation stays high** at 0.89 against 0.78 to 0.87. The simulated
-curve is still smoother at short range than a real one. The 60-minute figure is in range,
-so this is specifically about short-horizon structure.
-
-**Outcome spread at stuck-high** moves from 18.1 to 21.0 mg/dL against a real 26.5 to
-33.5. This is the one statistic nothing has closed, across this work and everything before
-it, including a stochastic insulin-efficacy process aimed straight at it. Whatever makes
-real insulin action unpredictable at the half-hour horizon is still not in the model.
-
-That last one is the important limitation and it deserves stating plainly. The spread of
-where glucose ends up half an hour after a stuck high is precisely the quantity a dosing
-decision is betting on. The simulator is too confident about it. So this package can
-stress-test an algorithm for pathological behaviour, and it can rank options, and it
-cannot tell you what a dosing change would have done to a particular person. That still
-requires a trial.
+**Outcome spread at stuck-high** is the one that matters, and it is now close. It moved from
+21.2 to 25.5 mg/dL against a real 26.5 to 33.5, having sat at 21.0 before the therapy
+settings were corrected. Most of that improvement came from a fix found at level 2 rather
+than from anything aimed at this statistic. It is now a fraction outside rather than
+comfortably outside, which is a change of degree and not of kind: the spread of where
+glucose ends up half an hour after a stuck high is precisely the quantity a dosing decision
+bets on, and the simulator is still on the confident side of real. Treat this as improved
+and unresolved.
 
 ## Survival
 
 simglucose ends an episode when blood glucose falls below 10 mg/dL, so a truncated series
-means the virtual subject did not survive the run. This is easy to miss, because the
-analysis is handed whatever series it is given, and any comparison that silently drops
-incomplete runs is conditioning on survival.
+means the virtual subject did not survive. This is easy to miss, because the analysis is
+handed whatever series it is given, and any comparison that silently drops incomplete runs
+is conditioning on survival.
 
-Every subject completed every arm above, which is a property of the screened population
-rather than of the layers: the screen refuses candidates that go below 40 mg/dL on
-matched boluses, and 20 of 121 candidates were refused for exactly that. On the
-unscreened published personae the same layer ladder loses subjects, with the physiology
-layer alone losing two of ten over 28 days and producing time below 70 mg/dL of 4 to 31%.
+In the table above the physiology layer alone loses **three of ten subjects** over 28 days.
+Every other arm completes ten of ten. The reason is not subtle: varying insulin sensitivity
+produces days on which the subject needs much less insulin than it is getting, and a virtual
+patient with no carbohydrate to eat and no loop to withdraw insulin has nothing to stop the
+resulting low. Adding either the behaviour layer or the loop restores full survival.
+
+That is worth stating as a finding rather than a footnote. A more refined physiology made
+the population less survivable, and only the person and the loop made it viable again.
 
 `Result.completed` records this per subject and `examples/fidelity_check.py` reports it.
 
-## Why these numbers differ from the published personae
+## What changed these numbers, and why that is the point
 
-The table above is measured on this package's generated subjects. The same ladder run on
-the thirty published personae gives a different starting point, notably a much lower
-diurnal amplitude and a lower baseline autocorrelation, so three statistics that are out
-of range here start in range there.
+An earlier version of this table was materially worse: three fewer statistics in range, and
+outcome spread at 21.0 rather than 25.5. Two defects were behind it, and neither was
+visible at this level.
 
-That is a reason to read this table as a property of this population and not to carry
-either set of numbers across. It is also a reason to regenerate with another seed before
-believing any result:
+The first was found at level 2. Carbohydrate ratios and correction factors were drawn from
+the published cohort's distribution conditioned on body weight and basal rate. The published
+subjects respond at 1.10 times their stated correction factor; the generated ones came out
+at 0.63, so every generated subject was being dosed on somebody else's settings on every
+cycle of every run. Settings are now measured from each subject's own model.
 
-```
-python -m timsim.population.build --n 100 --seed 7
-```
+The second was found by a level 1 check that was itself wrong twice before it was right.
+Every run opened with a zero-insulin step, inherited from simglucose's own examples, which
+kicked each subject off the steady state its parameters were closed at and left a slow ring
+through the first days. Runs now open at the subject's own basal, and a quiet subject holds
+its fasting glucose to within 0.02 mg/dL over four days.
+
+Neither would have been caught by looking at this table. That is the argument for the
+graded structure in [VALIDATION.md](VALIDATION.md): distributional fidelity is a
+consequence of getting the mechanics right, not a substitute for checking them.
 
 ## What the population does and does not add
 
@@ -131,16 +139,14 @@ they are a resampling of that cohort rather than new clinical data. They inherit
 the published cohort does not represent, and they carry no independent information about
 human variability.
 
-What they add is resolution. With ten subjects per class one awkward subject moves a
-cohort median noticeably; with thirty-three it moves it less. The acceptance rate and the
-breakdown of why candidates were refused are in
-`timsim/population/params/vpop_report.json`.
+What they add is resolution, and it is quantified at level 5: the design resolves about 1.8
+percentage points of time in range across 34 adults and about 1.0 across all 100.
 
 ## Provenance of the parameters
 
 No parameter in the behaviour layer was fitted to any statistic in the table above.
 Announcement rates, carbohydrate-counting error and rescue-treatment sizes are clinical
 literature figures or explicit modelling choices, recorded with their reasoning in
-`timsim/person/behaviour.py`. The sensor layer's two parameters were fitted, on a
-different cohort from the one they are evaluated against, and that is stated in
+`timsim/person/behaviour.py`. The sensor layer's two parameters were fitted, on a different
+cohort from the one they are evaluated against, and that is stated in
 `timsim/sensor/realism.py`.

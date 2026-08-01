@@ -1,0 +1,159 @@
+{
+ "results": [
+  {
+   "check": "steady-state closure reproduces published subjects",
+   "level": 1,
+   "value": 5.13533683019814e-12,
+   "target": "< 1e-9",
+   "pass": true,
+   "note": "worst relative residual across all 30 published subjects"
+  },
+  {
+   "check": "the published cohort obeys the clinical dosing rules",
+   "level": 2,
+   "value": 1.1016230901935598,
+   "target": "correction and carbohydrate rules within 0.7-1.5, peak 45-150 min",
+   "pass": true,
+   "note": "correction 1.10x, carbohydrate 1.19x, bolused peak 75 min, across 10 published adults"
+  },
+  {
+   "check": "adult#001 holds its fasting glucose with no meals",
+   "level": 1,
+   "value": 0.016171883986544344,
+   "target": "< 5 mg/dL excursion in blood glucose",
+   "pass": true,
+   "note": "fasting parameter 152 mg/dL, largest excursion 0.02 over 2 days"
+  },
+  {
+   "check": "adult#001: 1 U drops glucose by about its correction factor",
+   "level": 2,
+   "value": 0.9722713341610784,
+   "target": "0.5 to 2.0 x CF",
+   "pass": true,
+   "note": "observed 14 mg/dL per U against a set CF of 15"
+  },
+  {
+   "check": "adult#001: 50 g unbolused raises glucose by about grams/CR x CF",
+   "level": 2,
+   "value": 1.005537456226606,
+   "target": "0.5 to 2.0 x expected",
+   "pass": true,
+   "note": "rose 70 mg/dL against an expected 70"
+  },
+  {
+   "check": "adult#001: a bolused meal peaks 45 to 150 minutes later",
+   "level": 2,
+   "value": 52.0,
+   "target": "45 to 150 min",
+   "pass": true,
+   "note": "peak at 52 minutes"
+  },
+  {
+   "check": "adult#002 holds its fasting glucose with no meals",
+   "level": 1,
+   "value": 0.019089443415793994,
+   "target": "< 5 mg/dL excursion in blood glucose",
+   "pass": true,
+   "note": "fasting parameter 150 mg/dL, largest excursion 0.02 over 2 days"
+  },
+  {
+   "check": "adult#002: 1 U drops glucose by about its correction factor",
+   "level": 2,
+   "value": 0.9821908456515752,
+   "target": "0.5 to 2.0 x CF",
+   "pass": true,
+   "note": "observed 14 mg/dL per U against a set CF of 15"
+  },
+  {
+   "check": "adult#002: 50 g unbolused raises glucose by about grams/CR x CF",
+   "level": 2,
+   "value": 1.0058029916510876,
+   "target": "0.5 to 2.0 x expected",
+   "pass": true,
+   "note": "rose 112 mg/dL against an expected 111"
+  },
+  {
+   "check": "adult#002: a bolused meal peaks 45 to 150 minutes later",
+   "level": 2,
+   "value": 68.0,
+   "target": "45 to 150 min",
+   "pass": true,
+   "note": "peak at 68 minutes"
+  },
+  {
+   "check": "adult#003 holds its fasting glucose with no meals",
+   "level": 1,
+   "value": 0.033686692488146264,
+   "target": "< 5 mg/dL excursion in blood glucose",
+   "pass": true,
+   "note": "fasting parameter 147 mg/dL, largest excursion 0.03 over 2 days"
+  },
+  {
+   "check": "adult#003: 1 U drops glucose by about its correction factor",
+   "level": 2,
+   "value": 0.9833798240720131,
+   "target": "0.5 to 2.0 x CF",
+   "pass": true,
+   "note": "observed 12 mg/dL per U against a set CF of 12"
+  },
+  {
+   "check": "adult#003: 50 g unbolused raises glucose by about grams/CR x CF",
+   "level": 2,
+   "value": 0.9976168316230218,
+   "target": "0.5 to 2.0 x expected",
+   "pass": true,
+   "note": "rose 119 mg/dL against an expected 119"
+  },
+  {
+   "check": "adult#003: a bolused meal peaks 45 to 150 minutes later",
+   "level": 2,
+   "value": 107.0,
+   "target": "45 to 150 min",
+   "pass": true,
+   "note": "peak at 107 minutes"
+  },
+  {
+   "check": "the sensor layer does not feed back into the body",
+   "level": 1,
+   "value": 0.0,
+   "target": "identical",
+   "pass": true,
+   "note": "same seed, sensor layer on and off, underlying BG compared"
+  },
+  {
+   "check": "adult#001: mean glucose falls monotonically as insulin rises",
+   "level": 2,
+   "value": 63.20505612853124,
+   "target": "strictly decreasing",
+   "pass": true,
+   "note": "means at 0.7/0.85/1.0/1.15/1.3 x insulin: 191, 178, 164, 147, 128"
+  },
+  {
+   "check": "adult#001: extra insulin is met with extra rescue carbohydrate",
+   "level": 2,
+   "value": 575.0278678693473,
+   "target": "rescue carbohydrate rises with the dose",
+   "pass": true,
+   "note": "rescue grams at 0.7/0.85/1.0/1.15/1.3 x insulin: 0, 0, 233, 323, 575; mean glucose is no longer monotone, which is the person defending rather than a modelling error"
+  },
+  {
+   "check": "two population draws describe the same kind of people",
+   "level": 6,
+   "value": 0.180884112590294,
+   "target": "< 0.25 relative difference",
+   "pass": true,
+   "note": "largest gap in cr: 10.808 against 8.853"
+  },
+  {
+   "check": "adult#001: announcing more meals lowers mean glucose",
+   "level": 6,
+   "value": 3.7597878332575476,
+   "target": "ordered, and a bounded spread",
+   "pass": true,
+   "note": "means at 65/80/95% announcement: 134, 132, 130"
+  }
+ ],
+ "subjects": 3,
+ "days": 14,
+ "fast_only": true
+}

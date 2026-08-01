@@ -142,19 +142,23 @@ class _BasalBolus:
 
 def simulate(name, days=28, seed=0, layers=LAYERS, controller=None, meals=None,
              sensor_noise=SENSOR_NOISE_SIGMA,
-             compression_per_30d=SENSOR_COMPRESSION_PER_30D):
+             compression_per_30d=SENSOR_COMPRESSION_PER_30D,
+             params=None, settings=None):
     """Run one subject. Returns a Result.
 
     `layers` is any subset of LAYERS. `controller`, if given, replaces the built-in
     basal-bolus controller and is driven through simglucose's own policy interface, so
     the behaviour layer still supplies unannounced meals and rescue carbohydrate around
     it.
+
+    `params` and `settings` override the shipped population, which is what the validation
+    suite uses to test a candidate subject that has not been written into the package.
     """
     layers = tuple(l for l in LAYERS if l in set(layers))
     rng = np.random.default_rng(seed)
 
-    params = pd.Series(params_for(name))
-    settings = therapy_for(name)
+    params = pd.Series(params if params is not None else params_for(name))
+    settings = settings if settings is not None else therapy_for(name)
     patient = VaryingPatient(params)
     if "physiology" in layers:
         patient.set_sensitivity(rng, days)
@@ -180,7 +184,10 @@ def simulate(name, days=28, seed=0, layers=LAYERS, controller=None, meals=None,
     builtin = _BasalBolus(float(settings["CR"]), float(settings["CF"]), basal,
                           adaptive="behaviour" in layers, loop="loop" in layers)
 
-    obs, reward, done, info = env.step(Action(basal=0, bolus=0))
+    # Prime with the subject's own basal rather than zero. simglucose's examples open
+    # with a zero-insulin step, which kicks a subject off the steady state its parameters
+    # were closed at and leaves a slow ring through the first day or two of every run.
+    obs, reward, done, info = env.step(Action(basal=basal, bolus=0))
     cgm, bg, minute, previous, fall_rate = [], [], 0, None, 0.0
     steps = int(days * 24 * 60 / step_minutes)
     completed = True

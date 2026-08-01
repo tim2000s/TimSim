@@ -138,41 +138,82 @@ def screen(params, cr):
 
 
 # ------------------------------------------------------------------ therapy settings
-class _TherapySampler:
-    """Draws carbohydrate ratio, correction factor and age for a generated subject.
+# Plausible human ranges. A subject whose measured settings fall outside these is not
+# rejected because the settings are wrong, but because the physiology that produced them
+# is not a person's.
+CF_RANGE = (5.0, 150.0)      # mg/dL per unit
+CR_RANGE = (2.0, 50.0)       # grams per unit
 
-    These are not model parameters; they are the settings a clinician would arrive at,
-    and in the published cohort they track body weight and basal requirement. So they
-    are drawn from the conditional distribution given the subject's own weight and
-    basal rate rather than independently, which keeps a heavy subject from being handed
-    a light subject's ratios.
+SETTLE_MINUTES = 600
+OBSERVE_MINUTES = 300
+PROBE_CARBS = 20.0
+
+
+def measure_settings(params):
+    """Measure a subject's correction factor and carbohydrate ratio from its own model.
+
+    An earlier version drew these from the published cohort's distribution conditioned on
+    body weight and basal rate. That was wrong, and the validation suite caught it. In the
+    published cohort the settings track the physiology because they were derived from it:
+    one unit moves published subjects by 1.10 times their stated correction factor, median
+    across the ten adults. Conditioning on two coarse proxies loses that link, and the
+    generated subjects came out at 0.63, which is a subject being dosed by someone else's
+    settings on every cycle of every run.
+
+    So they are measured instead, the way a clinician titrates: give one unit from a
+    settled state and see how far glucose falls; give a small amount of carbohydrate and
+    see how far it rises; the ratio of the two is how much carbohydrate one unit covers.
+    That makes the settings consistent with the physiology by construction.
+
+    Note what this costs. Once the settings are derived by measurement, checking that one
+    unit moves glucose by the correction factor stops being an independent test of the
+    model on generated subjects and becomes a consistency check. The independent version
+    of that test is `check_published_cohort_obeys_clinical_rules`, which runs on the
+    published subjects, whose settings were not derived this way.
     """
+    from simglucose.patient.t1dpatient import T1DPatient, Action
 
-    def __init__(self, quest, patients, klass):
-        m = quest.Name.str.startswith(klass)
-        q = quest[m].reset_index(drop=True)
-        p = patients[patients.Name.str.startswith(klass)].reset_index(drop=True)
-        # joint in log space: [CR, CF, Age | BW, u2ss]
-        self.cols = ["CR", "CF", "Age"]
-        joint = np.column_stack([
-            np.log(q.CR.to_numpy(float)), np.log(q.CF.to_numpy(float)),
-            np.log(q.Age.to_numpy(float)),
-            np.log(p.BW.to_numpy(float)), np.log(p.u2ss.to_numpy(float))])
-        self.mu = joint.mean(0)
-        cov = np.cov(joint, rowvar=False)
-        self.cov = 0.5 * cov + 0.5 * np.diag(np.diag(cov))
+    series = pd.Series(params)
+    basal = derive.basal_rate(params)
 
-    def draw(self, bw, u2ss, rng):
-        a, b = slice(0, 3), slice(3, 5)
-        mu_a, mu_b = self.mu[a], self.mu[b]
-        Saa, Sab, Sbb = self.cov[a, a], self.cov[a, b], self.cov[b, b]
-        x = np.array([np.log(bw), np.log(u2ss)])
-        solve = np.linalg.solve(Sbb + 1e-9 * np.eye(2), (x - mu_b))
-        mean = mu_a + Sab @ solve
-        cond = Saa - Sab @ np.linalg.solve(Sbb + 1e-9 * np.eye(2), Sab.T)
-        cond = (cond + cond.T) / 2 + 1e-9 * np.eye(3)
-        cr, cf, age = np.exp(rng.multivariate_normal(mean, cond))
-        return float(np.clip(cr, 3.0, 40.0)), float(np.clip(cf, 5.0, 80.0)), float(np.clip(age, 6, 75))
+    def settle():
+        p = T1DPatient(series.copy())
+        for _ in range(SETTLE_MINUTES):
+            p.step(Action(insulin=basal, CHO=0.0))
+        return p
+
+    p = settle()
+    start = p.observation.Gsub
+    p.step(Action(insulin=basal + 1.0, CHO=0.0))
+    nadir = start
+    for _ in range(OBSERVE_MINUTES):
+        p.step(Action(insulin=basal, CHO=0.0))
+        nadir = min(nadir, p.observation.Gsub)
+    cf = start - nadir
+
+    p = settle()
+    start = p.observation.Gsub
+    p.step(Action(insulin=basal, CHO=PROBE_CARBS))
+    peak = start
+    for _ in range(OBSERVE_MINUTES):
+        p.step(Action(insulin=basal, CHO=0.0))
+        peak = max(peak, p.observation.Gsub)
+    rise_per_gram = (peak - start) / PROBE_CARBS
+
+    if cf <= 0 or rise_per_gram <= 0:
+        return None, None
+    return float(cf), float(cf / rise_per_gram)
+
+
+class _AgeSampler:
+    """Age is not in the model, so unlike the ratios it is drawn rather than measured."""
+
+    def __init__(self, quest, klass):
+        ages = np.log(quest[quest.Name.str.startswith(klass)].Age.to_numpy(float))
+        self.mu, self.sd = float(ages.mean()), float(ages.std(ddof=1))
+
+    def draw(self, rng):
+        return float(np.clip(np.exp(rng.normal(self.mu, self.sd)), 6, 75))
 
 
 # ------------------------------------------------------------------ the generator
@@ -201,7 +242,7 @@ def generate(n=100, seed=2026, shrinkage=0.5, truncate=2.5, split=None, verbose=
         sub = published[published.Name.str.startswith(klass)]
         z = _to_z(sub)
         mean, cov = z.mean(0), _shrunk_cov(z, shrinkage)
-        sampler = _TherapySampler(quest, published, klass)
+        ages = _AgeSampler(quest, klass)
         rng = np.random.default_rng(seed + hash(klass) % 10_000)
 
         made, tries = 0, 0
@@ -216,7 +257,20 @@ def generate(n=100, seed=2026, shrinkage=0.5, truncate=2.5, split=None, verbose=
             except NotViable as exc:
                 rejects[str(exc)] = rejects.get(str(exc), 0) + 1
                 continue
-            cr, cf, age = sampler.draw(params["BW"], params["u2ss"], rng)
+            cf, cr = measure_settings(params)
+            if cf is None:
+                rejects["settings could not be measured"] = \
+                    rejects.get("settings could not be measured", 0) + 1
+                continue
+            if not (CF_RANGE[0] <= cf <= CF_RANGE[1]):
+                rejects["correction factor outside the human range"] = \
+                    rejects.get("correction factor outside the human range", 0) + 1
+                continue
+            if not (CR_RANGE[0] <= cr <= CR_RANGE[1]):
+                rejects["carbohydrate ratio outside the human range"] = \
+                    rejects.get("carbohydrate ratio outside the human range", 0) + 1
+                continue
+            age = ages.draw(rng)
             why = screen(params, cr)
             if why:
                 rejects[why] = rejects.get(why, 0) + 1

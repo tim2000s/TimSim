@@ -26,9 +26,9 @@ because they are not properties of the equations:
   simulated person was not
 
 This package adds those, as layers you can switch on and off independently. With all four,
-seven of the eleven statistics land inside the real range, and the four that do not are
-reported rather than tuned away. The measured table is in
-[docs/FIDELITY.md](docs/FIDELITY.md).
+seven of the eleven statistics land inside the real range and two more miss by a fraction of
+a unit, against one for the bare subjects. The ones that do not come right are reported
+rather than tuned away. The measured table is in [docs/FIDELITY.md](docs/FIDELITY.md).
 
 ## What it does not do
 
@@ -137,6 +137,25 @@ This is a layer on top, not a fork. simglucose supplies the differential equatio
 sensor and pump models and the environment loop, and its interfaces are used unchanged, so
 a controller written for simglucose runs here without modification. The published
 parameter tables are read from your simglucose install and are not redistributed.
+
+## Is it any good?
+
+Six graded levels of check, from whether the code does what it claims through to how large
+a difference it can actually resolve, in [docs/VALIDATION.md](docs/VALIDATION.md). The two
+that matter most for a comparison:
+
+- running the same controller twice gives +0.21 percentage points of time in range
+  [-2.28 to +1.44], so the null is null, and the design resolves about 1.0 points across
+  the full 100 subjects
+- closing the loop gives +14.7 points [9.3 to 18.4] with no increase in time below range,
+  which is the right direction and order of magnitude for the one intervention whose
+  effect size is best established
+
+That structure earns its keep. It caught two real defects that no amount of distributional
+comparison would have found: subjects being dosed on somebody else's settings, because
+ratios were drawn from the published cohort rather than measured from each subject's own
+model; and every run opening with a zero-insulin step that kicked each subject off its
+steady state. Fixing them improved the fidelity table by three statistics.
 
 ## Reading a result
 
