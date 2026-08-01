@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.venv/
+.pytest_cache/
+*.npz
+examples/out/
+simperson/population/params/vpop_*.csv
+simperson/population/params/vpop_*.json
