@@ -9,11 +9,11 @@ A physiological simulator describes a body. Compare its output against real cont
 glucose data and the differences that survive are mostly not about the body at all.
 
 We measured this. Taking eleven statistics that distinguish a real glucose trace from a
-simulated one, computed identically on both, the published 2008 personae match three of
-them against a reference envelope of 192 real closed-loop users. Adding the headline
-refinement of the licensed S2013 model, time-varying insulin sensitivity, closes one more
-and pushes two others out. The remaining gaps do not move for any change to the
-differential equations, because they are not properties of the equations:
+simulated one, computed identically on both, the bare subjects match none of them against
+a reference envelope of 192 real closed-loop users. Adding the headline refinement of the
+licensed S2013 model, time-varying insulin sensitivity, moves two of them and closes
+none. The remaining gaps do not move for any change to the differential equations,
+because they are not properties of the equations:
 
 - people eat without telling the algorithm, so real traces carry a fat tail of sharp
   rises that a simulator with announced meals cannot produce
@@ -25,9 +25,10 @@ differential equations, because they are not properties of the equations:
 - and every real cohort is running an automated loop, correcting continuously, which the
   simulated person was not
 
-This package adds those, as layers you can switch on and off independently. With all four
-the same eleven statistics go from three in range to six, and the three that remain are
-reported rather than tuned away.
+This package adds those, as layers you can switch on and off independently. With all four,
+seven of the eleven statistics land inside the real range, and the four that do not are
+reported rather than tuned away. The measured table is in
+[docs/FIDELITY.md](docs/FIDELITY.md).
 
 ## What it does not do
 
