@@ -23,6 +23,6 @@ jobs:
       - name: Build a small population
         # The full 100 takes a few minutes; CI checks the generator works and the
         # subjects it produces are consistent, not the shipped population itself.
-        run: python -m simperson.population.build --n 9 --quiet
+        run: python -m timsim.population.build --n 9 --quiet
       - name: Test
         run: pytest -q

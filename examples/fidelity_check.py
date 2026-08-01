@@ -1,6 +1,6 @@
 """How closely does the full stack match real data? Prints the verdict table."""
-from simperson import signatures, simulate_cohort
-from simperson.population import names
+from timsim import signatures, simulate_cohort
+from timsim.population import names
 
 results = simulate_cohort(names("adult"), days=28, progress=True)
 stats = signatures.evaluate(results)

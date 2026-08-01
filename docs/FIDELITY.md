@@ -121,7 +121,7 @@ either set of numbers across. It is also a reason to regenerate with another see
 believing any result:
 
 ```
-python -m simperson.population.build --n 100 --seed 7
+python -m timsim.population.build --n 100 --seed 7
 ```
 
 ## What the population does and does not add
@@ -134,13 +134,13 @@ human variability.
 What they add is resolution. With ten subjects per class one awkward subject moves a
 cohort median noticeably; with thirty-three it moves it less. The acceptance rate and the
 breakdown of why candidates were refused are in
-`simperson/population/params/vpop_report.json`.
+`timsim/population/params/vpop_report.json`.
 
 ## Provenance of the parameters
 
 No parameter in the behaviour layer was fitted to any statistic in the table above.
 Announcement rates, carbohydrate-counting error and rescue-treatment sizes are clinical
 literature figures or explicit modelling choices, recorded with their reasoning in
-`simperson/person/behaviour.py`. The sensor layer's two parameters were fitted, on a
+`timsim/person/behaviour.py`. The sensor layer's two parameters were fitted, on a
 different cohort from the one they are evaluated against, and that is stated in
-`simperson/sensor/realism.py`.
+`timsim/sensor/realism.py`.

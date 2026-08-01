@@ -1,6 +1,6 @@
 """Build the shipped population. Run once after install, or to regenerate with a new seed.
 
-    python -m simperson.population.build --n 100 --seed 2026
+    python -m timsim.population.build --n 100 --seed 2026
 
 The generated tables are written into the package so that every later run uses the same
 subjects. Regenerating with a different seed is the check that a result does not depend

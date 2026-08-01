@@ -2,7 +2,7 @@
 import numpy as np
 import pytest
 
-from simperson import LAYERS, population, simulate
+from timsim import LAYERS, population, simulate
 
 pytestmark = pytest.mark.skipif(not population.available(),
                                 reason="no population generated")
@@ -39,7 +39,7 @@ def test_the_behaviour_layer_produces_unannounced_meals_and_rescues(subject):
 
 
 def test_the_sensor_layer_adds_jitter_that_no_other_layer_adds(subject):
-    from simperson.analysis import signatures as S
+    from timsim.analysis import signatures as S
     quiet = simulate(subject, days=7, seed=0, layers=("physiology", "behaviour"))
     noisy = simulate(subject, days=7, seed=0, layers=("physiology", "behaviour", "sensor"))
     jitter = next(fn for k, _, fn in S.SIGS if k == "noise")

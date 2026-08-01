@@ -7,5 +7,5 @@ dist/
 .pytest_cache/
 *.npz
 examples/out/
-simperson/population/params/vpop_*.csv
-simperson/population/params/vpop_*.json
+timsim/population/params/vpop_*.csv
+timsim/population/params/vpop_*.json

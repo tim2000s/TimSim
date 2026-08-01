@@ -1,4 +1,4 @@
-# Contributing
+# Contributing to TimSim
 
 ## The bar for a new mechanism
 
@@ -20,7 +20,7 @@ and the table in `docs/FIDELITY.md` is there to make that visible.
 
 ## The bar for a new subject population
 
-Anything generated has to survive `simperson.population.generate.screen`. If you loosen a
+Anything generated has to survive `timsim.population.generate.screen`. If you loosen a
 gate, say which subjects it lets in and why they are people.
 
 ## Style

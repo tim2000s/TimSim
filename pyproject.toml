@@ -3,7 +3,7 @@ requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "simperson"
+name = "timsim"
 version = "0.1.0"
 description = "A person-in-the-loop layer and a larger virtual population for the UVA/Padova simulator"
 readme = "README.md"
@@ -21,13 +21,13 @@ plots = ["matplotlib>=3.5"]
 dev = ["pytest>=7", "matplotlib>=3.5"]
 
 [project.scripts]
-simperson-build-population = "simperson.population.build:main"
+timsim-build-population = "timsim.population.build:main"
 
 [tool.setuptools.packages.find]
-include = ["simperson*"]
+include = ["timsim*"]
 
 [tool.setuptools.package-data]
-"simperson.population" = ["params/*.csv", "params/*.json"]
+"timsim.population" = ["params/*.csv", "params/*.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

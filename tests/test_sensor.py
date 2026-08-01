@@ -1,7 +1,7 @@
 """The sensor layer injects artefacts, and must inject only what it claims to."""
 import numpy as np
 
-from simperson.sensor.realism import add_sensor_noise, apply, inject_compression_lows
+from timsim.sensor.realism import add_sensor_noise, apply, inject_compression_lows
 
 
 def _trace(n=8640, level=120.0):

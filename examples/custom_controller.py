@@ -5,8 +5,8 @@ unexplained rise, exactly as they do in practice. Rescue carbohydrate is never a
 """
 from simglucose.controller.base import Action, Controller
 
-from simperson import signatures, simulate_cohort
-from simperson.population import names, params_for, therapy_for
+from timsim import signatures, simulate_cohort
+from timsim.population import names, params_for, therapy_for
 
 
 class LowGlucoseSuspend(Controller):

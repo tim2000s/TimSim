@@ -2,8 +2,8 @@
 import numpy as np
 import pytest
 
-from simperson.controller.loop import CorrectionLoop
-from simperson.person.behaviour import (AdaptiveRatios, Person, P_ANNOUNCE_MAIN,
+from timsim.controller.loop import CorrectionLoop
+from timsim.person.behaviour import (AdaptiveRatios, Person, P_ANNOUNCE_MAIN,
                                         RESCUE_REFRACTORY_MIN)
 
 

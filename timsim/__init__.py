@@ -1,4 +1,4 @@
-"""simperson: a person-in-the-loop layer over the UVA/Padova virtual patient.
+"""TimSim: a person-in-the-loop layer over the UVA/Padova virtual patient.
 
 A physiological simulator describes a body. It does not describe someone eating without
 telling the algorithm, drinking juice when the alarm goes off, or adjusting a setting
@@ -8,7 +8,7 @@ trace shows, and no amount of refinement to the differential equations produces 
 This package adds them, as separable layers over simglucose, together with a virtual
 population large enough that a comparison is not at the mercy of one awkward subject.
 
-    from simperson import simulate, signatures
+    from timsim import simulate, signatures
 
     result = simulate("adult#001", days=28)
     print(result.summary())

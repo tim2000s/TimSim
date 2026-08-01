@@ -1,4 +1,4 @@
-# simperson
+# TimSim
 
 A person-in-the-loop layer over the UVA/Padova virtual patient, and a virtual population
 of 100 screened subjects instead of 30.
@@ -48,7 +48,7 @@ awkward subject.
 ```
 pip install simglucose
 pip install -e .
-python -m simperson.population.build --n 100
+python -m timsim.population.build --n 100
 ```
 
 The population is generated on your machine rather than shipped, so nothing derived from
@@ -58,7 +58,7 @@ result is deterministic given the seed.
 ## Use
 
 ```python
-from simperson import simulate, signatures
+from timsim import simulate, signatures
 
 r = simulate("adult#001", days=28)
 print(r.summary())
@@ -70,8 +70,8 @@ print(r.summary())
 A cohort, and how well it matches real data:
 
 ```python
-from simperson import simulate_cohort, signatures
-from simperson.population import names
+from timsim import simulate_cohort, signatures
+from timsim.population import names
 
 results = simulate_cohort(names("adult"), days=28)
 print(signatures.report(signatures.evaluate(results)))
@@ -109,12 +109,12 @@ results = simulate_cohort(days=28, controller_factory=lambda name: MyController(
 | `loop` | continuous correction with an insulin-on-board bound | autocorrelation, variability |
 | `sensor` | measurement jitter and compression lows | the two sensor statistics |
 
-Each is a small, readable module. `simperson/person/behaviour.py` is the one that matters
+Each is a small, readable module. `timsim/person/behaviour.py` is the one that matters
 most and is about 200 lines.
 
 ## The population
 
-`simperson/population/derive.py` records something worth knowing about the published
+`timsim/population/derive.py` records something worth knowing about the published
 parameter tables: of their 62 columns, only 29 are free. The rest are either constant
 across all thirty subjects or determined exactly by the model's own balance equations at
 the basal steady state. Those relations are written out there and verified against all

@@ -1,5 +1,5 @@
 """One subject, four weeks, everything switched on."""
-from simperson import simulate
+from timsim import simulate
 
 r = simulate("adult#001", days=28, seed=1)
 s = r.summary()

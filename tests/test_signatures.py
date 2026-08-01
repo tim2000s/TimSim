@@ -2,7 +2,7 @@
 import numpy as np
 import pytest
 
-from simperson.analysis import signatures as S
+from timsim.analysis import signatures as S
 
 
 def _flat(level=120.0, days=7):

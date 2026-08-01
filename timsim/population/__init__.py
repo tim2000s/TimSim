@@ -19,7 +19,7 @@ def patients():
     if not available():
         raise FileNotFoundError(
             "No population found. Generate one with:\n"
-            "    python -m simperson.population.build --n 100"
+            "    python -m timsim.population.build --n 100"
         )
     return pd.read_csv(PATIENT_FILE)
 

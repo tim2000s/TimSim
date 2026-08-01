@@ -13,8 +13,8 @@ subjects over 28 days.
 """
 import argparse, json, os
 
-from simperson import signatures, simulate_cohort
-from simperson.population import names
+from timsim import signatures, simulate_cohort
+from timsim.population import names
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(HERE, "docs")

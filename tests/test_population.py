@@ -3,8 +3,8 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from simperson.population import derive
-from simperson.population.generate import screen
+from timsim.population import derive
+from timsim.population.generate import screen
 
 
 @pytest.fixture(scope="module")
@@ -32,7 +32,7 @@ def test_closure_rejects_impossible_parameters(published):
 
 
 def test_generated_subjects_are_internally_consistent():
-    from simperson import population
+    from timsim import population
     if not population.available():
         pytest.skip("no population generated")
     p = population.patients()
@@ -47,7 +47,7 @@ def test_generated_subjects_are_internally_consistent():
 
 def test_every_shipped_subject_passes_its_own_screen():
     """A subject in the population must still pass the gate that admitted it."""
-    from simperson import population
+    from timsim import population
     if not population.available():
         pytest.skip("no population generated")
     p, q = population.patients(), population.therapy()
@@ -58,7 +58,7 @@ def test_every_shipped_subject_passes_its_own_screen():
 
 
 def test_population_covers_the_three_classes():
-    from simperson import population
+    from timsim import population
     if not population.available():
         pytest.skip("no population generated")
     for klass in ("adult", "adolescent", "child"):
