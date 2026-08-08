@@ -9,6 +9,15 @@ range after the behaviour layer had pushed them out.
 
 For a comparison of real algorithms, replace this with the algorithm under test; it is
 the baseline, not the subject.
+
+It is not a Control-IQ stand-in, and that matters when reading anything scored against
+DCLP3. This corrects every five minutes on the current reading at half the calculated
+need. Control-IQ delivers an automatic correction bolus at most once an hour, on a
+30-minute prediction crossing 180 mg/dL, at 60% of the correction factor. Twelve times
+the correction cadence shows up where you would expect: 0.40 severe lows a day here
+against the trial's 0.21 and 0.69 for a small cohort of do-it-yourself loop users. Any
+hypoglycaemia statistic in `docs/FIDELITY.md` is a property of this baseline as much as
+of the person it is driving.
 """
 import numpy as np
 

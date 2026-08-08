@@ -415,9 +415,32 @@ including glucagon secretion "could be not appropriate for all T1DM patients wit
 duration". And people with established type 1 diabetes lose the alpha-cell response, which
 is exactly what the 33 pg/mL above shows.
 
-What does remain open is the tail and the rate: this package produces about 1.8 times as
-many severe lows as the trial and a heavier duration tail, on matched signals. That is a
-different problem from a missing hormone, and nothing here has established its cause.
+### The rate, and whose rate it is
+
+What looked like a remaining gap was a comparison against one cohort. Severe lows across
+every real cohort available here, all measured on a sensor reading with breaks in wear split
+out:
+
+| Cohort | Days | Episodes | Per day | median | p90 | p99 | max |
+|---|---|---|---|---|---|---|---|
+| DCLP3 closed loop, Control-IQ, 67 people | 10,676 | 2,242 | 0.21 | 10 | 25 | 60 | 160 |
+| Nightscout do-it-yourself closed loop, 4 people | 339 | 233 | 0.69 | 15 | 50 | 85 | 165 |
+| This package, 34 subjects | 952 | 380 | 0.40 | 10 | 55 | 110 | 135 |
+
+It sits between two real populations rather than outside them, nearer the do-it-yourself
+loop users than the trial, and its longest episode is shorter than either. The DCLP3
+sensor-augmented pump arm cannot be added to this: `Pump_CGMGlucoseValue.txt` is the
+Control-IQ pump's own log, so it carries the closed-loop arm only. Four Nightscout users
+over 339 days is a thin reference and is quoted as one.
+
+Which raises the question of whose rate this is. A low needs insulin and the insulin comes
+from the controller, so a severe-low rate is a property of the person and the algorithm
+together, in the same way the eleven signatures are. The reference controller here corrects
+every five minutes, reactively, at half the calculated need. Control-IQ delivers an
+automatic correction bolus at most once an hour, on a 30-minute prediction crossing 180
+mg/dL, at 60% of the correction factor. Twelve times the cadence is the obvious reason this
+package looks more like a do-it-yourself loop than like the trial it is scored against, and
+it is a fact about `controller/reference.py` rather than about the body.
 
 ### What to carry from this
 
