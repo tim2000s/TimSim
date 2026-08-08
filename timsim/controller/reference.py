@@ -60,7 +60,8 @@ class ReferenceAID(Controller):
         self.max_iob_u = float(max_iob_u)
         self.target = float(target if target is not None else self.profile.target)
 
-        self.doses = []              # [(minute, units)] this algorithm believes it gave
+        self.doses = []              # [(minute, units)] as the pump reported delivering
+        self._pending = None         # index of a dose awaiting its delivered amount
         self.history = []            # [(minute, reading)]
         self.last_correction = -1e9
 
@@ -97,19 +98,50 @@ class ReferenceAID(Controller):
         cr = self.profile.cr_at(minute) * self.cr_scale
         grams = float(info.get("meal", 0.0)) * sample
 
-        bolus = 0.0
-        if grams > 0:
-            bolus = max(grams / cr + (cgm > CORRECT_ABOVE) * (cgm - self.target) / isf, 0.0)
+        # What the pump reports having delivered, which is not what was asked for: the
+        # delivery ceilings in therapy/limits.py sit between the two. A loop that keeps
+        # its own request as its dose record drifts away from reality on every clamp, and
+        # this one had reached a believed 41.7 U on board against a real 10. The
+        # open-source systems all reconstruct insulin on board from pump history for
+        # exactly this reason.
+        delivered = info.get("delivered_bolus_u")
+        if delivered is not None and self._pending is not None:
+            at, _ = self.doses[self._pending]
+            self.doses[self._pending] = (at, float(delivered))
+            self._pending = None
 
         on_board = iob_of(minute, self.doses)
-        if minute - self.last_correction >= CORRECTION_INTERVAL_MIN and cgm >= CORRECT_ABOVE:
+        headroom = (max(self.max_iob_u - on_board, 0.0)
+                    if self.use_iob_bound else float("inf"))
+
+        # A meal bolus is a bolus calculator: cover the carbohydrate, correct what is
+        # already there, subtract what is already working. Covering the carbohydrate is
+        # not bounded by insulin on board, because the carbohydrate is real and arriving.
+        # Correcting on top of it is, and it used not to be: this line added an uncapped
+        # full correction with no subtraction, on top of a correction block that then
+        # fired again on the same reading.
+        bolus, corrected_with_meal = 0.0, False
+        if grams > 0:
+            correction = 0.0
+            if cgm > CORRECT_ABOVE:
+                correction = min(max((cgm - self.target) / isf - on_board, 0.0), headroom)
+                corrected_with_meal = True
+            bolus = max(grams / cr + correction, 0.0)
+
+        if (not corrected_with_meal
+                and minute - self.last_correction >= CORRECTION_INTERVAL_MIN
+                and cgm >= CORRECT_ABOVE):
             need = (cgm - self.target) / isf
             if self.use_iob_bound:
                 need -= on_board
-            allowed = on_board < self.max_iob_u or not self.use_iob_bound
-            if need > 0.05 and allowed:
-                bolus += float(min(need * CORRECTION_FRACTION, MAX_CORRECTION_U))
-                self.last_correction = minute
+            if need > 0.05:
+                # The ceiling bounds where insulin on board ends up, not merely whether a
+                # dose may start. Testing `on_board < max_iob_u` alone let a full 2 U land
+                # at 5.9 U on board and finish at 7.9.
+                extra = min(need * CORRECTION_FRACTION, MAX_CORRECTION_U, headroom)
+                if extra > 0.0:
+                    bolus += float(extra)
+                    self.last_correction = minute
 
         basal = self.profile.basal_at(minute)
         if self.use_low_suspend:
@@ -120,6 +152,7 @@ class ReferenceAID(Controller):
 
         if bolus > 0:
             self.doses.append((minute, bolus))
+            self._pending = len(self.doses) - 1
         return Action(basal=basal, bolus=bolus / sample)
 
 

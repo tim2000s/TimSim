@@ -159,14 +159,26 @@ def test_evaluate_binds_the_design_without_being_asked():
     assert gate.evaluate(r)["fingerprint"] == gate.fingerprint(design=gate.design_of(r))
 
 
-def test_the_registration_history_is_consistent_with_the_current_criteria():
-    """Every recorded fingerprint has to be reproducible, or the record proves nothing."""
+def test_the_registration_history_records_one_current_entry_and_dates_the_rest():
+    """A retired fingerprint cannot recompute once the criteria move, which is the point.
+
+    It was hashed against the criteria of its day. What the record has to do is make a
+    change visible and dated, and say how many criteria were in force when.
+    """
     from timsim.validation import gate
-    for entry in gate.REGISTERED:
-        assert gate.fingerprint(design=entry["design"]) == entry["fingerprint"], entry
     current = [e for e in gate.REGISTERED if "registered" in e]
-    assert len(current) == 1
-    assert "site" in current[0]["design"]["layers"]
+    retired = [e for e in gate.REGISTERED if "retired" in e]
+    assert len(current) == 1 and retired
+    assert current[0]["criteria"] == len(gate.DEFAULT_CRITERIA)
+    assert all(e["fingerprint"] for e in retired), "a retired entry lost its hash"
+    assert all("note" in e for e in gate.REGISTERED)
+
+
+def test_no_criterion_measures_something_the_model_cannot_do():
+    """The longest-severe-low threshold was retired for exactly this reason."""
+    from timsim.validation import gate
+    assert not any(c.key == "longest_below_54_min" for c in gate.DEFAULT_CRITERIA)
+    assert any("severe low" in h for h in gate.UNCOVERED_HAZARDS)
 
 
 def test_site_failure_is_no_longer_listed_as_wholly_uncovered():
@@ -175,3 +187,91 @@ def test_site_failure_is_no_longer_listed_as_wholly_uncovered():
     assert "therapy/site.py" in joined
     assert not any(h.startswith("infusion site failure, which the model has no mechanism")
                    for h in gate.UNCOVERED_HAZARDS)
+
+
+# ------------------------------------------------------------ the reference algorithm
+def _fake_info(minute, cgm, meal_g=0.0, delivered=None, sample=5.0):
+    info = {"clock_minutes": minute, "sample_time": sample, "meal": meal_g / sample}
+    if delivered is not None:
+        info["delivered_bolus_u"] = delivered
+    return info
+
+
+class _Obs:
+    def __init__(self, cgm):
+        self.CGM = cgm
+
+
+def _aid(**kw):
+    from timsim.controller.reference import ReferenceAID
+    from timsim.population import names
+    return ReferenceAID(names("adult")[0], **kw)
+
+
+def test_a_meal_bolus_subtracts_insulin_already_working():
+    """It used not to. An uncapped full correction rode along with every meal."""
+    from timsim.controller.reference import CORRECT_ABOVE
+    a, b = _aid(), _aid()
+    # give one of them a large dose to carry, then feed both the same meal at a high
+    a.doses.append((0.0, 5.0))
+    high = CORRECT_ABOVE + 80.0
+    ba = a.policy(_Obs(high), 0, False, **_fake_info(10.0, high, meal_g=60.0)).bolus
+    bb = b.policy(_Obs(high), 0, False, **_fake_info(10.0, high, meal_g=60.0)).bolus
+    assert ba < bb, "insulin on board did not reduce the meal-time correction"
+
+
+def test_the_ceiling_bounds_where_insulin_on_board_ends_up():
+    """Testing only whether a dose may start let 2 U land at 5.9 U and finish at 7.9."""
+    from timsim.therapy.insulin import iob as iob_of
+    a = _aid(max_iob_u=6.0)
+    a.doses.append((0.0, 5.9))
+    high = 300.0
+    a.policy(_Obs(high), 0, False, **_fake_info(5.0, high))
+    assert iob_of(5.0, a.doses) <= 6.0 + 1e-9
+
+
+def test_covering_carbohydrate_is_not_withheld_for_insulin_on_board():
+    """The carbohydrate is real and arriving; only the correction part is bounded."""
+    a = _aid(max_iob_u=6.0)
+    a.doses.append((0.0, 20.0))
+    bolus = a.policy(_Obs(110.0), 0, False, **_fake_info(5.0, 110.0, meal_g=60.0)).bolus
+    assert bolus > 0.0
+
+
+def test_the_algorithm_records_what_the_pump_delivered_not_what_it_asked_for():
+    """Tracking its own requests took the believed insulin on board to 41.7 U."""
+    a = _aid()
+    a.policy(_Obs(300.0), 0, False, **_fake_info(5.0, 300.0))
+    asked = a.doses[-1][1]
+    a.policy(_Obs(120.0), 0, False, **_fake_info(10.0, 120.0, delivered=0.25))
+    assert a.doses[-1][1] == pytest.approx(0.25)
+    assert asked != pytest.approx(0.25)
+
+
+def test_a_step_with_no_bolus_does_not_rewrite_an_earlier_dose():
+    a = _aid()
+    a.policy(_Obs(300.0), 0, False, **_fake_info(5.0, 300.0))
+    a.policy(_Obs(120.0), 0, False, **_fake_info(10.0, 120.0, delivered=1.0))
+    before = list(a.doses)
+    a.policy(_Obs(120.0), 0, False, **_fake_info(15.0, 120.0, delivered=0.0))
+    assert a.doses == before
+
+
+def test_the_runner_reports_delivered_insulin_to_the_algorithm():
+    from timsim import simulate
+    from timsim.population import names
+    seen = []
+
+    class Spy:
+        name = "spy"
+
+        def policy(self, observation, reward, done, **info):
+            from simglucose.controller.base import Action
+            seen.append(info.get("delivered_bolus_u"))
+            return Action(basal=0.02, bolus=4.0 / info["sample_time"])
+
+    simulate(names("adult")[0], days=1, seed=0, controller=Spy())
+    reported = [v for v in seen if v is not None]
+    assert reported, "the runner never told the algorithm what was delivered"
+    # the ceilings sit between the request and the pump, so at least one differs
+    assert any(abs(v - 4.0) > 1e-9 for v in reported)

@@ -344,6 +344,59 @@ at 35.3 for anyone testing how an algorithm copes with badly tuned therapy, whic
 scenario and not the default one. What neither fixes is the shape by hour: every arm runs
 high at breakfast and short after midnight, which is a separate problem and still open.
 
+## Why hypoglycaemia duration is not assessable here
+
+This is the sharpest limit in the package and it was found by a gate criterion failing,
+then surviving every attempt to fix the thing it was blaming.
+
+The gate had a threshold on the longest single episode below 54 mg/dL, at 120 minutes. The
+reference algorithm failed it at 150, then at 180 once the infusion site layer was in.
+Instrumenting the worst episode showed the person treating six times with 242 g, the loop
+suspended at 0.00 U for over two hours, the sensor reading 39 to 46 throughout so nobody
+was blind to it, and blood glucose sitting at a mean of 29 with a minimum of 15.
+
+Two real defects turned up in the algorithm on the way and are worth recording because
+they were both worth fixing. Its meal bolus carried a full correction with no
+insulin-on-board subtraction and no cap, so a meal arriving at a high stacked an uncapped
+correction on top of the coverage. And it tracked insulin on board from what it had asked
+for rather than what the pump reported delivering, which took its own estimate to 41.7 U
+against a real 10, since the delivery ceilings sit between the two. Both are fixed.
+
+Neither moved the number. After the fixes the longest episode was 190 minutes and the
+median across all episodes went from 48 to 42, against a real median of 10.
+
+Taking the algorithm out of the picture settles it. Drive a published adult below 54 mg/dL
+with insulin, stop, and feed it, with no controller, no behaviour layer and nothing this
+package added:
+
+| Rescue carbohydrate | 0 g | 15 g | 20 g | 30 g | 45 g |
+|---|---|---|---|---|---|
+| Minutes below 54 | 203 | 93 | 32 | 24 | 22 |
+| Minutes below 70 | 284 | 176 | 144 | 63 | 45 |
+
+Untreated, the model stays below 54 for over three hours. Nothing arrests a low except the
+insulin decaying, because S2008 has no counterregulation. Treatment helps and then
+saturates near 22 minutes: the eating rate and gut transit set a floor that no amount of
+carbohydrate gets under. Real closed-loop users in DCLP3 spend a median of 10 minutes below
+54, with a 99th percentile of 60 and a maximum of 160 across 29 subject-years, and only one
+of 67 ever reached 120 minutes.
+
+Two things follow.
+
+The criterion was measuring the simulator. No algorithm can pass a threshold the body it is
+dosing cannot get under, so it has been retired from `validation/gate.py` and the hazard is
+named as uncovered instead. That is not a threshold moved because the result was
+inconvenient; it is a criterion shown to have no discriminating power, with the measurement
+that shows it.
+
+And the direction of the bias is known, which is what makes it usable. Hypoglycaemia lasts
+about four times too long here at the median. An algorithm judged on how it handles lows is
+being judged in a harsher world than the real one, in the same direction as the rebound
+overstatement already recorded. Neither can be fixed without departing from the model this
+package exists to wrap: S2013 has the counterregulation, it is licensed, its glucagon
+secretion half is unpublished, and people with established type 1 diabetes largely lose the
+glucagon arm in any case.
+
 ## S2013's hypoglycaemia work, measured and then switched off
 
 simglucose implements S2008. S2013 added two things to fix hypoglycaemia, and they oppose

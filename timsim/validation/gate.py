@@ -78,9 +78,6 @@ DEFAULT_CRITERIA = (
     Criterion("minutes_below_70_per_day", "median", 57.6, "at_most",
               hazard="hypoglycaemia exposure across the cohort",
               rationale="4% of a day, the consensus target for time below 70 mg/dL"),
-    Criterion("longest_below_54_min", "worst", 120.0, "at_most",
-              hazard="a prolonged severe low rather than a brief one",
-              rationale="duration is the part of a severe low that causes harm"),
     Criterion("lbgi", "p90", 5.0, "at_most",
               hazard="hypoglycaemia risk concentrated in a minority of subjects",
               rationale="LBGI above 5 is the conventional high-risk band"),
@@ -105,6 +102,7 @@ UNCOVERED_HAZARDS = (
     "a bad infusion site of any kind other than one that quietly stops absorbing: the model "
     "in therapy/site.py does not cover a set that leaks, bleeds, or hurts enough to be "
     "changed immediately",
+    "how long a severe low lasts, which this bench cannot assess at all: see below",
     "a fault the level 7 scenarios do not include",
     "any rare event below the exposure bound reported with the verdict",
 )
@@ -151,26 +149,62 @@ REFERENCE_VERDICT = {
                  "severe_episodes": 25, "upper_95_rate_per_subject_year": 13.40},
 }
 
+# The registration history. A retired entry cannot be recomputed once the criteria change,
+# which is inherent rather than a flaw: it was hashed against the criteria of its day. What
+# the record is for is that a change is visible and dated, not that an old hash recomputes
+# from new code. `criteria` lists what was in force, so what moved is readable.
 REGISTERED = (
-    {"fingerprint": "048522ca7f65c420", "retired": "2026-08-08",
+    {"fingerprint": "048522ca7f65c420", "retired": "2026-08-08", "criteria": 9,
      "design": {"subjects": 34, "days": 28},
      "note": "the design covered only the cohort size, so it did not bind the "
              "configuration the verdict was produced in"},
-    {"fingerprint": "2af3c055daa5d1ba", "retired": "2026-08-08",
+    {"fingerprint": "2af3c055daa5d1ba", "retired": "2026-08-08", "criteria": 9,
      "design": {"layers": ["behaviour", "physiology", "sensor"], "subjects": 34,
                 "days": 28, "sample_minutes": [5.0], "si_pattern": ["sinusoid"],
                 "isf_scale": [1.0], "hypo_risk_gain": [0.0]},
      "note": "what the retired registration would have hashed to had the design been "
              "bound; recorded so the two can be compared"},
-    {"fingerprint": "99871b135e2378be", "registered": "2026-08-08",
+    {"fingerprint": "99871b135e2378be", "retired": "2026-08-08", "criteria": 9,
      "design": {"layers": ["behaviour", "physiology", "sensor", "site"], "subjects": 34,
                 "days": 28, "sample_minutes": [5.0], "si_pattern": ["sinusoid"],
                 "isf_scale": [1.0], "hypo_risk_gain": [0.0]},
-     "note": "current: the infusion site layer is in the default, so the gate now covers "
-             "a hazard it previously listed as uncovered"},
+     "note": "the infusion site layer entered the default. Retired the same day, when the "
+             "longest-severe-low criterion was shown to measure the simulator rather than "
+             "the system under test"},
+    {"fingerprint": None, "registered": "2026-08-08", "criteria": 8,
+     "design": None,
+     "note": "current: eight criteria, with no threshold on how long a severe low lasts. "
+             "Computed from the criteria rather than pinned, since the design depends on "
+             "the run; use gate.fingerprint(design=gate.design_of(results))"},
 )
 
 
+
+# Why there is no criterion on how long a severe low lasts, when duration is the part of a
+# severe low that does the harm. There was one, at 120 minutes, and it was retired because
+# it turned out to measure this simulator rather than the system under test.
+#
+# It failed the reference algorithm at 150 minutes and then at 180. Two real defects were
+# found in that algorithm and fixed, an unbounded correction riding along with every meal
+# bolus and an insulin-on-board estimate built from requests rather than deliveries, and
+# the figure did not move: 190 minutes afterwards, with the median across all episodes
+# going 48 to 42 against a real 10.
+#
+# Taking the algorithm out entirely settles it. Drive a published adult below 54 mg/dL with
+# insulin, stop, and feed it, with no controller and no behaviour layer in the way:
+#
+#     rescue     0 g   15 g   20 g   30 g   45 g
+#     minutes    203     93     32     24     22
+#
+# Untreated the model sits below 54 for over three hours, because S2008 has no
+# counterregulation and nothing arrests a low except insulin decaying. Carbohydrate helps
+# and then saturates near 22 minutes, since the eating rate and gut transit set a floor no
+# amount of treatment gets under. Real closed-loop users in DCLP3 have a median of 10
+# minutes below 54 and a 99th percentile of 60, across 29 subject-years.
+#
+# No algorithm can pass a threshold that the body it is dosing cannot get under, so the
+# criterion measured the harness. `docs/EVIDENCE.md` records it as an uncovered hazard,
+# which is the honest place for it, and `docs/FIDELITY.md` carries the measurement.
 def design_of(results, **extra):
     """The run design a fingerprint has to cover, read off the cohort rather than typed.
 

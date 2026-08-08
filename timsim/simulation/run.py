@@ -354,7 +354,7 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS, controller="reference
     obs, reward, done, info = env.step(Action(basal=prof.basal_at(0), bolus=0))
 
     cgm, bg, insulin = [], [], []
-    minute, previous, fall_rate = 0.0, None, 0.0
+    minute, previous, fall_rate, delivered_bolus = 0.0, None, 0.0, None
     last_seen, stale_minutes = float(obs.CGM), 0.0
     completed = True
 
@@ -385,7 +385,12 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS, controller="reference
         clock = faults.clock(minute) if faults is not None else minute
         step_info = {**info, "meal": announced / step_minutes,
                      "sample_time": step_minutes, "stale_minutes": stale_minutes,
-                     "profile": prof, "clock_minutes": clock}
+                     "profile": prof, "clock_minutes": clock,
+                     # What the pump delivered last step, which is what a real algorithm
+                     # reads back out of pump history. It is not what was asked for: the
+                     # ceilings sit in between, and an algorithm that tracks its own
+                     # requests instead will over-estimate its insulin on board.
+                     "delivered_bolus_u": delivered_bolus}
 
         if builtin_driver:
             action = driver.act(announced, seen, clock, step_minutes, fall_rate)
@@ -398,6 +403,11 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS, controller="reference
             prof.basal_at(minute), step_minutes)
         if faults is not None:
             basal_u_per_min, bolus_u = faults.delivery(minute, basal_u_per_min, bolus_u)
+
+        # What the pump reports to the algorithm next step. Taken after the ceilings and
+        # before the fault and the site, because those two are exactly the losses a pump
+        # cannot see and would not report.
+        delivered_bolus = float(bolus_u)
 
         # A failed site sits between the pump and the depot, so it attenuates after the
         # limits and after any injected fault. Whatever it swallows is added back below:
