@@ -48,6 +48,53 @@ Reproduce with `python examples/layer_ablation.py`, about three quarters of an h
 serially. The `--arm` flag runs one column, so the six can go in parallel. Raw output in
 `docs/*.json`.
 
+## The arbiter: which configuration is hardest to tell from real data
+
+The table above counts marginal medians, one at a time. That cannot settle a choice between
+configurations where each gains one signature and loses another, and by this point there
+were four such choices sitting unresolved.
+
+So the question goes to the classifier in `validation/replication.py` instead. Twenty-four
+hour windows of real DCLP3 participants against windows of each candidate, whole subjects
+held out, subject labels permuted for the null. It tests every axis at once, including axes
+nobody chose to measure, and it has a floor: a subject with no layers at all scores 0.937.
+
+Measured on the same 34 subjects over 28 days in every arm, against 3,023 real windows from
+the 67 closed-loop calibration participants, across ten cross-validation splits:
+
+| Configuration | AUC | sd over splits | Excess over null | Signatures in range |
+|---|---|---|---|---|
+| Default plus the site layer | 0.671 | 0.011 | +0.135 | 5 of 11 |
+| Default plus real settings | 0.688 | 0.011 | +0.147 | not measured |
+| Both | 0.700 | 0.011 | +0.159 | not measured |
+| Default, four layers | 0.710 | 0.009 | +0.164 | 8 of 11 |
+| Default plus Visentin's classes | 0.760 | 0.012 | +0.211 | 6 of 11 |
+| No layers at all | 0.937 | 0.004 | +0.377 | 3 of 11 |
+
+Lower is better, and the differences are small but not ambiguous. Paired over the same ten
+splits, the site layer beats the default by 0.039 with a standard deviation of 0.006, in ten
+splits out of ten. Conservative settings beat it by 0.022, also ten out of ten.
+
+The result disagrees with the signature count, which is why the arbiter was worth running.
+The site layer scores worst of any configuration on the eleven signatures and is the hardest
+to tell from real data. Both statements are true and they are measuring different things:
+the signature table asks whether eleven medians land in eleven ranges, and the classifier
+asks whether a day of this looks like a day of that.
+
+Two further things it settles. Site failure and conservative settings do not compose, and
+running both is worse than either alone, which is the same overshoot visible directly in the
+excursion bands. And Visentin's diurnal classes come out worse than the default here as
+well, agreeing with the ablation rather than adding to it.
+
+What it does not say is that any of this is indistinguishable. The best configuration is
+still separable at 0.671 against a null 95th percentile near 0.52. Time above 180 mg/dL is
+what carries the separation in every arm. Better is not the same as good, and the honest
+summary is that this simulator remains recognisably a simulator, by a margin that has
+narrowed rather than closed.
+
+Reproduce with `python examples/configuration_arbiter.py`, which needs the DCLP3 data. The
+six arms are independent, so `--config` runs one.
+
 ## The infusion site layer, and the trade it makes
 
 The eleven statistics above measure shape and dynamics. None of them measures glycaemic

@@ -120,3 +120,33 @@ def test_the_dclp3_reference_disagrees_where_it_is_recorded_as_disagreeing():
         median = dclp3.REFERENCE["CLC"][key][0]
         lo, hi = S.REAL_RANGE[key]
         assert not (lo <= median <= hi), f"{key} no longer disagrees"
+
+
+def test_the_real_window_builder_matches_the_recorded_marginals():
+    """`real_windows` feeds the arbiter, so its features have to be the recorded ones."""
+    import numpy as np
+    from timsim.validation import dclp3, replication
+    if not dclp3.available():
+        pytest.skip("DCLP3 not present; set DCLP3_DIR")
+    w, g = replication.real_windows()
+    assert len(np.unique(g)) == dclp3.REFERENCE["CLC"]["participants"]
+    full, _ = replication.real_windows(max_days=None)
+    # The capped sample has to stand in for the whole record, which is why it is taken from
+    # the middle: the opening month reads about 2.8 mg/dL low while people settle in.
+    for name in ("mean", "pct_above_180", "acf30", "acf60", "jitter"):
+        i = replication.FEATURE_NAMES.index(name)
+        a, b = float(np.median(w[:, i])), float(np.median(full[:, i]))
+        assert abs(a - b) < max(0.02 * abs(b), 0.02), (name, a, b)
+
+
+def test_capping_the_real_side_actually_caps_it():
+    """Without the cap the real side outnumbers a simulated cohort about ten to one."""
+    import numpy as np
+    from timsim.validation import dclp3, replication
+    if not dclp3.available():
+        pytest.skip("DCLP3 not present; set DCLP3_DIR")
+    capped, _ = replication.real_windows(max_days=28.0)
+    short, _ = replication.real_windows(max_days=7.0)
+    assert len(short) < len(capped)
+    # a week at a twelve-hour stride is about thirteen windows a participant
+    assert len(short) < 20 * dclp3.REFERENCE["CLC"]["participants"]

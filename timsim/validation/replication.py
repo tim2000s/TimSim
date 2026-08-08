@@ -220,6 +220,84 @@ def discriminability(a, b, groups_a=None, groups_b=None, folds=4, seed=0,
                              for i in np.argsort(-np.abs(weights))[:3]]}
 
 
+def real_windows(arm=None, calibration_only=True, source=None, max_days=28.0, **kwargs):
+    """Feature rows for the DCLP3 participants, grouped by participant.
+
+    Grouped by participant rather than by segment, because the point of the grouping is
+    that windows from one person are not independent, and a person's several wear segments
+    are no more independent of each other than two windows from one segment.
+
+    `max_days` caps how much of each participant is used, and defaults to the 28 days a
+    simulated cohort is usually run for. The trial followed people for a median of 164 days
+    each, so taking all of it gives 18,023 real windows against a simulated 1,870, and a
+    ten-to-one imbalance moves both the fitted classifier and the AUC it is scored by. It
+    also compares a month of simulated living against half a year of real living, which is
+    not the comparison anyone means.
+
+    The window is taken from the middle of each participant's record rather than the start.
+    Taking the first 28 days catches people still adapting to a device they had just been
+    given, and it shows: the opening month reads 2.8 mg/dL lower on the mean and about two
+    points lower on time above 180 than the same participants' full records. The middle 28
+    days reproduce the full-record marginals to within a fraction of a point.
+    """
+    from . import dclp3
+
+    arm = dclp3.CLOSED_LOOP if arm is None else arm
+    ids = set(dclp3.roster().query(f"trtGroup == '{arm}'").PtID)
+    if calibration_only:
+        ids &= set(dclp3.split()["calibration"])
+    rows, groups = [], []
+    traces = dclp3.traces(participants=ids,
+                          source=source or dclp3.DEFAULT_SOURCE)
+    budget = None if max_days is None else int(round(max_days * 1440.0 / 5.0))
+    for i, (_, segments) in enumerate(sorted(traces.items())):
+        chunks = [np.asarray(g, float) for _, g in segments]
+        if budget is not None:
+            total = sum(len(c) for c in chunks)
+            skip = max((total - budget) // 2, 0)
+            left, taken = budget, []
+            for c in chunks:
+                if skip >= len(c):
+                    skip -= len(c)
+                    continue
+                c = c[skip:]
+                skip = 0
+                if left <= 0:
+                    break
+                taken.append(c[:left])
+                left -= len(taken[-1])
+            chunks = taken
+        for c in chunks:
+            w = trace_windows(c, 5.0, **kwargs)
+            if len(w):
+                rows.append(w)
+                groups.append(np.full(len(w), i))
+    if not rows:
+        return np.zeros((0, len(FEATURE_NAMES))), np.zeros(0, int)
+    return np.vstack(rows), np.concatenate(groups)
+
+
+def against_dclp3(results, use="cgm", seed=0, folds=4, permutations=100, **kwargs):
+    """Can a classifier tell this cohort from real closed-loop participants?
+
+    This is the omnibus version of the fidelity table, and it answers a question counting
+    signatures cannot. A configuration that gains one signature and loses another has not
+    obviously improved; a configuration that is harder to tell from real data has. Use it
+    to choose between configurations rather than to award a pass mark, and read the AUC
+    against the null rather than against 0.5.
+    """
+    real, groups_real = real_windows(**kwargs)
+    sim, groups_sim = result_windows(results, use=use)
+    out = discriminability(real, sim, groups_real, groups_sim,
+                           folds=folds, seed=seed, permutations=permutations)
+    out["marginals"] = {
+        name: (float(np.median(real[:, i])), float(np.median(sim[:, i])))
+        for i, name in enumerate(FEATURE_NAMES)
+    }
+    out["excess_over_null"] = float(out["auc"] - out["null_auc_p95"])
+    return out
+
+
 # Measured 2026-08-07 against DCLP3's pump-received CGM, calibration half only: 3,752
 # windows from 67 real closed-loop participants against 1,870 from 34 simulated subjects,
 # whole subjects held out, subject labels permuted.
@@ -264,6 +342,48 @@ AGAINST_DCLP3 = {
 
 
 # ------------------------------------------------------------------------ checks
+# Measured 2026-08-08, the same 34 subjects over 28 days in every arm, against 3,023 real
+# windows from the 67 closed-loop calibration participants. The AUC and its spread are over
+# ten cross-validation splits; the comparisons are paired over the same ten.
+#
+# This exists to settle a question the fidelity table cannot. Four mechanisms are available
+# and each gains one signature while losing another, so counting them decides nothing. The
+# classifier tests every axis at once, including axes nobody chose to measure, and it puts
+# the four in an order that survives every split.
+#
+# The order disagrees with the signature count, which is the point. The infusion site layer
+# scores 5 of 11 signatures against the default's 8, and it is the configuration hardest to
+# tell from real data, in ten splits out of ten. Time above 180 is what separates every arm
+# from reality, and the site layer is what moves it.
+#
+# Two things it also settles. Site failure and conservative settings do not compose: run
+# together they are worse than either alone, which matches the overshoot measured directly,
+# 29.0% of time above 180 against the trial's 27.1. And Visentin's diurnal classes are worse
+# than the default here too, agreeing with the ablation.
+#
+# What none of it does is make this simulator indistinguishable. The best configuration is
+# still separable at 0.671 against a null 95th percentile near 0.52, where the floor for a
+# subject with no layers at all is 0.937. Better is not the same as good.
+ARBITER = {
+    "real_windows": 3023, "real_participants": 67, "subjects": 34, "days": 28,
+    "splits": 10,
+    # configuration: (AUC, sd over splits, excess over the null's p95)
+    "site":     (0.671, 0.011, 0.135),
+    "settings": (0.688, 0.011, 0.147),
+    "both":     (0.700, 0.011, 0.159),
+    "default":  (0.710, 0.009, 0.164),
+    "visentin": (0.760, 0.012, 0.211),
+    "bare":     (0.937, 0.004, 0.377),
+    # paired differences over the same splits: (mean, sd, splits favouring the first)
+    "default_minus_site":     (0.039, 0.006, 10),
+    "default_minus_settings": (0.022, 0.006, 10),
+    "site_minus_both":       (-0.029, 0.007, 0),
+    "separating_feature": "pct_above_180 in every arm except bare, which goes on jitter",
+    "reading": "the site layer is the most realistic configuration measured this way, and "
+               "it is the one the signature table scores worst; none is indistinguishable",
+}
+
+
 def check_the_test_is_calibrated(results, seed=0):
     """Split one cohort in two and the classifier must do no better than chance groups.
 
