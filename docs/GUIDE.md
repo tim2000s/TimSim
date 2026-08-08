@@ -37,7 +37,7 @@ used unchanged, so a controller written for simglucose runs here without modific
 | `behaviour` | meals announced imperfectly, lows treated with carbohydrate, a sensitivity setting that adapts | none of this is in the equations, and it dominates several real-world statistics |
 | `loop` | continuous correction bounded by insulin on board, with basal withdrawal | every real cohort worth comparing against is running one |
 | `sensor` | high-frequency jitter and compression lows | the model's sensor is about half as noisy as a real one and has no compression mechanism |
-| `site` | infusion sets whose absorption fails, and gets noticed late or slept through | the largest single fidelity gap: it is where most real time above 180 mg/dL comes from, and nothing else in the model can produce it |
+| `site` | infusion sets whose absorption fails, and gets noticed late or slept through | the largest single fidelity gap: it is where most real time above 180 mg/dL comes from, and nothing else in the model can produce it. It costs three signatures and is in the default anyway, because a classifier finds the cohort with it harder to tell from real data in ten splits out of ten |
 
 Each layer is independent. Switching one off changes only what that layer does, which is
 checked rather than assumed.
@@ -293,7 +293,7 @@ And the verdict, with its criteria fixed before the run:
 ```python
 from timsim.validation import gate
 
-print(gate.fingerprint(design={"subjects": 34, "days": 28}))   # record this first
+print(gate.fingerprint(design=gate.design_of(results)))   # record this first
 print(gate.report(gate.evaluate(results)))
 ```
 

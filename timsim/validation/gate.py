@@ -102,19 +102,108 @@ DEFAULT_CRITERIA = (
 # Hazards with no criterion here, named so that the gap is readable rather than implied.
 UNCOVERED_HAZARDS = (
     "exercise, illness and alcohol, which the model has no mechanism for",
-    "infusion site failure beyond the absorption model in therapy/site.py, which covers a "
-    "set that stops delivering and gets noticed late, and not one that leaks, bleeds or "
-    "hurts enough to be changed immediately",
+    "a bad infusion site of any kind other than one that quietly stops absorbing: the model "
+    "in therapy/site.py does not cover a set that leaks, bleeds, or hurts enough to be "
+    "changed immediately",
     "a fault the level 7 scenarios do not include",
     "any rare event below the exposure bound reported with the verdict",
 )
+
+
+# The registration history, kept so that a change of thresholds or of the world they were
+# fixed against is auditable rather than a matter of trust. Each entry is the criteria
+# hashed with the design for the reference workflow in `examples/safety_gate.py`, which is
+# 34 subjects over 28 days with the algorithm supplying the loop.
+#
+# The criteria have not moved. Every fingerprint below is the same nine thresholds against
+# a different world, and that is the point: the second entry exists because the design used
+# to be whatever the caller typed, usually the subject count and the days, so a run with
+# the infusion site layer and a run without it produced the same hash and looked
+# comparable. They are not comparable. A failed set hands every algorithm hours of
+# hyperglycaemia it cannot dose its way out of.
+#
+# The third entry is current, and running it settled a guess that was wrong. Time in range
+# looked like the criterion the site layer would threaten, since it costs the reference
+# cohort five points, from 80.1% to 74.9%. It is not close: that leaves 4.85 points of
+# margin against the 70% limit. The criterion with almost none is peak insulin per hour,
+# which sat at 25.90 against a limit of 25.0 without the site layer and failed, and at 24.30
+# with it. A failed set puts the loop against its basal ceiling for hours rather than
+# letting it stack a correction, so the hazard the two configurations present is not the
+# same hazard.
+#
+# The reference algorithm fails this gate in both configurations, on the longest single
+# episode below 54 mg/dL: 150 minutes without the site layer and 180 with it, against a
+# 120-minute limit. That is recorded rather than fixed. The thresholds were registered
+# before the run and a threshold moved after seeing the result is not a threshold, so the
+# finding stands as a finding about the reference algorithm and about a model with no
+# counterregulation to end a low that nobody treats.
+# The reference algorithm measured against the current registration, 34 subjects over 28
+# days, kept so that a change in the bench is visible as a change in this number.
+REFERENCE_VERDICT = {
+    "with_site": {"verdict": "fails", "fingerprint": "99871b135e2378be",
+                  "failed": ("worst longest_below_54_min", 180.0, 120.0),
+                  "time_in_range": 74.85, "peak_insulin_per_hour_u": 24.30},
+    "without_site": {"verdict": "fails", "fingerprint": "2af3c055daa5d1ba",
+                     "failed": (("worst longest_below_54_min", 150.0, 120.0),
+                                ("worst peak_insulin_per_hour_u", 25.90, 25.0)),
+                     "time_in_range": 80.07, "peak_insulin_per_hour_u": 25.90},
+    "exposure": {"subjects": 34, "subject_days": 952,
+                 "severe_episodes": 25, "upper_95_rate_per_subject_year": 13.40},
+}
+
+REGISTERED = (
+    {"fingerprint": "048522ca7f65c420", "retired": "2026-08-08",
+     "design": {"subjects": 34, "days": 28},
+     "note": "the design covered only the cohort size, so it did not bind the "
+             "configuration the verdict was produced in"},
+    {"fingerprint": "2af3c055daa5d1ba", "retired": "2026-08-08",
+     "design": {"layers": ["behaviour", "physiology", "sensor"], "subjects": 34,
+                "days": 28, "sample_minutes": [5.0], "si_pattern": ["sinusoid"],
+                "isf_scale": [1.0], "hypo_risk_gain": [0.0]},
+     "note": "what the retired registration would have hashed to had the design been "
+             "bound; recorded so the two can be compared"},
+    {"fingerprint": "99871b135e2378be", "registered": "2026-08-08",
+     "design": {"layers": ["behaviour", "physiology", "sensor", "site"], "subjects": 34,
+                "days": 28, "sample_minutes": [5.0], "si_pattern": ["sinusoid"],
+                "isf_scale": [1.0], "hypo_risk_gain": [0.0]},
+     "note": "current: the infusion site layer is in the default, so the gate now covers "
+             "a hazard it previously listed as uncovered"},
+)
+
+
+def design_of(results, **extra):
+    """The run design a fingerprint has to cover, read off the cohort rather than typed.
+
+    The criteria are only half of what a verdict depends on. The other half is the world the
+    algorithm was judged in, and that half used to be whatever the caller happened to pass,
+    which was usually the subject count and the number of days. It is not enough. Turning on
+    the infusion site layer hands every algorithm hours of hyperglycaemia it cannot dose its
+    way out of, and a verdict from that run and a verdict from a run without it would have
+    shared a fingerprint and looked comparable.
+
+    So the design is read off the results. Anything that changes what the subjects did
+    belongs in here, and `extra` carries whatever else the caller wants bound in.
+    """
+    meta = [getattr(r, "meta", None) or {} for r in results]
+    return {
+        "layers": sorted({l for r in results for l in getattr(r, "layers", ())}),
+        "subjects": len(results),
+        "days": max((getattr(r, "days_requested", 0) for r in results), default=0),
+        "sample_minutes": sorted({float(getattr(r, "sample_time", 0.0))
+                                  for r in results}),
+        "si_pattern": sorted({m.get("si_pattern", "sinusoid") for m in meta}),
+        "isf_scale": sorted({float(m.get("isf_scale", 1.0)) for m in meta}),
+        "hypo_risk_gain": sorted({float(m.get("hypo_risk_gain", 0.0)) for m in meta}),
+        **extra,
+    }
 
 
 def fingerprint(criteria=DEFAULT_CRITERIA, design=None):
     """A hash of the criteria and the design, to be recorded before the run.
 
     Record it first and quote it with the result. A verdict whose fingerprint does not
-    match the one registered beforehand had its thresholds moved.
+    match the one registered beforehand had its thresholds moved, or was run in a different
+    world. Build `design` with `design_of` rather than by hand.
     """
     payload = {"criteria": [asdict(c) for c in criteria], "design": design or {}}
     blob = json.dumps(payload, sort_keys=True, separators=(",", ":"))
@@ -122,7 +211,12 @@ def fingerprint(criteria=DEFAULT_CRITERIA, design=None):
 
 
 def evaluate(results, criteria=DEFAULT_CRITERIA, design=None, label="system under test"):
-    """Score a cohort against the criteria and return a verdict with its exposure."""
+    """Score a cohort against the criteria and return a verdict with its exposure.
+
+    `design` defaults to the one read off the cohort, so a verdict cannot quietly acquire a
+    fingerprint that ignores the configuration it was produced in.
+    """
+    design = design_of(results) if design is None else design
     records = safety.cohort(results)
     subject_days = float(sum(r["days_observed"] for r in records))
     incomplete = [r["name"] for r in records if not r["completed"]]

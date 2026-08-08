@@ -7,8 +7,7 @@ The layers, and what each is for:
                  a sensitivity setting that adapts
     loop         continuous correction with an insulin-on-board bound
     sensor       measurement jitter and compression lows, applied inside the loop
-    site         infusion sets that fail quietly, and get noticed and changed late;
-                 off by default, for the reason recorded beside `LAYERS` below
+    site         infusion sets that fail quietly, and get noticed and changed late
 
 Every layer can be switched off, so a difference between two runs is attributable to a
 named mechanism rather than to the bundle. `LAYERS` is every layer that exists and
@@ -57,17 +56,27 @@ from ..population import params_for, therapy_for
 from ..sensor.realism import OnlineArtefacts
 from ..therapy import Enforcer, InfusionSite, profile as profile_mod
 
-# Every layer that exists, and the subset that runs unless a caller asks for more. The
-# site layer is off by default and the reason is worth stating rather than leaving to be
-# discovered. It is the most realistic thing in the package on one axis and the least on
-# another: it closes over half the difference between this simulator's time above 180 and
-# DCLP3's, and it pushes autocorrelation and variability past the ranges the same trial
-# reports. Until that is resolved it does not belong in a default that every published
-# number in `docs/` was measured against, and a pre-registered safety gate whose thresholds
-# were fixed without it should not silently acquire a hazard no algorithm can dose its way
-# out of. Pass it explicitly, and see `therapy/site.py` for what it costs and buys.
+# Every layer that exists, and the subset that runs unless a caller asks for more. They are
+# the same set, and the site layer was the last one in, on a decision worth recording.
+#
+# It costs three of the eleven signatures in `docs/FIDELITY.md`, taking that table from
+# eight of eleven to five, which is the worst score of any configuration measured. It is
+# also the configuration hardest to tell from real data: against 3,023 windows from the
+# DCLP3 closed-loop participants it scores 0.671 where the four-layer default scores 0.710,
+# beating it in ten cross-validation splits out of ten. Both statements are true. The
+# signature table asks whether eleven medians land in eleven ranges; the classifier asks
+# whether a day of this looks like a day of that, and it is the stronger question.
+#
+# The reason that settles it rather than merely deciding it is what this package is for.
+# Infusion site failure was a declared uncovered hazard in `validation/gate.py` and turned
+# out to be where most real time above 180 mg/dL comes from. A bench that never presents a
+# failed set cannot see what an algorithm does when it is high, dosing, and getting
+# nowhere, which is a condition open-source systems handle very differently from each
+# other. Leaving it off keeps the bench flattering on the hazard it exists to probe.
+#
+# `validation/replication.py` records the arbitration, `therapy/site.py` the mechanism.
 LAYERS = ("physiology", "behaviour", "loop", "sensor", "site")
-DEFAULT_LAYERS = ("physiology", "behaviour", "loop", "sensor")
+DEFAULT_LAYERS = LAYERS
 
 # simglucose ships three sensors whose noise parameters are identical and whose sample
 # times differ. Five minutes is the real reporting interval and the cadence the

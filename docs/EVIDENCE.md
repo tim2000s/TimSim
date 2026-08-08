@@ -497,6 +497,33 @@ removes that. Registering a predicted effect size before a trial reports, and th
 publishing the comparison whichever way it goes, is a different order of evidence from
 reproducing a result that was already in the literature.
 
+## The gate, measured
+
+Nothing above says what the gate actually returns, and it is worth stating because it is not
+a pass. Run on this package's own reference algorithm, 34 subjects over 28 days, against the
+registration in `validation/gate.py`:
+
+| Criterion | Limit | Four layers | Default, with the site layer |
+|---|---|---|---|
+| Longest single episode below 54 mg/dL, worst subject | 120 min | 150, fails | 180, fails |
+| Peak insulin per hour, worst subject | 25.0 U | 25.90, fails | 24.30 |
+| Time in range, median | at least 70% | 80.07 | 74.85 |
+| Time below 54 per day, median | 14.4 min | 2.14 | 2.05 |
+| LBGI, 90th percentile | 5.0 | 1.32 | 1.10 |
+
+Both configurations fail, and on a criterion neither the site layer nor any other change
+here introduced. The thresholds were registered before the run, so the finding stands rather
+than the threshold moving: a limit relaxed after seeing the result is not a limit. What it
+says is that the reference algorithm leaves one subject below 54 mg/dL for two and a half to
+three hours, in a model with no counterregulation to end a low that nobody treats. Whether
+that is the algorithm or the missing physiology is not settled by this run.
+
+It also corrected a guess. Time in range looked like the criterion the site layer would
+threaten, since it costs five points. It is not close, at 4.85 points of margin. The
+criterion with almost no margin is peak insulin per hour, which fails without the site layer
+and passes with it, because a failed set holds the loop against its basal ceiling rather
+than letting it stack a correction. The two configurations do not present the same hazard.
+
 ## What stays out of reach
 
 Rare events, for the exposure reason at the top. A verdict about a particular person, for

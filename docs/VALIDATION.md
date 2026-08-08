@@ -168,13 +168,17 @@ Does its output look like real data?
 Eleven statistics computed identically on simulator output and on the traces of 192 real
 closed-loop users. [FIDELITY.md](FIDELITY.md) has the full table and the layer-by-layer
 attribution. In summary: three of eleven inside the real range for the bare subjects and
-eight of eleven with all four layers.
+five of eleven with all five layers, and eight with the four-layer arm that
+the discriminability test in level 5 prefers less. The two disagree, and
+[FIDELITY.md](FIDELITY.md) opens with why.
 
-The ones still outside are hypoglycaemia rebound, sensitivity drift, and marginally the
-spread of outcomes from a stuck high. Each is discussed there, and the last is covered
-again below.
+The six outside on the default arm are glucose variability, both autocorrelations, diurnal
+amplitude, hypoglycaemia recovery and hypoglycaemia rebound. Three of those are the price of
+the infusion site layer, which is in the default because the stronger test in level 5
+prefers it in ten splits out of ten. Each is discussed there rather than tuned away.
 
-Status: eight of eleven, with the misses named rather than tuned away.
+Status: five of eleven on the default arm, and the count is not the headline. The
+discriminability figure is, and it is 0.671 against a floor of 0.937.
 
 Worth noting what moved this table most. Fixing the therapy settings, which was a level 2
 finding, improved it by three statistics and moved the spread of outcomes from 21.0 to

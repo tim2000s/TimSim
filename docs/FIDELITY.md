@@ -1,9 +1,27 @@
 # How closely does this match real data, and where does it fail
 
-This is level 3 of the six in [VALIDATION.md](VALIDATION.md), and on its own it is the
-weakest of them. Matching the marginal statistics of real data says nothing about whether
-the response to an intervention is right. Read it alongside levels 4 and 5, which are what
-a controller comparison actually rests on.
+Two tests, and they disagree. Take the stronger one first.
+
+A classifier given 24-hour windows of this simulator and of the DCLP3 closed-loop
+participants, holding out whole subjects, separates them at an area under the curve of
+0.671. The floor for the same test is 0.937, which is what a published subject with no
+layers scores, and a null built by permuting subject labels sits near 0.52. So the default
+configuration is recognisably a simulator, by a margin that has narrowed rather than closed,
+and what carries the separation is time above 180 mg/dL.
+
+The weaker test is the eleven marginal statistics below, where the same configuration scores
+five of eleven. A four-layer configuration without the infusion site layer scores eight of
+eleven and is easier for the classifier to tell from real data, in ten splits out of ten.
+Both numbers are real. The signature table asks whether eleven medians land in eleven
+ranges; the classifier asks whether a day of this looks like a day of that. The second is
+the question worth answering, which is why the default is the arm that answers it better and
+scores worse below.
+
+The table is still here, still reported whole, and still the thing to watch when anything
+changes. It is level 3 of the seven in [VALIDATION.md](VALIDATION.md) and on its own the
+weakest of them: matching marginal statistics says nothing about whether the response to an
+intervention is right. Read it alongside levels 4 and 5, which are what a controller
+comparison actually rests on.
 
 ## The measurement
 
@@ -29,13 +47,12 @@ named cause rather than to the bundle.
 | Sensor jitter (mg/dL) | 4.5–6.7 | 2.5 | 2.4 | 2.5 | 2.5 | 5.7 | 5.6 | yes |
 | ISF drift (weekly %CV) | 8.2–21.7 | 0.0 | 0.0 | 14.9 | 3.7 | 3.5 | 10.0 | no |
 
-The default simulator is the `+sensor` column. The `+site` column adds a layer that is off
-by default, and the section below says why it is both the largest correction in the package
-and not something to switch on without knowing what it costs. The "In range" column is the
-default arm, and allows the 10% padding `signatures.in_real_range` applies.
+The default simulator is the `+site` column, which is every layer. The "In range" column
+scores that arm and allows the 10% padding `signatures.in_real_range` applies.
 
-Three of eleven for the bare subjects, eight of eleven with the four default layers,
-five of eleven with the site layer added.
+Three of eleven for the bare subjects, eight of eleven with four layers, five of eleven with
+all five. The five-layer arm is the default despite scoring worst here, for the reason at the
+top of this document and in the arbiter section below.
 
 Survival belongs in the headline rather than in a footnote. The physiology-only arm loses
 five of its ten subjects over 28 days and the survivors spend up to 28% of the run below
@@ -137,11 +154,15 @@ DCLP3 interquartile range of 0.85 to 0.89, and at sixty from 0.65 to 0.72 agains
 smoother than real ones, which have people bolusing, eating and changing sets through them
 rather than simply waiting them out.
 
-So the layer is off by default. It is the largest correction available on the statistic that
-matters most clinically and a regression on three that this table has always reported, and
-switching it on silently would restate every number in these documents and hand a
-pre-registered safety gate a hazard no algorithm can dose its way out of. Pass `"site"` in
-`layers` to use it, and read `therapy/site.py` first.
+The layer was off by default until the arbiter above settled it. It is the largest
+correction available on the statistic that matters most clinically and a regression on three
+this table has always reported, so the choice was made by the test that weighs both at once
+rather than by counting. It is now in `DEFAULT_LAYERS`. Run without it by passing the four
+layers explicitly, and read `therapy/site.py` before reading anything into either result.
+
+The gate's criteria were re-registered when this changed, because thresholds fixed against a
+simulator with no unfixable hazard in it are not thresholds for one that has. The old
+fingerprint is kept beside the new one in `validation/gate.py`.
 
 Two things it does not fix. The hours after midnight are still well short, 18% above 180
 against the trial's 35% at hour zero, while breakfast now runs over, 30% against 19% at hour
@@ -306,10 +327,12 @@ the tail past six hours, which conservative settings barely touch. Applying both
 29.0% above 180 against the trial's 27.1, and 9.5% in the tail against 6.6. So they are not
 independent and neither is a free parameter to be turned up.
 
-Both stay off by default. `simulate(..., isf_scale=2.4)` puts the median correction factor
-at 35.3, and `docs/FIDELITY.md` is where the cost of that is recorded rather than in a
-changed headline. What neither fixes is the shape by hour: every arm runs high at breakfast
-and short after midnight, which is a separate problem and still open.
+Site failure is now on by default and conservative settings are not, which is what the
+arbiter ordered: it prefers the site layer alone to either the default or the two together,
+in ten splits out of ten. `simulate(..., isf_scale=2.4)` puts the median correction factor
+at 35.3 for anyone testing how an algorithm copes with badly tuned therapy, which is a real
+scenario and not the default one. What neither fixes is the shape by hour: every arm runs
+high at breakfast and short after midnight, which is a separate problem and still open.
 
 ## S2013's hypoglycaemia work, measured and then switched off
 

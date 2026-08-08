@@ -123,3 +123,55 @@ def test_faults_compose_in_order():
     assert both.cgm(200, 120.0) == 120.0        # the dip starts from zero depth
     assert both.cgm(210, 120.0) < 90.0          # and reaches its nadir ten minutes in
     assert both.report()["faults"][0]["fault"] == "NoReadings"
+
+
+# ------------------------------------------------------------------ what the design binds
+def test_the_design_covers_the_configuration_and_not_just_the_size():
+    """A verdict from a run with a failed-site hazard is not comparable with one without."""
+    from timsim import simulate
+    from timsim.population import names
+    from timsim.validation import gate
+    name = names("adult")[0]
+    five = [simulate(name, days=1, seed=0)]
+    four = [simulate(name, days=1, seed=0,
+                     layers=("physiology", "behaviour", "loop", "sensor"))]
+    assert gate.design_of(five)["layers"] != gate.design_of(four)["layers"]
+    assert gate.fingerprint(design=gate.design_of(five)) \
+        != gate.fingerprint(design=gate.design_of(four))
+
+
+def test_the_design_notices_settings_that_change_the_world():
+    from timsim import simulate
+    from timsim.population import names
+    from timsim.validation import gate
+    name = names("adult")[0]
+    a = [simulate(name, days=1, seed=0)]
+    b = [simulate(name, days=1, seed=0, isf_scale=2.4)]
+    assert gate.fingerprint(design=gate.design_of(a)) \
+        != gate.fingerprint(design=gate.design_of(b))
+
+
+def test_evaluate_binds_the_design_without_being_asked():
+    from timsim import simulate
+    from timsim.population import names
+    from timsim.validation import gate
+    r = [simulate(names("adult")[0], days=1, seed=0)]
+    assert gate.evaluate(r)["fingerprint"] == gate.fingerprint(design=gate.design_of(r))
+
+
+def test_the_registration_history_is_consistent_with_the_current_criteria():
+    """Every recorded fingerprint has to be reproducible, or the record proves nothing."""
+    from timsim.validation import gate
+    for entry in gate.REGISTERED:
+        assert gate.fingerprint(design=entry["design"]) == entry["fingerprint"], entry
+    current = [e for e in gate.REGISTERED if "registered" in e]
+    assert len(current) == 1
+    assert "site" in current[0]["design"]["layers"]
+
+
+def test_site_failure_is_no_longer_listed_as_wholly_uncovered():
+    from timsim.validation import gate
+    joined = " ".join(gate.UNCOVERED_HAZARDS)
+    assert "therapy/site.py" in joined
+    assert not any(h.startswith("infusion site failure, which the model has no mechanism")
+                   for h in gate.UNCOVERED_HAZARDS)

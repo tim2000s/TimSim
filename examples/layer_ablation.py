@@ -19,10 +19,11 @@ from timsim.population import names
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(HERE, "docs")
 
-# One mechanism per column, cumulative left to right. The default simulator is the `sens`
-# column, which is what `DEFAULT_LAYERS` runs and what every other number in `docs/` was
-# measured against. The `all` column adds the infusion site layer, which is off by default
-# and kept here because the size of what it trades is the thing worth watching.
+# One mechanism per column, cumulative left to right. The default simulator is the `all`
+# column, every layer including the infusion site. The `sens` column beside it is the same
+# thing without that layer, kept because it scores three signatures better and is the
+# configuration a classifier finds easier to tell from real data. That trade is the thing
+# worth watching whenever anything here changes.
 #
 # The S2013 risk term is not a column at all, for the same reason it is switched off:
 # `--arm hypo` runs it as a branch off the physiology arm for anyone remeasuring its cost.
@@ -83,17 +84,19 @@ def table():
         lo, hi = signatures.REAL_RANGE[key]
         dp = 2 if key.startswith("acf") else 1
         cells = [f"{data[k]['stats'][key][0]:.{dp}f}" for k, _, _, _ in ARMS]
-        ok = signatures.in_real_range(key, data["sens"]["stats"][key][0])
+        ok = signatures.in_real_range(key, data["all"]["stats"][key][0])
         n_in += ok
-        n_site += signatures.in_real_range(key, data["all"]["stats"][key][0])
+        n_site += signatures.in_real_range(key, data["sens"]["stats"][key][0])
         n_base += signatures.in_real_range(key, data["stock"]["stats"][key][0])
         print(f"| {LABELS[key]} | {lo:.{dp}f}-{hi:.{dp}f} | " + " | ".join(cells)
               + f" | {'yes' if ok else 'no'} |")
     print(f"\n{n_base} of {len(KEYS)} for the stock personae, "
-          f"{n_in} of {len(KEYS)} with the four default layers, "
-          f"{n_site} of {len(KEYS)} with the site layer added.")
-    print("The 'In range' column is the default arm, and allows the 10% padding "
-          "`signatures.in_real_range` applies.")
+          f"{n_site} of {len(KEYS)} with four layers, "
+          f"{n_in} of {len(KEYS)} with all five, which is the default.")
+    print("The 'In range' column is the default arm. It allows the 10% padding "
+          "`signatures.in_real_range`\napplies, and it is the weaker of the two tests "
+          "this package runs: `examples/configuration_arbiter.py`\nasks whether a day of "
+          "this looks like a day of real data, and prefers the five-layer arm.")
     for k, h, _, _ in ARMS:
         d = data[k]
         print(f"{h:>14}: completed {d['completed']}/{d['n']}, "

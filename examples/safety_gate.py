@@ -27,7 +27,11 @@ from timsim.validation import faults, gate, ranking
 from timsim.validation.checks import minimum_detectable_difference
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-LAYERS = ("physiology", "behaviour", "sensor")     # the algorithm is the loop
+# The algorithm supplies the loop, so that layer is left out. The site layer is in: a set
+# that stops absorbing is a property of the person and their hardware rather than of the
+# system under test, and how an algorithm behaves when it is high and dosing into a failed
+# site is one of the things this gate exists to see.
+LAYERS = ("physiology", "behaviour", "sensor", "site")
 
 
 def _window(run, start_min, hours=6.0):

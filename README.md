@@ -31,9 +31,17 @@ properties of the equations:
 - every real cohort is running an automated loop, correcting continuously, which the
   simulated person was not
 
-This package adds those as layers, each of which can be switched on and off independently.
-With all four in place, eight of the eleven statistics land inside the real range. The
-three that stay outside are reported rather than tuned away. The measured table is in
+This package adds those as layers, each of which can be switched on and off independently,
+along with a fifth the comparison turned up later: infusion sets that stop absorbing and get
+noticed hours afterwards, which is where most real time above 180 mg/dL comes from.
+
+How well that works is judged two ways, and they disagree. A classifier given 24-hour
+windows of this simulator and of the DCLP3 trial's closed-loop participants, holding out
+whole subjects, separates them at 0.671 where a published subject with no layers scores
+0.937 and a null sits near 0.52. On the eleven marginal statistics the same configuration
+scores five of eleven, and a four-layer version without the site layer scores eight while
+being easier to tell from real data in ten splits out of ten. The default is the arm that
+wins the stronger test and loses the weaker one. Both numbers, and the argument, are in
 [docs/FIDELITY.md](docs/FIDELITY.md).
 
 ## What it does not do
@@ -134,7 +142,7 @@ before the run:
 ```python
 from timsim.validation import faults, gate
 
-print(gate.fingerprint(design={"subjects": 34, "days": 28}))   # record this first
+print(gate.fingerprint(design=gate.design_of(results)))   # record this first
 print(gate.report(gate.evaluate(results)))
 ```
 

@@ -232,7 +232,9 @@ The section 2 defects are fixed, so this is the sequence as it stands. It is del
 with checks that cost little and invalidate everything downstream when they fail.
 
 1. Register the criteria and pin the system under test by commit. `gate.fingerprint`
-   hashes the criteria with the design, and a verdict whose fingerprint does not match the
+   hashes the criteria with the design that `gate.design_of` reads off the cohort, which
+   covers the layers and settings the run used as well as its size. A verdict whose
+   fingerprint does not match the
    registered one had its thresholds moved. OS-AID projects change quickly, so a result
    without a SHA cannot be reproduced or contested.
 2. Run `python -m timsim.validation.run --fast`. It is a few minutes and it invalidates
