@@ -1,0 +1,18 @@
+[
+ {
+  "check": "the discriminability test cannot separate a cohort from itself",
+  "level": 3,
+  "value": 0.4013884297520661,
+  "target": "at or below the 95th percentile of the subject-permuted null",
+  "pass": true,
+  "note": "held-out AUC 0.401 against a subject-permuted null of 0.396 (95th percentile 0.664), p 0.480, 5 against 5 subjects"
+ },
+ {
+  "check": "the discriminability test detects a simulator missing mechanisms",
+  "level": 3,
+  "value": 0.9999074380165289,
+  "target": "above 0.70 and above the subject-permuted null",
+  "pass": true,
+  "note": "held-out AUC 1.000 against a null 95th percentile of 0.676, p 0.000, carried by jitter, mean_abs_delta, cv"
+ }
+]

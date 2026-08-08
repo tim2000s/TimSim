@@ -1,0 +1,29 @@
+# The exact environment every number in docs/FIDELITY.md, docs/VALIDATION.md and
+# docs/EVIDENCE.md was measured in. `pyproject.toml` carries the loose ranges a user should
+# install against; this file is for reproducing a published figure.
+#
+#     python -m venv .venv && . .venv/bin/activate
+#     pip install -r requirements-lock.txt && pip install -e .
+#
+# Python 3.14.3.
+#
+# Two of these pins are load-bearing rather than incidental.
+#
+# pandas 3 returns datetime columns at microsecond resolution where pandas 2 returned
+# nanoseconds. The DCLP3 loader converts through `datetime64[s]` so it is right either way,
+# but an earlier version divided the integer view by a billion and collapsed 208-day traces
+# into a few minutes without failing. If you move off this pin, run
+# `pytest tests/test_validation.py -k dclp3` before believing anything.
+#
+# simglucose is pinned because it is the physiological model. It implements the 2008
+# UVA/Padova release, and a change to its patient equations changes every result here.
+# gym 0.9.4 is its own constraint, not one this package chose.
+
+gym==0.9.4
+matplotlib==3.11.0
+numpy==2.5.1
+pandas==3.0.3
+pytest==9.1.1
+scipy==1.18.0
+setuptools==80.10.2
+simglucose==0.2.11

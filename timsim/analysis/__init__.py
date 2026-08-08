@@ -1,4 +1,4 @@
-"""Fidelity signatures and cohort statistics."""
+"""Fidelity signatures, and the safety record a verdict should turn on."""
 
-from . import signatures
-__all__ = ["signatures"]
+from . import safety, signatures
+__all__ = ["signatures", "safety"]

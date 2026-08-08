@@ -14,13 +14,16 @@ population large enough that a comparison is not at the mercy of one awkward sub
     print(result.summary())
 
 The honest limits are in `docs/FIDELITY.md` and are worth reading before any result from
-this package is used to argue for a change in treatment.
+this package is used to argue for a change in treatment. `docs/OSAID.md` covers what is
+needed on top of that before an automated insulin delivery system is judged here.
 """
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
-from .simulation.run import LAYERS, Result, simulate, simulate_cohort
-from .analysis import signatures
-from . import population
+from .simulation.run import (DEFAULT_LAYERS, LAYERS, Result, simulate,
+                             simulate_cohort)
+from .analysis import safety, signatures
+from . import population, therapy
 
-__all__ = ["simulate", "simulate_cohort", "Result", "LAYERS", "signatures",
-           "population", "__version__"]
+__all__ = ["simulate", "simulate_cohort", "Result", "LAYERS", "DEFAULT_LAYERS",
+           "signatures", "safety",
+           "population", "therapy", "__version__"]

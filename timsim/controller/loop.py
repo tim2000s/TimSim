@@ -12,6 +12,8 @@ the baseline, not the subject.
 """
 import numpy as np
 
+from ..therapy.insulin import iob_fraction as _iob_fraction
+
 # The residual after the behaviour layer (rebound and autocorrelation both too high, CV
 # too high) all point the same way: the simulated person is treated by a basal-bolus
 # controller that does nothing between meals, while every real cohort in the comparison
@@ -29,19 +31,6 @@ LOOP_MAX_IOB_U = 6.0
 LOOP_MIN_INTERVAL = 5.0   # minutes between corrections
 LOOP_LOW_SUSPEND = 80.0   # withdraw basal below this
 LOOP_FALL_SUSPEND = -1.5  # mg/dL/min
-
-
-def _iob_fraction(age_min):
-    """Fraction of a bolus still to act, bilinear activity with a peak at PEAK_MIN."""
-    if age_min <= 0:
-        return 1.0
-    if age_min >= DIA_MIN:
-        return 0.0
-    # area-normalised bilinear activity, integrated from age to DIA
-    p, d = PEAK_MIN, DIA_MIN
-    if age_min < p:
-        return 1.0 - (age_min ** 2) / (p * d)
-    return ((d - age_min) ** 2) / (d * (d - p))
 
 
 class CorrectionLoop:

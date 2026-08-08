@@ -1,0 +1,204 @@
+{
+ "checks": [
+  {
+   "check": "the safety score rises with the size of a known defect",
+   "level": 7,
+   "value": 0.265523891979385,
+   "target": "strictly increasing",
+   "pass": true,
+   "note": "median LBGI at insulin sensitivity scaled 1/0.85/0.7/0.55: 0.80, 0.88, 1.03, 1.07"
+  },
+  {
+   "check": "every known defect separates from the reference",
+   "level": 7,
+   "value": 0.16651064731401877,
+   "target": "paired LBGI shift above the detectable 0.176 at 12 subjects",
+   "pass": false,
+   "note": "paired median LBGI shift: isf_too_strong +0.17, no_iob_bound +2.31, no_low_suspend +0.25, acts_on_stale_readings +0.24; smallest detectable shift 0.176, typical per-subject noise 0.159; not detected: isf_too_strong"
+  },
+  {
+   "check": "a timid algorithm trades hypoglycaemia risk for hyperglycaemia",
+   "level": 7,
+   "value": 12.121386809737658,
+   "target": "LBGI falls and mean glucose rises",
+   "pass": true,
+   "note": "LBGI 0.80 to 0.30, mean glucose 143 to 156 mg/dL, time in range 73.0 to 69.4%"
+  }
+ ],
+ "table": {
+  "reference": {
+   "lbgi_median": 0.8031956199640331,
+   "lbgi_p90": 1.1418015979102505,
+   "lbgi_worst": 2.1127973578587906,
+   "minutes_below_54_per_day": 1.9642857142857144,
+   "rescue_grams_per_day": 77.49127141309789,
+   "hbgi_median": 4.840889165445006,
+   "minutes_above_250_per_day": 59.82142857142857,
+   "mean_bg": 143.47620515660714,
+   "time_in_range": 73.04067460317461,
+   "did_not_complete": 0,
+   "per_subject_lbgi": [
+    0.3822841220748582,
+    0.8520459869848475,
+    0.7885325173597284,
+    0.8178587225683379,
+    1.1637955732964078,
+    0.8611121748918025,
+    0.5559710042794399,
+    0.21428295709546344,
+    0.9438558194348335,
+    2.1127973578587906,
+    0.29619439957184995,
+    0.2645679117486169
+   ]
+  },
+  "isf_too_strong": {
+   "lbgi_median": 1.0320353884944613,
+   "lbgi_p90": 1.5541179570532144,
+   "lbgi_worst": 2.2819187047659573,
+   "minutes_below_54_per_day": 7.142857142857142,
+   "rescue_grams_per_day": 114.8124941104837,
+   "hbgi_median": 4.36839128744311,
+   "minutes_above_250_per_day": 55.53571428571429,
+   "mean_bg": 139.64873624852905,
+   "time_in_range": 73.47470238095238,
+   "did_not_complete": 0,
+   "per_subject_lbgi": [
+    0.5059941783886143,
+    1.0900284839294507,
+    1.0880265198076766,
+    1.5774575236210389,
+    1.344061857942794,
+    1.2045253372316447,
+    0.6076324691283035,
+    0.392072138182681,
+    0.976044257181246,
+    2.2819187047659573,
+    0.39476149519100096,
+    0.650488863243194
+   ]
+  },
+  "no_iob_bound": {
+   "lbgi_median": 3.179489343267118,
+   "lbgi_p90": 5.08912564688528,
+   "lbgi_worst": 5.835115937988293,
+   "minutes_below_54_per_day": 70.71428571428572,
+   "rescue_grams_per_day": 285.4931930308836,
+   "hbgi_median": 4.110373804769518,
+   "minutes_above_250_per_day": 50.0,
+   "mean_bg": 131.4383154911314,
+   "time_in_range": 68.98561507936508,
+   "did_not_complete": 0,
+   "per_subject_lbgi": [
+    1.216497800646967,
+    3.2436634191650153,
+    3.188057558760905,
+    4.712212521400411,
+    5.835115937988293,
+    3.1709211277733313,
+    1.2928545881219993,
+    0.7159516427738937,
+    3.346121396264422,
+    5.131004883050265,
+    0.6915785741838907,
+    2.4795392586231046
+   ]
+  },
+  "no_low_suspend": {
+   "lbgi_median": 1.0691849717561468,
+   "lbgi_p90": 1.5227297165156837,
+   "lbgi_worst": 2.2211134267978423,
+   "minutes_below_54_per_day": 4.285714285714286,
+   "rescue_grams_per_day": 120.21675881914378,
+   "hbgi_median": 3.7425585618701698,
+   "minutes_above_250_per_day": 32.85714285714286,
+   "mean_bg": 136.80351302620625,
+   "time_in_range": 77.38095238095238,
+   "did_not_complete": 0,
+   "per_subject_lbgi": [
+    0.7209901135792278,
+    1.2636075336991675,
+    0.9998122368438381,
+    1.4015020669103122,
+    1.536199455360725,
+    1.1000997223926556,
+    1.038270221119638,
+    0.2669859774596496,
+    1.1400465144168022,
+    2.2211134267978423,
+    0.3468447339937884,
+    0.2751227595579321
+   ]
+  },
+  "acts_on_stale_readings": {
+   "lbgi_median": 1.0583572440058782,
+   "lbgi_p90": 1.5840725784120215,
+   "lbgi_worst": 3.3013537414662557,
+   "minutes_below_54_per_day": 8.75,
+   "rescue_grams_per_day": 116.53223631243415,
+   "hbgi_median": 6.04510979829617,
+   "minutes_above_250_per_day": 93.92857142857142,
+   "mean_bg": 152.45973550379443,
+   "time_in_range": 66.49305555555554,
+   "did_not_complete": 0,
+   "per_subject_lbgi": [
+    0.49657305765560705,
+    1.327081776618285,
+    0.9332341804095294,
+    1.500955078209929,
+    1.593307856212254,
+    1.4086954714768634,
+    0.6009224903928163,
+    0.2799708851460028,
+    1.183480307602227,
+    3.3013537414662557,
+    0.36382034725598245,
+    0.5504208419301131
+   ]
+  },
+  "timid": {
+   "lbgi_median": 0.29596497841615044,
+   "lbgi_p90": 0.547946688965562,
+   "lbgi_worst": 0.9563465015069277,
+   "minutes_below_54_per_day": 0.0,
+   "rescue_grams_per_day": 33.46419850864737,
+   "hbgi_median": 6.075256724499805,
+   "minutes_above_250_per_day": 73.75,
+   "mean_bg": 155.5975919663448,
+   "time_in_range": 69.39484126984127,
+   "did_not_complete": 0,
+   "per_subject_lbgi": [
+    0.08537969270934796,
+    0.399135101136429,
+    0.24459602509675224,
+    0.3839787893424217,
+    0.3325551478268161,
+    0.2757271659323341,
+    0.3162027908999668,
+    0.018301050512358173,
+    0.5644813098354655,
+    0.9563465015069277,
+    0.13834061178895143,
+    0.04223632900779016
+   ]
+  }
+ },
+ "subjects": 12,
+ "days": 14,
+ "floor": {
+  "n_subjects": 12,
+  "days": 14,
+  "paired_sd": 0.21813726715292536,
+  "paired_median": 0.016475416578368346,
+  "mean_abs_paired": 0.15926238743991047,
+  "detectable_at_12": 0.17641807633604675,
+  "detectable_at_34": 0.10480795489248483,
+  "detectable_at_100": 0.06111301431751952,
+  "observed_shifts": {
+   "isf_too_strong": 0.18,
+   "no_iob_bound": 2.35,
+   "no_low_suspend": 0.23,
+   "acts_on_stale_readings": 0.26
+  }
+ }
+}

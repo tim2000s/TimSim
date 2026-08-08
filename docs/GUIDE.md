@@ -3,7 +3,7 @@
 ## 1. The idea in one paragraph
 
 A physiological simulator describes a body. Point one at real continuous glucose data and
-the differences that survive are mostly not about the body: they are about a person eating
+the differences that survive are mostly not about the body. They are about a person eating
 without telling the algorithm, drinking juice when the alarm goes off, a sensor that is
 noisier than the model says, and an algorithm correcting continuously in the background.
 TimSim adds those as separable layers on top of simglucose, together with a virtual
@@ -17,18 +17,19 @@ timsim/
   population/   generating and screening virtual subjects
   patient/      a subject whose insulin sensitivity varies
   person/       what the person eats, announces, and does about a low
-  controller/   a baseline correction loop
-  sensor/       measurement jitter and compression lows
+  therapy/      the profile an algorithm reads, and the ceilings it doses within
+  controller/   a baseline correction loop, and a reference algorithm with known defects
+  sensor/       measurement jitter and compression lows, applied inside the loop
   simulation/   running one subject or a cohort
-  analysis/     the eleven fidelity statistics
+  analysis/     the eleven fidelity statistics, and the safety record
   validation/   graded checks on whether any of it can be believed
 ```
 
-It is a layer on top of simglucose, not a fork. simglucose supplies the differential
-equations, the sensor and pump models and the environment loop, and its interfaces are
+It sits on top of simglucose rather than forking it. simglucose supplies the differential
+equations, the sensor and pump models, and the environment loop, and its interfaces are
 used unchanged, so a controller written for simglucose runs here without modification.
 
-### The four layers
+### The five layers
 
 | Layer | What it adds | Why it exists |
 |---|---|---|
@@ -36,8 +37,9 @@ used unchanged, so a controller written for simglucose runs here without modific
 | `behaviour` | meals announced imperfectly, lows treated with carbohydrate, a sensitivity setting that adapts | none of this is in the equations, and it dominates several real-world statistics |
 | `loop` | continuous correction bounded by insulin on board, with basal withdrawal | every real cohort worth comparing against is running one |
 | `sensor` | high-frequency jitter and compression lows | the model's sensor is about half as noisy as a real one and has no compression mechanism |
+| `site` | infusion sets whose absorption fails, and gets noticed late or slept through | the largest single fidelity gap: it is where most real time above 180 mg/dL comes from, and nothing else in the model can produce it |
 
-Each is independent. Switching one off changes only what that layer does, which is
+Each layer is independent. Switching one off changes only what that layer does, which is
 checked rather than assumed.
 
 ### The population
@@ -50,15 +52,15 @@ relations out. They reproduce all thirty published subjects to twelve significan
 That is what makes generating a subject tractable: sample the 29 free parameters from the
 joint distribution of the published subjects of the same class, close the rest, then
 screen. Carbohydrate ratio and correction factor are not sampled at all. They are measured
-from each subject's own model, the way a clinician titrates: give a unit from a settled
+from each subject's own model, the way a clinician titrates. Give a unit from a settled
 state and see how far glucose falls, give a small amount of carbohydrate and see how far
 it rises, take the ratio.
 
-Each candidate has to survive five gates: the balance equations must admit a positive
-steady state; the measured settings must fall in the human range; glucose must hold near
-its fasting value on basal alone for a day; and given three meals with matched boluses it
-must stay inside 40 to 500 mg/dL on a plausible daily dose. Refusals are counted and
-written to `params/vpop_report.json`.
+A candidate is rejected for diverging on basal alone, for failing to hold its fasting
+glucose over a day, for leaving the 40 to 500 mg/dL band when given three meals with
+matched boluses, for needing an implausible daily insulin dose, or for ending up with
+measured settings outside the human range. Refusals are counted and written to
+`params/vpop_report.json`.
 
 ## 3. Installing
 
@@ -86,11 +88,12 @@ print(r.summary())
 
 | Attribute | What it is |
 |---|---|
-| `cgm` | what the algorithm saw, including sensor artefacts |
+| `cgm` | what the analysis sees, including sensor artefacts |
 | `bg` | the underlying blood glucose |
 | `minutes` | elapsed minutes for each sample |
 | `completed` | False if the subject did not survive the run |
-| `insulin_units` | total insulin delivered |
+| `insulin_units` | total insulin the body received, whichever controller asked for it |
+| `insulin_series` | units delivered in each step, which is what a rolling-hour peak needs |
 | `rescue_events`, `rescue_grams` | how often the person treated a low, and with how much |
 | `meals_announced`, `meals_unannounced` | how many meals the algorithm was told about |
 | `isf_weekly_cv` | how far the sensitivity setting drifted |
@@ -133,25 +136,47 @@ class MyLoop(Controller):
         self.cr, self.cf = float(q["CR"]), float(q["CF"])
 
     def policy(self, observation, reward, done, **info):
-        grams = info.get("meal", 0.0) * info.get("sample_time", 3)
+        step = info["sample_time"]                      # five minutes
+        grams = info["meal"] * step                     # info["meal"] is grams per minute
         bolus = grams / self.cr if grams > 0 else 0.0
-        return Action(basal=self.basal, bolus=bolus / info.get("sample_time", 3))
+        return Action(basal=self.basal, bolus=bolus / step)
 
 results = simulate_cohort(days=28, controller_factory=MyLoop)
 ```
 
-Two things to understand about what your controller sees.
+`info["meal"]` carries the announced carbohydrate in grams per minute, averaged over the
+step, which is simglucose's own convention. Multiply by `info["sample_time"]` for grams.
+Getting that conversion wrong is worth guarding against: the runner itself had it wrong
+until recently and under-bolused every run with the behaviour layer switched off.
 
-`info["meal"]` carries the **announced** carbohydrate, not the true amount. An unannounced
-meal arrives as an unexplained rise, which is the point. Rescue carbohydrate is never
-announced, because someone treating a low does not enter it as a meal bolus.
-
-`observation.CGM` carries the sensor reading including jitter and compression lows. A
-compression low is a false low: the reading moves and the glucose does not. An algorithm
-that reacts to one is being tested on something real.
+The announced amount is not the true amount. An unannounced meal arrives as an unexplained
+rise, which is what the behaviour layer is for, and rescue carbohydrate is never announced,
+because someone treating a low does not enter it as a meal bolus.
 
 `controller_factory` is called per subject and must return a fresh controller, so no state
 leaks between subjects.
+
+Four things to know about what your controller is handed:
+
+- `observation.CGM` is the reading after the sensor layer, so it carries the jitter and any
+  compression low in force at that moment. It is the same value recorded in `Result.cgm`,
+  which means an artefact in the output is an artefact the algorithm saw.
+- `info["profile"]` is the subject's therapy profile: a 24-hour basal schedule, sensitivity
+  and ratio by time block, a target range, a duration of action, and the delivery ceilings.
+  `info["clock_minutes"]` is the time the algorithm believes it is, which a clock fault can
+  move away from the real elapsed minute.
+- `info["stale_minutes"]` counts how long since a new reading arrived. It is zero unless a
+  fault is withholding readings, and an algorithm that ignores it is dosing on stale data.
+- Whatever you return passes through the limits in `timsim/therapy/limits.py` before it
+  reaches the pump. Every clamp is counted in `Result.meta["limit_bound"]`, so an
+  algorithm that keeps hitting its ceiling says so.
+
+The `loop` layer belongs to the built-in controller, so supplying your own switches it off.
+The runner warns and records the layers that actually ran rather than the ones requested.
+
+Driving a real automated insulin delivery system through this harness still needs an
+adapter, because the interface above is per-cycle rather than temp-basal-and-history.
+[OSAID.md](OSAID.md) sets out what one needs.
 
 ## 7. Comparing two algorithms
 
@@ -174,13 +199,13 @@ paired = [y.time_in_range - x.time_in_range for x, y in zip(a, b)]
 
 Two rules for reading the result.
 
-**Pair.** The same subjects and the same seed in both arms. An unpaired comparison throws
-away most of the power, because between-subject variation is far larger than the effect
-of any sensible controller change.
+Pair. Use the same subjects and the same seed in both arms. An unpaired comparison throws
+away most of the power, because between-subject variation is far larger than the effect of
+any sensible controller change.
 
-**Establish the null first.** Run the same controller twice with different seeds and see
-what difference that produces. That is the noise floor, and a difference smaller than it
-is not evidence of anything.
+Establish the null first. Run the same controller twice with different seeds and see what
+difference that produces. That is the noise floor, and a difference smaller than it is not
+evidence of anything.
 
 ```python
 null_a = simulate_cohort(subjects, days=28, seed=0, controller_factory=ControllerA)
@@ -198,14 +223,15 @@ details.
 ```python
 for layers in [(), ("physiology",), ("physiology", "behaviour"),
                ("physiology", "behaviour", "loop"),
-               ("physiology", "behaviour", "loop", "sensor")]:
+               ("physiology", "behaviour", "loop", "sensor"),
+               ("physiology", "behaviour", "loop", "sensor", "site")]:
     r = simulate("adult#001", days=28, layers=layers)
     print(layers, round(r.cv, 1), round(r.time_below_70, 1))
 ```
 
 `examples/layer_ablation.py` does this at cohort scale and writes the table in
-`docs/FIDELITY.md`. If an algorithm looks good only with a particular layer switched off,
-that is worth knowing before it reaches anyone.
+`docs/FIDELITY.md`. An algorithm that looks good only with a particular layer switched off
+is worth knowing about before it reaches anyone.
 
 ## 9. The fidelity statistics
 
@@ -225,50 +251,105 @@ spread of outcomes from a stuck high, the daily rhythm, how a low recovers and w
 overshoots, sensor artefacts, and how far the sensitivity setting drifts. Each returns a
 median with a bootstrap interval.
 
-`docs/FIDELITY.md` has the measured table and, more usefully, the four statistics that are
+`docs/FIDELITY.md` has the measured table and, more usefully, the statistics that are
 still outside the real range and what each one means.
 
-## 10. Checking the simulator itself
+## 10. Judging an algorithm on safety rather than on time in range
 
-Six graded levels, from whether the code does what it claims through to how large a
-difference it can actually resolve. Currently 19 of 19 on the fast levels.
+Time in range is the wrong thing to lead on. Section 8 of `docs/VALIDATION.md` shows why:
+the simulated person defends against lows with carbohydrate, so an algorithm that doses
+too hard can hold its mean steady while driving that person through repeated rescues.
 
+```python
+from timsim.analysis import safety
+
+record = result.safety()          # one subject
+worst = safety.worst_of(safety.cohort(results))
+```
+
+The record carries minutes below 54 per day, the longest single episode, LBGI and HBGI,
+peak insulin in any rolling hour, peak insulin on board against the declared ceiling, and
+rescue carbohydrate. Glucose figures come from `Result.bg` rather than from the sensor, so
+a compression low does not count as hypoglycaemia and an algorithm that causes a real low
+its own sensor understates gets no credit for it. `worst_of` names the worst subject,
+because a median hides an algorithm that is dangerous for five people in a hundred.
+
+Faults are how you find behaviour that a cohort average will never show:
+
+```python
+from timsim.validation import faults
+
+run = simulate("adult#001", days=3, seed=11, controller=MyLoop("adult#001"),
+               faults=faults.Faults(faults.NoReadings(start_min=26*60, duration_min=180)))
+```
+
+`faults.SCENARIOS` has the standard set: dropouts, a sensor restart with an offset on
+resumption, a stuck reading, a compression low, delivery loss, and a clock shift. Run each
+against an unfaulted control on the same seed and read the traces. What you are looking
+for is a fallback and a recovery rather than a number.
+
+And the verdict, with its criteria fixed before the run:
+
+```python
+from timsim.validation import gate
+
+print(gate.fingerprint(design={"subjects": 34, "days": 28}))   # record this first
+print(gate.report(gate.evaluate(results)))
+```
+
+`examples/safety_gate.py` runs the whole sequence end to end.
+
+## 11. Checking the simulator itself
 
 ```
 python -m timsim.validation.run --fast     # a few minutes
 python -m timsim.validation.run            # about 90 minutes
 ```
 
-Six graded levels, from whether the code does what it claims through to how large a
-difference it can actually resolve. `docs/VALIDATION.md` explains what each level licenses
-and reports the current results. It is worth reading before trusting a result from here,
-particularly the part about what the simulator cannot do.
+Six graded levels, running from whether the code does what it claims through to how large
+a difference it can actually resolve. Currently 24 of 24 on the fast levels.
+`docs/VALIDATION.md` explains what each level licenses and reports the current results,
+including a section on where two of the checks are weaker than they look. It is worth
+reading before trusting a result from here, particularly the part about what the simulator
+cannot do.
 
-## 11. The limits, stated plainly
+## 12. The limits, stated plainly
 
-**It cannot price a dosing change for a particular person.** The spread of where glucose
-lands half an hour after a stuck high is the quantity a dosing decision bets on, and the
-simulator is measurably on the confident side: 25.5 mg/dL against a real 26.5 to 33.5. That
-is much closer than it was, but it is still narrow. Use TimSim to stress-test an algorithm
-and to rank options; use a trial to decide.
+It cannot price a dosing change for a particular person. The spread of where glucose lands
+half an hour after a stuck high is the quantity a dosing decision bets on, and the
+simulator sits at the confident end of the real range: 27.0 mg/dL against a real 26.5 to
+33.5, on ten subjects with a wide interval. That is much closer than it was, and not
+settled. Use TimSim to stress-test an algorithm and to
+rank options; use a trial to decide.
 
-**The subjects are a resampling, not new data.** They are drawn from the joint
+The subjects are a resampling rather than new data. They are drawn from the joint
 distribution of thirty published subjects, so they inherit whatever that cohort does not
 represent and carry no independent information about human variability. What they add is
 resolution.
 
-**There is no exercise, no illness, no alcohol, no insulin site failure.** The model has no
-mechanism for any of them, and the behaviour layer does not invent one.
+There is no exercise, no illness, no alcohol. The model has no mechanism for any of them,
+and the behaviour layer does not invent one. Infusion site failure is modelled, in the one
+form the DCLP3 traces show: absorption drops away, the loop cannot fix it, and the person
+notices hours later or sleeps through it. A set that leaks, bleeds or hurts enough to be
+changed straight away looks nothing like that and is not covered.
 
-**Rebound after a low is overstated.** The simulator over-treats lows about twice as often
-as these cohorts appear to, 58.5% against a real 23 to 28. An algorithm judged on how it
+Carbohydrate is about half as potent as it is in real people, 1.9 mg/dL per gram against
+4.2 measured from DCLP3 participants' own settings. Anything driven by a carbohydrate error,
+which is most of what the behaviour layer does, is correspondingly damped.
+
+Rebound after a low is overstated. The simulator over-treats lows about twice as often as
+these cohorts appear to, 66.1% against a real 23 to 28. An algorithm judged on how it
 handles rebound highs is being judged on a harsher world than the real one.
 
-**Regenerate before believing anything.** The subjects are sampled, so a conclusion could
-be a property of one draw:
+Rare events are out of reach. A hundred subjects over 28 days is 2800 subject-days, which
+is not enough exposure to bound a severe hypoglycaemia rate at a level that would still
+matter clinically. Section 7 of [OSAID.md](OSAID.md) does the arithmetic.
+
+Regenerate before believing anything. The subjects are sampled, so a conclusion could be a
+property of one draw:
 
 ```
 python -m timsim.population.build --n 100 --seed 7
 ```
 
-If a result does not survive that, it was never a result.
+A result that does not survive that was never a result.

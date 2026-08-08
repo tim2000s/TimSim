@@ -67,9 +67,15 @@ def test_the_known_answer_check_accepts_a_plausible_effect():
     assert checks.check_closing_the_loop_improves_time_in_range(open_arm, loop_arm)["pass"]
 
 
-def test_the_sensor_layer_does_not_feed_back():
+def test_the_sensor_layer_changes_the_reading_and_not_the_body():
     name = population.names("adult")[0]
-    assert checks.check_layers_are_isolated(name, days=2)["pass"]
+    r = checks.check_the_sensor_layer_is_a_reading_and_not_a_glucose(name, days=2)
+    assert r["pass"]
+
+
+def test_delivery_limits_bind_on_an_algorithm_that_asks_for_too_much():
+    name = population.names("adult")[0]
+    assert checks.check_delivery_limits_bind(name, days=1)["pass"]
 
 
 def test_a_quiet_subject_holds_its_fasting_glucose():
@@ -81,3 +87,36 @@ def test_every_check_returns_the_same_shape():
     r = checks.check_steady_state_closure()
     assert set(r) == {"check", "level", "value", "target", "pass", "note"}
     assert isinstance(r["check"], str) and isinstance(r["level"], int)
+
+
+def test_the_dclp3_split_is_reproducible_and_fingerprinted():
+    """The held-out set has to be recoverable, or it cannot be scored once at the end."""
+    from timsim.validation import dclp3
+    if not dclp3.available():
+        import pytest as _p
+        _p.skip("DCLP3 not present; set DCLP3_DIR")
+    a, b = dclp3.split(), dclp3.split()
+    assert a["fingerprint"] == b["fingerprint"] == dclp3.SPLIT_FINGERPRINT
+    assert a["held_out"] == b["held_out"]
+    assert not set(a["calibration"]) & set(a["held_out"])
+    # a different seed must give a different sealed set, or the seal means nothing
+    assert dclp3.split(seed=1)["fingerprint"] != a["fingerprint"]
+
+
+def test_the_dclp3_known_answer_matches_the_trial():
+    """Level 4's reference is now a randomised effect rather than a literature estimate."""
+    from timsim.validation import dclp3
+    k = dclp3.KNOWN_ANSWER
+    assert 8.0 < k["difference"] < 20.0
+    assert k["mann_whitney_p"] < 0.001
+    assert abs(k["difference"] - k["trial_reported"]) < 5.0
+
+
+def test_the_dclp3_reference_disagrees_where_it_is_recorded_as_disagreeing():
+    """Kept as a test so the disagreement cannot quietly drift out of the documentation."""
+    from timsim.analysis import signatures as S
+    from timsim.validation import dclp3
+    for key in dclp3.DISAGREEMENTS:
+        median = dclp3.REFERENCE["CLC"][key][0]
+        lo, hi = S.REAL_RANGE[key]
+        assert not (lo <= median <= hi), f"{key} no longer disagrees"

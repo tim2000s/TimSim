@@ -22,6 +22,7 @@ That is a different claim and no check in this file supports it.
 import numpy as np
 import pandas as pd
 
+from .. import therapy
 from ..analysis import signatures as S
 from ..population import derive, params_for, therapy_for
 from ..simulation.run import simulate
@@ -59,8 +60,14 @@ def check_quiet_subject_holds(name, days=2):
     it wanders about 40 mg/dL either side over two days while the blood glucose underneath
     does not move at all. That is also why the simulator can look quiet on the
     high-frequency jitter statistic and still produce a visibly noisy trace.
+
+    Pump quantisation is switched off here. It is a real effect and it really does move
+    the steady state, which `check_pump_quantisation_costs_what_it_should` measures. What
+    this check is for is whether the parameters and the initial state agree, and that is a
+    property of the physiology rather than of the device.
     """
-    r = simulate(name, days=days, seed=0, layers=(), meals=[])
+    r = simulate(name, days=days, seed=0, layers=(), meals=[],
+                 limits=_unquantised_limits(name))
     fasting = float(params_for(name)["Gb"])
     excursion = float(np.max(np.abs(r.bg - fasting)))
     return {"check": f"{name} holds its fasting glucose with no meals",
@@ -70,22 +77,119 @@ def check_quiet_subject_holds(name, days=2):
                     f"{excursion:.2f} over {days} days"}
 
 
-def check_layers_are_isolated(name, days=3):
-    """Switching a layer off must change only what that layer does.
+def _unquantised_limits(name):
+    """The subject's own ceilings with the delivery increments removed."""
+    base = therapy.for_subject(name).limits
+    return therapy.PumpLimits(base.max_basal_u_per_hour, base.max_bolus_u,
+                              base.max_iob_u, basal_increment_u_per_hour=0.0,
+                              bolus_increment_u=0.0)
 
-    Specifically, the same seed with and without the sensor layer must leave the
-    underlying blood glucose identical, because the sensor layer is a transform on the
-    reading and must not feed back into the body.
+
+def check_pump_quantisation_costs_what_it_should(name, days=2):
+    """A pump that cannot deliver the exact basal rate leaves the subject slightly off.
+
+    Worth measuring rather than assuming. A basal rate rounded to the nearest 0.05 U/h is
+    out by up to 2% on a typical adult, and on a subject whose steady state was closed at
+    the exact rate that shows up as a small standing offset in glucose. It is bounded and
+    it is real, and a version of this that rounded down instead of to the nearest
+    increment produced three times the offset in the same direction on every subject.
     """
-    a = simulate(name, days=days, seed=3, layers=("physiology", "behaviour", "loop"))
-    b = simulate(name, days=days, seed=3,
-                 layers=("physiology", "behaviour", "loop", "sensor"))
-    n = min(len(a.bg), len(b.bg))
-    same = bool(np.array_equal(a.bg[:n], b.bg[:n]))
-    return {"check": "the sensor layer does not feed back into the body",
-            "level": 1, "value": float(np.max(np.abs(a.bg[:n] - b.bg[:n]))),
-            "target": "identical", "pass": same,
-            "note": "same seed, sensor layer on and off, underlying BG compared"}
+    fasting = float(params_for(name)["Gb"])
+    exact = simulate(name, days=days, seed=0, layers=(), meals=[],
+                     limits=_unquantised_limits(name))
+    real = simulate(name, days=days, seed=0, layers=(), meals=[])
+    offset = float(np.max(np.abs(real.bg - fasting)) - np.max(np.abs(exact.bg - fasting)))
+    return {"check": f"{name}: pump quantisation moves the steady state by a bounded amount",
+            "level": 1, "value": offset, "target": "< 15 mg/dL",
+            "pass": bool(abs(offset) < 15.0),
+            "note": f"delivering to the nearest 0.05 U/h costs {offset:.2f} mg/dL against "
+                    f"a fasting glucose of {fasting:.0f}"}
+
+
+class _DeafController:
+    """Holds a fixed basal and never looks at the sensor. Used to isolate the sensor."""
+
+    def __init__(self, basal_u_per_min):
+        self.basal = float(basal_u_per_min)
+
+    def policy(self, observation, reward, done, **info):
+        from simglucose.controller.base import Action
+        return Action(basal=self.basal, bolus=0.0)
+
+
+def check_the_sensor_layer_is_a_reading_and_not_a_glucose(name, days=3):
+    """The sensor layer must change what is seen and not what is true.
+
+    An earlier version of this check compared the underlying glucose with the sensor layer
+    on and off while the loop was running, and passed trivially, because the layer was
+    applied to the finished trace after the run had ended. Nothing could have failed it.
+
+    The sensor layer now sits inside the loop, so an algorithm that reads glucose will
+    dose differently and the body will genuinely differ. That is the intended behaviour
+    and it means the isolation has to be tested against a controller that ignores the
+    sensor. For that controller, and only for that one, the two runs must agree exactly on
+    blood glucose while disagreeing on the reading.
+    """
+    prof = therapy.for_subject(name)
+    quiet = simulate(name, days=days, seed=3, layers=(),
+                     controller=_DeafController(prof.basal_at(0)))
+    noisy = simulate(name, days=days, seed=3, layers=("sensor",),
+                     controller=_DeafController(prof.basal_at(0)))
+    n = min(len(quiet.bg), len(noisy.bg))
+    body_same = bool(np.array_equal(quiet.bg[:n], noisy.bg[:n]))
+    reading_moved = float(np.max(np.abs(quiet.cgm[:n] - noisy.cgm[:n])))
+    ok = body_same and reading_moved > 1.0
+    return {"check": "the sensor layer changes the reading and not the body",
+            "level": 1, "value": reading_moved,
+            "target": "blood glucose identical, reading moved",
+            "pass": bool(ok),
+            "note": f"underlying BG {'identical' if body_same else 'DIFFERS'}; the "
+                    f"reading moved by up to {reading_moved:.1f} mg/dL"}
+
+
+def check_the_algorithm_sees_the_sensor_artefacts(name, days=21):
+    """What the controller was handed must carry the artefacts, not just the output.
+
+    The failure this exists to catch is a sensor layer applied to the finished trace: the
+    statistics look right, the compression lows are in the file, and no algorithm was ever
+    exposed to one. Here the recorded trace is the reading the controller acted on, so a
+    compression event in the record is an event the controller saw.
+    """
+    r = simulate(name, days=days, seed=5, layers=("physiology", "behaviour", "sensor"))
+    quiet = simulate(name, days=days, seed=5, layers=("physiology", "behaviour"))
+    jitter = float(np.std(np.diff(np.diff(r.cgm))) - np.std(np.diff(np.diff(quiet.cgm))))
+    return {"check": "the algorithm is handed the sensor artefacts",
+            "level": 1, "value": float(r.compression_events),
+            "target": "compression events placed, and jitter added",
+            "pass": bool(r.compression_events > 0 and jitter > 1.0),
+            "note": f"{r.compression_events} compression events over {days} days, and "
+                    f"{jitter:.1f} mg/dL of added second-difference jitter"}
+
+
+def check_delivery_limits_bind(name, days=2):
+    """An algorithm that asks for far too much insulin must be stopped by the limits.
+
+    simglucose's own pump would accept 150 units in one step. The limits in
+    `therapy/limits.py` sit in front of it, and a bench whose ceilings do not bind is
+    testing an algorithm with its safeties removed.
+    """
+    from simglucose.controller.base import Action
+
+    class Greedy:
+        def policy(self, observation, reward, done, **info):
+            return Action(basal=1.0, bolus=20.0 / info.get("sample_time", 5.0))
+
+    r = simulate(name, days=days, seed=0, layers=(), controller=Greedy())
+    bound = r.meta["limit_bound"]
+    hit = sum(bound.values())
+    return {"check": "delivery limits bind on an algorithm that asks for too much",
+            "level": 1, "value": float(hit),
+            "target": "the basal, bolus and insulin-on-board ceilings all bind",
+            "pass": bool(bound["basal"] > 0 and bound["bolus"] > 0 and bound["iob"] > 0),
+            "note": f"clamped {bound['basal']} times on basal, {bound['bolus']} on bolus "
+                    f"and {bound['iob']} on insulin on board; peak insulin on board "
+                    f"{r.meta['peak_iob_u']:.1f} U against a ceiling of "
+                    f"{r.meta['max_iob_u']:.1f}"}
 
 
 # ---------------------------------------------------------------------- level 2

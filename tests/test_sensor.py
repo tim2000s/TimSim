@@ -26,6 +26,58 @@ def test_compression_lows_are_placed_at_about_the_requested_rate():
     assert dipped.min() < 70.0
 
 
+def test_the_rate_is_the_same_on_a_three_minute_grid_as_on_a_five_minute_one():
+    """The defect this catches: a span computed in samples rather than in minutes.
+
+    An earlier version read `len(cgm) * 300 / 86400` regardless of the real interval, so
+    a three-minute trace was read as 1.67 times its true length and got 1.67 times the
+    dips. Thirty days is thirty days on either grid.
+    """
+    thirty_days_at_5 = _trace(n=30 * 24 * 12, level=110.0)
+    thirty_days_at_3 = _trace(n=30 * 24 * 20, level=110.0)
+    _, five = inject_compression_lows(thirty_days_at_5, np.random.default_rng(1),
+                                      rate_per_30d=6.0, sample_minutes=5.0)
+    _, three = inject_compression_lows(thirty_days_at_3, np.random.default_rng(1),
+                                       rate_per_30d=6.0, sample_minutes=3.0)
+    assert five == three == 6
+
+
+def test_the_online_layer_places_the_same_number_of_dips_as_the_batch_one():
+    from timsim.sensor.realism import OnlineArtefacts
+
+    n = 30 * 24 * 12                                   # 30 days at 5 min
+    art = OnlineArtefacts(np.random.default_rng(2), n, 5.0, noise_sigma=0.0,
+                          compression_per_30d=6.0)
+    out = np.array([art(i, 110.0) for i in range(n)], float)
+    assert art.events == 6
+    assert out.min() < 70.0
+
+
+def test_the_online_layer_defers_a_dip_it_cannot_place_rather_than_dropping_it():
+    """A dip scheduled while glucose is already low would never cross the detector."""
+    from timsim.sensor.realism import OnlineArtefacts
+
+    n = 30 * 24 * 12
+    art = OnlineArtefacts(np.random.default_rng(3), n, 5.0, noise_sigma=0.0,
+                          compression_per_30d=6.0)
+    # the first third of the run sits far too high for a plausible dip to reach 70
+    levels = np.where(np.arange(n) < n // 3, 300.0, 110.0)
+    for i, level in enumerate(levels):
+        art(i, float(level))
+    assert art.events == 6
+
+
+def test_the_online_layer_adds_jitter_without_moving_the_mean():
+    from timsim.sensor.realism import OnlineArtefacts
+
+    n = 2016
+    art = OnlineArtefacts(np.random.default_rng(4), n, 5.0, noise_sigma=2.0,
+                          compression_per_30d=0.0)
+    out = np.array([art(i, 120.0) for i in range(n)], float)
+    assert abs(out.mean() - 120.0) < 0.5
+    assert 4.0 < np.diff(np.diff(out)).std() < 7.0
+
+
 def test_a_compression_low_reverses_rather_than_persisting():
     rng = np.random.default_rng(2)
     clean = _trace(n=2016, level=110.0)

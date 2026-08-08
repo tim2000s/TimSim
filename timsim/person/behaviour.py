@@ -27,17 +27,45 @@ P_ANNOUNCE_MAIN = 0.80
 P_ANNOUNCE_SNACK = 0.35
 CARB_ESTIMATE_CV = 0.25
 
-# Rescue. The 15-15 rule (15 g, recheck at 15 min) is the standard advice, and the
-# observed practice is to exceed it: Savard et al. (2016) and the ADA's own guidance note
-# routine over-treatment. Delay from alert to treatment is minutes rather than seconds.
+# Rescue. The 15-15 rule (15 g, recheck at 15 min) is the standard advice, and the observed
+# practice is to exceed it: Savard et al. (2016) and the ADA's own guidance note routine
+# over-treatment.
+#
+# Recalibrated 2026-08-07 against measured behaviour rather than against the rule. Carb
+# entries following a low were counted across 30 real closed-loop users over 5008 days:
+#
+#     rescues per day     median 0.44   (p25 0.09, p75 1.30)
+#     grams per rescue    median 28.5   mean 33.8
+#     rescue g per day    median 16.6
+#
+# The earlier settings treated far too often with far too little: 1.50 rescues a day at 25 g
+# against a real 0.44 at 34 g. Frequency was the larger error and it came from two places.
+# A refractory window of 20 minutes splits one treatment episode into three, where a person
+# treats, waits, rechecks and is done. And treating pre-emptively at 80 mg/dL on any fall
+# fires constantly on a closed loop, where the algorithm is already withdrawing insulin;
+# real users at 80 and falling mostly let it work.
+#
+# This matters beyond the rescue statistics because every rescue produces a sharp rise that
+# looks like a meal. At the old settings TimSim generated sustained 50 mg/dL climbs 1.9 to
+# 2.3 times as often as real users, and drove a real algorithm's meal detector into its
+# observing state about twice as much as the field does.
+#
+# Calibrated against the rescue statistics above and nothing else. Neither the fidelity
+# table nor any algorithm's behaviour was consulted in choosing these, which is what makes
+# the movement in those a test rather than a restatement.
+#
+# One caveat on the target: the real figures count carbohydrate that was logged. People
+# treat lows without recording them, so 0.44 a day is a lower bound and the true rate sits
+# somewhere above it. That is why the calibration lands at 0.93 rather than being pushed
+# down to 0.44.
 RESCUE_THRESHOLD = 70.0
-RESCUE_PREEMPT_BG = 80.0          # treat early when falling fast
-RESCUE_PREEMPT_FALL = -2.0        # mg/dL/min
+RESCUE_PREEMPT_BG = 72.0          # treat early only when already close to the threshold
+RESCUE_PREEMPT_FALL = -3.0        # mg/dL/min, a genuine fast fall
 RESCUE_DELAY_MIN = (4.0, 16.0)    # uniform, minutes from decision to eating
-RESCUE_GRAMS = (14.0, 24.0)       # uniform, grams of fast carbohydrate
-P_OVERTREAT = 0.35                # probability of a second helping
-OVERTREAT_EXTRA = (10.0, 25.0)    # grams
-RESCUE_REFRACTORY_MIN = 20.0      # do not re-treat inside this window
+RESCUE_GRAMS = (20.0, 40.0)       # uniform, grams of fast carbohydrate
+P_OVERTREAT = 0.25                # probability of a second helping
+OVERTREAT_EXTRA = (10.0, 30.0)    # grams
+RESCUE_REFRACTORY_MIN = 45.0      # one treatment episode, not one dosing cycle
 
 # Adaptation. Real weekly ISF drift is 8-22% CV, measured on the cohort. A weekly
 # adjustment bounded to +/-30% is the shape autosens/autotune already use.

@@ -19,10 +19,18 @@
   {
    "check": "adult#001 holds its fasting glucose with no meals",
    "level": 1,
-   "value": 0.016171883986544344,
+   "value": 0.016171871082633515,
    "target": "< 5 mg/dL excursion in blood glucose",
    "pass": true,
    "note": "fasting parameter 152 mg/dL, largest excursion 0.02 over 2 days"
+  },
+  {
+   "check": "adult#001: pump quantisation moves the steady state by a bounded amount",
+   "level": 1,
+   "value": 1.8866970310360784,
+   "target": "< 15 mg/dL",
+   "pass": true,
+   "note": "delivering to the nearest 0.05 U/h costs 1.89 mg/dL against a fasting glucose of 152"
   },
   {
    "check": "adult#001: 1 U drops glucose by about its correction factor",
@@ -51,10 +59,18 @@
   {
    "check": "adult#002 holds its fasting glucose with no meals",
    "level": 1,
-   "value": 0.019089443415793994,
+   "value": 0.019089432687906083,
    "target": "< 5 mg/dL excursion in blood glucose",
    "pass": true,
    "note": "fasting parameter 150 mg/dL, largest excursion 0.02 over 2 days"
+  },
+  {
+   "check": "adult#002: pump quantisation moves the steady state by a bounded amount",
+   "level": 1,
+   "value": 2.591563432370549,
+   "target": "< 15 mg/dL",
+   "pass": true,
+   "note": "delivering to the nearest 0.05 U/h costs 2.59 mg/dL against a fasting glucose of 150"
   },
   {
    "check": "adult#002: 1 U drops glucose by about its correction factor",
@@ -83,10 +99,18 @@
   {
    "check": "adult#003 holds its fasting glucose with no meals",
    "level": 1,
-   "value": 0.033686692488146264,
+   "value": 0.0336863364994997,
    "target": "< 5 mg/dL excursion in blood glucose",
    "pass": true,
    "note": "fasting parameter 147 mg/dL, largest excursion 0.03 over 2 days"
+  },
+  {
+   "check": "adult#003: pump quantisation moves the steady state by a bounded amount",
+   "level": 1,
+   "value": 1.9072874819667618,
+   "target": "< 15 mg/dL",
+   "pass": true,
+   "note": "delivering to the nearest 0.05 U/h costs 1.91 mg/dL against a fasting glucose of 147"
   },
   {
    "check": "adult#003: 1 U drops glucose by about its correction factor",
@@ -113,47 +137,63 @@
    "note": "peak at 107 minutes"
   },
   {
-   "check": "the sensor layer does not feed back into the body",
+   "check": "the sensor layer changes the reading and not the body",
    "level": 1,
-   "value": 0.0,
-   "target": "identical",
+   "value": 6.664162604799742,
+   "target": "blood glucose identical, reading moved",
    "pass": true,
-   "note": "same seed, sensor layer on and off, underlying BG compared"
+   "note": "underlying BG identical; the reading moved by up to 6.7 mg/dL"
+  },
+  {
+   "check": "the algorithm is handed the sensor artefacts",
+   "level": 1,
+   "value": 3.0,
+   "target": "compression events placed, and jitter added",
+   "pass": true,
+   "note": "3 compression events over 21 days, and 3.3 mg/dL of added second-difference jitter"
+  },
+  {
+   "check": "delivery limits bind on an algorithm that asks for too much",
+   "level": 1,
+   "value": 195.0,
+   "target": "the basal, bolus and insulin-on-board ceilings all bind",
+   "pass": true,
+   "note": "clamped 65 times on basal, 65 on bolus and 65 on insulin on board; peak insulin on board 10.8 U against a ceiling of 8.6"
   },
   {
    "check": "adult#001: mean glucose falls monotonically as insulin rises",
    "level": 2,
-   "value": 63.20505612853124,
+   "value": 80.9875807484448,
    "target": "strictly decreasing",
    "pass": true,
-   "note": "means at 0.7/0.85/1.0/1.15/1.3 x insulin: 191, 178, 164, 147, 128"
+   "note": "means at 0.7/0.85/1.0/1.15/1.3 x insulin: 168, 152, 126, 106, 87"
   },
   {
    "check": "adult#001: extra insulin is met with extra rescue carbohydrate",
    "level": 2,
-   "value": 575.0278678693473,
+   "value": 419.29417763605926,
    "target": "rescue carbohydrate rises with the dose",
    "pass": true,
-   "note": "rescue grams at 0.7/0.85/1.0/1.15/1.3 x insulin: 0, 0, 233, 323, 575; mean glucose is no longer monotone, which is the person defending rather than a modelling error"
+   "note": "rescue grams at 0.7/0.85/1.0/1.15/1.3 x insulin: 0, 0, 0, 276, 419; mean glucose is no longer monotone, which is the person defending rather than a modelling error"
   },
   {
    "check": "two population draws describe the same kind of people",
    "level": 6,
-   "value": 0.180884112590294,
+   "value": 0.15247053711967323,
    "target": "< 0.25 relative difference",
    "pass": true,
-   "note": "largest gap in cr: 10.808 against 8.853"
+   "note": "largest gap in bw: 46.369 against 53.439"
   },
   {
    "check": "adult#001: announcing more meals lowers mean glucose",
    "level": 6,
-   "value": 3.7597878332575476,
+   "value": 4.972643187229409,
    "target": "ordered, and a bounded spread",
    "pass": true,
-   "note": "means at 65/80/95% announcement: 134, 132, 130"
+   "note": "means at 65/80/95% announcement: 137, 135, 132"
   }
  ],
- "subjects": 3,
+ "subjects": 6,
  "days": 14,
  "fast_only": true
 }
