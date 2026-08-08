@@ -511,11 +511,10 @@ registration in `validation/gate.py`:
 | Time below 54 per day, median | 14.4 min | 2.14 | 2.05 |
 | LBGI, 90th percentile | 5.0 | 1.32 | 1.10 |
 
-That criterion has since been retired, because chasing it established that it measured the
-simulator rather than the system under test: with no algorithm involved at all the model
-sits below 54 mg/dL for 203 minutes untreated and saturates near 22 minutes however much
-carbohydrate it is given, against a real median of 10. `docs/FIDELITY.md` has the
-measurement. What follows is the verdict as it stood when the criterion was still in force.
+That criterion was briefly retired and then restored, on a comparison that turned out not to
+be like-for-like: it is measured on blood glucose while the trial figure it was judged
+against is a sensor reading. `docs/FIDELITY.md` sets out the correction and what it means
+for reading a failure here.
 
 Both configurations failed, and on a criterion neither the site layer nor any other change
 here introduced. The thresholds were registered before the run, so the finding stands rather
@@ -534,8 +533,7 @@ than letting it stack a correction. The two configurations do not present the sa
 
 Rare events, for the exposure reason at the top. A verdict about a particular person, for
 the outcome-spread reason. Anything the model has no mechanism for, which is exercise,
-illness and alcohol. How long a severe low lasts, for the counterregulation reason in
-`docs/FIDELITY.md`. Infusion site failure is now modelled, but only as absorption dropping
+illness and alcohol. Infusion site failure is now modelled, but only as absorption dropping
 away and being noticed late, which is the form that showed up in the DCLP3 traces and not
 the only form a bad site takes. And the two biases whose direction is known:
 hypoglycaemia rebound is overstated, so an algorithm judged on how it handles rebound highs

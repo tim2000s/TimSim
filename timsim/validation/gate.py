@@ -75,6 +75,11 @@ DEFAULT_CRITERIA = (
     Criterion("minutes_below_54_per_day", "worst", 60.0, "at_most",
               hazard="clinically significant hypoglycaemia in one person",
               rationale="no subject may spend more than an hour a day below 54"),
+    Criterion("longest_below_54_min", "worst", 120.0, "at_most",
+              hazard="a prolonged severe low rather than a brief one",
+              rationale="duration is the part of a severe low that causes harm. Measured "
+                        "on blood glucose, where a trial measures the sensor, so read a "
+                        "failure here against the note above `design_of`"),
     Criterion("minutes_below_70_per_day", "median", 57.6, "at_most",
               hazard="hypoglycaemia exposure across the cohort",
               rationale="4% of a day, the consensus target for time below 70 mg/dL"),
@@ -102,7 +107,6 @@ UNCOVERED_HAZARDS = (
     "a bad infusion site of any kind other than one that quietly stops absorbing: the model "
     "in therapy/site.py does not cover a set that leaks, bleeds, or hurts enough to be "
     "changed immediately",
-    "how long a severe low lasts, which this bench cannot assess at all: see below",
     "a fault the level 7 scenarios do not include",
     "any rare event below the exposure bound reported with the verdict",
 )
@@ -137,6 +141,11 @@ UNCOVERED_HAZARDS = (
 # counterregulation to end a low that nobody treats.
 # The reference algorithm measured against the current registration, 34 subjects over 28
 # days, kept so that a change in the bench is visible as a change in this number.
+#
+# It fails, on the longest severe low, and the two algorithm defects found while chasing
+# that are fixed without changing the verdict. Read alongside the signal note above
+# `design_of`: measured on the sensor rather than on blood glucose the same cohort gives a
+# longest episode of 135 minutes, against 160 for the DCLP3 participants.
 REFERENCE_VERDICT = {
     "with_site": {"verdict": "fails", "fingerprint": "99871b135e2378be",
                   "failed": ("worst longest_below_54_min", 180.0, 120.0),
@@ -164,47 +173,47 @@ REGISTERED = (
                 "isf_scale": [1.0], "hypo_risk_gain": [0.0]},
      "note": "what the retired registration would have hashed to had the design been "
              "bound; recorded so the two can be compared"},
-    {"fingerprint": "99871b135e2378be", "retired": "2026-08-08", "criteria": 9,
-     "design": {"layers": ["behaviour", "physiology", "sensor", "site"], "subjects": 34,
-                "days": 28, "sample_minutes": [5.0], "si_pattern": ["sinusoid"],
-                "isf_scale": [1.0], "hypo_risk_gain": [0.0]},
-     "note": "the infusion site layer entered the default. Retired the same day, when the "
-             "longest-severe-low criterion was shown to measure the simulator rather than "
-             "the system under test"},
-    {"fingerprint": None, "registered": "2026-08-08", "criteria": 8,
+    {"fingerprint": None, "registered": "2026-08-08", "criteria": 9,
      "design": None,
-     "note": "current: eight criteria, with no threshold on how long a severe low lasts. "
-             "Computed from the criteria rather than pinned, since the design depends on "
-             "the run; use gate.fingerprint(design=gate.design_of(results))"},
+     "note": "current: the infusion site layer is in the default, so the gate covers a "
+             "hazard it once listed as uncovered. The nine criteria are unchanged since "
+             "the gate was written. The longest-severe-low threshold was briefly removed "
+             "and restored the same day; see the note above design_of, and read a failure "
+             "against it knowing it is measured on blood glucose where a trial measures a "
+             "sensor. Computed rather than pinned, since the design depends on the run: "
+             "use gate.fingerprint(design=gate.design_of(results))"},
 )
 
 
 
-# Why there is no criterion on how long a severe low lasts, when duration is the part of a
-# severe low that does the harm. There was one, at 120 minutes, and it was retired because
-# it turned out to measure this simulator rather than the system under test.
+# A note on the criterion for how long a severe low lasts, because it was retired on a
+# mistake and restored, and the mistake is the useful part.
 #
-# It failed the reference algorithm at 150 minutes and then at 180. Two real defects were
-# found in that algorithm and fixed, an unbounded correction riding along with every meal
-# bolus and an insulin-on-board estimate built from requests rather than deliveries, and
-# the figure did not move: 190 minutes afterwards, with the median across all episodes
-# going 48 to 42 against a real 10.
+# It failed the reference algorithm at 150 minutes, then 180. Two real defects were found
+# in that algorithm and fixed, an unbounded correction riding along with every meal bolus
+# and an insulin-on-board estimate built from requests rather than deliveries, and the
+# figure did not move. Driving a published adult below 54 with no algorithm at all gave 203
+# minutes untreated, saturating near 22 with carbohydrate, against a DCLP3 median of 10. On
+# that basis the criterion looked like it was measuring the simulator rather than the system
+# under test, and it was taken out.
 #
-# Taking the algorithm out entirely settles it. Drive a published adult below 54 mg/dL with
-# insulin, stop, and feed it, with no controller and no behaviour layer in the way:
+# The comparison was wrong. These metrics read `Result.bg`, the blood glucose, and DCLP3
+# reports a sensor: smoothed, lagged, and floored at 40 mg/dL. Measured on the same signal,
+# the same 34 simulated subjects give a median episode of 10 minutes against the trial's 10,
+# and a longest of 135 against the trial's 160. Only 70% of samples that are genuinely below
+# 54 read below 54 on the simulated sensor, which is most of the apparent gap.
 #
-#     rescue     0 g   15 g   20 g   30 g   45 g
-#     minutes    203     93     32     24     22
+# The physiology also says the opposite of what was assumed. The model's endogenous glucose
+# production during a low is 2.60 mg/kg/min, above its own basal of 2.36, because the
+# `-kp2 * Gp` term is a hepatic autoregulation that strengthens as glucose falls. Rickels et
+# al. (Diabetes 2015) measured 0.59 +/- 0.12 in long-standing type 1 diabetes at a 45 mg/dL
+# clamp, against 1.42 +/- 0.14 in non-diabetic controls, and reported the response as flat:
+# suppressed to levels no different from euglycaemia. The model is already four times more
+# generous to a recovering low than the people it represents.
 #
-# Untreated the model sits below 54 for over three hours, because S2008 has no
-# counterregulation and nothing arrests a low except insulin decaying. Carbohydrate helps
-# and then saturates near 22 minutes, since the eating rate and gut transit set a floor no
-# amount of treatment gets under. Real closed-loop users in DCLP3 have a median of 10
-# minutes below 54 and a 99th percentile of 60, across 29 subject-years.
-#
-# No algorithm can pass a threshold that the body it is dosing cannot get under, so the
-# criterion measured the harness. `docs/EVIDENCE.md` records it as an uncovered hazard,
-# which is the honest place for it, and `docs/FIDELITY.md` carries the measurement.
+# So the criterion stands, and a failure against it is about the algorithm. What has to be
+# carried with it is the signal: it is measured on blood glucose, no field study measures
+# that, and in this simulator the sensor understates severe-low duration by about a third.
 def design_of(results, **extra):
     """The run design a fingerprint has to cover, read off the cohort rather than typed.
 

@@ -174,11 +174,23 @@ def test_the_registration_history_records_one_current_entry_and_dates_the_rest()
     assert all("note" in e for e in gate.REGISTERED)
 
 
-def test_no_criterion_measures_something_the_model_cannot_do():
-    """The longest-severe-low threshold was retired for exactly this reason."""
+def test_severe_low_duration_is_still_a_criterion():
+    """It was retired on a comparison that was not like-for-like, and restored."""
     from timsim.validation import gate
-    assert not any(c.key == "longest_below_54_min" for c in gate.DEFAULT_CRITERIA)
-    assert any("severe low" in h for h in gate.UNCOVERED_HAZARDS)
+    assert any(c.key == "longest_below_54_min" for c in gate.DEFAULT_CRITERIA)
+
+
+def test_the_safety_metrics_read_blood_glucose_not_the_sensor():
+    """Which is right for a safety verdict, and is why thresholds cannot be imported
+    from trial figures without converting: a sensor understates a severe low."""
+    import numpy as np
+    from timsim import simulate
+    from timsim.population import names
+    from timsim.analysis import safety
+    r = simulate(names("adult")[0], days=3, seed=11)
+    rec = safety.summarise(r)
+    truth = float(np.mean(np.asarray(r.bg, float) < 70.0) * 24 * 60)
+    assert rec["minutes_below_70_per_day"] == pytest.approx(truth, rel=0.05)
 
 
 def test_site_failure_is_no_longer_listed_as_wholly_uncovered():

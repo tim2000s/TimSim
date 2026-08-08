@@ -344,58 +344,90 @@ at 35.3 for anyone testing how an algorithm copes with badly tuned therapy, whic
 scenario and not the default one. What neither fixes is the shape by hour: every arm runs
 high at breakfast and short after midnight, which is a separate problem and still open.
 
-## Why hypoglycaemia duration is not assessable here
+## Should this package add counterregulation? The evidence says no
 
-This is the sharpest limit in the package and it was found by a gate criterion failing,
-then surviving every attempt to fix the thing it was blaming.
+S2008 has no counterregulation, and a simulator of hypoglycaemia without it looks obviously
+incomplete. Chasing that turned up two errors of ours before it turned up anything about
+the model, so the working is kept.
 
-The gate had a threshold on the longest single episode below 54 mg/dL, at 120 minutes. The
-reference algorithm failed it at 150, then at 180 once the infusion site layer was in.
-Instrumenting the worst episode showed the person treating six times with 242 g, the loop
-suspended at 0.00 U for over two hours, the sensor reading 39 to 46 throughout so nobody
-was blind to it, and blood glucose sitting at a mean of 29 with a minimum of 15.
+### What went wrong first
 
-Two real defects turned up in the algorithm on the way and are worth recording because
-they were both worth fixing. Its meal bolus carried a full correction with no
-insulin-on-board subtraction and no cap, so a meal arriving at a high stacked an uncapped
-correction on top of the coverage. And it tracked insulin on board from what it had asked
-for rather than what the pump reported delivering, which took its own estimate to 41.7 U
-against a real 10, since the delivery ceilings sit between the two. Both are fixed.
+The gate has a criterion on the longest single episode below 54 mg/dL, at 120 minutes. The
+reference algorithm failed it at 150, then 180. Two real defects turned up in that algorithm
+and were fixed: its meal bolus carried a full correction with no insulin-on-board
+subtraction and no cap, and it tracked insulin on board from what it had requested rather
+than what the pump reported delivering, which took its own estimate to 41.7 U against a real
+10. Neither moved the number. Driving a published adult below 54 with no algorithm at all
+gave 203 minutes untreated, saturating near 22 minutes however much carbohydrate was given,
+against a real median of 10.
 
-Neither moved the number. After the fixes the longest episode was 190 minutes and the
-median across all episodes went from 48 to 42, against a real median of 10.
+That looked conclusive and it was wrong. The safety metrics read `Result.bg`, the blood
+glucose. DCLP3 reports a sensor, which is smoothed, lagged and floored at 40 mg/dL. On the
+same signal:
 
-Taking the algorithm out of the picture settles it. Drive a published adult below 54 mg/dL
-with insulin, stop, and feed it, with no controller, no behaviour layer and nothing this
-package added:
-
-| Rescue carbohydrate | 0 g | 15 g | 20 g | 30 g | 45 g |
+| Episodes below 54 mg/dL | n | median | p90 | p99 | max |
 |---|---|---|---|---|---|
-| Minutes below 54 | 203 | 93 | 32 | 24 | 22 |
-| Minutes below 70 | 284 | 176 | 144 | 63 | 45 |
+| This package, blood glucose | 100 | 48 | 85 | 131 | 180 |
+| This package, sensor reading | 380 | 10 | 55 | 110 | 135 |
+| DCLP3, real sensor, 11x the exposure | 2322 | 10 | 25 | 60 | 160 |
 
-Untreated, the model stays below 54 for over three hours. Nothing arrests a low except the
-insulin decaying, because S2008 has no counterregulation. Treatment helps and then
-saturates near 22 minutes: the eating rate and gut transit set a floor that no amount of
-carbohydrate gets under. Real closed-loop users in DCLP3 spend a median of 10 minutes below
-54, with a 99th percentile of 60 and a maximum of 160 across 29 subject-years, and only one
-of 67 ever reached 120 minutes.
+The medians agree exactly and the longest simulated episode is shorter than the longest real
+one. Only 70% of samples genuinely below 54 read below 54 on the simulated sensor, and that
+accounts for most of the apparent gap. What survives is a heavier tail, p90 of 55 against 25,
+and about 1.8 times as many episodes per day.
 
-Two things follow.
+### What the physiology says
 
-The criterion was measuring the simulator. No algorithm can pass a threshold the body it is
-dosing cannot get under, so it has been retired from `validation/gate.py` and the hazard is
-named as uncovered instead. That is not a threshold moved because the result was
-inconvenient; it is a criterion shown to have no discriminating power, with the measurement
-that shows it.
+The assumption underneath the whole exercise was that the model's liver shuts down during a
+low. It does not. `EGP = kp1 - kp2*Gp - kp3*Id` contains a hepatic autoregulation in the
+`-kp2*Gp` term that strengthens as glucose falls, and measured across the ten published
+adults, endogenous glucose production on crossing 54 mg/dL is 2.60 mg/kg/min against a basal
+of 2.36. It rises.
 
-And the direction of the bias is known, which is what makes it usable. Hypoglycaemia lasts
-about four times too long here at the median. An algorithm judged on how it handles lows is
-being judged in a harsher world than the real one, in the same direction as the rebound
-overstatement already recorded. Neither can be fixed without departing from the model this
-package exists to wrap: S2013 has the counterregulation, it is licensed, its glucagon
-secretion half is unpublished, and people with established type 1 diabetes largely lose the
-glucagon arm in any case.
+Rickels et al. (Diabetes 2015) put a stepped hyperinsulinaemic clamp down to 45 mg/dL in
+twelve people with long-standing type 1 diabetes and severe hypoglycaemia, against eight
+non-diabetic controls:
+
+| | EGP at hypoglycaemia, mg/kg/min | Glucagon, pg/mL | Epinephrine, pg/mL |
+|---|---|---|---|
+| Long-standing type 1 diabetes | 0.59 ± 0.12 | 33 ± 3 | 130 ± 16 |
+| The same people after islet transplant | 1.18 ± 0.13 | 60 ± 7 | 253 ± 21 |
+| Non-diabetic controls | 1.42 ± 0.14 | 95 ± 13 | 419 ± 46 |
+
+Their finding was that endogenous glucose production in the diabetic group was "suppressed
+during hypoglycemia to levels not different from under euglycemic conditions". Flat. The
+counterregulatory response was absent, and islet transplantation restored it.
+
+So the model already produces about four times more glucose during a low than the people it
+is meant to represent, and it does respond to falling glucose where they do not.
+
+### The conclusion, which is the opposite of the one expected
+
+Adding counterregulation would move this simulator away from long-standing type 1 diabetes
+on every measurement available. The population it represents has no endogenous glucose
+production response to hypoglycaemia; the model already has one, and a strong one. The
+duration of a severe low, compared on the signal a trial actually records, already matches.
+
+Three further reasons not to, which were true before any of this was measured and are worth
+keeping together. S2013's counterregulation is a glucagon model whose secretion half is
+unpublished, so it cannot be implemented faithfully. Visentin et al. flagged themselves that
+including glucagon secretion "could be not appropriate for all T1DM patients with a long
+duration". And people with established type 1 diabetes lose the alpha-cell response, which
+is exactly what the 33 pg/mL above shows.
+
+What does remain open is the tail and the rate: this package produces about 1.8 times as
+many severe lows as the trial and a heavier duration tail, on matched signals. That is a
+different problem from a missing hormone, and nothing here has established its cause.
+
+### What to carry from this
+
+Read a gate failure on `longest_below_54_min` knowing it is measured on blood glucose while
+every field reference is a sensor, and that in this simulator a sensor understates severe-low
+duration by about a third. The criterion was briefly retired on the mismatched comparison
+above and restored once it was found.
+
+Sources: Rickels MR et al., Restoration of Glucose Counterregulation by Islet Transplantation
+in Long-standing Type 1 Diabetes, Diabetes 2015;64(5):1713-1718.
 
 ## S2013's hypoglycaemia work, measured and then switched off
 
