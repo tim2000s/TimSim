@@ -19,6 +19,10 @@ from timsim.population import names
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(HERE, "docs")
 
+# One mechanism per column, cumulative left to right. The `+loop` column adds no layer:
+# it switches the driving controller from open-loop basal-bolus to the reference
+# correction loop, which is a change to what is dosing rather than to the person.
+#
 # One mechanism per column, cumulative left to right. The default simulator is the `all`
 # column, every layer including the infusion site. The `sens` column beside it is the same
 # thing without that layer, kept because it scores three signatures better and is the
@@ -28,12 +32,13 @@ OUT = os.path.join(HERE, "docs")
 # The S2013 risk term is not a column at all, for the same reason it is switched off:
 # `--arm hypo` runs it as a branch off the physiology arm for anyone remeasuring its cost.
 ARMS = [
-    ("stock", "stock 2008", (), {}),
-    ("phys", "+physiology", ("physiology",), {}),
-    ("behav", "+behaviour", ("physiology", "behaviour"), {}),
-    ("loop", "+loop", ("physiology", "behaviour", "loop"), {}),
-    ("sens", "+sensor", ("physiology", "behaviour", "loop", "sensor"), {}),
-    ("all", "+site", ("physiology", "behaviour", "loop", "sensor", "site"), {}),
+    ("stock", "stock 2008", (), {"controller": "basal-bolus"}),
+    ("phys", "+physiology", ("physiology",), {"controller": "basal-bolus"}),
+    ("behav", "+behaviour", ("physiology", "behaviour"), {"controller": "basal-bolus"}),
+    ("loop", "+loop", ("physiology", "behaviour"), {"controller": "reference"}),
+    ("sens", "+sensor", ("physiology", "behaviour", "sensor"), {"controller": "reference"}),
+    ("all", "+site", ("physiology", "behaviour", "sensor", "site"),
+     {"controller": "reference"}),
 ]
 
 # Off the cumulative path: the physiology arm with S2013's risk term switched on.
@@ -41,11 +46,11 @@ BRANCHES = {
     "hypo": ("+S2013 hypo", ("physiology",), {"hypo_risk_gain": 0.05}),
     # Visentin's per-subject seven-class diurnal sensitivity in place of the common
     # cosine, run on the default stack so its effect is readable against the `sens` column.
-    "visentin": ("+Visentin S_I", ("physiology", "behaviour", "loop", "sensor"),
+    "visentin": ("+Visentin S_I", ("physiology", "behaviour", "sensor"),
                  {"si_pattern": "visentin"}),
     # The same, with this package's day-to-day term switched off, because Visentin's model
     # carries its own and running both compounds them.
-    "visentin1": ("+Visentin S_I alone", ("physiology", "behaviour", "loop", "sensor"),
+    "visentin1": ("+Visentin S_I alone", ("physiology", "behaviour", "sensor"),
                   {"si_pattern": "visentin", "si_interday_cv": 0.0}),
 }
 KEYS = ["cv", "tail", "acf30", "acf60", "outcome", "diurnal", "hypo_rec", "hypo_reb",

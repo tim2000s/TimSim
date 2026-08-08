@@ -31,7 +31,8 @@ HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # that stops absorbing is a property of the person and their hardware rather than of the
 # system under test, and how an algorithm behaves when it is high and dosing into a failed
 # site is one of the things this gate exists to see.
-LAYERS = ("physiology", "behaviour", "sensor", "site")
+LAYERS = ("physiology", "behaviour", "sensor", "site")   # the person; the
+# algorithm under test is the controller and is passed separately
 
 
 def _window(run, start_min, hours=6.0):

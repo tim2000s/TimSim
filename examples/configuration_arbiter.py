@@ -42,7 +42,7 @@ from timsim.validation import dclp3, replication
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(HERE, "docs")
 
-BASE = ("physiology", "behaviour", "loop", "sensor")
+BASE = ("physiology", "behaviour", "sensor")
 
 # `isf_scale` 2.4 puts the median correction factor at 35.3 mg/dL per unit, which is what
 # DCLP3 participants ran, against the 14.7 measured from the subjects' own physiology.

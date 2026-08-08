@@ -1,23 +1,43 @@
-"""Run a subject for a number of days, with any subset of the layers switched on.
+"""Run a simulated person for a number of days, driven by some controller.
 
-The layers, and what each is for:
+Three things are in play here and they are not the same kind of thing. Keeping them
+separate matters, because an earlier version of this module did not and listed a
+correction algorithm among the properties of a body.
+
+The person is `LAYERS`, and every one of them can be switched off so that a difference
+between two runs is attributable to a named mechanism rather than to the bundle:
 
     physiology   insulin sensitivity that varies by time of day and day to day
     behaviour    meals announced imperfectly, lows treated with carbohydrate,
                  a sensitivity setting that adapts
-    loop         continuous correction with an insulin-on-board bound
-    sensor       measurement jitter and compression lows, applied inside the loop
+    sensor       measurement jitter and compression lows, on the reading the person and
+                 the algorithm both act on
     site         infusion sets that fail quietly, and get noticed and changed late
 
-Every layer can be switched off, so a difference between two runs is attributable to a
-named mechanism rather than to the bundle. `LAYERS` is every layer that exists and
-`DEFAULT_LAYERS` is what runs unless you say otherwise; passing a subset is how the
-ablation in `examples/layer_ablation.py` works.
+The rig is the interface an algorithm reaches that person through, and it is always
+present because there is no other way to touch a body: a continuous glucose monitor
+reporting on a five-minute grid, and a pump with the delivery ceilings in
+`therapy/limits.py`. Without the ceilings the bench is unphysical. simglucose's own pump
+accepts 150 units in a single step, and the reference algorithm has been observed asking
+for 35 units in one bolus.
 
-The controller interface is simglucose's: anything with `policy(observation, reward,
-done, **info) -> Action(basal, bolus)` can be passed as `controller` and will be driven
-in place of the built-in one. That is the hook for testing a real algorithm, and
-`docs/OSAID.md` covers what an automated insulin delivery system needs beyond it.
+The controller is whatever is driving. It is not part of the person and it is not
+optional, since a person with nobody dosing them is a person in trouble within a day.
+`controller` takes:
+
+    "reference"     the built-in basal-bolus with a correction loop, which is the
+                    default and what every figure in `docs/` was measured against
+    "basal-bolus"   the same without the correction loop, which is open-loop therapy
+    an object       anything with `policy(observation, reward, done, **info) ->
+                    Action(basal, bolus)`, which is simglucose's own interface and the
+                    hook for testing a real algorithm
+
+One consequence is worth stating plainly rather than leaving to be discovered. The
+fidelity figures in `docs/FIDELITY.md` compare this person plus the reference controller
+against real people plus Control-IQ. That is the right comparison, because a real person
+cannot be observed without their algorithm either. But it validates the pair. Bringing
+your own algorithm replaces half of what was validated, and `docs/OSAID.md` covers what
+that means for a claim.
 
 Four things about this runner are worth knowing before reading a result from it.
 
@@ -56,14 +76,19 @@ from ..population import params_for, therapy_for
 from ..sensor.realism import OnlineArtefacts
 from ..therapy import Enforcer, InfusionSite, profile as profile_mod
 
-# Every layer that exists, and the subset that runs unless a caller asks for more. They are
-# the same set, and the site layer was the last one in, on a decision worth recording.
+# The person. The correction loop used to be listed here as a fifth entry, which was a
+# category error: it is a controller, it lives in `controller/loop.py`, and its own
+# docstring says it is the baseline rather than the subject. Passing it in `layers` now
+# raises rather than being quietly accepted, because a run that thinks a dosing algorithm
+# is a property of a body will produce numbers nobody can attribute.
+#
+# The site layer was the last one in, on a decision worth recording.
 #
 # It costs three of the eleven signatures in `docs/FIDELITY.md`, taking that table from
 # eight of eleven to five, which is the worst score of any configuration measured. It is
 # also the configuration hardest to tell from real data: against 3,023 windows from the
-# DCLP3 closed-loop participants it scores 0.671 where the four-layer default scores 0.710,
-# beating it in ten cross-validation splits out of ten. Both statements are true. The
+# DCLP3 closed-loop participants it scores 0.671 where the same person without it scores
+# 0.710, beating it in ten cross-validation splits out of ten. Both statements are true. The
 # signature table asks whether eleven medians land in eleven ranges; the classifier asks
 # whether a day of this looks like a day of that, and it is the stronger question.
 #
@@ -75,8 +100,11 @@ from ..therapy import Enforcer, InfusionSite, profile as profile_mod
 # other. Leaving it off keeps the bench flattering on the hazard it exists to probe.
 #
 # `validation/replication.py` records the arbitration, `therapy/site.py` the mechanism.
-LAYERS = ("physiology", "behaviour", "loop", "sensor", "site")
+LAYERS = ("physiology", "behaviour", "sensor", "site")
 DEFAULT_LAYERS = LAYERS
+
+# What "reference" and "basal-bolus" mean, resolved in `_resolve_controller`.
+CONTROLLERS = ("reference", "basal-bolus")
 
 # simglucose ships three sensors whose noise parameters are identical and whose sample
 # times differ. Five minutes is the real reporting interval and the cadence the
@@ -111,11 +139,14 @@ class Result:
     insulin_series: np.ndarray = field(default_factory=lambda: np.zeros(0))
     rescue_events: int = 0
     rescue_grams: float = 0.0
+    # (decided_at, eaten_at, grams, reading_that_triggered_it), minutes from the start
+    rescue_log: tuple = ()
     meals_announced: int = 0
     meals_unannounced: int = 0
     isf_weekly_cv: float = float("nan")
     compression_events: int = 0
     layers: tuple = ()
+    controller: str = ""
     meta: dict = field(default_factory=dict)
 
     @property
@@ -211,7 +242,31 @@ def _sensor_name(sample_minutes):
             f"available: {sorted(SENSOR_BY_SAMPLE_TIME)}") from None
 
 
-def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS, controller=None, meals=None,
+def _resolve_controller(controller, profile, adaptive):
+    """Turn `controller` into something with a `policy`, and say what it was.
+
+    Returns (object, label, is_builtin). The label goes into the result so that a run can
+    always say what drove it, which matters once the driving algorithm is no longer
+    recorded among the person's layers.
+    """
+    if controller is None:
+        controller = "reference"
+    if isinstance(controller, str):
+        if controller not in CONTROLLERS:
+            raise ValueError(
+                f"unknown controller {controller!r}; expected one of {CONTROLLERS}, "
+                "or an object with a policy(observation, reward, done, **info) method")
+        return (_BasalBolus(profile, adaptive=adaptive,
+                            loop=controller == "reference"),
+                controller, True)
+    if not hasattr(controller, "policy"):
+        raise TypeError("a controller needs a policy(observation, reward, done, **info) "
+                        "method, which is simglucose's own interface")
+    return controller, getattr(controller, "name", type(controller).__name__), False
+
+
+def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS, controller="reference",
+             meals=None,
              sensor_noise=SENSOR_NOISE_SIGMA,
              compression_per_30d=SENSOR_COMPRESSION_PER_30D,
              params=None, settings=None, profile=None, diurnal_basal=False,
@@ -236,14 +291,15 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS, controller=None, meal
     `profile` overrides the therapy profile, `limits` the delivery ceilings, and `faults`
     injects the failures in `validation/faults.py`.
     """
-    requested = tuple(l for l in LAYERS if l in set(layers))
-    effective = requested
-    if controller is not None and "loop" in effective:
-        warnings.warn(
-            "the loop layer belongs to the built-in controller, so supplying your own "
-            "controller switches it off; it has been dropped from the recorded layers",
-            UserWarning, stacklevel=2)
-        effective = tuple(l for l in effective if l != "loop")
+    if "loop" in set(layers):
+        raise ValueError(
+            "'loop' is not a layer of a person, it is a controller. Use "
+            "controller='reference' for the correction loop, which is the default, or "
+            "controller='basal-bolus' for open-loop therapy. See timsim/simulation/run.py.")
+    unknown = set(layers) - set(LAYERS)
+    if unknown:
+        raise ValueError(f"unknown layers {sorted(unknown)}; expected a subset of {LAYERS}")
+    effective = requested = tuple(l for l in LAYERS if l in set(layers))
 
     rng = np.random.default_rng(seed)
     params = pd.Series(params if params is not None else params_for(name))
@@ -289,8 +345,8 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS, controller=None, meal
 
     enforcer = Enforcer(prof.limits)
     site = InfusionSite(rng) if "site" in effective else None
-    builtin = _BasalBolus(prof, adaptive="behaviour" in effective,
-                          loop="loop" in effective)
+    driver, controller_label, builtin_driver = _resolve_controller(
+        controller, prof, adaptive="behaviour" in effective)
 
     # Prime with the subject's own scheduled basal rather than zero. simglucose's examples
     # open with a zero-insulin step, which kicks a subject off the steady state its
@@ -331,11 +387,11 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS, controller=None, meal
                      "sample_time": step_minutes, "stale_minutes": stale_minutes,
                      "profile": prof, "clock_minutes": clock}
 
-        if controller is not None:
-            obs_seen = type(obs)(CGM=seen) if hasattr(obs, "_fields") else obs
-            action = controller.policy(obs_seen, reward, done, **step_info)
+        if builtin_driver:
+            action = driver.act(announced, seen, clock, step_minutes, fall_rate)
         else:
-            action = builtin.act(announced, seen, clock, step_minutes, fall_rate)
+            obs_seen = type(obs)(CGM=seen) if hasattr(obs, "_fields") else obs
+            action = driver.policy(obs_seen, reward, done, **step_info)
 
         basal_u_per_min, bolus_u = enforcer.apply(
             minute, float(action.basal), float(action.bolus) * step_minutes,
@@ -381,6 +437,7 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS, controller=None, meal
             "basal_u_per_min": prof.basal_at(0), "cr": prof.cr_at(12 * 60),
             "cf": prof.isf_at(12 * 60), "requested_layers": requested,
             "sample_minutes": step_minutes, "diurnal_basal": bool(diurnal_basal),
+            "controller": controller_label,
             "si_pattern": si_pattern, "isf_scale": float(isf_scale),
             "si_class": getattr(patient, "si_class", None),
             "profile": prof.as_dict()}
@@ -395,32 +452,37 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS, controller=None, meal
         days_requested=days, completed=completed,
         insulin_units=float(insulin.sum()), insulin_series=insulin,
         rescue_events=person.rescue_events, rescue_grams=person.rescue_grams,
+        rescue_log=tuple(person.rescue_log),
         meals_announced=person.announced_meals,
         meals_unannounced=person.unannounced_meals,
-        isf_weekly_cv=(builtin.ratios.weekly_cv()
-                       if (builtin.ratios is not None and controller is None)
+        isf_weekly_cv=(driver.ratios.weekly_cv()
+                       if (builtin_driver and driver.ratios is not None)
                        else float("nan")),
         compression_events=artefacts.events if artefacts is not None else 0,
-        layers=effective, meta=meta,
+        layers=effective, controller=controller_label, meta=meta,
     )
 
 
-def simulate_cohort(names=None, days=28, seed=0, layers=DEFAULT_LAYERS, controller_factory=None,
+def simulate_cohort(names=None, days=28, seed=0, layers=DEFAULT_LAYERS,
+                    controller="reference", controller_factory=None,
                     progress=True, **kwargs):
     """Run many subjects. Returns a list of Result, one per subject.
 
-    `controller_factory` is called with the subject name and must return a fresh
-    controller, so no state leaks between subjects.
+    `controller` is the same argument `simulate` takes. `controller_factory` is for an
+    algorithm that carries per-subject state: it is called with the subject name and must
+    return a fresh instance, so nothing leaks between subjects. Give one or the other.
     """
     from ..population import names as all_names
+    if controller_factory is not None and controller != "reference":
+        raise ValueError("give either controller or controller_factory, not both")
     names = names or all_names()
     out = []
     for i, name in enumerate(names):
-        controller = controller_factory(name) if controller_factory else None
+        driver = controller_factory(name) if controller_factory else controller
         with warnings.catch_warnings():
             warnings.simplefilter("once", UserWarning)
             r = simulate(name, days=days, seed=seed + i, layers=layers,
-                         controller=controller, **kwargs)
+                         controller=driver, **kwargs)
         out.append(r)
         if progress:
             s = r.summary()
@@ -431,5 +493,4 @@ def simulate_cohort(names=None, days=28, seed=0, layers=DEFAULT_LAYERS, controll
 
 
 __all__ = ["simulate", "simulate_cohort", "Result", "LAYERS", "DEFAULT_LAYERS",
-           "draw_meals",
-           "DEFAULT_SAMPLE_MINUTES"]
+           "CONTROLLERS", "draw_meals", "DEFAULT_SAMPLE_MINUTES"]

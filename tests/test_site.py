@@ -104,8 +104,8 @@ def test_the_layer_can_be_switched_off_and_changes_nothing_when_it_is():
     from timsim import simulate
     from timsim.population import names
     name = names("adult")[0]
-    a = simulate(name, days=2, seed=3, layers=("physiology", "behaviour", "loop", "sensor"))
+    a = simulate(name, days=2, seed=3, layers=("physiology", "behaviour", "sensor"))
     b = simulate(name, days=2, seed=3,
-                 layers=("physiology", "behaviour", "loop", "sensor", "site"))
+                 layers=("physiology", "behaviour", "sensor", "site"))
     assert "site" not in a.layers and "site" in b.layers
     assert "site_failures" not in a.meta and "site_failures" in b.meta

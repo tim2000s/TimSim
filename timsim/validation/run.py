@@ -53,14 +53,14 @@ def fast_checks(subjects):
 
 def slow_checks(subjects, days):
     full = DEFAULT_LAYERS
-    no_loop = tuple(l for l in DEFAULT_LAYERS if l != "loop")
 
     print("  cohort with every layer ...", flush=True)
     loop_a = simulate_cohort(subjects, days=days, seed=0, layers=full, progress=False)
     print("  the same cohort again, different seed, same controller ...", flush=True)
     loop_b = simulate_cohort(subjects, days=days, seed=1000, layers=full, progress=False)
-    print("  the same cohort with the loop switched off ...", flush=True)
-    open_arm = simulate_cohort(subjects, days=days, seed=0, layers=no_loop, progress=False)
+    print("  the same cohort on open-loop therapy ...", flush=True)
+    open_arm = simulate_cohort(subjects, days=days, seed=0, layers=full,
+                               controller="basal-bolus", progress=False)
 
     print("  the same cohort with nothing switched on ...", flush=True)
     bare = simulate_cohort(subjects, days=days, seed=0, layers=(), progress=False)

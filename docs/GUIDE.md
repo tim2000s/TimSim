@@ -29,18 +29,30 @@ It sits on top of simglucose rather than forking it. simglucose supplies the dif
 equations, the sensor and pump models, and the environment loop, and its interfaces are
 used unchanged, so a controller written for simglucose runs here without modification.
 
-### The five layers
+### The person, and what is not part of it
 
 | Layer | What it adds | Why it exists |
 |---|---|---|
 | `physiology` | insulin sensitivity varying by time of day and day to day | the published subjects are identical from one day to the next, and real people are not |
 | `behaviour` | meals announced imperfectly, lows treated with carbohydrate, a sensitivity setting that adapts | none of this is in the equations, and it dominates several real-world statistics |
-| `loop` | continuous correction bounded by insulin on board, with basal withdrawal | every real cohort worth comparing against is running one |
 | `sensor` | high-frequency jitter and compression lows | the model's sensor is about half as noisy as a real one and has no compression mechanism |
 | `site` | infusion sets whose absorption fails, and gets noticed late or slept through | the largest single fidelity gap: it is where most real time above 180 mg/dL comes from, and nothing else in the model can produce it. It costs three signatures and is in the default anyway, because a classifier finds the cohort with it harder to tell from real data in ten splits out of ten |
 
 Each layer is independent. Switching one off changes only what that layer does, which is
 checked rather than assumed.
+
+Two things that are not layers, because they are not properties of a person. The rig is the
+monitor and the pump the algorithm reaches the person through, always present, with the
+delivery ceilings in `therapy/limits.py`. The controller is whatever is dosing:
+`controller="reference"` for the built-in correction loop, which is the default and what
+every figure in these documents was measured against, `controller="basal-bolus"` for open
+loop, or your own algorithm. A correction loop was listed among the layers until it was
+noticed that a dosing algorithm is not a property of a body, and passing `"loop"` in
+`layers` now raises rather than being quietly accepted.
+
+The consequence is worth carrying: the fidelity figures validate this person plus the
+reference controller against real people plus Control-IQ. Swapping in your own algorithm
+replaces half of what was validated.
 
 ### The population
 
@@ -223,8 +235,8 @@ details.
 ```python
 for layers in [(), ("physiology",), ("physiology", "behaviour"),
                ("physiology", "behaviour", "loop"),
-               ("physiology", "behaviour", "loop", "sensor"),
-               ("physiology", "behaviour", "loop", "sensor", "site")]:
+               ("physiology", "behaviour", "sensor"),
+               ("physiology", "behaviour", "sensor", "site")]:
     r = simulate("adult#001", days=28, layers=layers)
     print(layers, round(r.cv, 1), round(r.time_below_70, 1))
 ```

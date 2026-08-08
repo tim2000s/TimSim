@@ -65,7 +65,19 @@ def test_the_runner_defaults_to_the_five_minute_grid_real_sensors_report_on(subj
     assert r.meta["sample_minutes"] == 5.0
 
 
-def test_an_external_controller_switches_the_loop_layer_off(subject):
+def test_the_loop_is_a_controller_and_not_a_layer_of_a_person(subject):
+    """It was listed among the layers once, and that is a category error worth guarding."""
+    assert "loop" not in LAYERS
+    with pytest.raises(ValueError, match="not a layer of a person"):
+        simulate(subject, days=1, seed=0, layers=("physiology", "loop"))
+
+
+def test_an_unknown_layer_is_refused_rather_than_ignored(subject):
+    with pytest.raises(ValueError, match="unknown layers"):
+        simulate(subject, days=1, seed=0, layers=("physiology", "exercise"))
+
+
+def test_the_run_records_what_drove_it(subject):
     from simglucose.controller.base import Action, Controller
 
     class Fixed(Controller):
@@ -75,10 +87,25 @@ def test_an_external_controller_switches_the_loop_layer_off(subject):
         def policy(self, observation, reward, done, **info):
             return Action(basal=0.01, bolus=0.0)
 
-    with pytest.warns(UserWarning, match="loop layer"):
-        r = simulate(subject, days=1, seed=0, controller=Fixed(), layers=LAYERS)
-    assert "loop" not in r.layers
-    assert "loop" in r.meta["requested_layers"]
+    assert simulate(subject, days=1, seed=0).controller == "reference"
+    assert simulate(subject, days=1, seed=0,
+                    controller="basal-bolus").controller == "basal-bolus"
+    r = simulate(subject, days=1, seed=0, controller=Fixed(), layers=LAYERS)
+    assert r.controller == "Fixed" and r.meta["controller"] == "Fixed"
+
+
+def test_an_unusable_controller_is_refused(subject):
+    with pytest.raises(ValueError, match="unknown controller"):
+        simulate(subject, days=1, seed=0, controller="openaps")
+    with pytest.raises(TypeError, match="policy"):
+        simulate(subject, days=1, seed=0, controller=object())
+
+
+def test_closing_the_loop_is_a_change_of_controller_not_of_person(subject):
+    open_loop = simulate(subject, days=5, seed=0, controller="basal-bolus")
+    closed = simulate(subject, days=5, seed=0, controller="reference")
+    assert open_loop.layers == closed.layers
+    assert closed.time_in_range > open_loop.time_in_range
 
 
 def test_insulin_is_recorded_whichever_controller_delivered_it(subject):

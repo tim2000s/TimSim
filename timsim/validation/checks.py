@@ -67,7 +67,7 @@ def check_quiet_subject_holds(name, days=2):
     property of the physiology rather than of the device.
     """
     r = simulate(name, days=days, seed=0, layers=(), meals=[],
-                 limits=_unquantised_limits(name))
+                 controller="basal-bolus", limits=_unquantised_limits(name))
     fasting = float(params_for(name)["Gb"])
     excursion = float(np.max(np.abs(r.bg - fasting)))
     return {"check": f"{name} holds its fasting glucose with no meals",
@@ -96,8 +96,10 @@ def check_pump_quantisation_costs_what_it_should(name, days=2):
     """
     fasting = float(params_for(name)["Gb"])
     exact = simulate(name, days=days, seed=0, layers=(), meals=[],
+                     controller="basal-bolus",
                      limits=_unquantised_limits(name))
-    real = simulate(name, days=days, seed=0, layers=(), meals=[])
+    real = simulate(name, days=days, seed=0, layers=(), meals=[],
+                    controller="basal-bolus")
     offset = float(np.max(np.abs(real.bg - fasting)) - np.max(np.abs(exact.bg - fasting)))
     return {"check": f"{name}: pump quantisation moves the steady state by a bounded amount",
             "level": 1, "value": offset, "target": "< 15 mg/dL",
@@ -155,8 +157,10 @@ def check_the_algorithm_sees_the_sensor_artefacts(name, days=21):
     exposed to one. Here the recorded trace is the reading the controller acted on, so a
     compression event in the record is an event the controller saw.
     """
-    r = simulate(name, days=days, seed=5, layers=("physiology", "behaviour", "sensor"))
-    quiet = simulate(name, days=days, seed=5, layers=("physiology", "behaviour"))
+    r = simulate(name, days=days, seed=5, layers=("physiology", "behaviour", "sensor"),
+                 controller="basal-bolus")
+    quiet = simulate(name, days=days, seed=5, layers=("physiology", "behaviour"),
+                     controller="basal-bolus")
     jitter = float(np.std(np.diff(np.diff(r.cgm))) - np.std(np.diff(np.diff(quiet.cgm))))
     return {"check": "the algorithm is handed the sensor artefacts",
             "level": 1, "value": float(r.compression_events),
@@ -344,7 +348,11 @@ def check_published_cohort_obeys_clinical_rules():
 
 
 def _insulin_ladder(name, days, layers, scales=(0.7, 0.85, 1.0, 1.15, 1.3)):
-    """Run one subject at several insulin doses, holding everything else fixed."""
+    """Run one subject at several insulin doses, holding everything else fixed.
+
+    Open-loop, because a correction loop is something intervening and the point of the
+    ladder is the body's own response to a dose.
+    """
     base = pd.Series(params_for(name))
     out = []
     for scale in scales:
@@ -352,7 +360,8 @@ def _insulin_ladder(name, days, layers, scales=(0.7, 0.85, 1.0, 1.15, 1.3)):
         p["u2ss"] = float(base["u2ss"]) * scale
         q = dict(therapy_for(name))
         q["CR"] = float(q["CR"]) / scale
-        out.append(simulate(name, days=days, seed=0, layers=layers, params=p, settings=q))
+        out.append(simulate(name, days=days, seed=0, layers=layers, params=p,
+                            settings=q, controller="basal-bolus"))
     return out
 
 

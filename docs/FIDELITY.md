@@ -23,6 +23,16 @@ weakest of them: matching marginal statistics says nothing about whether the res
 intervention is right. Read it alongside levels 4 and 5, which are what a controller
 comparison actually rests on.
 
+## What is being compared
+
+Every figure here describes a simulated person **plus the reference controller**, measured
+against real people plus whatever algorithm they were running, which for DCLP3 is
+Control-IQ. That is the right comparison, since a real person cannot be observed without
+their algorithm either. It does mean these numbers validate the pair rather than the person
+alone, and an algorithm under test replaces half of it. The `+loop` column below is
+therefore not a layer being switched on but the driving controller changing from open-loop
+basal-bolus to the correction loop.
+
 ## The measurement
 
 Eleven statistics, computed identically on simulator output and on real continuous glucose

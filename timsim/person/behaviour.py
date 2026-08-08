@@ -90,6 +90,10 @@ class Person:
         self.last_rescue_min = -1e9
         self.rescue_events = 0
         self.rescue_grams = 0.0
+        # When each treatment was decided and how large it was. Counts alone cannot answer
+        # whether a person treated a particular low, which is the question that matters
+        # when a run leaves someone below 54 mg/dL for hours.
+        self.rescue_log = []
         self.unannounced_meals = 0
         self.announced_meals = 0
 
@@ -125,6 +129,7 @@ class Person:
         self.pending.append((minute + delay, grams))
         self.rescue_events += 1
         self.rescue_grams += grams
+        self.rescue_log.append((float(minute), float(minute + delay), grams, float(cgm)))
 
     def due(self, minute, window):
         """Rescue carbohydrate reaching the gut in [minute, minute+window). Never

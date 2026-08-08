@@ -3,7 +3,6 @@
  "layers": [
   "physiology",
   "behaviour",
-  "loop",
   "sensor"
  ],
  "stats": {

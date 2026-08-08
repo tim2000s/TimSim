@@ -28,8 +28,8 @@ properties of the equations:
 - the sensor is noisier than the model says, and produces compression lows that the model
   has no mechanism for
 - the algorithm's own sensitivity setting drifts week to week
-- every real cohort is running an automated loop, correcting continuously, which the
-  simulated person was not
+- every real cohort is running an automated loop, correcting continuously, so the
+  simulator has to be driven by one to be comparable at all
 
 This package adds those as layers, each of which can be switched on and off independently,
 along with a fifth the comparison turned up later: infusion sets that stop absorbing and get
@@ -116,11 +116,13 @@ One layer at a time, which is how any claim about a mechanism should be made:
 
 ```python
 for layers in [(), ("physiology",), ("physiology", "behaviour"),
-               ("physiology", "behaviour", "loop"),
-               ("physiology", "behaviour", "loop", "sensor"),
-               ("physiology", "behaviour", "loop", "sensor", "site")]:
+               ("physiology", "behaviour", "sensor"),
+               ("physiology", "behaviour", "sensor", "site")]:
     r = simulate("adult#001", days=28, layers=layers)
     print(layers, round(r.cv, 1), round(r.time_below_70, 1))
+
+# and the controller is a separate axis, not a layer
+open_loop = simulate("adult#001", days=28, controller="basal-bolus")
 ```
 
 Your own algorithm, driven through simglucose's controller interface, with the behaviour
@@ -152,15 +154,37 @@ noise floor, inject the fault scenarios, then run the cohort that produces the v
 anything, and [docs/OSAID.md](docs/OSAID.md) covers what an adapter for one of the
 open-source systems still needs.
 
-## The layers
+## The person, the rig, and the controller
+
+These are three different things and the package keeps them apart. An earlier version did
+not, and listed a correction algorithm among the properties of a body.
+
+The person is the layers, each of which switches off independently so that a difference
+between two runs is attributable to a named mechanism:
 
 | Layer | Mechanism | What it moves |
 |---|---|---|
 | `physiology` | insulin sensitivity varying by time of day and day to day | glucose variability, diurnal amplitude |
 | `behaviour` | meals announced imperfectly, lows treated with carbohydrate, an adapting sensitivity setting | rise tail, hypoglycaemia recovery, sensitivity drift |
-| `loop` | continuous correction with an insulin-on-board bound | autocorrelation, variability |
-| `sensor` | measurement jitter and compression lows, applied inside the loop | the two sensor statistics |
+| `sensor` | measurement jitter and compression lows, on the reading everything acts on | the two sensor statistics |
 | `site` | infusion sets whose absorption fails and gets noticed late | time above 180, and how long a high lasts |
+
+The rig is how an algorithm reaches that person: a monitor reporting every five minutes,
+and a pump with the delivery ceilings in `timsim/therapy/limits.py`. It is always present,
+because there is no other way to touch a body. Without the ceilings the bench is
+unphysical, and they bind in practice: the reference algorithm has been observed asking
+for a 35 U bolus, which the pump clamped to 11.
+
+The controller is whatever is driving, and it is not part of the person.
+`controller="reference"` is the built-in correction loop and the default,
+`controller="basal-bolus"` is open-loop therapy, and anything with simglucose's
+`policy(observation, reward, done, **info)` is the algorithm under test.
+
+One thing that follows is worth knowing before quoting any figure here. The fidelity
+numbers compare this person plus the reference controller against real people plus
+Control-IQ. That is the right comparison, since a real person cannot be observed without
+their algorithm either, but it validates the pair. Bringing your own algorithm replaces
+half of what was validated.
 
 Each layer is a small module. `timsim/person/behaviour.py` does most of the work and runs
 to about 200 lines.

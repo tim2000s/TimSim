@@ -1,0 +1,103 @@
+{
+ "label": "reference",
+ "fingerprint": "cd9931408c2078aa",
+ "passed": false,
+ "criteria": [
+  {
+   "hazard": "a subject the run could not survive",
+   "metric": "runs that did not complete",
+   "value": 0.0,
+   "limit": 0.0,
+   "pass": true,
+   "rationale": "counted separately below; any non-completion fails the gate"
+  },
+  {
+   "hazard": "clinically significant hypoglycaemia across the cohort",
+   "metric": "median minutes_below_54_per_day",
+   "value": 2.053571428571429,
+   "limit": 14.4,
+   "direction": "at_most",
+   "pass": true,
+   "rationale": "1% of a day, the consensus target for time below 54 mg/dL"
+  },
+  {
+   "hazard": "clinically significant hypoglycaemia in one person",
+   "metric": "worst minutes_below_54_per_day",
+   "value": 38.75,
+   "limit": 60.0,
+   "direction": "at_most",
+   "pass": true,
+   "rationale": "no subject may spend more than an hour a day below 54"
+  },
+  {
+   "hazard": "hypoglycaemia exposure across the cohort",
+   "metric": "median minutes_below_70_per_day",
+   "value": 17.767857142857142,
+   "limit": 57.6,
+   "direction": "at_most",
+   "pass": true,
+   "rationale": "4% of a day, the consensus target for time below 70 mg/dL"
+  },
+  {
+   "hazard": "a prolonged severe low rather than a brief one",
+   "metric": "worst longest_below_54_min",
+   "value": 180.0,
+   "limit": 120.0,
+   "direction": "at_most",
+   "pass": false,
+   "rationale": "duration is the part of a severe low that causes harm"
+  },
+  {
+   "hazard": "hypoglycaemia risk concentrated in a minority of subjects",
+   "metric": "p90 lbgi",
+   "value": 1.0990193417246914,
+   "limit": 5.0,
+   "direction": "at_most",
+   "pass": true,
+   "rationale": "LBGI above 5 is the conventional high-risk band"
+  },
+  {
+   "hazard": "an algorithm that buys safety by running everyone high",
+   "metric": "median time_in_range",
+   "value": 74.85119047619047,
+   "limit": 70.0,
+   "direction": "at_least",
+   "pass": true,
+   "rationale": "the consensus target, present so the gate cannot be passed by withholding insulin"
+  },
+  {
+   "hazard": "insulin stacking",
+   "metric": "worst peak_insulin_per_hour_u",
+   "value": 24.300000000000004,
+   "limit": 25.0,
+   "direction": "at_most",
+   "pass": true,
+   "rationale": "a ceiling well above any legitimate hour of delivery, so that only a runaway trips it"
+  },
+  {
+   "hazard": "an algorithm whose glucose looks fine because the person is eating to hold it up",
+   "metric": "median rescue_grams_per_day",
+   "value": 37.93714610670439,
+   "limit": 60.0,
+   "direction": "at_most",
+   "pass": true,
+   "rationale": "carbohydrate the person had to supply is a cost the glucose trace does not show"
+  }
+ ],
+ "failed": [
+  "worst longest_below_54_min"
+ ],
+ "exposure": {
+  "subjects": 34,
+  "subject_days": 952.0,
+  "severe_episodes_observed": 25,
+  "upper_bound_per_subject_year": 13.396111640824335
+ },
+ "uncovered_hazards": [
+  "exercise, illness and alcohol, which the model has no mechanism for",
+  "infusion site failure beyond the absorption model in therapy/site.py, which covers a set that stops delivering and gets noticed late, and not one that leaks, bleeds or hurts enough to be changed immediately",
+  "a fault the level 7 scenarios do not include",
+  "any rare event below the exposure bound reported with the verdict"
+ ],
+ "verdict": "fails the pre-clinical gate"
+}

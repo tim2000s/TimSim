@@ -134,7 +134,7 @@ def test_the_design_covers_the_configuration_and_not_just_the_size():
     name = names("adult")[0]
     five = [simulate(name, days=1, seed=0)]
     four = [simulate(name, days=1, seed=0,
-                     layers=("physiology", "behaviour", "loop", "sensor"))]
+                     layers=("physiology", "behaviour", "sensor"))]
     assert gate.design_of(five)["layers"] != gate.design_of(four)["layers"]
     assert gate.fingerprint(design=gate.design_of(five)) \
         != gate.fingerprint(design=gate.design_of(four))

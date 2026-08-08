@@ -187,6 +187,7 @@ def design_of(results, **extra):
     meta = [getattr(r, "meta", None) or {} for r in results]
     return {
         "layers": sorted({l for r in results for l in getattr(r, "layers", ())}),
+        "controller": sorted({getattr(r, "controller", "") for r in results}),
         "subjects": len(results),
         "days": max((getattr(r, "days_requested", 0) for r in results), default=0),
         "sample_minutes": sorted({float(getattr(r, "sample_time", 0.0))
