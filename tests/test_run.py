@@ -87,9 +87,12 @@ def test_the_run_records_what_drove_it(subject):
         def policy(self, observation, reward, done, **info):
             return Action(basal=0.01, bolus=0.0)
 
-    assert simulate(subject, days=1, seed=0).controller == "reference"
+    assert simulate(subject, days=1, seed=0).controller == "trend"
     assert simulate(subject, days=1, seed=0,
                     controller="basal-bolus").controller == "basal-bolus"
+    # "reference" means whatever the baseline currently is, not a frozen choice
+    assert simulate(subject, days=1, seed=0,
+                    controller="reference").controller == "trend"
     r = simulate(subject, days=1, seed=0, controller=Fixed(), layers=LAYERS)
     assert r.controller == "Fixed" and r.meta["controller"] == "Fixed"
 
@@ -103,9 +106,20 @@ def test_an_unusable_controller_is_refused(subject):
 
 def test_closing_the_loop_is_a_change_of_controller_not_of_person(subject):
     open_loop = simulate(subject, days=5, seed=0, controller="basal-bolus")
-    closed = simulate(subject, days=5, seed=0, controller="reference")
+    closed = simulate(subject, days=5, seed=0, controller="trend")
     assert open_loop.layers == closed.layers
     assert closed.time_in_range > open_loop.time_in_range
+
+
+def test_the_two_loop_shapes_differ_in_the_way_they_are_meant_to(subject):
+    """One corrects every five minutes by bolus; the other hourly, mostly through basal."""
+    from timsim.controller.loop import CONTROL_IQ, TREND
+    assert CONTROL_IQ.min_interval_min == 60.0 and TREND.min_interval_min == 5.0
+    assert CONTROL_IQ.predict_min == 30.0 and TREND.predict_min == 0.0
+    assert CONTROL_IQ.max_basal_scale > 1.0 and TREND.max_basal_scale == 1.0
+    a = simulate(subject, days=7, seed=0, controller="control-iq")
+    b = simulate(subject, days=7, seed=0, controller="trend")
+    assert a.time_above_180 < b.time_above_180
 
 
 def test_insulin_is_recorded_whichever_controller_delivered_it(subject):
@@ -191,3 +205,84 @@ def test_a_meal_is_bolused_the_same_whether_or_not_the_behaviour_layer_is_on(sub
     # the behaviour layer may fail to announce, so it can dose less, never five times less
     assert bare.insulin_units == pytest.approx(behaviour.insulin_units, rel=0.25)
     assert bare.cgm.max() < behaviour.cgm.max() + 25.0
+
+
+def test_an_unknown_loop_shape_is_refused():
+    from timsim.controller.loop import CorrectionLoop
+    with pytest.raises(ValueError, match="unknown loop shape"):
+        CorrectionLoop("openaps")
+
+
+def test_the_control_iq_shape_matches_the_published_thresholds():
+    """Copied from Tandem's description; a drift here makes the baseline unciteable."""
+    from timsim.controller.loop import CONTROL_IQ as s
+    assert (s.correct_above, s.target, s.correction_fraction) == (180.0, 110.0, 0.6)
+    assert (s.min_interval_min, s.predict_min) == (60.0, 30.0)
+    assert (s.suspend_below, s.reduce_below) == (70.0, 112.5)
+    assert (s.boost_above, s.max_basal_above) == (160.0, 180.0)
+
+
+def test_basal_follows_the_published_bands():
+    from timsim.controller.loop import CorrectionLoop
+    loop = CorrectionLoop("control-iq")
+    assert loop.basal_scale(60.0, 0.0) == 0.0            # suspended below 70
+    assert loop.basal_scale(100.0, 0.0) == 0.5           # reduced below 112.5
+    assert loop.basal_scale(140.0, 0.0) == 1.0           # usual through 160
+    assert loop.basal_scale(170.0, 0.0) > 1.0            # raised from 160
+    assert loop.basal_scale(200.0, 0.0) > loop.basal_scale(170.0, 0.0)
+
+
+def test_a_correction_cannot_exceed_the_insulin_on_board_ceiling():
+    from timsim.controller.loop import CorrectionLoop
+    loop = CorrectionLoop("control-iq")
+    loop.add(0.0, 5.9)
+    loop.correction(5.0, 400.0, 10.0)
+    assert loop.iob(5.0) <= loop.s.max_iob_u + 1e-9
+
+
+def test_the_trend_is_fitted_because_a_single_delta_is_mostly_noise():
+    """A five-minute difference at a thirty-minute horizon is unusable.
+
+    The sensor's error has a standard deviation near 12 mg/dL, so a difference between
+    consecutive readings carries about 17, which is over 100 mg/dL once extrapolated half
+    an hour. The first version of this loop predicted that way and delivered 76 U a day
+    against the trial's 47.
+    """
+    import numpy as np
+    from timsim.controller.loop import CorrectionLoop
+    rng = np.random.default_rng(0)
+    naive, fitted = [], []
+    for _ in range(400):
+        loop = CorrectionLoop("control-iq")
+        vals = 150.0 + rng.normal(0, 12, 7)          # a flat truth, seen through noise
+        for k, v in enumerate(vals):
+            loop.observe(k * 5.0, v)
+        d = (vals[-1] - vals[-2]) / 5.0
+        naive.append(d * 30.0)
+        fitted.append(loop.trend(d) * 30.0)
+    assert np.std(fitted) < np.std(naive) / 4
+
+
+def test_the_trend_recovers_a_real_slope():
+    from timsim.controller.loop import CorrectionLoop
+    loop = CorrectionLoop("control-iq")
+    for k in range(7):
+        loop.observe(k * 5.0, 100.0 + 2.0 * k * 5.0)   # 2 mg/dL per minute
+    assert loop.trend(0.0) == pytest.approx(2.0, rel=1e-6)
+
+
+def test_a_reactive_loop_does_not_fit_a_trend_it_never_uses():
+    from timsim.controller.loop import CorrectionLoop
+    loop = CorrectionLoop("trend")
+    for k in range(7):
+        loop.observe(k * 5.0, 100.0 + 3.0 * k * 5.0)
+    assert loop.trend(0.7) == pytest.approx(0.7)
+    assert loop.predicted(150.0, 0.7) == 150.0        # no horizon, no extrapolation
+
+
+def test_the_loop_default_matches_the_simulator_default():
+    """These drifted apart once, and nothing would have reported the difference."""
+    from timsim.controller import loop
+    from timsim.simulation.run import DEFAULT_CONTROLLER
+    assert loop.DEFAULT_SHAPE == DEFAULT_CONTROLLER
+    assert DEFAULT_CONTROLLER in loop.SHAPES

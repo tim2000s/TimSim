@@ -79,7 +79,7 @@ def test_a_setting_that_never_sees_error_does_not_drift():
 
 
 def test_insulin_on_board_decays_to_nothing():
-    loop = CorrectionLoop()
+    loop = CorrectionLoop("trend")
     loop.add(0, 5.0)
     assert loop.iob(0) == pytest.approx(5.0)
     assert loop.iob(75) < 5.0
@@ -88,7 +88,7 @@ def test_insulin_on_board_decays_to_nothing():
 
 def test_the_loop_will_not_stack_beyond_its_bound():
     """The bound is on insulin still to act, so it releases as that insulin decays."""
-    loop = CorrectionLoop()
+    loop = CorrectionLoop("trend")
     loop.add(0, 6.0)
     assert loop.iob(0) == pytest.approx(6.0)
     assert loop.correction(0, cgm=300.0, cf=30.0) == 0.0        # at the bound
@@ -97,12 +97,12 @@ def test_the_loop_will_not_stack_beyond_its_bound():
 
 
 def test_the_loop_will_not_correct_a_glucose_that_is_not_high():
-    loop = CorrectionLoop()
+    loop = CorrectionLoop("trend")
     assert loop.correction(0, cgm=140.0, cf=30.0) == 0.0
 
 
 def test_the_loop_respects_its_minimum_interval():
-    loop = CorrectionLoop()
+    loop = CorrectionLoop("trend")
     first = loop.correction(0, cgm=300.0, cf=30.0)
     assert first > 0.0
     assert loop.correction(2, cgm=300.0, cf=30.0) == 0.0
@@ -110,7 +110,7 @@ def test_the_loop_respects_its_minimum_interval():
 
 
 def test_the_loop_withdraws_basal_when_low():
-    loop = CorrectionLoop()
+    loop = CorrectionLoop("trend")
     assert loop.basal_scale(cgm=70.0, fall_rate=0.0) == 0.0
     assert loop.basal_scale(cgm=105.0, fall_rate=-2.0) == 0.0
     assert loop.basal_scale(cgm=150.0, fall_rate=0.0) == 1.0

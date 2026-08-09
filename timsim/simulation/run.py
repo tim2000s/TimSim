@@ -25,9 +25,12 @@ The controller is whatever is driving. It is not part of the person and it is no
 optional, since a person with nobody dosing them is a person in trouble within a day.
 `controller` takes:
 
-    "reference"     the built-in basal-bolus with a correction loop, which is the
-                    default and what every figure in `docs/` was measured against
-    "basal-bolus"   the same without the correction loop, which is open-loop therapy
+    "trend"         the built-in basal-bolus with a correction loop, the default and what
+                    every figure in `docs/` was measured against
+    "control-iq"    the same with a loop shaped like the published description of the
+                    algorithm the reference trial ran. It does not reproduce that trial's
+                    outcomes and is not the default; see `controller/loop.py`
+    "basal-bolus"   neither, which is open-loop therapy
     an object       anything with `policy(observation, reward, done, **info) ->
                     Action(basal, bolus)`, which is simglucose's own interface and the
                     hook for testing a real algorithm
@@ -108,8 +111,10 @@ from ..therapy import Enforcer, InfusionSite, profile as profile_mod
 LAYERS = ("physiology", "behaviour", "sensor", "site")
 DEFAULT_LAYERS = LAYERS
 
-# What "reference" and "basal-bolus" mean, resolved in `_resolve_controller`.
-CONTROLLERS = ("reference", "basal-bolus")
+# Resolved in `_resolve_controller`. "reference" is kept as an alias for the default so
+# that a caller asking for the baseline gets the baseline rather than a frozen choice.
+CONTROLLERS = ("control-iq", "trend", "basal-bolus", "reference")
+DEFAULT_CONTROLLER = "trend"
 
 # simglucose ships three sensors whose noise parameters are identical and whose sample
 # times differ. Five minutes is the real reporting interval and the cadence the
@@ -215,11 +220,11 @@ class _BasalBolus:
     # every measured number in the package for a reason unrelated to any of the fixes.
     CORRECTION_TARGET = 140.0
 
-    def __init__(self, profile, adaptive=True, loop=False, target=CORRECTION_TARGET):
+    def __init__(self, profile, adaptive=True, loop=None, target=CORRECTION_TARGET):
         self.profile = profile
         mid = profile.isf_at(12 * 60), profile.cr_at(12 * 60)
         self.ratios = AdaptiveRatios(mid[0], mid[1]) if adaptive else None
-        self.loop = CorrectionLoop() if loop else None
+        self.loop = CorrectionLoop(loop) if loop else None
         self.target = float(target)
 
     def act(self, announced_grams, cgm, minute, sample_time, fall_rate=0.0):
@@ -232,8 +237,9 @@ class _BasalBolus:
             bolus = max(announced_grams / cr + (cgm > 150) * (cgm - self.target) / cf, 0.0)
         basal = self.profile.basal_at(minute)
         if self.loop is not None:
+            self.loop.observe(minute, cgm)
             self.loop.add(minute, bolus)
-            bolus += self.loop.correction(minute, cgm, cf)
+            bolus += self.loop.correction(minute, cgm, cf, fall_rate)
             basal *= self.loop.basal_scale(cgm, fall_rate)
         return Action(basal=basal, bolus=bolus / sample_time)
 
@@ -255,22 +261,24 @@ def _resolve_controller(controller, profile, adaptive):
     recorded among the person's layers.
     """
     if controller is None:
-        controller = "reference"
+        controller = DEFAULT_CONTROLLER
     if isinstance(controller, str):
         if controller not in CONTROLLERS:
             raise ValueError(
                 f"unknown controller {controller!r}; expected one of {CONTROLLERS}, "
                 "or an object with a policy(observation, reward, done, **info) method")
-        return (_BasalBolus(profile, adaptive=adaptive,
-                            loop=controller == "reference"),
-                controller, True)
+        if controller == "reference":
+            controller = DEFAULT_CONTROLLER
+        shape = None if controller == "basal-bolus" else controller
+        return _BasalBolus(profile, adaptive=adaptive, loop=shape), controller, True
     if not hasattr(controller, "policy"):
         raise TypeError("a controller needs a policy(observation, reward, done, **info) "
                         "method, which is simglucose's own interface")
     return controller, getattr(controller, "name", type(controller).__name__), False
 
 
-def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS, controller="reference",
+def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
+             controller=DEFAULT_CONTROLLER,
              meals=None,
              sensor_noise=SENSOR_NOISE_SIGMA,
              compression_per_30d=SENSOR_COMPRESSION_PER_30D,
@@ -479,7 +487,7 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS, controller="reference
 
 
 def simulate_cohort(names=None, days=28, seed=0, layers=DEFAULT_LAYERS,
-                    controller="reference", controller_factory=None,
+                    controller=DEFAULT_CONTROLLER, controller_factory=None,
                     progress=True, **kwargs):
     """Run many subjects. Returns a list of Result, one per subject.
 
@@ -488,7 +496,7 @@ def simulate_cohort(names=None, days=28, seed=0, layers=DEFAULT_LAYERS,
     return a fresh instance, so nothing leaks between subjects. Give one or the other.
     """
     from ..population import names as all_names
-    if controller_factory is not None and controller != "reference":
+    if controller_factory is not None and controller != DEFAULT_CONTROLLER:
         raise ValueError("give either controller or controller_factory, not both")
     names = names or all_names()
     out = []
@@ -508,4 +516,4 @@ def simulate_cohort(names=None, days=28, seed=0, layers=DEFAULT_LAYERS,
 
 
 __all__ = ["simulate", "simulate_cohort", "Result", "LAYERS", "DEFAULT_LAYERS",
-           "CONTROLLERS", "draw_meals", "DEFAULT_SAMPLE_MINUTES"]
+           "CONTROLLERS", "DEFAULT_CONTROLLER", "draw_meals", "DEFAULT_SAMPLE_MINUTES"]

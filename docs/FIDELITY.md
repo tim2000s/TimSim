@@ -344,6 +344,46 @@ at 35.3 for anyone testing how an algorithm copes with badly tuned therapy, whic
 scenario and not the default one. What neither fixes is the shape by hour: every arm runs
 high at breakfast and short after midnight, which is a separate problem and still open.
 
+## Making the baseline match Control-IQ, which did not work
+
+Everything here is scored against DCLP3, DCLP3 is the pivotal Control-IQ trial, and the
+baseline correction loop is nothing like Control-IQ. It corrects every five minutes on the
+current reading at half the calculated need; Tandem describe an automatic correction at most
+once an hour, on a thirty-minute prediction crossing 180 mg/dL, at 60% of a correction
+towards 110, with basal suspended below 70, reduced below 112.5, raised from 160 and at its
+ceiling above 180. Twelve times the cadence looked like enough to make every hypoglycaemia
+comparison unreadable.
+
+So a loop shaped like the published description was built, and measured, and it is worse:
+
+| 34 adults, 28 days | trend | control-iq | DCLP3 |
+|---|---|---|---|
+| Time in range, % | 74.0 | 75.5 | 71.0 |
+| Time above 180, % | 23.9 | 20.0 | 24.65 |
+| Insulin, U/day | 64.9 | 74.2 | 47.0 |
+| Rescues a day | 1.14 | 2.25 | 0.44 |
+| Severe lows a day | 0.35 | 0.70 | 0.22 |
+
+Closer on none of them. The cadence, the thresholds and the correction fraction are Tandem's;
+the basal multiplier when glucose is predicted high, the ceiling on a single automatic
+correction, and the prediction model are not, and those are what drive the outcome. Fitting
+them until the cohort matched the trial would make the trial useless for validating the
+person, because the pair would have been tuned to it. So the eager loop remains the baseline
+despite having the wrong cadence, and the shaped one is available as `controller="control-iq"`
+and honest about what it is.
+
+The exercise did find one thing worth keeping. The first version predicted from a single
+five-minute difference. The sensor error here has a standard deviation near 12 mg/dL, so that
+difference carries about 3.4 mg/dL per minute of noise, which is over 100 mg/dL once
+extrapolated half an hour: the controller was firing on noise, delivering 76 U a day against
+the trial's 47. A least-squares slope over thirty minutes takes the prediction noise from 101
+mg/dL to 14. Any predictive algorithm driven from this sensor needs to do something
+equivalent, and one that does not will look far more aggressive here than it is.
+
+One number in that table is not about the controller at all. Both arms deliver far more
+insulin than the trial, 64.9 and 74.2 against 47.0 U a day, and the generated subjects have a
+median body weight of 84 kg. That is a property of the population and it has not been chased.
+
 ## Should this package add counterregulation? The evidence says no
 
 S2008 has no counterregulation, and a simulator of hypoglycaemia without it looks obviously
