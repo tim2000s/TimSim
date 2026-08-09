@@ -446,6 +446,34 @@ a per-subject settings-accuracy factor for that, drawn once from the subject's n
 cohort is reproducible without regenerating the population, centred on 1.0 because the level
 and the spread are separate questions. It is off by default until it has been measured.
 
+### Settings divergence between people, measured and not adopted
+
+Real settings are titrated against an imperfect history and left alone, so they diverge from
+what a person's physiology would give and by different amounts for different people. That is
+a source of between-subject variation the package has none of, and `therapy/profile.py`
+carries a per-subject accuracy factor for it, drawn once from the subject's name.
+
+At a coefficient of variation of 0.30, across all 100 subjects over 28 days:
+
+| | Without | With | Trial |
+|---|---|---|---|
+| Between-subject sd of mean glucose, mg/dL | 8.44 | 9.68 | 14.24 |
+| Spread ratio, mean glucose | 0.58 | 0.66 | 1.00 |
+| Spread ratio, time below 70 | 1.38 | 1.59 | 1.00 |
+| Spread ratio, time below 54 | 2.75 | 2.73 | 1.00 |
+| Real participants covered | 91.0% | 86.6% | |
+| Virtual subjects resembling a real one | 73.5% | 69.0% | |
+
+It moves the right statistic in the right direction and closes about a fifth of the gap. It
+also costs 4.4 points of coverage and 4.5 of plausibility, and widens the spread of time
+below 70 which was already too wide. A badly tuned subject moves away from the trial faster
+than it widens the population, so the mechanism stays off.
+
+What remains untested is per-subject behaviour. Every subject here announces meals with the
+same probability, misestimates carbohydrate with the same coefficient of variation, and eats
+the same template scaled by body weight. Real people differ in all three by more than they
+differ in physiology, and none of that variation is currently present.
+
 ## Are these the right people?
 
 A virtual population is not a cohort, and for a long time this was scored by running the 34

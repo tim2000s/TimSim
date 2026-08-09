@@ -99,7 +99,20 @@ class Profile:
 #
 # Centred on 1.0 rather than on the real-versus-optimal ratio, because the level and the
 # spread are separate questions and shifting the centre is what `isf_scale` already does.
-# Off by default until measured.
+#
+# Measured at a coefficient of variation of 0.30 across all 100 subjects over 28 days, and
+# it is not the lever. The between-subject spread of mean glucose moves from 8.44 to 9.68
+# mg/dL against a trial figure of 14.24, closing about a fifth of the gap, and the cost is
+# larger than the gain: per-subject coverage of the trial's participants falls from 91.0%
+# to 86.6%, the share of virtual subjects resembling a real participant falls from 73.5%
+# to 69.0%, and the spread of time below 70 widens from 1.38 to 1.59 where it was already
+# too wide. Badly tuned settings move a subject away from the trial faster than they widen
+# the population.
+#
+# Kept and off, because the mechanism is real even if this is not where the missing
+# variation lives. The untested candidate is per-subject behaviour: every subject here
+# announces meals with the same probability, misestimates carbohydrate with the same
+# coefficient of variation, and eats the same template scaled by weight.
 SETTINGS_SPREAD_CV = 0.0
 
 
