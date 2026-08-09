@@ -120,3 +120,65 @@ def test_reading_and_truth_give_different_episode_counts_on_the_same_run():
     on_reading = stat(C.from_results(res, signal=C.READING))
     on_truth = stat(C.from_results(res, signal=C.TRUTH))
     assert on_reading["episodes"] != on_truth["episodes"]
+
+
+# ------------------------------------------------------- per-subject coverage
+def test_coverage_finds_a_counterpart_when_one_exists():
+    """Visentin's criterion: for each real subject, does a virtual one behave like it."""
+    rng = np.random.default_rng(0)
+    real = C.Cohort("real", C.READING, 5.0,
+                    tuple((f"r{i}", rng.normal(140 + i * 4, 40, 2000)) for i in range(10)))
+    same = C.Cohort("same", C.READING, 5.0,
+                    tuple((f"s{i}", rng.normal(140 + i * 4, 40, 2000)) for i in range(10)))
+    assert C.coverage(real, same)["real_covered"] > 0.8
+
+
+def test_coverage_notices_a_population_that_lives_somewhere_else():
+    rng = np.random.default_rng(1)
+    real = C.Cohort("real", C.READING, 5.0,
+                    tuple((f"r{i}", rng.normal(140, 40, 2000)) for i in range(10)))
+    elsewhere = C.Cohort("high", C.READING, 5.0,
+                         tuple((f"s{i}", rng.normal(320, 40, 2000)) for i in range(10)))
+    out = C.coverage(real, elsewhere)
+    assert out["real_covered"] < 0.2
+    assert len(out["uncovered"]) >= 8
+
+
+def test_coverage_reports_both_directions():
+    """A population covering every real subject can still contain implausible ones."""
+    rng = np.random.default_rng(2)
+    # the real population has to have a spread of its own, or standardising by it degenerates
+    real = C.Cohort("real", C.READING, 5.0,
+                    tuple((f"r{i}", rng.normal(130 + i * 8, 35, 3000)) for i in range(8)))
+    wide = C.Cohort("wide", C.READING, 5.0,
+                    tuple((f"s{i}", rng.normal(130 + i * 8, 35, 3000)) for i in range(8))
+                    + tuple((f"x{i}", rng.normal(300 + i * 30, 35, 3000)) for i in range(8)))
+    out = C.coverage(real, wide)
+    assert out["real_covered"] > 0.8, "the real range is spanned"
+    assert out["simulated_plausible"] < 0.7, "half the virtual subjects resemble nobody"
+
+
+def test_coverage_measures_spread_in_both_directions():
+    rng = np.random.default_rng(3)
+    real = C.Cohort("real", C.READING, 5.0,
+                    tuple((f"r{i}", rng.normal(140 + i * 10, 40, 2000)) for i in range(10)))
+    narrow = C.Cohort("narrow", C.READING, 5.0,
+                      tuple((f"s{i}", rng.normal(185, 40, 2000)) for i in range(10)))
+    assert C.coverage(real, narrow)["spread_ratio"]["mean"] < 0.3
+
+
+def test_coverage_refuses_a_signal_mismatch():
+    rng = np.random.default_rng(4)
+    real = C.Cohort("real", C.READING, 5.0,
+                    tuple((f"r{i}", rng.normal(140, 40, 2000)) for i in range(5)))
+    truth = C.Cohort("truth", C.TRUTH, 5.0,
+                     tuple((f"s{i}", rng.normal(140, 40, 2000)) for i in range(5)))
+    with pytest.raises(ValueError, match="not the same outcome"):
+        C.coverage(real, truth)
+
+
+def test_a_subject_profile_covers_every_clinical_zone():
+    v = np.array([40, 60, 120, 200, 300], float)
+    p = C.subject_profile(v)
+    assert set(p) >= {n for _, _, n in C.ZONES} | {"mean", "cv"}
+    assert sum(p[n] for _, _, n in C.ZONES) == pytest.approx(100.0)

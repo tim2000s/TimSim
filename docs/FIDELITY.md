@@ -344,6 +344,57 @@ at 35.3 for anyone testing how an algorithm copes with badly tuned therapy, whic
 scenario and not the default one. What neither fixes is the shape by hour: every arm runs
 high at breakfast and short after midnight, which is a separate problem and still open.
 
+## Does a virtual subject exist for each real one?
+
+The eleven signatures compare cohort medians. That is a claim about a population, not about
+people, and a simulator can match every median while containing nobody who resembles anyone.
+Visentin et al. validated this model against a clinical trial by asking the other question:
+for each real subject, does a virtual subject exist behaving similarly in the same clinical
+zones. `validation/compare.coverage` asks it.
+
+A real subject counts as covered when some virtual subject matches it on time below 54,
+below 70, in range, above 180, above 250, mean and variability, all to within one standard
+deviation of the real population's own spread. The distance is the largest standardised
+difference rather than the average, because a virtual subject matching on four zones and
+wildly out on the fifth has not matched.
+
+Against the 67 closed-loop calibration participants, 28 days each:
+
+| | Adults, n=34 | Age-matched, n=25 |
+|---|---|---|
+| Real subjects with a virtual counterpart | 83.6% | 73.1% |
+| Virtual subjects resembling a real one | 70.6% | 60.0% |
+| Median distance to the nearest, sd | 0.71 | 0.82 |
+
+Coverage depends heavily on how many subjects are run, which has to be controlled for before
+those columns are compared: 31% at five subjects, 51% at ten, 69% at twenty, 84% at
+thirty-four. Subsampled to a common 25 over forty draws, the two cohorts cover
+indistinguishably, 75.1% plus or minus 4.3 against 73.1%, and the age-matched one is
+meaningfully worse on plausibility, 60.0% against 70.4% plus or minus 4.5.
+
+That is a genuine tension with the section above. Matching the cohort's ages to the trial
+improved insulin, time above 180 and the duration of a high, and it does not improve
+per-subject coverage and makes the virtual subjects less like real people. Both are measured
+and neither cancels the other. The likely reason is that the matched cohort brings in
+adolescents, whose hypoglycaemia here is more extreme than any trial participant's.
+
+The spread is the more useful part, because it is wrong in both directions at once:
+
+| Statistic | Simulated spread against real |
+|---|---|
+| Time below 54 | 3.1 to 4.4 times too wide |
+| Variability | 1.6 to 1.9 times too wide |
+| Mean glucose | 0.56 to 0.68 times too narrow |
+| Time in range, above 180, above 250 | 0.7 to 0.9, close |
+
+So the population is too alike in where its glucose sits and far too different in how much
+hypoglycaemia it has. A narrow spread of mean glucose makes a bench look more decisive than
+it is, since two algorithms are compared across a population with less between-subject
+variation than the one they will meet. A wide spread of severe hypoglycaemia does the
+opposite, and puts subjects in the cohort that no real participant resembles.
+
+Neither is visible in the eleven signatures, which is the argument for this criterion.
+
 ## Are these the right people?
 
 A virtual population is not a cohort, and for a long time this was scored by running the 34

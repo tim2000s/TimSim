@@ -272,5 +272,108 @@ def report(result):
     return "\n".join(lines)
 
 
+
+
+
+# ------------------------------------------------------------- per-subject coverage
+# The clinical zones, from the consensus continuous-glucose targets. Visentin et al. state
+# the criterion in terms of zones rather than of a single summary, and the reason is that a
+# virtual subject can match a real one on time in range while spending its time out of range
+# at the opposite end.
+ZONES = ((0.0, 54.0, "below_54"), (54.0, 70.0, "below_70"), (70.0, 180.0, "in_range"),
+         (180.0, 250.0, "above_180"), (250.0, 1e9, "above_250"))
+
+
+def subject_profile(values):
+    """One subject's outcome vector: time in each clinical zone, plus level and spread."""
+    v = np.asarray(values, float)
+    out = {name: float(np.mean((v >= lo) & (v < hi)) * 100) for lo, hi, name in ZONES}
+    out["mean"] = float(v.mean())
+    out["cv"] = float(100.0 * v.std() / v.mean()) if v.mean() else 0.0
+    return out
+
+
+def profiles(cohort):
+    """Outcome vectors per subject, pooling a subject's separate stretches of wear."""
+    joined = {}
+    for subject, values in cohort.segments:
+        joined.setdefault(subject, []).append(np.asarray(values, float))
+    return {s: subject_profile(np.concatenate(v)) for s, v in joined.items()}
+
+
+def coverage(real, simulated, tolerance=1.0, keys=None):
+    """Does a virtual subject exist for each real one, and is the spread right?
+
+    This is the criterion the simulator's own authors used. Visentin et al. validated
+    against a clinical trial by asking, for each real subject, whether a virtual subject
+    exists behaving similarly in the same clinical zones, rather than by asking whether the
+    cohort medians agree. The two are different claims and only the first is about
+    replicating people.
+
+    A real subject is covered when some virtual subject matches it on every statistic to
+    within `tolerance` standard deviations of the real population's own spread. Distance is
+    the largest standardised difference rather than the average, because a virtual subject
+    that matches on four zones and is wildly out on the fifth has not matched.
+
+    Reported both ways round on purpose. A population that covers every real subject can
+    still contain subjects no real person resembles, and one that is entirely plausible can
+    still be far narrower than reality. A narrow population is what makes a bench look more
+    decisive than it is.
+    """
+    if real.signal != simulated.signal:
+        raise ValueError(f"{real.name} is {real.signal} and {simulated.name} is "
+                         f"{simulated.signal}; coverage compares outcomes, and a sensor "
+                         "reading and a glucose without sensor error are not the same "
+                         "outcome")
+    rp, sp = profiles(real), profiles(simulated)
+    keys = list(keys or [name for _, _, name in ZONES] + ["mean", "cv"])
+
+    r = np.array([[rp[s][k] for k in keys] for s in sorted(rp)], float)
+    m = np.array([[sp[s][k] for k in keys] for s in sorted(sp)], float)
+    scale = r.std(0)
+    scale[scale == 0] = 1.0
+
+    # largest standardised difference between every real subject and every virtual one
+    d = np.abs((r[:, None, :] - m[None, :, :]) / scale).max(axis=2)
+    nearest_sim = d.min(axis=1)
+    nearest_real = d.min(axis=0)
+
+    return {
+        "statistic": "per-subject coverage",
+        "tolerance_sd": float(tolerance),
+        "real": {"name": real.name, "subjects": len(rp)},
+        "simulated": {"name": simulated.name, "subjects": len(sp)},
+        "real_covered": float(np.mean(nearest_sim <= tolerance)),
+        "simulated_plausible": float(np.mean(nearest_real <= tolerance)),
+        "median_distance_to_nearest": float(np.median(nearest_sim)),
+        "spread_ratio": {k: float(m[:, i].std() / scale[i]) for i, k in enumerate(keys)},
+        "uncovered": [s for s, dist in zip(sorted(rp), nearest_sim) if dist > tolerance],
+        "worst": {s: {**rp[s], "distance": float(dist)}
+                  for s, dist in sorted(zip(sorted(rp), nearest_sim),
+                                        key=lambda x: -x[1])[:3]},
+    }
+
+
+def coverage_report(result):
+    lines = [f"per-subject coverage at {result['tolerance_sd']:.1f} standard deviations",
+             f"  {result['real']['name']}: {result['real']['subjects']} subjects",
+             f"  {result['simulated']['name']}: {result['simulated']['subjects']} subjects",
+             "",
+             f"  real subjects with a virtual counterpart   "
+             f"{result['real_covered'] * 100:5.1f}%",
+             f"  virtual subjects resembling a real one     "
+             f"{result['simulated_plausible'] * 100:5.1f}%",
+             f"  median distance to the nearest, in sd      "
+             f"{result['median_distance_to_nearest']:5.2f}",
+             "",
+             "  spread against the real population, 1.0 is equal:"]
+    for k, v in result["spread_ratio"].items():
+        lines.append(f"    {k:<12} {v:5.2f}")
+    if result["uncovered"]:
+        lines += ["", f"  {len(result['uncovered'])} real subjects nothing resembles"]
+    return "\n".join(lines)
+
+
 __all__ = ["Cohort", "compare", "report", "from_results", "from_dclp3", "episodes",
-           "episode_stats", "time_in_band", "READING", "TRUTH", "MIDDLE", "START"]
+           "episode_stats", "time_in_band", "coverage", "coverage_report", "profiles",
+           "subject_profile", "ZONES", "READING", "TRUTH", "MIDDLE", "START"]
