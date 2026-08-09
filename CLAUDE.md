@@ -9,7 +9,20 @@ generated population of 100 screened subjects. See `README.md` for what it does 
 This matters as much as the code. The documentation makes claims about a medical
 simulator, and prose that reads as machine-generated undermines claims that are otherwise
 carefully measured. Every rule below applies to README files, the docs directory, module
-and function docstrings, comments, and commit messages.
+and function docstrings, comments, and commit messages. They apply equally to anything
+written for the reader rather than for the repository: reports, papers, summaries and
+notes shared outside it.
+
+The register is scientific. Write as a methods and results section would be written: state
+what was done, what was measured, and what follows, in the past tense for work done and the
+present for what the code does. Quantities carry units and an interval where one exists. A
+claim that cannot be traced to a measurement or a citation does not belong in the text, and
+where something is a modelling choice rather than a finding, say so in the sentence that
+makes it.
+
+Stay calm. The tone is that of someone reporting a result they expect to be checked,
+without enthusiasm and without hedging into vagueness. Negative results are reported in the
+same voice as positive ones.
 
 Do not use em-dashes or en-dashes in prose. Rewrite the sentence with a comma, a colon,
 a full stop or brackets. En-dashes are fine inside numeric ranges in tables.
@@ -51,9 +64,17 @@ Dexcom model declares three minutes, so the sensor in use is `GuardianRT`, whose
 parameters are identical. Changing that interval moves the whole fidelity table, so
 anything that touches it needs `examples/layer_ablation.py` rerunning.
 
-Sensor artefacts are inside the loop, not applied afterwards. An algorithm sees the
-compression lows and the jitter, and so does the simulated person. `Result.bg` is the
-untouched truth and is what the safety metrics read.
+Sensor artefacts are inside the loop rather than applied afterwards. An algorithm sees the
+compression lows and the jitter, and so does the simulated person. `Result.bg` carries no
+sensor error and is what the safety metrics read.
+
+`Result.bg` is not plasma glucose. simglucose exposes only `Gsub`, the subcutaneous
+compartment divided by `Vg`, so `bg` is interstitial glucose without sensor error. It
+differs from `Result.cgm` by the sensor model alone, and that difference is not small: the
+sensor error has a standard deviation near 12 mg/dL, which fragments threshold crossings
+rather than blurring them. The same runs give 100 excursions below 54 mg/dL on `bg` and 380
+on `cgm`. Comparisons against trial data go on `cgm`, and `validation/compare.py` refuses
+the other pairing.
 
 Delivery passes through `timsim/therapy/limits.py` before it reaches the pump. Basal and
 bolus are quantised to the nearest deliverable increment rather than rounded down, because

@@ -126,3 +126,46 @@ def test_conservative_settings_reach_the_run_and_leave_more_glucose_high():
     b = simulate(name, days=5, seed=0, isf_scale=2.4)
     assert a.meta["isf_scale"] == 1.0 and b.meta["isf_scale"] == 2.4
     assert b.time_above_180 > a.time_above_180
+
+
+# ----------------------------------------------------- per-subject settings divergence
+def test_settings_spread_is_off_by_default():
+    from timsim.population import names
+    from timsim.therapy import profile as P
+    name = names("adult")[0]
+    assert P.accuracy_for(name) == (1.0, 1.0)
+    assert P.for_subject(name).isf_at(0) == P.for_subject(name, settings_spread=0.0).isf_at(0)
+
+
+def test_a_subject_keeps_the_same_settings_between_runs():
+    """Keyed on the name, so a cohort is stable without regenerating the population."""
+    from timsim.population import names
+    from timsim.therapy import profile as P
+    name = names("adult")[0]
+    assert P.accuracy_for(name, 0.3) == P.accuracy_for(name, 0.3)
+    assert P.for_subject(name, settings_spread=0.3).isf_at(720) == \
+        P.for_subject(name, settings_spread=0.3).isf_at(720)
+
+
+def test_different_subjects_get_different_settings():
+    from timsim.population import names
+    from timsim.therapy import profile as P
+    drawn = {P.accuracy_for(n, 0.3) for n in names("adult")[:10]}
+    assert len(drawn) == 10
+
+
+def test_the_spread_has_the_size_asked_for_and_no_bias():
+    import numpy as np
+    from timsim.population import names
+    from timsim.therapy import profile as P
+    v = np.array([P.accuracy_for(n, 0.3)[0] for n in names()])
+    assert abs(np.median(v) - 1.0) < 0.12, "the centre moved, which isf_scale is for"
+    assert 0.2 < v.std() < 0.45
+
+
+def test_the_spread_reaches_the_run_and_is_recorded():
+    from timsim import simulate
+    from timsim.population import names
+    r = simulate(names("adult")[0], days=1, seed=0, settings_spread=0.3)
+    assert r.meta["settings_spread"] == 0.3
+    assert simulate(names("adult")[0], days=1, seed=0).meta["settings_spread"] == 0.0

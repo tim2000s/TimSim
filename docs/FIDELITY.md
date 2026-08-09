@@ -410,6 +410,42 @@ opposite, and puts subjects in the cohort that no real participant resembles.
 
 Neither is visible in the eleven signatures, which is the argument for this criterion.
 
+## Is the spread between subjects, or between runs?
+
+The spread ratios above are measured on one run per subject, which conflates two things.
+Eight subjects were run at four seeds each to separate them:
+
+| Statistic | Between subjects | Within one subject, across seeds | Ratio |
+|---|---|---|---|
+| Mean glucose, mg/dL | 7.43 | 5.89 | 1.26 |
+| Time below 54, % | 0.49 | 0.33 | 1.45 |
+| Time in range, % | 7.14 | 5.69 | 1.26 |
+
+Changing which random month a subject gets moves its mean glucose nearly as far as changing
+which subject it is. One adult spans 156.4 to 171.4 mg/dL across four seeds while the whole
+between-subject spread is 7.4.
+
+Removing the seed component leaves a true between-subject spread of 6.0 to 6.8 mg/dL against
+an implied 14.2 in the trial. So the population carries about 45% of the real between-subject
+variation in mean glucose, and the 0.59 reported above is itself partly run noise. A
+comparison averaged across this population is averaging over less person-to-person
+difference than it appears to, which matters for reading any result that leans on the
+population being varied.
+
+Correlating each subject's outcome against its own parameters explains little: the strongest
+association across body weight, basal glucose, insulin sensitivity, carbohydrate ratio,
+correction factor, age and daily basal is 0.35, for carbohydrate ratio against mean glucose.
+The physiological differences between subjects are largely erased before they reach the
+outcome, because every subject is dosed by settings measured from its own model and a loop
+that corrects towards one target.
+
+That points at a mechanism the package does not have. Real settings are titrated against an
+imperfect history and then left alone, so they diverge from what a person's physiology would
+give, and the size of the divergence differs between people. `therapy/profile.py` now carries
+a per-subject settings-accuracy factor for that, drawn once from the subject's name so a
+cohort is reproducible without regenerating the population, centred on 1.0 because the level
+and the spread are separate questions. It is off by default until it has been measured.
+
 ## Are these the right people?
 
 A virtual population is not a cohort, and for a long time this was scored by running the 34

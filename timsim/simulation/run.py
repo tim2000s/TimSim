@@ -285,7 +285,7 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
              params=None, settings=None, profile=None, diurnal_basal=False,
              limits=None, faults=None, sample_minutes=DEFAULT_SAMPLE_MINUTES,
              hypo_risk_gain=None, si_pattern="sinusoid", si_interday_cv=None,
-             isf_scale=1.0):
+             isf_scale=1.0, settings_spread=None):
     """Run one subject. Returns a Result.
 
     `layers` is any subset of LAYERS. `controller`, if given, replaces the built-in
@@ -320,7 +320,8 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
 
     prof = profile if profile is not None else profile_mod.for_subject(
         name, params=params, settings=settings, diurnal=diurnal_basal, limits=limits,
-        isf_scale=isf_scale)
+        isf_scale=isf_scale,
+        **({} if settings_spread is None else {"settings_spread": settings_spread}))
 
     patient = VaryingPatient(params)
     if "physiology" in effective:
@@ -462,6 +463,7 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
             "sample_minutes": step_minutes, "diurnal_basal": bool(diurnal_basal),
             "controller": controller_label,
             "si_pattern": si_pattern, "isf_scale": float(isf_scale),
+            "settings_spread": float(settings_spread or 0.0),
             "si_class": getattr(patient, "si_class", None),
             "profile": prof.as_dict()}
     meta.update(enforcer.report())

@@ -85,8 +85,44 @@ class Profile:
                 "max_iob_u": self.limits.max_iob_u}
 
 
+# How far a person's settings sit from the ones their own physiology would give, expressed
+# as a lognormal coefficient of variation applied per subject and held for the run.
+#
+# Every subject here carries a correction factor and a carbohydrate ratio measured from its
+# own model, and no real person has that. Real settings are titrated by a clinician against
+# an imperfect history and then left alone, so they diverge, and the size of the divergence
+# differs from person to person. That difference is a source of between-subject variation in
+# outcome which this package currently has none of, and it shows: running eight subjects at
+# four seeds each gives a between-subject spread of mean glucose of 7.43 mg/dL against a
+# within-subject spread across seeds of 5.89, so which random month a subject gets moves it
+# nearly as far as which subject it is.
+#
+# Centred on 1.0 rather than on the real-versus-optimal ratio, because the level and the
+# spread are separate questions and shifting the centre is what `isf_scale` already does.
+# Off by default until measured.
+SETTINGS_SPREAD_CV = 0.0
+
+
+def accuracy_for(name, cv=SETTINGS_SPREAD_CV, seed=0):
+    """A subject's settings-accuracy multipliers, drawn once and reproducible from its name.
+
+    Keyed on the subject name so that a cohort's settings are stable without regenerating
+    the population, and so that two runs of the same subject agree.
+    """
+    if cv <= 0:
+        return 1.0, 1.0
+    import hashlib
+
+    digest = hashlib.sha256(f"{name}:{seed}".encode()).digest()
+    rng = np.random.default_rng(int.from_bytes(digest[:8], "big"))
+    sigma = np.sqrt(np.log(1.0 + float(cv) ** 2))
+    draw = rng.lognormal(-0.5 * sigma ** 2, sigma, size=2)
+    return float(draw[0]), float(draw[1])
+
+
 def for_subject(name, params=None, settings=None, diurnal=False, limits=None,
-                isf_scale=1.0, cr_scale=1.0):
+                isf_scale=1.0, cr_scale=1.0, settings_spread=SETTINGS_SPREAD_CV,
+                settings_seed=0):
     """Build a subject's profile from the population tables.
 
     `diurnal=False` gives a flat schedule whose rate is the subject's own steady-state
@@ -114,8 +150,9 @@ def for_subject(name, params=None, settings=None, diurnal=False, limits=None,
     shape = dawn_shape() if diurnal else np.ones(24)
 
     basal = flat_u_per_hour * shape
-    isf = float(q["CF"]) * float(isf_scale) / shape
-    cr = float(q["CR"]) * float(cr_scale) / shape
+    per_isf, per_cr = accuracy_for(name, settings_spread, settings_seed)
+    isf = float(q["CF"]) * float(isf_scale) * per_isf / shape
+    cr = float(q["CR"]) * float(cr_scale) * per_cr / shape
     tdi = float(q["TDI"]) if "TDI" in q else 2.0 * 24.0 * flat_u_per_hour
 
     return Profile(name=name, basal_u_per_hour=basal, isf=isf, cr=cr,

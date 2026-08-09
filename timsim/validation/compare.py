@@ -377,6 +377,23 @@ AGAINST_DCLP3 = {
     "completed": (98, 100),
     "spread_ratio": {"below_54": 2.74, "below_70": 1.38, "in_range": 0.81,
                      "above_180": 0.76, "above_250": 0.78, "mean": 0.59, "cv": 1.67},
+    # The spread ratios above are inflated by run-to-run noise and the mean-glucose one
+    # substantially. Running eight subjects at four seeds each separates the two: the
+    # spread between subjects is 7.43 mg/dL of mean glucose and the spread within one
+    # subject across seeds is 5.89, a ratio of 1.26. Changing which random meals and
+    # sensor noise a subject gets moves its mean glucose nearly as far as changing which
+    # subject it is.
+    #
+    # Removing that component leaves a true between-subject spread near 6 to 7 mg/dL
+    # against an implied 14.2 in the trial, so the population carries about 45% of the
+    # real between-subject variation rather than the 59% measured on a single seed. A
+    # comparison averaged over this population is averaging over less person-to-person
+    # difference than it appears to.
+    "seed_versus_subject": {"between_subject_sd": 7.43, "within_subject_sd": 5.89,
+                            "ratio": 1.26, "subjects": 8, "seeds": 4,
+                            "true_between_sd": (5.99, 6.82),
+                            "real_sd_implied": 14.24,
+                            "spread_ratio_physiology_only": (0.42, 0.48)},
     "reading": "the population can stand in for 91% of the trial's participants when all "
                "of it is run, and about 28% of it resembles nobody in the trial at any "
                "size; mean glucose varies about half as much between subjects as it should "
