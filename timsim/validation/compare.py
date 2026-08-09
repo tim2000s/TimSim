@@ -1,0 +1,276 @@
+"""Comparing a simulated cohort against a real one, without the usual mistake.
+
+Nearly every wrong conclusion this package has produced came from comparing two things that
+were not measured the same way. Not from bad arithmetic, and not from the simulator: from a
+real figure and a simulated figure that looked comparable and were not. Four in a single
+week, each of which produced a confident, specific, wrong finding that then drove real work.
+
+    A peak taken as the maximum within each excursion on one side, and as every sample
+    above the threshold pooled on the other. Two different statistics with one name.
+
+    The first 28 days of each trial participant against a simulated month. The opening
+    month is the run-in, while people settle onto a device they have just been given, and
+    it reads 2.8 mg/dL low. Taking the middle 28 days reproduces the full record.
+
+    `Result.bg` against a real continuous monitor. `bg` carries no sensor error, and a
+    sensor's error does not merely blur a threshold, it fragments crossings of it: the same
+    runs give 100 excursions below 54 mg/dL on the truth and 380 on the reading. This one
+    cost an investigation into missing counterregulation and a gate criterion.
+
+    Roughly 18,000 real windows against 1,870 simulated ones, because the trial followed
+    people for a median of 164 days and the simulator ran for 28.
+
+So the point of this module is not convenience. It is that a comparison should be hard to
+express wrongly. `Cohort` carries what its numbers are and how much of them there is,
+`compare` refuses to put two cohorts side by side unless they agree on that, and both sides
+go through one statistic function rather than two implementations of the same idea.
+
+None of it helps with the fifth mistake, which was asserting what the model does without
+measuring it. Nothing here can catch that.
+"""
+from dataclasses import dataclass
+
+import numpy as np
+
+# What a series of numbers actually is. A sensor reading and a glucose without sensor error
+# are different quantities, and no threshold statistic transfers between them.
+READING = "reading"      # a continuous monitor, with its noise, its floor and its lag
+TRUTH = "truth"          # glucose as the model knows it, which no field study observes
+SIGNALS = (READING, TRUTH)
+
+# Where to take a fixed-length sample of a longer record from. The middle, because the start
+# of a trial is the run-in and the end is where people drop out.
+MIDDLE, START = "middle", "start"
+
+
+@dataclass(frozen=True)
+class Cohort:
+    """Contiguous glucose segments from one population, and what they are.
+
+    `segments` is a sequence of (subject, values). A subject may appear more than once, once
+    per uninterrupted stretch of wear, and `compare` groups by it so that a subject with six
+    months of data does not count as many people.
+    """
+    name: str
+    signal: str
+    sample_minutes: float
+    segments: tuple
+
+    def __post_init__(self):
+        if self.signal not in SIGNALS:
+            raise ValueError(f"signal must be one of {SIGNALS}, not {self.signal!r}")
+        if not self.segments:
+            raise ValueError(f"cohort {self.name!r} has no segments")
+
+    @property
+    def subjects(self):
+        return len({s for s, _ in self.segments})
+
+    @property
+    def days(self):
+        return sum(len(v) for _, v in self.segments) * self.sample_minutes / 1440.0
+
+    def sample(self, max_days, take=MIDDLE):
+        """A fixed number of days per subject, so exposure can be matched between cohorts.
+
+        Taking it from the middle is the default and the reason is empirical: the opening
+        month of DCLP3 reads 2.8 mg/dL below the same participants' full records, because
+        it is people adapting to a device they have just been given.
+        """
+        if take not in (MIDDLE, START):
+            raise ValueError(f"take must be {MIDDLE!r} or {START!r}")
+        budget = int(round(max_days * 1440.0 / self.sample_minutes))
+        by_subject = {}
+        for subject, values in self.segments:
+            by_subject.setdefault(subject, []).append(np.asarray(values, float))
+
+        out = []
+        for subject, chunks in by_subject.items():
+            total = sum(len(c) for c in chunks)
+            skip = max((total - budget) // 2, 0) if take == MIDDLE else 0
+            left = budget
+            for chunk in chunks:
+                if skip >= len(chunk):
+                    skip -= len(chunk)
+                    continue
+                chunk = chunk[skip:]
+                skip = 0
+                if left <= 0:
+                    break
+                out.append((subject, chunk[:left]))
+                left -= len(out[-1][1])
+        return Cohort(self.name, self.signal, self.sample_minutes, tuple(out))
+
+
+# ------------------------------------------------------------------- building cohorts
+def from_results(results, signal=READING, name="simulated"):
+    """A cohort from `simulate_cohort` output.
+
+    `signal` chooses which series, and it is the argument to get right: READING takes
+    `Result.cgm`, what the algorithm and the person acted on, and TRUTH takes `Result.bg`,
+    which is interstitial glucose without sensor error and which nothing in the field
+    measures. Compare against a trial on READING.
+    """
+    if signal not in SIGNALS:
+        raise ValueError(f"signal must be one of {SIGNALS}, not {signal!r}")
+    attr = "cgm" if signal == READING else "bg"
+    steps = {float(r.sample_time) for r in results}
+    if len(steps) != 1:
+        raise ValueError(f"cohort mixes sample intervals {sorted(steps)}")
+    segments = tuple((r.name, np.asarray(getattr(r, attr), float)) for r in results
+                     if len(getattr(r, attr)))
+    return Cohort(name, signal, steps.pop(), segments)
+
+
+def from_dclp3(arm=None, calibration_only=True, source=None, name=None,
+               min_days=7.0, max_gap_minutes=8.0, min_segment=288):
+    """A cohort from the DCLP3 trial, split into uninterrupted stretches of wear.
+
+    Always READING: the trial records a continuous monitor and there is no ground truth in
+    it. A gap longer than `max_gap_minutes` ends a segment, so a break in wear is never read
+    as an excursion.
+    """
+    from . import dclp3
+
+    arm = dclp3.CLOSED_LOOP if arm is None else arm
+    ids = set(dclp3.roster().query(f"trtGroup == '{arm}'").PtID)
+    if calibration_only:
+        ids &= set(dclp3.split()["calibration"])
+    traces = dclp3.traces(participants=ids, source=source or dclp3.DEFAULT_SOURCE,
+                          min_days=min_days, max_gap_minutes=max_gap_minutes,
+                          min_segment=min_segment)
+    segments = tuple((participant, np.asarray(values, float))
+                     for participant, segs in sorted(traces.items())
+                     for _, values in segs)
+    label = name or f"DCLP3 {arm}" + (" calibration half" if calibration_only else "")
+    return Cohort(label, READING, 5.0, segments)
+
+
+# ------------------------------------------------------------------------ statistics
+def episodes(values, sample_minutes, threshold, below=True):
+    """Every uninterrupted run past a threshold, as (minutes, peak).
+
+    One function, used on both sides of every comparison. The peak is the extreme within
+    the episode, not every sample past the threshold pooled: pooling lets one long
+    excursion contribute hundreds of samples and drown out the short ones, which is a
+    different statistic that has been reported under the same name.
+    """
+    v = np.asarray(values, float)
+    past = v < threshold if below else v >= threshold
+    out, start = [], None
+    for i, flag in enumerate(np.append(past, False)):
+        if flag and start is None:
+            start = i
+        elif not flag and start is not None:
+            window = v[start:i]
+            out.append(((i - start) * sample_minutes,
+                        float(window.min() if below else window.max())))
+            start = None
+    return out
+
+
+def episode_stats(threshold=54.0, below=True):
+    """A statistic over a cohort: how often excursions happen and how long they last."""
+    def statistic(cohort):
+        found, minutes = [], 0.0
+        for _, values in cohort.segments:
+            found += episodes(values, cohort.sample_minutes, threshold, below)
+            minutes += len(values) * cohort.sample_minutes
+        days = minutes / 1440.0
+        if not found:
+            return {"episodes": 0, "per_day": 0.0, "days": days}
+        durations = np.array([d for d, _ in found])
+        peaks = np.array([p for _, p in found])
+        return {"episodes": len(found), "per_day": len(found) / days, "days": days,
+                "median_minutes": float(np.median(durations)),
+                "p90_minutes": float(np.percentile(durations, 90)),
+                "p99_minutes": float(np.percentile(durations, 99)),
+                "max_minutes": float(durations.max()),
+                "total_minutes_per_day": float(durations.sum() / days),
+                "median_peak": float(np.median(peaks))}
+    statistic.__name__ = f"episodes_{'below' if below else 'above'}_{threshold:.0f}"
+    return statistic
+
+
+def time_in_band(lo=70.0, hi=180.0):
+    """Percentage of samples in, below and above a band, pooled across the cohort."""
+    def statistic(cohort):
+        v = np.concatenate([values for _, values in cohort.segments])
+        return {"in_range": float(np.mean((v >= lo) & (v < hi)) * 100),
+                "below": float(np.mean(v < lo) * 100),
+                "above": float(np.mean(v >= hi) * 100),
+                "mean": float(v.mean()), "days": cohort.days}
+    statistic.__name__ = f"time_in_{lo:.0f}_{hi:.0f}"
+    return statistic
+
+
+# --------------------------------------------------------------------------- comparing
+def compare(real, simulated, statistic, match_exposure=True, take=MIDDLE,
+            allow_signal_mismatch=False):
+    """Put two cohorts side by side, having checked they can be.
+
+    Refuses a comparison across signals, because a reading and a glucose without sensor
+    error are different quantities and a threshold statistic does not transfer between
+    them. `allow_signal_mismatch` exists so that the difference can be measured
+    deliberately, and it is recorded in the result when used.
+
+    `match_exposure` caps the longer record to the shorter one, per subject, so a trial
+    that followed people for half a year is not compared with a simulated month.
+    """
+    for cohort in (real, simulated):
+        if not isinstance(cohort, Cohort):
+            raise TypeError("compare takes Cohort objects; build them with from_results "
+                            "or from_dclp3 so the signal travels with the numbers")
+    if real.sample_minutes != simulated.sample_minutes:
+        raise ValueError(f"sample intervals differ: {real.sample_minutes} against "
+                         f"{simulated.sample_minutes} minutes")
+    if real.signal != simulated.signal and not allow_signal_mismatch:
+        raise ValueError(
+            f"{real.name} is {real.signal} and {simulated.name} is {simulated.signal}. "
+            "These are different quantities: a sensor's error fragments threshold "
+            "crossings, so episode counts and durations do not transfer between them. "
+            "Use from_results(..., signal=compare.READING) to compare against a trial, "
+            "or pass allow_signal_mismatch=True to measure the difference on purpose.")
+
+    if match_exposure:
+        days_each = min(real.days / max(real.subjects, 1),
+                        simulated.days / max(simulated.subjects, 1))
+        real, simulated = real.sample(days_each, take), simulated.sample(days_each, take)
+
+    out = {"statistic": getattr(statistic, "__name__", "statistic"),
+           "real": {"name": real.name, "subjects": real.subjects, "days": real.days,
+                    **statistic(real)},
+           "simulated": {"name": simulated.name, "subjects": simulated.subjects,
+                         "days": simulated.days, **statistic(simulated)},
+           "signal": real.signal if real.signal == simulated.signal else
+                     f"{real.signal} against {simulated.signal}",
+           "exposure_matched": bool(match_exposure)}
+    if real.signal != simulated.signal:
+        out["warning"] = ("signals differ, so these figures are not like for like and the "
+                          "difference between them is partly the measurement")
+    return out
+
+
+def report(result):
+    """The comparison as text, with the exposure and the signal it must be quoted with."""
+    keys = [k for k in result["real"]
+            if k not in ("name", "subjects", "days") and isinstance(result["real"][k],
+                                                                    (int, float))]
+    width = max(len(k) for k in keys) if keys else 10
+    lines = [f"{result['statistic']}, measured on {result['signal']}",
+             f"  {result['real']['name']}: {result['real']['subjects']} subjects, "
+             f"{result['real']['days']:.0f} days",
+             f"  {result['simulated']['name']}: {result['simulated']['subjects']} subjects, "
+             f"{result['simulated']['days']:.0f} days",
+             "",
+             f"  {'':<{width}} {'real':>12} {'simulated':>12}"]
+    for key in keys:
+        lines.append(f"  {key:<{width}} {result['real'][key]:12.2f} "
+                     f"{result['simulated'][key]:12.2f}")
+    if "warning" in result:
+        lines += ["", f"  warning: {result['warning']}"]
+    return "\n".join(lines)
+
+
+__all__ = ["Cohort", "compare", "report", "from_results", "from_dclp3", "episodes",
+           "episode_stats", "time_in_band", "READING", "TRUTH", "MIDDLE", "START"]
