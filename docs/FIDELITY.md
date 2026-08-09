@@ -344,6 +344,42 @@ at 35.3 for anyone testing how an algorithm copes with badly tuned therapy, whic
 scenario and not the default one. What neither fixes is the shape by hour: every arm runs
 high at breakfast and short after midnight, which is a separate problem and still open.
 
+## Are these the right people?
+
+A virtual population is not a cohort, and for a long time this was scored by running the 34
+adults against whatever real group was to hand. Those are different populations. The
+closed-loop arm of DCLP3 has a median age of 29, a range of 14 to 63, and is 28% under 18.
+The adults here have a median of 49 and no adolescents at all.
+
+`population/cohort.matched` picks subjects to follow a reference age distribution, and the
+difference it makes is not marginal:
+
+| 28 days | Adults only, n=34 | Age-matched, n=25 | DCLP3 |
+|---|---|---|---|
+| Median age | 49 | 32 | 29 |
+| Under 18 | 0% | 28% | 28% |
+| Insulin, U/day | 64.9 | 54.5 | 47.0 |
+| Time above 180, % | 23.91 | 24.00 | 24.65 |
+| Median high, min | 55 | 65 | 65 |
+| Time in range, % | 74.0 | 73.5 | 71.0 |
+| Severe lows a day | 0.35 | 0.42 | 0.22 |
+
+Insulin closes most of its gap, time above 180 and the duration of a high land on the trial,
+and hypoglycaemia gets slightly worse because adolescents have more of it. None of that is a
+change to the simulator. It is the same simulator asked about the right people.
+
+Age is the only demographic available to match on, because weight, height and HbA1c are all
+stripped from the public DCLP3 release. It stands in for body weight, insulin sensitivity
+and total requirement, which are what actually differ and which the model does carry. A
+cohort matched on age is closer than one matched on nothing and is not a cohort matched on
+physiology.
+
+The matched cohort is smaller than asked for, 25 rather than 34, because the population is
+thin on 26 to 40 year olds. When a bin cannot supply its share every bin scales down to the
+one that binds, so the composition is preserved rather than the shortfall being absorbed
+into whichever age group has spare subjects. An earlier version took fewer from the short
+bin alone and turned a 28% adolescent cohort into a 50% one.
+
 ## Making the baseline match Control-IQ, which did not work
 
 Everything here is scored against DCLP3, DCLP3 is the pivotal Control-IQ trial, and the

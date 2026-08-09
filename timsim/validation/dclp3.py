@@ -315,6 +315,25 @@ THERAPY_SETTINGS = {
 HALF_HOURLY_BASAL = [f"InsBasal{h:02d}{m:02d}" for h in range(24) for m in (0, 30)]
 
 
+def ages(arm=CLOSED_LOOP, calibration_only=True):
+    """Participant ages at enrolment.
+
+    The only demographic the public release keeps. Weight, height and HbA1c are all
+    stripped from `DiabScreening_a.txt`, so a cohort can be matched on age and on nothing
+    else. The closed-loop calibration half has a median of 29, a range of 14 to 63, and is
+    28% under 18, which is a different population from this package's 34 adults at a median
+    of 49.
+    """
+    import pandas as pd
+
+    d = pd.read_csv(_path("DiabScreening_a.txt"), sep="|", encoding="utf-16")
+    keep = set(roster().query(f"trtGroup == '{arm}'").PtID)
+    if calibration_only:
+        keep &= set(split()["calibration"])
+    a = pd.to_numeric(d.loc[d.PtID.isin(keep), "AgeAtEnrollment"], errors="coerce")
+    return a.dropna().to_numpy(float)
+
+
 def therapy_settings(arm=CLOSED_LOOP, calibration_only=True):
     """Each participant's prescribed basal profile, carbohydrate ratio and correction factor.
 
