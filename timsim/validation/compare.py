@@ -354,6 +354,36 @@ def coverage(real, simulated, tolerance=1.0, keys=None):
     }
 
 
+# Measured 2026-08-09 against the 67 closed-loop calibration participants, 28 days each,
+# at a tolerance of one standard deviation of the real population's own spread.
+#
+# The two directions behave completely differently and that is the finding. Coverage grows
+# with how many subjects are run, because every extra subject is another chance to resemble
+# someone. Plausibility does not move at all: about 72% of virtual subjects resemble a real
+# participant whether ten or a hundred are drawn, because it is a property of what the
+# population is made of rather than of how much of it is used.
+#
+# So the two questions are separable. "Can this population represent real people" is
+# answered by running more of it, and at a hundred subjects the answer is 91%. "Is this
+# population made of real people" is not, and the answer is that between a quarter and a
+# third of it resembles nobody in the trial, which no amount of running fixes.
+AGAINST_DCLP3 = {
+    "real_participants": 67, "days": 28, "tolerance_sd": 1.0,
+    # subjects run: (real covered, virtual plausible)
+    "by_cohort_size": {10: (0.472, 0.730), 20: (0.669, 0.740), 34: (0.725, 0.715),
+                       50: (0.830, 0.712), 75: (0.875, 0.713), 100: (0.910, 0.720)},
+    "median_distance_sd": 0.57,
+    "uncovered_participants": 6,
+    "completed": (98, 100),
+    "spread_ratio": {"below_54": 2.74, "below_70": 1.38, "in_range": 0.81,
+                     "above_180": 0.76, "above_250": 0.78, "mean": 0.59, "cv": 1.67},
+    "reading": "the population can stand in for 91% of the trial's participants when all "
+               "of it is run, and about 28% of it resembles nobody in the trial at any "
+               "size; mean glucose varies about half as much between subjects as it should "
+               "and time below 54 nearly three times as much",
+}
+
+
 def coverage_report(result):
     lines = [f"per-subject coverage at {result['tolerance_sd']:.1f} standard deviations",
              f"  {result['real']['name']}: {result['real']['subjects']} subjects",

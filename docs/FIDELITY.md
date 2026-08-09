@@ -358,13 +358,27 @@ deviation of the real population's own spread. The distance is the largest stand
 difference rather than the average, because a virtual subject matching on four zones and
 wildly out on the fifth has not matched.
 
-Against the 67 closed-loop calibration participants, 28 days each:
+Against the 67 closed-loop calibration participants, 28 days each. Running the whole
+population, 98 of the 100 subjects survived the month:
 
-| | Adults, n=34 | Age-matched, n=25 |
+| Subjects run | Real subjects covered | Virtual subjects resembling a real one |
 |---|---|---|
-| Real subjects with a virtual counterpart | 83.6% | 73.1% |
-| Virtual subjects resembling a real one | 70.6% | 60.0% |
-| Median distance to the nearest, sd | 0.71 | 0.82 |
+| 10 | 47.2% | 73.0% |
+| 20 | 66.9% | 74.0% |
+| 34 | 72.5% | 71.5% |
+| 50 | 83.0% | 71.2% |
+| 75 | 87.5% | 71.3% |
+| **100** | **91.0%** | **72.0%** |
+
+The two columns behave completely differently, and that is the result. Coverage grows with
+how many subjects are run, because each one is another chance to resemble somebody.
+Plausibility does not move at all, because it is a property of what the population is made
+of rather than of how much of it is used.
+
+So the two questions separate. Can this population stand in for real people: yes, for 91% of
+the trial's participants, when all of it is run, with six left that nothing resembles.
+Is this population made of real people: about 28% of it resembles nobody in the trial, at
+any cohort size, and running more of it will never fix that.
 
 Coverage depends heavily on how many subjects are run, which has to be controlled for before
 those columns are compared: 31% at five subjects, 51% at ten, 69% at twenty, 84% at
@@ -380,12 +394,13 @@ adolescents, whose hypoglycaemia here is more extreme than any trial participant
 
 The spread is the more useful part, because it is wrong in both directions at once:
 
-| Statistic | Simulated spread against real |
+| Statistic | Simulated spread against real, all 100 |
 |---|---|
-| Time below 54 | 3.1 to 4.4 times too wide |
-| Variability | 1.6 to 1.9 times too wide |
-| Mean glucose | 0.56 to 0.68 times too narrow |
-| Time in range, above 180, above 250 | 0.7 to 0.9, close |
+| Time below 54 | 2.74 times too wide |
+| Variability | 1.67 times too wide |
+| Time below 70 | 1.38 times too wide |
+| Mean glucose | 0.59 times too narrow |
+| Time in range, above 180, above 250 | 0.76 to 0.81, close |
 
 So the population is too alike in where its glucose sits and far too different in how much
 hypoglycaemia it has. A narrow spread of mean glucose makes a bench look more decisive than
