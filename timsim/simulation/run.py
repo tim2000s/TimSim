@@ -53,6 +53,11 @@ glucose in `Result.bg` does not, so a compression low remains a false reading.
 Delivery passes through the limits in `therapy/limits.py` before it reaches the pump, and
 every clamp is counted. simglucose's own pump would accept 150 units in one step.
 
+`Result.bg` is interstitial glucose without sensor error, not plasma. simglucose's patient
+exposes only `Gsub`, and both it and the reading are five-minute means of a one-minute
+integration. So `bg` and `cgm` differ by sensor noise alone, and that noise fragments
+threshold crossings: see `docs/MODEL.md`.
+
 Insulin is measured at the body rather than at the controller, so the figure is right
 whichever controller produced it. The one thing added back is insulin a failed infusion
 site swallowed, since that really did leave the pump and would appear in any real log.

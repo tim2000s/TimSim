@@ -53,9 +53,14 @@ Thirteen states, integrated on a one-minute grid. In simglucose's ordering:
 | x12 | Gs | subcutaneous glucose | mg/kg |
 
 Two inputs: carbohydrate in grams, and insulin in units per minute. One output that anything
-outside the model can see, which is `Gs`, the subcutaneous glucose the sensor reads. `Gp` is
-the plasma glucose, and this package reports it as `Result.bg` because a safety metric should
-read the truth rather than a reading.
+outside the model can see, and it is worth being exact about which. `T1DPatient.observation`
+returns `Gsub = x12 / Vg`, the **subcutaneous** glucose in mg/dL. The plasma glucose `Gp` is
+in the state vector but nothing reads it.
+
+So `Result.bg` in this package is interstitial glucose without sensor error, not plasma
+glucose. It is the right thing to call truth, because it is what a perfect sensor in that
+tissue would report, but a comparison against a real CGM is not comparing across the
+interstitial lag: both sides are already past it.
 
 ## The four subsystems
 
@@ -138,10 +143,93 @@ slower onset than peripheral uptake.
 
     dGs/dt = -ksc*Gs + ksc*Gp
 
-A single first-order lag. This is the whole interstitial model: no drift, no calibration
-error, no compression. Everything a real sensor does beyond lagging is added by this package
-in `timsim/sensor/realism.py`, and the difference matters because the lag alone understates
-how long a severe low appears to last.
+A single first-order lag, and it is the only glucose the outside world sees. This is the
+whole interstitial model: no drift, no calibration error, no compression. Everything a real
+sensor does beyond this lag is added by simglucose's sensor model and by
+`timsim/sensor/realism.py` on top of it.
+
+
+## How a run actually proceeds
+
+The equations are integrated on a one-minute grid. The controller runs on a five-minute
+grid. Everything below follows from that mismatch, and several of it is easy to get wrong
+when reading a result.
+
+### One controller step is five model minutes
+
+`T1DSimEnv.step` takes one action and executes five one-minute mini-steps with it held
+constant. Within each minute:
+
+1. The scenario is asked for carbohydrate at this exact minute, so a meal scheduled at
+   minute M is delivered on one mini-step and no other.
+2. The pump quantises the requested basal and bolus to 0.05 U and clamps them. simglucose's
+   Insulet caps bolus at 30 U/min, which at a one-minute step is 30 units in a minute, and
+   this is why `timsim/therapy/limits.py` exists in front of it.
+3. Basal and bolus are summed into a single insulin rate. The model has no notion of a bolus
+   as distinct from basal: it is one number entering `Isc1`.
+4. The patient integrates one minute with `dopri5`, an adaptive Dormand-Prince solver.
+5. The sensor is read.
+
+The five results are then **averaged**, and the average is what is recorded. So
+`env.BG_hist[-1]` is a five-minute mean of interstitial glucose, `env.CGM_hist[-1]` a
+five-minute mean of the reading, and `env.insulin_hist[-1]` a mean rate in U/min, which is
+why this package multiplies it by the step length to recover units. `env.CHO_hist[-1]` is
+likewise grams per minute averaged over the step, and reading it as grams is a mistake that
+under-bolused every run until it was caught.
+
+### Carbohydrate does not arrive all at once
+
+`_announce_meal` puts the grams into a queue and releases them at `EAT_RATE`, which is 5
+g/min. A 60 g meal therefore takes twelve minutes to enter the stomach, and a 120 g meal
+twenty-four.
+
+The eating episode also sets the gastric emptying curve. `_last_Qsto` and `_last_foodtaken`
+are captured when carbohydrate first becomes non-zero and accumulate until it returns to
+zero, and their sum is the `Dbar` that positions the two hyperbolic tangents. One
+consequence is worth knowing: two meals close enough together that the queue never empties
+are one eating episode with one combined `Dbar`, and they empty on a different curve from
+the same two meals taken apart. Rescue carbohydrate lands in the same queue.
+
+### The sensor is sampled, held, and noisy
+
+`CGMSensor.measure` computes a new value only when `patient.t % sample_time == 0` and
+returns the previous value otherwise, so on a five-minute sensor four of every five
+mini-steps are a zero-order hold. The value is the interstitial glucose plus a draw from an
+autocorrelated noise process, clamped to the sensor's range, which for GuardianRT and Dexcom
+is 39 to 600 mg/dL.
+
+That noise is larger than it looks. Across a 34-subject month here the reading minus the
+truth has a median of -0.2 mg/dL and a standard deviation of 12.1, so it is unbiased and
+wide. The consequence shows up at any threshold: a true excursion that sits just under a
+line is measured as several separate crossings. Below 54 mg/dL, the same runs give 100
+episodes with a median of 48 minutes on the truth and 380 with a median of 10 on the
+reading, with 68% more total time below the line on the reading than beneath it. The sensor
+is not hiding the lows, it is chopping them up, and the 39 mg/dL floor accounts for almost
+none of it at 0.075% of samples.
+
+Anything compared against real CGM data has to be measured on the reading for that reason,
+and a duration read off `Result.bg` is not the same statistic as the one a trial reports.
+
+### The clock, and stopping
+
+Time is `scenario.start_time + patient.t` minutes, where `patient.t` advances one minute per
+mini-step. There is no wall clock and no timezone.
+
+A run ends early when the five-minute mean interstitial glucose leaves 10 to 600 mg/dL.
+`Result.completed` records it, and this package reports survival alongside every cohort
+figure because a column computed on whoever lived is not the same column.
+
+### What this package adds around that loop
+
+Each five-minute step, in order: read the sensor and the truth at the same instant, resolve
+what the person announced, hand the reading to the controller, put the returned action
+through the delivery ceilings, apply any injected fault, attenuate by the infusion site, and
+step the environment. Insulin is then recorded at the body, with whatever the site swallowed
+added back, since the pump did deliver it.
+
+The sensor artefacts sit inside that loop rather than being applied to the finished trace,
+so a compression low reaches the algorithm and the simulated person while the underlying
+glucose is untouched.
 
 ## The subjects
 

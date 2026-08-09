@@ -372,9 +372,10 @@ same signal:
 | DCLP3, real sensor, 11x the exposure | 2322 | 10 | 25 | 60 | 160 |
 
 The medians agree exactly and the longest simulated episode is shorter than the longest real
-one. Only 70% of samples genuinely below 54 read below 54 on the simulated sensor, and that
-accounts for most of the apparent gap. What survives is a heavier tail, p90 of 55 against 25,
-and about 1.8 times as many episodes per day.
+one. One caveat on that agreement, since it cuts both ways: real sensors fragment real
+excursions too, and if this package's sensor is noisier than a real one it will fragment
+harder and shorten measured episodes. There is no ground truth in DCLP3 to settle it, so
+what can be said is that the two agree on the signal both actually record.
 
 ### What the physiology says
 
