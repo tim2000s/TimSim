@@ -29,6 +29,8 @@ It sits on top of simglucose rather than forking it. simglucose supplies the dif
 equations, the sensor and pump models, and the environment loop, and its interfaces are
 used unchanged, so a controller written for simglucose runs here without modification.
 
+The model underneath is described in [MODEL.md](MODEL.md).
+
 ### The person, and what is not part of it
 
 | Layer | What it adds | Why it exists |

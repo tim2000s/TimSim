@@ -46,6 +46,8 @@ Roughly 40% of participants are sealed. `dclp3.split` puts them behind the finge
 other 60%. The sealed half is worth exactly one scoring, at the end, and spending it early
 is not recoverable.
 
+The model underneath is described in [MODEL.md](MODEL.md).
+
 ## The seven levels
 
 | Level | Question | What it licenses |

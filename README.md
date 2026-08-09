@@ -154,6 +154,10 @@ noise floor, inject the fault scenarios, then run the cohort that produces the v
 anything, and [docs/OSAID.md](docs/OSAID.md) covers what an adapter for one of the
 open-source systems still needs.
 
+[docs/MODEL.md](docs/MODEL.md) describes the UVA/Padova simulator underneath, taken from the
+equations as implemented rather than from the papers, since most of the arguments in the
+other documents turn on what that model does and does not contain.
+
 ## The person, the rig, and the controller
 
 These are three different things and the package keeps them apart. An earlier version did
