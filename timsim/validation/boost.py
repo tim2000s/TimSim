@@ -245,6 +245,65 @@ REFERENCE_UNCORRECTED = {
 }
 
 
+# Measured 2026-08-11: 20 subjects over 28 days, 152,056 decisions, attributed three ways.
+#
+#     state         logged   port on real   port on TimSim   port error   simulator
+#     IDLE            65.0           73.7             43.0         +8.7       -30.7
+#     OBSERVING       21.2           18.9             48.6         -2.3       +29.7
+#     RECOVERING       5.8            0.6              2.9         -5.2        +2.3
+#     COMMITTED        5.4            6.5              3.8         +1.1        -2.7
+#     CONFIRMED        2.5            0.3              1.7         -2.2        +1.4
+#
+# This overturns the reading these figures were previously given. The shortfall in
+# RECOVERING and CONFIRMED against the plugin's logs belongs to the port, which reaches
+# them on 0.6% and 0.3% of real inputs against a logged 5.8% and 2.5%. Driving the same
+# port with TimSim moves both back towards the logged values rather than away. The
+# simulator is not keeping the algorithm out of the states where it doses hard.
+#
+# What the simulator does do is hold it in OBSERVING, 48.6% against a logged 21.2%, at the
+# expense of IDLE. Running `input_fidelity` on the same cycles says that is the adapter
+# rather than the body, in three places.
+#
+# `max_delta` is not the same quantity on the two sides. The reference builds it from the
+# logs as `abs(delta)`, a single sample, and the adapter takes a maximum over a window, so
+# the adapter's is necessarily larger: median 6.3 against 2.0. Neither is oref's own
+# maxDelta, which is the largest of the delta and the two averaged deltas. Computed on
+# glucose without sensor error the adapter's median is 2.0, matching the reference exactly,
+# so the inflation is the window and the sensor together rather than the simulator's
+# dynamics.
+#
+# `target_bg` is fixed at 110 where real users span 80 to 115.
+#
+# Insulin on board is never negative here, 0.3 at the fifth percentile against a real -0.4.
+# In AndroidAPS insulin on board is measured against the scheduled basal, so a loop that has
+# been withholding basal carries a negative figure. The adapter accumulates boluses only.
+# That shifts the whole distribution up, median 2.2 against 0.7, and the insulin-on-board
+# headroom brake fires on 25.4% of decisions against 2.3% on real inputs.
+#
+# So a Boost verdict is blocked by the adapter and not by the simulator, and the three
+# defects are named rather than inferred. `input_fidelity` found all of them in one run,
+# which is what it exists for.
+ADAPTER_GAPS = {
+    "measured": "2026-08-11", "subjects": 20, "days": 28, "decisions": 152056,
+    "state_occupancy_pct": {"IDLE": 43.0, "OBSERVING": 48.6, "RECOVERING": 2.9,
+                            "COMMITTED": 3.8, "CONFIRMED": 1.7},
+    "dose_mean_u": 0.1163,
+    "gate_firing_pct": {"iob_headroom_brake": 25.40, "hard": 19.48,
+                        "deceleration_brake": 12.73, "pre_dose": 1.31,
+                        "dynamic_spike_cap": 0.11, "max_iob_clamp": 0.03},
+    "defects": (
+        "max_delta is abs(delta) on the reference side and a windowed maximum in the "
+        "adapter, and neither is oref's max of the delta and the averaged deltas",
+        "target_bg is fixed at 110 where real users span 80 to 115",
+        "insulin on board is never negative, where AndroidAPS measures it against "
+        "scheduled basal and a loop withholding basal carries a negative figure",
+    ),
+    "reading": "the state shortfall against the plugin's logs is the port's; the simulator "
+               "moves RECOVERING and CONFIRMED back towards the logged values, and what it "
+               "adds is OBSERVING, which the input comparison attributes to the adapter",
+}
+
+
 def compare(measured, reference=None, keys=None):
     """Per-state and per-gate differences against the reference, in percentage points."""
     reference = reference or REFERENCE

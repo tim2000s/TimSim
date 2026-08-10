@@ -269,3 +269,47 @@ with checks that cost little and invalidate everything downstream when they fail
 Anyone using output from this bench in an argument about someone's treatment should state
 those limits alongside the numbers. This bench ranks options and finds failures, and a
 trial is what decides.
+## What blocks a verdict on Boost, measured
+
+Driving Boost with this simulator for 28 days across 20 subjects, 152,056 decisions, and
+attributing the result three ways: what the shipped plugin logged, what the port produces on
+the same real inputs, and what the port produces when the simulator supplies them. The port
+is common to the last two, so what separates them is the simulator.
+
+| State | Logged | Port on real | Port on TimSim | Port error | Simulator |
+|---|---|---|---|---|---|
+| IDLE | 65.0 | 73.7 | 43.0 | +8.7 | -30.7 |
+| OBSERVING | 21.2 | 18.9 | 48.6 | -2.3 | +29.7 |
+| RECOVERING | 5.8 | 0.6 | 2.9 | -5.2 | +2.3 |
+| COMMITTED | 5.4 | 6.5 | 3.8 | +1.1 | -2.7 |
+| CONFIRMED | 2.5 | 0.3 | 1.7 | -2.2 | +1.4 |
+
+This corrects a reading these figures carried previously. The shortfall in RECOVERING and
+CONFIRMED against the plugin's logs is the port's: it reaches them on 0.6% and 0.3% of real
+inputs against a logged 5.8% and 2.5%. Driving that same port with the simulator moves both
+back towards the logged values. The simulator is not keeping the algorithm out of the states
+where it doses hard, which was the failure this comparison exists to catch.
+
+What the simulator adds is OBSERVING, at 48.6% against a logged 21.2%. Comparing the inputs
+the adapter builds against the inputs Boost really sees puts that in the adapter, in three
+places.
+
+`max_delta` is not the same quantity on the two sides. The reference builds it from the logs
+as the absolute value of a single delta, and the adapter takes a maximum over a window, so
+the adapter's is necessarily larger: a median of 6.3 against 2.0. Neither is oref's own
+maxDelta, which is the largest of the delta and the two averaged deltas. Computed on glucose
+without sensor error the adapter's median is 2.0, matching the reference exactly, so the
+inflation comes from the window and the sensor rather than from the simulated dynamics.
+
+The target is fixed at 110 mg/dL where real users span 80 to 115.
+
+Insulin on board is never negative, 0.3 at the fifth percentile against a real -0.4. In
+AndroidAPS it is measured against the scheduled basal, so a loop that has been withholding
+basal carries a negative figure, and the adapter accumulates boluses only. That lifts the
+whole distribution, a median of 2.2 against 0.7, and the headroom brake fires on 25.4% of
+decisions against 2.3% on real inputs.
+
+So a verdict on Boost is blocked by the adapter rather than by the simulator, and the three
+defects are named rather than inferred. All were found in one run of `input_fidelity`, which
+is the diagnostic the module recommends running before anything else.
+
