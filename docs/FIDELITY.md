@@ -446,6 +446,49 @@ a per-subject settings-accuracy factor for that, drawn once from the subject's n
 cohort is reproducible without regenerating the population, centred on 1.0 because the level
 and the spread are separate questions. It is off by default until it has been measured.
 
+### What actually produces a low, instrumented
+
+Since no parameter predicts which subject spends time in hypoglycaemia, the episodes were
+instrumented instead, on the twelve subjects with the most and the twelve with the least,
+run for 28 days each. Comparing the three hours before each nadir:
+
+| | Fewest lows | Most lows |
+|---|---|---|
+| Episodes below 70 per day | 0.07 | 1.00 |
+| Insulin, U/day | 38.4 | 41.1 |
+| Bolus insulin in the three hours before a nadir, U | 1.29 | 0.27 |
+| Glucose fall over that window, mg/dL | 98 | 123 |
+| Rescues per day | 0.43 | 2.42 |
+| Body weight, kg | 48.2 | 62.0 |
+
+The subjects with the most hypoglycaemia take essentially the same daily insulin and less
+bolus insulin before a low, and fall further. Their lows are not caused by boluses. A fall of
+123 mg/dL over three hours is 0.68 mg/dL per minute, which is the signature of basal insulin
+against no meal rather than of a correction overshooting.
+
+Rescue treatment is not the cause either. Across 787 treatments in the high group and 140 in
+the low:
+
+| | Fewest lows | Most lows |
+|---|---|---|
+| Treated from, mg/dL | 90.9 | 69.1 |
+| Carbohydrate given, g | 33.6 | 33.1 |
+| Glucose rise achieved, mg/dL | 75.6 | 132.3 |
+| Peak reached, mg/dL | 175.6 | 197.4 |
+| Reaching 100 mg/dL | 100% | 95% |
+
+Treatments work and overshoot, to a median peak of 197 mg/dL in the group that has the most
+lows. What differs is where treatment starts: 69 mg/dL against 91. The low group is catching
+falls early on the pre-emptive trigger, and the high group is treating once already below the
+threshold.
+
+So the picture is a slow drift down on basal insulin, caught late, then over-treated. Not an
+overshoot from a correction, and not a treatment that fails to clear. Every subject's basal
+is closed at its own fasting steady state, so what has not been established is why that basal
+runs some subjects down and not others once meals and a correction loop are in play. The
+adaptive sensitivity setting in the behaviour layer is the obvious next place to look and has
+not been measured.
+
 ### Hepatic autoregulation does not explain the hypoglycaemia spread
 
 The population's spread of time below 54 mg/dL is the worst-fitting statistic in the
