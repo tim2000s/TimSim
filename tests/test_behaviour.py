@@ -114,3 +114,56 @@ def test_the_loop_withdraws_basal_when_low():
     assert loop.basal_scale(cgm=70.0, fall_rate=0.0) == 0.0
     assert loop.basal_scale(cgm=105.0, fall_rate=-2.0) == 0.0
     assert loop.basal_scale(cgm=150.0, fall_rate=0.0) == 1.0
+
+
+# ------------------------------------------------- per-subject treating style
+def test_treating_style_is_uniform_by_default():
+    from timsim.person import behaviour as B
+    assert B.rescue_style("adult#001") == (B.RESCUE_THRESHOLD, B.RESCUE_REFRACTORY_MIN)
+
+
+def test_a_subject_keeps_its_treating_style_between_runs():
+    from timsim.person import behaviour as B
+    assert B.rescue_style("adult#001", 0.3) == B.rescue_style("adult#001", 0.3)
+    assert B.rescue_style("adult#001", 0.3) != B.rescue_style("adult#002", 0.3)
+
+
+def test_treating_style_stays_inside_clinically_plausible_bounds():
+    import numpy as np
+    from timsim.person import behaviour as B
+    from timsim.population import names
+    v = [B.rescue_style(n, 0.4) for n in names()]
+    t = np.array([x[0] for x in v]); r = np.array([x[1] for x in v])
+    assert B.RESCUE_THRESHOLD_BOUNDS[0] <= t.min() and t.max() <= B.RESCUE_THRESHOLD_BOUNDS[1]
+    assert B.RESCUE_REFRACTORY_BOUNDS[0] <= r.min() and r.max() <= B.RESCUE_REFRACTORY_BOUNDS[1]
+    assert abs(np.median(t) - B.RESCUE_THRESHOLD) < 5.0, "the centre moved"
+
+
+def test_the_preemptive_trigger_follows_the_threshold():
+    """Someone who treats late should not still be treating early on a fast fall."""
+    import numpy as np
+    from timsim.person.behaviour import Person, RESCUE_PREEMPT_BG, RESCUE_THRESHOLD
+    p = Person(np.random.default_rng(0), rescue_threshold=60.0)
+    assert p.rescue_preempt_bg == 60.0 + (RESCUE_PREEMPT_BG - RESCUE_THRESHOLD)
+
+
+def test_a_higher_threshold_treats_more_often():
+    import numpy as np
+    from timsim.person.behaviour import Person
+    counts = []
+    for thr in (58.0, 85.0):
+        p = Person(np.random.default_rng(0), rescue_threshold=thr,
+                   rescue_refractory_min=45.0)
+        for k in range(2000):
+            p.observe(k * 5.0, 75.0, 0.0)
+        counts.append(p.rescue_events)
+    assert counts[1] > counts[0]
+
+
+def test_the_spread_reaches_the_run_and_is_recorded():
+    from timsim import simulate
+    from timsim.population import names
+    r = simulate(names("adult")[0], days=1, seed=0, behaviour_spread=0.3)
+    assert r.meta["behaviour_spread"] == 0.3
+    assert r.meta["rescue_threshold"] != simulate(
+        names("adult")[1], days=1, seed=0, behaviour_spread=0.3).meta["rescue_threshold"]

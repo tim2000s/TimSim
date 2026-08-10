@@ -79,6 +79,7 @@ from simglucose.simulation.scenario import CustomScenario
 
 from ..controller.loop import CorrectionLoop
 from ..patient.varying import HYPO_RISK_GAIN, VaryingPatient
+from ..person import behaviour as behaviour_mod
 from ..person.behaviour import AdaptiveRatios, BehaviourScenario, Person
 from ..population import params_for, therapy_for
 from ..sensor.realism import OnlineArtefacts
@@ -285,7 +286,7 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
              params=None, settings=None, profile=None, diurnal_basal=False,
              limits=None, faults=None, sample_minutes=DEFAULT_SAMPLE_MINUTES,
              hypo_risk_gain=None, si_pattern="sinusoid", si_interday_cv=None,
-             isf_scale=1.0, settings_spread=None):
+             isf_scale=1.0, settings_spread=None, behaviour_spread=None):
     """Run one subject. Returns a Result.
 
     `layers` is any subset of LAYERS. `controller`, if given, replaces the built-in
@@ -336,8 +337,11 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
     schedule = meals if meals is not None else draw_meals(days, rng, body_weight)
     start = pd.Timestamp("2026-01-01 00:00:00").to_pydatetime()
 
+    threshold, refractory = behaviour_mod.rescue_style(
+        name, 0.0 if behaviour_spread is None else behaviour_spread)
     person = Person(rng, rescue="behaviour" in effective,
-                    announce="behaviour" in effective)
+                    announce="behaviour" in effective,
+                    rescue_threshold=threshold, rescue_refractory_min=refractory)
     if "behaviour" in effective:
         scenario = BehaviourScenario(start, schedule, person)
     else:
@@ -464,6 +468,8 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
             "controller": controller_label,
             "si_pattern": si_pattern, "isf_scale": float(isf_scale),
             "settings_spread": float(settings_spread or 0.0),
+            "behaviour_spread": float(behaviour_spread or 0.0),
+            "rescue_threshold": threshold, "rescue_refractory_min": refractory,
             "si_class": getattr(patient, "si_class", None),
             "profile": prof.as_dict()}
     meta.update(enforcer.report())
