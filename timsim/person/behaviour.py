@@ -83,7 +83,24 @@ RESCUE_REFRACTORY_MIN = 45.0      # one treatment episode, not one dosing cycle
 # and 2.18 down to 0.71 for refractory periods from 20 to 180 minutes.
 #
 # Drawn to reproduce the observed quartiles rather than any fidelity statistic, on the same
-# principle as the rest of this module. Off by default until measured.
+# principle as the rest of this module.
+#
+# Measured at a coefficient of variation of 0.30 across all 100 subjects over 28 days. It is
+# the best lever found for the population's narrowness and the only one that has improved
+# per-subject coverage, from 91.0% of the trial's participants to 94.0%, and it moves the
+# between-subject spread of mean glucose from 8.44 to 10.21 mg/dL against a trial figure of
+# 14.24. The rescue rate spans a factor of 4.2 between quartiles against the 2.6 it had and
+# the 14.4 real users have.
+#
+# It is off by default because of what it does to the other direction. The share of virtual
+# subjects resembling a real participant falls from 73.5% to 64.9%, the spread of time below
+# 54 widens from 2.75 to 3.10 where it was already the worst-fitting statistic, and
+# variability widens from 1.63 to 1.90.
+#
+# That is the structural problem rather than a property of this knob. The population needs
+# its spread of mean glucose widened and its spread of hypoglycaemia narrowed, and every
+# source of between-subject variation tried so far widens both. Something that narrows
+# hypoglycaemia is what is missing, and adding variation is not it.
 BEHAVIOUR_SPREAD_CV = 0.0
 RESCUE_THRESHOLD_BOUNDS = (55.0, 88.0)
 RESCUE_REFRACTORY_BOUNDS = (15.0, 240.0)

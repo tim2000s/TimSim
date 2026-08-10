@@ -446,6 +446,39 @@ a per-subject settings-accuracy factor for that, drawn once from the subject's n
 cohort is reproducible without regenerating the population, centred on 1.0 because the level
 and the spread are separate questions. It is off by default until it has been measured.
 
+### Per-subject treating style, measured and not adopted
+
+Every subject shares one set of rescue parameters, and the rescue rate shows the size of
+that. Across the 30 real closed-loop users the rate has a median of 0.44 a day with
+quartiles at 0.09 and 1.30, a factor of fourteen. The cohort spans a factor of 2.6.
+
+`behaviour.rescue_style` draws a per-subject treating threshold and refractory period from
+the subject's name. At a coefficient of variation of 0.30, across all 100 subjects:
+
+| | Without | With | Trial |
+|---|---|---|---|
+| Rescue rate, quartile ratio | 2.6 | 4.2 | 14.4 |
+| Between-subject sd of mean glucose, mg/dL | 8.44 | 10.21 | 14.24 |
+| Spread ratio, mean glucose | 0.58 | 0.70 | 1.00 |
+| Spread ratio, time below 54 | 2.75 | 3.10 | 1.00 |
+| Spread ratio, variability | 1.63 | 1.90 | 1.00 |
+| Real participants covered | 91.0% | 94.0% | |
+| Virtual subjects resembling a real one | 73.5% | 64.9% | |
+
+It is the best lever found and the only one that has improved per-subject coverage. It also
+takes the share of plausible virtual subjects down by 8.6 points and widens the spread of
+time below 54, which was already the worst-fitting statistic in the table.
+
+The pattern across every mechanism tried is the same, and it is the useful part. The
+population needs the spread of its mean glucose widened and the spread of its hypoglycaemia
+narrowed. Settings divergence widened both. Treating style widened both. Any source of
+between-subject variation widens both, because the two statistics are driven by the same
+underlying differences between subjects.
+
+So the missing ingredient is not more variation. It is something that reduces how differently
+these subjects respond at the bottom of their range while leaving the middle alone, and
+nothing in the layers currently does that.
+
 ### Settings divergence between people, measured and not adopted
 
 Real settings are titrated against an imperfect history and left alone, so they diverge from
