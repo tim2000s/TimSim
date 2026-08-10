@@ -113,8 +113,9 @@ insulin directly, which is why hepatic suppression lags a bolus. And `-kp2*Gp` i
 own negative feedback on production: as plasma glucose falls, the liver produces more.
 
 That term is a hepatic autoregulation, and it is stronger than the people the model
-represents. Measured on the published adults, production on crossing 54 mg/dL is 2.60
-mg/kg/min against a basal of 2.36, so it rises. Rickels et al. measured 0.59 mg/kg/min in
+represents. Production on crossing 54 mg/dL has a median of 2.61 mg/kg/min across the
+generated hundred, and a lift over each subject's own basal of 0.97, so it holds rather than
+rising. Rickels et al. measured 0.59 mg/kg/min in
 long-standing type 1 diabetes at a 45 mg/dL clamp, flat against euglycaemia. This is why
 adding counterregulation to this model would move it away from its own population rather
 than towards it, and `docs/FIDELITY.md` sets out that argument in full.

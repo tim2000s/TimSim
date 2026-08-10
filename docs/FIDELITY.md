@@ -446,6 +446,49 @@ a per-subject settings-accuracy factor for that, drawn once from the subject's n
 cohort is reproducible without regenerating the population, centred on 1.0 because the level
 and the spread are separate questions. It is off by default until it has been measured.
 
+### Hepatic autoregulation does not explain the hypoglycaemia spread
+
+The population's spread of time below 54 mg/dL is the worst-fitting statistic in the
+coverage table, and the model's endogenous glucose production during a low is four times the
+measured value, so the obvious candidate was that a defence which is too strong and varies
+between subjects would produce exactly that signature. Measured across 97 subjects, it does
+not:
+
+| Against time below 54 | Correlation |
+|---|---|
+| `kp2`, the autoregulation coefficient | -0.17 |
+| Production on crossing 54 mg/dL | -0.23 |
+| Production as a multiple of the subject's own basal | -0.26 |
+| Basal production | -0.05 |
+
+The six subjects with the most hypoglycaemia span production from 1.35 to 3.50 mg/kg/min and
+`kp2` from 0.0024 to 0.0112 without a pattern. This joins body weight, basal glucose, insulin
+sensitivity, carbohydrate ratio, correction factor, age and daily basal, none of which
+correlates above 0.35 with any outcome. No single parameter in this model predicts which
+subject spends time in hypoglycaemia.
+
+Two things did come out of the measurement.
+
+The level is confirmed and quantified on the whole population. Production on crossing 54
+mg/dL has a median of 2.61 mg/kg/min and ranges from 1.18 to 6.23, against 0.59 plus or minus
+0.12 measured by Rickels et al. in long-standing type 1 diabetes. One caveat on that
+comparison: their clamp holds insulin at a fixed high level while a low here is produced by a
+bolus that is decaying, so the insulin exposure is not identical.
+
+And a correction. The claim recorded earlier, that production rises during a low, holds for
+the ten published adults where it goes from 2.36 to 2.60 mg/kg/min. Across the generated
+hundred the median lift over each subject's own basal is 0.97, so it is flat rather than
+rising. Flat is what Rickels reports for this population, described as suppressed to levels
+no different from euglycaemia, so the model is qualitatively right about the shape of the
+response and wrong about its level by a factor of four.
+
+The spread also shrinks once run-to-run noise is removed, from 2.74 times the trial's to
+2.17, on the same correction applied to mean glucose. It remains the worst-fitting statistic
+and it remains unexplained. Since no parameter predicts it and every source of variation
+widens it, the likeliest reading is that it is emergent: a subject goes low when a meal bolus
+overshoots, which depends on the joint behaviour of carbohydrate ratio, meal size and insulin
+action rather than on any one of them.
+
 ### Per-subject treating style, measured and not adopted
 
 Every subject shares one set of rescue parameters, and the rescue rate shows the size of
