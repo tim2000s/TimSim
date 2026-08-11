@@ -304,6 +304,50 @@ ADAPTER_GAPS = {
 }
 
 
+# Measured 2026-08-11 after `controller/boost_bridge.py` replaced the port with the shipped
+# Kotlin, and after four input reconstructions were corrected. 20 subjects, 28 days.
+#
+#     state          logged         port   bridge old   bridge fixed
+#     IDLE             65.0         43.0         29.0           30.7
+#     OBSERVING        21.2         48.6         33.1           32.0
+#     RECOVERING        5.8          2.9          8.9            8.6
+#     COMMITTED         5.4          3.8         25.2           24.9
+#     CONFIRMED         2.5          1.7          3.8            3.9
+#     dose mean, U   0.0826       0.1163       0.0792         0.0834
+#
+# The dose is now the shipped algorithm's. At 0.0834 U against a logged 0.0826 the bridge
+# removes the port's 41% over-delivery outright, and CONFIRMED and RECOVERING move from a
+# shortfall to a small excess.
+#
+# The four input corrections are in `controller/boost.py`. `delta`, `shortAvgDelta` and
+# `longAvgDelta` now follow AndroidAPS's own windows, so `maxDelta` is the signed maximum of
+# the three rather than the largest absolute recent difference; insulin on board is measured
+# against the scheduled basal and goes negative on 21% of cycles as it does for real users;
+# and the delta history handed to `deltaDeclining` is successive windowed deltas rather than
+# raw differences. They improve the outcomes, time in range 71.0% to 75.8% and time above 180
+# 27.9% to 22.8%, and they barely move the state distribution.
+#
+# What remains is COMMITTED, at 24.9% against a logged 5.4%, with IDLE at half its logged
+# share. The delta-history correction was made on the hypothesis that `deltaDeclining` was
+# the blocked exit, and it moved COMMITTED by 0.3 points, so that hypothesis is refuted and
+# the cause is unidentified. It is the last thing between this and a verdict.
+BRIDGE = {
+    "measured": "2026-08-11", "subjects": 20, "days": 28,
+    "state_occupancy_pct": {"IDLE": 30.7, "OBSERVING": 32.0, "RECOVERING": 8.6,
+                            "COMMITTED": 24.9, "CONFIRMED": 3.9},
+    "dose_mean_u": 0.0834,
+    "outcomes": {"time_in_range": 75.8, "below_70": 1.37, "above_180": 22.8,
+                 "insulin_u_per_day": 39.2, "completed": (19, 20)},
+    "before_input_fixes": {"state_occupancy_pct": {"IDLE": 29.0, "OBSERVING": 33.1,
+                                                   "RECOVERING": 8.9, "COMMITTED": 25.2,
+                                                   "CONFIRMED": 3.8},
+                           "dose_mean_u": 0.0792,
+                           "outcomes": {"time_in_range": 71.0, "above_180": 27.9}},
+    "open": "COMMITTED holds 24.9% of cycles against a logged 5.4% and the cause is not the "
+            "delta history, which was corrected and moved it 0.3 points",
+}
+
+
 def compare(measured, reference=None, keys=None):
     """Per-state and per-gate differences against the reference, in percentage points."""
     reference = reference or REFERENCE

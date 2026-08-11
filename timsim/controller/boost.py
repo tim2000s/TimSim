@@ -104,6 +104,8 @@ class BoostController(Controller):
         self.null_streak = 0
         self.cycles = []               # every CycleInput built, for comparison against real
         self.outputs = []              # every CycleOutput, for the response profile
+        self.basal_deviations = []     # (minute, delivered - scheduled) for negative IOB
+        self.delta_history = []        # successive GlucoseStatus deltas, not raw differences
 
     # ------------------------------------------------------------------ derived inputs
     def _iob(self, minute):
@@ -125,15 +127,73 @@ class BoostController(Controller):
         r = list(self.readings)
         return [r[i + 1] - r[i] for i in range(len(r) - 1)]
 
+    def glucose_status(self, sample=5.0):
+        """delta, shortAvgDelta and longAvgDelta as AndroidAPS computes them.
+
+        Not a difference of consecutive readings. Every earlier reading contributes
+        `(current - then) / minutesAgo * 5`, and the three figures are averages of those
+        contributions over separate windows: 2.5 to 7.5 minutes for the delta, 2.5 to 17.5
+        for the short average, and 17.5 to 42.5 for the long average. See `DeltaCalculator`
+        in the AndroidAPS tree.
+
+        This exists because `max_delta` is a hard gate and was being built here as the
+        largest absolute recent difference, which is a different quantity: a median of 6.3
+        against 2.0 in the field. The comparison the package held itself against was also
+        wrong, taking `abs(delta)` of a single sample, so neither side matched oref.
+        """
+        r = list(self.readings)
+        if len(r) < 2:
+            return 0.0, 0.0, 0.0
+        now = r[-1]
+        last, short, long = [], [], []
+        for k in range(1, len(r)):
+            ago = k * sample
+            if ago <= 0:
+                continue
+            contribution = (now - r[-1 - k]) / ago * 5.0
+            if 2.5 <= ago <= 7.5:
+                last.append(contribution)
+            if 2.5 <= ago <= 17.5:
+                short.append(contribution)
+            if 17.5 <= ago <= 42.5:
+                long.append(contribution)
+        mean = lambda v: float(sum(v) / len(v)) if v else 0.0
+        return mean(last), mean(short), mean(long)
+
+    def _basal_iob(self, minute):
+        """Insulin on board from basal delivery relative to what was scheduled.
+
+        AndroidAPS measures insulin on board against the scheduled basal, so a loop that has
+        been withholding basal carries a negative figure: real users sit at -0.4 U at the
+        fifth percentile. Counting boluses alone put this cohort at +0.3, lifted the median
+        from 0.7 to 2.2 and fired the headroom brake on 25.4% of decisions against a real
+        2.3%.
+        """
+        return float(sum(u * iob_fraction(minute - m, DIA_MIN, PEAK_MIN)
+                         for m, u in self.basal_deviations))
+
+    def observe_basal(self, minute, delivered_u, scheduled_u):
+        """Record how far the basal delivered in this step sat from the schedule."""
+        deviation = float(delivered_u) - float(scheduled_u)
+        if abs(deviation) > 1e-9:
+            self.basal_deviations.append((float(minute), deviation))
+
     def policy(self, observation, reward, done, **info):
+        # Record what the pump did with the last basal instruction before deciding, so this
+        # cycle's insulin on board reflects it.
+        delivered = info.get("delivered_basal_u")
+        scheduled = info.get("scheduled_basal_u")
+        if delivered is not None and scheduled is not None:
+            self.observe_basal(float(info.get("clock_minutes", 0.0)) - float(
+                info.get("sample_time", 5.0)), delivered, scheduled)
         sample = float(info.get("sample_time", 5.0))
         minute = float(info.get("clock_minutes", 0.0))
         bg = float(observation.CGM)
         self.readings.append(bg)
 
         deltas = self._deltas()
-        delta = deltas[-1] if deltas else 0.0
-        short_avg = float(np.mean(deltas[-3:])) if deltas else 0.0
+        delta, short_avg, long_avg = self.glucose_status(sample)
+        self.delta_history.append(delta)
         # The acceleration Boost reads is the current delta against the recent average, as
         # a percentage. Confirmed against the real records: a delta of 7.0 with a short
         # average of 2.75 is logged as 154.5.
@@ -143,7 +203,7 @@ class BoostController(Controller):
         isf = self.profile.isf_at(minute)
         cr = self.profile.cr_at(minute)
         target = self.target_bg if self.target_bg is not None else self.profile.target
-        iob = self._iob(minute)
+        iob = self._iob(minute) + self._basal_iob(minute)
 
         grams = float(info.get("meal", 0.0)) * sample
         self.cob_g = max(0.0, self.cob_g - CARB_ABSORPTION_G_PER_MIN * sample) + grams
@@ -195,10 +255,17 @@ class BoostController(Controller):
             enable_smb_pre_checks=True,
             min_guard_bg=min_guard,
             min_guard_threshold=self.min_guard_threshold,
-            max_delta=max((abs(d) for d in recent_deltas), default=0.0),
+            # oref's maxDelta: the largest of the three, signed. Not an absolute maximum
+            # over a window, which is what this was and which is a different gate.
+            max_delta=max(delta, short_avg, long_avg),
             round_smb_to=ROUND_SMB_TO,
             sensor_quality_ok=float(info.get("stale_minutes", 0.0)) <= sample,
-            delta_history=tuple(deltas[-3:]),
+            # Successive GlucoseStatus deltas rather than raw differences of consecutive
+            # readings. `deltaDeclining` asks for three strictly decreasing values, and a
+            # raw difference on this sensor is mostly noise, so the condition that exits
+            # COMMITTED almost never fired: the state held 25.2% of cycles against a logged
+            # 5.4%. The windowed delta is what AndroidAPS would supply.
+            delta_history=tuple(self.delta_history[-3:]),
             iob_activity_uh=self._activity_u_per_hour(minute),
         )
 

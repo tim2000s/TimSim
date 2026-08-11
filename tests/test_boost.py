@@ -191,7 +191,12 @@ def test_the_adapter_builds_structurally_valid_cycles():
     for field in ("bg", "eventual_bg", "target_bg", "min_guard_bg"):
         assert np.median([getattr(x, field) for x in c.cycles]) > 40.0, field
     assert all(0 <= x.hour <= 23 for x in c.cycles)
-    assert all(x.iob >= 0 for x in c.cycles)
+    # Insulin on board is measured against the scheduled basal, as AndroidAPS does, so it
+    # goes negative when the loop has been withholding. Real users sit at -0.4 U at the
+    # fifth percentile; an adapter counting boluses alone never does.
+    iob = [x.iob for x in c.cycles]
+    assert min(iob) < 0.0, "insulin on board never went negative"
+    assert max(iob) > 0.0
 
 
 def test_the_adapter_is_deterministic():
@@ -310,3 +315,67 @@ def test_the_discriminability_result_against_dclp3_is_recorded():
     # the autocorrelations matching is what retired the persistence worry
     for k in ("acf30", "acf60"):
         assert abs(d["marginals"][k][2]) < 0.1
+
+
+# ------------------------------------------------- the inputs AndroidAPS actually computes
+def test_the_glucose_status_follows_the_androidaps_windows():
+    """delta, shortAvgDelta and longAvgDelta are averages of scaled contributions.
+
+    Every earlier reading contributes (current - then) / minutesAgo * 5, averaged over 2.5
+    to 7.5 minutes, 2.5 to 17.5 and 17.5 to 42.5. Not differences of consecutive readings.
+    """
+    from timsim.controller.boost import BoostController
+    from timsim.population import names
+    c = BoostController(names("adult")[0])
+    c.readings = [100.0 + 2.0 * k for k in range(10)]      # a steady 2 mg/dL per 5 min
+    delta, short, long = c.glucose_status()
+    for v in (delta, short, long):
+        assert abs(v - 2.0) < 1e-9, "a constant slope must give the same figure in every window"
+
+
+def test_max_delta_is_the_signed_maximum_of_the_three():
+    """It is a hard gate. It was being built as the largest absolute recent difference,
+    which is a different quantity: a median of 6.3 against 2.0 in the field."""
+    from timsim.controller.boost import BoostController
+    from timsim.population import names
+    c = BoostController(names("adult")[0])
+    c.readings = [200.0 - 5.0 * k for k in range(10)]      # falling steadily
+    delta, short, long = c.glucose_status()
+    assert max(delta, short, long) < 0.0, "a steady fall cannot give a positive maxDelta"
+
+
+def test_basal_below_schedule_produces_negative_insulin_on_board():
+    from timsim.controller.boost import BoostController
+    from timsim.population import names
+    c = BoostController(names("adult")[0])
+    for k in range(6):
+        c.observe_basal(k * 5.0, 0.0, 0.1)                 # suspended against a schedule
+    assert c._basal_iob(30.0) < 0.0
+
+
+def test_basal_at_schedule_contributes_nothing():
+    from timsim.controller.boost import BoostController
+    from timsim.population import names
+    c = BoostController(names("adult")[0])
+    for k in range(6):
+        c.observe_basal(k * 5.0, 0.1, 0.1)
+    assert c._basal_iob(30.0) == 0.0
+
+
+def test_the_delta_history_is_windowed_deltas_not_raw_differences():
+    """`deltaDeclining` exits COMMITTED and needs three strictly decreasing values.
+
+    A raw difference of consecutive readings on this sensor is mostly noise, so the
+    condition almost never fired and the state held 25.2% of cycles against a logged 5.4%.
+    """
+    from timsim import simulate
+    from timsim.controller.boost import BoostController
+    from timsim.population import names
+    name = names("adult")[0]
+    c = BoostController(name)
+    simulate(name, days=2, seed=0, controller=c)
+    assert c.delta_history, "no delta history was kept"
+    tails = [x.delta_history for x in c.cycles if len(x.delta_history) >= 3]
+    assert tails
+    declining = [all(t[i] > t[i + 1] for i in range(len(t) - 1)) for t in tails]
+    assert 0.02 < sum(declining) / len(declining) < 0.45, "the exit condition never fires"

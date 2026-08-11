@@ -373,6 +373,7 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
 
     cgm, bg, insulin = [], [], []
     minute, previous, fall_rate, delivered_bolus = 0.0, None, 0.0, None
+    delivered_basal = None
     last_seen, stale_minutes = float(obs.CGM), 0.0
     completed = True
 
@@ -408,7 +409,13 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
                      # reads back out of pump history. It is not what was asked for: the
                      # ceilings sit in between, and an algorithm that tracks its own
                      # requests instead will over-estimate its insulin on board.
-                     "delivered_bolus_u": delivered_bolus}
+                     "delivered_bolus_u": delivered_bolus,
+                     # What the pump ran as basal last step and what the profile asked for.
+                     # AndroidAPS measures insulin on board against the schedule, so an
+                     # algorithm reconstructing it needs both to get a negative figure when
+                     # the loop has been withholding.
+                     "delivered_basal_u": delivered_basal,
+                     "scheduled_basal_u": prof.basal_at(minute) * step_minutes}
 
         if builtin_driver:
             action = driver.act(announced, seen, clock, step_minutes, fall_rate)
@@ -426,6 +433,7 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
         # before the fault and the site, because those two are exactly the losses a pump
         # cannot see and would not report.
         delivered_bolus = float(bolus_u)
+        delivered_basal = float(basal_u_per_min) * step_minutes
 
         # A failed site sits between the pump and the depot, so it attenuates after the
         # limits and after any injected fault. Whatever it swallows is added back below:
