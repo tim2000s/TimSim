@@ -64,22 +64,41 @@ REQUIREMENT = {"programmed_tdi_mean": 61.3, "median": 62.5, "range": (26.0, 141.
 #
 #   arm                    insulin U/day     TIR    <70    <54   >180   rescues/day  done
 #   open loop, no loop              46.9    64.4   2.11   0.57   33.5          1.09  18/21
+#   Boost V5, shipped               49.9    72.2   1.31   0.27   26.5          0.82  21/21
 #   built-in correction loop        54.5    75.1   2.43   0.62   22.5          1.31  21/21
-#   oref0 SMB                       63.4    74.6   6.54   2.12   18.9             -  20/21
+#   oref0 SMB, shipped              63.4    74.6   6.54   2.12   18.9             -  20/21
 #   DCLP3 closed loop, real            -    71.0      -      -  24.65             -      -
 #
-# Two things follow. oref0 reaches the same time in range as the built-in correction loop on
-# the same people, 74.6% against 75.1%, and buys the better hyperglycaemia figure, 18.9%
-# against 22.5%, with 2.7 times the time below 70 and 3.4 times the time below 54. And the
-# excess is not a property of the person layer: the same virtual subjects under the built-in
-# loop sit at 2.43% below 70, so the simulator is capable of producing an ordinary
-# hypoglycaemia rate and the oref arm's figure belongs to the oref arm. Whether it belongs to
-# the algorithm or to the missing autosens is not yet separated.
+# Programmed requirement across these subjects is 61.3 U/day.
+#
+# Three things follow.
+#
+# Insulin and hyperglycaemia move together across four independent controllers spanning
+# 46.9 to 63.4 U/day: time above 180 falls 33.5, 26.5, 22.5, 18.9 in the same order. Nothing
+# in the package arranges that, since two of the four arms are other people's code driven
+# through a pipe, so it is evidence that the simulator responds to insulin in a graded way
+# rather than saturating or running away.
+#
+# Boost lands closest to the trial it was never fitted to, 72.2% in range against DCLP3's
+# 71.0% and 26.5% above 180 against 24.65%, while delivering 19% under the programmed
+# requirement. It also carries the lowest hypoglycaemia of any arm including the open loop,
+# which is what withholding basal on a fall is supposed to achieve.
+#
+# oref0 reaches the same time in range as the built-in correction loop, 74.6% against 75.1%,
+# and buys the better hyperglycaemia figure with 2.7 times the time below 70 and 3.4 times
+# the time below 54. That excess is not a property of the person layer: the same virtual
+# subjects sit at 2.43% below 70 under the built-in loop and 1.31% under Boost, so the
+# simulator produces ordinary hypoglycaemia rates under two other controllers and the oref
+# figure belongs to the oref arm. Whether it belongs to the algorithm or to the autosens
+# pinned at 1.0 is not yet separated.
 LIKE_FOR_LIKE = {
     "measured": "2026-08-11", "subjects": 21, "days": 28, "seed": 0, "signal": "reading",
     "open_loop": {"insulin_u_per_day": 46.9, "time_in_range": 64.4, "below_70": 2.11,
                   "below_54": 0.57, "above_180": 33.5, "rescues_per_day": 1.09,
                   "completed": (18, 21)},
+    "boost_v5": {"insulin_u_per_day": 49.9, "time_in_range": 72.2, "below_70": 1.31,
+                 "below_54": 0.27, "above_180": 26.5, "rescues_per_day": 0.82,
+                 "completed": (21, 21)},
     "built_in_loop": {"insulin_u_per_day": 54.5, "time_in_range": 75.1, "below_70": 2.43,
                       "below_54": 0.62, "above_180": 22.5, "rescues_per_day": 1.31,
                       "completed": (21, 21)},
