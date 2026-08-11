@@ -10,3 +10,6 @@ examples/out/
 timsim/population/params/vpop_*.csv
 timsim/population/params/vpop_*.json
 bridge/boost/*.jar
+# The gathered oref0 source. It is someone else's code and belongs in their repository;
+# bridge/oref/build.sh fetches it from a local checkout.
+bridge/oref/vendor/

@@ -45,9 +45,8 @@ import numpy as np
 from simglucose.controller.base import Action, Controller
 
 from ..therapy.insulin import DIA_MIN, PEAK_MIN, iob_fraction
+from .inputs import CARB_ABSORPTION_G_PER_MIN, HISTORY_SAMPLES, LoopInputs
 
-HISTORY_SAMPLES = 8               # 40 minutes at five-minute sampling
-CARB_ABSORPTION_G_PER_MIN = 0.5   # a plain linear decay, in the usual clinical region
 MIN_GUARD_THRESHOLD = 80.0        # mg/dL, the value the real cohort carries
 ROUND_SMB_TO = 0.05
 PROJECTION_MINUTES = 30.0
@@ -74,7 +73,7 @@ INSULIN_REQ_FRACTION = 0.41
 LOW_TEMP_MARGIN_MGDL = 20.0
 
 
-class BoostController(Controller):
+class BoostController(LoopInputs, Controller):
     """The Boost V5 pipeline, fed from TimSim.
 
     `config` is a `V5Config` from the harness, so a sweep over its constants is a sweep
@@ -98,85 +97,20 @@ class BoostController(Controller):
         # property of the person.
         self.target_bg = float(target_bg) if target_bg is not None else None
 
-        self.readings = deque(maxlen=HISTORY_SAMPLES)
-        self.doses = []                # [(minute, units)] this algorithm believes it gave
-        self.cob_g = 0.0
+        self.init_inputs()
         self.null_streak = 0
         self.cycles = []               # every CycleInput built, for comparison against real
         self.outputs = []              # every CycleOutput, for the response profile
-        self.basal_deviations = []     # (minute, delivered - scheduled) for negative IOB
-        self.delta_history = []        # successive GlucoseStatus deltas, not raw differences
 
     # ------------------------------------------------------------------ derived inputs
-    def _iob(self, minute):
-        return float(sum(u * iob_fraction(minute - m, DIA_MIN, PEAK_MIN)
-                         for m, u in self.doses))
-
-    def _iob_after(self, minute, horizon):
-        """Insulin still on board `horizon` minutes from now, given no further doses."""
-        return float(sum(u * iob_fraction(minute + horizon - m, DIA_MIN, PEAK_MIN)
-                         for m, u in self.doses))
-
-    def _activity_u_per_hour(self, minute):
-        """Insulin acting right now, as the rate Boost logs. A five-minute difference of
-        insulin on board, scaled to the hour."""
-        now, then = self._iob(minute), self._iob(minute - 5.0)
-        return max(0.0, (then - now)) * 12.0
-
-    def _deltas(self):
-        r = list(self.readings)
-        return [r[i + 1] - r[i] for i in range(len(r) - 1)]
-
-    def glucose_status(self, sample=5.0):
-        """delta, shortAvgDelta and longAvgDelta as AndroidAPS computes them.
-
-        Not a difference of consecutive readings. Every earlier reading contributes
-        `(current - then) / minutesAgo * 5`, and the three figures are averages of those
-        contributions over separate windows: 2.5 to 7.5 minutes for the delta, 2.5 to 17.5
-        for the short average, and 17.5 to 42.5 for the long average. See `DeltaCalculator`
-        in the AndroidAPS tree.
-
-        This exists because `max_delta` is a hard gate and was being built here as the
-        largest absolute recent difference, which is a different quantity: a median of 6.3
-        against 2.0 in the field. The comparison the package held itself against was also
-        wrong, taking `abs(delta)` of a single sample, so neither side matched oref.
-        """
-        r = list(self.readings)
-        if len(r) < 2:
-            return 0.0, 0.0, 0.0
-        now = r[-1]
-        last, short, long = [], [], []
-        for k in range(1, len(r)):
-            ago = k * sample
-            if ago <= 0:
-                continue
-            contribution = (now - r[-1 - k]) / ago * 5.0
-            if 2.5 <= ago <= 7.5:
-                last.append(contribution)
-            if 2.5 <= ago <= 17.5:
-                short.append(contribution)
-            if 17.5 <= ago <= 42.5:
-                long.append(contribution)
-        mean = lambda v: float(sum(v) / len(v)) if v else 0.0
-        return mean(last), mean(short), mean(long)
-
-    def _basal_iob(self, minute):
-        """Insulin on board from basal delivery relative to what was scheduled.
-
-        AndroidAPS measures insulin on board against the scheduled basal, so a loop that has
-        been withholding basal carries a negative figure: real users sit at -0.4 U at the
-        fifth percentile. Counting boluses alone put this cohort at +0.3, lifted the median
-        from 0.7 to 2.2 and fired the headroom brake on 25.4% of decisions against a real
-        2.3%.
-        """
-        return float(sum(u * iob_fraction(minute - m, DIA_MIN, PEAK_MIN)
-                         for m, u in self.basal_deviations))
-
-    def observe_basal(self, minute, delivered_u, scheduled_u):
-        """Record how far the basal delivered in this step sat from the schedule."""
-        deviation = float(delivered_u) - float(scheduled_u)
-        if abs(deviation) > 1e-9:
-            self.basal_deviations.append((float(minute), deviation))
+    # These live in `inputs.py` so the oref adapter beside this one reads insulin on board
+    # and the deltas off the same definition. A difference between the two algorithms then
+    # belongs to the algorithms rather than to two reconstructions that drifted apart.
+    _iob = LoopInputs.bolus_iob
+    _iob_after = LoopInputs.iob_after
+    _activity_u_per_hour = LoopInputs.activity_u_per_hour
+    _basal_iob = LoopInputs.basal_iob
+    _deltas = LoopInputs.raw_deltas
 
     def policy(self, observation, reward, done, **info):
         # Record what the pump did with the last basal instruction before deciding, so this

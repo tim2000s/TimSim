@@ -96,23 +96,33 @@ and not enough to drive one faithfully. The gap, by system family:
 | Withheld and stale readings | oref falls back to a safer path on a gappy or flat trace, and that path needs testing | done, `validation/faults.py` plus `info["stale_minutes"]` |
 | A clock the system can read, with the option to move it | daylight saving and timezone changes have caused real incidents | done, `info["clock_minutes"]` and `faults.ClockShift` |
 | Delivery that can silently fail | insulin on board reconstructed from what was commanded diverges from what arrived | done, `faults.NoDelivery` |
-| Five-minute glucose history, 24 hours deep, with timestamps | oref reads delta, short_avgdelta and long_avgdelta off it rather than off one reading | not passed; an adapter has to accumulate it |
-| Temp basal as rate plus duration | oref returns a temp basal, and its expiry behaviour is part of the algorithm | not accepted; only an instantaneous rate |
-| Pump history for IOB | oref recomputes insulin on board from delivery history rather than trusting a running total | not maintained in the shape oref reads |
-| Announced carbohydrate as a timestamped carb entry | oref runs its own absorption model and decays carbohydrate on board against observed deviation | passed as a rate for one step |
+| Five-minute glucose history, 24 hours deep, with timestamps | oref reads delta, short_avgdelta and long_avgdelta off it rather than off one reading | done, `controller/inputs.py` accumulates it and computes the three figures over AndroidAPS's own windows |
+| Temp basal as rate plus duration | oref returns a temp basal, and its expiry behaviour is part of the algorithm | done in the adapter, `controller/oref.py`; the rig still takes an instantaneous rate, so the running temp is held and counted down where a pump would hold it |
+| Pump history for IOB | oref recomputes insulin on board from delivery history rather than trusting a running total | done, a ledger of boluses and of basal measured against the schedule, from which `iob_curve` builds the forward array oref integrates |
+| Announced carbohydrate as a timestamped carb entry | oref runs its own absorption model and decays carbohydrate on board against observed deviation | still a rate integrated into a plain decay, so oref's own absorption model is seeded rather than driven |
 
-The first seven were the harness work and are done. The remaining four are the adapter,
-and they are structural rather than cosmetic: temp basal with a duration, the pump and
-glucose histories, and carbohydrate as an entry rather than a rate are the mechanisms
-through which oref does its work. A bench that replaces them with a per-cycle insulin rate
-is testing something that shares only a name with the system under test.
+The first seven were the harness work. Three of the remaining four are now the adapter in
+`controller/oref.py`, which is the shape described here before it was written: a controller
+that accumulates a delivery log and a glucose log, hands them to `determine_basal` once per
+five-minute cycle, and translates the returned temporary basal and microbolus back into an
+`Action`. The algorithm is the shipped JavaScript rather than a port of it, gathered from
+the AndroidAPS tree by `bridge/oref/build.sh` and called across a pipe by
+`bridge/oref/index.js`. For Loop and Trio the same job means linking against or
+reimplementing the Swift dosing path, which is a larger undertaking and worth acknowledging
+before it is started.
 
-The practical shape of an adapter, for the oref family, is a controller that accumulates a
-delivery log and a glucose log, writes the Nightscout-shaped JSON that
-`oref0-determine-basal` expects, runs it as a subprocess once per five-minute cycle, and
-translates the returned temp basal and SMB back into `Action`. For Loop and Trio the same
-job means linking against or reimplementing the Swift dosing path, which is a larger
-undertaking and worth acknowledging before it is started.
+Two divergences remain, and neither is cosmetic. Carbohydrate still arrives as a rate, so
+oref's absorption model is seeded rather than driven by observed deviation. And autosens is
+pinned at 1.0, because it is computed from a rolling window of oref's own deviations that
+the adapter does not reproduce; the effect runs one way, since without it the algorithm does
+not reduce its dosing after a run of lows, so any hypoglycaemia figure from this arm is an
+upper bound.
+
+Insulin on board is built on this package's bilinear action curve rather than the
+exponential one AndroidAPS uses. Both peak at 75 minutes over a five-hour duration, so they
+differ in shape rather than in scale, and the choice keeps this arm comparable with the
+others in the package. It is a one-line change to test the alternative and has not been
+tested.
 
 ## 4. What TimSim already gives an OS-AID bench that a bare simulator does not
 
