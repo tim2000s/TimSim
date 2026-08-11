@@ -1,0 +1,204 @@
+"""Drive the real Boost decision code, compiled from AndroidAPS, rather than a port of it.
+
+A port of an algorithm is a second implementation, and a second implementation drifts. The
+Python port this replaces reproduces the logged dose to 0.0000 U and still agrees with the
+logged state machine on 70.9% of decisions, reaching RECOVERING on 0.6% of real inputs
+against a logged 5.8%. Every comparison against the field then needs a control run purely to
+subtract that error, and the control is itself built on stubbed fields.
+
+`bridge/boost/build.sh` compiles the five decision files and the orchestrator straight from
+the AndroidAPS working tree into a jar. Nothing is copied and nothing is reimplemented: this
+class marshals a cycle across a pipe and the real `decide` runs on the other side. What
+remains between this and the shipped application is the input reconstruction, which is a
+separate problem with three known defects recorded in `validation/boost.py`.
+
+One process per controller, so one per subject, because the algorithm keeps state between
+cycles and the plugin keeps that state in its own store. Holding it on the far side rather
+than marshalling it each way removes another place for the two sides to disagree.
+
+The protocol is positional rather than JSON because a hundred subjects over 28 days is more
+than 800,000 round trips. `FIELDS` is read back from the jar at startup and checked against
+what this module thinks it is sending, so a change to the Kotlin side fails loudly instead of
+silently shifting every value by one column.
+"""
+import os
+import shutil
+import subprocess
+
+from simglucose.controller.base import Action, Controller
+
+from .boost import BoostController
+
+HERE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+JAR = os.path.join(HERE, "bridge", "boost", "boost-bridge.jar")
+
+# The value the Kotlin side reads back as a null. Boost treats a missing model output
+# differently from a zero one: a null hypo risk leaves the budget unscaled, and a run of null
+# meal likelihoods renormalises the score weights.
+MISSING = -99999.0
+
+STATES = ("IDLE", "OBSERVING", "CONFIRMED", "COMMITTED", "RECOVERING")
+
+OUTPUTS = ("final_dose", "score", "state_ordinal", "state_age", "state_reset",
+           "budget", "action_multiplier", "insulin_to_deliver", "hard_gate",
+           "max_iob_clamp", "iob_headroom_brake", "post_action_risk_check",
+           "deceleration_brake", "sensor_quality_check", "dynamic_spike_capped",
+           "ml_renormalised")
+
+
+def java_binary():
+    """A JVM to run the bridge on.
+
+    Falls back to the runtime Android Studio ships, because a machine that builds this
+    algorithm has that even when it has no system JDK, which is the common case on macOS.
+    """
+    for candidate in (os.environ.get("JAVA_HOME"),
+                      "/Applications/Android Studio.app/Contents/jbr/Contents/Home"):
+        if candidate:
+            path = os.path.join(candidate, "bin", "java")
+            if os.path.exists(path):
+                return path
+    found = shutil.which("java")
+    if found:
+        return found
+    raise RuntimeError("no Java runtime found; set JAVA_HOME")
+
+
+def available(jar=JAR):
+    return os.path.exists(jar)
+
+
+class BoostBridgeController(BoostController):
+    """`BoostController` with the decision replaced by the compiled Kotlin.
+
+    Everything upstream is inherited, so the inputs handed to the algorithm are identical to
+    the ported version's and a difference between the two is the port and nothing else. That
+    is the point: it isolates one error source rather than changing two things at once.
+    """
+
+    def __init__(self, name, jar=JAR, java=None, **kwargs):
+        super().__init__(name, **kwargs)
+        if not available(jar):
+            raise FileNotFoundError(
+                f"no bridge jar at {jar}; build it with bridge/boost/build.sh")
+        self.proc = subprocess.Popen(
+            [java or java_binary(), "-jar", jar],
+            stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+            text=True, bufsize=1)
+        self.proc.stdin.write("FIELDS\n")
+        self.proc.stdin.flush()
+        self.fields = self.proc.stdout.readline().split()
+        self.decisions = []
+
+    # ------------------------------------------------------------------ marshalling
+    def _row(self, cycle, null_streak):
+        """One cycle as the positional line the jar expects.
+
+        Order is asserted against the jar's own `FIELDS`, so a change on either side is a
+        failure rather than a silent column shift.
+        """
+        d = list(getattr(cycle, "delta_history", ()) or ())
+        d = ([0.0] * (3 - len(d)) + [float(x) for x in d])[-3:]
+        values = [
+            cycle.delta, cycle.short_avg_delta, cycle.delta_accl, cycle.bg,
+            cycle.eventual_bg, cycle.target_bg, cycle.max_delta,
+            cycle.min_guard_bg, cycle.min_guard_threshold, d[0], d[1], d[2],
+            cycle.iob, cycle.max_iob, cycle.base_insulin_req, cycle.round_smb_to,
+            1 if cycle.enable_smb_pre_checks else 0,
+            MISSING if cycle.ml_hypo_risk is None else cycle.ml_hypo_risk,
+            MISSING if cycle.ml_meal_likely is None else cycle.ml_meal_likely,
+            cycle.recent_low_bg, getattr(cycle, "cumulative_rise_30min", 0.0), cycle.hour,
+            1 if cycle.exercise_active else 0,
+            1 if cycle.post_exercise_window else 0,
+            1 if getattr(cycle, "asleep", False) else 0,
+            1 if getattr(cycle, "fast_carb_confirm_enabled", True) else 0,
+            1 if cycle.sensor_quality_ok else 0,
+            0, 0, 0, 0.0,                      # profile switch, disconnect, suspend, clock
+            getattr(cycle, "aggression_user_knob", 1.0),
+            getattr(cycle, "hypo_caution_user_knob", 1.0),
+            getattr(cycle, "sensitivity_user_knob", 1.0),
+            getattr(cycle, "confirmed_cap_u", 1.0),
+            getattr(cycle, "committed_cap_u", 0.25),
+        ]
+        if len(values) != len(self.fields):
+            raise RuntimeError(
+                f"the bridge expects {len(self.fields)} fields and this is sending "
+                f"{len(values)}; rebuild the jar or update _row")
+        return " ".join(repr(float(v)) for v in values)
+
+    def _decide(self, cycle, null_streak):
+        self.proc.stdin.write(self._row(cycle, null_streak) + "\n")
+        self.proc.stdin.flush()
+        line = self.proc.stdout.readline()
+        if not line:
+            raise RuntimeError("the bridge closed; it may have failed on a cycle")
+        raw = [float(x) for x in line.split()]
+        out = dict(zip(OUTPUTS, raw))
+        out["state"] = STATES[int(out["state_ordinal"])]
+        return out
+
+    # ---------------------------------------------------------------------- driving
+    def policy(self, observation, reward, done, **info):
+        """Build the cycle exactly as the ported adapter does, then decide on the far side."""
+        action = super().policy(observation, reward, done, **info)
+        cycle = self.cycles[-1] if self.cycles else None
+        if cycle is None:
+            return action
+        decision = self._decide(cycle, self.null_streak)
+        self.decisions.append(decision)
+        sample = float(info.get("sample_time", 5.0))
+        return Action(basal=action.basal, bolus=decision["final_dose"] / sample)
+
+    def response_profile(self):
+        """State occupancy and gate firing, in the shape `validation/boost.py` compares.
+
+        Named to match the ported adapter rather than `profile`, which the parent already
+        uses for the subject's therapy settings.
+        """
+        import collections
+
+        import numpy as np
+
+        if not self.decisions:
+            return {}
+        n = len(self.decisions)
+        states = collections.Counter(d["state"] for d in self.decisions)
+        gates = {
+            "hard": sum(d["hard_gate"] for d in self.decisions),
+            "max_iob_clamp": sum(d["max_iob_clamp"] for d in self.decisions),
+            "iob_headroom_brake": sum(d["iob_headroom_brake"] < 1.0 for d in self.decisions),
+            "deceleration_brake": sum(d["deceleration_brake"] < 1.0 for d in self.decisions),
+            "sensor_quality_check": sum(d["sensor_quality_check"] < 1.0
+                                        for d in self.decisions),
+            "dynamic_spike_cap": sum(d["dynamic_spike_capped"] for d in self.decisions),
+        }
+        doses = np.array([d["final_dose"] for d in self.decisions], float)
+        return {
+            "cycles": n,
+            "state_occupancy_pct": {k: 100.0 * v / n for k, v in states.items()},
+            "gate_firing_pct": {k: 100.0 * v / n for k, v in gates.items()},
+            "dose_mean_u": float(doses.mean()),
+            "dose_nonzero_pct": float(100.0 * (doses > 0).mean()),
+        }
+
+    def close(self):
+        if self.proc and self.proc.poll() is None:
+            try:
+                self.proc.stdin.write("QUIT\n")
+                self.proc.stdin.flush()
+            except (BrokenPipeError, ValueError):
+                pass
+            self.proc.wait(timeout=10)
+
+    def __del__(self):
+        try:
+            self.close()
+        except Exception:
+            pass
+
+
+def factory(**kwargs):
+    return lambda name: BoostBridgeController(name, **kwargs)
+
+
+__all__ = ["BoostBridgeController", "factory", "available", "java_binary", "JAR", "STATES"]

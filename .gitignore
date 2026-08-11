@@ -9,3 +9,4 @@ dist/
 examples/out/
 timsim/population/params/vpop_*.csv
 timsim/population/params/vpop_*.json
+bridge/boost/*.jar
