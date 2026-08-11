@@ -143,6 +143,59 @@ AUTOSENS = {
                "the excess hypoglycaemia is refuted",
 }
 
+# Where the insulin that causes a low was delivered. Twenty-one subjects, 1,428 excursions
+# below 70, median units delivered in the window before the first sample of each, against the
+# same subjects under the built-in correction loop.
+#
+#   lookback     oref0    built-in loop   scheduled
+#      30 min     0.00             0.13        0.72
+#      90 min     0.68             0.94        2.17
+#     180 min     4.79             3.83        4.35
+#     300 min    12.93            10.39        7.24
+#
+# In the half hour before a low oref0 has delivered nothing at all, so it sees the fall coming
+# and is already fully suspended. In the five hours before, it delivered 79% above the
+# schedule and 24% more than the built-in loop delivered before its own lows, which is the
+# same 24% by which its total daily insulin exceeds the built-in loop's. The excess is
+# distributed rather than concentrated, and by the time it is visible there is nothing left to
+# withhold.
+#
+# Two candidate explanations have been measured and refused. Sensitivity detection is in
+# AUTOSENS above. The insulin action curve is here: the curve the adapter reports was compared
+# with the glucose response of the simulated body to a bolus small enough to stay in a linear
+# region, checked by doubling the dose and confirming the response doubled, on five subjects.
+#
+#   minutes     measured   reported   difference
+#        30        97.6%      96.0%         +1.6
+#        60        84.2%      84.0%         +0.2
+#        75        74.4%      75.0%         -0.6
+#       120        42.8%      48.0%         -5.2
+#       180        12.7%      21.3%         -8.7
+#       240         1.6%       5.3%         -3.7
+#
+# The reported curve tracks the body closely to two hours and overstates remaining insulin by
+# five to nine points between two and four. That bias makes an algorithm believe more insulin
+# is working than is, so it doses less, which is the wrong direction to explain
+# hypoglycaemia. Past five hours the method cannot be read, because glucose recovers towards
+# baseline and the ratio turns back up.
+#
+# Two earlier versions of that measurement were wrong and are recorded because both produced
+# confident numbers. The first gave a whole unit at fasting, which drove glucose to zero, so
+# it measured the approach to the floor and reported the curve as twice too slow. The second
+# corrected the dose but multiplied it by 6000/BW, which `t1dpatient.model` already does, so
+# it delivered about eighty times what was intended and only one subject in five stayed in a
+# linear region.
+LOWS = {
+    "measured": "2026-08-11", "subjects": 21, "episodes": 1428,
+    "per_subject_per_day": 2.43,
+    "median_units_before": {30: {"oref": 0.00, "built_in": 0.13, "scheduled": 0.72},
+                            90: {"oref": 0.68, "built_in": 0.94, "scheduled": 2.17},
+                            180: {"oref": 4.79, "built_in": 3.83, "scheduled": 4.35},
+                            300: {"oref": 12.93, "built_in": 10.39, "scheduled": 7.24}},
+    "insulin_curve_refuted": "reported IOB tracks the body to two hours and overstates it by "
+                             "5 to 9 points from two to four, a bias towards under-dosing",
+}
+
 # What this arm cannot yet be read for.
 #
 # Carbohydrate reaches the algorithm as a rate integrated into a plain decay rather than as a
@@ -153,10 +206,11 @@ AUTOSENS = {
 # exponential one AndroidAPS uses. Both peak at 75 minutes over a five-hour duration, so they
 # differ in shape rather than in scale. The alternative has not been tested.
 OPEN = (
-    "the excess hypoglycaemia is unexplained; autosens was the hypothesis and is refuted",
+    "the excess hypoglycaemia is unexplained; sensitivity detection and the insulin action "
+    "curve were both measured and both refused",
     "carbohydrate arrives as a rate rather than a timestamped entry",
     "insulin on board uses this package's bilinear curve, not AndroidAPS's exponential one",
 )
 
 __all__ = ["COHORT", "BEHAVIOUR", "REQUIREMENT", "LIKE_FOR_LIKE", "AUTOSENS",
-           "AGAINST_DCLP3", "OPEN"]
+           "LOWS", "AGAINST_DCLP3", "OPEN"]
