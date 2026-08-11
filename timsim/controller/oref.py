@@ -25,13 +25,15 @@ rate and a bolus per step, so the temporary basal is held here and counted down.
 that wrong is not a subtle error: a loop that forgets its own temporary basal reverts to the
 scheduled rate every five minutes and cannot withhold insulin at all.
 
-Three of oref's inputs are deliberately absent, and each is absent for a reason rather than
+Two of oref's inputs are deliberately absent, and each is absent for a reason rather than
 for convenience. `iob_data.lastTemp` is a pump-history cross-check, and omitting it skips
 two cancellation branches that exist to catch a pump disagreeing with the loop; the
-simulated pump delivers what it is asked for, so there is nothing for them to catch.
-Autosens is fixed at 1.0 unless set, because oref computes it from a rolling window this
-adapter does not reproduce, and a fabricated ratio would move every dose. Bolus wizard
-fields are false throughout, since nothing here uses one.
+simulated pump delivers what it is asked for, so there is nothing for them to catch. Bolus
+wizard fields are false throughout, since nothing here uses one.
+
+Autosens is computed by `controller/autosens.py`, which is the one part of this arm that is
+reimplemented rather than shipped, for the reasons set out there. `autosens=None` runs it and
+a number pins the ratio, which is what the comparison between the two uses.
 """
 import json
 import os
@@ -73,8 +75,9 @@ class OrefController(LoopInputs, Controller):
     """oref0 SMB, with the temporary basal it issues held on this side of the pipe."""
 
     def __init__(self, name, profile=None, index=INDEX, node=None, target_bg=None,
-                 microbolus=True, autosens=1.0, sensor_noise=1):
+                 microbolus=True, autosens=None, sensor_noise=1):
         from ..therapy import profile as profile_mod
+        from .autosens import Autosens
 
         if not available(index):
             raise FileNotFoundError(
@@ -83,7 +86,12 @@ class OrefController(LoopInputs, Controller):
         self.profile = profile if profile is not None else profile_mod.for_subject(name)
         self.target_bg = float(target_bg) if target_bg is not None else None
         self.microbolus = bool(microbolus)
-        self.autosens = float(autosens)
+        # A number pins the ratio; None runs the detection. Pinning it is what the arm did
+        # before the detection existed, and keeping the option is what makes the two
+        # comparable on the same subjects.
+        self.pinned_autosens = None if autosens is None else float(autosens)
+        self.autosens = Autosens() if autosens is None else None
+        self.ratios = []
         self.sensor_noise = int(sensor_noise)
 
         self.init_inputs()
@@ -180,9 +188,24 @@ class OrefController(LoopInputs, Controller):
         # curve is walked 196 times a cycle.
         self.prune(minute, margin=CURVE_TICKS * sample)
 
-        cob = self.observe_carbs(float(info.get("meal", 0.0)) * sample, sample)
+        grams = float(info.get("meal", 0.0)) * sample
+        cob = self.observe_carbs(grams, sample)
         scheduled_rate = self.profile.basal_at(minute) * 60.0
         now = self._clock(minute)
+        isf, cr = self.profile.isf_at(minute), self.profile.cr_at(minute)
+
+        ratio = self.pinned_autosens
+        if self.autosens is not None:
+            readings = list(self.readings)
+            self.autosens.observe(
+                minute, bg,
+                delta=readings[-1] - readings[-2] if len(readings) > 1 else 0.0,
+                activity_u_per_min=self.activity_u_per_hour(minute) / 60.0,
+                iob=self.iob_at(minute), sens=isf, carb_ratio=cr,
+                current_basal=scheduled_rate, carbs_g=grams, step=sample)
+            ratio = self.autosens.ratio(minute, isf, max(
+                float(v) for v in self.profile.basal_u_per_hour))
+        self.ratios.append(ratio)
 
         curve = self.iob_curve(minute, scheduled_rate, ticks=CURVE_TICKS, step=sample,
                                temp_rate=self.temp_rate, temp_minutes=self.temp_left)
@@ -190,9 +213,7 @@ class OrefController(LoopInputs, Controller):
             tick["lastBolusTime"] = self._clock(self.last_bolus_min)
 
         result = self._send({
-            "profile": {"sens": self.profile.isf_at(minute),
-                        "carb_ratio": self.profile.cr_at(minute),
-                        "current_basal": scheduled_rate},
+            "profile": {"sens": isf, "carb_ratio": cr, "current_basal": scheduled_rate},
             "glucose_status": {"glucose": bg, "delta": delta,
                                "short_avgdelta": short_avg, "long_avgdelta": long_avg,
                                "date": now, "noise": self.sensor_noise, "last_cal": 0},
@@ -205,7 +226,7 @@ class OrefController(LoopInputs, Controller):
                           "lastCarbTime": 0, "bwFound": False, "bwCarbs": 0,
                           "slopeFromMaxDeviation": 0, "slopeFromMinDeviation": 0,
                           "maxDeviation": 0, "minDeviation": 0},
-            "autosens": {"ratio": self.autosens},
+            "autosens": {"ratio": ratio},
             "microBolusAllowed": self.microbolus,
             "currentTime": now,
         })
@@ -257,7 +278,12 @@ class OrefController(LoopInputs, Controller):
         eventual = np.array([s["eventualBG"] for s in self.suggestions
                              if s.get("eventualBG") is not None], float)
         carbs_req = sum(1 for s in self.suggestions if s.get("carbsReq"))
+        ratios = np.array([r for r in self.ratios if r is not None], float)
         return {
+            "autosens_median": float(np.median(ratios)) if ratios.size else None,
+            "autosens_min": float(ratios.min()) if ratios.size else None,
+            "autosens_max": float(ratios.max()) if ratios.size else None,
+            "autosens_below_1_pct": float(100.0 * (ratios < 1.0).mean()) if ratios.size else None,
             "cycles": n,
             "smb_pct": float(100.0 * (units > 0).mean()),
             "smb_mean_u": float(units[units > 0].mean()) if (units > 0).any() else 0.0,

@@ -67,6 +67,9 @@ REQUIREMENT = {"programmed_tdi_mean": 61.3, "median": 62.5, "range": (26.0, 141.
 #   Boost V5, shipped               49.9    72.2   1.31   0.27   26.5          0.82  21/21
 #   built-in correction loop        54.5    75.1   2.43   0.62   22.5          1.31  21/21
 #   oref0 SMB, shipped              63.4    74.6   6.54   2.12   18.9             -  20/21
+#
+# The oref0 row pins the sensitivity ratio at 1.0. Running the detection instead changes none
+# of these figures measurably; see AUTOSENS below.
 #   DCLP3 closed loop, real            -    71.0      -      -  24.65             -      -
 #
 # Programmed requirement across these subjects is 61.3 U/day.
@@ -89,8 +92,8 @@ REQUIREMENT = {"programmed_tdi_mean": 61.3, "median": 62.5, "range": (26.0, 141.
 # the time below 54. That excess is not a property of the person layer: the same virtual
 # subjects sit at 2.43% below 70 under the built-in loop and 1.31% under Boost, so the
 # simulator produces ordinary hypoglycaemia rates under two other controllers and the oref
-# figure belongs to the oref arm. Whether it belongs to the algorithm or to the autosens
-# pinned at 1.0 is not yet separated.
+# figure belongs to the oref arm. Sensitivity detection has since been built and does not
+# account for it.
 LIKE_FOR_LIKE = {
     "measured": "2026-08-11", "subjects": 21, "days": 28, "seed": 0, "signal": "reading",
     "open_loop": {"insulin_u_per_day": 46.9, "time_in_range": 64.4, "below_70": 2.11,
@@ -110,14 +113,37 @@ LIKE_FOR_LIKE = {
 # reference this package measures itself against.
 AGAINST_DCLP3 = {"time_in_range": 71.0, "above_180": 24.65}
 
-# What this arm cannot yet be read for.
+# Sensitivity detection was built on the hypothesis that it explained the excess
+# hypoglycaemia, and the measurement refutes it. Twenty-one subjects, paired, sensor readings,
+# detection against the ratio pinned at 1.0, with 95% intervals on the paired difference:
 #
-# Autosens is pinned at 1.0. oref0 computes a sensitivity ratio from a rolling window of its
-# own deviations and scales both the target and the dose by it, and reproducing that window is
-# a separate piece of work. The effect runs one way, since without it the algorithm does not
-# reduce its dosing after a run of lows, so 6.54% below 70 and 2.12% below 54 are upper
-# bounds. Both sit above the consensus targets of 4% and 1%, and the gap is large enough that
-# it cannot be attributed until autosens is in place.
+#   insulin, U/day    63.39 -> 67.44    +4.05 +/- 9.53
+#   time in range     74.38 -> 74.16    -0.22 +/- 1.11
+#   below 70           6.95 ->  6.47    -0.47 +/- 0.65
+#   below 54           2.40 ->  2.13    -0.27 +/- 0.37
+#   above 180         18.68 -> 19.37    +0.70 +/- 1.21
+#
+# Every interval spans zero. The detector is not idle: per-subject median ratios run from 0.70
+# to 1.00 and six of the twenty-one sit at the 0.70 clamp, so for those subjects it is asking
+# for a larger reduction than oref permits and the hypoglycaemia is unmoved regardless. The
+# figures below 70 and 54 therefore stand as they are rather than as upper bounds, and the
+# cause of the excess is unidentified.
+AUTOSENS = {
+    "measured": "2026-08-11", "subjects": 21, "paired": True, "signal": "reading",
+    "pinned": {"insulin_u_per_day": 63.39, "time_in_range": 74.38, "below_70": 6.95,
+               "below_54": 2.40, "above_180": 18.68, "mean_mgdl": 137.19},
+    "detected": {"insulin_u_per_day": 67.44, "time_in_range": 74.16, "below_70": 6.47,
+                 "below_54": 2.13, "above_180": 19.37, "mean_mgdl": 138.77},
+    "difference_ci95": {"insulin_u_per_day": (4.05, 9.53), "time_in_range": (-0.22, 1.11),
+                        "below_70": (-0.47, 0.65), "below_54": (-0.27, 0.37),
+                        "above_180": (0.70, 1.21), "mean_mgdl": (1.59, 1.82)},
+    "ratio": {"median_of_subject_medians": 0.99, "lowest": 0.70, "highest": 1.20,
+              "subjects_at_the_floor": 6},
+    "verdict": "no measurable effect on any outcome; the hypothesis that autosens explained "
+               "the excess hypoglycaemia is refuted",
+}
+
+# What this arm cannot yet be read for.
 #
 # Carbohydrate reaches the algorithm as a rate integrated into a plain decay rather than as a
 # timestamped entry, so oref's own absorption model is seeded rather than driven by the
@@ -127,10 +153,10 @@ AGAINST_DCLP3 = {"time_in_range": 71.0, "above_180": 24.65}
 # exponential one AndroidAPS uses. Both peak at 75 minutes over a five-hour duration, so they
 # differ in shape rather than in scale. The alternative has not been tested.
 OPEN = (
-    "autosens pinned at 1.0, so the hypoglycaemia figures are upper bounds",
+    "the excess hypoglycaemia is unexplained; autosens was the hypothesis and is refuted",
     "carbohydrate arrives as a rate rather than a timestamped entry",
     "insulin on board uses this package's bilinear curve, not AndroidAPS's exponential one",
 )
 
-__all__ = ["COHORT", "BEHAVIOUR", "REQUIREMENT", "LIKE_FOR_LIKE",
+__all__ = ["COHORT", "BEHAVIOUR", "REQUIREMENT", "LIKE_FOR_LIKE", "AUTOSENS",
            "AGAINST_DCLP3", "OPEN"]

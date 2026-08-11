@@ -12,14 +12,13 @@ it was not tuned against. It cannot say that oref0 would produce these outcomes 
 cohort, because the comparison groups differ in more than the algorithm: DCLP3 ran
 Control-IQ, the trial cohort was screened differently, and this arm announces every meal.
 
-Autosens is the known omission. oref0 computes a sensitivity ratio from a rolling window of
-its own deviations and uses it to scale both the target and the dose, and this adapter pins
-it at 1.0 because reproducing that window is a separate piece of work. The effect runs one
-way: without it the algorithm does not back off after a run of lows, so the hypoglycaemia
-figures here are an upper bound rather than an estimate.
+Sensitivity detection runs by default, from `controller/autosens.py`. `--pin-autosens 1.0`
+switches it off and reproduces the arm as it ran before the detection existed, which is the
+comparison that says what the detection is worth.
 
 Usage:
     python examples/oref_cohort.py --subjects 20 --days 28 --workers 8
+    python examples/oref_cohort.py --subjects 20 --days 28 --workers 8 --pin-autosens 1.0
 """
 import argparse
 import json
@@ -39,8 +38,8 @@ from timsim.validation import compare as C                           # noqa: E40
 
 def one(job):
     """One subject, in its own process because each holds a node runtime of its own."""
-    name, days, seed, target = job
-    controller = O.OrefController(name, target_bg=target)
+    name, days, seed, target, autosens = job
+    controller = O.OrefController(name, target_bg=target, autosens=autosens)
     try:
         result = simulate(name, days=days, seed=seed, controller=controller)
         # Both signals travel. DCLP3 reports real sensor readings, so a comparison with the
@@ -88,6 +87,9 @@ def main():
                    help="glucose target in mg/dL; the real cohort runs near 90 where this "
                         "package defaults to 110, and the target is an input to the "
                         "algorithm rather than a property of the person")
+    p.add_argument("--pin-autosens", type=float, default=None,
+                   help="pin the sensitivity ratio instead of detecting it; 1.0 reproduces "
+                        "the arm as it ran before detection existed")
     p.add_argument("--out", default=None, help="where to write the per-subject results")
     args = p.parse_args()
 
@@ -107,7 +109,7 @@ def main():
         picked = names()[:args.subjects]
         matched_to = f"unmatched ({type(exc).__name__}: no DCLP3 data to match against)"
     print(f"cohort: {len(picked)} subjects, {matched_to}\n")
-    jobs = [(n, args.days, args.seed, args.target) for n in picked]
+    jobs = [(n, args.days, args.seed, args.target, args.pin_autosens) for n in picked]
 
     runs = []
     with ProcessPoolExecutor(max_workers=args.workers) as pool:
@@ -128,13 +130,17 @@ def main():
     if resp:
         print("\nwhat the algorithm did")
         for k in ("smb_pct", "smb_mean_u", "dose_mean_u", "zero_temp_pct",
-                  "temp_issued_pct", "eventual_bg_median", "carbs_required_pct"):
+                  "temp_issued_pct", "eventual_bg_median", "carbs_required_pct",
+                  "autosens_median", "autosens_min", "autosens_max",
+                  "autosens_below_1_pct"):
             vals = [x[k] for x in resp if x.get(k) is not None]
             if vals:
                 print(f"  {k:24s} {np.mean(vals):.3f}")
 
     print("\nDCLP3 closed loop, middle 28 days, sensor readings: TIR 71.0%, above 180 24.65%")
-    print("Autosens is pinned at 1.0 here, so the hypoglycaemia figures are an upper bound.")
+    if args.pin_autosens is not None:
+        print(f"Sensitivity is pinned at {args.pin_autosens}, so the hypoglycaemia figures "
+              "are an upper bound.")
 
     if args.out:
         with open(args.out, "w") as fh:
