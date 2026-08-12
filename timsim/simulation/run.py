@@ -110,8 +110,12 @@ from ..therapy import Enforcer, InfusionSite, profile as profile_mod
 # other. Leaving it off keeps the bench flattering on the hazard it exists to probe.
 #
 # `validation/replication.py` records the arbitration, `therapy/site.py` the mechanism.
-LAYERS = ("physiology", "behaviour", "sensor", "site")
-DEFAULT_LAYERS = LAYERS
+# `activity` is available and not default. It is the only layer with no grounding in the
+# local database, because the Nightscout records carry no exercise events, so it has to earn
+# its place on the fidelity signatures alone before it goes in the default stack. That is the
+# same route the site layer took.
+LAYERS = ("physiology", "behaviour", "sensor", "site", "activity")
+DEFAULT_LAYERS = ("physiology", "behaviour", "sensor", "site")
 
 # Resolved in `_resolve_controller`. "reference" is kept as an alias for the default so
 # that a caller asking for the baseline gets the baseline rather than a frozen choice.
@@ -159,6 +163,10 @@ class Result:
     # `rescue_log`, because a rescue and a meal are different events and measuring the
     # response to one requires excluding the other.
     meal_log: tuple = ()
+    # (start minute, minutes, intensity) for every exercise session, empty when the layer
+    # is off. An exercise-driven low behaves differently from an insulin-driven one, and
+    # telling them apart afterwards needs this.
+    activity_log: tuple = ()
     isf_weekly_cv: float = float("nan")
     compression_events: int = 0
     layers: tuple = ()
@@ -292,7 +300,8 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
              limits=None, faults=None, sample_minutes=DEFAULT_SAMPLE_MINUTES,
              hypo_risk_gain=None, si_pattern="sinusoid", si_interday_cv=None,
              isf_scale=1.0, settings_spread=None, behaviour_spread=None,
-             meal_absorption_cv=None, meal_absorption_scale=None, si_slow_cv=None):
+             meal_absorption_cv=None, meal_absorption_scale=None, si_slow_cv=None,
+             sessions_per_week=None):
     """Run one subject. Returns a Result.
 
     `layers` is any subset of LAYERS. `controller`, if given, replaces the built-in
@@ -348,6 +357,15 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
         gain = HYPO_RISK_GAIN if hypo_risk_gain is None else hypo_risk_gain
         if gain:
             patient.set_hypo_risk(gain)
+
+    if "activity" in effective:
+        from ..person.activity import Activity, draw_sessions
+        activity = Activity(draw_sessions(rng, days, **(
+            {} if sessions_per_week is None
+            else {"sessions_per_week": float(sessions_per_week)})))
+        patient.set_activity(activity)
+    else:
+        activity = None
 
     body_weight = float(params["BW"])
     schedule = meals if meals is not None else draw_meals(days, rng, body_weight)
@@ -509,6 +527,7 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
         rescue_events=person.rescue_events, rescue_grams=person.rescue_grams,
         rescue_log=tuple(person.rescue_log),
         meal_log=tuple((float(h) * 60.0, float(g)) for h, g, _ in schedule),
+        activity_log=() if activity is None else tuple(activity.sessions),
         meals_announced=person.announced_meals,
         meals_unannounced=person.unannounced_meals,
         isf_weekly_cv=(driver.ratios.weekly_cv()

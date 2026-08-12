@@ -6,6 +6,20 @@ hours afterwards, and it is a leading cause of hypoglycaemia in type 1 diabetes.
 this package modelled it before: `exercise_active` appears in the adapters only as an input
 that is always false.
 
+It does not work, and the measurement is below rather than at the end. Regressed against
+every signature, paired, under the built-in loop, adding this layer takes the count inside the
+real range from eight of eleven to five. It raises the autocorrelation at thirty minutes by
+0.02 +/- 0.01 and at sixty by 0.05 +/- 0.03, both out of range, where the whole purpose was to
+lower them, and it widens variability by 3.2 +/- 0.8, also out of range. Two session
+schedules were tried, one concentrated in the evening and one spread across waking hours, and
+both did this.
+
+So exercise as modelled here makes the simulated person more predictable rather than less.
+The layer is kept, off, because the mechanism is sound and the failure is informative: it says
+a regular daily perturbation of glucose is not what the predictability signatures are missing,
+whatever else exercise does to a person. What did move them was correlated multi-day
+sensitivity, which acts on a horizon of days rather than of hours.
+
 Unlike every other layer here, this one cannot be grounded in the local database. The
 Nightscout records carry no exercise events, so the schedule below comes from the literature
 and is a modelling choice rather than a measurement. What can be checked against data is the
@@ -35,8 +49,13 @@ import numpy as np
 SESSIONS_PER_WEEK = 3.0
 SESSION_MINUTES = (25.0, 80.0)        # uniform, one session's length
 
-# When. Two modes, late afternoon and mid-morning, with the afternoon carrying most of it.
-SESSION_HOURS = ((17.5, 2.0, 0.7), (9.5, 1.5, 0.3))   # (centre, sd, weight)
+# When. A first version put seventy per cent of sessions at 17:30 with a two-hour spread,
+# which was wrong in a way the fidelity table caught: every subject then dipped at the same
+# hour every day, and the diurnal amplitude went from 51.0 to 58.8 mg/dL against a real 34.7
+# to 56.3. Concentrating activity at one time of day adds a diurnal signal rather than the
+# irregularity it is there to add. Real exercise is spread across waking hours with a mild
+# preference for the evening, which is what this is now.
+SESSION_HOURS = ((18.0, 3.5, 0.45), (12.0, 3.0, 0.30), (8.0, 2.0, 0.25))
 
 # How hard, as a fraction of the maximum effect the constants below describe. Most sessions
 # are moderate and a few are hard.

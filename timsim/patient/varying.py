@@ -81,8 +81,30 @@ SENSITIVITY_BOUNDS = (0.3, 2.5)
 # `SLOW_TAU_DAYS` is the correlation time of the slow term and `SLOW_CV` its size. The slow
 # term multiplies the independent daily one rather than replacing it, so Dalla Man's
 # day-to-day figure is untouched: what is added is the thing it does not describe.
+# Regressed 2026-08-12 against every signature, paired on the same subjects under the
+# built-in loop, with each arm differing from the baseline by one thing:
+#
+#     signature      real        baseline   slow 0.15   slow 0.30
+#     cv             29.5-34.3       30.7        33.6        34.1
+#     acf30          0.78-0.87       0.87        0.86        0.86
+#     acf60          0.50-0.68       0.64        0.61        0.62
+#     outcome        26.5-33.5       24.0        26.4        26.4
+#     hypo_rec       50-59           46.2        58.8        60.0
+#     insulin_cv     4.5-11.1         5.3         3.8         4.4
+#     in range /11                       8           9           9
+#
+# At 0.15 the outcome spread moves into range, +1.4 +/- 1.0, and the recovery time with it,
+# +12.7 +/- 5.1, while both autocorrelations fall. That is the cluster saying the model is too
+# predictable, and this is the only one of four mechanisms tried that moves it.
+#
+# It does so for the wrong reason. The term was added to raise the week-to-week variation in
+# total daily insulin towards a real 7.3%, and it lowers it, from 5.3% to 3.8%, taking that
+# statistic out of range. The rationale is refuted and the mechanism is kept on the evidence
+# of what it actually does, which is a different claim and is recorded as one.
+#
+# 0.30 buys nothing more and costs hypoglycaemia, 4.09% below 70 against 2.36% at 0.15.
 SLOW_TAU_DAYS = 9.0           # correlation time of the multi-day component
-SLOW_CV = 0.0                 # off until calibrated; see set_sensitivity
+SLOW_CV = 0.15
 
 # ------------------------------------------------------------------ the diurnal pattern
 # Two shapes are available and they disagree about something structural.
@@ -295,8 +317,34 @@ def si_at(hour, levels, edges=SI_EDGES, smooth_hours=SI_SMOOTH_HOURS):
 # together, which shifts both when a meal peaks and how sharply. It is drawn once when a meal
 # starts and held until the next one, so a meal still absorbing when the next begins takes the
 # new factor for its tail. Meals here are three or more hours apart, so that is rare.
-MEAL_ABSORPTION_CV = 0.0          # off until calibrated; see set_meal_variability
-MEAL_ABSORPTION_SCALE = 1.0       # a systematic slowing, separate from the spread
+# Calibrated 2026-08-12 against the real spread above, ten subjects over 56 days:
+#
+#     setting   time to peak   CV time to peak   CV rise per gram   rise per gram
+#      0.0           94 min          0.36               0.46             1.35
+#      0.5           88 min          0.43               0.53             1.36
+#      0.9           90 min          0.49               0.63             1.21
+#     real          135 min          0.51               0.68             1.41
+#
+# 0.9 reproduces both spreads and leaves the mean rise per gram where it was, so the
+# mechanism adds variance without biasing the level.
+MEAL_ABSORPTION_CV = 0.9
+# A systematic slowing, separate from the spread, and left at 1.0 because it does not do what
+# it was added for. Real meals peak at 135 minutes and this model's at 90, which looks like
+# absorption being too fast. It is not: slowing every rate threefold moves the peak from 90 to
+# 100 minutes and saturates, while dragging the rise per gram from 1.21 down to 0.85 against a
+# real 1.41.
+#
+#     scale   time to peak   rise per gram
+#      1.00        90 min         1.21
+#      0.70        98 min         1.22
+#      0.50        99 min         1.02
+#      0.35       100 min         0.85
+#
+# The peak arrives when insulin action overtakes carbohydrate appearance, and this package
+# boluses the whole meal at the meal while real people bolus late, bolus short, or miss it.
+# The forty-five minute gap is therefore about when insulin is given rather than about the
+# gut, and it belongs to the behaviour layer.
+MEAL_ABSORPTION_SCALE = 1.0
 MEAL_ABSORPTION_BOUNDS = (0.35, 2.6)
 
 

@@ -23,8 +23,14 @@ def _slow(seed=0, days=84, **kw):
     return np.asarray(p._slow, float)
 
 
-def test_it_is_off_by_default_and_leaves_a_flat_series():
-    assert np.allclose(_slow(), 1.0)
+def test_the_default_is_the_regressed_value():
+    """It was off until it was measured. It is on at 0.15 because that is the only one of
+    four mechanisms tried that moved the signatures saying the model is too predictable,
+    taking the count inside the real range from eight of eleven to nine. Pinned here so a
+    change to the default is a deliberate act."""
+    assert V.SLOW_CV == 0.15
+    s = _slow(days=4000)
+    assert s.std() / s.mean() == pytest.approx(0.15, rel=0.2)
 
 
 def test_zero_is_the_same_as_off():
