@@ -67,6 +67,59 @@ P_OVERTREAT = 0.25                # probability of a second helping
 OVERTREAT_EXTRA = (10.0, 30.0)    # grams
 RESCUE_REFRACTORY_MIN = 45.0      # one treatment episode, not one dosing cycle
 
+# The size of one helping, drawn as the real entries are distributed.
+#
+# The totals above are per episode and are close to real: 34.4 g a rescue against a logged
+# median of 28.5. What is not real is that the whole of it arrives in one dose. Across 1,001
+# carbohydrate entries made below 75 mg/dL by 8 users of the OpenAPS Data Commons export, the
+# median entry is 20 g at a reading of 65 to 75 and 25 g below 55, with a ninetieth percentile
+# of 45. People eat about 22 g, wait, and eat again if they are still low, which is the
+# fifteen-and-fifteen rule the same records show being followed.
+#
+# The difference is most of the rebound. Giving 34.4 g at a median reading of 61 mg/dL peaks
+# at 208 within three hours and above 180 on 71.2% of rescues, against a real rebound rate of
+# 23.2 to 28.4%. Drawing the measured 22 g instead peaks at 172 and rebounds on 44.5%.
+#
+# Splitting the same total into repeated helpings on a twenty-minute recheck, which is what
+# the real records show people doing, was tried first and made it worse: 72.9% above 180 and
+# 33.5% above 250, against 71.2% and 24.0% for the single large dose. Carbohydrate takes about
+# twenty minutes to act, so the simulated person is still below the threshold at the recheck
+# and almost always eats again, 1.6 helpings an episode, and the second lands while the first
+# is still absorbing. It is not adopted, and the timing here is unchanged from the refractory
+# window already calibrated against the real rescue rate. Only the size of a helping changes.
+#
+# Dose size against the reading the person can see: -0.129 g per mg/dL, from 23.5 g at 68 to
+# 26.5 g at 45, with a spread about that line of 15.8 g. The dependence is weak, r = -0.074,
+# and is included because it is measured rather than because it is large. The lognormal spread
+# reproduces the observed ninetieth percentile of 45 g on a median of 22.
+#
+# An earlier version of this measurement summed every entry in a window around each excursion
+# and found a much stronger dependence on depth, -0.406 g per mg/dL. That was re-treatment
+# being counted as one large dose: deeper lows get more entries, not bigger ones.
+#
+# What it costs and what it buys, twenty adults over 28 days under the built-in loop, paired,
+# with nothing but the size of a helping changed:
+#
+#     hypoglycaemia rebound >180   63.9 -> 54.5   -12.0 +/- 4.4   real 23.2-28.4
+#     outcome SD at a stuck high   25.9 -> 23.8    -0.9 +/- 0.8   real 26.5-33.5
+#     rise tail                     4.4 ->  4.3    -0.2 +/- 0.1   real 3.7-6.6, still inside
+#     insulin week-to-week %CV      4.2 ->  4.6    +0.5 +/- 0.9   real 4.5-11.1
+#     hypoglycaemia recovery, min  50.0 -> 50.0    +2.2 +/- 4.2   real 50-59, still inside
+#     rescues a day                0.99 -> 0.91                   real 0.44 logged
+#     grams a rescue               36.1 -> 25.6                   real 20-25 an entry
+#
+# Signatures inside the real range go from eight of eleven to seven. What is lost is the
+# outcome spread, moving 0.9 further below a range it was sitting on the edge of. What is
+# bought is twelve points off the worst-fitting statistic in the package. The rebound is still
+# about twice the real rate, so this closes roughly a third of that gap and the remainder is
+# somewhere else: a rescue here raises glucose by about 4.9 mg/dL per gram, which is at the
+# upper end of what is clinically expected and has not been validated.
+RESCUE_MEASURED_DOSE = True       # False restores the uniform 20-40 g draw
+RESCUE_DOSE_MEDIAN_G = 22.0       # at 65 mg/dL, the median entry in the real records
+RESCUE_DOSE_PER_MGDL = -0.129     # g per mg/dL of reading, measured
+RESCUE_DOSE_SIGMA = 0.557         # lognormal, giving a ninetieth percentile near 45 g
+RESCUE_DOSE_BOUNDS = (4.0, 90.0)  # g, the range the real entries occupy
+
 # How much people differ from each other in when they treat a low, as a coefficient of
 # variation applied per subject and held for the run.
 #
@@ -157,6 +210,7 @@ class Person:
         self.rescue_refractory_min = float(rescue_refractory_min)
         self.pending = []          # [(minute_due, grams)]
         self.last_rescue_min = -1e9
+        self.doses_this_episode = 0
         self.rescue_events = 0
         self.rescue_grams = 0.0
         # When each treatment was decided and how large it was. Counts alone cannot answer
@@ -180,21 +234,40 @@ class Person:
         return float(grams * self.rng.lognormal(-0.5 * sigma ** 2, sigma))
 
     # ---------------------------------------------------------------- rescue
+    def _dose(self, cgm):
+        """One helping, drawn as the real entries are distributed.
+
+        Lognormal about a median that shifts slightly with the reading, so a person low
+        enough to be worried takes a little more. The dependence is weak because the measured
+        one is weak, and the spread is wide because the measured spread is wide.
+        """
+        median = RESCUE_DOSE_MEDIAN_G + RESCUE_DOSE_PER_MGDL * (float(cgm) - 65.0)
+        median = max(median, RESCUE_DOSE_BOUNDS[0])
+        g = float(self.rng.lognormal(np.log(median), RESCUE_DOSE_SIGMA))
+        return float(np.clip(g, *RESCUE_DOSE_BOUNDS))
+
     def observe(self, minute, cgm, fall_rate):
         """Called once per CGM sample. May schedule a rescue for a few minutes later."""
         if not self.rescue_on:
             return
-        if minute - self.last_rescue_min < self.rescue_refractory_min:
-            return
         low = cgm < self.rescue_threshold
         falling_fast = cgm < self.rescue_preempt_bg and fall_rate < RESCUE_PREEMPT_FALL
+
+        # Timing is unchanged: the refractory window was calibrated against the real rescue
+        # rate and this changes only how much is eaten when one fires.
+        if minute - self.last_rescue_min < self.rescue_refractory_min:
+            return
         if not (low or falling_fast):
             return
+        if RESCUE_MEASURED_DOSE:
+            grams = self._dose(cgm)
+        else:
+            grams = float(self.rng.uniform(*RESCUE_GRAMS))
+            if self.rng.random() < P_OVERTREAT:
+                grams += float(self.rng.uniform(*OVERTREAT_EXTRA))
+
         self.last_rescue_min = minute
         delay = float(self.rng.uniform(*RESCUE_DELAY_MIN))
-        grams = float(self.rng.uniform(*RESCUE_GRAMS))
-        if self.rng.random() < P_OVERTREAT:
-            grams += float(self.rng.uniform(*OVERTREAT_EXTRA))
         self.pending.append((minute + delay, grams))
         self.rescue_events += 1
         self.rescue_grams += grams
