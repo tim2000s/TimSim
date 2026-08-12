@@ -44,10 +44,17 @@ Each column adds one mechanism to the column before it, so a movement is attribu
 named cause rather than to the bundle.
 
 This table changes the driving algorithm partway along, at the `+loop` column, so the
-columns to its right are measured under a different driver from those to its left.
-`LADDER.md` walks the same ladder four times with the driver held constant, and reports
-which movements survive that. Nine of forty-two do: four from the behaviour layer, three
-from the sensor layer, two from the site layer, and none from the physiology layer.
+columns to its right are measured under a different driver from those to its left. It also
+adds physiology before behaviour, which adds a mechanism before its antidote and loses half
+the cohort at that rung. `LADDER.md` walks the ladder four times with the driver held
+constant, behaviour first, over twenty subjects, and reports which movements survive that.
+Twelve of forty-seven do: five from the behaviour layer, three each from the sensor and site
+layers, and one from the physiology layer.
+
+Two of the eleven signatures below should be read differently as a result. `ISF drift` is not
+computed from the glucose and cannot detect the person, so it is no longer counted as
+evidence; `insulin_cv`, the week-to-week variation in total daily insulin, replaces it and is
+referenced against 115 real users' delivery records.
 
 | Signature | Real range | stock 2008 | +physiology | +behaviour | +loop | +sensor | +site | In range |
 |---|---|---|---|---|---|---|---|---|
