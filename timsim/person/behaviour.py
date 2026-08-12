@@ -114,6 +114,55 @@ RESCUE_REFRACTORY_MIN = 45.0      # one treatment episode, not one dosing cycle
 # about twice the real rate, so this closes roughly a third of that gap and the remainder is
 # somewhere else: a rescue here raises glucose by about 4.9 mg/dL per gram, which is at the
 # upper end of what is clinically expected and has not been validated.
+# Whether a low is treated at all.
+#
+# Across 3,012 excursions below 70 in the OpenAPS Data Commons export, 23.4% have a
+# carbohydrate entry within fifteen minutes before to thirty minutes after the crossing, and
+# that share is flat with depth: 23.1% for excursions bottoming between 54 and 70, 24.6%
+# between 45 and 54, 24.1% between 35 and 45. People mostly do not eat for a low, whatever
+# depth it reaches, and let the loop bring them back.
+#
+# TimSim treats nearly every low, and the consequence shows up in the one statistic it cannot
+# otherwise explain. Its response to a rescue now matches real people closely: 25.6 g eaten at
+# 62 mg/dL peaking at 172 within three hours, against 25.0 g at 64 peaking at 170 across 309
+# isolated real rescues, and 4.91 mg/dL per gram against a real 4.23 with an interquartile
+# range of 3.02 to 6.90. What differs is how many recoveries are driven by eating rather than
+# by the algorithm withdrawing insulin, and the rebound signature counts every recovery.
+#
+# The share is a probability drawn once per episode rather than per sample, because a draw
+# every five minutes would treat almost surely within the episode. An episode ends when
+# glucose clears the threshold by 10 mg/dL.
+#
+# Setting it to the measured share does not fix what it was built to fix, and the measurement
+# that shows why is worth more than the knob. Splitting lows into treated and untreated on
+# both sides, by the same rule, over 13 real users and 20 subjects:
+#
+#                      recovery to 100      rebound above 180
+#     real, untreated       62.4 min              25.3%      n=4660
+#     TimSim, untreated     80.0 min              38.5%      n= 366
+#     real, treated         50.0 min              33.2%      n= 912
+#     TimSim, treated       65.0 min              55.5%      n= 128
+#
+# The model is worse in both strata by about the same factor, 1.5 times the rebound and some
+# sixteen minutes slower, so the share of lows treated is not what makes it rebound twice as
+# often as real people. A simulated low lasts longer and overshoots harder however it ends,
+# which is a property of how the person recovers rather than of what they eat, and nothing in
+# this layer can reach it.
+#
+# Treating a low does make rebound more likely, in the real records as well: 33.2% against
+# 25.3%. Weighting those by the real 16.4% treated share gives a pooled 26.6%, which lands
+# inside the 23.2 to 28.4 that `signatures.REAL_RANGE` carries from a separate 192 users, so
+# the two measurements agree where they overlap.
+#
+# Sweeping the share over 1.0, 0.6, 0.4 and 0.25 on twenty subjects moves the rebound from
+# 53.3 to 40.5 and does so without order, 50.0 at 0.6 and 55.1 at 0.4, which is mostly noise
+# at that sample size. Recovery leaves its range at every reduced level. Signatures inside the
+# range fall from seven of eleven to six.
+#
+# So the knob stays and the default does not move. The real share counts logged carbohydrate
+# and people treat without recording it, so 23.4% is a lower bound in any case.
+P_TREAT_LOW = 1.0                 # measured at 0.16-0.23 in real records; see above
+
 RESCUE_MEASURED_DOSE = True       # False restores the uniform 20-40 g draw
 RESCUE_DOSE_MEDIAN_G = 22.0       # at 65 mg/dL, the median entry in the real records
 RESCUE_DOSE_PER_MGDL = -0.129     # g per mg/dL of reading, measured
@@ -199,8 +248,10 @@ class Person:
 
     def __init__(self, rng, rescue=True, announce=True,
                  rescue_threshold=RESCUE_THRESHOLD,
-                 rescue_refractory_min=RESCUE_REFRACTORY_MIN):
+                 rescue_refractory_min=RESCUE_REFRACTORY_MIN,
+                 p_treat_low=None):
         self.rng = rng
+        self.p_treat_low = float(P_TREAT_LOW if p_treat_low is None else p_treat_low)
         self.rescue_on = rescue
         self.announce_on = announce
         self.rescue_threshold = float(rescue_threshold)
@@ -210,7 +261,7 @@ class Person:
         self.rescue_refractory_min = float(rescue_refractory_min)
         self.pending = []          # [(minute_due, grams)]
         self.last_rescue_min = -1e9
-        self.doses_this_episode = 0
+        self.treating = None
         self.rescue_events = 0
         self.rescue_grams = 0.0
         # When each treatment was decided and how large it was. Counts alone cannot answer
@@ -253,11 +304,17 @@ class Person:
         low = cgm < self.rescue_threshold
         falling_fast = cgm < self.rescue_preempt_bg and fall_rate < RESCUE_PREEMPT_FALL
 
-        # Timing is unchanged: the refractory window was calibrated against the real rescue
-        # rate and this changes only how much is eaten when one fires.
+        # An episode ends once glucose is clear of the threshold, and the decision whether to
+        # treat this one is taken once rather than at every sample.
+        if cgm > self.rescue_threshold + 10.0:
+            self.treating = None
         if minute - self.last_rescue_min < self.rescue_refractory_min:
             return
         if not (low or falling_fast):
+            return
+        if self.treating is None:
+            self.treating = bool(self.rng.random() < self.p_treat_low)
+        if not self.treating:
             return
         if RESCUE_MEASURED_DOSE:
             grams = self._dose(cgm)
