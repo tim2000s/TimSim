@@ -197,6 +197,10 @@ def insulin_weekly_cv(insulin_per_step, step_minutes=5.0):
     total at five-minute resolution, so that is what is built here, reduced to one value per
     day by its median, averaged into weeks, and expressed as a coefficient of variation
     across those weeks.
+
+    `Result.insulin_series` is what the pump pushed, including insulin the infusion site
+    failed to absorb, which is also what a real pump log records. Comparing absorbed insulin
+    against a pump log would not be the same quantity.
     """
     v = np.asarray(insulin_per_step, float)
     if v.size < 2:
