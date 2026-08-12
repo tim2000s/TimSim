@@ -64,6 +64,26 @@ DIURNAL_AMPLITUDE = 0.20      # fractional dip in sensitivity, lowest around 06:
 INTERDAY_CV = 0.22            # day-to-day coefficient of variation
 SENSITIVITY_BOUNDS = (0.3, 2.5)
 
+# Runs of days that belong together.
+#
+# The day-to-day term above draws each day independently, and independent draws average out:
+# a week's mean of seven draws at a coefficient of variation of 0.22 has one of 0.22/sqrt(7),
+# about 0.08. Real life is not like that. Illness, a training block, a holiday and the
+# menstrual cycle produce runs of days that move together, and a week inside one of them
+# differs from a week outside it by much more than averaging predicts.
+#
+# The measurement that shows the gap is the week-to-week variation in total daily insulin,
+# which is what a person's changing sensitivity must move whoever is dosing. Across 115 real
+# users of the Nightscout cache over matched 28-day windows the median is 7.3% with an
+# interquartile range of 4.5 to 11.1. TimSim reads 1.8% for the stock model and 4.0% with
+# every layer on.
+#
+# `SLOW_TAU_DAYS` is the correlation time of the slow term and `SLOW_CV` its size. The slow
+# term multiplies the independent daily one rather than replacing it, so Dalla Man's
+# day-to-day figure is untouched: what is added is the thing it does not describe.
+SLOW_TAU_DAYS = 9.0           # correlation time of the multi-day component
+SLOW_CV = 0.0                 # off until calibrated; see set_sensitivity
+
 # ------------------------------------------------------------------ the diurnal pattern
 # Two shapes are available and they disagree about something structural.
 #
@@ -257,6 +277,29 @@ def si_at(hour, levels, edges=SI_EDGES, smooth_hours=SI_SMOOTH_HOURS):
     return float(levels[-1])
 
 
+# How much one meal's absorption differs from another's in the same person.
+#
+# simglucose's gastric emptying is deterministic given the meal, so the same 60 g absorbs
+# identically every time. Real meals of the same size differ in fat, protein and form, and
+# the spread is large. Across 6 users of the OpenAPS Data Commons export with at least fifteen
+# isolated meals of 30 to 80 g eaten from a starting glucose of 80 to 160 mg/dL, the
+# within-person coefficient of variation of the time to peak is 0.51, with quartiles at 0.47
+# and 0.58, and of the rise per gram 0.68.
+#
+# This matters because three fidelity signatures fail together and all say the model is too
+# predictable: the autocorrelation at thirty and sixty minutes sits above its range and the
+# spread of outcomes from a stuck high below its own. Meal absorption acts on exactly that
+# horizon and is the largest deterministic input the model has.
+#
+# The factor multiplies the gastric emptying rates and the intestinal absorption rate
+# together, which shifts both when a meal peaks and how sharply. It is drawn once when a meal
+# starts and held until the next one, so a meal still absorbing when the next begins takes the
+# new factor for its tail. Meals here are three or more hours apart, so that is rare.
+MEAL_ABSORPTION_CV = 0.0          # off until calibrated; see set_meal_variability
+MEAL_ABSORPTION_SCALE = 1.0       # a systematic slowing, separate from the spread
+MEAL_ABSORPTION_BOUNDS = (0.35, 2.6)
+
+
 class VaryingPatient(T1DPatient):
     """T1DPatient with a time-varying insulin-sensitivity factor.
 
@@ -264,6 +307,69 @@ class VaryingPatient(T1DPatient):
     patient that has not had `set_sensitivity` called behaves exactly as the stock
     T1DPatient, so this class is a safe drop-in.
     """
+
+    def set_meal_variability(self, rng, cv=MEAL_ABSORPTION_CV,
+                             scale=MEAL_ABSORPTION_SCALE):
+        """Switch on meal-to-meal variation in how fast carbohydrate arrives.
+
+        `cv` is the coefficient of variation of the multiplicative factor. Zero leaves the
+        stock deterministic absorption, so a patient that has not had this called behaves
+        exactly as before.
+        """
+        self._kabs0 = float(self._params["kabs"])
+        self._kmax0 = float(self._params["kmax"])
+        self._kmin0 = float(self._params["kmin"])
+        self._meal_rng = rng
+        self._meal_cv = float(cv)
+        self._meal_scale = float(scale)
+        self._meal_factor = float(scale)
+        self._last_cho = 0.0
+        self._meal_varying = self._meal_cv > 0.0 or self._meal_scale != 1.0
+
+    def _meal_absorption(self, action):
+        """Draw a fresh factor when a meal starts, and apply the one in force."""
+        if not getattr(self, "_meal_varying", False):
+            return
+        cho = float(getattr(action, "CHO", 0.0) or 0.0)
+        if cho > 0.0 and self._last_cho <= 0.0:
+            sigma = np.sqrt(np.log(1.0 + self._meal_cv ** 2))
+            draw = (self._meal_rng.lognormal(-0.5 * sigma ** 2, sigma)
+                    if self._meal_cv > 0.0 else 1.0)
+            self._meal_factor = float(np.clip(self._meal_scale * draw,
+                                              *MEAL_ABSORPTION_BOUNDS))
+        self._last_cho = cho
+        self._params["kabs"] = self._kabs0 * self._meal_factor
+        self._params["kmax"] = self._kmax0 * self._meal_factor
+        self._params["kmin"] = self._kmin0 * self._meal_factor
+
+    def set_activity(self, activity, vmx_gain=None, vm0_gain=None):
+        """Switch on physical activity.
+
+        `activity` is a `person.activity.Activity`. Peripheral utilisation in the model is
+        `Vm0 + Vmx * X`, insulin-independent plus insulin-dependent. A session raises both,
+        which is why exercise lowers glucose even with little insulin about. What it leaves
+        behind raises only `Vmx`, so a post-exercise low needs insulin on board and a low
+        during a session does not.
+
+        `Fsnc` is left alone: it is brain and nerve uptake and does not move with exercise.
+        """
+        from ..person.activity import VM0_GAIN, VMX_GAIN
+        self._activity = activity
+        self._act_vmx_gain = VMX_GAIN if vmx_gain is None else float(vmx_gain)
+        self._act_vm0_gain = VM0_GAIN if vm0_gain is None else float(vm0_gain)
+        self._vmx0 = float(self._params["Vmx"])
+        self._vm00 = float(self._params["Vm0"])
+
+    def _apply_activity(self, si):
+        """Returns the sensitivity factor with activity folded in, and sets Fcns."""
+        act = getattr(self, "_activity", None)
+        if act is None:
+            return si
+        minute = float(self.t)
+        during, after = act.during(minute), act.after(minute)
+        self._params["Vm0"] = self._vm00 * (1.0 + self._act_vm0_gain * during)
+        return si * (1.0 + self._act_vmx_gain * during
+                     + act.after_gain * after)
 
     def set_hypo_risk(self, gain=HYPO_RISK_GAIN):
         """Switch on S2013's risk-modulated insulin action below basal glucose.
@@ -275,7 +381,8 @@ class VaryingPatient(T1DPatient):
         self._basal_glucose = float(self._params["Gb"])
 
     def set_sensitivity(self, rng, n_days, diurnal=DIURNAL_AMPLITUDE,
-                        interday_cv=INTERDAY_CV, pattern="sinusoid"):
+                        interday_cv=INTERDAY_CV, pattern="sinusoid",
+                        slow_cv=None, slow_tau_days=SLOW_TAU_DAYS):
         """Switch on time-varying sensitivity.
 
         `pattern` selects the diurnal shape: "sinusoid" for the common cosine, "visentin"
@@ -292,6 +399,21 @@ class VaryingPatient(T1DPatient):
             self.si_class, self._si_levels, self._si_noise = draw_si_pattern(rng, n_days)
         sigma = np.sqrt(np.log(1.0 + interday_cv ** 2))
         self._interday = rng.lognormal(-0.5 * sigma ** 2, sigma, size=int(n_days) + 2)
+        # A first-order autoregressive series on the log scale, so the slow term is
+        # lognormal like the daily one and its runs have the stated correlation time.
+        cv = SLOW_CV if slow_cv is None else float(slow_cv)
+        if cv > 0.0:
+            s2 = np.sqrt(np.log(1.0 + cv ** 2))
+            phi = float(np.exp(-1.0 / max(float(slow_tau_days), 1e-6)))
+            n = int(n_days) + 2
+            eps = rng.normal(0.0, s2 * np.sqrt(1.0 - phi ** 2), size=n)
+            x = np.empty(n)
+            x[0] = rng.normal(0.0, s2)
+            for i in range(1, n):
+                x[i] = phi * x[i - 1] + eps[i]
+            self._slow = np.exp(x - 0.5 * s2 ** 2)
+        else:
+            self._slow = np.ones(int(n_days) + 2)
         self._varying = True
 
     def _segment(self, hour):
@@ -312,20 +434,26 @@ class VaryingPatient(T1DPatient):
             shape = si_at(hour, levels)
         else:
             shape = 1.0 - self._diurnal * np.cos(2 * np.pi * (hour - 6) / 24)
-        return float(np.clip(shape * self._interday[day], *SENSITIVITY_BOUNDS))
+        slow = getattr(self, "_slow", None)
+        slow = 1.0 if slow is None else float(slow[min(day, len(slow) - 1)])
+        return float(np.clip(shape * self._interday[day] * slow, *SENSITIVITY_BOUNDS))
 
     def step(self, action):
+        self._meal_absorption(action)
         si = self.sensitivity() if getattr(self, "_varying", False) else 1.0
         if getattr(self, "_varying", False):
             self._params["kp3"] = self._kp30 * si
+        # Activity multiplies the sensitivity factor and sets the insulin-independent term,
+        # so it composes with the diurnal and day-to-day variation rather than replacing it.
+        si_act = self._apply_activity(si)
         gain = getattr(self, "_hypo_gain", 0.0)
         if gain > 0.0:
             # Vmx carries both the sensitivity factor and the risk term, exactly as
             # equation A10 composes them.
             risk = hypo_risk(self.observation.Gsub, self._basal_glucose)
-            self._params["Vmx"] = self._vmx0 * si * (1.0 + gain * risk)
-        elif getattr(self, "_varying", False):
-            self._params["Vmx"] = self._vmx0 * si
+            self._params["Vmx"] = self._vmx0 * si_act * (1.0 + gain * risk)
+        elif getattr(self, "_varying", False) or getattr(self, "_activity", None):
+            self._params["Vmx"] = self._vmx0 * si_act
         return super().step(action)
 
 

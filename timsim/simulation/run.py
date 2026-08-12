@@ -78,7 +78,8 @@ from simglucose.simulation.env import T1DSimEnv
 from simglucose.simulation.scenario import CustomScenario
 
 from ..controller.loop import CorrectionLoop
-from ..patient.varying import HYPO_RISK_GAIN, VaryingPatient
+from ..patient.varying import (HYPO_RISK_GAIN, MEAL_ABSORPTION_CV,
+                               MEAL_ABSORPTION_SCALE, VaryingPatient)
 from ..person import behaviour as behaviour_mod
 from ..person.behaviour import AdaptiveRatios, BehaviourScenario, Person
 from ..population import params_for, therapy_for
@@ -154,6 +155,10 @@ class Result:
     rescue_log: tuple = ()
     meals_announced: int = 0
     meals_unannounced: int = 0
+    # (minute, grams) for every scheduled meal. Rescue carbohydrate is not here; it is in
+    # `rescue_log`, because a rescue and a meal are different events and measuring the
+    # response to one requires excluding the other.
+    meal_log: tuple = ()
     isf_weekly_cv: float = float("nan")
     compression_events: int = 0
     layers: tuple = ()
@@ -286,7 +291,8 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
              params=None, settings=None, profile=None, diurnal_basal=False,
              limits=None, faults=None, sample_minutes=DEFAULT_SAMPLE_MINUTES,
              hypo_risk_gain=None, si_pattern="sinusoid", si_interday_cv=None,
-             isf_scale=1.0, settings_spread=None, behaviour_spread=None):
+             isf_scale=1.0, settings_spread=None, behaviour_spread=None,
+             meal_absorption_cv=None, meal_absorption_scale=None, si_slow_cv=None):
     """Run one subject. Returns a Result.
 
     `layers` is any subset of LAYERS. `controller`, if given, replaces the built-in
@@ -325,10 +331,20 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
         **({} if settings_spread is None else {"settings_spread": settings_spread}))
 
     patient = VaryingPatient(params)
+    # Meal-to-meal absorption variation belongs to the physiology layer: it is a property of
+    # the gut rather than of anything the person decides or the sensor reports.
+    if "physiology" in effective:
+        patient.set_meal_variability(
+            rng,
+            MEAL_ABSORPTION_CV if meal_absorption_cv is None
+            else float(meal_absorption_cv),
+            MEAL_ABSORPTION_SCALE if meal_absorption_scale is None
+            else float(meal_absorption_scale))
     if "physiology" in effective:
         patient.set_sensitivity(
             rng, days, pattern=si_pattern,
-            **({} if si_interday_cv is None else {"interday_cv": si_interday_cv}))
+            **({} if si_interday_cv is None else {"interday_cv": si_interday_cv}),
+            **({} if si_slow_cv is None else {"slow_cv": si_slow_cv}))
         gain = HYPO_RISK_GAIN if hypo_risk_gain is None else hypo_risk_gain
         if gain:
             patient.set_hypo_risk(gain)
@@ -492,6 +508,7 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
         insulin_units=float(insulin.sum()), insulin_series=insulin,
         rescue_events=person.rescue_events, rescue_grams=person.rescue_grams,
         rescue_log=tuple(person.rescue_log),
+        meal_log=tuple((float(h) * 60.0, float(g)) for h, g, _ in schedule),
         meals_announced=person.announced_meals,
         meals_unannounced=person.unannounced_meals,
         isf_weekly_cv=(driver.ratios.weekly_cv()
