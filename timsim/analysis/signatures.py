@@ -201,6 +201,14 @@ def insulin_weekly_cv(insulin_per_step, step_minutes=5.0):
     `Result.insulin_series` is what the pump pushed, including insulin the infusion site
     failed to absorb, which is also what a real pump log records. Comparing absorbed insulin
     against a pump log would not be the same quantity.
+
+    One limitation, stated because it affects how the number should be read. The level of
+    this statistic depends on the driving algorithm as well as on the person: the same
+    subjects read 3.3% under the built-in loop and 5.9% under oref, because how much a loop
+    varies delivery from week to week is partly a property of the loop. What is tested here
+    is its response to the person, which is the right sign under every closed loop, rather
+    than its level. A cohort value should be compared with the real range only alongside the
+    driver it was produced under.
     """
     v = np.asarray(insulin_per_step, float)
     if v.size < 2:
