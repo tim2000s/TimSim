@@ -51,11 +51,18 @@ REAL_RANGE = {
     "compress": (1.9, 5.3),
     "noise": (4.5, 6.7),
     "drift": (8.2, 21.7),
+    # Week-to-week variation in total daily insulin. Constructed differently from the ten
+    # above, which are the min and max of four cohort medians: this is the interquartile
+    # range of 115 individual users, because the records behind it fall into only two
+    # platforms and a band built from two cohort medians would be 6.9 to 8.3, narrow enough
+    # that nothing could pass it. Median across the 115 is 7.3%.
+    "insulin_cv": (4.5, 11.1),
 }
 
 UNITS = {"cv": "%", "tail": "%", "acf30": "", "acf60": "", "outcome": "mg/dL",
          "diurnal": "mg/dL", "hypo_rec": "min", "hypo_reb": "%", "compress": "/30d",
-         "noise": "mg/dL", "drift": "%CV"}
+         "noise": "mg/dL", "drift": "%CV",
+         "insulin_cv": "%CV"}
 
 
 # ------------------------------------------------------------- per-user signatures
@@ -174,6 +181,41 @@ def from_result(result):
     return dict(t=grid, bg=bg, hour=(grid / 3600.0) % 24)
 
 
+DAY_MIN = 1440.0
+
+
+def insulin_weekly_cv(insulin_per_step, step_minutes=5.0):
+    """Week-to-week %CV of total daily insulin.
+
+    This is the statistic `drift` was meant to be and is not. A person whose insulin
+    sensitivity moves must be given a different amount of insulin, whoever is deciding, so
+    the variation shows up here regardless of the driving algorithm. It is invisible in the
+    glucose for the opposite reason: a working closed loop absorbs a sensitivity change by
+    altering delivery, which is exactly what keeps the glucose flat.
+
+    Computed identically to the real side. The real records carry a rolling twenty-four hour
+    total at five-minute resolution, so that is what is built here, reduced to one value per
+    day by its median, averaged into weeks, and expressed as a coefficient of variation
+    across those weeks.
+    """
+    v = np.asarray(insulin_per_step, float)
+    if v.size < 2:
+        return np.nan
+    per_day = int(round(DAY_MIN / float(step_minutes)))
+    if v.size < 3 * per_day:
+        return np.nan
+    rolling = np.convolve(v, np.ones(per_day), mode="valid")     # units in the last 24 h
+    day_of = np.arange(rolling.size) // per_day
+    daily = np.array([np.median(rolling[day_of == d]) for d in np.unique(day_of)])
+    if daily.size < 14:
+        return np.nan
+    week_of = np.arange(daily.size) // 7
+    weekly = np.array([daily[week_of == w].mean() for w in np.unique(week_of)])
+    if weekly.size < 3 or weekly.mean() <= 0:
+        return np.nan
+    return float(100.0 * weekly.std() / weekly.mean())
+
+
 def evaluate(results, drift=None, seed=0):
     """Every signature over a cohort, as {key: (median, lo, hi)}.
 
@@ -190,6 +232,11 @@ def evaluate(results, drift=None, seed=0):
         drift = [getattr(r, "isf_weekly_cv", np.nan) for r in results]
     finite = [v for v in drift if np.isfinite(v)]
     out["drift"] = boot_ci(finite, seed=seed + 99) if finite else (0.0, 0.0, 0.0)
+
+    cv = [insulin_weekly_cv(getattr(r, "insulin_series", []),
+                            getattr(r, "sample_time", 5.0)) for r in results]
+    cv = [v for v in cv if np.isfinite(v)]
+    out["insulin_cv"] = boot_ci(cv, seed=seed + 101) if cv else (np.nan, np.nan, np.nan)
     return out
 
 
@@ -208,7 +255,8 @@ def in_real_range(key, value, pad=0.10):
 def report(stats, pad=0.10):
     """A plain table of every signature against its real range."""
     lines = [f"{'signature':<12} {'real range':>14} {'measured':>22}  verdict"]
-    for key, label, _ in SIGS + [("drift", "ISF drift", None)]:
+    for key, label, _ in SIGS + [("drift", "ISF drift", None),
+                                 ("insulin_cv", "Insulin week-to-week", None)]:
         if key not in stats:
             continue
         lo, hi = REAL_RANGE[key]

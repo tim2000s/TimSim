@@ -15,13 +15,19 @@ from timsim.population import names                              # noqa: E402
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(HERE, "docs", "ladder")
 
-# Cumulative, one mechanism per rung, exactly as `layer_ablation.py` orders them.
+# Cumulative, one mechanism per rung. Behaviour comes before physiology, which is not the
+# order `layer_ablation.py` uses. The first walk of this ladder used that order and lost half
+# the cohort at the physiology rung under two of the four drivers: sensitivity that moves
+# through the day and week to week, with nobody yet able to treat a low, produces subjects who
+# die. Adding the mechanism before its antidote made every rung above it measurable on a
+# different and smaller set of people, and left only four of ten subjects completing all
+# twenty arms. In this order every rung has someone to treat the lows it causes.
 RUNGS = [
     ("stock", "stock 2008", ()),
-    ("phys", "+physiology", ("physiology",)),
-    ("behav", "+behaviour", ("physiology", "behaviour")),
-    ("sens", "+sensor", ("physiology", "behaviour", "sensor")),
-    ("site", "+site", ("physiology", "behaviour", "sensor", "site")),
+    ("behav", "+behaviour", ("behaviour",)),
+    ("phys", "+physiology", ("behaviour", "physiology")),
+    ("sens", "+sensor", ("behaviour", "physiology", "sensor")),
+    ("site", "+site", ("behaviour", "physiology", "sensor", "site")),
 ]
 
 # Two of this package's own and two shipped elsewhere. `basal-bolus` is open loop, which is
@@ -29,14 +35,18 @@ RUNGS = [
 DRIVERS = ["basal-bolus", "trend", "boost", "oref"]
 
 KEYS = ["cv", "tail", "acf30", "acf60", "outcome", "diurnal", "hypo_rec", "hypo_reb",
-        "compress", "noise", "drift"]
+        "compress", "noise", "insulin_cv", "drift"]
 LABELS = {
     "cv": "Glucose variability (CV%)", "tail": "Rise tail P(dBG>10/5min) %",
     "acf30": "Autocorrelation @30min", "acf60": "Autocorrelation @60min",
     "outcome": "Outcome SD @stuck-high (mg/dL)", "diurnal": "Diurnal amplitude (mg/dL)",
     "hypo_rec": "Hypo recovery to 100 (min)", "hypo_reb": "Hypo rebound >180 %",
     "compress": "Compression lows /30d", "noise": "Sensor jitter (mg/dL)",
-    "drift": "ISF drift (weekly %CV)",
+    "insulin_cv": "Insulin week-to-week (%CV)",
+    # Kept in the table and out of any conclusion: it reads the built-in controller's own
+    # learned correction factor, so it is undefined for anything else driving and does not
+    # respond to the person. `insulin_cv` above is the statistic it was meant to be.
+    "drift": "ISF drift (weekly %CV), not evidence",
 }
 
 
@@ -63,6 +73,8 @@ def one(job):
     packed = signatures.from_result(r)
     values = {key: float(fn(packed)) for key, _, fn in signatures.SIGS}
     values["drift"] = float(getattr(r, "isf_weekly_cv", float("nan")))
+    values["insulin_cv"] = float(signatures.insulin_weekly_cv(
+        getattr(r, "insulin_series", []), getattr(r, "sample_time", 5.0)))
     return {"name": name, "completed": bool(r.completed), "values": values}
 
 
