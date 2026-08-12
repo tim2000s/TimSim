@@ -3,6 +3,13 @@
 Adds one mechanism per column so that a movement is attributable to a named cause rather
 than to the bundle. This is what produced the table in docs/FIDELITY.md.
 
+Two of its choices are superseded by `layer_ladder_by_controller.py`, and a reader comparing
+the two tables should know which. This one changes the driving algorithm at the `+loop`
+column, so the columns to its right are measured under a different driver from those to its
+left; the other holds the driver constant and walks the ladder once per driver. And this one
+adds physiology before behaviour, which adds a mechanism before its antidote and loses half
+the cohort at that rung, so the columns above it are measured on fewer and different people.
+
 Each arm is independent, so with `--arm` you can run them in parallel processes and then
 `--table` to collect. Running all six in one process takes roughly an hour and a quarter for ten
 subjects over 28 days.
