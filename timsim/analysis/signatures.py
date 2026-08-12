@@ -24,6 +24,17 @@ and returns each statistic with a bootstrap interval.
 The real-world reference ranges in `REAL_RANGE` were measured across 192 users of four
 different closed-loop systems. A simulator statistic outside its range is a gap; whether
 that gap matters depends on which question is being asked of the simulator.
+
+Ten of the eleven are computed identically on both sides. `drift` is not, and should not be
+read as evidence about the person until it is replaced. It is not derived from the glucose
+at all: `run.py` reads it off the built-in controller's learned correction factor, and that
+controller adapts to glucose sitting off target rather than to the person's sensitivity. Two
+consequences follow, both measured. It is undefined for any driver that is not the built-in
+one, so it is blank for Boost and oref throughout `LADDER.md`. And switching the person's
+week-to-week sensitivity variation off entirely leaves it reading 5.77 %CV against 8.69 with
+it on, a paired difference of +1.26 with a 95% interval of +/-1.55 over ten subjects, so the
+person contributes an amount indistinguishable from zero and the rest is the controller
+adapting to noise.
 """
 import numpy as np
 
@@ -166,8 +177,11 @@ def from_result(result):
 def evaluate(results, drift=None, seed=0):
     """Every signature over a cohort, as {key: (median, lo, hi)}.
 
-    `drift` is the per-subject weekly sensitivity CV, which is a property of the
-    algorithm rather than of the trace and so cannot be read off the glucose.
+    `drift` is the per-subject weekly sensitivity CV. It is a property of the driving
+    algorithm rather than of the person, and the module docstring records the measurement
+    showing it cannot distinguish a person whose sensitivity varies from one whose does not.
+    It is reported for continuity with the published table and should not be counted as
+    evidence.
     """
     packed = [from_result(r) if hasattr(r, "cgm") else r for r in results]
     out = {key: boot_ci([fn(d) for d in packed], seed=seed + i)

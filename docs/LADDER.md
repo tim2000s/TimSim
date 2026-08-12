@@ -107,6 +107,25 @@ The physiology layer carries none. Its largest apparent movement, the diurnal am
 falling 18.3 mg/dL, appears under only two of four drivers. That is the finding this document
 was written to be capable of producing, and it is a negative one about the package's own work.
 
+## The physiology layer has no signature that can see it
+
+The blank cells in the `drift` row for Boost and oref are not missing data. That statistic is
+not computed from the glucose: `run.py` reads it off the built-in controller's learned
+correction factor, so it is undefined whenever something else is driving.
+
+Worse, it does not respond to the person. Running the default stack under the built-in loop
+with the physiology layer's week-to-week sensitivity term switched off entirely leaves the
+signature at 5.77 %CV against 8.69 with it on, a paired difference of +1.26 with a 95%
+interval of +/-1.55 over ten subjects. The controller adapts to glucose sitting off target,
+which happens whether or not the person's sensitivity moves, and that adaptation is most of
+the number. The real range is 8.2 to 21.7, so the in-range verdict in `FIDELITY.md` is largely
+the controller reading its own thermostat.
+
+That leaves the physiology layer with one piece of evidence, the diurnal amplitude falling
+18.3 mg/dL, which appears under two drivers of four. The eleven signatures are therefore ten
+for any purpose involving a person, and the layer whose whole purpose is varying insulin
+sensitivity has no statistic in the set that can detect it.
+
 ## What that does and does not mean
 
 It does not mean the physiology layer does nothing. It means that at ten subjects, under a
