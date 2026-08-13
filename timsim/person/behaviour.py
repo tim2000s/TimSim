@@ -41,9 +41,37 @@ CARB_ESTIMATE_CV = 0.25
 # minutes of it, only 11.7% more than a quarter of an hour late, and 2.2% of meals never
 # bolused at all. A mean lateness of 2.2 minutes cannot produce a delay of forty-five.
 #
-# What is left is the size of the dose rather than its timing, and there is a consistency
-# check pointing the same way: real meals raise glucose by 1.41 mg/dL per gram and this
-# model's by 1.21, which is what under-dosing by about a sixth would look like.
+# It is not the size of the dose either, which is what this parameter was added to test.
+# Scaling the announced amount down leaves the peak where it was:
+#
+#     bias   time to peak   rise per gram
+#     1.00        102 min        1.32
+#     0.90         92 min        1.40
+#     0.80         91 min        1.27
+#     0.70         95 min        1.48
+#     real        135 min        1.41
+#
+# Non-monotonic and inside the noise. Under-dosing raises the peak without delaying it,
+# because when the peak arrives is set by the absorption profile and insulin scales its
+# height. So absorption rate, bolus timing and dose size are all refused.
+#
+# It was the clock. Real time to peak was counted from the carbohydrate entry and the
+# simulated from the meal, and those are not the same event, because pre-bolusing is standard
+# practice and the entry can precede any food by fifteen or twenty minutes. Counting instead
+# from the trough after the entry, which is the duration of the rise itself and is measurable
+# identically on both sides:
+#
+#                      trough to peak            rise
+#     real, 5,189 meals   112 min (70-165)     75 mg/dL
+#     simulated, 442      100 min (75-144)     84 mg/dL
+#
+# Twelve minutes apart with quartiles that overlap almost entirely. The forty-five minute gap
+# was mostly an artefact of clocking the two sides from different events, and the three
+# mechanisms tested against it were tested against something that was not there.
+#
+# The parameter is left at 1.0. It would be defensible on the literature, which reports mean
+# absolute error and separately documents that people under-count, but it was added to explain
+# something that turned out not to need explaining, and adopting it now would be fitting.
 CARB_ESTIMATE_BIAS = 1.0
 
 # Rescue. The 15-15 rule (15 g, recheck at 15 min) is the standard advice, and the observed

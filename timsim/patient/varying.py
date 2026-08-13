@@ -340,10 +340,18 @@ MEAL_ABSORPTION_CV = 0.9
 #      0.50        99 min         1.02
 #      0.35       100 min         0.85
 #
-# The peak arrives when insulin action overtakes carbohydrate appearance, and this package
-# boluses the whole meal at the meal while real people bolus late, bolus short, or miss it.
-# The forty-five minute gap is therefore about when insulin is given rather than about the
-# gut, and it belongs to the behaviour layer.
+# The gap turned out not to be a gap. Real time to peak was counted from the carbohydrate
+# entry and the simulated from the meal, and pre-bolusing means those differ by fifteen or
+# twenty minutes. Measured from the trough after the entry, which is the duration of the rise
+# and is identical on both sides, real meals give 112 minutes against a simulated 100, with
+# quartiles of 70 to 165 against 75 to 144.
+#
+# One consequence for the spread calibrated above. The 0.51 within-person coefficient of
+# variation of time to peak was measured on the entry clock, so it carries whatever variation
+# there is in how long before eating somebody boluses. It is therefore an upper bound on
+# absorption variability, and the 0.9 setting fitted to it may be too high. On the trough
+# clock the real quartile spread is 0.85 of the median against a simulated 0.69, so the
+# direction holds and the size is smaller than the entry-clock figures suggest.
 MEAL_ABSORPTION_SCALE = 1.0
 MEAL_ABSORPTION_BOUNDS = (0.35, 2.6)
 
