@@ -27,6 +27,25 @@ P_ANNOUNCE_MAIN = 0.80
 P_ANNOUNCE_SNACK = 0.35
 CARB_ESTIMATE_CV = 0.25
 
+# Whether the error is centred.
+#
+# The draw above has mean one, so a meal is as likely to be over-counted as under-counted.
+# The papers cited report mean absolute error, which is a spread and says nothing about
+# direction, and the direction is separately well documented: people under-estimate, and more
+# so as the meal grows.
+#
+# It matters here because of a gap nothing else explained. Real meals peak at 135 minutes and
+# this model's at 90. It is not absorption: slowing every rate threefold moves the peak ten
+# minutes and saturates. It is not when the insulin is given either, measured across 6,414
+# real meals from ten users, where the median bolus lands on the meal, 65.4% within two
+# minutes of it, only 11.7% more than a quarter of an hour late, and 2.2% of meals never
+# bolused at all. A mean lateness of 2.2 minutes cannot produce a delay of forty-five.
+#
+# What is left is the size of the dose rather than its timing, and there is a consistency
+# check pointing the same way: real meals raise glucose by 1.41 mg/dL per gram and this
+# model's by 1.21, which is what under-dosing by about a sixth would look like.
+CARB_ESTIMATE_BIAS = 1.0
+
 # Rescue. The 15-15 rule (15 g, recheck at 15 min) is the standard advice, and the observed
 # practice is to exceed it: Savard et al. (2016) and the ADA's own guidance note routine
 # over-treatment.
@@ -282,7 +301,8 @@ class Person:
             return 0.0
         self.announced_meals += 1
         sigma = np.sqrt(np.log(1 + CARB_ESTIMATE_CV ** 2))
-        return float(grams * self.rng.lognormal(-0.5 * sigma ** 2, sigma))
+        return float(grams * CARB_ESTIMATE_BIAS
+                     * self.rng.lognormal(-0.5 * sigma ** 2, sigma))
 
     # ---------------------------------------------------------------- rescue
     def _dose(self, cgm):

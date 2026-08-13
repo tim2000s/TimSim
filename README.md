@@ -157,6 +157,15 @@ open-source systems still needs.
 [docs/MODEL.md](docs/MODEL.md) describes the UVA/Padova simulator underneath, taken from the
 equations as implemented rather than from the papers, since most of the arguments in the
 other documents turn on what that model does and does not contain.
+[docs/SIMULATOR.md](docs/SIMULATOR.md) describes what this package puts on top of it, and
+[docs/CAPABILITY.md](docs/CAPABILITY.md) states what the result can and cannot be used for,
+against the licensed S2013 and S2017 releases and against 101 real users.
+
+[docs/papers/](docs/papers/) holds the studies, one file each, written so that a piece of work
+can be read on its own: the question, how it was measured, what came out, and what it means.
+Most are negative, which is not an accident of presentation. More mechanisms and explanations
+were refused than adopted, and the ones that survived did so after two or three candidates had
+been eliminated by measurement.
 
 ## The person, the rig, and the controller
 
