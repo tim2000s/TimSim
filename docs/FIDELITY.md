@@ -505,10 +505,9 @@ not been measured.
 ### Hepatic autoregulation does not explain the hypoglycaemia spread
 
 The population's spread of time below 54 mg/dL is the worst-fitting statistic in the
-coverage table, and the model's endogenous glucose production during a low is four times the
-measured value, so the obvious candidate was that a defence which is too strong and varies
-between subjects would produce exactly that signature. Measured across 97 subjects, it does
-not:
+coverage table, and endogenous glucose production during a low varies between subjects by more
+than an order of magnitude, so the obvious candidate was that a defence varying that widely
+would produce exactly that signature. Measured across 97 subjects, it does not:
 
 | Against time below 54 | Correlation |
 |---|---|
@@ -718,10 +717,13 @@ what can be said is that the two agree on the signal both actually record.
 ### What the physiology says
 
 The assumption underneath the whole exercise was that the model's liver shuts down during a
-low. It does not. `EGP = kp1 - kp2*Gp - kp3*Id` contains a hepatic autoregulation in the
-`-kp2*Gp` term that strengthens as glucose falls, and measured across the ten published
-adults, endogenous glucose production on crossing 54 mg/dL is 2.60 mg/kg/min against a basal
-of 2.36. It rises.
+low. Whether it does depends on the insulin it is asked at, and the first attempt to settle
+it did not control for that.
+
+`EGP = kp1 - kp2*Gp - kp3*Id` contains a hepatic autoregulation in the `-kp2*Gp` term that
+strengthens as glucose falls, and an insulin suppression in `-kp3*Id` that does not. Measured
+across the ten published adults during spontaneous lows under the reference loop, endogenous
+glucose production on crossing 54 mg/dL is 2.60 mg/kg/min against a basal of 2.36. It rises.
 
 Rickels et al. (Diabetes 2015) put a stepped hyperinsulinaemic clamp down to 45 mg/dL in
 twelve people with long-standing type 1 diabetes and severe hypoglycaemia, against eight
@@ -737,22 +739,111 @@ Their finding was that endogenous glucose production in the diabetic group was "
 during hypoglycemia to levels not different from under euglycemic conditions". Flat. The
 counterregulatory response was absent, and islet transplantation restored it.
 
-So the model already produces about four times more glucose during a low than the people it
-is meant to represent, and it does respond to falling glucose where they do not.
+Setting 2.60 beside 0.59 gave a model producing four times what it should. That comparison
+was wrong, and wrong in the way this project's comparisons usually go wrong: the two figures
+were measured at different insulin. Rickels's number comes from a clamp holding insulin high
+while glucose is walked down. A spontaneous low under a closed loop is the opposite state,
+reached because the algorithm withdrew insulin. In model units the remote-compartment insulin
+`Id` at a spontaneous low below 54 mg/dL has a median of 281 across the subjects that reach
+one, against 466 at the 45 mg/dL plateau of a clamp and 225 at euglycaemia.
 
-### The conclusion, which is the opposite of the one expected
+### The clamp, run in silico
 
-Adding counterregulation would move this simulator away from long-standing type 1 diabetes
-on every measurement available. The population it represents has no endogenous glucose
-production response to hypoglycaemia; the model already has one, and a strong one. The
-duration of a severe low, compared on the signal a trial actually records, already matches.
+The protocol was therefore reproduced on the model: insulin infused at a fixed 1.0 mU/kg/min
+on top of basal replacement while glucose is held at successive plateaus by a variable
+glucose infusion titrated by a proportional-integral controller, with the last 30 minutes of
+each plateau measured. Glucose is infused into the plasma compartment as it is in the human
+protocol rather than fed as a meal. Median across twenty subjects:
 
-Three further reasons not to, which were true before any of this was measured and are worth
-keeping together. S2013's counterregulation is a glucagon model whose secretion half is
-unpublished, so it cannot be implemented faithfully. Visentin et al. flagged themselves that
-including glucagon secretion "could be not appropriate for all T1DM patients with a long
-duration". And people with established type 1 diabetes lose the alpha-cell response, which
-is exactly what the 33 pg/mL above shows.
+| Plateau, mg/dL | Held at | EGP | Insulin-dependent uptake | Glucose infusion | `Id` |
+|---|---|---|---|---|---|
+| 90 | 89.7 | 2.09 | 3.70 | 2.82 | 195 |
+| 80 | 79.6 | 1.25 | 3.45 | 3.25 | 286 |
+| 65 | 64.9 | 0.60 | 2.91 | 3.35 | 369 |
+| 55 | 54.7 | 0.10 | 2.48 | 3.30 | 430 |
+| 45 | 45.1 | 0.00 | 2.05 | 2.47 | 466 |
+
+Production collapses to zero rather than running at four times the human figure. The
+suppression term outruns the autoregulation term once the clamp's insulin is present, and
+`max(..., 0)` takes it the rest of the way. Real people with no glucagon response at all hold
+0.42 to 0.84 mg/kg/min here.
+
+Disposal is not the problem. A human glucose infusion of 3.1 mg/kg/min against production of
+0.42 to 0.84 implies total disposal near 3.5, and the model at the 45 mg/dL plateau disposes
+of 2.05 by the insulin-dependent route plus insulin-independent `Fcns`. It is already at or
+below the human value, so suppressing uptake further, which is what adrenaline does and what
+`HYPO_DEFENCE_GAIN` was built to do, moves away from the reference. That arm stays at zero.
+
+### What was implemented
+
+`HYPO_EGP_DEFENCE` opposes insulin's suppression of production as glucose falls, on the same
+logistic centred at 58 mg/dL, which is the hepatic arm of the adrenaline response. At 0.25 the
+median across twenty subjects is 0.67 mg/kg/min at the 55 mg/dL plateau and 0.65 at 45, inside
+the human range, with a glucose infusion of 3.18 against a human 3.1.
+
+The between-subject spread is not inside anything. Across twenty subjects at the 55 mg/dL
+plateau the stock model gives a median of 0.14 with nine subjects at exactly zero and a
+ninetieth percentile of 1.43; with the defence at 0.25 the median is 0.72, six subjects are
+still at zero and two produce over 2.3. Rickels's twelve people gave 0.59 ± 0.12. The
+mechanism moves the centre of the population into range and leaves it far wider than the human
+one, and that width belongs to the published `kp1`, `kp2` and `kp3` values rather than to the
+defence. Raising the gain to bring the zero subjects up drives the high ones further out, and
+above 0.3 the clamp stops holding 45 mg/dL at all.
+
+The glucagon arm is still not implemented and should not be. S2013's secretion half is
+unpublished, Visentin et al. flagged that including glucagon secretion "could be not
+appropriate for all T1DM patients with a long duration", and people with established type 1
+diabetes lose the alpha-cell response, which is what the 33 pg/mL above shows. What is
+implemented is the arm those same people retain.
+
+### The regression
+
+Twenty subjects, 28 days at a fixed seed with the full stack, run twice under each of two
+drivers with the hepatic defence as the only difference. The signatures are paired over the
+subjects completing both arms, since an arm that loses different subjects is a different
+population.
+
+| Driver | Completing, defence off | Defence on |
+|---|---|---|
+| Open loop with meal boluses | 13/20 | 16/20 |
+| Reference correction loop | 16/20 | 18/20 |
+
+| Signature | Real range | Off | On | Paired difference, 95% |
+|---|---|---|---|---|
+| Lowest glucose reached, mg/dL | | 42.6 | 51.8 | +8.07 ± 4.4 |
+| Readings at or below 40 mg/dL, % | | 0.050 | 0.025 | -0.069 ± 0.062 |
+| Glucose variability, CV% | 29.5 to 34.3 | 36.7 | 35.0 | -1.76 ± 1.7 |
+| Autocorrelation at 30 min | 0.78 to 0.87 | 0.880 | 0.878 | -0.009 ± 0.008 |
+| Autocorrelation at 60 min | 0.50 to 0.68 | 0.699 | 0.693 | -0.024 ± 0.021 |
+| Time in range, % | | 74.0 | 76.6 | +1.38 ± 1.4 |
+| Time below 54 mg/dL, % | | 0.43 | 0.27 | -0.21 ± 0.24 |
+| Diurnal amplitude, mg/dL | 34.7 to 56.3 | 49.2 | 47.4 | -6.12 ± 7.6 |
+| Hypoglycaemia recovery, min | 50 to 59 | 62.5 | 65.0 | -0.17 ± 3.6 |
+| Hypoglycaemia rebound, % | 23.2 to 28.4 | 47.8 | 45.2 | +0.64 ± 5.9 |
+| Rise tail, % | 3.7 to 6.6 | 4.71 | 4.97 | -0.07 ± 0.24 |
+| Outcome spread at a stuck high | 26.5 to 33.5 | 28.4 | 28.9 | +0.34 ± 1.3 |
+| Compression lows per 30 days | 1.9 to 5.3 | 3.21 | 3.21 | -0.21 ± 0.85 |
+| Sensor jitter, mg/dL | 4.5 to 6.7 | 5.68 | 5.69 | -0.002 ± 0.027 |
+| Insulin week-to-week CV, % | 4.5 to 11.1 | 5.24 | 5.23 | +0.44 ± 0.60 |
+
+Values are under the reference correction loop, paired over the 15 subjects completing both
+arms. Six intervals exclude zero: the lowest glucose reached, readings at or below 40 mg/dL,
+variability, both autocorrelations and time in range. Under the open-loop driver, paired over
+13 subjects, the lowest glucose reached moves +5.65 ± 4.8 and nothing else reaches
+significance.
+
+Everything that moved significantly and was not the target moved towards its reference range
+rather than away, because all three were already outside it on the high side. Nothing on which
+the population already sat inside its range was pushed out. The rebound and recovery figures,
+which are the two worst-fitting statistics in the table, did not move, so the defence is not
+the explanation for either and the account in `08_no_floor.md` that attributes them to the
+absent floor is not supported by this.
+
+The paired comparison understates the effect, since the three and two subjects the defence
+rescues under each driver are excluded from it by construction, and they are the subjects
+reaching the lowest glucose. Fifteen and thirteen subjects also leaves most of these intervals
+wide enough that only a large movement would show, so the absence of an asterisk on a row is
+weak evidence that the row is unaffected.
 
 ### The rate, and whose rate it is
 

@@ -54,7 +54,7 @@ above.
 
 ## Working on this package
 
-Run tests with `pytest -q` from the repository root. The suite takes about three minutes
+Run tests with `pytest -q` from the repository root. The suite takes about fourteen minutes
 and needs simglucose installed along with a generated population under
 `timsim/population/params/`.
 

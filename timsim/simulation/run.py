@@ -78,8 +78,8 @@ from simglucose.simulation.env import T1DSimEnv
 from simglucose.simulation.scenario import CustomScenario
 
 from ..controller.loop import CorrectionLoop
-from ..patient.varying import (HYPO_RISK_GAIN, MEAL_ABSORPTION_CV,
-                               MEAL_ABSORPTION_SCALE, VaryingPatient)
+from ..patient.varying import (HYPO_DEFENCE_GAIN, HYPO_EGP_DEFENCE, HYPO_RISK_GAIN,
+                               MEAL_ABSORPTION_CV, MEAL_ABSORPTION_SCALE, VaryingPatient)
 from ..person import behaviour as behaviour_mod
 from ..person.behaviour import AdaptiveRatios, BehaviourScenario, Person
 from ..population import params_for, therapy_for
@@ -301,7 +301,8 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
              hypo_risk_gain=None, si_pattern="sinusoid", si_interday_cv=None,
              isf_scale=1.0, settings_spread=None, behaviour_spread=None,
              meal_absorption_cv=None, meal_absorption_scale=None, si_slow_cv=None,
-             sessions_per_week=None):
+             sessions_per_week=None, hypo_defence_gain=None,
+             hypo_egp_defence=None):
     """Run one subject. Returns a Result.
 
     `layers` is any subset of LAYERS. `controller`, if given, replaces the built-in
@@ -357,6 +358,15 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
         gain = HYPO_RISK_GAIN if hypo_risk_gain is None else hypo_risk_gain
         if gain:
             patient.set_hypo_risk(gain)
+        # The counterregulatory arrest of a falling glucose. It belongs to physiology because
+        # it is the body opposing the insulin already circulating, so it is present whatever
+        # the person eats and whatever the algorithm decides.
+        defence = (HYPO_DEFENCE_GAIN if hypo_defence_gain is None
+                   else float(hypo_defence_gain))
+        hepatic = (HYPO_EGP_DEFENCE if hypo_egp_defence is None
+                   else float(hypo_egp_defence))
+        if defence or hepatic:
+            patient.set_hypo_defence(defence, hepatic)
 
     if "activity" in effective:
         from ..person.activity import Activity, draw_sessions

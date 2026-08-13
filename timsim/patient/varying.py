@@ -261,6 +261,67 @@ def hypo_risk(glucose_mgdl, basal_mgdl, threshold=HYPO_RISK_THRESHOLD):
     return 10.0 * f ** 2
 
 
+# A floor under a falling glucose.
+#
+# Nothing in S2008 arrests a fall. Measured over forty subjects for 28 days under the built-in
+# loop, fifteen fail to complete and fourteen of those end with glucose at 10 to 13 mg/dL,
+# while the population sits at or below 40 mg/dL on 0.44% of readings against a real 0.07%.
+# The distribution is ordinary and the tail runs to zero.
+#
+# Counterregulation in long-standing type 1 diabetes has two arms and only one survives. The
+# glucagon response is lost within a few years of diagnosis and clamp studies find no
+# discernible rise in that population, so S2013's glucagon compartment is not implemented here
+# and would be wrong for these subjects even if its secretion parameters had been published.
+# The adrenaline response persists, attenuated, and acts both by suppressing peripheral glucose
+# uptake and by opposing insulin at the liver.
+#
+# Which of those two matters was settled by reproducing the human protocol on the model: a
+# stepped hyperinsulinaemic clamp, insulin infused at a fixed 1.0 mU/kg/min while glucose is
+# held at successive plateaus by a variable glucose infusion. Median across twenty subjects,
+# against Rickels et al. (Diabetes 2015) in twelve people with long-standing type 1 diabetes:
+#
+#     plateau, mg/dL   EGP   uptake   infusion      human
+#           90        2.09     3.70       2.82
+#           80        1.25     3.45       3.25
+#           65        0.60     2.91       3.35
+#           55        0.10     2.48       3.30      EGP 0.42 to 0.84 at the plateau,
+#           45        0.00     2.05       2.47      infusion 3.1, both mg/kg/min
+#
+# Production collapses to zero, because `kp1 - kp2*Gp - kp3*Id` floors there once the clamp's
+# insulin suppresses it faster than the falling glucose raises it. Disposal does not have the
+# same problem: a human infusion of 3.1 against production of 0.42 to 0.84 implies total
+# disposal near 3.5, and the model manages 2.05 by the insulin-dependent route plus
+# insulin-independent `Fcns`, so it is already at or below the human value. Suppressing uptake
+# further therefore moves away from the reference, and `HYPO_DEFENCE_GAIN` stays at zero.
+#
+# `HYPO_EGP_DEFENCE` opposes insulin's suppression of production, rising as glucose falls. At
+# 0.25 the median is 0.67 mg/kg/min at the 55 mg/dL plateau and 0.65 at 45, with an infusion of
+# 3.18. The centre of the population sits inside the human range and its width does not: nine
+# of twenty subjects produce exactly zero at the 55 mg/dL plateau under the stock model and six
+# still do with the defence on, while two produce over 2.3 against a human 0.59 +/- 0.12. That
+# width belongs to the published `kp1`, `kp2` and `kp3` values. Raising the gain to lift the
+# zero subjects drives the high ones further out, and above 0.3 the clamp stops holding 45.
+#
+# `hypo_risk` above cannot carry either arm, because Kovatchev's index saturates at its
+# threshold and returns the same value at 60 mg/dL and at 10. A defence has to keep growing as
+# glucose falls, so both arms use a logistic in glucose instead.
+HYPO_DEFENCE_GAIN = 0.0       # 0 restores stock S2008; 1 would suppress uptake entirely
+HYPO_EGP_DEFENCE = 0.25       # 0 restores stock S2008; 1 removes insulin suppression of EGP
+HYPO_DEFENCE_CENTRE = 58.0    # mg/dL, where the defence is half its maximum
+HYPO_DEFENCE_WIDTH = 8.0      # mg/dL, how sharply it comes on
+HYPO_DEFENCE_FLOOR = 0.15     # insulin action never falls below this fraction
+
+
+def hypo_defence(glucose_mgdl, centre=HYPO_DEFENCE_CENTRE, width=HYPO_DEFENCE_WIDTH):
+    """How strongly glucose uptake is being opposed, from zero to one as glucose falls."""
+    z = (float(glucose_mgdl) - centre) / width
+    if z > 40:
+        return 0.0
+    if z < -40:
+        return 1.0
+    return float(1.0 / (1.0 + np.exp(z)))
+
+
 def draw_si_pattern(rng, n_days, normalise=SI_NORMALISE_TO_UNIT_MEAN):
     """Assign one subject a diurnal sensitivity class and its daily realisations.
 
@@ -427,6 +488,25 @@ class VaryingPatient(T1DPatient):
         return si * (1.0 + self._act_vmx_gain * during
                      + act.after_gain * after)
 
+    def set_hypo_defence(self, gain=HYPO_DEFENCE_GAIN, egp_gain=None):
+        """Switch on the counterregulatory arrest of a falling glucose.
+
+        Suppresses insulin-dependent glucose utilisation as glucose falls, which is the
+        adrenaline arm of counterregulation and the one that survives in long-standing type 1
+        diabetes. Zero leaves the stock behaviour, in which nothing arrests a fall.
+        """
+        self._vmx0 = float(self._params["Vmx"])
+        self._kp30 = float(self._params["kp3"])
+        self._defence_gain = float(gain)
+        self._egp_defence = float(HYPO_EGP_DEFENCE if egp_gain is None else egp_gain)
+
+    def _defence_factor(self):
+        gain = getattr(self, "_defence_gain", 0.0)
+        if gain <= 0.0:
+            return 1.0
+        d = hypo_defence(self.observation.Gsub)
+        return max(HYPO_DEFENCE_FLOOR, 1.0 - gain * d)
+
     def set_hypo_risk(self, gain=HYPO_RISK_GAIN):
         """Switch on S2013's risk-modulated insulin action below basal glucose.
 
@@ -499,17 +579,25 @@ class VaryingPatient(T1DPatient):
         si = self.sensitivity() if getattr(self, "_varying", False) else 1.0
         if getattr(self, "_varying", False):
             self._params["kp3"] = self._kp30 * si
+        # The hepatic arm: adrenaline opposes insulin's suppression of glucose production, so
+        # a falling glucose recovers some of the production the insulin would otherwise remove.
+        eg = getattr(self, "_egp_defence", 0.0)
+        if eg > 0.0:
+            base = self._kp30 * (si if getattr(self, "_varying", False) else 1.0)
+            self._params["kp3"] = base * (1.0 - eg * hypo_defence(self.observation.Gsub))
         # Activity multiplies the sensitivity factor and sets the insulin-independent term,
         # so it composes with the diurnal and day-to-day variation rather than replacing it.
         si_act = self._apply_activity(si)
         gain = getattr(self, "_hypo_gain", 0.0)
+        defence = self._defence_factor()
         if gain > 0.0:
-            # Vmx carries both the sensitivity factor and the risk term, exactly as
-            # equation A10 composes them.
+            # Vmx carries the sensitivity factor and the risk term, exactly as equation A10
+            # composes them, and the defence multiplies whatever they produce.
             risk = hypo_risk(self.observation.Gsub, self._basal_glucose)
-            self._params["Vmx"] = self._vmx0 * si_act * (1.0 + gain * risk)
-        elif getattr(self, "_varying", False) or getattr(self, "_activity", None):
-            self._params["Vmx"] = self._vmx0 * si_act
+            self._params["Vmx"] = self._vmx0 * si_act * (1.0 + gain * risk) * defence
+        elif (getattr(self, "_varying", False) or getattr(self, "_activity", None)
+              or defence != 1.0):
+            self._params["Vmx"] = self._vmx0 * si_act * defence
         return super().step(action)
 
 
