@@ -116,6 +116,20 @@ RESCUE_REFRACTORY_MIN = 45.0      # one treatment episode, not one dosing cycle
 
 # The size of one helping, drawn as the real entries are distributed.
 #
+# Remeasured 2026-08-13 on 4,544 entries from 30 users, after the first version globbed
+# filenames in a way that missed any carrying a user-id prefix and so drew on 1,001 entries
+# from 8. The medians came down and the spread went up:
+#
+#     reading      first pass          full sample        n
+#      65-75    median 20.0 g       median 15.0 g      2405
+#      55-65    median 24.0 g       median 18.0 g      1316
+#      45-55    median 25.0 g       median 20.0 g       557
+#      below 45 median 25.0 g       median 22.0 g       266
+#
+# The slope against the reading holds, -0.117 g per mg/dL against -0.129, and the ninetieth
+# percentile holds at 45 g. What changed is the centre: the distribution is more skewed than
+# the first sample suggested, with a mean of 21.0 g on a median of 15.0.
+#
 # The totals above are per episode and are close to real: 34.4 g a rescue against a logged
 # median of 28.5. What is not real is that the whole of it arrives in one dose. Across 1,001
 # carbohydrate entries made below 75 mg/dL by 8 users of the OpenAPS Data Commons export, the
@@ -147,20 +161,46 @@ RESCUE_REFRACTORY_MIN = 45.0      # one treatment episode, not one dosing cycle
 # What it costs and what it buys, twenty adults over 28 days under the built-in loop, paired,
 # with nothing but the size of a helping changed:
 #
-#     hypoglycaemia rebound >180   63.9 -> 54.5   -12.0 +/- 4.4   real 23.2-28.4
-#     outcome SD at a stuck high   25.9 -> 23.8    -0.9 +/- 0.8   real 26.5-33.5
-#     rise tail                     4.4 ->  4.3    -0.2 +/- 0.1   real 3.7-6.6, still inside
-#     insulin week-to-week %CV      4.2 ->  4.6    +0.5 +/- 0.9   real 4.5-11.1
-#     hypoglycaemia recovery, min  50.0 -> 50.0    +2.2 +/- 4.2   real 50-59, still inside
-#     rescues a day                0.99 -> 0.91                   real 0.44 logged
-#     grams a rescue               36.1 -> 25.6                   real 20-25 an entry
+# Regressed on twenty subjects, paired, against the uniform draw this replaces and against the
+# first sample's 22 g median:
 #
-# Signatures inside the real range go from eight of eleven to seven. What is lost is the
-# outcome spread, moving 0.9 further below a range it was sitting on the edge of. What is
-# bought is twelve points off the worst-fitting statistic in the package. The rebound is still
-# about twice the real rate, so this closes roughly a third of that gap and the remainder is
-# somewhere else: a rescue here raises glucose by about 4.9 mg/dL per gram, which is at the
-# upper end of what is clinically expected and has not been validated.
+#     signature      published    uniform 35 g   22 g fit   15 g fit
+#     hypo rebound   23.2-28.4         64.6        54.7       47.0
+#     hypo recovery  50-59             56.2        62.5       70.0
+#     variability    29.5-34.3         34.7        36.8       35.5
+#     grams a rescue                    35.2        26.1       21.5
+#     inside the published band        10/11        8/11       8/11
+#
+# By that count the unfaithful uniform draw wins, and by the distribution of 101 real
+# individuals it does not:
+#
+#     signature      real p10-p90   uniform   22 g fit   15 g fit
+#     hypo rebound    16.7-52.9        64.6      54.7       47.0
+#     hypo recovery   40.0-80.0        56.2      62.5       70.0
+#     variability     29.9-41.4        34.7      36.8       35.5
+#     inside that range                9/10      9/10      10/10
+#
+# The measured helping is the only arm with every signature inside the range of real people.
+# The published band is the minimum and maximum of four cohort medians, so it describes where
+# a cohort's centre sits rather than where people sit, and it is the wrong reference for a
+# population meant to contain individuals. See `docs/CAPABILITY.md`.
+#
+# What the change exposes rather than causes: recovery to 100 mg/dL moves to 70 minutes, which
+# is inside the real 40 to 80 but slow. The model's untreated lows already took 80 minutes
+# against a real 59.4, and giving 35 g of carbohydrate was masking it.
+#
+# It costs nothing in survival, which was checked rather than assumed. Twelve subjects over 28
+# days under each of two drivers:
+#
+#     helping     trend        control-iq
+#     uniform     8/12 4.71%   5/12 4.92%
+#     22 g        8/12 4.05%   6/12 7.28%
+#     15 g        8/12 3.97%   5/12 5.90%
+#
+# Completion is flat and time below 70 falls slightly, so the smaller helping neither kills
+# subjects nor deepens their lows. The attrition in that table belongs to the subjects and to
+# Control-IQ rather than to anything here, and eight of twelve completing under the default
+# driver is worth someone looking at on its own account.
 # Whether a low is treated at all.
 #
 # Across 3,012 excursions below 70 in the OpenAPS Data Commons export, 23.4% have a
@@ -211,9 +251,9 @@ RESCUE_REFRACTORY_MIN = 45.0      # one treatment episode, not one dosing cycle
 P_TREAT_LOW = 1.0                 # measured at 0.16-0.23 in real records; see above
 
 RESCUE_MEASURED_DOSE = True       # False restores the uniform 20-40 g draw
-RESCUE_DOSE_MEDIAN_G = 22.0       # at 65 mg/dL, the median entry in the real records
-RESCUE_DOSE_PER_MGDL = -0.129     # g per mg/dL of reading, measured
-RESCUE_DOSE_SIGMA = 0.557         # lognormal, giving a ninetieth percentile near 45 g
+RESCUE_DOSE_MEDIAN_G = 15.0       # at 65 mg/dL, the median entry in the real records
+RESCUE_DOSE_PER_MGDL = -0.117     # g per mg/dL of reading, measured
+RESCUE_DOSE_SIGMA = 0.857         # lognormal, giving a mean of 21.7 g and a p90 of 45
 RESCUE_DOSE_BOUNDS = (4.0, 90.0)  # g, the range the real entries occupy
 
 # How much people differ from each other in when they treat a low, as a coefficient of

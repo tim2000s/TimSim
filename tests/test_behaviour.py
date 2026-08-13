@@ -31,12 +31,21 @@ def test_announcement_can_be_switched_off():
 
 
 def test_a_low_produces_carbohydrate_after_a_delay():
+    """What this pins is the delay and that everything decided on arrives.
+
+    It used to assert the total fell between 14 and 50 g, which were the bounds of the
+    uniform draw it was written against. The helping is now lognormal about a measured
+    median of 15 g, so an ordinary draw can be under 10, and pinning the old window would
+    have pinned a distribution this test was never meant to be about.
+    """
+    from timsim.person.behaviour import RESCUE_DOSE_BOUNDS
     p = Person(np.random.default_rng(2))
     p.observe(minute=100, cgm=62.0, fall_rate=-1.0)
     assert p.rescue_events == 1
     assert p.due(100, 1.0) == 0.0                    # not instant
     total = sum(p.due(m, 1.0) for m in range(100, 130))
-    assert 14.0 <= total <= 50.0
+    assert total == pytest.approx(p.rescue_grams), "some of the helping never arrived"
+    assert RESCUE_DOSE_BOUNDS[0] <= total <= RESCUE_DOSE_BOUNDS[1]
 
 
 def test_rescue_does_not_repeat_inside_the_refractory_window():

@@ -65,7 +65,8 @@ with twenty simulated subjects run under all four drivers with the full stack.
 | Sensor jitter, mg/dL | 4.5-6.7 | 3.8-12.4 | 5.6-5.7 | 2% |
 
 Nine of ten simulated medians fall inside the real tenth-to-ninetieth percentile. Four of ten
-fall inside the published band.
+fall inside the published band. The simulated column predates the rescue helping being
+remeasured, which took the cohort median of the rebound row from 64.6% to 47.0%.
 
 The two numbers are not in conflict and the difference between them is arithmetic. The
 published band is the minimum and maximum of four cohort medians, so it describes where the
@@ -78,15 +79,35 @@ That correction should be applied to earlier conclusions in this repository, inc
 recorded as failures. The cluster described as showing the model is too predictable, the two
 autocorrelations and the outcome spread, sits inside the real individual range on all three.
 
+It also changes a decision rather than only a description. The rescue helping was remeasured
+on 4,544 real entries and its median fell from 22 g to 15 g. Scored three ways on the same
+twenty subjects:
+
+| Draw | Grams | Inside the published band | Inside the real p10-p90 |
+|---|---|---|---|
+| Uniform 20-40 g | 35.2 | 10 of 11 | 9 of 10 |
+| Fitted at 22 g | 26.1 | 8 of 11 | 9 of 10 |
+| Fitted at 15 g | 21.5 | 8 of 11 | 10 of 10 |
+
+The measured helping is the worst of the three against the band and the only one with every
+signature inside the range of real people. The signature that separates them is hypoglycaemia
+rebound, at 64.6% under the uniform draw against a real ninetieth percentile of 52.9, falling
+to 47.0% and inside. Choosing by the band would have kept a draw that gives 35 g where real
+people give 15.
+
 ## What is genuinely weak
 
 Two things survive the reframing and one of them is new.
 
-Hypoglycaemia rebound is the worst-fitting statistic by a distance. The simulated spread runs
-to 87.5% against a real ninetieth percentile of 52.9%, and the median sits outside the real
-range. The cause is not the rescue dose, not the response to carbohydrate, and not the share
-of lows treated; all three were measured and eliminated in
-[05-rescue-carbohydrate](papers/05-rescue-carbohydrate.md). It is how a low ends.
+Hypoglycaemia rebound is the worst-fitting statistic by a distance, though the remeasured
+rescue helping brought the median inside the real range for the first time, from 64.6% to
+47.0% against a real ninetieth percentile of 52.9%.
+
+What remains is not the rescue dose, not the response to carbohydrate and not the share of
+lows treated; all three were measured and eliminated in
+[05-rescue-carbohydrate](papers/05-rescue-carbohydrate.md). It is how a low ends. The model
+takes 80 minutes to recover from an untreated low against a real 59.4 and rebounds 1.83 times
+as often, and the same factor appears in treated lows, so nothing the person does reaches it.
 
 The population is too uniform in everything the rig contributes. Sensor jitter spans 5.6 to
 5.7 mg/dL across every simulated subject against a real 3.8 to 12.4, an overlap of 2%, and

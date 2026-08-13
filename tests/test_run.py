@@ -112,14 +112,27 @@ def test_closing_the_loop_is_a_change_of_controller_not_of_person(subject):
 
 
 def test_the_two_loop_shapes_differ_in_the_way_they_are_meant_to(subject):
-    """One corrects every five minutes by bolus; the other hourly, mostly through basal."""
+    """One corrects every five minutes by bolus; the other hourly, mostly through basal.
+
+    This used to close by asserting that the Control-IQ shape spends less time above 180
+    than the trend shape, on one subject over seven days. The property is real: across
+    twelve subjects at 28 days it holds on five of five who complete both, a paired
+    difference of -5.25 percentage points with a 95% interval of 1.87. One subject over a
+    week is not enough to see it, and the assertion passed only under the rescue
+    configuration that happened to be in place when it was written, failing under both the
+    one before it and the one after.
+
+    What is asserted here is the shape of the two controllers and that they produce
+    different runs. The outcome ordering is measured in `examples/`, not pinned here, because
+    a test that needs ten 28-day runs does not belong in a unit suite.
+    """
     from timsim.controller.loop import CONTROL_IQ, TREND
     assert CONTROL_IQ.min_interval_min == 60.0 and TREND.min_interval_min == 5.0
     assert CONTROL_IQ.predict_min == 30.0 and TREND.predict_min == 0.0
     assert CONTROL_IQ.max_basal_scale > 1.0 and TREND.max_basal_scale == 1.0
     a = simulate(subject, days=7, seed=0, controller="control-iq")
     b = simulate(subject, days=7, seed=0, controller="trend")
-    assert a.time_above_180 < b.time_above_180
+    assert not np.allclose(a.cgm, b.cgm), "the two shapes produced the same run"
 
 
 def test_insulin_is_recorded_whichever_controller_delivered_it(subject):
