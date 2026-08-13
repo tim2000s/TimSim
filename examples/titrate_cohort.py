@@ -26,12 +26,24 @@ def _one(job):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--subjects", type=int, default=20)
+    ap.add_argument("--cohort", default="adults",
+                    help="'adults' for adult#001 upward, or 'dclp3' for a cohort whose age "
+                         "distribution follows the DCLP3 closed-loop arm")
     ap.add_argument("--days", type=int, default=28)
     ap.add_argument("--seed", type=int, default=11)
     ap.add_argument("--workers", type=int, default=6)
     a = ap.parse_args()
 
-    names = [f"adult#{i:03d}" for i in range(1, a.subjects + 1)]
+    if a.cohort == "dclp3":
+        from timsim.validation import dclp3
+        from timsim.population import cohort
+        names, short = cohort.matched(dclp3.ages(), n=a.subjects, seed=a.seed)
+        names = [str(n) for n in names]
+        print(f"DCLP3-matched cohort: {cohort.describe(names)}")
+        if short:
+            print(f"  age bins that could not supply their share: {short}")
+    else:
+        names = [f"adult#{i:03d}" for i in range(1, a.subjects + 1)]
     with ProcessPoolExecutor(max_workers=a.workers) as ex:
         out = list(ex.map(_one, [(n, a.days, a.seed) for n in names]))
 

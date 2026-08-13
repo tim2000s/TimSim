@@ -89,6 +89,11 @@ subjects. A failure there invalidates every generated subject.
 The population is generated locally and is not committed, so nothing derived from the
 published parameter tables is redistributed.
 
+`docs/METHODS.md` is the operational guide to producing a benchmark figure that survives
+checking: the time-series basis of every comparison, the settings titration, matching the target
+and the reference population, pairing per subject, and what a result has to carry to be
+interpretable. Read it before adding an arm.
+
 Settings are titrated before anything is benchmarked. A subject's correction factor and
 carbohydrate ratio in the population table are measured from its own physiology, which is a
 quantity no real person has: real settings come from titration and end up conservative. The
