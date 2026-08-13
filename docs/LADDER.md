@@ -155,6 +155,14 @@ layer raises it 29.3 points under every driver, which makes it a property of the
 modelled rather than an accident of one run. Overcorrecting a low is a real behaviour and the
 reference range is real people doing it; the simulated people do it about twice as often.
 
+The bare model is inside the range on this signature, at 26.7% and 23.3% under two drivers on
+436 and 368 episodes, and it gets there by failing the other half of the same event: its
+recoveries take 110 and 100 minutes against a real 50 to 59, and it spends 0.25% and 1.05% of
+time below 70 against a real 4.07%. Lows that rare and that long end when the insulin clears,
+with nothing absorbing to carry glucose past 180. The trade is therefore forced rather than
+incidental, since the carbohydrate that brings recovery into range is what overshoots, and a
+rebound rate conditioned on a quarter of the real exposure is not the same measurement anyway.
+
 ## Reproducing
 
     python examples/layer_ladder_by_controller.py --subjects 20 --days 28 --workers 8
