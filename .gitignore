@@ -9,6 +9,8 @@ dist/
 examples/out/
 timsim/population/params/vpop_*.csv
 timsim/population/params/vpop_*.json
+# Titrated settings derive from the same published tables as the population.
+timsim/population/params/titrated_settings.json
 bridge/boost/*.jar
 # The gathered oref0 source. It is someone else's code and belongs in their repository;
 # bridge/oref/build.sh fetches it from a local checkout.

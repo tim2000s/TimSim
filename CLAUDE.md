@@ -89,6 +89,26 @@ subjects. A failure there invalidates every generated subject.
 The population is generated locally and is not committed, so nothing derived from the
 published parameter tables is redistributed.
 
+Settings are titrated before anything is benchmarked. A subject's correction factor and
+carbohydrate ratio in the population table are measured from its own physiology, which is a
+quantity no real person has: real settings come from titration and end up conservative. The
+median physiological correction factor here is 15.1 mg/dL per unit against the 35 DCLP3
+participants ran, and handing oref0 SMB the physiological value doubles its time below 70 mg/dL
+against handing it the real one, so an untitrated benchmark measures the settings as much as
+the algorithm. `examples/titrate_cohort.py` weakens each subject's settings until its own record
+clears the consensus hypoglycaemia floors (Battelino et al. 2019, below 54 mg/dL under 1 per
+cent and below 70 under 4) and no further, writes the result beside the population, and
+`timsim.therapy.titrate.profile_for` raises rather than falling back when a subject has not been
+through it.
+
+Titration runs under the built-in correction loop, never under the algorithm being benchmarked.
+Tuning settings with the controller under test in the loop lets a controller that provokes
+hypoglycaemia earn weaker settings from the bench judging it. It also cannot run under the
+open-loop arm, which spends 0.25 per cent of time below 70 mg/dL and so never exercises the
+settings at all. Settings adequate under the reference loop may not be adequate under a more
+aggressive algorithm, and that difference is the algorithm's, which is what the benchmark is
+for.
+
 The bar for adding a mechanism is in `CONTRIBUTING.md`. The short version is that a new
 layer comes with the statistic it is meant to move, the same statistic with the layer off,
 and every other statistic as well.

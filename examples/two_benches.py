@@ -14,8 +14,13 @@ import numpy as np
 from concurrent.futures import ProcessPoolExecutor
 from timsim.simulation.run import simulate
 from timsim.analysis import signatures
+from timsim.therapy import titrate
 
-SUBJECTS = [f"adult#{i:03d}" for i in range(1, 21)]
+# Only subjects whose settings have been through `examples/titrate_cohort.py`. An algorithm
+# scored on settings nobody titrated is being judged partly on the settings, and the effect is
+# not small: the physiological correction factor doubles oref0's time below 70 mg/dL against
+# the one real users run.
+SUBJECTS = list(titrate.titrated_subjects()) or [f"adult#{i:03d}" for i in range(1, 21)]
 DAYS, SEED = 28, 11
 ARMS = {"padova": (), "timsim": ("physiology", "behaviour", "sensor", "site")}
 OUT = "two_benches.json"
@@ -24,9 +29,11 @@ OUT = "two_benches.json"
 def one(job):
     name, arm = job
     from timsim.controller import oref
-    ctrl = oref.OrefController(name)
+    prof = titrate.profile_for(name)          # raises if this subject was never titrated
+    ctrl = oref.OrefController(name, profile=prof)
     try:
-        r = simulate(name, days=DAYS, seed=SEED, layers=ARMS[arm], controller=ctrl)
+        r = simulate(name, days=DAYS, seed=SEED, layers=ARMS[arm], controller=ctrl,
+                     profile=prof)
     except Exception as e:
         return {"name": name, "arm": arm, "completed": False, "error": str(e)[:140]}
     finally:

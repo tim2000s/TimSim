@@ -47,6 +47,11 @@ function cycle(m) {
         sensitivityRatio: r.sensitivityRatio === undefined ? null : r.sensitivityRatio,
         carbsReq: r.carbsReq === undefined ? null : r.carbsReq,
         reason: r.reason || '',
+        // The prediction arrays oref built this cycle, which a real loop uploads to
+        // Nightscout as `devicestatus.openaps.suggested.predBGs`. They are what a
+        // prediction-accuracy check reads, so a bench that drops them cannot be assessed
+        // the way a real user's record is.
+        predBGs: r.predBGs === undefined ? null : r.predBGs,
     }
 }
 
