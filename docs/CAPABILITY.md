@@ -105,7 +105,7 @@ the population sits at or below 40 mg/dL on 0.44% of readings against a real 0.0
 distribution is ordinary and the tail runs to zero, so no statistic computed over the body of
 it shows this. It also means every cohort figure here is conditioned on survival, and survival
 is selection on the variable most of them measure. See
-[08-no-floor](papers/08-no-floor.md).
+study 08 of the Research-Papers repository.
 
 Hypoglycaemia rebound is the worst-fitting statistic by a distance, though the remeasured
 rescue helping brought the median inside the real range for the first time, from 64.6% to
@@ -113,7 +113,7 @@ rescue helping brought the median inside the real range for the first time, from
 
 What remains is not the rescue dose, not the response to carbohydrate and not the share of
 lows treated; all three were measured and eliminated in
-[05-rescue-carbohydrate](papers/05-rescue-carbohydrate.md). It is how a low ends. The model
+study 05 of the Research-Papers repository. It is how a low ends. The model
 takes 80 minutes to recover from an untreated low against a real 59.4 and rebounds 1.83 times
 as often, and the same factor appears in treated lows, so nothing the person does reaches it.
 

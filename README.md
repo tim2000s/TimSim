@@ -161,11 +161,11 @@ other documents turn on what that model does and does not contain.
 [docs/CAPABILITY.md](docs/CAPABILITY.md) states what the result can and cannot be used for,
 against the licensed S2013 and S2017 releases and against 101 real users.
 
-[docs/papers/](docs/papers/) holds the studies, one file each, written so that a piece of work
-can be read on its own: the question, how it was measured, what came out, and what it means.
-Most are negative, which is not an accident of presentation. More mechanisms and explanations
-were refused than adopted, and the ones that survived did so after two or three candidates had
-been eliminated by measurement.
+The studies live in the Research-Papers repository under `TimSim/`, one file each, written so
+that a piece of work can be read on its own: the question, how it was measured, what came out,
+and what it means. [docs/papers/](docs/papers/) indexes them. Most are negative, which is not an
+accident of presentation. More mechanisms and explanations were refused than adopted, and the
+ones that survived did so after two or three candidates had been eliminated by measurement.
 
 ## The person, the rig, and the controller
 

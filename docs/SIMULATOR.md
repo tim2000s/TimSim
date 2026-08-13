@@ -72,7 +72,7 @@ not publish. The risk term makes lows deeper rather than shorter, so implementin
 would import the harm without the rescue. It is present, off, and measured.
 
 Exercise. Implemented and measured and left off, because it makes the model more predictable
-rather than less. The measurement is in [06-four-mechanisms](papers/06-four-mechanisms.md).
+rather than less. The measurement is in study 06 of the Research-Papers repository.
 
 Between-subject spread beyond what the population already carries. Every source tried widens
 both the spread of mean glucose, which is wanted, and the spread of hypoglycaemia, which is
