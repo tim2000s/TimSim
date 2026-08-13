@@ -155,13 +155,15 @@ layer raises it 29.3 points under every driver, which makes it a property of the
 modelled rather than an accident of one run. Overcorrecting a low is a real behaviour and the
 reference range is real people doing it; the simulated people do it about twice as often.
 
-The bare model is inside the range on this signature, at 26.7% and 23.3% under two drivers on
-436 and 368 episodes, and it gets there by failing the other half of the same event: its
-recoveries take 110 and 100 minutes against a real 50 to 59, and it spends 0.25% and 1.05% of
-time below 70 against a real 4.07%. Lows that rare and that long end when the insulin clears,
-with nothing absorbing to carry glucose past 180. The trade is therefore forced rather than
-incidental, since the carbohydrate that brings recovery into range is what overshoots, and a
-rebound rate conditioned on a quarter of the real exposure is not the same measurement anyway.
+That attribution reads the cumulative design too literally. Each rung is measured against the
+one below it, and the bare model has almost no hypoglycaemia to rebound from: 0.25% and 1.05% of
+time below 70 under the open-loop and correction-loop drivers, against a real 4.07%. Its rebound
+of 26.7% and 23.3% is conditioned on a quarter of the real exposure. Under oref0 SMB, which
+gives it 4.53%, the bare model rebounds after 45.2% of recoveries and the full stack after
+45.2%, a paired difference of 6.0 points with an interval of 8.3 over thirteen subjects. So the
+excess belongs to the metabolic model and this table is measuring how much hypoglycaemia each
+rung produces as much as what each rung does with it, which applies to any per-episode signature
+walked cumulatively.
 
 ## Reproducing
 
