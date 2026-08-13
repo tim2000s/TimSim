@@ -99,7 +99,7 @@ def test_stock_model_produces_no_glucose_at_a_hypoglycaemic_plateau():
     the falling glucose raises it. People with long-standing type 1 diabetes, who have no
     glucagon response at all, hold production at 0.42 to 0.84 mg/kg/min at this plateau. The
     panel median is asserted rather than any one subject, because across twenty subjects nine
-    produce exactly zero here and two produce over 2.0.
+    produce exactly zero here while the ninetieth percentile is 1.43.
     """
     egp, held = zip(*(_clamp_plateau(n, 0.0) for n in PANEL))
     assert all(50.0 < h < 60.0 for h in held), held

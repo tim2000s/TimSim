@@ -275,32 +275,48 @@ def hypo_risk(glucose_mgdl, basal_mgdl, threshold=HYPO_RISK_THRESHOLD):
 # The adrenaline response persists, attenuated, and acts both by suppressing peripheral glucose
 # uptake and by opposing insulin at the liver.
 #
-# Which of those two matters was settled by reproducing the human protocol on the model: a
-# stepped hyperinsulinaemic clamp, insulin infused at a fixed 1.0 mU/kg/min while glucose is
-# held at successive plateaus by a variable glucose infusion. Median across twenty subjects,
-# against Rickels et al. (Diabetes 2015) in twelve people with long-standing type 1 diabetes:
+# Which of those two matters was settled by reproducing the human protocol on the model, in
+# `examples/hypoglycaemic_clamp.py`: a stepped hyperinsulinaemic clamp, insulin infused at a
+# fixed 1.0 mU/kg/min while glucose is held at successive plateaus by a variable glucose
+# infusion. Medians across twenty subjects, rates in mg/kg/min, against Rickels et al.
+# (Diabetes 2015) in twelve people with long-standing type 1 diabetes:
 #
-#     plateau, mg/dL   EGP   uptake   infusion      human
-#           90        2.09     3.70       2.82
-#           80        1.25     3.45       3.25
-#           65        0.60     2.91       3.35
-#           55        0.10     2.48       3.30      EGP 0.42 to 0.84 at the plateau,
-#           45        0.00     2.05       2.47      infusion 3.1, both mg/kg/min
+#     plateau, mg/dL   production   uptake   infusion   remote insulin
+#           90            2.06        3.93     3.15          199
+#           80            1.25        3.78     3.50          295
+#           65            0.60        3.16     3.41          374
+#           55            0.14        2.69     3.66          441
+#           45            0.01        2.22     2.99          468
 #
-# Production collapses to zero, because `kp1 - kp2*Gp - kp3*Id` floors there once the clamp's
+#     human, at the plateau: production 0.42 to 0.84, infusion 3.1
+#
+# Production falls to nothing, because `kp1 - kp2*Gp - kp3*Id` floors at zero once the clamp's
 # insulin suppresses it faster than the falling glucose raises it. Disposal does not have the
 # same problem: a human infusion of 3.1 against production of 0.42 to 0.84 implies total
-# disposal near 3.5, and the model manages 2.05 by the insulin-dependent route plus
+# disposal near 3.5, and the model manages 2.22 by the insulin-dependent route plus
 # insulin-independent `Fcns`, so it is already at or below the human value. Suppressing uptake
 # further therefore moves away from the reference, and `HYPO_DEFENCE_GAIN` stays at zero.
 #
-# `HYPO_EGP_DEFENCE` opposes insulin's suppression of production, rising as glucose falls. At
-# 0.25 the median is 0.67 mg/kg/min at the 55 mg/dL plateau and 0.65 at 45, with an infusion of
-# 3.18. The centre of the population sits inside the human range and its width does not: nine
-# of twenty subjects produce exactly zero at the 55 mg/dL plateau under the stock model and six
-# still do with the defence on, while two produce over 2.3 against a human 0.59 +/- 0.12. That
-# width belongs to the published `kp1`, `kp2` and `kp3` values. Raising the gain to lift the
-# zero subjects drives the high ones further out, and above 0.3 the clamp stops holding 45.
+# A figure for production taken from an ordinary run is not comparable with any of this. Remote
+# insulin during spontaneous lows below 54 mg/dL has a median of 235 across the fifteen of
+# twenty subjects that reach one, against 188 at euglycaemia and 441 at the clamped 55 mg/dL
+# plateau, and production read there is 1.28 rather than 0.14.
+#
+# `HYPO_EGP_DEFENCE` opposes insulin's suppression of production, rising as glucose falls. Of
+# the gains swept, 0.25 is the only one placing both hypoglycaemic plateaus inside the human
+# range, at 0.72 mg/kg/min at 55 mg/dL and 0.69 at 45:
+#
+#     gain    production at 55    at 45
+#     0.15         0.50            0.39
+#     0.25         0.72            0.69
+#     0.30         0.82            0.88
+#
+# The centre of the population sits inside the human range and its width does not. Nine of
+# twenty subjects produce exactly zero at the 55 mg/dL plateau under the stock model and six
+# still do with the defence on, while the ninetieth percentile is 1.83 against a human
+# 0.59 +/- 0.12. That width belongs to the published `kp1`, `kp2` and `kp3` values: a gain large
+# enough to lift the subjects producing nothing drives the ones already producing too much
+# further out, because it scales a term they were never short of.
 #
 # `hypo_risk` above cannot carry either arm, because Kovatchev's index saturates at its
 # threshold and returns the same value at 60 mg/dL and at 10. A defence has to keep growing as

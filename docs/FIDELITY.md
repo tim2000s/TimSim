@@ -744,8 +744,9 @@ was wrong, and wrong in the way this project's comparisons usually go wrong: the
 were measured at different insulin. Rickels's number comes from a clamp holding insulin high
 while glucose is walked down. A spontaneous low under a closed loop is the opposite state,
 reached because the algorithm withdrew insulin. In model units the remote-compartment insulin
-`Id` at a spontaneous low below 54 mg/dL has a median of 281 across the subjects that reach
-one, against 466 at the 45 mg/dL plateau of a clamp and 225 at euglycaemia.
+`Id` at a spontaneous low below 54 mg/dL has a median of 235 across the fifteen of twenty
+subjects that reach one, against 441 at the clamped 55 mg/dL plateau and 188 at euglycaemia,
+and production read there is 1.28 mg/kg/min rather than the 0.14 the clamp gives.
 
 ### The clamp, run in silico
 
@@ -757,38 +758,50 @@ protocol rather than fed as a meal. Median across twenty subjects:
 
 | Plateau, mg/dL | Held at | EGP | Insulin-dependent uptake | Glucose infusion | `Id` |
 |---|---|---|---|---|---|
-| 90 | 89.7 | 2.09 | 3.70 | 2.82 | 195 |
-| 80 | 79.6 | 1.25 | 3.45 | 3.25 | 286 |
-| 65 | 64.9 | 0.60 | 2.91 | 3.35 | 369 |
-| 55 | 54.7 | 0.10 | 2.48 | 3.30 | 430 |
-| 45 | 45.1 | 0.00 | 2.05 | 2.47 | 466 |
+| 90 | 89.3 | 2.06 | 3.93 | 3.15 | 199 |
+| 80 | 79.6 | 1.25 | 3.78 | 3.50 | 295 |
+| 65 | 64.7 | 0.60 | 3.16 | 3.41 | 374 |
+| 55 | 54.5 | 0.14 | 2.69 | 3.66 | 441 |
+| 45 | 45.0 | 0.01 | 2.22 | 2.99 | 468 |
 
-Production collapses to zero rather than running at four times the human figure. The
+Production collapses to nothing rather than running at four times the human figure. The
 suppression term outruns the autoregulation term once the clamp's insulin is present, and
 `max(..., 0)` takes it the rest of the way. Real people with no glucagon response at all hold
 0.42 to 0.84 mg/kg/min here.
 
 Disposal is not the problem. A human glucose infusion of 3.1 mg/kg/min against production of
 0.42 to 0.84 implies total disposal near 3.5, and the model at the 45 mg/dL plateau disposes
-of 2.05 by the insulin-dependent route plus insulin-independent `Fcns`. It is already at or
+of 2.22 by the insulin-dependent route plus insulin-independent `Fcns`. It is already at or
 below the human value, so suppressing uptake further, which is what adrenaline does and what
 `HYPO_DEFENCE_GAIN` was built to do, moves away from the reference. That arm stays at zero.
 
 ### What was implemented
 
 `HYPO_EGP_DEFENCE` opposes insulin's suppression of production as glucose falls, on the same
-logistic centred at 58 mg/dL, which is the hepatic arm of the adrenaline response. At 0.25 the
-median across twenty subjects is 0.67 mg/kg/min at the 55 mg/dL plateau and 0.65 at 45, inside
-the human range, with a glucose infusion of 3.18 against a human 3.1.
+logistic centred at 58 mg/dL, which is the hepatic arm of the adrenaline response. Four gains
+were run through the clamp:
 
-The between-subject spread is not inside anything. Across twenty subjects at the 55 mg/dL
-plateau the stock model gives a median of 0.14 with nine subjects at exactly zero and a
-ninetieth percentile of 1.43; with the defence at 0.25 the median is 0.72, six subjects are
-still at zero and two produce over 2.3. Rickels's twelve people gave 0.59 ± 0.12. The
-mechanism moves the centre of the population into range and leaves it far wider than the human
-one, and that width belongs to the published `kp1`, `kp2` and `kp3` values rather than to the
-defence. Raising the gain to bring the zero subjects up drives the high ones further out, and
-above 0.3 the clamp stops holding 45 mg/dL at all.
+| Gain | Production at 55 mg/dL | at 45 mg/dL | Infusion at 55 | at 45 |
+|---|---|---|---|---|
+| 0 | 0.14 | 0.01 | 3.66 | 2.99 |
+| 0.15 | 0.50 | 0.39 | 3.34 | 2.82 |
+| 0.25 | 0.72 | 0.69 | 3.21 | 2.45 |
+| 0.30 | 0.82 | 0.88 | 3.08 | 2.45 |
+
+0.25 is the only one placing both hypoglycaemic plateaus inside the human 0.42 to 0.84, and its
+infusion at 55 mg/dL of 3.21 is nearer the human 3.1 than the stock model's 3.66. At 45 mg/dL
+the infusion moves the other way, which follows from the disposal shortfall: holding a plateau
+means infusing the difference between disposal and production, so correcting production alone
+lowers the infusion a model already disposing too little requires.
+
+The between-subject spread is not inside anything. At the 55 mg/dL plateau the stock model gives
+a median of 0.14 with nine of twenty subjects at exactly zero and a ninetieth percentile of
+1.43; at a gain of 0.25 the median is 0.72, six are still at zero and the ninetieth percentile
+is 1.83. Rickels's twelve people gave 0.59 ± 0.12. The mechanism moves the centre of the
+population into range and leaves it far wider than the human one, and that width belongs to the
+published `kp1`, `kp2` and `kp3` values rather than to the defence. A gain large enough to lift
+the subjects producing nothing drives the ones already producing too much further out, because
+it scales a term they were never short of.
 
 The glucagon arm is still not implemented and should not be. S2013's secretion half is
 unpublished, Visentin et al. flagged that including glucagon secretion "could be not
