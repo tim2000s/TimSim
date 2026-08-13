@@ -41,32 +41,42 @@ Physical activity is in none of the releases and is implemented here. It is off 
 made the model worse, taking the count from eight of eleven to five and raising both
 autocorrelations out of range where lowering them was the purpose.
 
-So against the licensed lineage this sits between S2008 and S2017 on sensitivity variation,
-behind S2013 on hypoglycaemia mechanism, and ahead of all three on everything that is not the
-body: the sensor, the person and the infusion set.
+So against the licensed lineage this sits between S2008 and S2017 on sensitivity variation and
+ahead of all three on everything that is not the body: the sensor, the person and the infusion
+set. On hypoglycaemia the two are not ordered. S2013 defends a low through a glucagon
+compartment, which is the arm long-standing type 1 diabetes has lost and whose secretion
+parameters are unpublished, and this package defends one through the arm that survives, a
+hepatic term calibrated against the clamp protocol the human figures were measured at. What
+S2013 has and this does not is the risk term, which is implemented here and off.
 
 ## Against real people
 
 The eleven signatures were computed on 101 users of the OpenAPS Data Commons export over
 matched 28-day windows, using the same functions the simulator is scored with, and compared
-with twenty simulated subjects run under all four drivers with the full stack.
+with twenty simulated subjects run under each of the four drivers with the full stack in its
+shipped configuration. 66 of the 80 runs completed, from 15 of 20 under oref0 to 18 under the
+built-in loop.
 
-| Signature | Published band | Real p10-p90 | Simulated p10-p90 | Overlap |
-|---|---|---|---|---|
-| Glucose variability, CV% | 29.5-34.3 | 29.9-41.4 | 27.2-43.4 | 100% |
-| Rise tail, % | 3.7-6.6 | 1.9-6.6 | 2.3-6.4 | 88% |
-| Autocorrelation at 30 min | 0.78-0.87 | 0.81-0.92 | 0.86-0.95 | 51% |
-| Autocorrelation at 60 min | 0.50-0.68 | 0.51-0.77 | 0.61-0.86 | 64% |
-| Outcome SD at a stuck high | 26.5-33.5 | 22.4-34.6 | 19.0-33.8 | 93% |
-| Diurnal amplitude, mg/dL | 34.7-56.3 | 32.9-78.8 | 30.4-102.0 | 100% |
-| Hypoglycaemia recovery, min | 50-59 | 40.0-80.0 | 33.0-78.5 | 96% |
-| Hypoglycaemia rebound, % | 23.2-28.4 | 16.7-52.9 | 23.9-87.5 | 80% |
-| Compression lows per 30 d | 1.9-5.3 | 0.0-7.5 | 2.1-5.4 | 43% |
-| Sensor jitter, mg/dL | 4.5-6.7 | 3.8-12.4 | 5.6-5.7 | 2% |
+| Signature | Published band | Real p10-p90 | Simulated p10-p90 | Median | Overlap |
+|---|---|---|---|---|---|
+| Glucose variability, CV% | 29.5-34.3 | 29.9-41.4 | 31.8-46.4 | 38.8 | 83% |
+| Rise tail, % | 3.7-6.6 | 1.9-6.6 | 3.2-6.2 | 5.1 | 65% |
+| Autocorrelation at 30 min | 0.78-0.87 | 0.81-0.92 | 0.85-0.94 | 0.91 | 66% |
+| Autocorrelation at 60 min | 0.50-0.68 | 0.51-0.77 | 0.58-0.85 | 0.74 | 75% |
+| Outcome SD at a stuck high | 26.5-33.5 | 22.4-34.6 | 21.9-36.3 | 28.3 | 100% |
+| Diurnal amplitude, mg/dL | 34.7-56.3 | 32.9-78.8 | 40.5-100.1 | 59.1 | 83% |
+| Hypoglycaemia recovery, min | 50-59 | 40.0-80.0 | 30.0-85.0 | 65.0 | 100% |
+| Hypoglycaemia rebound, % | 23.2-28.4 | 16.7-52.9 | 21.2-67.2 | 45.0 | 88% |
+| Compression lows per 30 d | 1.9-5.3 | 0.0-7.5 | 2.1-4.3 | 3.2 | 29% |
+| Sensor jitter, mg/dL | 4.5-6.7 | 3.8-12.4 | 5.6-5.8 | 5.7 | 2% |
 
-Nine of ten simulated medians fall inside the real tenth-to-ninetieth percentile. Four of ten
-fall inside the published band. The simulated column predates the rescue helping being
-remeasured, which took the cohort median of the rebound row from 64.6% to 47.0%.
+Overlap is the share of the real p10-p90 interval the simulated one covers, so a population
+narrower than the real one scores low however well centred it is, which is what the last two
+rows record.
+
+All ten simulated medians fall inside the real tenth-to-ninetieth percentile. Four of ten fall
+inside the published band. The simulated column is computed on the 66 of 80 runs that completed,
+so it is conditioned on survival and the 14 it excludes are the ones that went lowest.
 
 The two numbers are not in conflict and the difference between them is arithmetic. The
 published band is the minimum and maximum of four cohort medians, so it describes where the
