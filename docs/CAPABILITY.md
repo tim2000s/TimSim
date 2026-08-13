@@ -15,7 +15,7 @@ and not redistributable, so everything here works from S2008 and adds what it ca
 | Meal model, glucose and insulin kinetics | yes | yes | yes | inherited |
 | Time-invariant parameters | yes | yes | no | no, sensitivity moves |
 | Risk term deepening hypoglycaemia | no | yes | yes | implemented, off, measured |
-| Glucagon kinetics, secretion, action | no | yes | yes | not implemented |
+| Glucagon kinetics, secretion, action | no | yes | yes | not implemented, and the absence has consequences |
 | Intraday insulin sensitivity variation | no | no | yes | implemented, on |
 | Dawn phenomenon | no | no | yes | implemented, on |
 | Diurnal basal and carbohydrate ratio | no | no | yes | implemented, off |
@@ -97,7 +97,15 @@ people give 15.
 
 ## What is genuinely weak
 
-Two things survive the reframing and one of them is new.
+Three things, and the first was found only after the rest of this document was written.
+
+Nothing in the model arrests a falling glucose. Fifteen of forty subjects fail to complete 28
+days under the default controller, fourteen of them by glucose reaching 10 to 13 mg/dL, and
+the population sits at or below 40 mg/dL on 0.44% of readings against a real 0.07%. The
+distribution is ordinary and the tail runs to zero, so no statistic computed over the body of
+it shows this. It also means every cohort figure here is conditioned on survival, and survival
+is selection on the variable most of them measure. See
+[08-no-floor](papers/08-no-floor.md).
 
 Hypoglycaemia rebound is the worst-fitting statistic by a distance, though the remeasured
 rescue helping brought the median inside the real range for the first time, from 64.6% to
@@ -132,7 +140,8 @@ Certifying a system as safe, or pricing a settings change for an individual. The
 arithmetic in [OSAID.md](OSAID.md) puts both out of reach and no further work on the model
 changes that.
 
-Any claim resting on hypoglycaemia rebound, until how a low ends is understood.
+Any claim resting on hypoglycaemia rebound, or on the depth or duration of a low, until the
+missing floor is dealt with. The relevant statistics are computed over survivors.
 
 Any claim resting on between-subject variation in sensor behaviour, which is absent.
 

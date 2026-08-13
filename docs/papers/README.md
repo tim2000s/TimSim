@@ -18,6 +18,7 @@ after the first two or three candidates had been eliminated by measurement.
 | 05 | [Where a low comes from](05-rescue-carbohydrate.md) | Why does the model rebound twice as often as real people? | Not the dose schedule, the carbohydrate response, or the treated share |
 | 06 | [Four mechanisms for realism](06-four-mechanisms.md) | Can absorption spread, activity or slow sensitivity close the gaps? | One of four; and it works for the wrong reason |
 | 07 | [A gap that was not there](07-meal-peak-timing.md) | Why do this model's meals peak 45 minutes early? | They do not. The two sides were clocked from different events |
+| 08 | [No floor under a falling glucose](08-no-floor.md) | Why do runs fail to complete? | Glucose falls to zero. Nothing in the model arrests a fall |
 
 ## A note on sample sizes
 
