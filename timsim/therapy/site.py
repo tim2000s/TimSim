@@ -101,7 +101,34 @@ ASLEEP_UNTIL_HOUR = 7.0
 
 # Routine changes. A set that has not failed still gets replaced every few days, and a set
 # that fails late in its life may be replaced on schedule before anyone notices anything.
+# This is the only route by which a failure the person never spots ever ends, so it also
+# bounds how long one can run: a failure starting early in a set's life persists until the
+# set expires. Pass `set_life_days` through `simulate` to change it, as a scalar for a fixed
+# interval or a pair for a range.
 SET_LIFE_DAYS = (2.5, 3.5)
+
+# A design decision, recorded because it biases comparisons between controllers rather than
+# being a limitation of the site alone.
+#
+# Detection is driven by the reading, so how long a failure lasts depends on how high the
+# controller lets the person get. A controller that partially compensates for a failing set
+# keeps the reading under NOTICE_BG and the person never suspects anything, so the set runs
+# to its scheduled replacement; a controller that compensates less is found out sooner and
+# the set is changed. Measured across three subjects, the built-in correction loop's failures
+# ran a median 8.6 hours and a maximum of 24.0, while oref0 SMB's ran a median 8.1 and a
+# maximum of 44.6, and on one subject a single failure at 65 per cent absorption lasted 44.6
+# hours with the reading peaking at only 311 mg/dL.
+#
+# That is faithful to how people actually find a failed set, and it means the challenge is
+# not held constant across arms: a better controller earns a longer failure and a larger
+# quantity of insulin buried in tissue that is not absorbing it. Two alternatives were
+# considered and neither is adopted. Fixing the failure schedule in advance and making it
+# independent of the reading would make arms comparable and would remove the feedback that
+# makes the mechanism realistic. Adding a detection route that does not depend on the
+# controller's success, such as a fixed inspection interval, would do the same more gently
+# but has no measurement behind it. Until one of those is justified, the scheduled
+# replacement bounds the exposure and comparisons across controllers state the realised
+# failure durations rather than assuming they matched.
 
 
 def _asleep(minute):
@@ -122,11 +149,15 @@ class InfusionSite:
                  residual=RESIDUAL_ABSORPTION, set_life_days=SET_LIFE_DAYS):
         self.rng = rng
         self.residual_range = residual
-        self.set_life_days = set_life_days
+        # A scalar means every set lasts exactly that long, a pair means a range.
+        self.set_life_days = ((float(set_life_days), float(set_life_days))
+                              if np.isscalar(set_life_days) else tuple(set_life_days))
         # This subject's own susceptibility, held for the whole run.
         self.rate_per_30d = float(rng.gamma(SUBJECT_RATE_SHAPE,
                                             failures_per_30_days / SUBJECT_RATE_SHAPE))
         self.failures = 0
+        self.set_changes = 0
+        self.routine_changes = 0
         self.units_lost = 0.0
         self.failed_minutes = 0.0
         self._fraction = 1.0
@@ -137,7 +168,8 @@ class InfusionSite:
 
     def _new_set(self, minute):
         """Fit a set, and decide now whether and when it will fail."""
-        life = float(self.rng.uniform(*self.set_life_days)) * 1440.0
+        lo, hi = self.set_life_days
+        life = (float(lo) if lo == hi else float(self.rng.uniform(lo, hi))) * 1440.0
         self._expires_at = minute + life
         self._fraction = 1.0
         self._suspect_since = self._change_at = self._high_since = None
@@ -153,9 +185,13 @@ class InfusionSite:
     def absorbed_fraction(self, minute):
         """The fraction of pumped insulin that reaches the depot at this instant."""
         if self._change_at is not None and minute >= self._change_at:
+            self.set_changes += 1
             self._new_set(minute)
         elif minute >= self._expires_at:
-            # Replaced on schedule, which also silently fixes a failure nobody spotted.
+            # Replaced on schedule, which also silently fixes a failure nobody spotted and is
+            # the only thing bounding a failure the controller has masked.
+            self.set_changes += 1
+            self.routine_changes += 1
             self._new_set(minute)
         elif self._fails_at is not None and minute >= self._fails_at and self._fraction == 1.0:
             self._fraction = self._residual
@@ -191,10 +227,18 @@ class InfusionSite:
         return basal_u_per_min * f, bolus_u * f, lost
 
     def report(self):
+        """What the site did over the run, including whether it was failing when it ended.
+
+        The last field is what separates a run that ended while insulin was not arriving from
+        one that ended for another reason, and a completion count cannot carry that.
+        """
         return {"site_failures": self.failures,
+                "site_set_changes": self.set_changes,
+                "site_routine_changes": self.routine_changes,
                 "site_failed_minutes": self.failed_minutes,
                 "site_units_lost": self.units_lost,
-                "site_rate_per_30d": self.rate_per_30d}
+                "site_rate_per_30d": self.rate_per_30d,
+                "site_failing_at_end": bool(self._fraction < 1.0)}
 
 
 __all__ = ["InfusionSite", "FAILURES_PER_30_DAYS", "RESIDUAL_ABSORPTION", "SET_LIFE_DAYS"]

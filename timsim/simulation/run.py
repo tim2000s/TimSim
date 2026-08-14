@@ -65,6 +65,7 @@ Insulin is measured at the body rather than at the controller, so the figure is 
 whichever controller produced it. The one thing added back is insulin a failed infusion
 site swallowed, since that really did leave the pump and would appear in any real log.
 """
+import hashlib
 import warnings
 from dataclasses import dataclass, field
 
@@ -171,6 +172,8 @@ class Result:
     compression_events: int = 0
     layers: tuple = ()
     controller: str = ""
+    # None when the run completed, otherwise why it ended: see `analysis/cohort.py`.
+    termination: dict = None
     meta: dict = field(default_factory=dict)
 
     @property
@@ -291,6 +294,56 @@ def _resolve_controller(controller, profile, adaptive):
     return controller, getattr(controller, "name", type(controller).__name__), False
 
 
+def _require_matching_profile(controller, prof):
+    """Refuse a run where the controller doses against different settings from the rig.
+
+    Compared on the values rather than on identity, since a caller may reasonably rebuild an
+    equal profile. Only the three quantities an algorithm doses from are checked, because a
+    controller is entitled to differ on the target it is asked to hold.
+    """
+    other = getattr(controller, "profile", None)
+    if other is None or other is prof:
+        return
+    for field in ("basal_u_per_hour", "isf", "cr"):
+        a = np.asarray(getattr(prof, field), dtype=float)
+        b = np.asarray(getattr(other, field), dtype=float)
+        if a.shape != b.shape or not np.allclose(a, b, rtol=1e-9, atol=1e-12):
+            raise ValueError(
+                f"the controller's {field} differs from the profile this run was given. "
+                "Pass the same profile to both, or the algorithm will dose against settings "
+                "the rig is not delivering: "
+                f"controller {np.median(b):.4g} against run {np.median(a):.4g}.")
+
+
+def subject_seed(name, seed):
+    """The seed a subject's random stream is actually started from.
+
+    One generator supplies everything stochastic in a run: the meal schedule, the seed the
+    CGM noise model is started from, the infusion set failure times, and the day-to-day
+    sensitivity of the physiology layer. Starting it from the integer alone gave every
+    subject the same stream, so a cohort at one seed was one random month applied to N
+    bodies rather than N months of it. adult#001, adult#016 and adolescent#019 at seed 11
+    all ate at minutes 367.8, 701.7, 1073.5, 1373.8, 1883.1 and 2229.2, and all wore the
+    same sensor noise realisation.
+
+    What that cost in between-subject spread was measured on ten titrated adults over 14
+    days under the trend controller, and the answer was close to nothing. The p10 to p90 of
+    sensor jitter across the ten was 5.59 to 5.69 mg/dL on the shared stream and 5.61 to
+    5.68 mg/dL with the name folded in, against 3.8 to 12.4 mg/dL across four real cohorts.
+    Between-subject standard deviation of mean glucose was 12.84 mg/dL before and 12.33
+    after. So the uniformity `docs/CAPABILITY.md` reports is a property of the sensor model
+    rather than of the seeding, and the fix is for reproducibility and independence rather
+    than for that finding, which stands.
+
+    The digest comes from hashlib because Python's `hash` is salted per process, and a run
+    that does not reproduce across processes cannot be cited. Same construction as
+    `therapy/profile.py::accuracy_for`, which keys a subject's settings accuracy on its
+    name for the same reason.
+    """
+    digest = hashlib.sha256(f"{name}:{seed}".encode()).digest()
+    return int.from_bytes(digest[:8], "big")
+
+
 def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
              controller=DEFAULT_CONTROLLER,
              meals=None,
@@ -302,7 +355,7 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
              isf_scale=1.0, settings_spread=None, behaviour_spread=None,
              meal_absorption_cv=None, meal_absorption_scale=None, si_slow_cv=None,
              sessions_per_week=None, hypo_defence_gain=None,
-             hypo_egp_defence=None):
+             hypo_egp_defence=None, set_life_days=None):
     """Run one subject. Returns a Result.
 
     `layers` is any subset of LAYERS. `controller`, if given, replaces the built-in
@@ -331,7 +384,9 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
         raise ValueError(f"unknown layers {sorted(unknown)}; expected a subset of {LAYERS}")
     effective = requested = tuple(l for l in LAYERS if l in set(layers))
 
-    rng = np.random.default_rng(seed)
+    # Keyed on the subject as well as the integer, so that two subjects at one seed are two
+    # independent months rather than the same month twice. See `subject_seed`.
+    rng = np.random.default_rng(subject_seed(name, seed))
     params = pd.Series(params if params is not None else params_for(name))
     settings = settings if settings is not None else therapy_for(name)
 
@@ -406,9 +461,18 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
                                     compression_per_30d=compression_per_30d)
 
     enforcer = Enforcer(prof.limits)
-    site = InfusionSite(rng) if "site" in effective else None
+    site = (InfusionSite(rng, **({} if set_life_days is None
+                                 else {"set_life_days": set_life_days}))
+            if "site" in effective else None)
     driver, controller_label, builtin_driver = _resolve_controller(
         controller, prof, adaptive="behaviour" in effective)
+
+    # A controller built outside this call carries its own profile, and both bridges fall back
+    # to the population's untitrated settings when none is passed. Two profiles then diverge
+    # silently: the rig delivers against one and the algorithm doses against the other, which
+    # is how a published comparison came to claim two algorithms received the same settings
+    # when one of them did not.
+    _require_matching_profile(controller, prof)
 
     # Prime with the subject's own scheduled basal rather than zero. simglucose's examples
     # open with a zero-insulin step, which kicks a subject off the steady state its
@@ -530,7 +594,7 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
     if faults is not None:
         meta["faults"] = faults.report()
 
-    return Result(
+    result = Result(
         name=name, cgm=cgm, bg=bg, minutes=minutes, sample_time=step_minutes,
         days_requested=days, completed=completed,
         insulin_units=float(insulin.sum()), insulin_series=insulin,
@@ -546,6 +610,13 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
         compression_events=artefacts.events if artefacts is not None else 0,
         layers=effective, controller=controller_label, meta=meta,
     )
+    # Why a run ended, recorded where it happened rather than reconstructed by a caller. A
+    # completion count cannot separate a run that fell out of the model's range from one that
+    # rose out of it, and on this bench both happen: under oref0 SMB on the layered bench five
+    # of seven terminations were hyperglycaemic.
+    from ..analysis.cohort import classify_termination
+    result.termination = classify_termination(result)
+    return result
 
 
 def simulate_cohort(names=None, days=28, seed=0, layers=DEFAULT_LAYERS,
@@ -562,11 +633,16 @@ def simulate_cohort(names=None, days=28, seed=0, layers=DEFAULT_LAYERS,
         raise ValueError("give either controller or controller_factory, not both")
     names = names or all_names()
     out = []
-    for i, name in enumerate(names):
+    for name in names:
         driver = controller_factory(name) if controller_factory else controller
         with warnings.catch_warnings():
             warnings.simplefilter("once", UserWarning)
-            r = simulate(name, days=days, seed=seed + i, layers=layers,
+            # Every subject is run at the seed as passed. The offset by list position used
+            # to be what stopped a cohort drawing one shared random month, and
+            # `subject_seed` now does that from the name; keeping the offset as well would
+            # make a subject's run depend on where it sat in `names`, so a subject would
+            # come out differently in a full cohort and in a subset of it.
+            r = simulate(name, days=days, seed=seed, layers=layers,
                          controller=driver, **kwargs)
         out.append(r)
         if progress:
@@ -578,4 +654,5 @@ def simulate_cohort(names=None, days=28, seed=0, layers=DEFAULT_LAYERS,
 
 
 __all__ = ["simulate", "simulate_cohort", "Result", "LAYERS", "DEFAULT_LAYERS",
-           "CONTROLLERS", "DEFAULT_CONTROLLER", "draw_meals", "DEFAULT_SAMPLE_MINUTES"]
+           "CONTROLLERS", "DEFAULT_CONTROLLER", "draw_meals", "subject_seed",
+           "DEFAULT_SAMPLE_MINUTES"]

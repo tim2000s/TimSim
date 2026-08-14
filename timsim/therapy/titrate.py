@@ -15,6 +15,16 @@ looser than necessary cost time in range. That is what a careful titration does,
 every subject with settings whose provenance is a measurement on that subject rather than a
 number chosen once for the cohort.
 
+Basal moves before the correction factor, in that order, because that is the order a titration
+is done in and because the two are not interchangeable. A subject having lows under a reference
+loop usually has too much background insulin, and answering that by weakening its correction
+factor leaves it unable to correct: one subject needed a 1.75-fold weakening on the correction
+factor alone, which took it to 65.8 mg/dL per unit, and under an algorithm that sizes its
+microboluses from that factor it then failed to cover unannounced carbohydrate and ran to 593
+mg/dL inside a day. The same subject's lows clear with a five per cent basal reduction and its
+correction factor untouched. Across the ten subjects the correction-factor-only procedure
+weakened, six clear on basal alone at reductions of 5 to 20 per cent.
+
 Two properties of the procedure matter more than the numbers it returns.
 
 Titration runs under a fixed reference regimen rather than under the algorithm being tested.
@@ -54,9 +64,16 @@ TIR_TARGET = 70.0        # per cent between 70 and 180 mg/dL
 TAR250_LIMIT = 5.0       # per cent above 250 mg/dL
 CV_LIMIT = 36.0          # per cent
 
-# The ladder searched. It starts at the physiological settings and ends slightly beyond the
-# DCLP3 correction factor, which is 2.3 times the median physiological one across this
-# population, so the search covers real practice without extrapolating past it.
+# Basal first, in reductions a titration would actually make. The floor of 0.80 is a modelling
+# choice: basal here is the subject's own steady-state requirement, so a reduction beyond a fifth
+# says the steady state is wrong for the closed-loop condition rather than that the basal needs
+# trimming, and that is a different problem from the one this procedure solves.
+BASAL_SCALES = (1.0, 0.95, 0.90, 0.85, 0.80)
+
+# The correction factor, used only when basal alone cannot clear the floors. It starts at the
+# physiological value and ends slightly beyond the DCLP3 correction factor, which is 2.3 times
+# the median physiological one across this population, so the search covers real practice
+# without extrapolating past it.
 SCALES = (1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5)
 
 # Titration runs under this regimen whatever is benchmarked afterwards.
@@ -106,36 +123,62 @@ def failures(report):
     return tuple(out)
 
 
+def _profile(name, isf_scale, basal_scale):
+    from dataclasses import replace
+    from . import profile as profile_mod
+    p = profile_mod.for_subject(name, isf_scale=isf_scale)
+    if basal_scale != 1.0:
+        p = replace(p, basal_u_per_hour=p.basal_u_per_hour * float(basal_scale))
+    return p
+
+
 def titrate_subject(name, days=28, seed=0, layers=None, scales=SCALES,
-                    driver=REFERENCE_DRIVER, simulate=None):
+                    basal_scales=BASAL_SCALES, driver=REFERENCE_DRIVER, simulate=None):
     """The weakest settings clearing the hypoglycaemia floors for one subject.
 
-    Returns the chosen scale, the report at every scale tried, and whether the search
-    succeeded. A subject whose floors are not met at any scale is reported rather than
-    silently assigned the loosest, because settings are then not the explanation and running
-    it as though they were would hide that.
+    Basal is tried first at its physiological value and then reduced, with the correction
+    factor untouched. Only when no reduction inside the bound clears the floors is the
+    correction factor weakened, and then on top of the smallest basal tried, because a
+    correction factor weakened to cover a basal problem leaves the subject unable to correct.
+
+    Returns the adopted scales, the trace of every run, and whether the search succeeded. A
+    subject that clears at no combination is reported rather than assigned the loosest, because
+    settings are then not the explanation and running it as though they were would hide that.
     """
     from ..simulation.run import simulate as _sim
-    from . import profile as profile_mod
     run = simulate or _sim
     layers = ("physiology", "behaviour", "sensor", "site") if layers is None else layers
 
     trace = []
-    for scale in scales:
-        prof = profile_mod.for_subject(name, isf_scale=scale)
+
+    def attempt(isf_scale, basal_scale):
+        prof = _profile(name, isf_scale, basal_scale)
         try:
-            r = run(name, days=days, seed=seed, layers=layers, controller=driver,
-                    profile=prof)
+            r = run(name, days=days, seed=seed, layers=layers, controller=driver, profile=prof)
         except Exception as exc:
-            trace.append({"scale": scale, "completed": False, "error": str(exc)[:140]})
-            continue
+            trace.append({"scale": isf_scale, "basal_scale": basal_scale,
+                          "completed": False, "error": str(exc)[:140]})
+            return False
         rep = consensus_report(r.cgm)
-        trace.append({"scale": scale, "completed": bool(r.completed),
-                      "isf": float(np.mean(prof.isf)), **rep,
-                      "fails": failures(rep)})
-        if r.completed and hypo_floors_met(rep):
-            return {"name": name, "scale": scale, "found": True, "trace": trace}
-    return {"name": name, "scale": None, "found": False, "trace": trace}
+        trace.append({"scale": isf_scale, "basal_scale": basal_scale,
+                      "completed": bool(r.completed),
+                      "isf": float(np.mean(prof.isf)),
+                      "basal_u_per_day": float(np.mean(prof.basal_u_per_hour) * 24.0),
+                      **rep, "fails": failures(rep)})
+        return bool(r.completed) and hypo_floors_met(rep)
+
+    for basal_scale in basal_scales:
+        if attempt(1.0, basal_scale):
+            return {"name": name, "scale": 1.0, "basal_scale": basal_scale,
+                    "lever": "basal", "found": True, "trace": trace}
+
+    floor = min(basal_scales)
+    for isf_scale in scales[1:]:
+        if attempt(isf_scale, floor):
+            return {"name": name, "scale": isf_scale, "basal_scale": floor,
+                    "lever": "basal and correction factor", "found": True, "trace": trace}
+    return {"name": name, "scale": None, "basal_scale": None, "lever": None,
+            "found": False, "trace": trace}
 
 
 # Titrated settings are generated locally beside the population and are not committed, for the
@@ -179,9 +222,12 @@ def profile_for(name, path=STORE, **kw):
     if rec is None or not rec.get("found"):
         raise RuntimeError(
             f"{name} has no titrated settings. The consensus hypoglycaemia floors were not "
-            f"met at any scale tried, so its settings are not the explanation for what it "
-            f"does and it should be excluded rather than run at the loosest available.")
-    return profile_mod.for_subject(name, isf_scale=float(rec["scale"]), **kw)
+            f"met at any combination tried, so its settings are not the explanation for what "
+            f"it does and it should be excluded rather than run at the loosest available.")
+    from dataclasses import replace
+    p = profile_mod.for_subject(name, isf_scale=float(rec["scale"]), **kw)
+    b = float(rec.get("basal_scale", 1.0) or 1.0)
+    return p if b == 1.0 else replace(p, basal_u_per_hour=p.basal_u_per_hour * b)
 
 
 def titrated_subjects(path=STORE):
@@ -192,5 +238,5 @@ def titrated_subjects(path=STORE):
 
 __all__ = ["consensus_report", "hypo_floors_met", "failures", "titrate_subject",
            "save", "load", "profile_for", "titrated_subjects", "STORE",
-           "SCALES", "REFERENCE_DRIVER", "TBR54_LIMIT", "TBR70_LIMIT", "TIR_TARGET",
+           "SCALES", "BASAL_SCALES", "REFERENCE_DRIVER", "TBR54_LIMIT", "TBR70_LIMIT", "TIR_TARGET",
            "TAR250_LIMIT", "CV_LIMIT"]

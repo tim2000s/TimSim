@@ -52,17 +52,24 @@ def main():
                                    "driver": titrate.REFERENCE_DRIVER,
                                    "scales": list(titrate.SCALES)})
     print(f"{len(found)}/{len(out)} subjects titrated, written to {path}\n")
-    print(f"{'subject':>11}{'scale':>7}{'ISF':>7}{'TBR70':>8}{'TBR54':>8}{'TIR':>7}"
-          f"{'CV':>7}  remaining misses")
+    print(f"{'subject':>15}{'basal':>7}{'ISF x':>7}{'ISF':>7}{'TBR70':>8}{'TBR54':>8}"
+          f"{'TIR':>7}{'CV':>7}  remaining misses")
     for r in out:
         if not r["found"]:
-            print(f"{r['name']:>11}{'none':>7}   floors not met at any scale")
+            print(f"{r['name']:>15}{'none':>7}   floors not met at any combination")
             continue
         last = r["trace"][-1]
-        print(f"{r['name']:>11}{r['scale']:>7.2f}{last.get('isf', float('nan')):>7.1f}"
-              f"{last['tbr70']:>8.2f}{last['tbr54']:>8.2f}{last['tir']:>7.1f}"
-              f"{last['cv']:>7.1f}  {', '.join(last['fails']) or 'none'}")
+        print(f"{r['name']:>15}{r['basal_scale']:>7.2f}{r['scale']:>7.2f}"
+              f"{last.get('isf', float('nan')):>7.1f}{last['tbr70']:>8.2f}"
+              f"{last['tbr54']:>8.2f}{last['tir']:>7.1f}{last['cv']:>7.1f}  "
+              f"{', '.join(last['fails']) or 'none'}")
     if found:
+        levers = {}
+        for r in found:
+            levers[r["lever"]] = levers.get(r["lever"], 0) + 1
+        print("\nlever used: " + ", ".join(f"{k} {v}" for k, v in sorted(levers.items())))
+        bs = np.array([r["basal_scale"] for r in found], float)
+        print(f"basal scale: median {np.median(bs):.2f}, range {bs.min():.2f} to {bs.max():.2f}")
         sc = np.array([r["scale"] for r in found], float)
         isf = np.array([r["trace"][-1]["isf"] for r in found], float)
         print(f"\nscale: median {np.median(sc):.2f}, range {sc.min():.2f} to {sc.max():.2f}")

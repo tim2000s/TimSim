@@ -3,6 +3,7 @@ import numpy as np
 import pytest
 
 from timsim import LAYERS, population, simulate
+from timsim.simulation import run as run_mod
 
 pytestmark = pytest.mark.skipif(not population.available(),
                                 reason="no population generated")
@@ -50,6 +51,69 @@ def test_the_same_seed_reproduces_the_same_run(subject):
     a = simulate(subject, days=2, seed=7)
     b = simulate(subject, days=2, seed=7)
     assert np.array_equal(a.cgm, b.cgm)
+
+
+def test_two_subjects_at_one_seed_do_not_live_the_same_month():
+    """A cohort at one seed used to be one random month applied to every body.
+
+    The generator was started from the integer alone, so adult#001, adult#016 and
+    adolescent#019 at seed 11 all ate at minutes 367.8, 701.7, 1073.5, 1373.8, 1883.1 and
+    2229.2, and the CGM noise model was started from the same draw for all of them. The
+    between-subject spread a cohort reported was then partly the same realisation counted
+    N times.
+    """
+    a, b = population.names("adult")[:2]
+    ra = simulate(a, days=3, seed=11, layers=("physiology", "behaviour", "sensor", "site"))
+    rb = simulate(b, days=3, seed=11, layers=("physiology", "behaviour", "sensor", "site"))
+    assert [m for m, _ in ra.meal_log] != [m for m, _ in rb.meal_log]
+    # The sensor realisation, isolated from the body by taking the reading against the
+    # truth it was measured from. Equal residuals mean one noise stream shared.
+    n = min(len(ra.cgm), len(rb.cgm))
+    assert not np.allclose(ra.cgm[:n] - ra.bg[:n], rb.cgm[:n] - rb.bg[:n])
+    assert ra.meta["site_rate_per_30d"] != rb.meta["site_rate_per_30d"]
+
+
+def test_one_subject_at_one_seed_reproduces_across_processes(subject):
+    """Reproducibility has to survive a new interpreter, which `hash` would not give.
+
+    Python salts `hash` per process unless PYTHONHASHSEED is fixed, so a per-subject seed
+    built from it would give a different run on every invocation. The digest comes from
+    hashlib instead, and this checks the property that choice was made for.
+    """
+    import os
+    import subprocess
+    import sys
+
+    import timsim
+    root = os.path.dirname(os.path.dirname(os.path.abspath(timsim.__file__)))
+    code = ("from timsim.simulation.run import subject_seed;"
+            f"print(subject_seed({subject!r}, 11))")
+    seen = set()
+    for salt in ("0", "1", "12345"):
+        env = {**os.environ, "PYTHONHASHSEED": salt, "PYTHONPATH": root}
+        out = subprocess.run([sys.executable, "-c", code], env=env,
+                             capture_output=True, text=True, check=True)
+        seen.add(out.stdout.strip())
+    assert len(seen) == 1, f"seed moved between processes: {seen}"
+    assert seen.pop() == str(run_mod.subject_seed(subject, 11))
+
+    a = simulate(subject, days=2, seed=11, layers=("physiology", "behaviour", "sensor"))
+    b = simulate(subject, days=2, seed=11, layers=("physiology", "behaviour", "sensor"))
+    assert np.array_equal(a.cgm, b.cgm) and np.array_equal(a.bg, b.bg)
+
+
+def test_a_cohort_gives_a_subject_the_same_run_whatever_its_position():
+    """`simulate_cohort` offset the seed by list index, which the subject name replaces.
+
+    Both together would mean a subject running differently in a cohort of ten from the way
+    it runs in a cohort of two, so a result could not be reproduced without the roster that
+    produced it.
+    """
+    from timsim.simulation.run import simulate_cohort
+    names = population.names("adult")[:2]
+    full = simulate_cohort(names, days=2, seed=11, layers=("sensor",), progress=False)
+    tail = simulate_cohort(names[1:], days=2, seed=11, layers=("sensor",), progress=False)
+    assert np.array_equal(full[1].cgm, tail[0].cgm)
 
 
 def test_different_seeds_do_not(subject):

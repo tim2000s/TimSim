@@ -96,10 +96,43 @@ sets out why: a band built from four cohort medians is narrow because averaging 
 spread between people, and scoring against it once selected a rescue carbohydrate helping of 35 g
 where real people give 15.
 
+## Report why runs ended, not just how many
+
+A completion count averages a hypoglycaemia failure with a hyperglycaemia one, and on this
+bench both happen: under oref0 SMB on the layered bench five of seven terminations were
+hyperglycaemic, which is the opposite of what a completion count invites a reader to assume.
+
+`Result.termination` carries the account, populated where the run ends rather than
+reconstructed by a caller: direction, day, final and extreme glucose, insulin over the last
+hour and six hours, rescue helpings in the last six hours, and whether the infusion site was
+still failing. `analysis/cohort.py::format_failure_report` prints it per arm, and every
+comparison should print it beside the outcome table.
+
+## The infusion site's detection is coupled to the controller
+
+The person notices a failed set only by being above 230 mg/dL for 90 waking minutes, so how
+long a failure lasts depends on how high the controller lets them get. A controller that
+partially compensates keeps the reading under that threshold, the person never suspects
+anything, and the set runs to its scheduled replacement. Measured across three subjects, the
+built-in loop's failures ran a median 8.6 hours and a maximum of 24.0; oref0 SMB's ran a median
+8.1 and a maximum of 44.6, and one failure at 65 per cent absorption lasted 44.6 hours while the
+reading peaked at only 311 mg/dL.
+
+The consequence is that the challenge is not held constant across arms, and a better controller
+earns a longer failure and more insulin buried in tissue that is not absorbing it. This is
+recorded as a design decision in `therapy/site.py` rather than repaired, because the feedback is
+faithful to how people actually find a failed set. What bounds the exposure is the scheduled
+replacement, which is why the interval is now a parameter: pass `set_life_days` to `simulate`,
+a scalar for a fixed interval or a pair for a range, and state the value any comparison assumed.
+The default remains 2.5 to 3.5 days.
+
 ## Hold everything else, and pair per subject
 
 An arm that loses different subjects is a different population, so pair over the subjects
-completing every arm and report a paired difference with an interval. Report the completion count
+completing every arm and report a paired difference with an interval.
+`analysis/cohort.py::paired_subjects` returns that set and raises rather than producing a
+comparison from partial overlap, since summarising each arm over its own survivors compares
+different people and the bias always runs favourable. Report the completion count
 beside every figure: runs end when glucose leaves the range the model is defined over, the runs
 that fail are the ones that went lowest, and every cohort figure is therefore conditioned on
 survival.

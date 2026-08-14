@@ -86,7 +86,10 @@ def run(subjects, days, seed, workers):
             if os.path.exists(path):
                 print(f"  {driver} {label}: already done", flush=True)
                 continue
-            jobs = [(n, layers, driver, days, seed + i) for i, n in enumerate(subjects)]
+            # One seed for the whole rung. The subject name is folded into the random
+            # stream inside `simulate`, so offsetting by position would only make a
+            # subject's month depend on where it sat in `subjects`.
+            jobs = [(n, layers, driver, days, seed) for n in subjects]
             with ProcessPoolExecutor(max_workers=workers) as pool:
                 rows = list(pool.map(one, jobs))
             json.dump({"driver": driver, "rung": key, "label": label,

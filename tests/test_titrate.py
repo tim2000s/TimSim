@@ -51,59 +51,87 @@ def test_floors_reject_a_run_over_either_limit():
     assert not T.hypo_floors_met(T.consensus_report(_trace(very_low_frac=0.02)))
 
 
-def test_search_returns_the_weakest_settings_that_clear_the_floors():
-    """Settings looser than hypoglycaemia requires cost time in range, so the search stops
-    at the first scale that clears rather than at the loosest available.
-    """
+class _FakeResult:
+    completed = True
+
+    def __init__(self, cgm):
+        self.cgm = cgm
+
+
+def _recorder(clears):
+    """A fake simulate that clears the floors exactly when `clears(isf, basal)` says so."""
     seen = []
-
-    class FakeResult:
-        completed = True
-
-        def __init__(self, cgm):
-            self.cgm = cgm
+    from timsim.therapy import profile as profile_mod
+    base = {}
 
     def fake_sim(name, days, seed, layers, controller, profile):
-        scale = float(np.mean(profile.isf)) / _BASE_ISF[name]
-        seen.append(round(scale, 3))
-        low = 0.10 if scale < 1.7 else 0.01
-        return FakeResult(_trace(low_frac=low))
+        import numpy as np
+        if name not in base:
+            p0 = profile_mod.for_subject(name)
+            base[name] = (float(np.mean(p0.isf)), float(np.mean(p0.basal_u_per_hour)))
+        i0, b0 = base[name]
+        isf = round(float(np.mean(profile.isf)) / i0, 3)
+        bas = round(float(np.mean(profile.basal_u_per_hour)) / b0, 3)
+        seen.append((isf, bas, controller))
+        return _FakeResult(_trace(low_frac=0.005 if clears(isf, bas) else 0.10))
 
-    from timsim.therapy import profile as profile_mod
-    _BASE_ISF = {"adult#001": float(np.mean(profile_mod.for_subject("adult#001").isf))}
+    return seen, fake_sim
 
-    out = T.titrate_subject("adult#001", simulate=fake_sim)
-    assert out["found"] and out["scale"] == 1.75, out["scale"]
-    assert seen == [1.0, 1.25, 1.5, 1.75], seen
+
+def test_basal_is_tried_before_the_correction_factor():
+    """A subject whose lows come from basal keeps its correction factor.
+
+    Weakening the correction factor to cover a basal problem leaves the subject unable to
+    correct, which under an algorithm that sizes microboluses from that factor produces a
+    runaway high rather than a fixed low.
+    """
+    seen, fake = _recorder(lambda isf, bas: bas <= 0.9)
+    out = T.titrate_subject("adult#001", simulate=fake)
+    assert out["found"] and out["lever"] == "basal"
+    assert out["basal_scale"] == 0.9 and out["scale"] == 1.0
+    assert [b for _, b, _ in seen] == [1.0, 0.95, 0.9]
+    assert {i for i, _, _ in seen} == {1.0}, "the correction factor must not move first"
+
+
+def test_the_correction_factor_moves_only_when_basal_cannot_clear():
+    seen, fake = _recorder(lambda isf, bas: isf >= 1.5 and bas <= 0.8)
+    out = T.titrate_subject("adult#001", simulate=fake)
+    assert out["found"] and out["lever"] == "basal and correction factor"
+    assert out["scale"] == 1.5 and out["basal_scale"] == 0.8
+    assert [b for _, b, _ in seen[:5]] == list(T.BASAL_SCALES)
+    assert all(b == 0.8 for _, b, _ in seen[5:]), "basal stays at its floor while ISF moves"
+
+
+def test_the_weakest_clearing_combination_is_taken():
+    """Settings looser than hypoglycaemia requires cost time in range, so the search stops at
+    the first combination that clears rather than the loosest available.
+    """
+    seen, fake = _recorder(lambda isf, bas: bas <= 0.95)
+    out = T.titrate_subject("adult#001", simulate=fake)
+    assert out["basal_scale"] == 0.95 and len(seen) == 2
+
+
+def test_basal_reduction_is_bounded():
+    """Basal here is the subject's own steady-state requirement, so a reduction beyond a fifth
+    says the steady state is wrong rather than that the basal needs trimming.
+    """
+    assert min(T.BASAL_SCALES) == 0.8
 
 
 def test_a_subject_that_cannot_be_titrated_is_reported_rather_than_assigned():
     """Assigning the loosest settings to a subject the floors never clear would present a
     failure of the model as a settings choice.
     """
-    class FakeResult:
-        completed = True
-        cgm = _trace(low_frac=0.20)
-
-    out = T.titrate_subject("adult#001",
-                            simulate=lambda **kw: FakeResult())
-    assert out["found"] is False and out["scale"] is None
-    assert len(out["trace"]) == len(T.SCALES)
+    seen, fake = _recorder(lambda isf, bas: False)
+    out = T.titrate_subject("adult#001", simulate=fake)
+    assert out["found"] is False and out["scale"] is None and out["basal_scale"] is None
+    assert len(seen) == len(T.BASAL_SCALES) + len(T.SCALES) - 1
 
 
 def test_titration_runs_under_a_fixed_reference_regimen():
     """Not under the controller being benchmarked, which would let a controller that
     provokes hypoglycaemia earn weaker settings from the bench that is judging it.
     """
-    used = []
-
-    class FakeResult:
-        completed = True
-        cgm = _trace(low_frac=0.005)
-
-    def fake_sim(name, days, seed, layers, controller, profile):
-        used.append(controller)
-        return FakeResult()
-
-    T.titrate_subject("adult#001", simulate=fake_sim)
-    assert used == [T.REFERENCE_DRIVER]
+    seen, fake = _recorder(lambda isf, bas: True)
+    T.titrate_subject("adult#001", simulate=fake)
+    assert {c for _, _, c in seen} == {T.REFERENCE_DRIVER}
