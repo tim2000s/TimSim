@@ -26,11 +26,17 @@ sensitivity, identical for every subject and every night.
 
 No exposure data exists in any reference this project holds.
 
-The DCLP3 public release has 50 data files and none of them records exercise or sleep. The
-OpenAPS Data Commons export carries glucose, treatments, profiles and device status, with no
-activity or heart rate stream. The Boost cohort cache carries `exercise_active` and
-`post_exercise_window` on every cycle, which looked promising, and both are false on all 193,714
-cycles across all 19 users, so the fields are plumbed and never populated.
+The DCLP3 public release has 50 data files and none of them records exercise or sleep.
+
+The OpenAPS Data Commons export carries no heart rate or step field in any document, and it does
+carry an exercise event type, used 117 times plus 22 activity-mode entries by 12 users across the
+whole export. That is a handful of sessions each for a twentieth of the cohort, which is a record
+that somebody occasionally logged exercise rather than a measurement of how much anybody did. It
+is too sparse to calibrate against and too sparse to say the exposure is absent.
+
+The Boost cohort cache carries `exercise_active` and `post_exercise_window` on every cycle, which
+looked promising, and both are false on all 193,714 cycles across all 19 users, so the fields are
+plumbed and never populated.
 
 This is why the activity layer cannot be scored. A mechanism drawn from published effect sizes
 and tested against records that do not contain the exposure is being asked to improve a
@@ -42,8 +48,9 @@ claims to measure is worse than no statistic, because it returns a verdict.
 
 ### Step one, acquire exposure
 
-Heart rate and step data would supply what is missing, and the Boost tree already contains a
-Health Connect ingest path, so the collection route exists on the device side. What is needed is
+Heart rate and step data would supply what is missing, and neither appears in any document of
+the current export. The Boost tree already contains a Health Connect ingest path, so the
+collection route exists on the device side. What is needed is
 a cohort of users contributing that stream alongside the glucose and treatment records already
 contributed, over a window long enough to contain a representative amount of activity. Anything
 short of that leaves the layer uncalibratable, and the layer should stay off until it arrives.
