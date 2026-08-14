@@ -116,6 +116,16 @@ claim resting on between-subject variation in sensor behaviour, which is far nar
 people's. And any claim about how hard a particular subject defends a low, since glucose
 production at a hypoglycaemic plateau ranges from nothing to three times the human figure.
 
+## What the underlying model gets wrong
+
+`docs/PADOVA_LIMITS.md` is the log: each thing S2008 does that people do not, the measurement
+that establishes it, and whether this package compensates. Glucose production is not defended
+during hypoglycaemia and nothing arrests a fall, both compensated in part. The carbohydrate
+response is short by roughly 1.2 to 1.4 times and the meal peak is late without insulin, neither
+compensated, which makes an unannounced meal easier here than in life and flatters any algorithm
+that relies on detecting one. The population varies less than real people on outcomes and far
+more than them in how hard it defends a low.
+
 ## Where the numbers come from
 
 Real comparisons use the OpenAPS Data Commons, 221 users with a usable 28-day window, and the
