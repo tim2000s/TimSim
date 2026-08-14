@@ -118,6 +118,31 @@ RESCUE_THRESHOLD = 70.0
 RESCUE_PREEMPT_BG = 72.0          # treat early only when already close to the threshold
 RESCUE_PREEMPT_FALL = -3.0        # mg/dL/min, a genuine fast fall
 RESCUE_DELAY_MIN = (4.0, 16.0)    # uniform, minutes from decision to eating
+
+# How long a meal takes to start moving glucose, over and above what the metabolic model's own
+# gastric emptying supplies. The model empties at its maximum rate from the first minute, so a
+# simulated meal starts raising glucose immediately, where a real one does not.
+#
+# Measured on meals nobody bolused for, matched on true grams and on baseline glucose: 363 real
+# meals fall 5.0 mg/dL by fifteen minutes and have risen 2.0 by thirty, where 444 simulated ones
+# are already up 3.8 and 14.9. From forty-five minutes onward the two agree closely, at 19.0
+# against 30.2, 36.0 against 45.0, and 56.5 against 60.4 by ninety.
+#
+# The consequence is not the height of the excursion but its onset. A controller sees nothing
+# for half an hour in life and sees a rise from the first cycle here, so an algorithm built to
+# detect meals early is handed roughly thirty minutes it would not have. The announcement still
+# reaches the algorithm when the person eats, since that is when somebody enters it.
+# Swept against that profile at 0, 10, 20 and 30 minutes, scored on the root mean square
+# difference across all six marks so it could not be fitted to the early ones alone. Ten minutes
+# more than halves the error, from 9.4 to 4.1 mg/dL, and matches the real curve closely from
+# forty-five minutes onward: 19.7 against 19.0, 32.0 against 36.0, and 54.5 against 56.5 at
+# ninety. Twenty and thirty overshoot, at 7.9 and 13.9.
+#
+# The real curve falls 5.0 mg/dL by fifteen minutes, which no gastric delay produces. Those
+# entries carry no insulin nearby and some were probably logged while glucose was already
+# drifting down, so the earliest marks carry a selection effect and the calibration rests on the
+# forty-five minute mark onward.
+MEAL_ONSET_DELAY_MIN = 10.0
 RESCUE_GRAMS = (20.0, 40.0)       # uniform, grams of fast carbohydrate
 P_OVERTREAT = 0.25                # probability of a second helping
 OVERTREAT_EXTRA = (10.0, 30.0)    # grams
@@ -460,9 +485,10 @@ class BehaviourScenario:
     at the moment the meal is eaten rather than at construction.
     """
 
-    def __init__(self, start_time, meals, person):
+    def __init__(self, start_time, meals, person, meal_delay_min=MEAL_ONSET_DELAY_MIN):
         self.start_time = start_time
         self.person = person
+        self.meal_delay_min = float(meal_delay_min)
         # meals: [(hours_from_start, grams, is_snack)]
         self.sched = {int(round(h * 60.0)): (g, snack) for h, g, snack in meals}
         # get_action is called once per model minute; the runner steps the environment
@@ -485,8 +511,13 @@ class BehaviourScenario:
         grams = 0.0
         if minute in self.sched:
             g, snack = self.sched.pop(minute)
-            grams += g
+            # The algorithm is told when the person eats; the gut receives it after the delay,
+            # because announcing a meal and digesting it happen at different times.
             self._announced += self.person.announce(g, snack)
+            if self.meal_delay_min > 0:
+                self.person.pending.append((minute + self.meal_delay_min, g))
+            else:
+                grams += g
         grams += self.person.due(minute, 1.0)
         self._true += grams
         return ScenarioAction(meal=grams)

@@ -355,7 +355,8 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
              isf_scale=1.0, settings_spread=None, behaviour_spread=None,
              meal_absorption_cv=None, meal_absorption_scale=None, si_slow_cv=None,
              sessions_per_week=None, hypo_defence_gain=None,
-             hypo_egp_defence=None, set_life_days=None, announcement="some"):
+             hypo_egp_defence=None, set_life_days=None, announcement="some",
+             meal_delay_min=None):
     """Run one subject. Returns a Result.
 
     `layers` is any subset of LAYERS. `controller`, if given, replaces the built-in
@@ -443,7 +444,9 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
                     rescue_threshold=threshold, rescue_refractory_min=refractory,
                     announcement=announcement)
     if "behaviour" in effective:
-        scenario = BehaviourScenario(start, schedule, person)
+        scenario = BehaviourScenario(
+            start, schedule, person,
+            **({} if meal_delay_min is None else {"meal_delay_min": meal_delay_min}))
     else:
         scenario = CustomScenario(start_time=start,
                                   scenario=[(h, g) for h, g, _ in schedule])
