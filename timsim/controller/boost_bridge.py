@@ -76,8 +76,13 @@ class BoostBridgeController(BoostController):
     is the point: it isolates one error source rather than changing two things at once.
     """
 
-    def __init__(self, name, jar=JAR, java=None, **kwargs):
+    def __init__(self, name, jar=JAR, java=None, knobs=None, **kwargs):
         super().__init__(name, **kwargs)
+        # The three user-facing knobs. They were being read off the cycle with a default, and
+        # none of them is a field on it, so every run sent 1.0 and a configuration derived for
+        # the subject could not reach the algorithm. `boost_autoconfig` supplies them.
+        self.knobs = {"aggression": 1.0, "hypo_caution": 1.0, "sensitivity": 1.0}
+        self.knobs.update(knobs or {})
         if not available(jar):
             raise FileNotFoundError(
                 f"no bridge jar at {jar}; build it with bridge/boost/build.sh")
@@ -114,9 +119,9 @@ class BoostBridgeController(BoostController):
             1 if getattr(cycle, "fast_carb_confirm_enabled", True) else 0,
             1 if cycle.sensor_quality_ok else 0,
             0, 0, 0, 0.0,                      # profile switch, disconnect, suspend, clock
-            getattr(cycle, "aggression_user_knob", 1.0),
-            getattr(cycle, "hypo_caution_user_knob", 1.0),
-            getattr(cycle, "sensitivity_user_knob", 1.0),
+            float(self.knobs["aggression"]),
+            float(self.knobs["hypo_caution"]),
+            float(self.knobs["sensitivity"]),
             float(self.config.confirmed_cap_u),
             float(self.config.committed_cap_u),
         ]

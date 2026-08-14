@@ -25,6 +25,15 @@ from simglucose.simulation.scenario import Action as ScenarioAction
 # which is the standard clinical account of the unannounced-carbohydrate problem.
 P_ANNOUNCE_MAIN = 0.80
 P_ANNOUNCE_SNACK = 0.35
+
+# How much of what the person eats the algorithm is told about. "some" is what real records
+# show, at the two probabilities above. The other two are experimental conditions rather than
+# descriptions of anybody: "always" is the lineage an algorithm's own configuration is derived
+# from, since a user onboarding onto it has been announcing, and "never" is the condition these
+# algorithms claim to handle, where meal detection has to do all of the work. A carbohydrate
+# estimate is still wrong under "always", because announcing a meal and counting it correctly
+# are different things.
+ANNOUNCEMENT_MODES = ("always", "some", "never")
 CARB_ESTIMATE_CV = 0.25
 
 # Whether the error is centred.
@@ -336,11 +345,14 @@ class Person:
     def __init__(self, rng, rescue=True, announce=True,
                  rescue_threshold=RESCUE_THRESHOLD,
                  rescue_refractory_min=RESCUE_REFRACTORY_MIN,
-                 p_treat_low=None):
+                 p_treat_low=None, announcement="some"):
         self.rng = rng
         self.p_treat_low = float(P_TREAT_LOW if p_treat_low is None else p_treat_low)
         self.rescue_on = rescue
         self.announce_on = announce
+        if announcement not in ANNOUNCEMENT_MODES:
+            raise ValueError(f"announcement must be one of {ANNOUNCEMENT_MODES}")
+        self.announcement = announcement
         self.rescue_threshold = float(rescue_threshold)
         # The pre-emptive trigger sits just above the threshold, so it follows it.
         self.rescue_preempt_bg = float(rescue_threshold) + (
@@ -363,14 +375,25 @@ class Person:
         """What the algorithm is told about a meal of `grams`. Zero means unannounced."""
         if not self.announce_on:
             return grams
-        p = P_ANNOUNCE_SNACK if is_snack else P_ANNOUNCE_MAIN
-        if self.rng.random() > p:
+        # Both draws are taken in every mode and only then used, so the three announcement
+        # conditions consume the generator identically and stay comparable. Drawing them
+        # conditionally made each mode a different run rather than a different condition: under
+        # one controller, announcing every meal then scored worse than announcing some, which is
+        # backwards and was the streams diverging rather than an effect.
+        u = self.rng.random()
+        sigma = np.sqrt(np.log(1 + CARB_ESTIMATE_CV ** 2))
+        estimate = float(grams * CARB_ESTIMATE_BIAS
+                         * self.rng.lognormal(-0.5 * sigma ** 2, sigma))
+        if self.announcement == "never":
             self.unannounced_meals += 1
             return 0.0
+        if self.announcement == "some":
+            p = P_ANNOUNCE_SNACK if is_snack else P_ANNOUNCE_MAIN
+            if u > p:
+                self.unannounced_meals += 1
+                return 0.0
         self.announced_meals += 1
-        sigma = np.sqrt(np.log(1 + CARB_ESTIMATE_CV ** 2))
-        return float(grams * CARB_ESTIMATE_BIAS
-                     * self.rng.lognormal(-0.5 * sigma ** 2, sigma))
+        return estimate
 
     # ---------------------------------------------------------------- rescue
     def _dose(self, cgm):
