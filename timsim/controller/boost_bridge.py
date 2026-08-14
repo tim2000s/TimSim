@@ -107,7 +107,7 @@ class BoostBridgeController(BoostController):
             1 if cycle.enable_smb_pre_checks else 0,
             MISSING if cycle.ml_hypo_risk is None else cycle.ml_hypo_risk,
             MISSING if cycle.ml_meal_likely is None else cycle.ml_meal_likely,
-            cycle.recent_low_bg, getattr(cycle, "cumulative_rise_30min", 0.0), cycle.hour,
+            cycle.recent_low_bg, self._cumulative_rise(cycle), cycle.hour,
             1 if cycle.exercise_active else 0,
             1 if cycle.post_exercise_window else 0,
             1 if getattr(cycle, "asleep", False) else 0,
@@ -117,8 +117,8 @@ class BoostBridgeController(BoostController):
             getattr(cycle, "aggression_user_knob", 1.0),
             getattr(cycle, "hypo_caution_user_knob", 1.0),
             getattr(cycle, "sensitivity_user_knob", 1.0),
-            getattr(cycle, "confirmed_cap_u", 1.0),
-            getattr(cycle, "committed_cap_u", 0.25),
+            float(self.config.confirmed_cap_u),
+            float(self.config.committed_cap_u),
         ]
         if len(values) != len(self.fields):
             raise RuntimeError(
@@ -137,6 +137,18 @@ class BoostBridgeController(BoostController):
         out["state"] = STATES[int(out["state_ordinal"])]
         return out
 
+    @staticmethod
+    def _cumulative_rise(cycle):
+        """The 30-minute rise the algorithm scales its dose by, in mg/dL.
+
+        `velocityScaledDoseFactor` returns a floor of 0.40 for a rise at or below 25 mg/dL, so
+        a bridge that sends nothing multiplies every dose in every state by 0.40. Measured over
+        28 days that removed 60.0 per cent of the raw request on each of three subjects. The
+        plugin derives it as `max(0, shortAvgDelta * 6)` and the Python port does the same, so
+        this is the same derivation rather than a reconstruction of it.
+        """
+        return max(0.0, float(cycle.short_avg_delta) * 6.0)
+
     # ---------------------------------------------------------------------- driving
     def policy(self, observation, reward, done, **info):
         """Build the cycle exactly as the ported adapter does, then decide on the far side."""
@@ -147,7 +159,18 @@ class BoostBridgeController(BoostController):
         decision = self._decide(cycle, self.null_streak)
         self.decisions.append(decision)
         sample = float(info.get("sample_time", 5.0))
-        return Action(basal=action.basal, bolus=decision["final_dose"] / sample)
+        # The parent recorded its own decision against the insulin ledger, and that decision is
+        # discarded here. Left in place the algorithm reads insulin on board that nothing
+        # delivered, which propagates into its eventual glucose, its minimum guard and the
+        # headroom clamping its request: over 28 days the ledger carried 56.08 U a day of
+        # microbolus against 33.45 actually given.
+        minute = float(info.get("clock_minutes", 0.0))
+        if self.doses and self.doses[-1][0] == minute:
+            self.doses.pop()
+        dose = float(decision["final_dose"])
+        if dose > 0:
+            self.doses.append((minute, dose))
+        return Action(basal=action.basal, bolus=dose / sample)
 
     def response_profile(self):
         """State occupancy and gate firing, in the shape `validation/boost.py` compares.

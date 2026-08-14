@@ -428,6 +428,14 @@ Neither is visible in the eleven signatures, which is the argument for this crit
 The spread ratios above are measured on one run per subject, which conflates two things.
 Eight subjects were run at four seeds each to separate them:
 
+These figures were taken when `simulate` seeded its generator from the integer alone, so
+subjects sharing a seed shared a random month. That made the between-subject column a clean
+measure of body alone, with meals, infusion set failures and sensor noise identical across the
+column. Subjects now draw independent streams from `subject_seed(name, seed)`, so repeating
+this decomposition requires holding the stream explicitly rather than relying on a shared seed
+to do it, and a naive repeat would put month variation into the between-subject column and
+inflate it. The numbers below are the controlled ones and are quoted as measured.
+
 | Statistic | Between subjects | Within one subject, across seeds | Ratio |
 |---|---|---|---|
 | Mean glucose, mg/dL | 7.43 | 5.89 | 1.26 |

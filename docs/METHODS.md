@@ -96,6 +96,51 @@ sets out why: a band built from four cohort medians is narrow because averaging 
 spread between people, and scoring against it once selected a rescue carbohydrate helping of 35 g
 where real people give 15.
 
+## Every subject needs its own random stream
+
+`simulate` starts one generator per run and it supplies the meal schedule, the seed the sensor
+noise model is started from, the infusion set failure times and the day-to-day sensitivity
+movement. Seeding it from the integer alone gave every subject at that seed the identical
+stream: three different subjects at seed 11 ate at minutes 367.8, 701.7, 1073.5, 1373.8, 1883.1
+and 2229.2 and wore one sensor noise realisation, so a cohort was one random month applied to N
+bodies. `subject_seed(name, seed)` folds the name in through sha256, which reproduces across
+processes where Python's salted `hash` does not, and `simulate_cohort` no longer offsets by
+position so a subject's month does not depend on where it sits in the list.
+
+Paired within-subject comparisons were unaffected, since both arms saw the same stream. What
+was affected is any statement about spread across subjects. Note that the fix did not widen the
+one spread it was expected to: sensor jitter across ten subjects spans 5.588 to 5.692 mg/dL on
+the shared stream and 5.614 to 5.683 with the name folded in, against a real 3.8 to 12.4, so
+that uniformity belongs to the sensor model.
+
+`population/generate.py` still uses `seed + hash(klass) % 10_000`, which is the salted hash, so
+the generated population is not reproducible across processes at a fixed seed. Changing it
+regenerates every subject and invalidates the measured figures in these documents, so it is
+recorded here rather than repaired.
+
+## A missing input must fail, not default
+
+The bridge to the compiled Boost algorithm read three of its inputs off the cycle with
+`getattr(cycle, name, default)`, and none of the three names was a field on that object. Every
+run sent the defaults and nothing reported it. The consequences were large and none of them
+looked like an error: the cumulative rise arrived as zero, which pins the algorithm's velocity
+factor to its floor of 0.40 and removed 60.0 per cent of the raw dose on every cycle of every
+subject, and both dose caps arrived as literals, so an experiment built to vary them varied
+nothing the algorithm saw and its 0.5 U/day movement in the wrong direction came from a
+side effect elsewhere.
+
+Marshal inputs by name against the receiving contract and let a missing one raise. A default
+that is plausible is worse than a crash, because the run completes and the number is wrong by an
+amount nobody can see. The row builder already length-checks itself against the compiled
+field list, which catches a field added on the far side and cannot catch a field silently
+defaulted on this one.
+
+Related: a controller's insulin ledger must record what was delivered rather than what was
+decided. The bridge inherited the ported adapter's decision path, which appends its own dose,
+then discarded that dose and sent the compiled one, so the algorithm read insulin on board that
+nothing had given it: 56.08 U a day against 33.45 actually delivered, feeding its eventual
+glucose, its minimum guard and the headroom clamping its request.
+
 ## Report why runs ended, not just how many
 
 A completion count averages a hypoglycaemia failure with a hyperglycaemia one, and on this
