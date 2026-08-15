@@ -63,14 +63,19 @@ that cohort fails to represent, and they carry no independent information about 
 variability. What they add is resolution, so that a comparison is less at the mercy of one
 awkward subject.
 
-Carbohydrate moves these subjects about half as far as it moves real people. Measured
-against the DCLP3 participants' own pump settings, a gram raises glucose by 4.2 mg/dL in the
-trial and 1.9 in the model, while the carbohydrate ratio agrees at 8.0 against 8.9. The
-difference sits entirely in the correction factor, which the model and simglucose's settings
-table agree on and the clinic does not. So a miscounted meal, an unannounced one, or
-carbohydrate eaten to treat a low costs a virtual subject roughly half what it costs a real
-one. That is inherited from the UVA/Padova model and bounds what the behaviour layer can
-produce.
+Two different quantities have both been called the carbohydrate response here, and they point
+opposite ways. Read off the settings, a gram is credited with 4.2 mg/dL in the trial against
+1.9 in the model, because a virtual subject's correction factor is measured from its own
+physiology and comes out well below the 40.0 mg/dL per unit DCLP3 participants ran. Measured
+as an excursion, by giving a subject one meal on basal alone and running it again eating
+nothing, the model rises 22.2 mg/dL per 10 g against 15.7 to 19.7 per logged 10 g across real
+uncovered meals, and logged grams under-state intake.
+
+So the model's settings credit a gram with less than a real person's settings do, and its body
+does more with a gram than a real body appears to. The first is a statement about the settings
+and bounds what an algorithm dosing off them will do; the second is a statement about the
+physiology and bounds what an unannounced meal costs. `docs/PADOVA_LIMITS.md` carries both with
+the code that measures them.
 
 ## Install
 

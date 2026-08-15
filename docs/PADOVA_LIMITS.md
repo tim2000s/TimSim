@@ -48,36 +48,55 @@ body of it reveals the problem.
 Partly compensated: the hepatic defence raises completion from 13 to 16 and 16 to 18 of twenty
 under two drivers and halves readings at or below 40 mg/dL. It does not reach zero failures.
 
-## The carbohydrate response is too small
+## The carbohydrate response is larger than real, not smaller
 
-A 50 g meal on basal alone raises glucose 20.3 mg/dL per 10 g. Against 848 real carbohydrate
-entries of 30 to 90 g with no insulin within half an hour, real people rise 30.7 mg/dL per
-logged 10 g. Under-reporting closes part of that: across 7,034 meals bolused within 30 per cent
-of the person's own carbohydrate ratio, glucose four hours later sits a median 19 mg/dL above
-where it started, which is 2.9 grams uncovered on a logged 40, or 7 per cent. That is a lower
-bound, because the loop was correcting throughout. Taking under-reporting between 7 and 25 per
-cent, real is 24.6 to 28.7 mg/dL per true 10 g against the model's 20.3, so the model is short
-by roughly 1.2 to 1.4 times.
+Earlier versions of this document reported the opposite, that the model rose 20.3 mg/dL per 10 g
+against a real 30.7 and was short by 1.2 to 1.4 times, across 848 real carbohydrate entries with
+no insulin within half an hour. No code in this repository produced those numbers. Measured on
+the full export under that same filter the real figure is 19.71 mg/dL per logged 10 g across
+7,996 entries from 128 users, and 848 is a tenth of 7,996, which is the sample the
+`entries_*.json` glob returned before it was widened to `*entries*.json` to catch the users
+whose filenames carry no prefix.
 
-Not compensated. The consequence is that an unannounced meal is easier here than in life: a
-simulated 51 g meal nobody announced peaks at a median 174 mg/dL and stays under 180 on 20 of 33
-occasions, where a real unbolused meal a third smaller peaks at 208 and stays under 180 on 31
-per cent. Any algorithm relying on meal detection therefore scores better here than it should.
+Both sides are now measured by committed code. On the simulated side each subject is given one
+meal on basal alone and run again eating nothing, so the meal is separated from whatever the
+subject was doing anyway: 22.20 mg/dL per 10 g across 51 subjects at 50 g, with the response
+linear in size at 22.13, 22.20 and 22.30 for 30, 50 and 70 g. On the real side the definition of
+an uncovered meal is recorded per meal rather than applied, and the answer sits between 15.7 and
+19.7 mg/dL per logged 10 g across every defensible choice:
+
+    no insulin within 30 min, any baseline                       7996   19.71
+    no insulin within 30 min, baseline 80 to 180                 5343   18.53
+    bolus-free 30 min before to 120 after, baseline 80 to 180    2501   15.69
+    bolus-free a full action duration before and 4 h after        388   17.38
+    the same, and the loop within 0.5 U of schedule over 4 h       320   16.00
+
+Logged grams under-state what was eaten, so the real rise per gram consumed is lower still,
+which widens the difference rather than closing it. Two features of the real subset push its
+figure up rather than down: the filter admits meals where the loop withheld basal as well as
+meals where it delivered the schedule, and any carbohydrate the person did not log inside the
+window is counted as part of the response to the carbohydrate they did.
+
+So an unannounced meal is not easier here than in life, and the conclusion drawn from that,
+that any algorithm relying on meal detection scores better here than it should, does not follow
+from this measurement. Reproduce with `examples/meal_response.py` and `examples/real_meals.py`.
 
 The parameters governing this are published and the generated population reproduces them: `kabs`
 spans 0.0510 to 0.4535 across generated adults against 0.0373 to 0.5805 across the ten published
 ones, with two of thirty-four below the published tenth percentile.
 
-## The meal peak is late without insulin
+## The meal peak arrives inside the real range without insulin
 
-A 50 g meal on basal alone peaks at a median 206 minutes in generated subjects and 243 in the
-published ones, against 145 minutes for a real unbolused meal. The published subjects are the
-slower of the two, so this is the model rather than the generation.
+Also previously reported as a defect, at 206 minutes in generated subjects against 145 for a
+real unbolused meal. The real figure was measured on the same tenth of the sample. Across the
+filter variants above real meals peak between 177 and 248 minutes, and the model peaks at 225
+with an inter-quartile range of 188 to 278, so it sits inside the real range rather than an hour
+outside it.
 
-Under a loop the picture differs and the earlier finding stands: clocked from the trough that
-follows a carbohydrate entry, real meals rise for 112 minutes and simulated ones for 100, with
-overlapping quartiles. Insulin dominates the shape there, which is why the two measurements do
-not contradict each other.
+Under a loop the earlier finding stands: clocked from the trough that follows a carbohydrate
+entry, real meals rise for 112 minutes and simulated ones for 100, with overlapping quartiles.
+Insulin dominates the shape there, which is why the two measurements do not contradict each
+other.
 
 ## Parameters do not move with time
 
@@ -118,8 +137,15 @@ there is a clean human reference to calibrate against, as the clamp gave for glu
 
 Calibrating at the interface is the alternative, and it has to happen inside the loop to mean
 anything: an algorithm that dosed against unscaled glucose cannot be scored on scaled glucose.
-For the carbohydrate response that means scaling what reaches the gut rather than what is
-reported, which is a change to the person rather than to the model, and it needs the same
-treatment as the hepatic defence: calibrated against a real measurement, regressed against every
-signature, with the cost reported. The measurement available for it is bounded rather than
-clean, at 1.2 to 1.4 times, and that uncertainty has to be carried into whatever is built.
+It was going to be used on the carbohydrate response, by scaling what reaches the gut rather
+than what is reported. That is no longer indicated. The response is not short, so there is
+nothing to scale up, and scaling it down towards the real figure would be calibrating the
+person against a real measurement whose own filter moves it between 15.7 and 19.7 mg/dL per
+logged 10 g, on grams that are known to be under-reported by an unmeasured amount.
+
+What remains worth doing at the interface is hypoglycaemia, which is the gap that survives
+everything tried against it. Fitting the unpublished parameters of a Control-IQ stand-in to one
+half of DCLP3 and testing on the other leaves time below 70 and below 54 mg/dL at +0.55 and
++0.59 of the real between-person spread on the held-out half, against +0.76 and +1.42 for the
+unfitted variant. A controller chosen to minimise the distance removes about half of it, so
+most of what is left belongs to the person rather than to the algorithm driving it.

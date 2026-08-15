@@ -23,17 +23,26 @@ whenever people contribute different numbers of readings, which they always do.
 
 Two properties of the real windows are worth knowing when quoting them. DCLP3 participants
 contribute a median of 166 days of wear each, so the trial figures are better estimates of the
-same quantity rather than measurements of a 28-day window. Among 221 Commons users, 64 carry
-more than 1.2 times the reading count a 28-day window at five minutes implies and 18 carry more
-than twice it, so a share of readings weights their densely sampled stretches more heavily than
-a share of time would.
+same quantity rather than measurements of a 28-day window. The Commons window is one month
+taken from the middle of a record whose median length is 315 days, so a user contributes a
+month chosen by position rather than by anything clinical.
+
+Say which set of Commons users a figure covers, because there are three and they are nested.
+240 user directories are exported, 131 carry a readable glucose series, 103 hold a middle
+28-day window with at least 70 per cent of the readings a five-minute sensor would produce, and
+71 of those also hold pump records across that window, which a reconstructed daily requirement
+needs. Figures quoted here as 221 users predate the count and match no set.
 
 ## Titrate the settings before benchmarking anything
 
 A subject's correction factor computed from its own model is not what a real person carries. The
-median here is 15.1 mg/dL per unit against the 35 DCLP3 participants ran, and handing oref0 SMB
-the derived value doubles its time below 70 mg/dL, a paired difference of 2.36 points with an
-interval of 0.79, and doubles the rescue carbohydrate the simulated person needs.
+real figure is 40.0 mg/dL per unit, the median of the recorded pump settings of the 112 DCLP3
+closed-loop participants with an inter-quartile range of 30.0 to 50.0, and the generated
+population's median sits well below it. Handing oref0 SMB the derived value doubles its time
+below 70 mg/dL, a paired difference of 2.36 points with an interval of 0.79, and doubles the
+rescue carbohydrate the simulated person needs. Titration closes about half of the gap rather
+than all of it: across the titrated cohort the correction factor ends at a median of 23.6 mg/dL
+per unit.
 
 Run `examples/titrate_cohort.py` first. It weakens each subject until that subject's own record
 clears the consensus hypoglycaemia limits (Battelino et al. 2019: below 54 mg/dL under 1 per
@@ -78,7 +87,7 @@ Two are available and they disagree by more than either differs from the simulat
 
 | | DCLP3 closed loop | OpenAPS Data Commons |
 |---|---|---|
-| n | 112 participants | 221 users |
+| n | 112 participants, 67 in the calibration half | 103 users, 71 with pump records |
 | System | Control-IQ | oref-family loops |
 | Time in range, % | 71.5 | 82.0 |
 | Time below 70, % | 1.28 | 2.99 |

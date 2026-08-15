@@ -128,7 +128,7 @@ more than them in how hard it defends a low.
 
 ## Where the numbers come from
 
-Real comparisons use the OpenAPS Data Commons, 221 users with a usable 28-day window, and the
+Real comparisons use the OpenAPS Data Commons, 103 users with a usable 28-day window, and the
 DCLP3 trial, of which 40 per cent is held back unopened. `docs/CAPABILITY.md` sets out what the
 simulator matches and what it does not, `docs/FIDELITY.md` the signature work, `docs/LADDER.md`
 the layer attribution, and `docs/VALIDATION.md` what any of it can be believed for.

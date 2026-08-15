@@ -15,6 +15,8 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, REPO)
 MEASUREMENTS = os.path.join(REPO, "docs", "measurements")
 import json
+from concurrent.futures import ProcessPoolExecutor
+
 import numpy as np
 from simglucose.controller.base import Action
 
@@ -75,15 +77,19 @@ def one(name, grams):
             "counterfactual_drift": float(without[i1 - 1] - without[i0])}
 
 
+def _job(args):
+    return one(*args)
+
+
 def main():
     from timsim.therapy import titrate
     subjects = sorted(titrate.titrated_subjects())
+    print(f"{len(subjects)} titrated subjects, {len(GRAMS)} meal sizes", flush=True)
     rows = []
     for g in GRAMS:
-        for n in subjects:
-            row = one(n, g)
-            if row:
-                rows.append(row)
+        with ProcessPoolExecutor(max_workers=10) as ex:
+            got = list(ex.map(_job, [(n, g) for n in subjects]))
+        rows += [r for r in got if r]
         sel = [r for r in rows if r["grams"] == g]
         rp = np.array([r["rise_per_10g"] for r in sel])
         tp = np.array([r["time_to_peak_min"] for r in sel])
