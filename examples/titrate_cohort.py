@@ -2,9 +2,9 @@
 
 Run this before benchmarking anything. A controller scored on settings nobody titrated is
 being judged partly on the settings: across this population the physiological correction
-factor has a median of 15.1 mg/dL per unit against the 35 real DCLP3 participants ran, and
-handing oref0 SMB the physiological value doubles its time below 70 mg/dL against handing it
-the real one.
+factor is well below the median of 40.0 mg/dL per unit recorded in the pump settings of the
+112 DCLP3 closed-loop participants, and handing oref0 SMB the physiological value doubles its
+time below 70 mg/dL against handing it the real one.
 
     python examples/titrate_cohort.py [--subjects 20] [--days 28] [--workers 6]
 
@@ -12,6 +12,12 @@ The result is written beside the population and is not committed, since it deriv
 published parameter tables in the same way the population does.
 """
 import argparse
+import os
+import sys
+
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, REPO)
+
 import numpy as np
 from concurrent.futures import ProcessPoolExecutor
 
@@ -27,14 +33,27 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--subjects", type=int, default=20)
     ap.add_argument("--cohort", default="adults",
-                    help="'adults' for adult#001 upward, or 'dclp3' for a cohort whose age "
-                         "distribution follows the DCLP3 closed-loop arm")
+                    help="'adults' for adult#001 upward, 'dclp3' for a cohort whose age "
+                         "distribution follows the DCLP3 closed-loop arm, or 'recorded' for "
+                         "the union of the cohorts in docs/measurements/cohorts.json")
     ap.add_argument("--days", type=int, default=28)
     ap.add_argument("--seed", type=int, default=11)
     ap.add_argument("--workers", type=int, default=6)
     a = ap.parse_args()
 
-    if a.cohort == "dclp3":
+    if a.cohort == "recorded":
+        import json, os
+        path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                            "docs", "measurements", "cohorts.json")
+        rec = json.load(open(path))
+        stamped = rec.get("population")
+        current = titrate.population_fingerprint()
+        if stamped and current and stamped != current:
+            raise SystemExit(f"cohorts.json was built against population {stamped} and the "
+                             f"population on disk is {current}. Rerun examples/build_cohorts.py.")
+        names = list(rec["union"])
+        print(f"titrating the union of {', '.join(sorted(rec['cohorts']))}: {len(names)} subjects")
+    elif a.cohort == "dclp3":
         from timsim.validation import dclp3
         from timsim.population import cohort
         names, short = cohort.matched(dclp3.ages(), n=a.subjects, seed=a.seed)
@@ -74,7 +93,8 @@ def main():
         isf = np.array([r["trace"][-1]["isf"] for r in found], float)
         print(f"\nscale: median {np.median(sc):.2f}, range {sc.min():.2f} to {sc.max():.2f}")
         print(f"correction factor: median {np.median(isf):.1f} mg/dL per unit, "
-              f"range {isf.min():.1f} to {isf.max():.1f}   (DCLP3 ran 35)")
+              f"range {isf.min():.1f} to {isf.max():.1f}   "
+              f"(DCLP3 participants ran a median of 40.0)")
 
 
 if __name__ == "__main__":

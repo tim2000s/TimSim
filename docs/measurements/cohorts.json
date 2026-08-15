@@ -1,0 +1,243 @@
+{
+ "n_per_cohort": 25,
+ "population": "2af095014f6c1c75",
+ "cohorts": {
+  "dclp3": {
+   "cohort": "dclp3",
+   "n": 25,
+   "subjects": [
+    "adolescent#003",
+    "adolescent#004",
+    "adolescent#005",
+    "adolescent#006",
+    "adolescent#008",
+    "adolescent#011",
+    "adolescent#018",
+    "adolescent#019",
+    "adolescent#023",
+    "adolescent#027",
+    "adolescent#032",
+    "adult#005",
+    "adult#007",
+    "adult#008",
+    "adult#009",
+    "adult#010",
+    "adult#011",
+    "adult#012",
+    "adult#013",
+    "adult#016",
+    "adult#025",
+    "adult#026",
+    "adult#030",
+    "adult#033",
+    "child#005"
+   ],
+   "age_median": 27.817499417149,
+   "age_p10_p90": [
+    14.812226695872134,
+    56.488326863292336
+   ],
+   "fraction_under_18": 0.28,
+   "tdi_median": 46.81455036818105,
+   "tdi_iqr": [
+    42.012553636821856,
+    56.56814013591968
+   ],
+   "match": {
+    "n": 25,
+    "requested": 25,
+    "median_distance": 0.5544851748159547,
+    "p90_distance": 1.1353061963940383
+   },
+   "matched_on": "age and daily insulin"
+  },
+  "commons": {
+   "cohort": "commons",
+   "n": 25,
+   "subjects": [
+    "adolescent#001",
+    "adolescent#002",
+    "adolescent#015",
+    "adolescent#016",
+    "adolescent#017",
+    "adolescent#020",
+    "adolescent#023",
+    "adolescent#027",
+    "adolescent#028",
+    "adolescent#029",
+    "adolescent#030",
+    "adult#005",
+    "adult#017",
+    "adult#018",
+    "adult#028",
+    "adult#030",
+    "adult#031",
+    "adult#033",
+    "child#003",
+    "child#004",
+    "child#006",
+    "child#007",
+    "child#012",
+    "child#025",
+    "child#032"
+   ],
+   "age_median": 16.495612271044838,
+   "age_p10_p90": [
+    10.084410868550922,
+    58.66893152711155
+   ],
+   "fraction_under_18": 0.6,
+   "tdi_median": 35.61462540767691,
+   "tdi_iqr": [
+    26.90347091039259,
+    43.95888532877576
+   ],
+   "match": {
+    "n": 25,
+    "requested": 25,
+    "median_distance": 0.011762245469470911,
+    "p90_distance": 0.1404451893356967
+   },
+   "matched_on": "daily insulin only"
+  },
+  "close_it": {
+   "cohort": "close_it",
+   "n": 25,
+   "subjects": [
+    "adolescent#005",
+    "adolescent#016",
+    "adolescent#032",
+    "adult#001",
+    "adult#004",
+    "adult#005",
+    "adult#007",
+    "adult#008",
+    "adult#009",
+    "adult#010",
+    "adult#011",
+    "adult#014",
+    "adult#018",
+    "adult#019",
+    "adult#021",
+    "adult#022",
+    "adult#023",
+    "adult#026",
+    "adult#027",
+    "adult#028",
+    "adult#029",
+    "adult#030",
+    "adult#031",
+    "adult#032",
+    "adult#033"
+   ],
+   "age_median": 47.76494395888047,
+   "age_p10_p90": [
+    22.950437974413187,
+    72.80376685098564
+   ],
+   "fraction_under_18": 0.04,
+   "tdi_median": 50.32664687774268,
+   "tdi_iqr": [
+    46.12970275606987,
+    54.990865100923834
+   ],
+   "match": {
+    "n": 25,
+    "requested": 25,
+    "median_distance": 0.7169840847716747,
+    "p90_distance": 1.5395421512779872
+   },
+   "matched_on": "age and daily insulin"
+  }
+ },
+ "references": {
+  "dclp3": {
+   "reference": "dclp3",
+   "n": 112,
+   "tdd_median": 47.92,
+   "tdd_iqr": [
+    35.473749999999995,
+    64.35
+   ],
+   "age_median": 28.5,
+   "fraction_under_18": 0.2767857142857143
+  },
+  "commons": {
+   "reference": "commons",
+   "n": 71,
+   "tdd_median": 38.387053571428574,
+   "tdd_iqr": [
+    29.815327380952382,
+    54.436028422619046
+   ]
+  },
+  "close_it": {
+   "reference": "close_it",
+   "n": 75,
+   "tdd_median": 35.5673363095238,
+   "tdd_iqr": [
+    28.868675595238095,
+    50.00825892857143
+   ],
+   "age_median": 45.31842476873775,
+   "fraction_under_18": 0.0
+  }
+ },
+ "union": [
+  "adolescent#001",
+  "adolescent#002",
+  "adolescent#003",
+  "adolescent#004",
+  "adolescent#005",
+  "adolescent#006",
+  "adolescent#008",
+  "adolescent#011",
+  "adolescent#015",
+  "adolescent#016",
+  "adolescent#017",
+  "adolescent#018",
+  "adolescent#019",
+  "adolescent#020",
+  "adolescent#023",
+  "adolescent#027",
+  "adolescent#028",
+  "adolescent#029",
+  "adolescent#030",
+  "adolescent#032",
+  "adult#001",
+  "adult#004",
+  "adult#005",
+  "adult#007",
+  "adult#008",
+  "adult#009",
+  "adult#010",
+  "adult#011",
+  "adult#012",
+  "adult#013",
+  "adult#014",
+  "adult#016",
+  "adult#017",
+  "adult#018",
+  "adult#019",
+  "adult#021",
+  "adult#022",
+  "adult#023",
+  "adult#025",
+  "adult#026",
+  "adult#027",
+  "adult#028",
+  "adult#029",
+  "adult#030",
+  "adult#031",
+  "adult#032",
+  "adult#033",
+  "child#003",
+  "child#004",
+  "child#005",
+  "child#006",
+  "child#007",
+  "child#012",
+  "child#025",
+  "child#032"
+ ]
+}
