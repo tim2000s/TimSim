@@ -4,9 +4,10 @@ The simulated measurement gives a subject a single meal on basal alone and reads
 above the counterfactual and the time to the peak. The nearest real equivalent is a logged
 carbohydrate entry that nobody bolused for, which on a closed loop is uncommon and never
 entirely uncovered, since the loop keeps acting. Both facts are handled explicitly: a meal is
-admitted only when no bolus is recorded from 30 minutes before it to 120 minutes after, and
-the automatic insulin delivered across the window is reported alongside the rise, so the
-reader can see how far from uncovered these meals are.
+admitted on glucose coverage alone, and every filter that might define "uncovered" is
+recorded per meal rather than applied, so the choice can be varied without reparsing the
+records. The spread across those choices is reported, because it is larger than the effects
+this measurement is used to argue about.
 
 Definitions match `meal_response.py` deliberately. Baseline is the reading at the meal,
 the peak is the maximum over the following six hours, and the rise is quoted per 10 g as
@@ -162,9 +163,6 @@ def meals_for(user_dir):
     out = []
     for i in np.nonzero((carbs >= GRAMS_LO) & (carbs <= GRAMS_HI))[0]:
         t0 = tm[i]
-        if len(bolus_at) and np.any((bolus_at >= t0 - CLEAR_BEFORE_MIN) &
-                                    (bolus_at <= t0 + CLEAR_AFTER_MIN)):
-            continue
         sel = (gm >= t0 - 15.0) & (gm <= t0 + WINDOW_MIN)
         if np.sum(sel) < int(0.8 * (WINDOW_MIN + 15.0) / 5.0):
             continue                                    # too little glucose data to read
@@ -173,22 +171,25 @@ def meals_for(user_dir):
         if not len(pre):
             continue
         base = float(pre[-1])
-        # Carbohydrate logged below 80 mg/dL is a hypoglycaemia treatment rather than a meal,
-        # and above 180 the person is already high, so neither is comparable with a simulated
-        # meal given at steady state.
-        if not (80.0 <= base <= 180.0):
-            continue
         after = gt > 0
         if not np.any(after):
             continue
         peak_i = int(np.argmax(gg[after]))
         peak, tpeak = float(gg[after][peak_i]), float(gt[after][peak_i])
-        auto = float(np.sum(ins[(tm > t0) & (tm <= t0 + 240.0)]))
+        # Every filter this measurement might use is recorded rather than applied, so the
+        # choice of filter can be varied afterwards without reparsing 5 GB of records. The
+        # published figure this replaces used "no insulin within half an hour" and no
+        # baseline restriction, and neither choice was recoverable from the repository.
+        def bolus_in(lo, hi):
+            return float(np.sum(ins[(tm >= t0 + lo) & (tm <= t0 + hi) &
+                                    (ins >= BOLUS_FLOOR_U)]))
         got, want = delivered_vs_scheduled(t0, 240.0, rates, temps)
         out.append({"grams": float(carbs[i]), "baseline": base, "peak": peak,
                     "rise": peak - base, "rise_per_10g": (peak - base) / (carbs[i] / 10.0),
                     "time_to_peak_min": tpeak, "peak_above_180": bool(peak > 180.0),
-                    "bolus_4h_u": auto,
+                    "bolus_30min_either_side": bolus_in(-30.0, 30.0),
+                    "bolus_30_before_120_after": bolus_in(-30.0, 120.0),
+                    "bolus_300_before_240_after": bolus_in(-300.0, 240.0),
                     "basal_delivered_4h_u": got, "basal_scheduled_4h_u": want,
                     "basal_excess_4h_u": (None if got is None else got - want)})
     return out
@@ -213,15 +214,47 @@ def main():
           f"from {n_users} users")
     if not rows:
         return
-    summarise(rows, "all bolus-free meals")
-    known = [r for r in rows if r.get("basal_excess_4h_u") is not None]
-    print(f"\n  of which {len(known)} have a readable basal schedule; "
-          f"median excess over schedule {np.median([r['basal_excess_4h_u'] for r in known]):+.2f} U"
-          if known else "\n  no readable basal schedules")
-    unc = [r for r in known if r["basal_excess_4h_u"] <= 0.5]
-    if unc:
-        summarise(unc, "meals where the loop added no more than 0.5 U over schedule in 4 h")
-    json.dump({"n_meals": len(rows), "n_users": n_users, "n_uncovered": len(unc),
+
+    # The filter is the finding. Each variant below is one defensible reading of "an
+    # uncovered meal", and the spread between them is larger than most effects this
+    # measurement is used to argue about.
+    VARIANTS = [
+        ("no insulin within 30 min, any baseline",
+         lambda r: r["bolus_30min_either_side"] == 0.0),
+        ("no insulin within 30 min, baseline 80 to 180",
+         lambda r: r["bolus_30min_either_side"] == 0.0 and 80 <= r["baseline"] <= 180),
+        ("bolus-free 30 min before to 120 after, baseline 80 to 180",
+         lambda r: r["bolus_30_before_120_after"] == 0.0 and 80 <= r["baseline"] <= 180),
+        ("bolus-free a full action duration before and 4 h after, baseline 80 to 180",
+         lambda r: r["bolus_300_before_240_after"] == 0.0 and 80 <= r["baseline"] <= 180),
+        ("the same, and the loop within 0.5 U of schedule over 4 h",
+         lambda r: (r["bolus_300_before_240_after"] == 0.0 and 80 <= r["baseline"] <= 180
+                    and r.get("basal_excess_4h_u") is not None
+                    and r["basal_excess_4h_u"] <= 0.5)),
+    ]
+    print(f"\n{'variant':64} {'n':>5} {'g':>5} {'rise/10g':>9} {'peak min':>9} {'>180 %':>7}")
+    report = []
+    for label, keep in VARIANTS:
+        sel = [r for r in rows if keep(r)]
+        if not sel:
+            print(f"{label:64} {0:>5}")
+            continue
+        rp = np.array([r["rise_per_10g"] for r in sel])
+        gr = np.array([r["grams"] for r in sel])
+        rose = np.array([r["rise"] for r in sel]) >= 10.0
+        tp = np.array([r["time_to_peak_min"] for r in sel])[rose]
+        ab = 100.0 * np.mean([r["peak_above_180"] for r in sel])
+        print(f"{label:64} {len(sel):>5} {np.median(gr):>5.0f} {np.median(rp):>9.2f} "
+              f"{(np.median(tp) if len(tp) else float('nan')):>9.0f} {ab:>7.1f}")
+        report.append({"variant": label, "n": len(sel),
+                       "median_grams": float(np.median(gr)),
+                       "rise_per_10g_median": float(np.median(rp)),
+                       "rise_per_10g_iqr": [float(np.percentile(rp, 25)),
+                                            float(np.percentile(rp, 75))],
+                       "time_to_peak_median": (float(np.median(tp)) if len(tp) else None),
+                       "peak_above_180_pct": float(ab)})
+
+    json.dump({"n_candidates": len(rows), "n_users": n_users, "variants": report,
                "meals": rows}, open(OUT, "w"))
     print(f"\nwrote {OUT}")
     return
