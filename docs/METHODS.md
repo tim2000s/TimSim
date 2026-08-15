@@ -89,11 +89,19 @@ Two are available and they disagree by more than either differs from the simulat
 |---|---|---|
 | n | 112 participants, 67 in the calibration half | 103 users, 71 with pump records |
 | System | Control-IQ | oref-family loops |
-| Time in range, % | 71.5 | 82.0 |
-| Time below 70, % | 1.28 | 2.99 |
-| Time below 54, % | 0.16 | 0.42 |
-| Mean, mg/dL | 154.7 | 132.5 |
-| CV, % | 32.6 | 33.8 |
+| Time in range, % | 71.29 | 79.60 |
+| Time below 70, % | 1.36 | 2.74 |
+| Time below 54, % | 0.20 | 0.39 |
+| Time above 180, % | 26.87 | 15.05 |
+| Mean, mg/dL | 155.45 | 134.72 |
+| CV, % | 33.37 | 33.45 |
+
+Both columns are medians across people, each person's outcomes computed from their own
+readings first. The trial column is the calibration half of the closed-loop arm, so a figure
+reported against it can be checked against the 45 held-out participants, who sit at 73.76 time
+in range and 154.67 mg/dL. The Commons column is the 71 users carrying pump records as well as
+glucose, which is the set a cohort can be matched to; across all 103 it reads 79.90, 2.87, 0.43,
+15.05, 134.16 and 33.76, so the restriction does not move it.
 
 Compare an arm against the population running the algorithm it is testing. Against DCLP3 an
 untuned oref arm looks too low and too flat; against the Commons its mean glucose and time in
