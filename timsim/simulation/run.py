@@ -279,6 +279,13 @@ def _resolve_controller(controller, profile, adaptive):
     """
     if controller is None:
         controller = DEFAULT_CONTROLLER
+    # A loop shape means the built-in basal-bolus driven by that shape. The named shapes in
+    # `controller/loop.py` cover the two this package ships; passing settings directly is how
+    # a variant is driven without registering it, which is what fitting one of its unpublished
+    # parameters needs.
+    from ..controller.loop import LoopSettings
+    if isinstance(controller, LoopSettings):
+        return _BasalBolus(profile, adaptive=adaptive, loop=controller), "loop-settings", True
     if isinstance(controller, str):
         if controller not in CONTROLLERS:
             raise ValueError(
