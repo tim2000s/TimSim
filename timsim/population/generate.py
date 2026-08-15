@@ -30,6 +30,8 @@ resolution: a comparison across 100 subjects is less at the mercy of a single aw
 one, and the population can be regenerated with a different seed to check that a result
 is not an artefact of one draw.
 """
+import hashlib
+
 import numpy as np
 import pandas as pd
 
@@ -216,6 +218,24 @@ class _AgeSampler:
         return float(np.clip(np.exp(rng.normal(self.mu, self.sd)), 6, 75))
 
 
+def class_seed(klass, seed):
+    """The seed one class's draws start from, stable across processes.
+
+    This used to be `seed + hash(klass) % 10_000`. Python salts string hashing per process,
+    so `hash("adult")` returned 5103, 3342 and 8570 on three consecutive interpreters here
+    and `generate(seed=2026)` produced a different hundred subjects every time it ran. The
+    population was therefore not reproducible from its seed, and since it is deliberately
+    not committed, the subjects every figure in `docs/` was measured on existed in exactly
+    one uncommitted copy that nothing could rebuild.
+
+    The digest comes from hashlib for the same reason as
+    `simulation/run.py::subject_seed` and `therapy/profile.py::accuracy_for`. Changing it
+    regenerates every subject, so it invalidates any figure measured before it changed.
+    """
+    digest = hashlib.sha256(f"{klass}:{seed}".encode()).digest()
+    return int.from_bytes(digest[:8], "big")
+
+
 # ------------------------------------------------------------------ the generator
 def generate(n=100, seed=2026, shrinkage=0.5, truncate=2.5, split=None, verbose=True):
     """Generate `n` screened subjects. Returns (patient rows, therapy rows, report).
@@ -243,7 +263,7 @@ def generate(n=100, seed=2026, shrinkage=0.5, truncate=2.5, split=None, verbose=
         z = _to_z(sub)
         mean, cov = z.mean(0), _shrunk_cov(z, shrinkage)
         ages = _AgeSampler(quest, klass)
-        rng = np.random.default_rng(seed + hash(klass) % 10_000)
+        rng = np.random.default_rng(class_seed(klass, seed))
 
         made, tries = 0, 0
         while made < want:

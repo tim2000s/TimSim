@@ -54,6 +54,7 @@ not a criterion invented here, and the hypoglycaemia floors are the binding ones
 and variability are reported and do not gate, because a subject can fail them for reasons no
 settings change reaches.
 """
+import hashlib
 import json
 import os
 
@@ -190,12 +191,53 @@ STORE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
                      "population", "params", "titrated_settings.json")
 
 
+PARAMS = os.path.join(os.path.dirname(STORE), "vpop_params.csv")
+
+
+def population_fingerprint(path=PARAMS):
+    """A digest of the generated population, or None if it is not present.
+
+    Subject names are positional: `adult#001` is whatever the generator produced first for
+    that class. Regenerating the population reuses every name for a different body, so a
+    titration recorded against the old one resolves to settings fitted to somebody else and
+    nothing in the arithmetic looks wrong. Reseeding the generator in August 2026 moved
+    adolescent#004 from a correction factor of 21.8 to 43.5 under the same name.
+
+    So the store records which population it was fitted to and `profile_for` refuses to use
+    it against a different one. A benchmark that silently uses another body's settings is
+    the failure `docs/METHODS.md` describes as worse than a crash.
+    """
+    try:
+        with open(path, "rb") as fh:
+            return hashlib.sha256(fh.read()).hexdigest()[:16]
+    except OSError:
+        return None
+
+
 def save(results, path=STORE, meta=None):
     """Record a titration, including the subjects it failed on and the trace for each."""
-    payload = {"meta": dict(meta or {}), "subjects": {r["name"]: r for r in results}}
+    meta = dict(meta or {})
+    meta.setdefault("population", population_fingerprint())
+    payload = {"meta": meta, "subjects": {r["name"]: r for r in results}}
     with open(path, "w") as fh:
         json.dump(payload, fh, indent=1, default=str)
     return path
+
+
+def check_population(store, path=PARAMS):
+    """Raise when a store was fitted to a different population than the one present."""
+    recorded = (store.get("meta") or {}).get("population")
+    current = population_fingerprint(path)
+    if recorded is None:
+        raise RuntimeError(
+            "The titrated settings record no population fingerprint, so they cannot be shown "
+            "to belong to the subjects now on disk. Rerun `python examples/titrate_cohort.py`.")
+    if current is not None and recorded != current:
+        raise RuntimeError(
+            f"These titrated settings were fitted to population {recorded} and the population "
+            f"on disk is {current}. Subject names are reused across generations, so applying "
+            f"them would dose each subject on another body's settings. Rerun "
+            f"`python examples/titrate_cohort.py`.")
 
 
 def load(path=STORE):
@@ -221,6 +263,7 @@ def profile_for(name, path=STORE, **kw):
             "No titrated settings found. Run `python examples/titrate_cohort.py` first: a "
             "controller benchmarked on settings nobody titrated is being handed a correction "
             "factor about twice as aggressive as the one real users of the same algorithm run.")
+    check_population(store)
     rec = store["subjects"].get(name)
     if rec is None or not rec.get("found"):
         raise RuntimeError(
@@ -235,11 +278,14 @@ def profile_for(name, path=STORE, **kw):
 
 def titrated_subjects(path=STORE):
     store = load(path)
-    return () if store is None else tuple(
-        sorted(n for n, r in store["subjects"].items() if r.get("found")))
+    if store is None:
+        return ()
+    check_population(store)
+    return tuple(sorted(n for n, r in store["subjects"].items() if r.get("found")))
 
 
 __all__ = ["consensus_report", "hypo_floors_met", "failures", "titrate_subject",
            "save", "load", "profile_for", "titrated_subjects", "STORE",
+           "population_fingerprint", "check_population",
            "SCALES", "BASAL_SCALES", "REFERENCE_DRIVER", "TBR54_LIMIT", "TBR70_LIMIT", "TIR_TARGET",
            "TAR250_LIMIT", "CV_LIMIT"]
