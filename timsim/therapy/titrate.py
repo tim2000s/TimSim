@@ -5,9 +5,12 @@ This package's subjects carry a correction factor and a carbohydrate ratio measu
 own physiology, which is a quantity no real person has access to: real settings are arrived at
 by titration against the person's own record, and they end up conservative relative to what the
 body would take. Measured across these subjects the physiological correction factor has a
-median of 15.1 mg/dL per unit against the 35 that DCLP3 participants ran, so an algorithm
-handed the physiological value is being asked to dose about twice as hard as it would for a
-real user.
+median of 15.1 mg/dL per unit. The real figure it is set against is 40.0 mg/dL per unit, the
+median of the recorded pump settings of the 112 closed-loop participants of DCLP3 with an
+inter-quartile range of 30.0 to 50.0, read from `InsulinPumpSettings_a.txt` and summarised per
+participant before the cohort median is taken. So an algorithm handed the physiological value
+is being asked to dose about two and a half times as hard as it would for a real user. Earlier
+versions of this note quoted 35 mg/dL per unit, which was never measured from the release.
 
 The response is a procedure rather than a constant. Each subject's settings are weakened until
 its own record clears the consensus hypoglycaemia floors, and no further, because settings
@@ -71,9 +74,9 @@ CV_LIMIT = 36.0          # per cent
 BASAL_SCALES = (1.0, 0.95, 0.90, 0.85, 0.80)
 
 # The correction factor, used only when basal alone cannot clear the floors. It starts at the
-# physiological value and ends slightly beyond the DCLP3 correction factor, which is 2.3 times
-# the median physiological one across this population, so the search covers real practice
-# without extrapolating past it.
+# physiological value and ends at 2.5 times it, which reaches the measured DCLP3 median of 40.0
+# mg/dL per unit from a physiological median of 15.1, so the search covers real practice without
+# extrapolating far past it.
 SCALES = (1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5)
 
 # Titration runs under this regimen whatever is benchmarked afterwards.

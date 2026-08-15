@@ -143,16 +143,19 @@ def for_subject(name, params=None, settings=None, diurnal=False, limits=None,
 
     `isf_scale` and `cr_scale` weaken or strengthen the settings the algorithm is given,
     without touching the body they are given to. They exist because this package's subjects
-    carry settings measured from their own physiology, and no real person has that. A
-    correction factor of 35 mg/dL per unit is what DCLP3 participants ran; the same
-    subjects' own models put the achievable drop at 12.6 from basal and 18.5 from 250, so
-    real settings ask for roughly half the insulin the physiology would take. Scaling the
-    correction factor up under-corrects a high in the same way and by the same amount, which
-    is a modelling choice rather than a measurement and is why it defaults to off.
+    carry settings measured from their own physiology, and no real person has that. DCLP3
+    participants ran a median correction factor of 40.0 mg/dL per unit, inter-quartile range
+    30.0 to 50.0, measured across the 112 closed-loop participants from their recorded pump
+    settings; the same subjects' own models put the achievable drop at 12.6 from basal and
+    18.5 from 250, so real settings ask for well under half the insulin the physiology would
+    take. Scaling the correction factor up under-corrects a high in the same way and by the
+    same amount, which is a modelling choice rather than a measurement and is why it defaults
+    to off.
 
-    Carbohydrate ratio needs no such treatment. Real settings and measured ones agree, 8.0
-    in the trial against 8.9 here, which is why `cr_scale` exists for symmetry and is not
-    used by anything.
+    Carbohydrate ratio moves the same way and by less. The trial median is 8.0 g per unit,
+    inter-quartile range 7.0 to 11.0, against 12.5 across the generated population, so the
+    generated ratio is the weaker of the two. `cr_scale` exists for symmetry and is not used
+    by anything.
     """
     from ..population import params_for, therapy_for
 

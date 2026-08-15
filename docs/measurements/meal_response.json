@@ -1,0 +1,572 @@
+[
+ {
+  "name": "adolescent#004",
+  "grams": 30.0,
+  "baseline": 148.41624360928878,
+  "peak_absolute": 214.1538915847619,
+  "rise": 65.73764807652691,
+  "rise_per_10g": 21.912549358842302,
+  "time_to_peak_min": 270.0,
+  "counterfactual_drift": -1.1135571753584372e-07
+ },
+ {
+  "name": "adolescent#016",
+  "grams": 30.0,
+  "baseline": 140.23303318903848,
+  "peak_absolute": 255.3934284188341,
+  "rise": 115.16552871553063,
+  "rise_per_10g": 38.38850957184354,
+  "time_to_peak_min": 230.0,
+  "counterfactual_drift": -0.008771256385216475
+ },
+ {
+  "name": "adolescent#019",
+  "grams": 30.0,
+  "baseline": 145.12662191839277,
+  "peak_absolute": 181.2277820382752,
+  "rise": 36.10116046837618,
+  "rise_per_10g": 12.033720156125392,
+  "time_to_peak_min": 230.0,
+  "counterfactual_drift": -3.9659926187596284e-07
+ },
+ {
+  "name": "adolescent#021",
+  "grams": 30.0,
+  "baseline": 156.84392868229594,
+  "peak_absolute": 269.57481834559223,
+  "rise": 112.73087452861478,
+  "rise_per_10g": 37.576958176204926,
+  "time_to_peak_min": 205.0,
+  "counterfactual_drift": 1.9252524054991227e-05
+ },
+ {
+  "name": "adolescent#025",
+  "grams": 30.0,
+  "baseline": 150.54726173011517,
+  "peak_absolute": 223.64478336534205,
+  "rise": 73.09753179166557,
+  "rise_per_10g": 24.36584393055519,
+  "time_to_peak_min": 110.0,
+  "counterfactual_drift": -1.9479497296970294e-05
+ },
+ {
+  "name": "adolescent#027",
+  "grams": 30.0,
+  "baseline": 145.41682135498547,
+  "peak_absolute": 250.10243099049634,
+  "rise": 104.68560445332014,
+  "rise_per_10g": 34.895201484440044,
+  "time_to_peak_min": 155.0,
+  "counterfactual_drift": 7.74706106199119e-06
+ },
+ {
+  "name": "adolescent#028",
+  "grams": 30.0,
+  "baseline": 140.0259798382037,
+  "peak_absolute": 219.69341674719885,
+  "rise": 79.66743075313607,
+  "rise_per_10g": 26.555810251045358,
+  "time_to_peak_min": 125.0,
+  "counterfactual_drift": 9.909851428346883e-06
+ },
+ {
+  "name": "adult#001",
+  "grams": 30.0,
+  "baseline": 157.73472976290242,
+  "peak_absolute": 200.6208629837355,
+  "rise": 42.881902189327604,
+  "rise_per_10g": 14.293967396442534,
+  "time_to_peak_min": 310.0,
+  "counterfactual_drift": 0.005540527825985464
+ },
+ {
+  "name": "adult#002",
+  "grams": 30.0,
+  "baseline": 161.00284921364346,
+  "peak_absolute": 228.24783417337596,
+  "rise": 67.239078260919,
+  "rise_per_10g": 22.413026086973,
+  "time_to_peak_min": 225.0,
+  "counterfactual_drift": 0.009380816084387789
+ },
+ {
+  "name": "adult#007",
+  "grams": 30.0,
+  "baseline": 140.87892207874287,
+  "peak_absolute": 191.5969832696705,
+  "rise": 50.70651345840875,
+  "rise_per_10g": 16.902171152802918,
+  "time_to_peak_min": 95.0,
+  "counterfactual_drift": 0.05524588514009565
+ },
+ {
+  "name": "adult#009",
+  "grams": 30.0,
+  "baseline": 148.00746229215892,
+  "peak_absolute": 232.82769641223416,
+  "rise": 84.82030737672949,
+  "rise_per_10g": 28.273435792243163,
+  "time_to_peak_min": 170.0,
+  "counterfactual_drift": -0.0001260362923858338
+ },
+ {
+  "name": "adult#010",
+  "grams": 30.0,
+  "baseline": 190.4951148722468,
+  "peak_absolute": 255.84142876693267,
+  "rise": 65.34364146300265,
+  "rise_per_10g": 21.781213821000886,
+  "time_to_peak_min": 270.0,
+  "counterfactual_drift": 0.003497739767482244
+ },
+ {
+  "name": "adult#011",
+  "grams": 30.0,
+  "baseline": 141.33263585762745,
+  "peak_absolute": 196.26378753684133,
+  "rise": 54.92817729703043,
+  "rise_per_10g": 18.309392432343476,
+  "time_to_peak_min": 300.0,
+  "counterfactual_drift": 0.0042814436231424224
+ },
+ {
+  "name": "adult#016",
+  "grams": 30.0,
+  "baseline": 179.6234086200928,
+  "peak_absolute": 221.74531343522742,
+  "rise": 42.006515133549215,
+  "rise_per_10g": 14.002171711183072,
+  "time_to_peak_min": 405.0,
+  "counterfactual_drift": 0.14494565089731282
+ },
+ {
+  "name": "adult#021",
+  "grams": 30.0,
+  "baseline": 178.73384925672437,
+  "peak_absolute": 255.5663922518278,
+  "rise": 76.82286005421841,
+  "rise_per_10g": 25.607620018072804,
+  "time_to_peak_min": 260.0,
+  "counterfactual_drift": 0.01411535805124231
+ },
+ {
+  "name": "adult#022",
+  "grams": 30.0,
+  "baseline": 201.6642926147594,
+  "peak_absolute": 276.10380903664077,
+  "rise": 74.37914959733521,
+  "rise_per_10g": 24.793049865778404,
+  "time_to_peak_min": 310.0,
+  "counterfactual_drift": 0.08370654321441862
+ },
+ {
+  "name": "adult#024",
+  "grams": 30.0,
+  "baseline": 172.4063195116334,
+  "peak_absolute": 239.99301457284128,
+  "rise": 67.5850458487977,
+  "rise_per_10g": 22.5283486162659,
+  "time_to_peak_min": 205.0,
+  "counterfactual_drift": 0.0024456051549179847
+ },
+ {
+  "name": "adult#025",
+  "grams": 30.0,
+  "baseline": 146.76764751237937,
+  "peak_absolute": 194.28494076042782,
+  "rise": 47.514892996465505,
+  "rise_per_10g": 15.838297665488502,
+  "time_to_peak_min": 250.0,
+  "counterfactual_drift": 0.0033327905319424644
+ },
+ {
+  "name": "adult#026",
+  "grams": 30.0,
+  "baseline": 188.21110849337015,
+  "peak_absolute": 250.12312427845973,
+  "rise": 61.17748924043457,
+  "rise_per_10g": 20.392496413478188,
+  "time_to_peak_min": 215.0,
+  "counterfactual_drift": 1.5791404613287625
+ },
+ {
+  "name": "adolescent#004",
+  "grams": 50.0,
+  "baseline": 148.41624360928878,
+  "peak_absolute": 258.4165033701249,
+  "rise": 110.00025986233993,
+  "rise_per_10g": 22.000051972467986,
+  "time_to_peak_min": 275.0,
+  "counterfactual_drift": -1.1135571753584372e-07
+ },
+ {
+  "name": "adolescent#016",
+  "grams": 50.0,
+  "baseline": 140.23303318903848,
+  "peak_absolute": 335.3548398822992,
+  "rise": 195.1269401789957,
+  "rise_per_10g": 39.02538803579914,
+  "time_to_peak_min": 230.0,
+  "counterfactual_drift": -0.008771256385216475
+ },
+ {
+  "name": "adolescent#019",
+  "grams": 50.0,
+  "baseline": 145.12662191839277,
+  "peak_absolute": 205.60007727346084,
+  "rise": 60.473455703561825,
+  "rise_per_10g": 12.094691140712365,
+  "time_to_peak_min": 230.0,
+  "counterfactual_drift": -3.9659926187596284e-07
+ },
+ {
+  "name": "adolescent#021",
+  "grams": 50.0,
+  "baseline": 156.84392868229594,
+  "peak_absolute": 349.1102957616771,
+  "rise": 192.26635164278534,
+  "rise_per_10g": 38.45327032855707,
+  "time_to_peak_min": 215.0,
+  "counterfactual_drift": 1.9252524054991227e-05
+ },
+ {
+  "name": "adolescent#025",
+  "grams": 50.0,
+  "baseline": 150.54726173011517,
+  "peak_absolute": 272.5141600437339,
+  "rise": 121.9669087795381,
+  "rise_per_10g": 24.39338175590762,
+  "time_to_peak_min": 115.0,
+  "counterfactual_drift": -1.9479497296970294e-05
+ },
+ {
+  "name": "adolescent#027",
+  "grams": 50.0,
+  "baseline": 145.41682135498547,
+  "peak_absolute": 323.2270578674594,
+  "rise": 177.81023068779064,
+  "rise_per_10g": 35.56204613755813,
+  "time_to_peak_min": 195.0,
+  "counterfactual_drift": 7.74706106199119e-06
+ },
+ {
+  "name": "adolescent#028",
+  "grams": 50.0,
+  "baseline": 140.0259798382037,
+  "peak_absolute": 273.5966724931434,
+  "rise": 133.57068635509697,
+  "rise_per_10g": 26.714137271019393,
+  "time_to_peak_min": 130.0,
+  "counterfactual_drift": 9.909851428346883e-06
+ },
+ {
+  "name": "adult#001",
+  "grams": 50.0,
+  "baseline": 157.73472976290242,
+  "peak_absolute": 229.30666559816405,
+  "rise": 71.56770480375616,
+  "rise_per_10g": 14.313540960751231,
+  "time_to_peak_min": 310.0,
+  "counterfactual_drift": 0.005540527825985464
+ },
+ {
+  "name": "adult#002",
+  "grams": 50.0,
+  "baseline": 161.00284921364346,
+  "peak_absolute": 273.940120705562,
+  "rise": 112.93128462203379,
+  "rise_per_10g": 22.586256924406758,
+  "time_to_peak_min": 230.0,
+  "counterfactual_drift": 0.009380816084387789
+ },
+ {
+  "name": "adult#007",
+  "grams": 50.0,
+  "baseline": 140.87892207874287,
+  "peak_absolute": 225.37379868534293,
+  "rise": 84.4833288740812,
+  "rise_per_10g": 16.89666577481624,
+  "time_to_peak_min": 95.0,
+  "counterfactual_drift": 0.05524588514009565
+ },
+ {
+  "name": "adult#009",
+  "grams": 50.0,
+  "baseline": 148.00746229215892,
+  "peak_absolute": 290.3018228443377,
+  "rise": 142.29443518180858,
+  "rise_per_10g": 28.458887036361716,
+  "time_to_peak_min": 175.0,
+  "counterfactual_drift": -0.0001260362923858338
+ },
+ {
+  "name": "adult#010",
+  "grams": 50.0,
+  "baseline": 190.4951148722468,
+  "peak_absolute": 300.9656114135983,
+  "rise": 110.4678241096683,
+  "rise_per_10g": 22.09356482193366,
+  "time_to_peak_min": 270.0,
+  "counterfactual_drift": 0.003497739767482244
+ },
+ {
+  "name": "adult#011",
+  "grams": 50.0,
+  "baseline": 141.33263585762745,
+  "peak_absolute": 233.41176873764408,
+  "rise": 92.07615849783318,
+  "rise_per_10g": 18.415231699566636,
+  "time_to_peak_min": 300.0,
+  "counterfactual_drift": 0.0042814436231424224
+ },
+ {
+  "name": "adult#016",
+  "grams": 50.0,
+  "baseline": 179.6234086200928,
+  "peak_absolute": 249.7159913500513,
+  "rise": 69.97646697004353,
+  "rise_per_10g": 13.995293394008707,
+  "time_to_peak_min": 410.0,
+  "counterfactual_drift": 0.14494565089731282
+ },
+ {
+  "name": "adult#021",
+  "grams": 50.0,
+  "baseline": 178.73384925672437,
+  "peak_absolute": 307.85559223342784,
+  "rise": 129.11195525727487,
+  "rise_per_10g": 25.822391051454975,
+  "time_to_peak_min": 265.0,
+  "counterfactual_drift": 0.01411535805124231
+ },
+ {
+  "name": "adult#022",
+  "grams": 50.0,
+  "baseline": 201.6642926147594,
+  "peak_absolute": 327.26239125429265,
+  "rise": 125.53719739748087,
+  "rise_per_10g": 25.107439479496172,
+  "time_to_peak_min": 315.0,
+  "counterfactual_drift": 0.08370654321441862
+ },
+ {
+  "name": "adult#024",
+  "grams": 50.0,
+  "baseline": 172.4063195116334,
+  "peak_absolute": 286.56301677017603,
+  "rise": 114.15504804613246,
+  "rise_per_10g": 22.83100960922649,
+  "time_to_peak_min": 205.0,
+  "counterfactual_drift": 0.0024456051549179847
+ },
+ {
+  "name": "adult#025",
+  "grams": 50.0,
+  "baseline": 146.76764751237937,
+  "peak_absolute": 225.82529706426214,
+  "rise": 79.05524930029983,
+  "rise_per_10g": 15.811049860059967,
+  "time_to_peak_min": 250.0,
+  "counterfactual_drift": 0.0033327905319424644
+ },
+ {
+  "name": "adult#026",
+  "grams": 50.0,
+  "baseline": 188.21110849337015,
+  "peak_absolute": 290.7374615250632,
+  "rise": 101.77826620797137,
+  "rise_per_10g": 20.355653241594275,
+  "time_to_peak_min": 220.0,
+  "counterfactual_drift": 1.5791404613287625
+ },
+ {
+  "name": "adolescent#004",
+  "grams": 70.0,
+  "baseline": 148.41624360928878,
+  "peak_absolute": 303.61743712105294,
+  "rise": 155.201193613268,
+  "rise_per_10g": 22.171599087609714,
+  "time_to_peak_min": 275.0,
+  "counterfactual_drift": -1.1135571753584372e-07
+ },
+ {
+  "name": "adolescent#016",
+  "grams": 70.0,
+  "baseline": 140.23303318903848,
+  "peak_absolute": 417.1489314082653,
+  "rise": 276.921105918286,
+  "rise_per_10g": 39.56015798832657,
+  "time_to_peak_min": 235.0,
+  "counterfactual_drift": -0.008771256385216475
+ },
+ {
+  "name": "adolescent#019",
+  "grams": 70.0,
+  "baseline": 145.12662191839277,
+  "peak_absolute": 230.1343684514581,
+  "rise": 85.00774688373718,
+  "rise_per_10g": 12.143963840533884,
+  "time_to_peak_min": 235.0,
+  "counterfactual_drift": -3.9659926187596284e-07
+ },
+ {
+  "name": "adolescent#021",
+  "grams": 70.0,
+  "baseline": 156.84392868229594,
+  "peak_absolute": 432.7063036316598,
+  "rise": 275.8623592324905,
+  "rise_per_10g": 39.40890846178436,
+  "time_to_peak_min": 225.0,
+  "counterfactual_drift": 1.9252524054991227e-05
+ },
+ {
+  "name": "adolescent#025",
+  "grams": 70.0,
+  "baseline": 150.54726173011517,
+  "peak_absolute": 321.8969514547575,
+  "rise": 171.34970019056172,
+  "rise_per_10g": 24.478528598651675,
+  "time_to_peak_min": 115.0,
+  "counterfactual_drift": -1.9479497296970294e-05
+ },
+ {
+  "name": "adolescent#027",
+  "grams": 70.0,
+  "baseline": 145.41682135498547,
+  "peak_absolute": 399.2343878199056,
+  "rise": 253.81756057192501,
+  "rise_per_10g": 36.259651510275,
+  "time_to_peak_min": 200.0,
+  "counterfactual_drift": 7.74706106199119e-06
+ },
+ {
+  "name": "adolescent#028",
+  "grams": 70.0,
+  "baseline": 140.0259798382037,
+  "peak_absolute": 333.5714549083475,
+  "rise": 193.54546849843055,
+  "rise_per_10g": 27.649352642632937,
+  "time_to_peak_min": 140.0,
+  "counterfactual_drift": 9.909851428346883e-06
+ },
+ {
+  "name": "adult#001",
+  "grams": 70.0,
+  "baseline": 157.73472976290242,
+  "peak_absolute": 258.56575951884156,
+  "rise": 100.82676546730417,
+  "rise_per_10g": 14.40382363818631,
+  "time_to_peak_min": 315.0,
+  "counterfactual_drift": 0.005540527825985464
+ },
+ {
+  "name": "adult#002",
+  "grams": 70.0,
+  "baseline": 161.00284921364346,
+  "peak_absolute": 320.3711854806651,
+  "rise": 159.36234939713688,
+  "rise_per_10g": 22.766049913876696,
+  "time_to_peak_min": 230.0,
+  "counterfactual_drift": 0.009380816084387789
+ },
+ {
+  "name": "adult#007",
+  "grams": 70.0,
+  "baseline": 140.87892207874287,
+  "peak_absolute": 259.0388987108124,
+  "rise": 118.14786841667762,
+  "rise_per_10g": 16.87826691666823,
+  "time_to_peak_min": 100.0,
+  "counterfactual_drift": 0.05524588514009565
+ },
+ {
+  "name": "adult#009",
+  "grams": 70.0,
+  "baseline": 148.00746229215892,
+  "peak_absolute": 348.7906604182691,
+  "rise": 200.78327275573997,
+  "rise_per_10g": 28.683324679391426,
+  "time_to_peak_min": 175.0,
+  "counterfactual_drift": -0.0001260362923858338
+ },
+ {
+  "name": "adult#010",
+  "grams": 70.0,
+  "baseline": 190.4951148722468,
+  "peak_absolute": 347.1499048172666,
+  "rise": 156.652094554345,
+  "rise_per_10g": 22.378870650620716,
+  "time_to_peak_min": 275.0,
+  "counterfactual_drift": 0.003497739767482244
+ },
+ {
+  "name": "adult#011",
+  "grams": 70.0,
+  "baseline": 141.33263585762745,
+  "peak_absolute": 271.39388829607765,
+  "rise": 130.05824926742437,
+  "rise_per_10g": 18.57974989534634,
+  "time_to_peak_min": 305.0,
+  "counterfactual_drift": 0.0042814436231424224
+ },
+ {
+  "name": "adult#016",
+  "grams": 70.0,
+  "baseline": 179.6234086200928,
+  "peak_absolute": 278.1902576240361,
+  "rise": 98.45073324402836,
+  "rise_per_10g": 14.064390463432622,
+  "time_to_peak_min": 410.0,
+  "counterfactual_drift": 0.14494565089731282
+ },
+ {
+  "name": "adult#021",
+  "grams": 70.0,
+  "baseline": 178.73384925672437,
+  "peak_absolute": 360.89589341053363,
+  "rise": 182.15225643438066,
+  "rise_per_10g": 26.02175091919724,
+  "time_to_peak_min": 265.0,
+  "counterfactual_drift": 0.01411535805124231
+ },
+ {
+  "name": "adult#022",
+  "grams": 70.0,
+  "baseline": 201.6642926147594,
+  "peak_absolute": 379.465766901354,
+  "rise": 177.74057304454223,
+  "rise_per_10g": 25.391510434934606,
+  "time_to_peak_min": 315.0,
+  "counterfactual_drift": 0.08370654321441862
+ },
+ {
+  "name": "adult#024",
+  "grams": 70.0,
+  "baseline": 172.4063195116334,
+  "peak_absolute": 334.2352950351846,
+  "rise": 161.8273041818975,
+  "rise_per_10g": 23.118186311699642,
+  "time_to_peak_min": 210.0,
+  "counterfactual_drift": 0.0024456051549179847
+ },
+ {
+  "name": "adult#025",
+  "grams": 70.0,
+  "baseline": 146.76764751237937,
+  "peak_absolute": 257.4514612098435,
+  "rise": 110.68138864908161,
+  "rise_per_10g": 15.811626949868801,
+  "time_to_peak_min": 255.0,
+  "counterfactual_drift": 0.0033327905319424644
+ },
+ {
+  "name": "adult#026",
+  "grams": 70.0,
+  "baseline": 188.21110849337015,
+  "peak_absolute": 331.49273759943713,
+  "rise": 142.53354228234528,
+  "rise_per_10g": 20.361934611763612,
+  "time_to_peak_min": 220.0,
+  "counterfactual_drift": 1.5791404613287625
+ }
+]
