@@ -32,6 +32,73 @@ def ages(subjects=None):
     return {name: float(therapy_for(name)["Age"]) for name in subjects}
 
 
+def traits(subjects=None):
+    """Each subject's age and total daily insulin, from the generated therapy table."""
+    from . import names as all_names, therapy_for
+
+    subjects = list(subjects) if subjects is not None else all_names()
+    out = {}
+    for name in subjects:
+        q = therapy_for(name)
+        out[name] = (float(q["Age"]), float(q["TDI"]))
+    return out
+
+
+def matched_on_traits(reference, n=None, seed=0, subjects=None, weights=(1.0, 1.0)):
+    """Subjects matched to a reference population on age and daily insulin together.
+
+    `reference` is an iterable of (age, total daily insulin) pairs from real people.
+
+    Matching on age alone was what the public DCLP3 release allowed and it leaves the thing
+    age is a proxy for unmatched. The trial also publishes each participant's recorded total
+    daily insulin, and the OpenAPS Data Commons publishes no demographics at all but allows a
+    requirement to be reconstructed from delivery, so daily insulin is the one trait both
+    references share and it is closer to what the model actually carries.
+
+    Each real person is matched to the nearest unused subject in standardised space, sampling
+    without replacement, so the cohort follows the reference's joint distribution rather than
+    each margin separately. Insulin is matched on a log scale because its spread is
+    multiplicative: the gap between 20 and 30 U/day is the gap between 60 and 90, not the gap
+    between 60 and 70.
+
+    Returns the chosen names and the distance actually achieved, since a cohort matched to a
+    reference the population cannot reach should say so rather than look matched.
+    """
+    have = traits(subjects)
+    ref = np.asarray([(a, t) for a, t in reference
+                      if np.isfinite(a) and np.isfinite(t) and t > 0], float)
+    if not len(ref):
+        raise ValueError("no reference traits given")
+    n = int(n or len(ref))
+
+    names = sorted(have)
+    pool = np.asarray([have[k] for k in names], float)
+    ref_z = np.column_stack([ref[:, 0], np.log(ref[:, 1])])
+    pool_z = np.column_stack([pool[:, 0], np.log(pool[:, 1])])
+    centre, scale = ref_z.mean(0), ref_z.std(0)
+    scale[scale == 0] = 1.0
+    w = np.asarray(weights, float)
+    ref_z = (ref_z - centre) / scale * w
+    pool_z = (pool_z - centre) / scale * w
+
+    rng = np.random.default_rng(seed)
+    order = rng.permutation(len(ref_z))[:n]
+    chosen, used, distances = [], set(), []
+    for i in order:
+        d = np.linalg.norm(pool_z - ref_z[i], axis=1)
+        for j in np.argsort(d):
+            if names[j] not in used:
+                used.add(names[j])
+                chosen.append(names[j])
+                distances.append(float(d[j]))
+                break
+        if len(used) == len(names):
+            break
+    return sorted(chosen), {"n": len(chosen), "requested": n,
+                            "median_distance": float(np.median(distances)),
+                            "p90_distance": float(np.percentile(distances, 90))}
+
+
 def matched(reference_ages, n=None, seed=0, bins=AGE_BINS, subjects=None):
     """Subjects whose age distribution follows a reference population's.
 
@@ -85,4 +152,4 @@ def describe(subjects):
             "fraction_under_18": float(np.mean(a < 18))}
 
 
-__all__ = ["matched", "ages", "describe", "AGE_BINS"]
+__all__ = ["matched", "matched_on_traits", "ages", "traits", "describe", "AGE_BINS"]
