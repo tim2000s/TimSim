@@ -1,5 +1,12 @@
 # How closely does this match real data, and where does it fail
 
+Remeasured in August 2026 against population `2af095014f6c1c75` at a hepatic defence gain of
+0.20. Two things changed underneath every figure here. The generator had drawn its per-class
+random stream from a salted hash, so it produced a different hundred subjects in every process
+and nothing measured before could be rebuilt; and the defence gain was recalibrated across the
+whole adult class rather than its first twenty. Sections carrying figures that have not yet been
+remeasured say so where they appear.
+
 Two tests, and they disagree. Take the stronger one first.
 
 A classifier given 24-hour windows of this simulator and of the DCLP3 closed-loop
@@ -47,9 +54,8 @@ This table changes the driving algorithm partway along, at the `+loop` column, s
 columns to its right are measured under a different driver from those to its left. It also
 adds physiology before behaviour, which adds a mechanism before its antidote and loses half
 the cohort at that rung. `LADDER.md` walks the ladder four times with the driver held
-constant, behaviour first, over twenty subjects, and reports which movements survive that.
-Twelve of forty-seven do: five from the behaviour layer, three each from the sensor and site
-layers, and one from the physiology layer.
+constant, behaviour first, and reports which movements survive that. Nine of forty-seven do:
+three from the sensor layer, two each from behaviour, physiology and the site layer.
 
 Two of the eleven signatures below should be read differently as a result. `ISF drift` is not
 computed from the glucose and cannot detect the person, so it is no longer counted as
@@ -58,35 +64,44 @@ referenced against 115 real users' delivery records.
 
 | Signature | Real range | stock 2008 | +physiology | +behaviour | +loop | +sensor | +site | In range |
 |---|---|---|---|---|---|---|---|---|
-| Glucose variability (CV%) | 29.5–34.3 | 33.9 | 36.8 | 37.8 | 34.0 | 33.6 | 38.3 | yes |
-| Rise tail P(ΔBG>10/5min) % | 3.7–6.6 | 2.6 | 2.5 | 2.9 | 3.6 | 5.3 | 4.9 | yes |
-| Autocorrelation @30min | 0.78–0.87 | 0.86 | 0.91 | 0.95 | 0.87 | 0.86 | 0.90 | yes |
-| Autocorrelation @60min | 0.50–0.68 | 0.67 | 0.77 | 0.85 | 0.65 | 0.65 | 0.72 | yes |
-| Outcome SD @stuck-high (mg/dL) | 26.5–33.5 | 22.7 | 19.7 | 21.7 | 26.1 | 27.0 | 26.3 | yes |
-| Diurnal amplitude (mg/dL) | 34.7–56.3 | 69.5 | 73.1 | 61.7 | 59.6 | 56.8 | 63.9 | yes |
-| Hypo recovery to 100 (min) | 50–59 | 103.8 | 110.0 | 72.5 | 72.5 | 62.5 | 61.2 | no |
-| Hypo rebound >180 % | 23.2–28.4 | 15.0 | 3.4 | 64.9 | 73.4 | 66.1 | 63.1 | no |
-| Compression lows /30d | 1.9–5.3 | 0.0 | 0.0 | 0.0 | 0.0 | 3.8 | 4.3 | yes |
-| Sensor jitter (mg/dL) | 4.5–6.7 | 2.5 | 2.4 | 2.5 | 2.5 | 5.7 | 5.6 | yes |
-| ISF drift (weekly %CV) | 8.2–21.7 | 0.0 | 0.0 | 14.9 | 3.7 | 3.5 | 10.0 | no |
+| Glucose variability (CV%) | 29.5–34.3 | 25.7 | 34.9 | 36.0 | 35.2 | 35.9 | 39.7 | no |
+| Rise tail P(ΔBG>10/5min) % | 3.7–6.6 | 1.0 | 1.8 | 2.2 | 2.4 | 4.1 | 4.0 | yes |
+| Autocorrelation @30min | 0.78–0.87 | 0.89 | 0.93 | 0.94 | 0.90 | 0.89 | 0.92 | no |
+| Autocorrelation @60min | 0.50–0.68 | 0.73 | 0.82 | 0.85 | 0.71 | 0.69 | 0.78 | no |
+| Outcome SD @stuck-high (mg/dL) | 26.5–33.5 | 18.8 | 23.1 | 20.7 | 26.6 | 28.8 | 25.7 | no |
+| Diurnal amplitude (mg/dL) | 34.7–56.3 | 65.1 | 55.6 | 40.7 | 50.1 | 53.3 | 51.0 | yes |
+| Hypo recovery to 100 (min) | 50–59 | 95.0 | 125.0 | 73.8 | 80.0 | 75.0 | 77.5 | no |
+| Hypo rebound >180 % | 23.2–28.4 | 0.0 | 11.1 | 36.6 | 34.8 | 49.4 | 46.2 | no |
+| Compression lows /30d | 1.9–5.3 | 0.0 | 0.0 | 0.0 | 0.0 | 4.3 | 3.2 | yes |
+| Sensor jitter (mg/dL) | 4.5–6.7 | 2.4 | 2.5 | 2.5 | 2.5 | 5.6 | 5.7 | yes |
+| ISF drift (weekly %CV) | 8.2–21.7 | 0.0 | 0.0 | 16.7 | 6.6 | 6.0 | 15.5 | yes |
 
 The default simulator is the `+site` column, which is every layer. The "In range" column
 scores that arm and allows the 10% padding `signatures.in_real_range` applies.
 
-Three of eleven for the bare subjects, eight of eleven with four layers, five of eleven with
-all five. The five-layer arm is the default despite scoring worst here, for the reason at the
-top of this document and in the arbiter section below.
+None of eleven for the bare subjects, six of eleven with four layers, five of eleven with all
+five. The five-layer arm is the default despite scoring worse here, for the reason at the top
+of this document and in the arbiter section below.
 
-Survival belongs in the headline rather than in a footnote. The physiology-only arm loses
-five of its ten subjects over 28 days and the survivors spend up to 28% of the run below
-70 mg/dL. Its column is computed on whoever lived, which is why hypoglycaemia rebound reads
-3.4% there: the subjects that would have rebounded are the ones that died. Since the rescue
-model was recalibrated the loop arm also loses one of ten, which is the cost of a person who
-treats lows less often.
+The stock column scoring zero is the more informative half of that. The bare personae are
+too flat, too predictable and too quiet: variability at 25.7 against a real 29.5 to 34.3,
+both autocorrelations above their ranges, a rise tail of 1.0 against 3.7 to 6.6, no
+compression lows, no jitter beyond quantisation, no sensitivity drift, and hypoglycaemia
+rebound at exactly zero because nothing rebounds when nothing eats. Every one of those is a
+consequence of what the model omits rather than of what it gets wrong.
 
-Reproduce with `python examples/layer_ablation.py`, about three quarters of an hour
-serially. The `--arm` flag runs one column, so the six can go in parallel. Raw output in
-`docs/*.json`.
+Survival belongs in the headline rather than in a footnote. The physiology-only arm loses one
+of its ten subjects over 28 days and its survivors spend up to 14.9% of the run below 70
+mg/dL, so its column is computed on whoever lived and its hypoglycaemia rebound of 11.1%
+should be read that way: the subjects that would have rebounded hardest are the ones that
+failed. Four of the six arms lose a subject.
+
+Reproduce with `python examples/layer_ablation.py`, about an hour and a half serially. The
+`--arm` flag runs one column, so the six can go in parallel. Raw output in `docs/*.json`.
+
+Every figure in this table was remeasured in August 2026 on the regenerated population and at
+the recalibrated hepatic defence gain of 0.20. The counts moved: bare from three of eleven to
+none, four layers from eight to six, and the shipped five-layer arm unchanged at five.
 
 ## The arbiter: which configuration is hardest to tell from real data
 
@@ -258,28 +273,50 @@ at every hour. There is no dawn shape in prescribed basal at population level, s
 package's flat default is right, and the overnight hyperglycaemia it is short on is not a
 basal-shaping problem.
 
-The correction factor disagrees by a factor near three, and the disagreement is inherited:
+The correction factor disagrees by a factor near two and a half, and the disagreement is
+inherited. Measured across all 112 closed-loop participants from their recorded pump settings,
+summarised per participant before the cohort median is taken:
 
 | | Carbohydrate ratio, g/U | Correction factor, mg/dL/U | Implied mg/dL per gram |
 |---|---|---|---|
-| DCLP3 participants, at midday | 8.0 | 35.0 | 4.17 |
+| DCLP3 participants | 8.0 | 40.0 | 5.00 |
 | Clinical 500 and 1800 rules | 8.5 | 30.6 | 3.60 |
-| Generated subjects | 8.9 | 14.7 | 1.89 |
+| Generated subjects, all classes | 10.8 | 26.9 | 2.49 |
+| Generated adults | 8.2 | 17.2 | 2.09 |
 | The ten published adults | 9.5 | 12.6 | 1.98 |
 | simglucose's own settings table | 9.5 | 11.5 | 1.59 |
 
-Carbohydrate ratio agrees everywhere. Correction factor does not, and the model agrees with
+The trial's correction factor has an inter-quartile range of 30.0 to 50.0, so the disagreement
+is not a matter of where inside a wide distribution the median falls. Earlier versions of this
+table quoted 35.0, which was never measured from the release.
+
+Carbohydrate ratio agrees where the populations are comparable, at 8.0 in the trial against 8.2
+across generated adults, and the all-classes figure of 10.8 is higher only because children need
+more grams per unit. Correction factor does not agree, and the model agrees with
 the table rather than with the clinic:
 `check_published_cohort_obeys_clinical_rules` puts the measured response at 1.10 times the
 stated factor, so the physiology and the settings table describe the same person. Applying
 the 1800 rule to the published subjects' own stated daily insulin gives 30.6 against the
 11.5 they are tabulated with.
 
-What follows from that is a bound on the behaviour layer. A gram of carbohydrate moves a
-virtual subject about 1.9 mg/dL where it moves a DCLP3 participant about 4.2. So a meal that
-is miscounted, unannounced, or eaten to treat a low moves a virtual subject roughly half as
-far as it would move a real one, and no amount of work on meal timing or size can recover
-the other half. This is a property of the UVA/Padova model, not of anything added here.
+What follows from that is a bound on the behaviour layer, and it needs stating carefully because
+a second measurement of the same words points the other way. Read off the settings, a gram is
+credited with about 2.1 mg/dL in a generated adult where it is credited with 5.0 in a DCLP3
+participant. That is a statement about what an algorithm dosing from those settings will do, and
+it is a property of the UVA/Padova model rather than of anything added here.
+
+It is not a statement about what a gram does to the body. Measured as an excursion, by giving a
+subject one meal on basal alone and running the same subject again eating nothing, the model
+rises 22.2 mg/dL per 10 g against 15.7 to 19.7 per logged 10 g across real uncovered meals, and
+logged grams under-state intake. So the model's settings credit a gram with less than a real
+person's settings do, and its body does more with a gram than a real body appears to. The two
+quantities have both been called the carbohydrate response here and they point opposite ways;
+`docs/PADOVA_LIMITS.md` carries both with the code that measures them.
+
+An earlier version of this section drew the further conclusion that a meal miscounted,
+unannounced or eaten to treat a low moves a virtual subject roughly half as far as a real one,
+and that no work on meal timing or size could recover the other half. The excursion measurement
+does not support it.
 
 It also explains why the infusion site layer succeeded where two attempts at the meal model
 did not. Site failure acts on insulin delivery and never touches the carbohydrate path, so
@@ -308,7 +345,7 @@ the same subject on the same trajectory, one unit moves the ten published adults
 | 250 | 18.5 | 15.0–28.6 |
 | 300 | 23.4 | 14.3–37.5 |
 | The 1800 rule on their own stated daily dose | 31.5 | |
-| DCLP3 participants | 35.0 | |
+| DCLP3 participants | 40.0 | |
 
 A first pass at this raised glucose with a fixed 90 g load, which only six of the ten
 subjects reached 300 on, and reported 32.5 at that level. Escalating the load until every
@@ -320,7 +357,7 @@ running the experiment backwards.
 
 If the model's insulin were defectively weak, then handing the algorithm a weaker setting
 still, so that it doses even less, should push the simulator further from reality. The
-opposite happens. Setting the correction factor to 35 mg/dL per unit, which is what DCLP3
+opposite happens. Setting the correction factor to 40 mg/dL per unit, which is what DCLP3
 participants ran, in place of the 14.7 measured from the subjects' own physiology:
 
 | | DCLP3 | default | with real settings | with site layer | both |
@@ -766,16 +803,25 @@ protocol rather than fed as a meal. Median across twenty subjects:
 
 | Plateau, mg/dL | Held at | EGP | Insulin-dependent uptake | Glucose infusion | `Id` |
 |---|---|---|---|---|---|
-| 90 | 89.3 | 2.06 | 3.93 | 3.15 | 199 |
-| 80 | 79.6 | 1.25 | 3.78 | 3.50 | 295 |
-| 65 | 64.7 | 0.60 | 3.16 | 3.41 | 374 |
-| 55 | 54.5 | 0.14 | 2.69 | 3.66 | 441 |
-| 45 | 45.0 | 0.01 | 2.22 | 2.99 | 468 |
+| 90 | 90.4 | 2.00 | 4.02 | 2.79 | 203 |
+| 80 | 79.6 | 1.39 | 3.75 | 3.39 | 293 |
+| 65 | 64.2 | 0.77 | 3.25 | 2.69 | 380 |
+| 55 | 54.9 | 0.49 | 2.89 | 2.49 | 441 |
+| 45 | 44.7 | 0.46 | 2.44 | 1.99 | 460 |
 
-Production collapses to nothing rather than running at four times the human figure. The
-suppression term outruns the autoregulation term once the clamp's insulin is present, and
-`max(..., 0)` takes it the rest of the way. Real people with no glucagon response at all hold
-0.42 to 0.84 mg/kg/min here.
+Remeasured on the regenerated population, twenty adults, defence off. The plateau medians moved
+upward from the figures this section was written against, at 0.14 and 0.01 for the two lowest
+plateaus, and that movement is mostly not the reseed. The distribution is zero-inflated, so the
+median tracks how many subjects are pinned at zero and it is unstable on the choice of subset:
+across the whole adult class of thirty-four the 55 mg/dL plateau reads 0.18 rather than the 0.49
+twenty give. The robust statement is the zero count, at six of twenty and fourteen of
+thirty-four with the defence off.
+
+Production collapses towards nothing rather than running at four times the human figure, and in
+a third to a half of subjects it reaches exactly zero. The suppression term outruns the
+autoregulation term once the clamp's insulin is present, and `max(..., 0)` takes it the rest of
+the way. Real people with no glucagon response at all hold 0.42 to 0.84 mg/kg/min here, and none
+of them holds nothing.
 
 Disposal is not the problem. A human glucose infusion of 3.1 mg/kg/min against production of
 0.42 to 0.84 implies total disposal near 3.5, and the model at the 45 mg/dL plateau disposes
@@ -789,27 +835,38 @@ below the human value, so suppressing uptake further, which is what adrenaline d
 logistic centred at 58 mg/dL, which is the hepatic arm of the adrenaline response. Four gains
 were run through the clamp:
 
-| Gain | Production at 55 mg/dL | at 45 mg/dL | Infusion at 55 | at 45 |
+`HYPO_EGP_DEFENCE` was recalibrated in August 2026 across the whole adult class of thirty-four
+rather than the first twenty, on the regenerated population. Median production at the two
+hypoglycaemic plateaus, against a human 0.42 to 0.84 with a mean of 0.59:
+
+| Gain | at 55 mg/dL | zeros | at 45 mg/dL | zeros |
 |---|---|---|---|---|
-| 0 | 0.14 | 0.01 | 3.66 | 2.99 |
-| 0.15 | 0.50 | 0.39 | 3.34 | 2.82 |
-| 0.25 | 0.72 | 0.69 | 3.21 | 2.45 |
-| 0.30 | 0.82 | 0.88 | 3.08 | 2.45 |
+| 0 | 0.18 | 14/34 | 0.01 | 17/34 |
+| 0.05 | 0.29 | 12/34 | 0.10 | 15/34 |
+| 0.10 | 0.42 | 11/34 | 0.25 | 15/34 |
+| 0.15 | 0.54 | 9/34 | 0.41 | 8/34 |
+| 0.20 | 0.65 | 7/34 | 0.57 | 8/34 |
+| 0.25 | 0.76 | 7/34 | 0.73 | 7/34 |
 
-0.25 is the only one placing both hypoglycaemic plateaus inside the human 0.42 to 0.84, and its
-infusion at 55 mg/dL of 3.21 is nearer the human 3.1 than the stock model's 3.66. At 45 mg/dL
-the infusion moves the other way, which follows from the disposal shortfall: holding a plateau
-means infusing the difference between disposal and production, so correcting production alone
-lowers the infusion a model already disposing too little requires.
+0.20 is the gain whose median lands closest to the human mean while staying inside the human
+interval at both plateaus, and it is the shipped value. 0.15 is marginally closer at 55 mg/dL
+and falls below the interval at 45. The previous 0.25 is inside the interval too and sits near
+its top.
 
-The between-subject spread is not inside anything. At the 55 mg/dL plateau the stock model gives
-a median of 0.14 with nine of twenty subjects at exactly zero and a ninetieth percentile of
-1.43; at a gain of 0.25 the median is 0.72, six are still at zero and the ninetieth percentile
-is 1.83. Rickels's twelve people gave 0.59 ± 0.12. The mechanism moves the centre of the
+The median is the weaker half of this and should not be quoted as a point estimate. With the
+defence off it reads 0.18 across thirty-four adults and 0.49 across the first twenty, because
+the distribution is zero-inflated and the median tracks how many subjects are pinned at zero.
+
+The between-subject spread is not inside anything, and no gain fixes it. Seven of thirty-four
+subjects still produce nothing at the 55 mg/dL plateau at the shipped gain, where none of
+Rickels's twelve produced nothing, and the ninetieth percentile sits above 2.0 against their
+0.59 ± 0.12. The mechanism moves the centre of the
 population into range and leaves it far wider than the human one, and that width belongs to the
 published `kp1`, `kp2` and `kp3` values rather than to the defence. A gain large enough to lift
 the subjects producing nothing drives the ones already producing too much further out, because
 it scales a term they were never short of.
+
+Reproduce the calibration with `examples/calibrate_hypo_defence.py`.
 
 The glucagon arm is still not implemented and should not be. S2013's secretion half is
 unpublished, Visentin et al. flagged that including glucagon secretion "could be not
