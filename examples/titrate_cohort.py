@@ -39,9 +39,17 @@ def main():
     ap.add_argument("--days", type=int, default=28)
     ap.add_argument("--seed", type=int, default=11)
     ap.add_argument("--workers", type=int, default=6)
+    ap.add_argument("--add", action="store_true",
+                    help="merge into the existing store instead of replacing it, and skip "
+                         "subjects already titrated against this population")
+    ap.add_argument("--subject", action="append", default=[],
+                    help="titrate exactly these subjects; repeatable")
     a = ap.parse_args()
 
-    if a.cohort == "recorded":
+    if a.subject:
+        names = list(a.subject)
+        print(f"titrating {len(names)} named subjects")
+    elif a.cohort == "recorded":
         import json, os
         path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                             "docs", "measurements", "cohorts.json")
@@ -63,8 +71,23 @@ def main():
             print(f"  age bins that could not supply their share: {short}")
     else:
         names = [f"adult#{i:03d}" for i in range(1, a.subjects + 1)]
+    existing = titrate.load() if a.add else None
+    if existing is not None:
+        # Only skip work that belongs to the population now on disk. A store fitted to another
+        # one is refused rather than extended, since its subject names refer to other bodies.
+        titrate.check_population(existing)
+        already = set(existing["subjects"])
+        skipped = [n for n in names if n in already]
+        names = [n for n in names if n not in already]
+        print(f"{len(skipped)} already titrated against this population, {len(names)} to do")
+
     with ProcessPoolExecutor(max_workers=a.workers) as ex:
         out = list(ex.map(_one, [(n, a.days, a.seed) for n in names]))
+
+    if existing is not None:
+        merged = dict(existing["subjects"])
+        merged.update({r["name"]: r for r in out})
+        out = list(merged.values())
 
     found = [r for r in out if r["found"]]
     path = titrate.save(out, meta={"days": a.days, "seed": a.seed,

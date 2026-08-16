@@ -102,7 +102,7 @@ def main():
         print(f"  {cohort:9} {controller:11} {n} titrated subjects", flush=True)
 
     rows, t0 = [], time.time()
-    with ProcessPoolExecutor(max_workers=10) as ex:
+    with ProcessPoolExecutor(max_workers=int(os.environ.get("WORKERS", "10"))) as ex:
         for i, row in enumerate(ex.map(one, jobs), 1):
             rows.append(row)
             if i % 20 == 0 or i == len(jobs):

@@ -12,21 +12,3 @@
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
-70 of 80 runs completed
-   basal-bolus 18/20
-         trend 18/20
-         boost 17/20
-          oref 17/20
-
-| Signature                              | p10 | median | p90 | reference |
-|---|---|---|---|---|
-| Glucose variability (CV%)              | 33.46 | 37.64 | 43.39 | 29.5 to 34.3 |
-| Rise tail P(Δ>10 mg/dL / 5min) %       | 2.75 | 4.07 | 6.04 | 3.7 to 6.6 |
-| Autocorrelation @30 min                | 0.88 | 0.92 | 0.96 | 0.78 to 0.87 |
-| Autocorrelation @60 min                | 0.65 | 0.77 | 0.89 | 0.5 to 0.68 |
-| Outcome SD @stuck-high +30min (mg/dL)  | 19.55 | 26.65 | 32.43 | 26.5 to 33.5 |
-| Diurnal amplitude (mg/dL)              | 33.02 | 53.32 | 73.32 | 34.7 to 56.3 |
-| Hypo recovery to 100 (min)             | 44.75 | 70.00 | 90.25 | 50 to 59 |
-| Hypo rebound >180 %                    | 19.90 | 41.52 | 65.51 | 23.2 to 28.4 |
-| Compression lows / 30d                 | 2.14 | 3.21 | 5.36 | 1.9 to 5.3 |
-| Sensor jitter (2nd-diff SD)            | 5.60 | 5.67 | 5.75 | 4.5 to 6.7 |

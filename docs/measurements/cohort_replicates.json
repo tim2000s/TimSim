@@ -1,0 +1,90 @@
+{
+ "replicates": [
+  {
+   "subjects": [
+    "adolescent#003",
+    "adolescent#004",
+    "adolescent#008",
+    "adolescent#011",
+    "adolescent#027",
+    "adult#005",
+    "adult#007",
+    "adult#008",
+    "adult#009",
+    "adult#011",
+    "adult#013",
+    "adult#016",
+    "adult#025",
+    "adult#026",
+    "adult#030"
+   ],
+   "match": {
+    "n": 15,
+    "requested": 15,
+    "median_distance": 0.4792636182164704,
+    "p90_distance": 1.0334264204025647
+   }
+  },
+  {
+   "subjects": [
+    "adolescent#006",
+    "adolescent#010",
+    "adolescent#019",
+    "adolescent#024",
+    "adolescent#026",
+    "adolescent#028",
+    "adolescent#032",
+    "adult#003",
+    "adult#004",
+    "adult#006",
+    "adult#018",
+    "adult#029",
+    "adult#031",
+    "adult#032",
+    "adult#033"
+   ],
+   "match": {
+    "n": 15,
+    "requested": 15,
+    "median_distance": 0.5465058669762669,
+    "p90_distance": 1.2279243783736646
+   }
+  },
+  {
+   "subjects": [
+    "adolescent#001",
+    "adolescent#005",
+    "adolescent#013",
+    "adolescent#017",
+    "adolescent#020",
+    "adolescent#023",
+    "adolescent#029",
+    "adolescent#033",
+    "adult#001",
+    "adult#010",
+    "adult#012",
+    "adult#019",
+    "adult#021",
+    "adult#022",
+    "adult#034"
+   ],
+   "match": {
+    "n": 15,
+    "requested": 15,
+    "median_distance": 0.5963844924899524,
+    "p90_distance": 1.2200505360175196
+   }
+  }
+ ],
+ "need_titration": [
+  "adolescent#010",
+  "adolescent#013",
+  "adolescent#017",
+  "adolescent#024",
+  "adolescent#026",
+  "adolescent#033",
+  "adult#003",
+  "adult#006",
+  "adult#034"
+ ]
+}

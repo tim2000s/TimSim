@@ -1,18 +1,6 @@
-=== rerun started 2026-08-15T22:46:58Z, population 2af095014f6c1c75 ===
-22:46:59Z  START  clamp
-22:49:08Z  OK     clamp  (2 min)
-22:49:08Z  START  production_low
-22:54:45Z  OK     production_low  (5 min)
-22:54:45Z  START  capability
-23:17:02Z  OK     capability  (22 min)
-23:17:02Z  START  meal_response
-23:21:36Z  OK     meal_response  (4 min)
-23:21:36Z  START  two_benches
-23:51:48Z  OK     two_benches  (30 min)
-23:51:48Z  START  hyperglycaemia_gap
-03:21:41Z  OK     hyperglycaemia_gap  (209 min)
-03:21:41Z  START  layer_ablation
-04:51:49Z  OK     layer_ablation  (90 min)
-04:51:49Z  START  layer_ladder
-04:51:49Z  OK     layer_ladder  (0 min)
-=== rerun finished 2026-08-16T04:51:49Z ===
+=== rerun started 2026-08-16T07:55:37Z, population 2af095014f6c1c75 ===
+07:55:37Z  START  clamp
+07:57:40Z  OK     clamp  (2 min)
+07:57:40Z  START  production_low
+08:04:32Z  OK     production_low  (6 min)
+08:04:32Z  START  capability
