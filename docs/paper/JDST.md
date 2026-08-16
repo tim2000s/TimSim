@@ -1,4 +1,4 @@
-# Adding a Person to the UVA/Padova S2008 Simulator: Two Algorithms Measured Against the Real Populations That Run Them
+# Can the UVA/Padova S2008 Simulator Be Made to Resemble a Real Closed-Loop Cohort? A Person-in-the-Loop Layer, Measured Against Two Real Populations
 
 Status: complete in draft. Abstract still to write. Every figure quoted below is traceable to a file in `docs/measurements/`. Nothing is
 carried over from the drafts dated 14 and 15 August 2026, which are marked superseded in the
@@ -9,10 +9,10 @@ Research-Papers folder and whose figures did not survive remeasurement.
 **Background.** In-silico testing of automated insulin delivery rests on virtual patients that
 reproduce metabolism without reproducing the person around it. The S2008 release of the
 UVA/Padova model, the version available without licence, has no counterregulatory response,
-fixed parameters, a noiseless sensor and a patient who announces every meal accurately. We added
-a person-in-the-loop layer and asked whether the resulting population sits where a real
-population sits, and whether that question can be answered at the cohort sizes such a bench
-produces.
+fixed parameters, a noiseless sensor and a patient who announces every meal accurately. Its
+departures from real records are documented. Whether they can be closed from outside the
+differential equations, by adding the person the model omits, is not, and that is what this
+paper measures.
 
 **Methods.** Four layers were added: insulin sensitivity that moves, a person who eats and
 treats their own hypoglycaemia, sensor error inside the control loop, and infusion sets that
@@ -26,28 +26,32 @@ additionally fitted on one half of the trial and reported on the other. How far 
 moves when only the participants change was measured on both sides, by splitting each real
 population in two and by running the same algorithm on disjoint groups of subjects.
 
-**Results.** On the bare patient three algorithms held 85.8 to 93.1 per cent of readings in
-range at 121.9 to 126.5 mg/dL, against real cohorts at 71.3 and 79.6 per cent. Adding the layers
-raised mean glucose by 12.3 to 16.2 mg/dL, roughly doubled time above 180, raised variability
-and delivered insulin, and introduced 50 to 69 rescue helpings per thirty days, with no interval
-spanning zero. Where the simulated and real sides ran the same algorithm the cohort was
-indistinguishable from real people on time in range, time above 180, mean glucose and
-variability, and its answer moved no more when the participants changed than the trial's did.
-Hypoglycaemia differed in every pairing and survived a controller fitted to minimise the
-distance, but it is also the measure the bench places least reliably, moving 1.63 of the real
-between-person spread on which fifteen subjects were drawn. The model's uncovered meal response
-is larger than the real one, 22.2 mg/dL per 10 g against 15.7 to 19.7 per logged 10 g, and peaks
-inside the real range. Withdrawing meal announcement cost a controller without meal detection
-6.34 percentage points of time in range and cost oref0 SMB between 0.9 and 1.8 points across
-three cohorts with every interval spanning zero, against 2.2 points with an interval spanning
-zero in the CLOSE-IT trial.
+**Results.** Distance from the real population was computed on the same subjects before and
+after, in units of the real between-person spread. On the four measures describing where glucose
+sits, the layers reduced it by 60, 22 and 47 per cent across the three pairings, from 0.75, 0.53
+and 0.32 to 0.30, 0.41 and 0.17. On hypoglycaemia they increased it against the trial cohort,
+from 0.95 and 1.06 to 1.49 and 1.36, and left it unchanged against the do-it-yourself users at
+0.22 and 0.21. On the bare patient three algorithms held 85.8 to 93.1 per cent of readings in
+range at 121.9 to 126.5 mg/dL, against real cohorts at 71.3 and 79.6 per cent; adding the layers
+raised mean glucose by 12.3 to 16.2 mg/dL, roughly doubled time above 180, raised variability and
+delivered insulin, and introduced 50 to 69 rescue helpings per thirty days, with no interval
+spanning zero. Where the simulated and real sides ran the same algorithm the layered cohort was
+statistically indistinguishable from real people on time in range, time above 180, mean glucose
+and variability, and its answer moved no more when the participants changed than the trial's did.
+The model's uncovered meal response is larger than the real one, 22.2 mg/dL per 10 g against 15.7
+to 19.7 per logged 10 g, and peaks inside the real range. Withdrawing meal announcement cost a
+controller without meal detection 6.34 percentage points of time in range and cost oref0 SMB
+between 0.9 and 1.8 points across three cohorts with every interval spanning zero, against 2.2
+points with an interval spanning zero in the CLOSE-IT trial.
 
-**Conclusions.** The layered bench places a population where a real population running the same
-algorithm sits, on four of six measures, and is as reproducible across groups of subjects as a
-trial is across groups of participants. Hypoglycaemia is the exception and is the
-worst-measured statistic as much as the worst-fitting one. A difference expressed in units of
-between-person spread does not establish that a difference exists; the interpretability floor
-has to be measured and quoted with the result.
+**Conclusions.** S2008 can be moved a long way towards a real closed-loop cohort without
+touching its differential equations, and the movement is measurable rather than asserted: on the
+pairing built to answer the question properly it becomes statistically indistinguishable from
+real people on four of six measures. What does not close is hypoglycaemia, which moves further
+from a commercial system's trial while staying where it was against a do-it-yourself population,
+and which this bench also measures least reliably. A difference expressed in units of
+between-person spread does not establish that a difference exists; the interpretability floor has
+to be measured and quoted with the result.
 
 **Keywords.** simulation, automated insulin delivery, closed-loop, validation, type 1 diabetes,
 in-silico testing
@@ -72,9 +76,20 @@ outside that licensing arrangement proceeds from S2008. This paper describes wha
 to S2008 from published sources and from real records, and reports how far the result resembles
 people running the same algorithms.
 
-The validation question is deliberately narrow. We do not ask whether the simulator predicts an
-individual's glucose, which it cannot. We ask whether the population it generates sits where a
-real population sits on the statistics a safety comparison uses, and where it does not.
+The question this paper answers is narrower than whether the model is good, and more useful. The
+ways S2008 departs from real records are already documented, here and elsewhere. What has not
+been established is whether they can be closed from outside the differential equations, by
+adding the person the model omits rather than by altering the physiology it inherits. So: if the
+bare model sits where no real cohort sits, can it be moved, how far, and on which measures?
+
+Answering that requires three things a single comparison does not supply. A distance from the
+real population that can be computed before and after, in units that make measures with
+different scales comparable. A reference population running the same algorithm, so that a
+difference is attributable to the bench rather than to the controller. And a floor below which a
+difference cannot be established at all, because a cohort of fifteen or twenty places a median
+far less precisely than the spread between people suggests.
+
+We do not ask whether the simulator predicts an individual's glucose, which it cannot.
 
 Three design decisions follow from measurements reported here rather than from convention, and
 they are stated in the introduction because each of them changes what a reader should take from
@@ -262,6 +277,27 @@ hypoglycaemia failure with a hyperglycaemia one.
 
 ## Results
 
+### How far the bare model is from a real cohort, and how far the layers move it
+
+Distance is the simulated median minus the real median, in units of the real tenth-to-ninetieth
+percentile spread, so a distance of one is the width of the real population. Computed on the
+same subjects before and after, for each of three pairings of a cohort with the algorithm its
+reference population runs.
+
+| Pairing | Measures | Bare S2008 | Layered | Change |
+|---|---|---|---|---|
+| DCLP3, Control-IQ stand-in | in range, above 180, mean, CV | 0.75 | 0.30 | −60% |
+| DCLP3, oref0 SMB | in range, above 180, mean, CV | 0.53 | 0.41 | −22% |
+| Commons, oref0 SMB | in range, above 180, mean, CV | 0.32 | 0.17 | −47% |
+| DCLP3, Control-IQ stand-in | below 70, below 54 | 0.95 | 1.49 | +57% |
+| DCLP3, oref0 SMB | below 70, below 54 | 1.06 | 1.36 | +28% |
+| Commons, oref0 SMB | below 70, below 54 | 0.22 | 0.21 | unchanged |
+
+On the four measures describing where glucose sits, the layers move the population towards the
+real one in every pairing, by between a fifth and three fifths. On hypoglycaemia they move it
+further away from the trial cohort and leave it where it was against the do-it-yourself users.
+That split runs through everything below.
+
 ### The bare model sits where no real population sits
 
 Holding one algorithm fixed and varying only the bench beneath it, on the cohort matched to the
@@ -299,6 +335,10 @@ mechanism to treat a low.
 Time in range falls in every pairing, by 5.4 to 12.3 points, which is the least informative of
 the five: it is the measure the two benches differ on least in the Commons pairing and the one
 most often quoted.
+
+Every one of those movements is towards the real population. The bare model is too flat, too
+low and too predictable, it delivers too little insulin, and it never eats anything nobody told
+it about. The layers supply each of those and the distance closes accordingly.
 
 ### Fitting the unpublished half of Control-IQ, and testing it on data it never saw
 
@@ -355,6 +395,10 @@ The pairing where the simulated and real sides genuinely run the same algorithm 
 people on four of six measures. Where the algorithm is a stand-in for the trial's, two of six.
 Where it is neither, none, which is the arrangement that should agree least and does.
 
+So the improvement is not merely a smaller number. On the pairing built to answer the question
+properly, the layered population is statistically indistinguishable from real people on
+everything except how low it goes.
+
 Hypoglycaemia differs in every pairing. It is also the measure with the largest group effect, at
 1.63 spreads under DCLP3 against differences of comparable size, so in that pairing the finding
 rests on a statistic this bench cannot place reliably. In the Commons pairing the group effect
@@ -397,13 +441,27 @@ The simulated arms sit about ten points of time in range above the trial in abso
 
 ## Discussion
 
-The case for adding a person does not rest on the additions making the simulation harder. It
-rests on the bare model sitting where no real population sits, and doing so in a way that is
-invisible from within a single arm. Three algorithms on the bare patient held 85.8 to 93.1 per
-cent of readings in range and spent 3.4 to 6.9 per cent above 180 mg/dL, against real cohorts at
-71.3 and 79.6 per cent. A bench on which every algorithm scores well cannot separate them.
+The question was whether a model whose limitations are well documented can be brought closer to
+real cohorts from outside its equations. It can, on most of what is usually measured, and the
+answer has a shape worth stating precisely rather than as an improvement.
 
-The strongest result here is not a gap but its absence. Where the simulated and real sides run
+Where glucose sits closes. Time in range, time above 180, mean glucose and variability move
+towards the real population in all three pairings, by a fifth to three fifths of the distance
+they started at. That is achieved without altering a single published parameter, by supplying
+the meals nobody announced, the carbohydrate people eat when they go low, a sensor that lies and
+an infusion set that fails. The bare model is too flat, too low and too predictable because it
+has none of those, not because its physiology is wrong.
+
+How low it goes does not close. Against the DCLP3 cohort the layers take hypoglycaemia further
+from real, by 57 and 28 per cent, because the mechanisms that correct the centre of the
+distribution overshoot its lower tail: a person who eats when they go low and misses meals
+produces more excursions than a trial population running a conservative commercial system does.
+Against the do-it-yourself users, who run lower and more hypoglycaemic themselves, the same
+arms sit where they started. Part of what looks like a failure of the model is therefore a
+question about which real population is the standard, and that has to be chosen before the
+comparison rather than after it.
+
+The strongest single result is not a gap but its absence. Where the simulated and real sides run
 the same algorithm, the simulated cohort is indistinguishable from real people on time in range,
 time above 180, mean glucose and variability, and its answer moves no more when the participants
 change than the trial's does. That is what a bench has to do before any difference it reports
