@@ -246,6 +246,11 @@ not redistributed.
 
 ## Is it any good?
 
+[docs/ISSUES.md](docs/ISSUES.md) logs every defect found in this package and in the work
+built on it, in the order it was found, with how it surfaced and what was done. Defects
+introduced while investigating are logged there the same way as ones that were already
+present.
+
 There are six graded levels of check in [docs/VALIDATION.md](docs/VALIDATION.md), running
 from whether the code does what it claims through to how large a difference it can
 actually resolve. Two of them carry most of the weight for a comparison.
