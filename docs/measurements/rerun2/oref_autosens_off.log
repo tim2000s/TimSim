@@ -1,0 +1,65 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+cohort: 21 subjects, DCLP3 closed loop, age matched
+
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+  adolescent#002: done (1/21)
+  adolescent#009: done (2/21)
+  adolescent#012: done (3/21)
+  adolescent#015: done (4/21)
+  adolescent#018: done (5/21)
+  adolescent#019: done (6/21)
+  adolescent#025: done (7/21)
+  adolescent#027: done (8/21)
+  adult#001: done (9/21)
+  adult#003: done (10/21)
+  adult#005: done (11/21)
+  adult#016: done (12/21)
+  adult#019: done (13/21)
+  adult#021: done (14/21)
+  adult#022: done (15/21)
+  adult#023: done (16/21)
+  adult#025: done (17/21)
+  adult#026: done (18/21)
+  adult#028: done (19/21)
+  adult#030: done (20/21)
+  adult#031: done (21/21)
+
+oref0 SMB on TimSim, 16/21 completed, 48.8 U/day
+
+                                    as the sensor read it        truth
+  mean_mgdl                                        135.39       134.66
+  time_in_range                                     79.31        80.45
+  below_70                                           5.44         4.76
+  below_54                                           1.96         1.52
+  above_180                                         15.25        14.79
+  above_250                                          4.33         4.23
+  tir_sd_between_subjects                            6.26         6.80
+  below_70_sd_between_subjects                       4.81         5.12
+
+what the algorithm did
+  smb_pct                  36.281
+  smb_mean_u               0.506
+  dose_mean_u              0.188
+  zero_temp_pct            41.292
+  temp_issued_pct          76.299
+  eventual_bg_median       116.548
+  carbs_required_pct       2.840
+  autosens_median          1.000
+  autosens_min             1.000
+  autosens_max             1.000
+  autosens_below_1_pct     0.000
+
+DCLP3 closed loop, middle 28 days, sensor readings: TIR 71.0%, above 180 24.65%
+Sensitivity is pinned at 1.0, so the hypoglycaemia figures are an upper bound.
+
+written to docs/measurements/rerun2/oref_autosens_off.json

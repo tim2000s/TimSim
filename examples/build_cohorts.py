@@ -30,7 +30,7 @@ from timsim.population import cohort, names as all_names
 from timsim.therapy import titrate
 
 OUT = os.path.join(MEASUREMENTS, "cohorts.json")
-N = 25
+N = int(os.environ.get("COHORT_N", "25"))
 DCLP3_DIR = os.path.expanduser(os.environ.get("DCLP3_DIR", "~/Downloads/dclp3/Data Files"))
 
 

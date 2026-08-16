@@ -218,6 +218,11 @@ class _AgeSampler:
         return float(np.clip(np.exp(rng.normal(self.mu, self.sd)), 6, 75))
 
 
+# Room for far more subjects per class than any run would ask for, so the classes cannot
+# collide however large the population grows.
+CLASS_INDEX_BASE = 10_000
+
+
 def class_seed(klass, seed):
     """The seed one class's draws start from, stable across processes.
 
@@ -254,7 +259,6 @@ def generate(n=100, seed=2026, shrinkage=0.5, truncate=2.5, split=None, verbose=
         split = {c: base + (1 if i < extra else 0) for i, c in enumerate(CLASSES)}
 
     rows, therapy, rejects = [], [], {}
-    idx = 1
     for klass in CLASSES:
         want = split.get(klass, 0)
         if not want:
@@ -264,6 +268,15 @@ def generate(n=100, seed=2026, shrinkage=0.5, truncate=2.5, split=None, verbose=
         mean, cov = z.mean(0), _shrunk_cov(z, shrinkage)
         ages = _AgeSampler(quest, klass)
         rng = np.random.default_rng(class_seed(klass, seed))
+
+        # The row identifier is offset by class rather than counted across the whole run, so
+        # that asking for more subjects extends the population instead of renumbering it. It
+        # used to be a single counter, which meant adolescent#001 carried i=35 in a hundred
+        # subjects and i=45 in a hundred and thirty: the same body under a different number,
+        # and a different file, so the population fingerprint moved and every titration
+        # recorded against it was refused. Nothing reads `i`, but a population that is
+        # append-only is worth more than one that is not.
+        idx = CLASS_INDEX_BASE * (CLASSES.index(klass) + 1) + 1
 
         made, tries = 0, 0
         while made < want:
