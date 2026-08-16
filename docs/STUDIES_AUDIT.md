@@ -28,14 +28,14 @@ the original measurement ran on a tenth of the sample.
 |---|---|---|
 | 00 | The simulator | Framing only; no measurement to invalidate |
 | 01 | Driving shipped algorithms | Numbers void, conclusion stands |
-| 02 | The layer ladder under four drivers | Numbers void, conclusion stands, worth rerunning |
+| 02 | The layer ladder under four drivers | **Rerun and rewritten. 9 of 47 carried, not 12; its headline movement is now an interaction** |
 | 03 | A statistic that could not see | Numbers void, conclusion stands |
 | 04 | Sensitivity detection | Numbers void, conclusion stands, magnitudes now smaller |
 | 05 | Where a low comes from | Numbers void, conclusion untested against current runs |
 | 06 | Four mechanisms for realism | **A premise is refuted and a conclusion with it** |
 | 07 | A gap that was not there | Stands; measures a different quantity from the meal work |
 | 08 | No floor under a falling glucose | **Holds for the bare model, reverses on the layered one** |
-| 09 | Capability | Numbers void, needs the signatures recomputing |
+| 09 | Capability | **Rerun and rewritten. 10 of 10 inside the real range, not 9; band count unchanged** |
 
 ## 06, four mechanisms: the refused mechanism was refused for a refuted reason
 
@@ -110,8 +110,21 @@ Its real-side counts are worth rerunning. It cites 26 and 42 users where the exp
 with a readable glucose series, so it was probably measured before the file glob was widened.
 The conclusion does not depend on the count.
 
-## What has to be rerun before any of these is quoted again
+## What was rerun, and what it changed
 
-The signatures in study 09 and the ladder in study 02 are the two that carry the most weight
-elsewhere, and both are cohort-level measurements on the old population. Neither is likely to
-reverse, and neither is currently reproducible.
+Every measurement in every study was rerun on the reproducible population at the recalibrated
+defence gain, in one pass logged to `docs/measurements/rerun/`.
+
+Study 02 lost three of its twelve carried movements, and the one it led on went with them.
+Hypoglycaemia recovery shortens under three of four drivers rather than all four, so the
+criterion the study exists to apply now places it as an interaction between the person and the
+controller rather than a property of the person. The direction and rough size of most movements
+are unchanged; what changed is how many drivers agree, which is the whole test.
+
+Study 09 improved slightly, from nine of ten simulated medians inside the range of real
+individuals to ten of ten, two of them at the boundary, with the count inside the published band
+unchanged at four. Its conclusion is unaffected.
+
+Both are rewritten in place with an addendum recording what moved and why. What remains unrerun
+is `docs/FIDELITY.md`, which is the largest document here and was written against the old
+population throughout.
