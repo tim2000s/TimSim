@@ -1,13 +1,56 @@
 # Adding a Person to the UVA/Padova S2008 Simulator: Two Algorithms Measured Against the Real Populations That Run Them
 
-Status: methods written, results and discussion pending the runs listed at the end of this
-file. Every figure quoted below is traceable to a file in `docs/measurements/`. Nothing is
+Status: complete in draft. Abstract still to write. Every figure quoted below is traceable to a file in `docs/measurements/`. Nothing is
 carried over from the drafts dated 14 and 15 August 2026, which are marked superseded in the
 Research-Papers folder and whose figures did not survive remeasurement.
 
 ## Abstract
 
-*Pending. Written last, from the results.*
+**Background.** In-silico testing of automated insulin delivery rests on virtual patients that
+reproduce metabolism without reproducing the person around it. The S2008 release of the
+UVA/Padova model, the version available without licence, has no counterregulatory response,
+fixed parameters, a noiseless sensor and a patient who announces every meal accurately. We added
+a person-in-the-loop layer and asked whether the resulting population sits where a real
+population sits, and whether that question can be answered at the cohort sizes such a bench
+produces.
+
+**Methods.** Four layers were added: insulin sensitivity that moves, a person who eats and
+treats their own hypoglycaemia, sensor error inside the control loop, and infusion sets that
+fail and are noticed late. A defence of hepatic glucose production was calibrated against a
+stepped hyperinsulinaemic clamp reproduced in silico. Settings were titrated per subject to
+consensus hypoglycaemia limits under a fixed regimen. Cohorts were matched to each reference on
+what that reference publishes, which for the DCLP3 trial is age and recorded daily insulin and
+for the OpenAPS Data Commons is a daily requirement reconstructed from delivery. Three
+algorithms were run, each held fixed while the bench varied. A stand-in for Control-IQ was
+additionally fitted on one half of the trial and reported on the other. How far each answer
+moves when only the participants change was measured on both sides, by splitting each real
+population in two and by running the same algorithm on disjoint groups of subjects.
+
+**Results.** On the bare patient three algorithms held 85.8 to 93.1 per cent of readings in
+range at 121.9 to 126.5 mg/dL, against real cohorts at 71.3 and 79.6 per cent. Adding the layers
+raised mean glucose by 12.3 to 16.2 mg/dL, roughly doubled time above 180, raised variability
+and delivered insulin, and introduced 50 to 69 rescue helpings per thirty days, with no interval
+spanning zero. Where the simulated and real sides ran the same algorithm the cohort was
+indistinguishable from real people on time in range, time above 180, mean glucose and
+variability, and its answer moved no more when the participants changed than the trial's did.
+Hypoglycaemia differed in every pairing and survived a controller fitted to minimise the
+distance, but it is also the measure the bench places least reliably, moving 1.63 of the real
+between-person spread on which fifteen subjects were drawn. The model's uncovered meal response
+is larger than the real one, 22.2 mg/dL per 10 g against 15.7 to 19.7 per logged 10 g, and peaks
+inside the real range. Withdrawing meal announcement cost a controller without meal detection
+6.34 percentage points of time in range and cost oref0 SMB between 0.9 and 1.8 points across
+three cohorts with every interval spanning zero, against 2.2 points with an interval spanning
+zero in the CLOSE-IT trial.
+
+**Conclusions.** The layered bench places a population where a real population running the same
+algorithm sits, on four of six measures, and is as reproducible across groups of subjects as a
+trial is across groups of participants. Hypoglycaemia is the exception and is the
+worst-measured statistic as much as the worst-fitting one. A difference expressed in units of
+between-person spread does not establish that a difference exists; the interpretability floor
+has to be measured and quoted with the result.
+
+**Keywords.** simulation, automated insulin delivery, closed-loop, validation, type 1 diabetes,
+in-silico testing
 
 ## Introduction
 
@@ -219,27 +262,191 @@ hypoglycaemia failure with a hyperglycaemia one.
 
 ## Results
 
-*Pending the runs listed below.*
+### The bare model sits where no real population sits
 
-Planned structure, with the source for each already established:
+Holding one algorithm fixed and varying only the bench beneath it, on the cohort matched to the
+DCLP3 closed-loop arm under a stand-in for Control-IQ built from Tandem's published description.
+Medians across the fifteen subjects completing both arms, with the paired difference over the
+same subjects.
 
-1. A reactive stand-in for Control-IQ against the DCLP3 closed-loop arm, on both benches.
-2. The same, with the unpublished parameters fitted on the calibration half and reported on the
-   held-out half.
-3. oref0 SMB against the OpenAPS Data Commons users, on both benches.
-4. What the two comparisons have in common, and where the two real populations disagree.
-5. Meal behaviour of the underlying model, against real uncovered meals.
-6. Withdrawing meal announcement, against CLOSE-IT.
-7. How far each answer moves when only the participants change, which every gap above is read
-   against.
+| Measure | S2008 bare | Layered | Paired difference | DCLP3 |
+|---|---|---|---|---|
+| Completed | 23/24 | 15/24 | | 67 participants |
+| Time in range 70–180, % | 93.12 | 79.79 | −12.33 ± 3.14 | 71.29 |
+| Time below 70, % | 2.96 | 3.21 | +0.64 ± 1.18 | 1.36 |
+| Time below 54, % | 0.61 | 0.98 | +0.66 ± 0.48 | 0.20 |
+| Time above 180, % | 3.44 | 14.06 | +11.69 ± 2.35 | 26.87 |
+| Mean sensor glucose, mg/dL | 126.53 | 141.53 | +15.21 ± 1.69 | 155.45 |
+| Variability, CV % | 23.97 | 34.59 | +9.34 ± 2.86 | 33.37 |
+| Insulin, U/day | 41.09 | 51.94 | +7.70 ± 1.97 | |
+| Rescue helpings per 30 d | 0.00 | 50.36 | +60.36 ± 18.96 | |
+
+On the bare patient this controller holds 93.1 per cent of readings in range at a mean of 126.5
+mg/dL and spends 3.4 per cent above 180. No published closed-loop cohort achieves that, and the
+trial it is set beside sits 21.8 percentage points and 28.9 mg/dL away. The layered bench moves
+the same algorithm to 79.8 per cent and 141.5 mg/dL.
+
+The same experiment under oref0 SMB on the same cohort moves the same way, from 85.8 per cent
+and 123.0 mg/dL to 80.4 and 139.9, and against the OpenAPS Data Commons users under the
+algorithm they actually run, from 86.8 per cent and 121.9 mg/dL to 83.7 and 130.3.
+
+Five movements appear in every pairing and none of their intervals spans zero. Mean glucose
+rises by 12.3 to 16.2 mg/dL. Time above 180 mg/dL rises by 6.7 to 11.7 points. Variability
+rises. Delivered insulin rises by 26 to 30 per cent. And rescue carbohydrate appears at 50 to 69
+helpings per thirty days where the bare patient has none, because the bare patient has no
+mechanism to treat a low.
+
+Time in range falls in every pairing, by 5.4 to 12.3 points, which is the least informative of
+the five: it is the measure the two benches differ on least in the Commons pairing and the one
+most often quoted.
+
+### Fitting the unpublished half of Control-IQ, and testing it on data it never saw
+
+Tandem publish the cadence, the thresholds and the correction fraction. How far basal may be
+raised, how large a single automatic correction may be and how much insulin on board the loop
+tolerates are not published, and they are what drives the result. Across twelve configurations
+of those three the distance to the calibration half ranges from 0.035 to 1.3, a factor of
+thirty-seven on numbers nobody outside Tandem knows.
+
+The best configuration raises basal at most twofold rather than the threefold guessed, and
+tolerates 4 U of insulin on board rather than 6. It scores 0.035 against the 67 calibration
+participants and 0.069 against the 45 held out, so it transfers: a fit that had found the
+calibration half rather than the algorithm would have degraded considerably more.
+
+| Measure | Fitted | Held-out half | Gap in spreads |
+|---|---|---|---|
+| Time in range, % | 76.50 | 73.76 | +0.09 |
+| Time below 70, % | 1.78 | 1.23 | +0.24 |
+| Time below 54, % | 0.32 | 0.14 | +0.52 |
+| Time above 180, % | 21.74 | 25.71 | −0.13 |
+| Mean glucose, mg/dL | 151.02 | 154.67 | −0.08 |
+| Variability, CV % | 34.43 | 32.14 | +0.23 |
+
+### How far an answer moves when only the participants change
+
+Three disjoint cohorts of fifteen, matched to the same trial, sharing no subject, under the same
+algorithm and bench. Beside them, the same quantity measured on people by splitting each real
+population at random in two. Both in units of the real between-person spread.
+
+| Measure | Simulated group effect | Real split-half |
+|---|---|---|
+| Time in range | 0.11 | 0.17 |
+| Mean glucose | 0.16 | 0.18 |
+| Time above 180 | 0.22 | 0.16 |
+| Variability | 0.24 | 0.18 |
+| Time below 70 | 0.62 | 0.22 |
+| Time below 54 | 1.63 | 0.25 |
+
+On time in range and mean glucose the bench is as reproducible across groups of subjects as the
+trial is across groups of participants. On hypoglycaemia it is three to six times less so.
+
+### What survives that
+
+A difference is reported as real only where the real median falls outside the simulated cohort's
+95 per cent interval.
+
+| Pairing | Same as real | Differs from real |
+|---|---|---|
+| Commons, oref0 SMB | time in range, time above 180, mean, CV | below 70, below 54 |
+| DCLP3, fitted Control-IQ | time in range, CV | below 70, below 54, time above 180, mean |
+| DCLP3, oref0 SMB | none | all six |
+
+The pairing where the simulated and real sides genuinely run the same algorithm agrees with real
+people on four of six measures. Where the algorithm is a stand-in for the trial's, two of six.
+Where it is neither, none, which is the arrangement that should agree least and does.
+
+Hypoglycaemia differs in every pairing. It is also the measure with the largest group effect, at
+1.63 spreads under DCLP3 against differences of comparable size, so in that pairing the finding
+rests on a statistic this bench cannot place reliably. In the Commons pairing the group effect
+is 0.35 and the same difference is on firmer ground.
+
+### Meal behaviour
+
+The model's response to an uncovered meal is larger than the real one and arrives at the same
+time. A meal on basal alone raises glucose by 22.20 mg/dL per 10 g across 51 subjects, linear in
+size at 22.13, 22.20 and 22.30 for 30, 50 and 70 g, peaking at 225 minutes.
+
+The real figure depends on what counts as uncovered, and the dependence is reported rather than
+resolved by choosing one: across five definitions, from no insulin within half an hour to
+bolus-free for a full insulin action duration before and four hours after with the loop within
+0.5 U of the scheduled basal, it runs from 15.7 to 19.7 mg/dL per logged 10 g on samples of
+7,996 down to 320 meals. Peaks run 177 to 248 minutes. Logged grams under-state intake, so the
+real rise per gram eaten is lower still.
+
+### Withdrawing meal announcement
+
+Each algorithm met three conditions differing only in what the person said about their meals,
+drawn from the same random stream.
+
+| Arm | Announced | Unannounced | Difference |
+|---|---|---|---|
+| Control-IQ stand-in, DCLP3 cohort | 80.48 | 73.81 | −6.34 ± 2.37 |
+| oref0 SMB, DCLP3 cohort | 81.82 | 81.45 | −1.78 ± 1.83 |
+| oref0 SMB, Commons cohort | 83.66 | 81.76 | −1.47 ± 2.67 |
+| oref0 SMB, CLOSE-IT cohort | 78.64 | 78.49 | −0.88 ± 1.36 |
+| CLOSE-IT, 75 adults | 69 ± 13 | 66 ± 8 | −2.2, 95% CI −6.2 to 1.7 |
+
+The two algorithms separate in the direction their designs predict. The Control-IQ stand-in has
+no meal detection and loses 6.34 points of time in range when announcement is withdrawn. oref0
+SMB, which microboluses on deviation from prediction, loses between 0.9 and 1.8 points with
+every interval spanning zero, in three different cohorts. CLOSE-IT randomised that question in
+75 adults on an oref-derived system and reported 2.2 points with an interval that also spans
+zero.
+
+The simulated arms sit about ten points of time in range above the trial in absolute terms.
 
 ## Discussion
 
-*Pending the results.*
+The case for adding a person does not rest on the additions making the simulation harder. It
+rests on the bare model sitting where no real population sits, and doing so in a way that is
+invisible from within a single arm. Three algorithms on the bare patient held 85.8 to 93.1 per
+cent of readings in range and spent 3.4 to 6.9 per cent above 180 mg/dL, against real cohorts at
+71.3 and 79.6 per cent. A bench on which every algorithm scores well cannot separate them.
+
+The strongest result here is not a gap but its absence. Where the simulated and real sides run
+the same algorithm, the simulated cohort is indistinguishable from real people on time in range,
+time above 180, mean glucose and variability, and its answer moves no more when the participants
+change than the trial's does. That is what a bench has to do before any difference it reports
+about an algorithm can be believed, and it had not previously been shown.
+
+The ordering across the three pairings was not arranged. Agreement is best where the algorithm
+matches the reference population, worse where the algorithm is a stand-in for the one the trial
+ran, and absent where it is neither. Any of those could have come out differently.
+
+Hypoglycaemia is the exception and needs stating carefully, because the obvious phrasing
+overstates it. It differs from real in every pairing, and it survived a controller whose free
+parameters were fitted specifically to minimise the distance, so it is not an artefact of the
+controller being a stand-in. It is also the measure this bench places least reliably: redrawing
+which fifteen subjects are used moves the median time below 54 mg/dL by 1.63 of the real
+between-person spread, which is larger than most of the differences being reported. The honest
+statement is that hypoglycaemia is the worst-measured statistic here as much as the
+worst-fitting one, and separating those would need either much larger cohorts or a population
+that supplies more independent groups than this one does.
+
+The meal result reverses a claim this work carried for months. The model's carbohydrate response
+was reported as short by 1.2 to 1.4 times, and the consequence drawn from it was that
+unannounced meals are easier in silico and any algorithm relying on meal detection scores better
+here than it should. Measured on the full export rather than the tenth of it a file glob
+returned, the model's response is larger than the real one and its timing sits inside the real
+range. The conclusion does not follow, and an algorithm that detects meals is not being handed a
+gentler challenge than it will meet.
+
+What the announcement experiment shows instead is that the bench separates two algorithms in the
+direction their designs predict, and agrees with the only randomised trial of that question on
+the same algorithm family. oref0 SMB is insensitive to meal announcement in three different
+simulated cohorts and in CLOSE-IT; the Control-IQ stand-in, which has no meal detection, is not.
+The absolute level is about ten points of time in range optimistic against CLOSE-IT, so the
+bench supports the relative question and not the absolute one.
+
+Two results bear on how in-silico work of this kind should be reported. A difference quoted in
+units of the between-person spread does not establish that a difference exists, because a cohort
+of fifteen or twenty places a median far less precisely than that spread implies; the
+interpretability floor has to be measured, on both sides, and quoted with the result. And the
+direction of an incomplete run matters as much as the count: on the bare model every incomplete
+run ends low, and on the layered bench most end high, so a completion count alone averages two
+opposite failures and invites the wrong reading of both.
 
 ## Limitations
-
-*Pending, but four are already established and will appear whatever the results show.*
 
 Every cohort figure is conditioned on survival, and what survival selects on differs by bench: on
 the bare model every incomplete run ends low, and on the layered bench most end high.
@@ -256,12 +463,35 @@ quantities here are calibrated against the same export.
 The CLOSE-IT comparison is against published summary statistics, with a cohort drawn from them
 rather than matched to participants.
 
-## What this file is waiting on
+Titration leaves these subjects more insulin-sensitive than the people they stand for. Across
+the titrated store the correction factor ends at a median of 23.2 mg/dL per unit against the
+40.0 recorded by DCLP3 participants, so it closes about half of the gap. Four subjects clear the
+hypoglycaemia floors at no combination tried and are excluded, which selects towards subjects
+that can be made safe.
 
-| Run | Gives | Status |
+The population bounds the design. Its adults all need more insulin than real do-it-yourself
+looping adults, so matching the Commons on requirement draws in adolescents, and it supports
+about three disjoint DCLP3-matched cohorts of fifteen, which is what limits the precision of the
+group effect reported here.
+
+The distinguishability test compares a real median against a simulated interval and is not a
+formal test of equality. It answers whether a difference is establishable at this cohort size,
+which is the question that was previously going unasked.
+
+## Provenance
+
+Every figure above is reproducible from the repository against population `2af095014f6c1c75`.
+
+| Section | Produced by | Output |
 |---|---|---|
-| `bench_matrix.py` on defence gain 0.20 | Results 1, 3, 4, 6 | running |
-| `rerun_studies.sh` on gain 0.20 | Meal behaviour for result 5, and the signature and ladder figures the discussion draws on | running |
-| `fit_control_iq.py` on gain 0.20 | Result 2 | to rerun |
-| `cohort_replicates.py` | Result 7, the group effect | needs 9 subjects titrated |
-| `cohort_variation.py` | Result 7, the within-cohort interval and the real split-half baseline | rerun once the matrix lands |
+| Bench comparisons, announcement | `examples/bench_matrix.py`, `examples/bench_tables.py` | `bench_matrix.json` |
+| Fitted Control-IQ | `examples/fit_control_iq.py` | `control_iq_fit.json` |
+| Group effect | `examples/cohort_replicates.py` | `cohort_replicates.json` |
+| Interval and split-half baseline | `examples/cohort_variation.py` | `cohort_variation.json` |
+| Meal behaviour | `examples/meal_response.py`, `examples/real_meals.py` | `meal_response.json`, `real_meals_dia.json` |
+| Cohorts | `examples/build_cohorts.py` | `cohorts.json` |
+| Commons reference | `examples/commons_cohort.py`, `examples/commons_requirement.py` | `commons_cohort.json`, `commons_requirement.json` |
+| Defence gain | `examples/calibrate_hypo_defence.py` | `hypo_defence_gain.json` |
+
+Defects found while producing this, including those introduced during it, are logged in
+`docs/ISSUES.md`.

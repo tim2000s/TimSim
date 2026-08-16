@@ -4,3 +4,15 @@
 07:57:40Z  START  production_low
 08:04:32Z  OK     production_low  (6 min)
 08:04:32Z  START  capability
+08:34:30Z  OK     capability  (29 min)
+08:34:30Z  START  meal_response
+08:41:07Z  OK     meal_response  (6 min)
+08:41:07Z  START  two_benches
+09:20:40Z  OK     two_benches  (39 min)
+09:20:40Z  START  hyperglycaemia_gap
+12:58:47Z  OK     hyperglycaemia_gap  (218 min)
+12:58:47Z  START  layer_ablation
+14:28:41Z  OK     layer_ablation  (89 min)
+14:28:41Z  START  layer_ladder
+15:07:00Z  OK     layer_ladder  (38 min)
+=== rerun finished 2026-08-16T15:07:00Z ===

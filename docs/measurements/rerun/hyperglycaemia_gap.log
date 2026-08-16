@@ -1,0 +1,51 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+running both ...
+running nosite ...
+running settings ...
+running site ...
+
+| | DCLP3 | nosite | site | settings | both |
+|---|---|---|---|---|---|
+| excursions above 180 per day | 3.56 | 2.88 | 3.12 | 3.54 | 3.58 |
+| median duration, min | 65 | 60 | 55 | 45 | 50 |
+| p90 duration, min | 265 | 205 | 265 | 250 | 320 |
+| median peak, mg/dL | 210 | 202 | 200 | 196 | 197 |
+| p90 peak, mg/dL | 293 | 283 | 301 | 282 | 304 |
+| total time above 180, % | 27.08 | 17.37 | 23.56 | 23.86 | 30.32 |
+
+Time above 180 by episode length, as a percentage of all time.
+| Episode length | DCLP3 | nosite | site | settings | both |
+|---|---|---|---|---|---|
+| under 1h | 2.70 | 1.96 | 2.10 | 2.44 | 2.38 |
+| 1-2h | 4.17 | 3.39 | 3.16 | 2.97 | 2.88 |
+| 2-3h | 4.27 | 4.95 | 3.98 | 4.25 | 3.58 |
+| 3-6h | 9.38 | 6.34 | 7.20 | 9.78 | 9.64 |
+| over 6h | 6.55 | 0.73 | 7.13 | 4.41 | 11.84 |
+
+Time above 180 by hour of day, %.
+     hour    0    2    4    6    8   10   12   14   16   18   20   22
+    DCLP3   35   25   16   10   19   23   27   35   31   29   36   37
+   nosite   16   10    7    7   20   13   12   24   19   22   32   26
+     site   23   15   12   13   25   22   20   31   25   26   37   35
+ settings   28   20   15   14   26   21   19   27   23   25   35   34
+     both   31   24   20   20   32   31   26   35   29   31   42   40
+
+| Signature | DCLP3 IQR | Nightscout range | nosite | site | settings | both |
+|---|---|---|---|---|---|---|
+| cv | 29.82-36.98 | 29.50-34.30 | 32.41 dn | 38.07 | 33.14 dn | 35.14 d |
+| tail | 3.38-6.16 | 3.70-6.60 | 4.04 dn | 4.27 dn | 3.82 dn | 4.02 dn |
+| acf30 | 0.85-0.89 | 0.78-0.87 | 0.87 d | 0.91 | 0.90 | 0.92 |
+| acf60 | 0.62-0.71 | 0.50-0.68 | 0.67 dn | 0.76 | 0.73 | 0.78 |
+| outcome | 24.04-32.08 | 26.50-33.50 | 28.54 dn | 26.97 dn | 24.34 d | 25.10 d |
+| diurnal | 37.04-61.11 | 34.70-56.30 | 40.35 dn | 49.41 dn | 39.73 dn | 53.86 dn |
+| hypo_rec | 38.72-54.98 | 50.00-59.00 | 70.00 | 68.75 | 60.00 | 61.25 |
+| hypo_reb | 38.31-53.23 | 23.20-28.40 | 47.25 d | 42.05 d | 47.37 d | 40.62 d |
+| compress | 1.68-3.74 | 1.90-5.30 | 4.29 n | 4.29 n | 4.29 n | 3.21 dn |
+| noise | 4.42-5.57 | 4.50-6.70 | 5.66 n | 5.67 n | 5.67 n | 5.67 n |
+
+d = inside the DCLP3 interquartile range, n = inside the Nightscout range.
+   nosite: 7 inside DCLP3, 7 inside Nightscout, site failures 0.00 per 30 days, time in range 79.8%
+     site: 4 inside DCLP3, 5 inside Nightscout, site failures 7.75 per 30 days, time in range 73.5%
+ settings: 5 inside DCLP3, 5 inside Nightscout, site failures 0.00 per 30 days, time in range 74.4%
+     both: 6 inside DCLP3, 4 inside Nightscout, site failures 7.72 per 30 days, time in range 67.7%

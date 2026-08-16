@@ -116,11 +116,19 @@ def main():
                    "need_titration": sorted(need)}, open(OUT, "w"), indent=1)
         print(f"wrote the plan to {OUT}")
         return
-    if need:
-        raise SystemExit(f"titrate them first: python examples/titrate_cohort.py "
-                         f"--cohort recorded  (after adding them), or rerun with --plan-only")
+    # A subject whose settings never clear the consensus floors is excluded rather than run at
+    # the loosest available, which is the same rule the main arms follow. It is a selection
+    # effect and is reported per replicate rather than absorbed.
+    usable = [[n for n in names if n in titrated] for names, _ in reps]
+    lost = [[n for n in names if n not in titrated] for names, _ in reps]
+    if any(lost):
+        print("\nexcluded, no settings clear the hypoglycaemia floors:")
+        for i, names in enumerate(lost):
+            if names:
+                print(f"  replicate {i}: {', '.join(names)}")
+    print("\nrunning " + ", ".join(f"{len(u)}" for u in usable) + " subjects per replicate")
 
-    jobs = [(n, i) for i, (names, _) in enumerate(reps) for n in names]
+    jobs = [(n, i) for i, names in enumerate(usable) for n in names]
     rows, t0 = [], time.time()
     with ProcessPoolExecutor(max_workers=a.workers) as ex:
         for k, row in enumerate(ex.map(one, jobs), 1):

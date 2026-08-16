@@ -1,0 +1,42 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+  padova 47/51 completed
+  timsim 41/51 completed
+paired over 38 subjects completing both arms
+
+| Measure | Padova S2008 | Person in the loop | Paired difference, 95% |
+|---|---|---|---|
+| Time in range, % | 86.21 | 80.21 | -6.14 +/- 2.00 |
+| Time above 180, % | 7.19 | 16.51 | +7.89 +/- 1.44 |
+| Time below 70, % | 4.19 | 3.73 | -1.75 +/- 1.30 |
+| Time below 54, % | 0.60 | 0.87 | -0.46 +/- 0.64 |
+| Mean sensor glucose, mg/dL | 121.93 | 138.19 | +14.82 +/- 2.18 |
+| Lowest true glucose, mg/dL | 54.00 | 37.22 | -12.89 +/- 4.33 |
+| Insulin, U/day | 40.82 | 51.18 | +10.70 +/- 1.85 |
+| Hypo episodes per 30 days | 47.68 | 49.82 | +5.86 +/- 6.75 |
+| Rescue helpings per 30 days | 0.00 | 57.86 | +60.48 +/- 8.98 |
+
+| Signature | Reference | Padova S2008 | Person in the loop | Paired difference |
+|---|---|---|---|---|
+| Glucose variability (CV%) | 29.5 to 34.3 | 30.91 inside | 38.27 | +7.45 +/- 1.9 |
+| Rise tail P(Δ>10 mg/dL / 5min) % | 3.7 to 6.6 | 2.01 | 4.55 inside | +2.2 +/- 0.26 |
+| Autocorrelation @30 min | 0.78 to 0.87 | 0.85 inside | 0.88 | +0.046 +/- 0.018 |
+| Autocorrelation @60 min | 0.5 to 0.68 | 0.57 inside | 0.66 inside | +0.0878 +/- 0.037 |
+| Outcome SD @stuck-high +30min (mg/dL) | 26.5 to 33.5 | 23.34 | 31.06 inside | +8.17 +/- 1.7 |
+| Diurnal amplitude (mg/dL) | 34.7 to 56.3 | 59.64 | 52.54 inside | -10 +/- 5.3 |
+| Hypo recovery to 100 (min) | 50 to 59 | 100.00 | 75.00 | -24.5 +/- 7 |
+| Hypo rebound >180 % | 23.2 to 28.4 | 23.26 inside | 40.62 | +17.9 +/- 5.4 |
+| Compression lows / 30d | 1.9 to 5.3 | 0.00 | 3.21 inside | +3.19 +/- 0.46 |
+| Sensor jitter (2nd-diff SD) | 4.5 to 6.7 | 2.42 | 5.64 inside | +3.18 +/- 0.035 |
