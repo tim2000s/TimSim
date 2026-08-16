@@ -40,11 +40,11 @@ noticed hours afterwards, which is where most real time above 180 mg/dL comes fr
 
 How well that works is judged two ways, and they disagree. A classifier given 24-hour
 windows of this simulator and of the DCLP3 trial's closed-loop participants, holding out
-whole subjects, separates them at 0.671 where a published subject with no layers scores
-0.937 and a null sits near 0.52. On the eleven marginal statistics the same configuration
-scores five of eleven, and a four-layer version without the site layer scores eight while
-being easier to tell from real data in ten splits out of ten. The default is the arm that
-wins the stronger test and loses the weaker one. Both numbers, and the argument, are in
+whole subjects, separates them at 0.739 where a published subject with no layers scores
+0.926 and a null sits near 0.52. On the eleven marginal statistics the same configuration
+scores five of eleven, and a four-layer version without the site layer scores six while
+being easier to tell from real data. The default is the arm that wins the stronger test and
+loses the weaker one. Both numbers, and the argument, are in
 [docs/FIDELITY.md](docs/FIDELITY.md).
 
 ## What it does not do

@@ -4,21 +4,22 @@ Remeasured in August 2026 against population `2af095014f6c1c75` at a hepatic def
 0.20. Two things changed underneath every figure here. The generator had drawn its per-class
 random stream from a salted hash, so it produced a different hundred subjects in every process
 and nothing measured before could be rebuilt; and the defence gain was recalibrated across the
-whole adult class rather than its first twenty. Sections carrying figures that have not yet been
-remeasured say so where they appear.
+whole adult class rather than its first twenty. The classifier arbiter, the signature ablation,
+the clamp and the settings comparison have all been rerun. Sections carrying figures that have
+not been remeasured say so where they appear.
 
 Two tests, and they disagree. Take the stronger one first.
 
 A classifier given 24-hour windows of this simulator and of the DCLP3 closed-loop
 participants, holding out whole subjects, separates them at an area under the curve of
-0.671. The floor for the same test is 0.937, which is what a published subject with no
+0.739. The floor for the same test is 0.926, which is what a published subject with no
 layers scores, and a null built by permuting subject labels sits near 0.52. So the default
 configuration is recognisably a simulator, by a margin that has narrowed rather than closed,
 and what carries the separation is time above 180 mg/dL.
 
 The weaker test is the eleven marginal statistics below, where the same configuration scores
-five of eleven. A four-layer configuration without the infusion site layer scores eight of
-eleven and is easier for the classifier to tell from real data, in ten splits out of ten.
+five of eleven. A four-layer configuration without the infusion site layer scores six of
+eleven and is easier for the classifier to tell from real data.
 Both numbers are real. The signature table asks whether eleven medians land in eleven
 ranges; the classifier asks whether a day of this looks like a day of that. The second is
 the question worth answering, which is why the default is the arm that answers it better and
@@ -117,18 +118,39 @@ nobody chose to measure, and it has a floor: a subject with no layers at all sco
 Measured on the same 34 subjects over 28 days in every arm, against 3,023 real windows from
 the 67 closed-loop calibration participants, across ten cross-validation splits:
 
-| Configuration | AUC | sd over splits | Excess over null | Signatures in range |
+| Configuration | AUC | Excess over null | Completed | Signatures in range |
 |---|---|---|---|---|
-| Default plus the site layer | 0.671 | 0.011 | +0.135 | 5 of 11 |
-| Default plus real settings | 0.688 | 0.011 | +0.147 | not measured |
-| Both | 0.700 | 0.011 | +0.159 | not measured |
-| Default, four layers | 0.710 | 0.009 | +0.164 | 8 of 11 |
-| Default plus Visentin's classes | 0.760 | 0.012 | +0.211 | 6 of 11 |
-| No layers at all | 0.937 | 0.004 | +0.377 | 3 of 11 |
+| Default plus the site layer | 0.739 | +0.216 | 32/34 | 5 of 11 |
+| Default plus real settings | 0.761 | +0.230 | 32/34 | not measured |
+| Both | 0.774 | +0.248 | 30/34 | not measured |
+| Default, four layers | 0.785 | +0.269 | 31/34 | 6 of 11 |
+| Default plus Visentin's classes | 0.833 | +0.313 | 20/34 | not measured |
+| No layers at all | 0.926 | +0.384 | 34/34 | 0 of 11 |
 
-Lower is better, and the differences are small but not ambiguous. Paired over the same ten
-splits, the site layer beats the default by 0.039 with a standard deviation of 0.006, in ten
-splits out of ten. Conservative settings beat it by 0.022, also ten out of ten.
+Lower is better. Every configuration keeps the rank it held before the population was
+regenerated, which is the property this table is used for:
+
+| Configuration | AUC before | AUC now |
+|---|---|---|
+| Default plus the site layer | 0.677 | 0.739 |
+| Default plus real settings | 0.695 | 0.761 |
+| Both | 0.706 | 0.774 |
+| Default, four layers | 0.716 | 0.785 |
+| Default plus Visentin's classes | 0.769 | 0.833 |
+| No layers at all | 0.936 | 0.926 |
+
+The ordering is identical and the decision it supports is unchanged. What moved is the
+absolute level: every layered arm became more separable by 0.06 to 0.07 while the bare arm
+stayed where it was, so the layers close less of the distance to real data than this document
+previously reported. The drop from bare to the best configuration was 0.259 and is now 0.187.
+
+Two things changed at once between the two runs, the regenerated population and the hepatic
+defence gain moving from 0.25 to 0.20, so this measurement cannot say which is responsible.
+Separating them would need a third run holding one fixed.
+
+The Visentin arm should be read with its completion count rather than its AUC. It finishes 20
+of 34 subjects where the others finish 30 to 32, so its windows come from the subjects that
+survived it and its score is the most favourably conditioned in the table.
 
 The result disagrees with the signature count, which is why the arbiter was worth running.
 The site layer scores worst of any configuration on the eleven signatures and is the hardest
@@ -142,8 +164,8 @@ excursion bands. And Visentin's diurnal classes come out worse than the default 
 well, agreeing with the ablation rather than adding to it.
 
 What it does not say is that any of this is indistinguishable. The best configuration is
-still separable at 0.671 against a null 95th percentile near 0.52. Time above 180 mg/dL is
-what carries the separation in every arm. Better is not the same as good, and the honest
+still separable at 0.739 against a null 95th percentile near 0.52. Time above 180 mg/dL is
+what carries the separation in every arm, and it is the top feature in five of the six. Better is not the same as good, and the honest
 summary is that this simulator remains recognisably a simulator, by a margin that has
 narrowed rather than closed.
 
