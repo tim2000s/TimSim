@@ -95,11 +95,12 @@ from ..therapy import Enforcer, InfusionSite, profile as profile_mod
 #
 # The site layer was the last one in, on a decision worth recording.
 #
-# It costs three of the eleven signatures in `docs/FIDELITY.md`, taking that table from
-# eight of eleven to five, which is the worst score of any configuration measured. It is
+# It costs one of the eleven signatures in `docs/FIDELITY.md`, taking that table from
+# six of eleven to five, which is the worst score of any configuration measured. It is
 # also the configuration hardest to tell from real data: against 3,023 windows from the
-# DCLP3 closed-loop participants it scores 0.671 where the same person without it scores
-# 0.710, beating it in ten cross-validation splits out of ten. Both statements are true. The
+# DCLP3 closed-loop participants it scores 0.739 where the same person without it scores
+# 0.785, and it held that rank when every figure was remeasured on the regenerated
+# population. Both statements are true. The
 # signature table asks whether eleven medians land in eleven ranges; the classifier asks
 # whether a day of this looks like a day of that, and it is the stronger question.
 #
@@ -630,37 +631,102 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
     return result
 
 
+def _cohort_one(job):
+    """One subject of a cohort, in whatever process is running it."""
+    name, days, seed, layers, controller, factory, kwargs = job
+    driver = factory(name) if factory is not None else controller
+    try:
+        with warnings.catch_warnings():
+            warnings.simplefilter("once", UserWarning)
+            return simulate(name, days=days, seed=seed, layers=layers,
+                            controller=driver, **kwargs)
+    finally:
+        if hasattr(driver, "close"):
+            driver.close()
+
+
+def _parallelisable(controller, controller_factory):
+    """Whether this cohort can be spread across processes, and why not when it cannot.
+
+    A worker receives its job by pickle, so anything holding a live resource cannot cross.
+    The compiled algorithms are the case that matters: an `OrefController` owns a node
+    subprocess and a `BoostController` a JVM, and sending either would either fail to pickle
+    or, worse, hand two subjects the same pipe. A factory is fine when it is importable,
+    since the worker calls it to build a fresh instance on its own side, which is what the
+    factory is for.
+    """
+    import pickle
+    for what, label in ((controller, "controller"), (controller_factory, "controller_factory")):
+        if what is None or isinstance(what, str):
+            continue
+        try:
+            pickle.dumps(what)
+        except Exception:
+            return False, (f"{label} cannot be sent to a worker process, so the cohort runs "
+                           f"serially; pass a controller_factory defined at module level to "
+                           f"parallelise it")
+    return True, None
+
+
 def simulate_cohort(names=None, days=28, seed=0, layers=DEFAULT_LAYERS,
                     controller=DEFAULT_CONTROLLER, controller_factory=None,
-                    progress=True, **kwargs):
+                    progress=True, workers=1, **kwargs):
     """Run many subjects. Returns a list of Result, one per subject.
 
     `controller` is the same argument `simulate` takes. `controller_factory` is for an
     algorithm that carries per-subject state: it is called with the subject name and must
     return a fresh instance, so nothing leaks between subjects. Give one or the other.
+
+    `workers` above one spreads the subjects across processes. Results are identical either
+    way and are returned in the order `names` gives, because a subject's random stream comes
+    from `subject_seed(name, seed)` and not from where it sits in the list or from when it
+    runs. It defaults to one so that no existing caller changes behaviour by upgrading.
+
+    A cohort holding a live resource cannot be spread, and says so rather than failing: an
+    `OrefController` owns a node subprocess and cannot be pickled to a worker.
+
+    One caller-side requirement comes with `workers` above one. Python spawns rather than
+    forks on macOS, so a worker re-imports the module it was launched from, and a script that
+    calls this at module level re-runs itself in every worker. Put the call behind
+    `if __name__ == "__main__":`, which is why every runnable example here does.
     """
     from ..population import names as all_names
     if controller_factory is not None and controller != DEFAULT_CONTROLLER:
         raise ValueError("give either controller or controller_factory, not both")
-    names = names or all_names()
+    names = list(names or all_names())
+
+    def report(name, r):
+        if not progress:
+            return
+        s = r.summary()
+        print(f"  {name:>16}  mean {s['mean']:3.0f}  CV {s['cv']:4.1f}%  "
+              f"TIR {s['tir']:4.1f}%  TBR {s['tbr']:4.1f}%  "
+              f"{'' if s['completed'] else 'DID NOT COMPLETE'}", flush=True)
+
+    if workers and workers > 1:
+        ok, why = _parallelisable(controller, controller_factory)
+        if not ok:
+            warnings.warn(why, RuntimeWarning, stacklevel=2)
+        else:
+            from concurrent.futures import ProcessPoolExecutor
+            jobs = [(n, days, seed, layers, controller, controller_factory, kwargs)
+                    for n in names]
+            with ProcessPoolExecutor(max_workers=int(workers)) as ex:
+                out = list(ex.map(_cohort_one, jobs))
+            for name, r in zip(names, out):
+                report(name, r)
+            return out
+
     out = []
     for name in names:
-        driver = controller_factory(name) if controller_factory else controller
-        with warnings.catch_warnings():
-            warnings.simplefilter("once", UserWarning)
-            # Every subject is run at the seed as passed. The offset by list position used
-            # to be what stopped a cohort drawing one shared random month, and
-            # `subject_seed` now does that from the name; keeping the offset as well would
-            # make a subject's run depend on where it sat in `names`, so a subject would
-            # come out differently in a full cohort and in a subset of it.
-            r = simulate(name, days=days, seed=seed, layers=layers,
-                         controller=driver, **kwargs)
+        # Every subject is run at the seed as passed. The offset by list position used
+        # to be what stopped a cohort drawing one shared random month, and
+        # `subject_seed` now does that from the name; keeping the offset as well would
+        # make a subject's run depend on where it sat in `names`, so a subject would
+        # come out differently in a full cohort and in a subset of it.
+        r = _cohort_one((name, days, seed, layers, controller, controller_factory, kwargs))
         out.append(r)
-        if progress:
-            s = r.summary()
-            print(f"  {name:>16}  mean {s['mean']:3.0f}  CV {s['cv']:4.1f}%  "
-                  f"TIR {s['tir']:4.1f}%  TBR {s['tbr']:4.1f}%  "
-                  f"{'' if s['completed'] else 'DID NOT COMPLETE'}", flush=True)
+        report(name, r)
     return out
 
 

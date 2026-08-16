@@ -5,7 +5,7 @@ how it surfaced and what was done about it. Defects introduced during the invest
 logged the same way as ones that were already here, and are marked as such, because a log that
 records only other people's mistakes is not a record of anything.
 
-The dominant pattern is worth stating at the top. Of the twenty-two entries below, four are
+The dominant pattern is worth stating at the top. Of the twenty-four entries below, five are
 coding errors. Most of the rest are measurements that were correct arithmetic on the wrong
 comparison, or figures that could no longer be traced to the code that produced them. The
 project's own standing rule, that a comparison must be computed the same way on both sides,
@@ -35,6 +35,8 @@ caught more of these than any test did.
 | 20 | 16 Aug | The titrator replaced the settings store rather than merging | medium |
 | 21 | 16 Aug | Argument list silently collapsed by zsh, misdiagnosed once (introduced here) | low |
 | 22 | 16 Aug | Disjoint cohort draws exhaust the adult pool | medium |
+| 23 | 16 Aug | `simulate_cohort` ran every subject serially on a fourteen-core machine | medium |
+| 24 | 16 Aug | An absorption test compared a reconstructed ratio against an exact bound | low |
 
 ---
 
@@ -330,3 +332,42 @@ twenty-five matched to DCLP3 degrade sharply: the third is 80 per cent under 18 
 **Fix.** Three disjoint cohorts of fifteen, matched at 0.479 to 0.596, which is also close to the
 number of subjects the main arms complete. Recorded as a limit of the population rather than
 worked around: a hundred subjects support about three independent DCLP3-matched groups.
+
+## 23. `simulate_cohort` ran every subject serially
+
+`simulate_cohort` was a plain loop over subjects, so every study script built on it used one
+core regardless of the machine. `hyperglycaemia_gap` took 218 minutes and `layer_ablation` 89,
+and the six-configuration classifier arbiter would have taken about seven hours.
+
+**How it surfaced.** The machine sat at a load average of 2 on fourteen cores while a job was
+running. That was noticed and worked around by filling the idle capacity with other jobs, twice,
+before anyone asked why the job itself was not using it. The prompt was a direct question about
+whether the arbiter could run in parallel.
+
+**Fix.** `simulate_cohort` takes a `workers` argument, defaulting to one so no existing caller
+changes behaviour. Results are identical: on six subjects run both ways, every CGM reading
+matches to the bit and the order of results is preserved, because a subject's random stream
+comes from `subject_seed(name, seed)` rather than from where it sits in the list or when it
+runs. Six subjects went from 134 seconds to 24.
+
+Two things it refuses rather than getting wrong. A controller holding a live resource cannot be
+pickled to a worker, so an `OrefController`, which owns a node subprocess, produces a warning
+and a serial run instead of a corrupted one. And because Python spawns rather than forks on
+macOS, a caller must put the call behind `if __name__ == "__main__":` or every worker re-runs
+the calling script; that is documented on the function.
+
+## 24. An absorption test compared a reconstructed ratio against an exact bound
+
+`test_the_factor_is_bounded_so_a_tail_draw_cannot_stop_absorption` clamps the meal absorption
+factor into `MEAL_ABSORPTION_BOUNDS` and then checks the bound by dividing the clamped rate by
+the unclamped one. The clamp is exact; the division is not.
+
+**How it surfaced.** The test suite was run after the parallelism change and this failed at
+2.6000000000000005 against a bound of 2.6, an excess of 4.4e-16, or one unit in the last place.
+It had passed for months and began failing because regenerating the population gave `adult#001`
+a different `kabs`, one that happens to divide unluckily.
+
+**Fix.** A tolerance of 1e-9 on both bounds, which is many orders of magnitude below any draw
+the test exists to catch. Logged rather than fixed silently because the failure was informative:
+a test that depends on the exact value of a subject's parameters is testing the population as
+well as the behaviour, and this one gave no hint of that until the population changed.

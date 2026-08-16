@@ -96,9 +96,15 @@ def test_the_factor_is_bounded_so_a_tail_draw_cannot_stop_absorption():
     p = V.from_population("adult#001")
     p.set_meal_variability(np.random.default_rng(5), cv=1.5)
     lo, hi = V.MEAL_ABSORPTION_BOUNDS
+    # The clamp is exact, and recovering the factor by dividing the clamped rate by the
+    # unclamped one is not: for some subjects that division lands one unit in the last place
+    # above the bound. A tolerance of 1e-9 is many orders below any draw this test could catch,
+    # and without it the test fails on a subject whose kabs happens to divide unluckily rather
+    # than on the behaviour it is checking.
+    tol = 1e-9
     for _ in range(300):
         _feed(p, 60.0)
-        assert lo <= p._params["kabs"] / p._kabs0 <= hi
+        assert lo - tol <= p._params["kabs"] / p._kabs0 <= hi + tol
         _feed(p, 0.0)
 
 
