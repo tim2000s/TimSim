@@ -10,6 +10,7 @@ sees the underlying glucose there and a noisy one here, which is part of what is
 rather than a confound to remove.
 """
 import json
+import os
 import numpy as np
 from concurrent.futures import ProcessPoolExecutor
 from timsim.simulation.run import simulate
@@ -23,7 +24,8 @@ from timsim.therapy import titrate
 SUBJECTS = list(titrate.titrated_subjects()) or [f"adult#{i:03d}" for i in range(1, 21)]
 DAYS, SEED = 28, 11
 ARMS = {"padova": (), "timsim": ("physiology", "behaviour", "sensor", "site")}
-OUT = "two_benches.json"
+OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                   "docs", "measurements", "two_benches.json")
 
 
 def one(job):
