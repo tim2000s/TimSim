@@ -173,10 +173,19 @@ def boot_ci(vals, stat=np.median, n=2000, seed=0):
 
 
 def from_result(result):
-    """Pack a simulation Result onto the five-minute grid the signatures assume."""
+    """Pack a simulation Result onto the five-minute grid the signatures assume.
+
+    The clock comes from `Result.minutes` rather than being rebuilt from the sample count. The
+    run is primed with one step before its loop, so the first sample sits one interval in, and
+    numbering from zero here would put the hour-of-day five minutes early for every sample.
+    Only `diurnal` reads the hour, and five minutes is a twelfth of its bin, but the two clocks
+    disagreeing is the thing worth not having.
+    """
     cgm = np.asarray(result.cgm, float)
-    t_native = np.arange(len(cgm)) * result.sample_time * 60.0
-    grid = np.arange(0, t_native[-1] + 1, 300.0)
+    t_native = np.asarray(result.minutes, float) * 60.0
+    if t_native.size != cgm.size:                    # a caller that built one without the other
+        t_native = (np.arange(len(cgm)) + 1.0) * result.sample_time * 60.0
+    grid = np.arange(t_native[0], t_native[-1] + 1, 300.0)
     bg = np.interp(grid, t_native, cgm)
     return dict(t=grid, bg=bg, hour=(grid / 3600.0) % 24)
 

@@ -48,10 +48,24 @@ def real_reference(cohort):
                 json.load(open(os.path.join(MEASUREMENTS,
                                             "commons_requirement.json")))["users"]}
         return [r for r in users if r["user"] in keep]
-    if cohort in ("dclp3", "close_it"):
+    if cohort == "dclp3":
+        # The calibration half only, which is what `examples/bench_tables.py` reports gaps
+        # against. Two reasons, and the second is the binding one.
+        #
+        # The spread these baselines are expressed in has to be the same spread the gaps are
+        # expressed in, or a group effect of 0.72 spreads and a gap of 0.72 spreads are not
+        # the same quantity. Measured across the two populations the p10 to p90 spreads differ
+        # by up to 7 per cent and the median time below 54 mg/dL differs by a quarter, 0.20
+        # against 0.16.
+        #
+        # And the held-out half is sealed so the Control-IQ fit can be tested on data it never
+        # saw. Computing a published baseline over all 112 participants spends that.
         from timsim.validation import dclp3
+        cal = set(dclp3.split()["calibration"])
         rows = []
         for pid, segs in dclp3.traces(arm=dclp3.CLOSED_LOOP).items():
+            if pid not in cal:
+                continue
             g = np.concatenate([np.asarray(s, float)[1] for s in segs])
             g = g[np.isfinite(g)]
             if len(g) < 2000:
@@ -61,6 +75,9 @@ def real_reference(cohort):
                          "tar180": 100 * np.mean(g > 180), "mean": float(g.mean()),
                          "cv": 100 * g.std(ddof=1) / g.mean()})
         return rows
+    # CLOSE-IT publishes summaries rather than participants, so it supports no per-person
+    # spread and no split half. It previously fell through to the DCLP3 branch, which would
+    # have answered a question about one trial with the people of another.
     return []
 
 

@@ -391,3 +391,80 @@ bears on the withdrawal result directly.
 Not repaired: reconstructing them needs a record of predicted against observed deviation that
 this bridge does not keep. Recorded in the module docstring beside the inputs that are absent
 by choice, so it is not mistaken for one of them.
+
+# Third pass
+
+Over the modules the second pass listed as uncleared, plus the scripts that produce the paper's
+central numbers.
+
+## R3 is narrower than recorded
+
+The first pass reported that simulated and real variability were computed with different
+estimators. Checked properly: `bench_matrix.py` computes the simulated CV with `ddof=1` and
+`bench_tables.py` computes the real one with `ddof=1`, so the published comparison is
+consistent. `titrate.consensus_report` and the fidelity signatures use `ddof=0`, and each of
+those is internally consistent across both sides of its own comparison. No single comparison
+mixes the two, and the difference would be 0.006 per cent at 8,064 readings in any case. The
+finding as first written was wider than the facts.
+
+## R18. The signatures rebuilt their own clock (minor, corrected)
+
+`analysis/signatures.py::from_result` built its time axis as `arange(n) * sample_time` rather
+than reading `Result.minutes`, so it kept the numbering R12 corrected one level up. Only
+`diurnal` reads the hour and five minutes is a twelfth of its bin, so nothing moves, but the two
+clocks disagreeing is what R12 was about. It now takes the clock from the result.
+
+## R19. oref's sensitivity detection was fed bolus activity alone (moderate, corrected)
+
+`LoopInputs.activity_u_per_hour` differenced the bolus ledger only. oref derives its deviation
+as `delta - (-activity * sens * step)`, so understating the insulin at work understates the fall
+that insulin should have produced and charges the difference to the person's sensitivity
+instead. Basal delivered away from the schedule is real insulin and was not counted, and under
+oref0 SMB a temporary basal is running most of the time.
+
+The call now asks for the full ledger, and Boost keeps the bolus-only reading, which is what it
+logs. Measured over five days, two subjects: autosens median moves from 0.95 to 0.96 on one
+subject, insulin by under a unit, time below 70 mg/dL by 0.14 points. Small, and the input was
+wrong.
+
+## R20. A published baseline was computed over the sealed half (moderate, corrected)
+
+`examples/cohort_variation.py::real_reference` built the real spread and the split-half baseline
+from all 112 DCLP3 closed-loop participants. Two things follow.
+
+The held-out half is sealed behind the fingerprint in `dclp3.split` so a fitted Control-IQ
+stand-in can be scored on data it never saw, and `hyperglycaemia_gap.py` says so explicitly
+where it restricts. Computing a published baseline over all of them spends that.
+
+And the units stop matching. `bench_tables.py` reports gaps in the calibration half's spread.
+Measured across both populations the p10 to p90 spreads differ by up to 7 per cent and the
+median time below 54 mg/dL differs by a quarter, 0.20 against 0.16, which is the measure the
+hypoglycaemia finding rests on. A group effect of 0.72 spreads and a gap of 0.72 spreads were
+not the same quantity.
+
+Restricted to the calibration half, which is what every other consumer already does.
+
+## R21. A CLOSE-IT cohort would have been scored against DCLP3 people (moderate, corrected)
+
+The same function matched `cohort in ("dclp3", "close_it")` and returned DCLP3 participants for
+both. CLOSE-IT publishes summaries rather than participants, so it supports no per-person spread
+at all. Nothing called it with `close_it` today, so no figure is affected. It now returns
+nothing, which is what `bench_tables.py` already assumed.
+
+## R22. Cohorts are matched on all 112 and fitted against 67 (documented)
+
+`build_cohorts.dclp3_traits` matches cohorts to the traits of every closed-loop participant,
+while `fit_control_iq.py` matches to the calibration half. Left as it is and documented, because
+the seal protects outcomes rather than demographics: nothing in `build_cohorts` is fitted, and
+estimating the trait distribution from twice as many people is the better estimate. The two
+halves are a stratified random split, so the choice moves the cohorts by nothing measurable.
+
+## What remains unreviewed
+
+Three passes have not covered everything, and the honest list is short enough to state.
+`validation/checks.py`, `boost.py`, `replication.py`, `gate.py`, `ranking.py` and `faults.py`
+are the validation harness rather than sources of published figures.
+`controller/boost.py`, `boost_bridge.py` and `boost_autoconfig.py` drive an algorithm that is no
+longer in the papers. `person/activity.py` is a layer that is off by default and has never been
+in the default stack. Those are the grounds for stopping, and they are grounds about relevance
+rather than evidence that the code is right.

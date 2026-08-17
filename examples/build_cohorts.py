@@ -35,7 +35,22 @@ DCLP3_DIR = os.path.expanduser(os.environ.get("DCLP3_DIR", "~/Downloads/dclp3/Da
 
 
 def dclp3_traits():
-    """(age, total daily insulin) for every closed-loop participant of DCLP3."""
+    """(age, total daily insulin) for every closed-loop participant of DCLP3.
+
+    All 112, not the calibration half, and the distinction from `fit_control_iq.py` is
+    deliberate rather than an oversight. What `dclp3.split` seals is outcomes: the held-out
+    participants' glucose is kept back so a fitted Control-IQ stand-in can be scored on data it
+    never saw. Age and recorded daily insulin are demographics, not outcomes, and matching a
+    cohort to the full arm estimates the trait distribution of the population the comparison
+    claims to represent from twice as many people.
+
+    `fit_control_iq.py` restricts to the calibration half because it is fitting, and a cohort
+    built from held-out traits and then scored on held-out outcomes would have seen both.
+    Nothing here is fitted, so nothing here needs that restriction.
+
+    The two halves are a stratified random split, so their trait distributions are the same
+    population and the choice moves the cohorts by nothing measurable. It is recorded because
+    a reader comparing the two scripts will otherwise find one of them wrong."""
     def read(name):
         d = pd.read_csv(os.path.join(DCLP3_DIR, name), sep="|", encoding="utf-16")
         d.columns = [c.strip() for c in d.columns]

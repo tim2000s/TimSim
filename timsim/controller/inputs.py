@@ -64,10 +64,22 @@ class LoopInputs:
         return float(sum(u * iob_fraction(minute + horizon - m, DIA_MIN, PEAK_MIN)
                          for m, u in self.doses))
 
-    def activity_u_per_hour(self, minute):
-        """Insulin acting right now, as the rate Boost logs: a five-minute difference of
-        insulin on board, scaled to the hour."""
-        now, then = self.bolus_iob(minute), self.bolus_iob(minute - 5.0)
+    def activity_u_per_hour(self, minute, include_basal=False):
+        """Insulin acting right now: a five-minute difference of insulin on board, per hour.
+
+        `include_basal` decides which ledger is differenced, and the two answer different
+        questions. Boost logs the activity of its own boluses, so it wants the bolus ledger
+        alone. oref derives its deviation from the activity of everything acting, which
+        includes basal delivered away from the schedule, and feeding it boluses alone
+        understates the insulin at work whenever a temporary basal is running, which under
+        oref0 SMB is most of the time.
+
+        The deviation autosens accumulates is `delta - (-activity * sens * step)`, so
+        understating activity understates the fall the insulin should have produced and
+        charges the difference to the person's sensitivity instead.
+        """
+        iob = self.iob_at if include_basal else self.bolus_iob
+        now, then = iob(minute), iob(minute - 5.0)
         return max(0.0, then - now) * 12.0
 
     def observe_basal(self, minute, delivered_u, scheduled_u):

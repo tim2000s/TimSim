@@ -226,7 +226,8 @@ class OrefController(LoopInputs, Controller):
             self.autosens.observe(
                 minute, bg,
                 delta=readings[-1] - readings[-2] if len(readings) > 1 else 0.0,
-                activity_u_per_min=self.activity_u_per_hour(minute) / 60.0,
+                activity_u_per_min=self.activity_u_per_hour(
+                    minute, include_basal=True) / 60.0,
                 iob=self.iob_at(minute), sens=isf, carb_ratio=cr,
                 current_basal=scheduled_rate, carbs_g=grams, step=sample)
             ratio = self.autosens.ratio(minute, isf, max(
