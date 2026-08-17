@@ -632,3 +632,43 @@ and nowhere else. `fit_control_iq` fits on the calibration half and reports agai
 out half with no leak; its held-out rerun is the same deterministic simulation scored against
 the other reference, which is wasteful and harmless. The bootstrap machinery seeds every
 signature's interval separately and identically on both sides of each comparison.
+
+# Seventh and eighth passes: state, and the tests themselves
+
+## R31. A reused controller began with the previous run's insulin (severe, corrected)
+
+`simulate` never cleared controller state. Two runs of one subject at one seed came out
+different, with 169 doses carried across, and `simulate_cohort` given a plain `controller=`
+object shares one instance across every subject at the default worker count, so each subject
+inherited the last one's ledger. The parallel path was accidentally safe, because each job
+pickles its own copy.
+
+`simulate` now calls `reset` before every run. Two things had to be got right. simglucose's base
+`Controller` declares `reset` and raises `NotImplementedError` from it, so `hasattr` is true for
+every subclass and testing that way brought down every custom-controller test. And the built-in
+`_BasalBolus` had no `reset` at all while holding a bolus ledger and a week of adaptive ratio
+history, so it was given one and its constructor now calls it.
+
+## R32. Resetting the reference controller left an index into the list it had just emptied
+
+`ReferenceAID.reset` cleared `doses` and left `_pending` pointing into it. A run ending on a step
+that gave a bolus leaves one set, so reuse raised `IndexError` on the next run's first cycle
+rather than on the last one's. Found by calling `reset` for the first time; it had never run in
+anger.
+
+## The tests were mutation-tested rather than trusted
+
+Every regression test written during this review was checked by reverting the fix it guards and
+confirming it fails. All five kill their mutant: the per-component streams, the clock, the
+controller reset, the negative insulin-on-board ledger, and the basal ceiling at a
+non-increment boundary.
+
+The first attempt at the seeding mutation passed, which was the useful part. Reverting only the
+meal stream does not reproduce a defect that required every component to share one generator, so
+the mutation was unfaithful rather than the test weak. A mutation that reverts all seven streams
+kills it. A mutation test is only worth what the mutation is.
+
+An audit for tests that cannot fail found one: `test_closing_twice_is_harmless` asserts nothing
+and passes if `close` is a no-op, though its subject is idempotence and "does not raise" is the
+claim. Three `pytest.raises` blocks carry no `match`, and all three pin a custom exception type,
+which is the assertion. The remaining seventeen pin the message.

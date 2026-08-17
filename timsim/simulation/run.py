@@ -240,10 +240,22 @@ class _BasalBolus:
 
     def __init__(self, profile, adaptive=True, loop=None, target=CORRECTION_TARGET):
         self.profile = profile
-        mid = profile.isf_at(12 * 60), profile.cr_at(12 * 60)
-        self.ratios = AdaptiveRatios(mid[0], mid[1]) if adaptive else None
-        self.loop = CorrectionLoop(loop) if loop else None
+        self._adaptive = bool(adaptive)
+        self._loop_shape = loop
         self.target = float(target)
+        self.reset()
+
+    def reset(self):
+        """Rebuild the per-run state, so one instance can drive two runs.
+
+        The correction loop holds a bolus ledger and the adaptive ratios hold a week of
+        history, and both are properties of a run rather than of the driver. `simulate` calls
+        this before every run, which is what stops a second run of the same subject beginning
+        with the first run's insulin.
+        """
+        mid = self.profile.isf_at(12 * 60), self.profile.cr_at(12 * 60)
+        self.ratios = AdaptiveRatios(mid[0], mid[1]) if self._adaptive else None
+        self.loop = CorrectionLoop(self._loop_shape) if self._loop_shape else None
 
     def act(self, announced_grams, cgm, minute, sample_time, fall_rate=0.0):
         cf, cr = self.profile.isf_at(minute), self.profile.cr_at(minute)
@@ -531,6 +543,29 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
     # is how a published comparison came to claim two algorithms received the same settings
     # when one of them did not.
     _require_matching_profile(controller, prof)
+
+    # A controller carries state between cycles, and a caller may reasonably hand the same
+    # object to two runs. Nothing cleared it, so the second run began with the first run's
+    # insulin ledger: two runs of one subject at one seed came out different, and 169 doses
+    # crossed between them. `simulate_cohort` with a plain `controller=` object at the default
+    # worker count shares one instance across every subject, so each one inherited the last.
+    #
+    # `reset` is the interface simglucose already defines for this. Testing for it with
+    # `hasattr` does not work: the base `Controller` declares the method and raises
+    # `NotImplementedError` from it, so every subclass appears to have one and a controller
+    # that never overrode it brings the run down. So it is called and that one exception is
+    # taken as the answer it is, which is that this controller has no per-run state to clear.
+    #
+    # A controller that does carry state and does not implement `reset` still carries it
+    # between runs. Nothing here can detect that, and `controller_factory` is the way to
+    # avoid the question entirely: it builds a fresh instance per subject.
+    # Looked up on the type, so an AttributeError raised from inside a real `reset` is not
+    # mistaken for the method being absent.
+    if callable(getattr(type(driver), "reset", None)):
+        try:
+            driver.reset()
+        except NotImplementedError:
+            pass
 
     # Prime with the subject's own scheduled basal rather than zero. simglucose's examples
     # open with a zero-insulin step, which kicks a subject off the steady state its

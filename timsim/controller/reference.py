@@ -66,7 +66,16 @@ class ReferenceAID(Controller):
         self.last_correction = -1e9
 
     def reset(self):
+        """Clear every piece of per-run state, including the index into the dose list.
+
+        `_pending` points at the dose awaiting its delivered amount, and clearing the list
+        without clearing it left an index into an empty list. A run that ends on a step where
+        a bolus was given leaves one set, so reusing the controller raised IndexError on the
+        next run's first cycle rather than on the last one's, which is the kind of failure
+        that gets blamed on the wrong subject.
+        """
         self.doses, self.history, self.last_correction = [], [], -1e9
+        self._pending = None
 
     def _delayed(self, minute, reading):
         """The reading the algorithm acts on, once `delay_min` has been applied."""

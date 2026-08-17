@@ -119,6 +119,42 @@ def test_the_event_logs_and_the_glucose_series_share_one_clock(subject):
             f"at {hit[np.argmin(abs(hit - decided))]}")
 
 
+def test_a_reused_controller_does_not_carry_state_between_runs(subject):
+    """A controller handed to two runs must not start the second with the first's insulin.
+
+    Nothing cleared it, so two runs of one subject at one seed came out different and 169
+    doses crossed between them. `simulate_cohort` with a plain `controller=` object shares
+    one instance across every subject at the default worker count, so each inherited the
+    last one's ledger.
+    """
+    from timsim.controller import reference as R
+    from timsim.therapy import profile as profile_mod
+
+    prof = profile_mod.for_subject(subject)
+    ctrl = R.ReferenceAID(subject, profile=prof)
+    layers = ("physiology", "behaviour", "sensor", "site")
+    a = simulate(subject, days=2, seed=11, controller=ctrl, profile=prof, layers=layers)
+    b = simulate(subject, days=2, seed=11, controller=ctrl, profile=prof, layers=layers)
+    assert np.array_equal(a.cgm, b.cgm)
+
+
+def test_resetting_a_controller_clears_the_index_into_its_own_dose_list(subject):
+    """`reset` cleared the dose list and left `_pending` indexing into it.
+
+    A run ending on a step that gave a bolus leaves one pending, so the failure landed on
+    the next run's first cycle rather than on the last one's.
+    """
+    from timsim.controller import reference as R
+    from timsim.therapy import profile as profile_mod
+
+    ctrl = R.ReferenceAID(subject, profile=profile_mod.for_subject(subject))
+    ctrl.doses.append((0.0, 1.0))
+    ctrl._pending = 0
+    ctrl.reset()
+    assert ctrl._pending is None
+    assert ctrl.doses == []
+
+
 def test_the_meal_stream_does_not_move_when_a_component_is_added(subject):
     """Streams are keyed on purpose, so a component added later leaves the others alone."""
     from timsim.simulation.run import stream
