@@ -5,27 +5,47 @@ two programmes are kept together because their limitations are opposite: Boost w
 records of real people and cannot produce a counterfactual, and this one can produce a
 counterfactual and cannot guarantee its people resemble real ones.
 
-| # | Study | Question | Answer |
+The series was withdrawn in August 2026 and is being rebuilt. The hepatic defence gain was
+refitted from 0.20 to 0.05 across a hundred and fifty adults, and it enters every simulated
+minute, so no figure measured under the old value can be quoted beside one measured under the
+new. `examples/rebuild_all.sh` produces the replacement set, retitrating the population first
+because titrated settings are an output of the physiology as well as of the population. Issue 25
+in [ISSUES.md](../ISSUES.md) records what moved and why.
+
+## What each study answers, and what supplies its figures
+
+| # | Study | Question | Measurement |
 |---|---|---|---|
-| 00 | The simulator | What is this and what can it answer? | The frame the rest work under |
-| 01 | Driving shipped algorithms | Can the real code run instead of a port? | Yes; the port was costing 41% on dose |
-| 02 | The layer ladder under four drivers | Which layers change the person rather than the run? | Twelve of forty-seven movements |
-| 03 | A statistic that could not see | Does the drift signature measure the person? | No. It reads the controller's own thermostat |
-| 04 | Sensitivity detection | Does missing autosens explain oref0's hypoglycaemia? | No. Built it; nothing moved |
-| 05 | Where a low comes from | Why rebound twice as often as real people? | Not the dose, the response, or the treated share |
-| 06 | Four mechanisms for realism | Can absorption, activity or slow sensitivity close the gaps? | One of four; its refusal of the fourth was corrected in August 2026 |
-| 07 | A gap that was not there | Why do meals peak 45 minutes early? | They do not. The clocks started at different events |
-| 08 | No floor under a falling glucose | Why do runs fail to complete? | On the bare model glucose falls to zero; on the layered bench failure inverts to hyperglycaemia |
-| 09 | Capability | What can this be used for? | Nine of ten signatures inside the real range |
+| 00 | The simulator | What is this and what can it answer? | framing only |
+| 01 | Driving shipped algorithms | Can the real code run instead of a port? | `bench_matrix.json` |
+| 02 | The layer ladder under four drivers | Which layers change the person rather than the run? | `layer_ladder.json` |
+| 03 | A statistic that could not see | Does the drift signature measure the person? | `layer_ablation.json` |
+| 04 | Sensitivity detection | Does missing autosens explain oref0's hypoglycaemia? | `oref_autosens_{on,off}.json` |
+| 05 | Where a low comes from | Why rebound more often than real people? | `bench_matrix.json`, rescue counts |
+| 06 | Four mechanisms for realism | Can absorption, activity or slow sensitivity close the gaps? | `layer_ablation.json` |
+| 08 | No floor under a falling glucose | Why do runs fail to complete? | `bench_matrix.json`, terminations |
+| 09 | Capability | What can this be used for? | `capability` log |
+| 10 | Counterregulation | What does the model do as glucose falls, against people? | `hypo_defence_gain.json`, clamp |
+| 11 | Two benches | How much does the bench itself decide? | `two_benches.json` |
+| 12 | Titration | What do settings measured from physiology cost? | titration logs |
+| 13 | Configuration | How far does configuration move a benchmark? | `bench_matrix.json` |
+| 15 | What S2008 misses | Where does the model depart from people? | [PADOVA_LIMITS.md](../PADOVA_LIMITS.md) |
+
+Two results are papers rather than studies, because each carries a claim against real
+populations rather than a property of the package.
+
+[The validation paper](../paper/validation_paper.md) asks whether the layers move the bare model
+towards a real closed-loop cohort, measured against DCLP3 and the OpenAPS Data Commons in units
+of the spread between real people. `distance_to_real.json` and `cohort_variation.json` supply it.
+
+The meal behaviour paper asks what the model does with carbohydrate, and what withdrawing meal
+announcement is worth under two algorithms, against real uncovered meals from the Commons and
+against the CLOSE-IT trial. `meal_response.json`, `real_meals.json` and the announcement arms of
+`bench_matrix.json` supply it. Study 07, on meal peak timing, is folded into it: the finding that
+the peak arrives inside the real range once the two clocks are started at the same event belongs
+with the rest of the meal work rather than on its own.
 
 The reference documents stay here, because they describe the code rather than the work:
 [MODEL.md](../MODEL.md) for UVA/Padova itself, [SIMULATOR.md](../SIMULATOR.md) for what this
 package puts on top, and [FIDELITY.md](../FIDELITY.md) and [LADDER.md](../LADDER.md) for the
 measurements the studies produced.
-
-Every study was audited in August 2026 against the measurements in `docs/measurements/`, after
-the population was reseeded and the real-data anchors were remeasured.
-[STUDIES_AUDIT.md](../STUDIES_AUDIT.md) records what survived, what was corrected and what
-still needs rerunning. The short version is that every simulated number in every study was
-measured on a population that can no longer be rebuilt, two studies carried a conclusion that
-did not survive, and the rest stand on their reasoning with their figures pending a rerun.
