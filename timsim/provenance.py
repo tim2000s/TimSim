@@ -44,7 +44,10 @@ def _dirty():
     out = _git("status", "--porcelain")
     if out is None:
         return None
-    paths = [ln[3:].split(" -> ")[-1].strip().strip('"') for ln in out.splitlines() if ln.strip()]
+    # The porcelain prefix is two status characters, but the path follows after a variable
+    # amount of space depending on whether the change is staged, so it is not a fixed slice.
+    paths = [ln[2:].strip().split(" -> ")[-1].strip('"')
+             for ln in out.splitlines() if ln.strip()]
     return bool([p for p in paths if not p.startswith(NOT_CODE)])
 
 
