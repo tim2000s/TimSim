@@ -47,7 +47,7 @@ say "=== overnight run, cohorts of $COHORT_N, $REPLICATES replicates, $WORKERS w
 
 # 1. Wait for the population, then check growing it preserved what was already measured.
 while pgrep -f grow_population.py > /dev/null; do sleep 30; done
-stage append_check "" "$PY" examples/check_append.py
+stage append_check "" env EXPECT_N="${EXPECT_N:-600}" "$PY" examples/check_append.py
 if ! grep -q "APPEND-ONLY" "$LOGS/append_check.log"; then
   say "the grown population does not contain the old one; stopping before anything is built on it"
   exit 1
@@ -55,12 +55,14 @@ fi
 
 # 2. Cohorts, and the replicate plan, both against the population now on disk.
 stage cohorts "" "$PY" examples/build_cohorts.py
+
+# 3. Titration before planning the replicates, because the plan reads the titration store and
+#    the store refuses to be read against a population it was not fitted to. Parallel across
+#    subjects, sequential within one, since a subject's ladder stops at the weakest setting
+#    that clears its floors.
+stage titrate "" "$PY" examples/titrate_cohort.py --cohort recorded --workers "$WORKERS"
 stage replicate_plan "" "$PY" examples/cohort_replicates.py --plan-only \
       --n "$COHORT_N" --replicates "$REPLICATES"
-
-# 3. Titration. The long pole: parallel across subjects, sequential within one, since a
-#    subject's ladder stops at the weakest setting that clears its floors.
-stage titrate "" "$PY" examples/titrate_cohort.py --cohort recorded --workers "$WORKERS"
 stage titrate_replicates "" "$PY" - <<'INNER'
 import json, os, subprocess, sys
 sys.path.insert(0, os.environ["PYTHONPATH"].split(":")[0])

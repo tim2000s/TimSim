@@ -8,8 +8,22 @@ import sys; sys.path.insert(0,"/Users/timstreet/StudioProjects/TimSim")
 import numpy as np, pandas as pd
 old = pd.read_csv("/Users/timstreet/.timsim-population-backup/pop100/vpop_params.csv")
 new = pd.read_csv("/Users/timstreet/StudioProjects/TimSim/timsim/population/params/vpop_params.csv")
-num = [c for c in old.columns if pd.api.types.is_numeric_dtype(old[c])]
+# `i` is a row identifier, not a parameter. Nothing reads it, and its numbering scheme
+# changed once on purpose: it used to be a counter across the whole run, so growing the
+# population renumbered every class after the first. It is now offset per class, which is
+# what makes growing append-only, and comparing the two schemes shows a difference of
+# exactly one class offset. The physiology is what has to match.
+num = [c for c in old.columns
+       if pd.api.types.is_numeric_dtype(old[c]) and c != "i"]
+import os
+EXPECT = int(os.environ.get("EXPECT_N", "0"))
 print(f"old {len(old)} subjects, new {len(new)}")
+if EXPECT and len(new) != EXPECT:
+    # A gate that cannot fail when the thing it guards did not happen is not a gate. Growing
+    # the population once crashed after doing the work, leaving the old file in place, and this
+    # check passed by comparing that file against itself.
+    print(f"\nPOPULATION IS NOT THE SIZE ASKED FOR: {len(new)} against {EXPECT}")
+    raise SystemExit(1)
 ok = True
 for klass in ("adult","adolescent","child"):
     o = old[old.Name.str.startswith(klass)].reset_index(drop=True)

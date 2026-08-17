@@ -26,10 +26,13 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, REPO)
 MEASUREMENTS = os.path.join(REPO, "docs", "measurements")
 
+import argparse
 import json
 import time
 import numpy as np
 from concurrent.futures import ProcessPoolExecutor
+
+from timsim import provenance
 
 DAYS, SEED = 28, 11
 LAYERS = ("physiology", "behaviour", "sensor", "site")
@@ -83,6 +86,15 @@ def one(job):
 
 
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--shard", default="1/1",
+                    help="run one slice of the run list, as i/n. Slices are taken by "
+                         "position after the list is built, so every machine builds the same "
+                         "list from the same cohorts and takes a disjoint part of it.")
+    ap.add_argument("--out", default=OUT)
+    a = ap.parse_args()
+    i, n = (int(x) for x in a.shard.split("/"))
+
     from timsim.therapy import titrate
     rec = json.load(open(os.path.join(MEASUREMENTS, "cohorts.json")))
     current = titrate.population_fingerprint()
@@ -96,6 +108,10 @@ def main():
         subjects = [s for s in rec["cohorts"][cohort]["subjects"] if s in titrated]
         for bench, layers, announcement in BENCHES:
             jobs += [(cohort, controller, bench, n, layers, announcement) for n in subjects]
+    total = len(jobs)
+    if n > 1:
+        jobs = jobs[i - 1::n]
+        print(f"shard {i} of {n}: {len(jobs)} of {total} runs", flush=True)
     print(f"{len(PAIRINGS)} pairings, {len(BENCHES)} benches, {len(jobs)} runs", flush=True)
     for cohort, controller in PAIRINGS:
         n = len([s for s in rec["cohorts"][cohort]["subjects"] if s in titrated])
@@ -109,9 +125,11 @@ def main():
                 print(f"  {i}/{len(jobs)} done, {(time.time()-t0)/60:.1f} min", flush=True)
             if row.get("error"):
                 print(f"  ! {row['arm']} {row['name']}: {row['error'][:110]}", flush=True)
-    json.dump({"population": current, "days": DAYS, "seed": SEED, "runs": rows},
-              open(OUT, "w"), indent=1)
-    print(f"\nwrote {OUT} after {(time.time()-t0)/60:.1f} min")
+    json.dump({"population": current, "days": DAYS, "seed": SEED,
+               "shard": {"index": i, "of": n, "runs_in_shard": len(jobs), "runs_total": total},
+               "provenance": provenance.stamp(), "runs": rows},
+              open(a.out, "w"), indent=1)
+    print(f"\nwrote {a.out} after {(time.time()-t0)/60:.1f} min")
 
 
 if __name__ == "__main__":

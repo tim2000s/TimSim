@@ -72,16 +72,23 @@ def main():
     with ProcessPoolExecutor(max_workers=len(CLASSES)) as ex:
         out = list(ex.map(_one_class, [(k, v, a.seed) for k, v in split.items()]))
 
-    rows, therapy = [], []
+    # generate() returns DataFrames, not lists. Concatenating them as lists threw after every
+    # class had finished its work, so an hour of generation was computed and discarded.
+    frames, quests = [], []
     for r in sorted(out, key=lambda r: CLASSES.index(r["klass"])):
-        rows += r["rows"]
-        therapy += r["therapy"]
+        frames.append(r["rows"])
+        quests.append(r["therapy"])
         rep = r["report"]
         print(f"  {r['klass']:11} {len(r['rows']):3d} accepted from "
               f"{rep.get('candidates', '?')} candidates in {r['seconds'] / 60:.1f} min")
 
-    pd.DataFrame(rows).to_csv(os.path.join(PARAMS, "vpop_params.csv"), index=False)
-    pd.DataFrame(therapy).to_csv(os.path.join(PARAMS, "vpop_quest.csv"), index=False)
+    rows = pd.concat(frames, ignore_index=True)
+    therapy = pd.concat(quests, ignore_index=True)
+    if len(rows) != a.n:
+        raise SystemExit(f"asked for {a.n} subjects and accepted {len(rows)}; refusing to "
+                         f"write a population that is not the size requested")
+    rows.to_csv(os.path.join(PARAMS, "vpop_params.csv"), index=False)
+    therapy.to_csv(os.path.join(PARAMS, "vpop_quest.csv"), index=False)
     json.dump({"requested": a.n, "accepted": len(rows), "seed": a.seed, "split": split,
                "per_class": {r["klass"]: r["report"] for r in out}},
               open(os.path.join(PARAMS, "vpop_report.json"), "w"), indent=1)
