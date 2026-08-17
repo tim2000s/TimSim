@@ -225,12 +225,21 @@ def population_fingerprint(path=PARAMS):
 
 
 def save(results, path=STORE, meta=None):
-    """Record a titration, including the subjects it failed on and the trace for each."""
+    """Record a titration, including the subjects it failed on and the trace for each.
+
+    Written to a temporary file and renamed, which is atomic on the same filesystem. Writing
+    in place leaves a truncated file if the process dies partway, and this one takes hours to
+    produce: `load` would refuse the remains, correctly, and the work would be gone.
+    """
     meta = dict(meta or {})
     meta.setdefault("population", population_fingerprint())
     payload = {"meta": meta, "subjects": {r["name"]: r for r in results}}
-    with open(path, "w") as fh:
+    tmp = f"{path}.partial"
+    with open(tmp, "w") as fh:
         json.dump(payload, fh, indent=1, default=str)
+        fh.flush()
+        os.fsync(fh.fileno())
+    os.replace(tmp, path)
     return path
 
 
@@ -259,6 +268,31 @@ def load(path=STORE):
         return None
 
 
+def _positive(value, field, name):
+    """A settings multiplier, checked before it reaches a body.
+
+    The procedure only ever writes values from `SCALES` and `BASAL_SCALES`, so a bad one means
+    the store was edited, merged or partly written rather than produced. The check is here
+    because of what the bad values do rather than because they are expected: a negative scale
+    gives a negative correction factor, and an algorithm dosing against that corrects in the
+    wrong direction on every cycle while every number in the output stays finite and plausible.
+    Zero gives an infinite correction. Neither announces itself.
+    """
+    try:
+        v = float(value)
+    except (TypeError, ValueError):
+        raise RuntimeError(
+            f"{name} has a {field} of {value!r} in the titrated settings, which is not a "
+            f"number. The store has been edited or written by something other than "
+            f"`examples/titrate_cohort.py`.") from None
+    if not np.isfinite(v) or v <= 0.0:
+        raise RuntimeError(
+            f"{name} has a {field} of {v} in the titrated settings. Settings multipliers "
+            f"scale a correction factor and a basal rate, so a value at or below zero doses "
+            f"backwards or not at all rather than weakly. Retitrate this subject.")
+    return v
+
+
 def profile_for(name, path=STORE, **kw):
     """A subject's titrated profile.
 
@@ -281,8 +315,13 @@ def profile_for(name, path=STORE, **kw):
             f"met at any combination tried, so its settings are not the explanation for what "
             f"it does and it should be excluded rather than run at the loosest available.")
     from dataclasses import replace
-    p = profile_mod.for_subject(name, isf_scale=float(rec["scale"]), **kw)
-    b = float(rec.get("basal_scale", 1.0) or 1.0)
+    scale = _positive(rec.get("scale"), "scale", name)
+    # `or 1.0` would be wrong here: zero is falsy, so a stored basal scale of zero became 1.0
+    # and a subject recorded as receiving no basal at all was run at its full rate. Only a
+    # missing or null entry means "unscaled".
+    raw = rec.get("basal_scale", 1.0)
+    b = _positive(1.0 if raw is None else raw, "basal_scale", name)
+    p = profile_mod.for_subject(name, isf_scale=scale, **kw)
     return p if b == 1.0 else replace(p, basal_u_per_hour=p.basal_u_per_hour * b)
 
 

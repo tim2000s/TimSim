@@ -22,7 +22,17 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # What must agree before two sets of results describe the same experiment. Everything else in
 # the stamp is context: useful when a result looks odd, not grounds for refusing to merge.
-BINDING = ("population", "commit", "dirty")
+#
+# `settings` is here because titrated settings are an input to every run, not a derived note.
+# They are generated locally and never committed, so two machines can sit at the same commit
+# with the same population and different settings: titration takes a subject list, and a run
+# that titrated a different subset writes a different store. Every subject's correction factor
+# and basal rate come from it, so shards that disagree are not the same experiment. It was
+# recorded and not enforced, and `merge_shards.py` would have combined them.
+#
+# `simglucose` is here because it is the patient model. The lock file pins it, and two results
+# produced against different versions are two models however well the arithmetic lines up.
+BINDING = ("population", "settings", "commit", "dirty", "simglucose")
 
 
 def _git(*args):

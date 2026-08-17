@@ -165,3 +165,36 @@ def test_capping_the_real_side_actually_caps_it():
     assert len(short) < len(capped)
     # a week at a twelve-hour stride is about thirteen windows a participant
     assert len(short) < 20 * dclp3.REFERENCE["CLC"]["participants"]
+
+
+# ------------------------------------------------------- what counts as one experiment
+def test_shards_with_different_titrated_settings_are_not_merged():
+    """Settings are an input to every run, not a note about one.
+
+    They are generated locally and never committed, so two machines can sit at the same
+    commit with the same population and different settings: titration takes a subject list,
+    and a run over a different subset writes a different store. Every subject's correction
+    factor and basal rate come from it.
+    """
+    from timsim import provenance
+    a = dict(provenance.stamp(), dirty=False)
+    b = dict(a, settings="0" * 16)
+    with pytest.raises(RuntimeError, match="not the same experiment"):
+        provenance.check_compatible([a, b])
+
+
+def test_shards_from_different_patient_models_are_not_merged():
+    from timsim import provenance
+    a = dict(provenance.stamp(), dirty=False)
+    b = dict(a, simglucose="0.0.0-not-a-real-version")
+    with pytest.raises(RuntimeError, match="not the same experiment"):
+        provenance.check_compatible([a, b])
+
+
+def test_context_fields_do_not_block_a_merge():
+    """A second machine is the point of sharding, so its name and interpreter are context."""
+    from timsim import provenance
+    a = dict(provenance.stamp(), dirty=False)
+    for field, value in (("host", "another-machine"), ("python", "3.99.0"),
+                         ("when", "1999-01-01T00:00:00+00:00")):
+        provenance.check_compatible([a, dict(a, **{field: value})])

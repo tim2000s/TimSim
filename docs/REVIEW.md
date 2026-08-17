@@ -672,3 +672,56 @@ An audit for tests that cannot fail found one: `test_closing_twice_is_harmless` 
 and passes if `close` is a no-op, though its subject is idempotence and "does not raise" is the
 claim. Three `pytest.raises` blocks carry no `match`, and all three pin a custom exception type,
 which is the assertion. The remaining seventeen pin the message.
+
+# Ninth pass: adversarial
+
+Running the guards against inputs built to slip past them, rather than reading them.
+
+## R33. The titration store was trusted for values that reach a body (severe, corrected)
+
+`profile_for` read `scale` and `basal_scale` and multiplied a correction factor and a basal
+rate by them without checking either. Probed against a store with each field corrupted:
+
+    scale is negative        ACCEPTED, correction factor -28.5 mg/dL per unit
+    scale is zero            ACCEPTED, correction factor 0, so an infinite correction
+    scale is nan             ACCEPTED
+    basal_scale is negative  ACCEPTED, negative basal
+
+A negative correction factor is the dangerous one, because an algorithm dosing against it
+corrects in the wrong direction on every cycle while every number in the output stays finite and
+plausible. The procedure itself only writes values from `SCALES` and `BASAL_SCALES`, so a bad
+one means the store was edited, merged or partly written; the check is here because of what the
+values do, not because they are expected.
+
+A second defect surfaced under the same probe. `rec.get("basal_scale", 1.0) or 1.0` treats a
+stored zero as missing, so a subject recorded as receiving no basal ran at its full rate. Only
+a missing or null entry means unscaled now.
+
+`save` also wrote in place. A titration takes hours and a process dying partway left a truncated
+file, which `load` refuses, correctly, losing all of it. It writes to a temporary file and
+renames, which is atomic on one filesystem.
+
+## R34. Two shards with different titrated settings would have merged (moderate, corrected)
+
+`BINDING` was `("population", "commit", "dirty")`, so `check_compatible` accepted stamps
+differing in the titrated settings digest and in the simglucose version. Both are inputs.
+
+Settings are generated locally and never committed, so two machines can sit at the same commit
+with the same population and different settings: titration takes a subject list, and a run over
+a different subset writes a different store. Every subject's correction factor and basal rate
+come from it. `docs/REMOTE_WORKER.md` tells the second machine to copy the store across, and
+nothing enforced that it had. simglucose is the patient model, pinned in the lock file, and two
+results from different versions are two models.
+
+Both are binding now, with `python`, `host` and `when` left as context, which is what sharding
+across machines requires.
+
+## What the probes found nothing wrong with
+
+The population fingerprint guard refuses a missing fingerprint, a wrong one, and a subject
+marked as not titrated, and refuses a subject absent from the store rather than falling back.
+The distance measurement refuses a comparison built from too few paired survivors, checked by
+thinning a real matrix until three subjects completed both arms. The bridged controllers close
+their node processes on `close`, on garbage collection without it, and on a run that raises
+midway. Parameters passed into `simulate` are copied, so a caller's object is not mutated and
+two runs from one object agree to the bit.

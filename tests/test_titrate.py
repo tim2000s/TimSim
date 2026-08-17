@@ -7,6 +7,7 @@ follows rather than the numbers one run produces.
 import numpy as np
 import pytest
 
+from timsim import population
 from timsim.therapy import titrate as T
 
 
@@ -135,3 +136,53 @@ def test_titration_runs_under_a_fixed_reference_regimen():
     seen, fake = _recorder(lambda isf, bas: True)
     T.titrate_subject("adult#001", simulate=fake)
     assert {c for _, _, c in seen} == {T.REFERENCE_DRIVER}
+
+
+# ------------------------------------------------------- what the store is trusted for
+def _store_with(tmp_path, name, **overrides):
+    """A one-subject store carrying the current population's fingerprint."""
+    import json
+    rec = {"name": name, "scale": 1.0, "basal_scale": 1.0, "found": True}
+    rec.update(overrides)
+    path = tmp_path / "settings.json"
+    path.write_text(json.dumps(
+        {"meta": {"population": T.population_fingerprint()}, "subjects": {name: rec}}))
+    return str(path)
+
+
+@pytest.mark.parametrize("field,value", [
+    ("scale", -1.0), ("scale", 0.0), ("scale", float("nan")), ("scale", None),
+    ("basal_scale", -0.5), ("basal_scale", 0.0),
+])
+def test_a_settings_multiplier_at_or_below_zero_is_refused(tmp_path, field, value):
+    """These reach a body, so they are checked before they get there.
+
+    A negative scale gives a negative correction factor and an algorithm dosing against it
+    corrects in the wrong direction on every cycle, with every number in the output finite
+    and plausible. Zero gives an infinite correction, or a subject on no basal at all.
+    """
+    name = population.names("adult")[0]
+    path = _store_with(tmp_path, name, **{field: value})
+    with pytest.raises(RuntimeError, match="titrated settings"):
+        T.profile_for(name, path=path)
+
+
+def test_a_basal_scale_of_zero_is_not_read_as_unscaled(tmp_path):
+    """`x or 1.0` treats a stored zero as missing, which is the opposite of what it means."""
+    name = population.names("adult")[0]
+    with pytest.raises(RuntimeError):
+        T.profile_for(name, path=_store_with(tmp_path, name, basal_scale=0.0))
+    # absent and null both mean unscaled, and still do
+    for override in ({}, {"basal_scale": None}):
+        prof = T.profile_for(name, path=_store_with(tmp_path, name, **override))
+        assert float(np.median(prof.basal_u_per_hour)) > 0
+
+
+def test_the_store_is_written_atomically(tmp_path):
+    """A titration takes hours; a half-written store would lose all of it."""
+    import os
+    path = str(tmp_path / "s.json")
+    T.save([{"name": "x", "found": True, "scale": 1.0, "basal_scale": 1.0}],
+           path=path, meta={"population": T.population_fingerprint()})
+    assert os.path.exists(path)
+    assert not os.path.exists(path + ".partial")
