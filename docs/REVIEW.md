@@ -340,3 +340,54 @@ Not yet reviewed at depth, and therefore not cleared: `validation/checks.py`, `b
 `reference.py`; `person/activity.py`; the internals of `analysis/signatures.py`; and most of
 `examples/`. The oref controller is the largest gap, since it drives three of the four cohort
 pairings.
+
+## R16. oref was told its carbohydrate was entered in 1970 (moderate, corrected)
+
+`controller/oref.py` sent `meal_data.lastCarbTime` as `0`, the epoch, while `currentTime`
+advances with the simulation. Traced through the shipped `determine-basal.js` rather than
+inferred:
+
+    lastCarbAge   = (systemTime - meal_data.lastCarbTime) / 60000        ~28,000,000 min
+    remainingCATime = remainingCATimeMin + 1.5 * lastCarbAge / 60        ~700,000 h
+    totalCI       = ci / 5 * 60 * remainingCATime / 2                    unbounded
+    totalCA       = totalCI / csf                                        unbounded
+    remainingCarbs = max(0, mealCOB - totalCA - ...)                     collapses to 0
+    remainingCIpeak = remainingCarbs * csf * 5 / 60 / (remainingCATime/2) 0
+
+So on every cycle where carbohydrate impact was being observed, the algorithm predicted no
+further carbohydrate absorption at all, throughout every announced meal. That biases it towards
+under-delivering, and oref0 SMB is one of the two algorithms the validation work compares.
+
+Corrected by carrying the clock of the last carbohydrate the loop was told about.
+
+The consequence was measured rather than asserted, three subjects over five days, paired, with
+the old behaviour reproduced exactly by pinning the carb clock so the bridge sends zero again:
+
+    subject        arm      U/5d   TIR%   >180%   <70%    mean
+    adult#001      epoch   311.1   79.6    12.8   7.64   124.8
+    adult#001      fixed   311.7   80.2    12.7   7.08   125.0
+    adult#002      epoch   298.5   88.0     9.4   2.57   121.9
+    adult#002      fixed   297.9   88.3     9.2   2.57   122.2
+    adult#003      epoch   378.0   75.5    19.8   4.72   141.1
+    adult#003      fixed   379.7   75.3    19.7   5.00   140.6
+
+Insulin moves about 0.2 per cent and time in range under six tenths of a point, which is inside
+what a single subject varies by between months. The input was wrong and the outcome barely
+moved, because the suppressed prediction is one of several oref takes a minimum over and is
+usually not the binding one. Both halves are worth stating: the bridge was misreporting its
+inputs, and no published figure turns on it.
+
+## R17. Two of oref's meal inputs are constants, and one of them is load-bearing (moderate)
+
+`meal_data.slopeFromMaxDeviation` and `slopeFromMinDeviation` are sent as zero. oref computes
+them from how its observed deviations moved over the previous hour and combines them as
+`min(slopeFromMaxDeviation, -slopeFromMinDeviation / 3)`, then uses the result to decay
+predicted carbohydrate impact along the unannounced-meal curve.
+
+Zero means that curve never decays, so the unannounced-meal prediction is more persistent here
+than in a real deployment. That is the exact path the meal announcement work exercises, so it
+bears on the withdrawal result directly.
+
+Not repaired: reconstructing them needs a record of predicted against observed deviation that
+this bridge does not keep. Recorded in the module docstring beside the inputs that are absent
+by choice, so it is not mistaken for one of them.

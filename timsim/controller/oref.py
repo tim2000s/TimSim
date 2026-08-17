@@ -31,6 +31,26 @@ two cancellation branches that exist to catch a pump disagreeing with the loop; 
 simulated pump delivers what it is asked for, so there is nothing for them to catch. Bolus
 wizard fields are false throughout, since nothing here uses one.
 
+One further input is supplied as a constant, and it is a real simplification rather than an
+absence with no consequence. `meal_data.slopeFromMaxDeviation` and `slopeFromMinDeviation`
+are sent as zero, where oref computes them from how its observed deviations have moved over
+the last hour. It combines them as `min(slopeFromMaxDeviation, -slopeFromMinDeviation / 3)`
+and uses the result to decay predicted carb impact along the unannounced-meal curve, so a
+zero means that curve never decays and the unannounced-meal prediction is more persistent
+here than in a real deployment. Reconstructing them needs a record of predicted against
+observed deviation that this bridge does not keep. Any result resting on the
+unannounced-meal path should be read with that in mind.
+
+`meal_data.lastCarbTime` was a constant too, and that one was a defect rather than a
+simplification. It was sent as the epoch, so whenever carbohydrate was on board oref computed
+a last-carb age of about 28 million minutes, and `remainingCATime = remainingCATimeMin + 1.5 *
+lastCarbAge / 60` became some 700,000 hours. That inflates `totalCA` past any real
+carbohydrate amount, so `remainingCarbs = max(0, mealCOB - totalCA)` collapsed to zero on
+every cycle where carb impact was being observed, and with it `remainingCIpeak`. The
+algorithm was therefore predicting no further carbohydrate absorption throughout every
+announced meal, which biases it towards under-delivering. It now carries the clock of the
+last carbohydrate this loop was told about.
+
 Autosens is computed by `controller/autosens.py`, which is the one part of this arm that is
 reimplemented rather than shipped, for the reasons set out there. `autosens=None` runs it and
 a number pins the ratio, which is what the comparison between the two uses.
@@ -98,6 +118,10 @@ class OrefController(LoopInputs, Controller):
         self.temp_rate = None          # U/hr the pump is running, or None for the schedule
         self.temp_left = 0.0           # minutes of that temporary basal still to run
         self.last_bolus_min = -600.0
+        # When carbohydrate last reached this loop. oref divides by the age of the last carb
+        # entry to decide how long absorption has left to run, so sending the epoch made every
+        # cycle with carbs on board believe they were entered decades ago.
+        self.last_carb_min = -600.0
         self.suggestions = []          # every oref result, for the response profile
 
         self.proc = subprocess.Popen(
@@ -190,6 +214,8 @@ class OrefController(LoopInputs, Controller):
 
         grams = float(info.get("meal", 0.0)) * sample
         cob = self.observe_carbs(grams, sample)
+        if grams > 0.0:
+            self.last_carb_min = minute
         scheduled_rate = self.profile.basal_at(minute) * 60.0
         now = self._clock(minute)
         isf, cr = self.profile.isf_at(minute), self.profile.cr_at(minute)
@@ -223,7 +249,8 @@ class OrefController(LoopInputs, Controller):
             "iob": curve,
             "meal_data": {"carbs": cob, "mealCOB": cob, "boluses": 0,
                           "lastBolusTime": self._clock(self.last_bolus_min),
-                          "lastCarbTime": 0, "bwFound": False, "bwCarbs": 0,
+                          "lastCarbTime": self._clock(self.last_carb_min), "bwFound": False,
+                          "bwCarbs": 0,
                           "slopeFromMaxDeviation": 0, "slopeFromMinDeviation": 0,
                           "maxDeviation": 0, "minDeviation": 0},
             "autosens": {"ratio": ratio},
