@@ -33,6 +33,21 @@ def _git(*args):
         return None
 
 
+# Results are written into the repository, so a run dirties the working tree by completing.
+# Counting that as dirty would mark every result unreproducible and make the flag useless, so
+# the question asked is narrower: did the code differ from the commit it claims to be.
+NOT_CODE = ("docs/",)
+
+
+def _dirty():
+    """Whether anything outside the documentation and results differs from HEAD."""
+    out = _git("status", "--porcelain")
+    if out is None:
+        return None
+    paths = [ln[3:].split(" -> ")[-1].strip().strip('"') for ln in out.splitlines() if ln.strip()]
+    return bool([p for p in paths if not p.startswith(NOT_CODE)])
+
+
 def _population():
     from .therapy import titrate
     return titrate.population_fingerprint()
@@ -50,11 +65,10 @@ def _settings_digest():
 
 def stamp(**extra):
     """Everything needed to say whether two results belong to the same experiment."""
-    dirty = _git("status", "--porcelain")
     out = {"population": _population(),
            "settings": _settings_digest(),
            "commit": _git("rev-parse", "HEAD"),
-           "dirty": bool(dirty) if dirty is not None else None,
+           "dirty": _dirty(),
            "host": platform.node(),
            "python": sys.version.split()[0],
            "platform": platform.platform(),
