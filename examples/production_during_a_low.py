@@ -14,8 +14,11 @@ measurement is wrong about the model; only one of them is comparable with a publ
 import numpy as np
 from concurrent.futures import ProcessPoolExecutor
 
+from timsim import seeds
+
 SUBJECTS = [f"adult#{i:03d}" for i in range(1, 21)]
-DAYS, SEED = 28, 11
+
+DAYS, SEED = 28, seeds.BENCH
 LAYERS = ("physiology", "behaviour", "sensor", "site")
 LOW = 54.0                    # mg/dL, the threshold a low is counted below
 EUGLYCAEMIC = (90.0, 130.0)   # mg/dL, the band the comparison is made against

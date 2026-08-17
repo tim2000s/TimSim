@@ -31,6 +31,7 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from timsim import simulate                                          # noqa: E402
+from timsim import seeds
 from timsim.controller import oref as O                              # noqa: E402
 from timsim.population import cohort, names                          # noqa: E402
 from timsim.validation import compare as C                           # noqa: E402
@@ -81,7 +82,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--subjects", type=int, default=20)
     p.add_argument("--days", type=int, default=28)
-    p.add_argument("--seed", type=int, default=0)
+    p.add_argument("--seed", type=int, default=seeds.BENCH)
     p.add_argument("--workers", type=int, default=8)
     p.add_argument("--target", type=float, default=None,
                    help="glucose target in mg/dL; the real cohort runs near 90 where this "

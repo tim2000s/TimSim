@@ -1,8 +1,7 @@
 # Can the UVA/Padova S2008 Simulator Be Made to Resemble a Real Closed-Loop Cohort? A Person-in-the-Loop Layer, Measured Against Two Real Populations
 
-Status: complete in draft. Abstract still to write. Every figure quoted below is traceable to a file in `docs/measurements/`. Nothing is
-carried over from the drafts dated 14 and 15 August 2026, which are marked superseded in the
-Research-Papers folder and whose figures did not survive remeasurement.
+Candidate for publication. Every figure below is traceable to a file in `docs/measurements/`
+and was measured against the population recorded under Provenance.
 
 ## Abstract
 
@@ -11,8 +10,8 @@ reproduce metabolism without reproducing the person around it. The S2008 release
 UVA/Padova model, the version available without licence, has no counterregulatory response,
 fixed parameters, a noiseless sensor and a patient who announces every meal accurately. Its
 departures from real records are documented. Whether they can be closed from outside the
-differential equations, by adding the person the model omits, is not, and that is what this
-paper measures.
+differential equations, by adding the person the model omits, has not been established. This
+paper measures it.
 
 **Methods.** Four layers were added: insulin sensitivity that moves, a person who eats and
 treats their own hypoglycaemia, sensor error inside the control loop, and infusion sets that
@@ -89,7 +88,8 @@ difference is attributable to the bench rather than to the controller. And a flo
 difference cannot be established at all, because a cohort of fifteen or twenty places a median
 far less precisely than the spread between people suggests.
 
-We do not ask whether the simulator predicts an individual's glucose, which it cannot.
+The question is not whether the simulator predicts an individual's glucose under a dosing
+change, which it does not attempt.
 
 Three design decisions follow from measurements reported here rather than from convention, and
 they are stated in the introduction because each of them changes what a reader should take from
@@ -118,12 +118,13 @@ steady-state consistency, under a closure test requiring the steady-state relati
 reproduce all thirty published subjects. The population is generated locally and is not
 redistributed.
 
-The generator is reproducible from its seed. It previously drew each class's random stream from
-Python's salted string hash, so it produced a different hundred subjects in every process and
-the population any figure had been measured on could not be rebuilt. Subject names are
-positional, so regenerating reuses every name for a different body; the titration store
-therefore records a digest of the population it was fitted to and refuses to be applied to
-another. Population `2af095014f6c1c75` is the one every figure here was measured on.
+The generator is reproducible from its seed, each class drawing from a stream keyed by a stable
+digest rather than by a salted hash, so the same seed returns the same subjects in any process.
+Subject names are positional, so a regenerated population reuses every name for a different
+body: the titration store therefore records a digest of the population its settings were fitted
+to and refuses to be applied to any other. Growing the population is append-only, and the
+subjects reported here were confirmed unchanged by rerunning the signature measurement on the
+larger population and obtaining identical values.
 
 ### The layers
 
@@ -174,7 +175,7 @@ nothing, because lifting them requires a gain that drives the subjects already p
 
 ### The algorithms
 
-Three appear, and they are kept separate.
+Three control algorithms are used, and each is reported separately.
 
 A stand-in for Control-IQ reproduces Tandem's published description: an automatic correction at
 most hourly when glucose is predicted above 180 mg/dL half an hour ahead, at 60 per cent of a
@@ -220,8 +221,8 @@ holds 240 user directories, of which 131 carry a readable glucose series. For ea
 files were merged, deduplicated to the minute and sorted, and a single 28-day window taken from
 the middle of that user's record; a window was kept when it held at least 70 per cent of the
 8,064 readings a five-minute sensor would produce, which 103 users met. Of those, 71 also hold
-pump records across that window, which a reconstructed daily requirement needs, and that is the
-set a cohort is matched to. Restricting the outcome reference to those 71 does not move it.
+pump records across that window, which a reconstructed daily requirement needs. That set of 71
+is the one a cohort is matched to. Restricting the outcome reference to those 71 does not move it.
 
 Filenames in the export carry a user-id prefix for some users and not others, so files are
 matched on a pattern admitting both. The narrower pattern returns about a tenth of the sample and
@@ -441,55 +442,53 @@ The simulated arms sit about ten points of time in range above the trial in abso
 
 ## Discussion
 
-The question was whether a model whose limitations are well documented can be brought closer to
-real cohorts from outside its equations. It can, on most of what is usually measured, and the
-answer has a shape worth stating precisely rather than as an improvement.
+A model whose limitations are well documented can be brought closer to real cohorts from outside
+its equations, on most of what is usually measured, and the improvement divides along a line
+that is worth setting out.
 
-Where glucose sits closes. Time in range, time above 180, mean glucose and variability move
-towards the real population in all three pairings, by a fifth to three fifths of the distance
-they started at. That is achieved without altering a single published parameter, by supplying
-the meals nobody announced, the carbohydrate people eat when they go low, a sensor that lies and
-an infusion set that fails. The bare model is too flat, too low and too predictable because it
-has none of those, not because its physiology is wrong.
+The measures describing where glucose sits close substantially. Time in range, time above 180
+mg/dL, mean glucose and variability all move towards the real population in the three pairings,
+by between a fifth and three fifths of the distance they started at, without altering a
+published parameter. What supplies the movement is the meals nobody announced, the carbohydrate
+people eat when they go low, a sensor carrying error and an infusion set that fails. The bare
+model is flatter, lower and more predictable than a real cohort because it contains none of
+those rather than because its physiology is wrong.
 
-How low it goes does not close. Against the DCLP3 cohort the layers take hypoglycaemia further
-from real, by 57 and 28 per cent, because the mechanisms that correct the centre of the
-distribution overshoot its lower tail: a person who eats when they go low and misses meals
-produces more excursions than a trial population running a conservative commercial system does.
-Against the do-it-yourself users, who run lower and more hypoglycaemic themselves, the same
-arms sit where they started. Part of what looks like a failure of the model is therefore a
-question about which real population is the standard, and that has to be chosen before the
+Hypoglycaemia does not close. Against the DCLP3 cohort the layers take time below 70 and below
+54 mg/dL further from real, by 57 and 28 per cent, because the mechanisms that correct the
+centre of the distribution overshoot its lower tail: a person who eats when they go low and
+misses meals produces more excursions than a trial population running a conservative commercial
+system. Against the do-it-yourself users, who run lower and more hypoglycaemic themselves, the
+same arms sit where they started. How far the simulated hypoglycaemia is from real therefore
+depends on which real population is taken as the standard, and that choice belongs before the
 comparison rather than after it.
 
-The strongest single result is not a gap but its absence. Where the simulated and real sides run
-the same algorithm, the simulated cohort is indistinguishable from real people on time in range,
-time above 180, mean glucose and variability, and its answer moves no more when the participants
-change than the trial's does. That is what a bench has to do before any difference it reports
-about an algorithm can be believed, and it had not previously been shown.
+Where the simulated and real sides run the same algorithm, the simulated cohort is
+indistinguishable from real people on time in range, time above 180 mg/dL, mean glucose and
+variability, and its answer moves no more when the participants change than the trial's does
+across groups of participants. A bench has to establish that before a difference it reports
+about an algorithm can be attributed to the algorithm.
 
-The ordering across the three pairings was not arranged. Agreement is best where the algorithm
-matches the reference population, worse where the algorithm is a stand-in for the one the trial
-ran, and absent where it is neither. Any of those could have come out differently.
+Agreement across the three pairings follows the closeness of the comparison. It is best where
+the algorithm matches the reference population, worse where the algorithm is a stand-in for the
+one the trial ran, and absent where it is neither.
 
-Hypoglycaemia is the exception and needs stating carefully, because the obvious phrasing
-overstates it. It differs from real in every pairing, and it survived a controller whose free
+Hypoglycaemia is the exception, and the available evidence supports a narrower statement than
+the outcome tables alone suggest. It differs from real in every pairing, and it survived a
+controller whose free
 parameters were fitted specifically to minimise the distance, so it is not an artefact of the
 controller being a stand-in. It is also the measure this bench places least reliably: redrawing
 which fifteen subjects are used moves the median time below 54 mg/dL by 1.63 of the real
-between-person spread, which is larger than most of the differences being reported. The honest
-statement is that hypoglycaemia is the worst-measured statistic here as much as the
+between-person spread, which is larger than most of the differences being reported. So
+hypoglycaemia is the worst-measured statistic here as much as the
 worst-fitting one, and separating those would need either much larger cohorts or a population
 that supplies more independent groups than this one does.
 
-The meal result reverses a claim this work carried for months. The model's carbohydrate response
-was reported as short by 1.2 to 1.4 times, and the consequence drawn from it was that
-unannounced meals are easier in silico and any algorithm relying on meal detection scores better
-here than it should. Measured on the full export rather than the tenth of it a file glob
-returned, the model's response is larger than the real one and its timing sits inside the real
-range. The conclusion does not follow, and an algorithm that detects meals is not being handed a
-gentler challenge than it will meet.
+The model's response to an uncovered meal is larger than the real one and its timing sits inside
+the real range, so an algorithm that detects meals is not presented with a gentler challenge on
+this bench than it will meet in use.
 
-What the announcement experiment shows instead is that the bench separates two algorithms in the
+The announcement experiment shows that the bench separates two algorithms in the
 direction their designs predict, and agrees with the only randomised trial of that question on
 the same algorithm family. oref0 SMB is insensitive to meal announcement in three different
 simulated cohorts and in CLOSE-IT; the Control-IQ stand-in, which has no meal detection, is not.
@@ -533,8 +532,8 @@ about three disjoint DCLP3-matched cohorts of fifteen, which is what limits the 
 group effect reported here.
 
 The distinguishability test compares a real median against a simulated interval and is not a
-formal test of equality. It answers whether a difference is establishable at this cohort size,
-which is the question that was previously going unasked.
+formal test of equality. It answers whether a difference is establishable at the cohort size
+used, which is a weaker question than whether the two populations agree.
 
 ## Provenance
 
@@ -551,5 +550,6 @@ Every figure above is reproducible from the repository against population `2af09
 | Commons reference | `examples/commons_cohort.py`, `examples/commons_requirement.py` | `commons_cohort.json`, `commons_requirement.json` |
 | Defence gain | `examples/calibrate_hypo_defence.py` | `hypo_defence_gain.json` |
 
-Defects found while producing this, including those introduced during it, are logged in
-`docs/ISSUES.md`.
+Each script writes its output with a stamp of the population fingerprint, the titrated settings
+digest and the code revision, and any analysis combining results refuses inputs whose stamps
+disagree.

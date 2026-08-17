@@ -34,7 +34,9 @@ from concurrent.futures import ProcessPoolExecutor
 from timsim.population import cohort, names as all_names
 from timsim.therapy import titrate
 
-DAYS, SEED = 28, 11
+from timsim import seeds
+
+DAYS, SEED = 28, seeds.BENCH
 LAYERS = ("physiology", "behaviour", "sensor", "site")
 CONTROLLER = "control-iq"
 OUT = os.path.join(MEASUREMENTS, "cohort_replicates.json")

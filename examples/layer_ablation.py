@@ -21,6 +21,7 @@ subjects over 28 days.
 import argparse, json, os
 
 from timsim import signatures, simulate_cohort
+from timsim import seeds
 from timsim.population import names
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -73,10 +74,10 @@ LABELS = {
 
 
 def run_arm(key, layers, subjects, days, kwargs=None):
-    results = simulate_cohort(subjects, days=days, layers=layers, progress=False,
-                              **(kwargs or {}))
+    results = simulate_cohort(subjects, days=days, seed=seeds.BENCH, layers=layers,
+                              progress=False, **(kwargs or {}))
     stats = signatures.evaluate(results)
-    payload = {"label": key, "layers": list(layers),
+    payload = {"label": key, "layers": list(layers), "seed": seeds.BENCH, "days": days,
                "stats": {k: list(v) for k, v in stats.items()},
                "completed": int(sum(r.completed for r in results)),
                "n": len(results),

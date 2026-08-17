@@ -1,0 +1,12 @@
+09:20:06Z  === studies not needing titrated settings, population 704cfac086df54ba ===
+09:20:06Z  START  production_low
+09:29:05Z  OK     production_low (8 min)
+09:29:05Z  START  capability
+10:11:38Z  OK     capability (42 min)
+10:11:38Z  START  hyperglycaemia_gap
+14:41:59Z  OK     hyperglycaemia_gap (270 min)
+14:41:59Z  START  layer_ablation
+16:39:08Z  OK     layer_ablation (117 min)
+16:39:08Z  START  layer_ladder
+18:50:42Z  FAILED layer_ladder (131 min) /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.   import pkg_resources 
+18:50:42Z  === finished ===

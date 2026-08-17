@@ -22,7 +22,9 @@ from timsim.therapy import titrate
 # not small: the physiological correction factor doubles oref0's time below 70 mg/dL against
 # the one real users run.
 SUBJECTS = list(titrate.titrated_subjects()) or [f"adult#{i:03d}" for i in range(1, 21)]
-DAYS, SEED = 28, 11
+from timsim import seeds
+
+DAYS, SEED = 28, seeds.BENCH
 ARMS = {"padova": (), "timsim": ("physiology", "behaviour", "sensor", "site")}
 OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                    "docs", "measurements", "two_benches.json")

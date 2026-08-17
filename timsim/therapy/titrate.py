@@ -13,10 +13,20 @@ is being asked to dose about two and a half times as hard as it would for a real
 versions of this note quoted 35 mg/dL per unit, which was never measured from the release.
 
 The response is a procedure rather than a constant. Each subject's settings are weakened until
-its own record clears the consensus hypoglycaemia floors, and no further, because settings
-looser than necessary cost time in range. That is what a careful titration does, and it leaves
-every subject with settings whose provenance is a measurement on that subject rather than a
-number chosen once for the cohort.
+its own record clears the consensus hypoglycaemia floors, because settings looser than necessary
+cost time in range. That leaves every subject with settings whose provenance is a measurement on
+that subject rather than a number chosen once for the cohort.
+
+The search is along a path rather than over the grid, and the distinction matters for the
+subjects that reach the second lever. Basal is walked down to its floor before the correction
+factor is touched at all, and the correction factor is then weakened on top of that floor, so a
+subject needing a small correction-factor change receives it alongside the largest basal
+reduction available rather than the smallest one that would have worked with it. The combination
+of an untouched basal and a slightly weaker correction factor is never tried. This is the order a
+clinician moves in and it is not the minimum of the grid: those subjects end more conservative
+than they need to be, which costs them time in range and understates their hypoglycaemia. They
+are the subjects with the most hypoglycaemia to begin with, so the direction is worth carrying
+into any reading of the hypoglycaemia figures.
 
 Basal moves before the correction factor, in that order, because that is the order a titration
 is done in and because the two are not interchangeable. A subject having lows under a reference

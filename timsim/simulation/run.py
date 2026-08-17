@@ -352,6 +352,29 @@ def subject_seed(name, seed):
     return int.from_bytes(digest[:8], "big")
 
 
+def stream(name, seed, purpose):
+    """An independent generator for one component of one subject's run.
+
+    A single generator shared by every component makes each component's draws depend on which
+    other components drew before it. Since a layer only draws when it is switched on, an
+    ablation then changed the random month as well as the mechanism: adult#001 at seed 11 ate
+    44 g at minute 459 with the physiology layer on and 66 g at minute 476 with it off, so a
+    comparison meant to isolate one layer compared two different months.
+
+    That is not a bias, because what is drawn is independent of the layer being tested, but it
+    puts the variance the pairing exists to remove back into every ablation, and a layer effect
+    small enough to sit under it is reported as indistinguishable from zero.
+
+    `person/behaviour.py::announce` already worked this way, drawing in every announcement mode
+    and using the draw only where it applies, after conditional draws made the three modes
+    different runs rather than different conditions. This applies the same rule to the layers.
+
+    Streams are keyed on the purpose as well as the subject, so adding a component in future
+    leaves every existing component's stream untouched.
+    """
+    return np.random.default_rng(subject_seed(f"{name}:{purpose}", seed))
+
+
 def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
              controller=DEFAULT_CONTROLLER,
              meals=None,
@@ -393,9 +416,9 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
         raise ValueError(f"unknown layers {sorted(unknown)}; expected a subset of {LAYERS}")
     effective = requested = tuple(l for l in LAYERS if l in set(layers))
 
-    # Keyed on the subject as well as the integer, so that two subjects at one seed are two
-    # independent months rather than the same month twice. See `subject_seed`.
-    rng = np.random.default_rng(subject_seed(name, seed))
+    # One stream per component, each keyed on the subject and the purpose, so that a
+    # component's draws do not depend on which other components ran. See `stream`.
+    rng = stream(name, seed, "person")
     params = pd.Series(params if params is not None else params_for(name))
     settings = settings if settings is not None else therapy_for(name)
 
@@ -409,14 +432,14 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
     # the gut rather than of anything the person decides or the sensor reports.
     if "physiology" in effective:
         patient.set_meal_variability(
-            rng,
+            stream(name, seed, "meal_absorption"),
             MEAL_ABSORPTION_CV if meal_absorption_cv is None
             else float(meal_absorption_cv),
             MEAL_ABSORPTION_SCALE if meal_absorption_scale is None
             else float(meal_absorption_scale))
     if "physiology" in effective:
         patient.set_sensitivity(
-            rng, days, pattern=si_pattern,
+            stream(name, seed, "sensitivity"), days, pattern=si_pattern,
             **({} if si_interday_cv is None else {"interday_cv": si_interday_cv}),
             **({} if si_slow_cv is None else {"slow_cv": si_slow_cv}))
         gain = HYPO_RISK_GAIN if hypo_risk_gain is None else hypo_risk_gain
@@ -434,7 +457,7 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
 
     if "activity" in effective:
         from ..person.activity import Activity, draw_sessions
-        activity = Activity(draw_sessions(rng, days, **(
+        activity = Activity(draw_sessions(stream(name, seed, "activity"), days, **(
             {} if sessions_per_week is None
             else {"sessions_per_week": float(sessions_per_week)})))
         patient.set_activity(activity)
@@ -442,7 +465,8 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
         activity = None
 
     body_weight = float(params["BW"])
-    schedule = meals if meals is not None else draw_meals(days, rng, body_weight)
+    schedule = (meals if meals is not None
+                else draw_meals(days, stream(name, seed, "meals"), body_weight))
     start = pd.Timestamp("2026-01-01 00:00:00").to_pydatetime()
 
     threshold, refractory = behaviour_mod.rescue_style(
@@ -461,7 +485,8 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
 
     env = T1DSimEnv(patient,
                     CGMSensor.withName(_sensor_name(sample_minutes),
-                                       seed=int(rng.integers(1, 1_000_000))),
+                                       seed=int(stream(name, seed, "sensor_seed")
+                                                .integers(1, 1_000_000))),
                     InsulinPump.withName("Insulet"), scenario)
     env.reset()
     step_minutes = float(env.sample_time)
@@ -469,12 +494,14 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
 
     artefacts = None
     if "sensor" in effective:
-        artefacts = OnlineArtefacts(rng, steps, step_minutes, noise_sigma=sensor_noise,
+        artefacts = OnlineArtefacts(stream(name, seed, "sensor"), steps, step_minutes,
+                                    noise_sigma=sensor_noise,
                                     compression_per_30d=compression_per_30d)
 
     enforcer = Enforcer(prof.limits)
-    site = (InfusionSite(rng, **({} if set_life_days is None
-                                 else {"set_life_days": set_life_days}))
+    site = (InfusionSite(stream(name, seed, "site"),
+                         **({} if set_life_days is None
+                            else {"set_life_days": set_life_days}))
             if "site" in effective else None)
     driver, controller_label, builtin_driver = _resolve_controller(
         controller, prof, adaptive="behaviour" in effective)

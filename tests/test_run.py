@@ -73,6 +73,38 @@ def test_two_subjects_at_one_seed_do_not_live_the_same_month():
     assert ra.meta["site_rate_per_30d"] != rb.meta["site_rate_per_30d"]
 
 
+def test_ablating_a_layer_changes_the_layer_and_not_the_month(subject):
+    """An ablation has to isolate the mechanism, which one shared generator did not.
+
+    Every stochastic component drew from a single generator in sequence, and a component
+    belonging to a layer drew only when that layer was on, so switching a layer off left the
+    generator in a different state for everything after it. adult#001 at seed 11 ate 44 g at
+    minute 459 with the physiology layer on and 66 g at minute 476 with it off, and the sensor
+    noise realisation and infusion set failure times moved with it.
+
+    The comparison this package makes most often is a paired one between a layer on and the same
+    layer off, so the variance the pairing exists to remove was being put back by the seeding.
+    """
+    full = ("physiology", "behaviour", "sensor", "site")
+    base = simulate(subject, days=2, seed=11, layers=full)
+    for dropped in ("physiology", "sensor", "site", "behaviour"):
+        other = simulate(subject, days=2, seed=11,
+                         layers=tuple(l for l in full if l != dropped))
+        assert base.meal_log == other.meal_log, (
+            f"dropping the {dropped} layer changed the meal schedule, so a comparison "
+            f"against it measures a different month as well as a different mechanism")
+
+
+def test_the_meal_stream_does_not_move_when_a_component_is_added(subject):
+    """Streams are keyed on purpose, so a component added later leaves the others alone."""
+    from timsim.simulation.run import stream
+    a = stream(subject, 11, "meals").random(5)
+    b = stream(subject, 11, "meals").random(5)
+    assert np.array_equal(a, b)
+    assert not np.array_equal(a, stream(subject, 11, "sensor").random(5))
+    assert not np.array_equal(a, stream(subject, 12, "meals").random(5))
+
+
 def test_one_subject_at_one_seed_reproduces_across_processes(subject):
     """Reproducibility has to survive a new interpreter, which `hash` would not give.
 

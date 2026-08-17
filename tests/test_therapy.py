@@ -169,3 +169,28 @@ def test_the_spread_reaches_the_run_and_is_recorded():
     r = simulate(names("adult")[0], days=1, seed=0, settings_spread=0.3)
     assert r.meta["settings_spread"] == 0.3
     assert simulate(names("adult")[0], days=1, seed=0).meta["settings_spread"] == 0.0
+
+
+def test_the_basal_ceiling_holds_when_it_is_not_on_an_increment_boundary():
+    """Quantising after the clamp could round back through the ceiling.
+
+    `_to_nearest` rounds up as readily as down, so a ceiling of 2.03 U/h on a 0.05 increment
+    returned 2.05. The bolus path already rounded down for exactly this reason.
+    """
+    lim = PumpLimits(max_basal_u_per_hour=2.03, max_bolus_u=10.0, max_iob_u=100.0)
+    e = Enforcer(lim)
+    basal, _ = e.apply(0, 5.0 / 60.0, 0.0, 0.5 / 60.0, 5.0)
+    assert basal * 60.0 <= lim.max_basal_u_per_hour + 1e-9
+
+
+def test_the_insulin_on_board_ceiling_never_withholds_scheduled_basal():
+    """The ceiling bounds what the algorithm adds, not the person's own background insulin.
+
+    Rounding the capped rate down landed below the schedule whenever the scheduled rate did
+    not sit on an increment boundary: 0.62 U/h came back as 0.60.
+    """
+    lim = PumpLimits(max_basal_u_per_hour=10.0, max_bolus_u=10.0, max_iob_u=0.0)
+    e = Enforcer(lim)
+    scheduled = 0.62 / 60.0
+    basal, _ = e.apply(0, 3.0 / 60.0, 0.0, scheduled, 5.0)
+    assert basal >= scheduled - 1e-12

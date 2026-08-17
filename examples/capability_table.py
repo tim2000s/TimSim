@@ -21,7 +21,9 @@ from timsim.analysis import signatures
 SUBJECTS = [f"adult#{i:03d}" for i in range(1, 21)]
 DRIVERS = ["basal-bolus", "trend", "boost", "oref"]
 LAYERS = ("physiology", "behaviour", "sensor", "site")
-DAYS, SEED = 28, 11
+from timsim import seeds
+
+DAYS, SEED = 28, seeds.BENCH
 
 
 def driver_for(name, d):

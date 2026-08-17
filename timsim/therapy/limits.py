@@ -97,6 +97,11 @@ class Enforcer:
             rate = lim.max_basal_u_per_hour
             self.bound["basal"] += 1
         rate = _to_nearest(rate, lim.basal_increment_u_per_hour)
+        # Quantising after the clamp can round back through it, since `_to_nearest` rounds up
+        # as readily as down: a ceiling of 2.03 U/h on a 0.05 increment returns 2.05. The
+        # ceiling is the constraint and the increment is the device, so the increment gives way.
+        if rate > lim.max_basal_u_per_hour:
+            rate = _round_down(lim.max_basal_u_per_hour, lim.basal_increment_u_per_hour)
         basal = rate / 60.0
 
         bolus = max(0.0, float(bolus_u))
@@ -120,8 +125,15 @@ class Enforcer:
         above = max(0.0, basal - scheduled) * sample_minutes
         remaining = max(0.0, headroom - bolus)
         if above > remaining:
-            basal = _round_down((scheduled + remaining / sample_minutes) * 60.0,
-                                lim.basal_increment_u_per_hour) / 60.0
+            # Never below the schedule. Rounding down the sum can land under it when the
+            # scheduled rate does not sit on an increment boundary, and a scheduled 0.62 U/h
+            # then returns 0.60. Basal at or below schedule is the person's own background
+            # requirement rather than something the algorithm added, so the ceiling has no
+            # claim on it: withholding part of it treats a delivery limit as a reason to
+            # under-treat.
+            capped = _round_down((scheduled + remaining / sample_minutes) * 60.0,
+                                 lim.basal_increment_u_per_hour) / 60.0
+            basal = max(scheduled, capped)
             above = max(0.0, basal - scheduled) * sample_minutes
             self.bound["iob"] += 1
 

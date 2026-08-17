@@ -34,7 +34,9 @@ from concurrent.futures import ProcessPoolExecutor
 
 from timsim import provenance
 
-DAYS, SEED = 28, 11
+from timsim import seeds
+
+DAYS, SEED = 28, seeds.BENCH
 LAYERS = ("physiology", "behaviour", "sensor", "site")
 OUT = os.path.join(MEASUREMENTS, "bench_matrix.json")
 

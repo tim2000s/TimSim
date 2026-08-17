@@ -1,0 +1,50 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+population 704cfac086df54ba, 1049 completed runs
+
+=== dclp3: 112 real people ===
+  measure                 split-half 95%  in spreads
+  Time in range, %                  4.97        0.17
+  Time below 70, %                  0.51        0.22
+  Time below 54, %                  0.10        0.25
+  Time above 180, %                 4.67        0.16
+  Mean glucose, mg/dL               7.06        0.18
+  Variability, CV %                 1.95        0.18
+
+=== commons: 71 real people ===
+  measure                 split-half 95%  in spreads
+  Time in range, %                  5.83        0.26
+  Time below 70, %                  1.06        0.17
+  Time below 54, %                  0.27        0.15
+  Time above 180, %                 5.82        0.24
+  Mean glucose, mg/dL               9.64        0.25
+  Variability, CV %                 3.51        0.29
+
+=== dclp3 under control-iq, layered_some: 72 subjects ===
+  measure                   median          95% interval  width in spreads
+  Time in range, %           78.66        75.32 to 80.70              0.19
+  Time below 70, %            3.30          2.68 to 3.72              0.45
+  Time below 54, %            0.92          0.60 to 1.13              1.40
+  Time above 180, %          17.61        15.92 to 20.37              0.15
+  Mean glucose, mg/dL       145.09      141.61 to 146.96              0.13
+  Variability, CV %          34.75        34.10 to 35.86              0.16
+
+=== dclp3 under oref, layered_some: 66 subjects ===
+  measure                   median          95% interval  width in spreads
+  Time in range, %           80.12        79.17 to 81.83              0.09
+  Time below 70, %            3.24          3.01 to 4.30              0.55
+  Time below 54, %            0.91          0.68 to 1.23              1.44
+  Time above 180, %          15.58        13.75 to 17.31              0.12
+  Mean glucose, mg/dL       137.51      135.45 to 141.70              0.16
+  Variability, CV %          37.40        35.85 to 38.63              0.25
+
+=== commons under oref, layered_some: 53 subjects ===
+  measure                   median          95% interval  width in spreads
+  Time in range, %           81.00        76.74 to 83.36              0.29
+  Time below 70, %            3.79          3.00 to 4.60              0.26
+  Time below 54, %            1.03          0.74 to 1.46              0.40
+  Time above 180, %          15.80        13.85 to 17.31              0.14
+  Mean glucose, mg/dL       137.98      134.71 to 142.56              0.20
+  Variability, CV %          36.96        35.32 to 38.59              0.27
+
+wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/cohort_variation.json

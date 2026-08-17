@@ -1,0 +1,10 @@
+old 100 subjects, new 600
+  adult        34 of 300 | names match True | max difference 0.00e+00
+  adolescent   33 of 150 | names match True | max difference 0.00e+00
+  child        33 of 150 | names match True | max difference 0.00e+00
+  settings CF   max difference across the original hundred: 0.00e+00
+  settings CR   max difference across the original hundred: 0.00e+00
+  settings TDI  max difference across the original hundred: 0.00e+00
+  settings Age  max difference across the original hundred: 0.00e+00
+
+APPEND-ONLY: every original subject preserved

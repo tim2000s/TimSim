@@ -22,6 +22,7 @@ import numpy as np
 from concurrent.futures import ProcessPoolExecutor
 
 from timsim.therapy import titrate
+from timsim import seeds
 
 
 def _one(job):
@@ -37,7 +38,7 @@ def main():
                          "distribution follows the DCLP3 closed-loop arm, or 'recorded' for "
                          "the union of the cohorts in docs/measurements/cohorts.json")
     ap.add_argument("--days", type=int, default=28)
-    ap.add_argument("--seed", type=int, default=11)
+    ap.add_argument("--seed", type=int, default=seeds.TITRATION)
     ap.add_argument("--workers", type=int, default=6)
     ap.add_argument("--add", action="store_true",
                     help="merge into the existing store instead of replacing it, and skip "

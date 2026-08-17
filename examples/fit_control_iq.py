@@ -39,7 +39,9 @@ from timsim.population import cohort
 from timsim.therapy import titrate
 from timsim.validation import dclp3
 
-DAYS, SEED = 28, 11
+from timsim import seeds
+
+DAYS, SEED = 28, seeds.BENCH
 LAYERS = ("physiology", "behaviour", "sensor", "site")
 N_SUBJECTS = 20
 OUT = os.path.join(MEASUREMENTS, "control_iq_fit.json")

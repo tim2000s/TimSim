@@ -1,0 +1,94 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+4 pairings, 4 benches, 1208 runs
+  dclp3     control-iq  85 titrated subjects
+  dclp3     oref        85 titrated subjects
+  commons   oref        65 titrated subjects
+  close_it  oref        67 titrated subjects
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+  20/1208 done, 4.4 min
+  40/1208 done, 8.6 min
+  60/1208 done, 11.0 min
+  80/1208 done, 15.2 min
+  100/1208 done, 19.3 min
+  120/1208 done, 21.6 min
+  140/1208 done, 25.2 min
+  160/1208 done, 28.8 min
+  180/1208 done, 32.2 min
+  200/1208 done, 35.0 min
+  220/1208 done, 38.4 min
+  240/1208 done, 41.7 min
+  260/1208 done, 45.3 min
+  280/1208 done, 48.3 min
+  300/1208 done, 51.3 min
+  320/1208 done, 54.6 min
+  340/1208 done, 57.6 min
+  360/1208 done, 61.4 min
+  380/1208 done, 65.3 min
+  400/1208 done, 69.2 min
+  420/1208 done, 73.1 min
+  440/1208 done, 76.7 min
+  460/1208 done, 80.1 min
+  480/1208 done, 83.4 min
+  500/1208 done, 86.5 min
+  520/1208 done, 90.5 min
+  540/1208 done, 93.6 min
+  560/1208 done, 97.5 min
+  580/1208 done, 100.5 min
+  600/1208 done, 104.0 min
+  620/1208 done, 107.5 min
+  640/1208 done, 111.0 min
+  660/1208 done, 114.7 min
+  680/1208 done, 118.8 min
+  700/1208 done, 122.7 min
+  720/1208 done, 126.2 min
+  740/1208 done, 130.5 min
+  760/1208 done, 133.2 min
+  780/1208 done, 137.4 min
+  800/1208 done, 140.1 min
+  820/1208 done, 144.3 min
+  840/1208 done, 146.9 min
+  860/1208 done, 151.1 min
+  880/1208 done, 153.8 min
+  900/1208 done, 157.1 min
+  920/1208 done, 160.7 min
+  940/1208 done, 164.5 min
+  960/1208 done, 168.3 min
+  980/1208 done, 171.9 min
+  1000/1208 done, 175.5 min
+  1020/1208 done, 179.3 min
+  1040/1208 done, 182.6 min
+  1060/1208 done, 186.1 min
+  1080/1208 done, 189.8 min
+  1100/1208 done, 193.8 min
+  1120/1208 done, 197.2 min
+  1140/1208 done, 200.3 min
+  1160/1208 done, 204.0 min
+  1180/1208 done, 207.2 min
+  1200/1208 done, 211.2 min
+  1208/1208 done, 212.3 min
+
+wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/bench_matrix.json after 212.3 min

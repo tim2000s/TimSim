@@ -37,6 +37,7 @@ import argparse, json, os
 import numpy as np
 
 from timsim import simulate_cohort
+from timsim import seeds
 from timsim.analysis import signatures
 from timsim.population import names
 from timsim.validation import dclp3
@@ -121,7 +122,7 @@ def measure_trial(arm=dclp3.CLOSED_LOOP, source="pump"):
                       np.where(seen > 0, hits / np.maximum(seen, 1) * 100, np.nan))
 
 
-def run_arm(key, subjects, days, seed=0):
+def run_arm(key, subjects, days, seed=seeds.BENCH):
     layers, kwargs = ARMS[key]
     results = simulate_cohort(subjects, days=days, seed=seed, layers=layers,
                               progress=False, **kwargs)

@@ -18,6 +18,8 @@ import json
 from concurrent.futures import ProcessPoolExecutor
 
 import numpy as np
+
+from timsim import seeds
 from simglucose.controller.base import Action
 
 
@@ -44,7 +46,7 @@ class BasalOnly:
 
 def _trace(name, prof, meals):
     from timsim.simulation.run import simulate
-    r = simulate(name, days=DAYS, seed=11, layers=(), controller=BasalOnly(prof),
+    r = simulate(name, days=DAYS, seed=seeds.BENCH, layers=(), controller=BasalOnly(prof),
                  profile=prof, meals=meals)
     return np.asarray(r.bg, float)
 

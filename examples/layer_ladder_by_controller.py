@@ -10,6 +10,7 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from timsim import signatures, simulate                          # noqa: E402
+from timsim import seeds
 from timsim.population import names                              # noqa: E402
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -219,7 +220,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--subjects", type=int, default=10)
     p.add_argument("--days", type=int, default=28)
-    p.add_argument("--seed", type=int, default=0)
+    p.add_argument("--seed", type=int, default=seeds.BENCH)
     p.add_argument("--workers", type=int, default=8)
     p.add_argument("--table", action="store_true")
     a = p.parse_args()

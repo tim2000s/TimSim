@@ -1,0 +1,352 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+titrating 141 named subjects
+11 already titrated against this population, 130 to do
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+286/312 subjects titrated, written to /Users/timstreet/StudioProjects/TimSim/timsim/population/params/titrated_settings.json
+
+        subject  basal  ISF x    ISF   TBR70   TBR54    TIR     CV  remaining misses
+ adolescent#002   1.00   1.00   47.2    1.76    0.42   79.1   31.7  none
+ adolescent#003   0.85   1.00   32.7    2.89    0.91   66.8   35.1  tir, tar250
+ adolescent#004   0.80   2.50  108.7    3.52    0.99   34.0   39.2  tir, tar250, cv
+ adolescent#006   0.80   2.50   86.8    3.46    0.79   68.2   36.8  tir, tar250, cv
+ adolescent#010   1.00   1.00   14.7    1.03    0.22   88.3   27.8  none
+ adolescent#011   1.00   1.00   13.4    1.03    0.27   67.3   35.9  tir, tar250
+ adolescent#015   0.95   1.00   39.5    3.21    0.98   77.9   34.1  none
+ adolescent#016   1.00   1.00   17.7    1.24    0.29   89.4   28.7  none
+ adolescent#019   1.00   1.00   25.6    2.43    0.55   64.9   40.6  tir, tar250, cv
+ adolescent#020   0.90   1.00   26.6    2.53    0.40   68.8   38.0  tir, tar250, cv
+ adolescent#021   1.00   1.00   21.1    0.41    0.04   86.3   25.1  none
+ adolescent#023   0.80   1.25   54.4    2.73    0.67   73.0   31.3  none
+ adolescent#027   1.00   1.00   27.2    2.31    0.53   65.7   43.4  tir, tar250, cv
+ adolescent#031   1.00   1.00   18.6    1.51    0.38   77.6   35.8  tar250
+ adolescent#032   1.00   1.00   22.4    0.74    0.02   74.6   36.9  tar250, cv
+ adolescent#034   1.00   1.00   28.6    1.24    0.30   75.4   26.2  none
+ adolescent#036   0.90   1.00   14.2    0.12    0.01   85.6   25.2  none
+ adolescent#037   1.00   1.00   18.4    1.67    0.27   85.5   31.0  none
+ adolescent#041   1.00   1.00   25.5    0.94    0.27   93.4   21.7  none
+ adolescent#042   none   floors not met at any combination
+ adolescent#045   1.00   1.00    8.5    0.12    0.09   87.1   28.1  none
+ adolescent#050   1.00   1.00   14.1    0.97    0.11   87.1   23.3  none
+ adolescent#058   1.00   1.00   24.2    1.88    0.26   84.2   33.9  none
+ adolescent#067   1.00   1.00   35.1    2.07    0.36   77.8   32.1  tar250
+ adolescent#069   1.00   1.00    5.5    0.11    0.05   84.2   27.9  none
+ adolescent#073   0.80   1.75  103.1    2.31    0.50   50.6   36.1  tir, tar250, cv
+ adolescent#074   1.00   1.00   10.0    0.42    0.10   94.2   20.8  none
+ adolescent#079   1.00   1.00   16.2    2.39    0.61   82.1   31.3  none
+ adolescent#080   1.00   1.00   27.9    0.95    0.46   68.6   31.5  tir
+ adolescent#083   1.00   1.00   10.6    0.27    0.11   72.6   33.6  tar250
+ adolescent#088   1.00   1.00   13.0    1.29    0.45   76.8   37.8  tar250, cv
+ adolescent#089   1.00   1.00   12.5    0.22    0.04   92.1   23.6  none
+ adolescent#094   1.00   1.00   16.1    1.10    0.26   87.6   27.1  none
+ adolescent#095   none   floors not met at any combination
+ adolescent#096   0.80   2.50   48.0    3.52    0.93   57.0   37.3  tir, tar250, cv
+ adolescent#099   1.00   1.00   13.1    0.20    0.02   83.8   29.0  none
+ adolescent#101   1.00   1.00   21.7    3.24    0.91   82.4   35.9  none
+ adolescent#102   1.00   1.00   19.0    0.71    0.21   85.2   29.4  none
+ adolescent#104   1.00   1.00   31.6    1.41    0.53   80.1   32.1  none
+ adolescent#106   0.90   1.00   19.4    1.72    0.37   73.3   39.7  tar250, cv
+ adolescent#107   1.00   1.00    7.9    1.81    0.32   78.5   38.7  cv
+ adolescent#108   1.00   1.00   33.6    0.86    0.26   80.5   30.6  none
+ adolescent#111   0.90   1.00   50.2    2.86    0.99   69.2   32.8  tir
+ adolescent#117   1.00   1.00   20.3    0.95    0.10   88.9   23.3  none
+ adolescent#119   0.95   1.00   27.1    3.60    0.89   81.9   35.5  none
+ adolescent#123   1.00   1.00   29.1    2.44    0.46   82.7   28.7  none
+ adolescent#125   none   floors not met at any combination
+ adolescent#128   1.00   1.00   10.6    2.08    0.40   79.1   41.0  tar250, cv
+ adolescent#130   1.00   1.00    8.6    0.17    0.06   71.5   36.0  tar250
+ adolescent#134   1.00   1.00   16.9    0.66    0.10   85.6   31.7  none
+ adolescent#135   1.00   1.00   14.1    0.50    0.04   85.7   31.9  none
+ adolescent#138   1.00   1.00   45.5    1.59    0.46   77.7   25.1  none
+ adolescent#139   1.00   1.00   16.4    0.53    0.05   81.4   29.6  none
+ adolescent#142   0.95   1.00   19.4    2.38    0.43   78.6   38.0  tar250, cv
+ adolescent#147   0.90   1.00    9.1    0.63    0.19   69.7   41.3  tir, tar250, cv
+ adolescent#149   1.00   1.00   13.2    2.15    0.17   89.9   29.9  none
+ adolescent#150   1.00   1.00   25.3    1.12    0.25   86.7   26.4  none
+      adult#001   1.00   1.00   12.9    2.68    0.55   71.8   39.0  tar250, cv
+      adult#004   0.95   1.00   13.3    2.72    0.94   62.4   44.7  tir, tar250, cv
+      adult#005   1.00   1.00    8.1    3.00    0.46   67.4   39.8  tir, tar250, cv
+      adult#006   0.85   1.00   18.4    1.61    0.45   64.4   38.7  tir, tar250, cv
+      adult#007   1.00   1.00   23.4    2.75    0.71   65.2   33.8  tir, tar250
+      adult#008   1.00   1.00   17.2    2.72    0.53   66.5   43.7  tir, tar250, cv
+      adult#009   1.00   1.00   20.7    2.00    0.32   73.0   37.5  tar250, cv
+      adult#010   1.00   1.00   15.1    1.90    0.58   77.2   30.3  none
+      adult#011   1.00   1.00   27.2    3.36    0.86   73.7   40.2  tar250, cv
+      adult#020   0.85   1.00   16.7    3.39    0.88   71.8   44.1  tar250, cv
+      adult#021   0.80   2.25   31.2    3.78    0.88   67.4   44.8  tir, tar250, cv
+      adult#022   0.95   1.00    7.3    3.76    0.84   79.2   35.9  none
+      adult#028   1.00   1.00    7.8    2.94    0.73   73.0   43.7  tar250, cv
+      adult#031   1.00   1.00   30.3    2.43    0.56   83.1   31.2  none
+      adult#032   0.80   1.00    8.1    3.73    0.66   74.8   41.1  tar250, cv
+      adult#033   1.00   1.00   52.3    2.06    0.68   79.8   30.9  none
+      adult#038   1.00   1.00    8.9    2.53    0.72   62.3   42.9  tir, tar250, cv
+      adult#041   1.00   1.00   30.8    2.55    0.66   75.4   31.4  none
+      adult#045   0.80   2.25   79.8    3.47    0.99   59.6   35.4  tir, tar250
+      adult#046   1.00   1.00   13.6    0.57    0.04   88.2   29.1  none
+      adult#048   1.00   1.00   11.5    0.78    0.09   80.0   30.0  none
+      adult#050   0.95   1.00   22.0    3.05    0.95   77.6   34.5  none
+      adult#053   1.00   1.00   11.9    1.44    0.19   76.1   38.8  tar250, cv
+      adult#055   1.00   1.00   17.0    1.55    0.36   83.2   29.6  none
+      adult#057   1.00   1.00   13.9    1.57    0.15   70.5   37.4  tar250, cv
+      adult#058   1.00   1.00   31.9    1.84    0.32   78.8   29.0  none
+      adult#059   0.80   1.50   21.5    3.42    0.92   64.1   40.3  tir, tar250, cv
+      adult#063   1.00   1.00   20.5    1.80    0.21   74.3   34.5  tar250
+      adult#066   1.00   1.00   28.5    1.91    0.72   70.8   38.7  tar250, cv
+      adult#068   0.80   1.25   41.3    2.85    0.99   66.6   39.0  tir, tar250, cv
+      adult#070   0.95   1.00   30.7    2.08    0.67   73.1   31.8  none
+      adult#071   1.00   1.00   11.0    0.91    0.04   79.0   29.8  none
+      adult#072   1.00   1.00   13.2    0.89    0.04   64.3   40.3  tir, tar250, cv
+      adult#073   0.80   1.25   23.2    1.70    0.56   74.2   36.5  tar250, cv
+      adult#078   0.95   1.00   41.1    3.61    0.86   76.4   34.2  none
+      adult#081   0.80   1.50   37.2    2.05    0.77   68.9   36.2  tir, tar250, cv
+      adult#082   0.80   1.25   22.8    2.86    0.82   72.5   32.9  none
+      adult#084   0.95   1.00   19.8    2.10    0.46   64.3   40.1  tir, tar250, cv
+      adult#086   none   floors not met at any combination
+      adult#094   0.80   1.75   52.0    3.05    0.83   64.2   37.0  tir, tar250, cv
+      adult#095   0.80   1.25   16.9    2.16    0.50   64.1   39.9  tir, tar250, cv
+      adult#098   1.00   1.00    9.7    1.65    0.41   63.3   44.9  tir, tar250, cv
+      adult#101   1.00   1.00   17.2    2.68    0.57   83.4   34.7  none
+      adult#102   0.95   1.00   10.4    3.76    0.98   83.2   31.0  none
+      adult#104   none   floors not met at any combination
+      adult#105   1.00   1.00   18.2    0.99    0.35   70.0   33.4  tar250
+      adult#108   0.90   1.00   16.9    3.70    0.88   83.0   31.4  none
+      adult#110   0.80   1.25   25.9    1.86    0.41   67.2   41.1  tir, tar250, cv
+      adult#113   1.00   1.00   18.7    1.98    0.55   69.6   42.0  tir, tar250, cv
+      adult#118   0.95   1.00   18.7    2.13    0.56   73.6   32.5  none
+      adult#122   1.00   1.00   10.4    2.46    0.74   71.6   41.7  tar250, cv
+      adult#125   1.00   1.00   21.9    2.27    0.55   80.4   33.1  none
+      adult#126   1.00   1.00   17.6    1.19    0.31   68.5   40.2  tir, tar250, cv
+      adult#134   0.95   1.00   17.1    1.71    0.36   80.3   43.1  tar250, cv
+      adult#136   0.80   1.50   24.8    3.17    0.92   67.7   39.8  tir, tar250, cv
+      adult#139   1.00   1.00   24.7    2.22    0.52   73.1   35.2  none
+      adult#140   1.00   1.00   10.7    3.16    0.53   73.0   39.5  tar250, cv
+      adult#144   1.00   1.00   22.1    1.98    0.57   79.8   32.7  none
+      adult#145   none   floors not met at any combination
+      adult#148   1.00   1.00   15.6    0.47    0.19   72.7   32.8  tar250
+      adult#152   0.80   1.25   26.9    2.85    0.52   84.4   32.2  none
+      adult#154   1.00   1.00   14.4    1.38    0.19   78.6   35.3  tar250
+      adult#155   1.00   1.00   22.2    1.28    0.16   71.9   41.4  tar250, cv
+      adult#157   1.00   1.00   41.2    1.45    0.37   74.1   34.4  tar250
+      adult#160   0.85   1.00   10.3    1.66    0.26   86.7   32.7  none
+      adult#164   none   floors not met at any combination
+      adult#171   1.00   1.00    7.6    1.69    0.11   71.9   37.2  tar250, cv
+      adult#173   0.95   1.00   13.8    2.90    0.57   81.6   35.7  none
+      adult#175   1.00   1.00   39.1    2.16    0.92   71.1   32.9  none
+      adult#177   0.95   1.00   19.9    2.59    0.74   64.0   39.1  tir, tar250, cv
+      adult#178   none   floors not met at any combination
+      adult#179   1.00   1.00   23.0    1.29    0.09   77.6   27.4  none
+      adult#180   0.80   1.75   40.1    3.08    0.99   68.6   35.5  tir, tar250
+      adult#193   1.00   1.00   10.8    2.29    0.09   60.4   44.1  tir, tar250, cv
+      adult#194   0.95   1.00   27.7    3.97    0.93   78.1   35.6  none
+      adult#198   1.00   1.00   24.6    1.04    0.25   72.7   31.9  tar250
+      adult#201   1.00   1.00    9.8    0.71    0.07   66.7   39.7  tir, tar250, cv
+      adult#209   0.80   2.00   77.5    2.73    0.99   47.9   33.0  tir, tar250
+      adult#212   0.95   1.00   12.8    1.61    0.51   83.4   30.3  none
+      adult#213   none   floors not met at any combination
+      adult#217   1.00   1.00    8.0    2.41    0.87   73.5   35.3  tar250
+      adult#218   0.90   1.00   12.6    3.45    0.46   65.3   46.5  tir, tar250, cv
+      adult#219   1.00   1.00   12.3    2.55    0.50   75.2   39.8  tar250, cv
+      adult#221   0.90   1.00   35.6    2.88    0.86   70.1   37.3  tar250, cv
+      adult#222   0.80   1.75   42.5    1.56    0.60   52.4   39.8  tir, tar250, cv
+      adult#223   1.00   1.00    8.8    3.26    0.84   77.8   38.4  cv
+      adult#228   1.00   1.00   30.6    1.05    0.17   76.2   29.2  none
+      adult#231   0.95   1.00    9.4    3.34    0.98   77.7   38.2  tar250, cv
+      adult#238   1.00   1.00    9.6    0.09    0.04   62.9   31.4  tir, tar250
+      adult#242   1.00   1.00   15.3    1.54    0.16   70.2   33.6  tar250
+      adult#245   1.00   1.00   15.2    1.36    0.25   71.5   38.0  tar250, cv
+      adult#250   1.00   1.00   23.6    0.58    0.05   75.0   34.1  tar250
+      adult#252   1.00   1.00   11.5    3.44    0.74   80.4   37.7  tar250, cv
+      adult#258   0.80   1.50   31.6    2.74    0.76   75.9   31.5  none
+      adult#259   0.80   1.50   37.6    2.67    0.93   72.2   33.9  none
+      adult#260   0.80   1.50   26.2    3.04    0.86   74.4   40.9  tar250, cv
+      adult#263   1.00   1.00    7.0    2.27    0.53   79.0   30.3  none
+      adult#264   0.90   1.00   42.4    3.73    0.86   65.9   37.9  tir, tar250, cv
+      adult#267   1.00   1.00    8.3    1.14    0.17   83.8   30.2  none
+      adult#268   1.00   1.00   25.6    2.31    0.71   69.1   28.7  tir
+      adult#269   1.00   1.00   11.6    2.69    0.87   72.9   43.5  tar250, cv
+      adult#276   1.00   1.00    6.0    0.33    0.05   65.8   38.6  tir, tar250, cv
+      adult#277   1.00   1.00   39.4    0.84    0.22   74.3   29.1  none
+      adult#278   1.00   1.00   16.2    1.29    0.12   73.8   37.1  tar250, cv
+      adult#285   1.00   1.00   16.0    1.67    0.24   74.9   34.4  tar250
+      adult#288   1.00   1.00    8.6    1.40    0.15   64.0   36.8  tir, tar250, cv
+      adult#289   0.80   1.00   37.4    3.63    0.83   69.5   37.7  tir, tar250, cv
+      adult#293   0.95   1.00    6.9    1.92    0.46   70.3   39.1  tar250, cv
+      adult#298   1.00   1.00   25.2    0.76    0.06   92.1   20.4  none
+      adult#299   1.00   1.00   14.1    0.91    0.14   75.9   32.4  none
+      child#003   0.90   1.00   41.9    2.83    0.88   79.9   32.7  none
+      child#007   0.95   1.00   63.5    1.66    0.67   84.2   26.9  none
+      child#030   1.00   1.00   41.7    1.48    0.33   81.1   29.4  none
+      child#037   0.80   1.25   93.4    2.84    0.91   57.9   38.4  tir, tar250, cv
+      child#038   0.80   1.25  106.8    3.09    0.53   70.9   32.4  none
+      child#040   none   floors not met at any combination
+      child#072   none   floors not met at any combination
+      child#087   none   floors not met at any combination
+      child#100   none   floors not met at any combination
+      child#108   0.90   1.00   88.2    3.79    0.83   73.3   34.9  none
+      child#116   none   floors not met at any combination
+      child#121   0.85   1.00   58.2    3.15    0.71   69.0   39.1  tir, tar250, cv
+      child#123   none   floors not met at any combination
+      child#127   1.00   1.00   36.2    2.84    0.98   85.8   29.1  none
+      child#135   none   floors not met at any combination
+ adolescent#001   0.85   1.00   28.5    2.63    0.83   71.0   35.7  tar250
+ adolescent#005   1.00   1.00   28.9    2.05    0.58   82.7   34.7  none
+ adolescent#008   1.00   1.00   25.3    0.37    0.06   78.3   24.0  none
+ adolescent#017   none   floors not met at any combination
+ adolescent#018   1.00   1.00   23.6    0.77    0.10   84.1   29.4  none
+ adolescent#024   1.00   1.00   23.2    1.81    0.27   82.3   27.1  none
+ adolescent#026   1.00   1.00   12.3    0.29    0.06   86.2   27.1  none
+ adolescent#028   1.00   1.00    9.1    0.19    0.02   94.3   20.4  none
+ adolescent#033   0.85   1.00   22.2    2.99    0.64   81.4   30.7  none
+ adolescent#039   0.80   1.75   57.1    2.23    0.55   65.0   38.3  tir, tar250, cv
+ adolescent#040   none   floors not met at any combination
+ adolescent#043   0.85   1.00   52.6    3.11    0.81   77.5   30.3  none
+ adolescent#046   1.00   1.00   36.2    1.53    0.22   88.1   26.0  none
+ adolescent#048   none   floors not met at any combination
+ adolescent#049   1.00   1.00   18.2    2.39    0.38   68.1   41.4  tir, tar250, cv
+ adolescent#051   1.00   1.00   18.3    1.65    0.22   90.6   28.2  none
+ adolescent#055   1.00   1.00   12.9    2.91    0.87   69.7   43.6  tir, tar250, cv
+ adolescent#056   0.80   1.50   59.3    2.64    0.63   50.3   34.2  tir, tar250
+ adolescent#059   1.00   1.00   28.5    3.11    0.79   81.1   34.0  none
+ adolescent#060   0.80   2.25   69.0    1.88    0.87   46.3   40.5  tir, tar250, cv
+ adolescent#062   0.95   1.00   18.0    1.65    0.35   83.2   31.7  none
+ adolescent#063   1.00   1.00    8.7    0.10    0.05   87.4   25.9  none
+ adolescent#065   0.90   1.00   36.7    2.41    0.57   79.3   31.6  none
+ adolescent#071   1.00   1.00   23.7    0.81    0.22   89.9   24.1  none
+ adolescent#072   1.00   1.00   28.6    0.42    0.02   72.6   27.1  none
+ adolescent#076   1.00   1.00   25.9    1.14    0.09   75.0   31.8  none
+ adolescent#077   1.00   1.00   17.0    0.92    0.17   71.4   37.7  tar250, cv
+ adolescent#078   0.80   2.00   75.7    1.71    0.26   68.7   37.7  tir, tar250, cv
+ adolescent#082   0.95   1.00   29.8    1.96    0.76   68.6   35.1  tir, tar250
+ adolescent#084   1.00   1.00   19.0    0.46    0.04   83.0   31.4  none
+ adolescent#085   1.00   1.00   15.4    0.91    0.25   59.5   44.6  tir, tar250, cv
+ adolescent#086   1.00   1.00   33.7    3.76    0.91   66.7   35.5  tir, tar250
+ adolescent#087   0.80   1.00   37.3    3.14    0.74   72.7   39.0  tar250, cv
+ adolescent#092   1.00   1.00   28.5    2.47    0.72   84.5   31.1  none
+ adolescent#093   0.90   1.00   24.3    1.81    0.67   73.3   34.8  tar250
+ adolescent#097   0.80   1.25   41.5    2.90    0.86   72.3   36.9  tar250, cv
+ adolescent#103   none   floors not met at any combination
+ adolescent#105   0.80   1.25   46.0    2.28    0.14   70.9   39.1  tar250, cv
+ adolescent#109   1.00   1.00   16.3    0.94    0.19   88.2   23.6  none
+ adolescent#110   1.00   1.00   23.4    1.29    0.14   82.2   30.0  none
+ adolescent#113   1.00   1.00   20.0    0.50    0.10   79.7   31.9  tar250
+ adolescent#115   1.00   1.00   25.8    0.50    0.02   84.4   25.0  none
+ adolescent#116   none   floors not met at any combination
+ adolescent#122   0.80   1.25   40.4    3.26    0.93   77.6   36.9  tar250, cv
+ adolescent#127   0.90   1.00   24.9    2.58    0.63   76.6   38.2  tar250, cv
+ adolescent#129   1.00   1.00   21.7    1.92    0.29   82.9   26.2  none
+ adolescent#136   0.80   1.50   27.1    2.36    0.95   68.5   40.3  tir, tar250, cv
+ adolescent#141   1.00   1.00   28.3    0.50    0.07   87.4   26.2  none
+ adolescent#143   0.95   1.00   18.1    2.28    0.71   73.4   40.5  tar250, cv
+ adolescent#144   1.00   1.00   12.1    1.25    0.12   86.1   31.7  none
+ adolescent#145   0.80   2.00   46.6    2.50    0.83   62.3   38.2  tir, tar250, cv
+ adolescent#148   none   floors not met at any combination
+      adult#012   1.00   1.00   19.1    0.25    0.04   68.2   34.5  tir, tar250
+      adult#016   1.00   1.00   19.7    3.73    0.97   73.7   34.9  none
+      adult#019   1.00   1.00   11.8    0.84    0.10   68.8   39.7  tir, tar250, cv
+      adult#026   0.80   2.00   36.5    2.12    0.25   74.8   37.9  tar250, cv
+      adult#027   0.95   1.00   12.3    2.01    0.30   63.9   37.4  tir, tar250, cv
+      adult#030   0.90   1.00   18.9    2.95    0.76   74.8   33.1  none
+      adult#036   1.00   1.00    6.6    2.28    0.72   66.5   41.0  tir, tar250, cv
+      adult#037   1.00   1.00   16.7    3.05    0.72   70.3   31.6  none
+      adult#039   1.00   1.00   17.4    2.55    0.84   73.0   41.4  tar250, cv
+      adult#040   1.00   1.00   10.3    1.15    0.33   78.9   33.1  none
+      adult#042   1.00   1.00   13.1    2.65    0.37   84.0   29.4  none
+      adult#043   1.00   1.00   40.4    1.35    0.10   80.0   27.4  none
+      adult#047   1.00   1.00   18.5    0.82    0.20   66.2   36.4  tir, tar250, cv
+      adult#060   1.00   1.00   13.0    2.03    0.25   76.8   41.9  tar250, cv
+      adult#062   1.00   1.00    7.3    1.49    0.31   73.9   33.9  tar250
+      adult#064   1.00   1.00    6.4    1.90    0.40   62.0   45.4  tir, tar250, cv
+      adult#074   1.00   1.00    5.1    3.12    0.19   82.3   35.9  none
+      adult#075   0.80   2.50   58.0    2.34    0.76   61.9   38.3  tir, tar250, cv
+      adult#083   0.85   1.00   23.1    3.29    0.95   72.9   35.1  none
+      adult#085   1.00   1.00    8.5    1.92    0.32   73.5   38.8  tar250, cv
+      adult#087   0.80   2.00   48.1    3.08    0.86   55.1   33.5  tir, tar250
+      adult#088   1.00   1.00   31.8    2.00    0.38   73.9   34.2  tar250
+      adult#096   1.00   1.00   25.4    2.17    0.67   75.4   35.5  none
+      adult#097   1.00   1.00   20.6    1.66    0.40   81.9   29.4  none
+      adult#099   1.00   1.00    8.8    0.51    0.11   66.5   39.8  tir, tar250, cv
+      adult#111   1.00   1.00   13.3    2.03    0.77   57.8   40.7  tir, tar250, cv
+      adult#114   0.95   1.00   11.3    0.32    0.04   59.8   35.7  tir, tar250
+      adult#115   1.00   1.00   17.2    1.90    0.09   66.5   33.6  tir, tar250
+      adult#119   1.00   1.00   23.1    3.25    0.76   77.1   33.9  none
+      adult#130   1.00   1.00   16.3    2.80    0.68   78.7   38.1  tar250, cv
+      adult#131   0.80   1.75   23.0    3.12    0.67   73.5   40.0  tar250, cv
+      adult#147   0.80   1.25   14.2    1.76    0.41   56.1   43.2  tir, tar250, cv
+      adult#149   0.80   1.25   29.9    3.10    0.98   74.5   37.2  tar250, cv
+      adult#151   0.80   1.00   32.6    3.93    0.76   67.7   37.2  tir, cv
+      adult#156   1.00   1.00    6.1    3.37    0.78   67.2   44.5  tir, tar250, cv
+      adult#159   1.00   1.00    5.4    0.69    0.05   77.9   34.8  none
+      adult#165   1.00   1.00    6.9    0.82    0.27   72.5   38.4  tar250, cv
+      adult#181   none   floors not met at any combination
+      adult#183   0.80   1.75   42.2    1.97    0.66   76.1   34.3  none
+      adult#184   0.80   1.50   32.8    3.08    0.74   75.5   35.4  none
+      adult#185   1.00   1.00   18.8    1.00    0.19   84.4   28.4  none
+      adult#186   1.00   1.00   14.0    1.76    0.30   74.1   38.8  tar250, cv
+      adult#189   1.00   1.00    7.9    0.63    0.05   70.0   36.0  tar250, cv
+      adult#191   0.90   1.00   22.7    2.91    0.73   81.6   29.3  none
+      adult#197   1.00   1.00   12.0    1.69    0.25   77.1   34.7  none
+      adult#199   1.00   1.00    6.9    1.75    0.60   77.5   35.7  tar250
+      adult#204   0.80   1.25    9.4    3.47    0.57   60.1   44.3  tir, tar250, cv
+      adult#205   1.00   1.00   15.5    0.62    0.06   80.8   29.7  none
+      adult#207   1.00   1.00   13.5    1.19    0.24   70.2   41.4  tar250, cv
+      adult#210   1.00   1.00    8.2    1.13    0.12   73.4   36.6  tar250, cv
+      adult#214   1.00   1.00   23.3    3.24    0.64   72.8   37.2  tar250, cv
+      adult#216   1.00   1.00   18.8    0.87    0.14   80.2   29.2  none
+      adult#220   0.90   1.00   13.3    2.31    0.22   60.4   45.6  tir, tar250, cv
+      adult#224   0.80   1.50   62.7    1.80    0.40   76.1   32.5  none
+      adult#232   0.95   1.00   13.6    0.30    0.06   63.4   39.0  tir, tar250, cv
+      adult#233   0.80   1.25   26.1    2.72    0.50   75.9   33.0  none
+      adult#234   1.00   1.00    7.1    0.72    0.11   62.4   39.5  tir, tar250, cv
+      adult#236   1.00   1.00   35.3    1.74    0.43   76.6   34.0  none
+      adult#237   0.80   1.50   39.1    3.11    0.76   57.0   49.5  tir, tar250, cv
+      adult#239   none   floors not met at any combination
+      adult#241   0.95   1.00   18.6    3.40    0.87   74.1   41.7  tar250, cv
+      adult#243   0.80   1.75   14.5    2.62    0.68   72.9   37.8  tar250, cv
+      adult#246   1.00   1.00    5.3    0.82    0.04   88.0   26.8  none
+      adult#251   1.00   1.00   13.9    1.82    0.42   71.4   35.4  tar250
+      adult#254   0.80   1.00   39.5    1.76    0.48   62.0   34.0  tir, tar250
+      adult#272   0.80   1.75   28.6    1.20    0.38   65.0   37.7  tir, tar250, cv
+      adult#273   1.00   1.00    7.6    3.08    0.78   74.2   40.4  tar250, cv
+      adult#274   1.00   1.00   11.5    3.42    0.86   73.5   42.2  tar250, cv
+      adult#275   1.00   1.00   16.3    2.54    0.45   78.5   36.6  cv
+      adult#280   1.00   1.00    8.7    1.75    0.37   68.5   38.8  tir, tar250, cv
+      adult#282   1.00   1.00   11.8    1.44    0.14   71.4   40.9  tar250, cv
+      adult#287   1.00   1.00   28.1    0.27    0.07   86.2   28.9  none
+      adult#290   0.95   1.00   20.0    2.32    0.66   82.6   29.8  none
+      adult#291   1.00   1.00    6.4    0.33    0.05   65.1   37.6  tir, tar250, cv
+      child#052   1.00   1.00   34.3    1.17    0.37   80.7   34.2  none
+      child#067   none   floors not met at any combination
+      child#086   none   floors not met at any combination
+      child#099   1.00   1.00   36.1    0.58    0.05   75.4   33.4  tar250
+
+lever used: basal 238, basal and correction factor 48
+basal scale: median 1.00, range 0.80 to 1.00
+
+scale: median 1.00, range 1.00 to 2.50
+correction factor: median 19.6 mg/dL per unit, range 5.1 to 108.7   (DCLP3 participants ran a median of 40.0)
+141 replicate subjects still need titrating

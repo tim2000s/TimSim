@@ -1,0 +1,29 @@
+07:18:58Z  === overnight run, cohorts of 90, 3 replicates, 12 workers ===
+08:26:02Z  START  append_check
+08:26:02Z  OK     append_check (0 min)
+08:26:02Z  START  cohorts
+08:26:04Z  OK     cohorts (0 min)
+08:26:04Z  START  replicate_plan
+08:26:05Z  FAILED replicate_plan (0 min) —         f"`python examples/titrate_cohort.py`.") RuntimeError: These titrated settings were fitted to population 2af095014f6c1c75 and the population on disk is 704cfac086df54ba. Subject names are reused across generations, so applying them would dose each subject on another body's settings. Rerun `python examples/titrate_cohort.py`. 
+08:26:05Z  pipeline stopped
+09:19:09Z  === overnight run, cohorts of 90, 3 replicates, 12 workers ===
+09:19:09Z  START  append_check
+09:19:09Z  OK     append_check (0 min)
+09:19:09Z  START  cohorts
+09:19:11Z  OK     cohorts (0 min)
+09:19:11Z  START  titrate
+11:04:58Z  OK     titrate (105 min)
+11:04:58Z  START  replicate_plan
+11:04:59Z  OK     replicate_plan (0 min)
+11:04:59Z  START  titrate_replicates
+12:17:16Z  OK     titrate_replicates (72 min)
+12:17:16Z  START  bench_matrix
+15:49:37Z  OK     bench_matrix (212 min)
+15:49:37Z  START  replicates
+16:30:48Z  OK     replicates (41 min)
+16:30:48Z  START  cohort_variation
+16:30:49Z  OK     cohort_variation (0 min)
+16:30:49Z  START  bench_tables
+16:30:51Z  OK     bench_tables (0 min)
+16:30:51Z  === finished ===
+16:30:51Z  cohorts of 90; read /Users/timstreet/StudioProjects/TimSim/docs/measurements/bench_tables.txt, cohort_variation.json, cohort_replicates.json
