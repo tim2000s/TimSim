@@ -371,3 +371,71 @@ a different `kabs`, one that happens to divide unluckily.
 the test exists to catch. Logged rather than fixed silently because the failure was informative:
 a test that depends on the exact value of a subject's parameters is testing the population as
 well as the behaviour, and this one gave no hint of that until the population changed.
+
+## 25. The hepatic defence gain was fitted on a sample too small to fit it
+
+`HYPO_EGP_DEFENCE` opposes insulin's suppression of endogenous glucose production as glucose
+falls, and it is fitted by matching the median production at a clamp plateau to the human
+reference of 0.42 to 0.84 mg/kg/min. It was fitted on the first twenty adults, then on
+thirty-four, then on a hundred and fifty, and the answer moved each time: 0.95, then 0.20, then
+0.05.
+
+**How it surfaced.** The population was grown to 600 subjects for reasons unrelated to this, and
+the calibration was rerun at n=150 because the subjects were available. The undefended model
+produces a median of 0.50 mg/kg/min at the 55 mg/dL plateau, already inside the human interval,
+where at n=20 it had produced 0.49 and at n=34 it had produced 0.18.
+
+**Why it moved.** The distribution is zero-inflated. 49 of 150 subjects produce nothing at all
+at that plateau, so the median sits wherever the proportion of pinned-at-zero subjects puts it,
+and that proportion is estimated badly at small n. The quantity being fitted was therefore a
+property of the sample size as much as of the model.
+
+**Fix.** The gain is 0.05, fitted at n=150, and the sweep is recorded in `patient/varying.py`
+beside it with the zero counts at every gain. The zero tail is named as a separate defect the
+mechanism does not repair: raising the gain to 0.25 removes twelve of the forty-nine and carries
+the median to 1.05, above the human interval at both plateaus.
+
+Everything measured under the old gain was rebuilt rather than patched, since the gain enters
+every simulated minute. `examples/rebuild_all.sh` runs that rebuild.
+
+## 26. The titration store is guarded by the population, and settings depend on the physiology
+
+`profile_for` refuses settings fitted to a different population, checked by a fingerprint of
+`vpop_params.csv`. Changing a physiology constant leaves that fingerprint untouched, so the
+store is accepted and every subject silently carries settings fitted under the old physiology.
+
+**How it surfaced.** Preparing the rebuild for issue 25. The population had not changed, only
+the defence gain, so the guard would have passed and the rebuild would have measured a new
+physiology through settings titrated against the old one.
+
+**Why it matters more than it looks.** Titration weakens a subject's settings until its own
+record clears the consensus hypoglycaemia floors. The defence gain is one of the things
+determining how much hypoglycaemia a subject has, so the titrated settings are an output of the
+physiology as much as of the population, and reusing them would have partly cancelled the change
+being measured.
+
+**Fix.** `examples/rebuild_all.sh` deletes the store before retitrating, and says why in the
+script. The guard itself is unchanged: extending the fingerprint to cover the physiology
+constants would invalidate the store on any edit to `varying.py`, including edits to comments,
+which would make it useless.
+
+## 27. Every result stamped itself as not reproducible
+
+`provenance.stamp` recorded the working tree as dirty whenever `git status` returned anything,
+and results are written into the repository under `docs/measurements/`. A run therefore dirtied
+the tree by completing, and `check_compatible` refuses to merge dirty results, so shards could
+not be combined without `--allow-dirty`.
+
+**How it surfaced.** Checking what the rebuild would stamp its outputs with before starting it.
+
+**Fix.** The flag now asks whether anything outside `docs/` differs from the commit, which is
+the question it was meant to ask: whether the code that ran is identified. Verified both ways,
+with a results-only tree reading clean and a one-character edit to `patient/varying.py` reading
+dirty.
+
+The first attempt at the fix did not work and is worth recording. `git status --porcelain` puts
+the path at a different offset for a staged change than an unstaged one, so slicing a fixed
+three characters dropped the leading character of every staged path, no path matched the
+exclusion, and the flag stayed set for exactly the reason it had just been changed to ignore. It
+was caught by checking the flag against a tree that should have read clean rather than by
+assuming the edit worked.
