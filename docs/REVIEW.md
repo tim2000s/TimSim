@@ -269,3 +269,74 @@ it is systematic and it is in the direction of reporting meals as peaking sooner
 Corrected by numbering the series from `step_minutes` rather than zero, which is where the first
 sample actually sits. Verified by the same rescue probe, now aligned to 0.0 minutes on every
 rescue, and held by a regression test.
+
+## R13. Total daily insulin is an assumption, and two things treat it as a measurement (moderate)
+
+`population/generate.py` records `TDI` as the subject's basal requirement doubled, on the
+conventional half-basal half-bolus split. It was undocumented at the point of definition.
+
+Two things read it. `therapy/profile.py` sizes the maximum bolus and the maximum insulin on
+board from it, so the delivery ceilings are a fixed multiple of basal. And
+`population/cohort.py::matched_on_traits` matches cohorts to real people on age and log(TDI),
+which is described in the paper as matching on age and daily insulin.
+
+Because the simulated figure is a constant multiple of basal, that second matching dimension
+carries no information the basal rate does not, while the real side of the match is a recorded
+pump total that includes how much its owner actually bolused. The match is looser than the
+description implies. Documented at the definition; the description is for the spec review to
+correct.
+
+## R14. The refusal to compare partial overlap is not on the path that produces the tables (moderate)
+
+`analysis/cohort.py::paired_subjects` raises when no subject completes every arm, because a
+comparison from partial overlap invents a population. `examples/bench_tables.py::paired`
+reimplements the same rule and returns whatever it finds, including nothing, and that is the
+function the published tables and the distance measurement are built on.
+
+Guarded in `distance_to_real.py`, which refuses below ten paired subjects. `bench_tables.py`
+still reports without a floor, which is defensible for a table that prints its own paired count
+beside every row, and is recorded so the difference is a choice rather than an oversight.
+
+## R15. The sensor layer exists twice, and the tests mostly exercise the copy that never runs (moderate)
+
+`sensor/realism.py` carries two implementations. `OnlineArtefacts` is what `simulate` uses.
+`add_sensor_noise`, `inject_compression_lows` and `apply` are a batch version, and nothing
+outside `tests/test_sensor.py` imports any of them.
+
+They are not the same mechanism. The batch version enforces a minimum gap between events and
+hardcodes a depth threshold of 26.0 mg/dL where the online one takes `min_depth` as a
+parameter, so the two place compression lows differently.
+
+Most of the sensor suite therefore tests code no simulation runs, and a change to the live path
+could pass it. Recorded rather than repaired, since deleting the batch path removes test
+coverage and that is a decision about what the suite is for.
+
+## Checked and clear
+
+Two things that looked like defects and are not, recorded so they are not re-investigated.
+
+The DCLP3 cache is ordered. 100 of 112 participants have timestamps that are not strictly
+increasing, which matters because `signatures._lag_corr` and `_within_band_outcome_sd` use
+`searchsorted`. Measured across 5,660,584 steps: 3,541 duplicate timestamps and no inversions
+at all. `searchsorted` needs non-decreasing input, which holds, and the duplicates are 0.06 per
+cent of readings.
+
+The insulin ledgers are not a bottleneck. Neither `Enforcer.doses` nor `CorrectionLoop.boluses`
+is ever pruned, and both are summed on every step, so an 8,064-step run sums a list that grows
+to thousands of entries whose contribution is exactly zero beyond the duration of action.
+Pruning them was implemented and measured: a 28-day run took 86.9 seconds before and 86.9
+seconds after, because the ODE integration dominates. The change was reverted rather than kept,
+since an optimisation that moves nothing is complexity without a result.
+
+## Coverage of this pass
+
+Reviewed at depth: `patient/varying.py`, `person/behaviour.py`, `controller/loop.py`,
+`therapy/limits.py`, `therapy/profile.py`, `analysis/cohort.py`, `population/generate.py`,
+`population/cohort.py`, `validation/dclp3.py`, `sensor/realism.py`, `simulation/run.py`.
+
+Not yet reviewed at depth, and therefore not cleared: `validation/checks.py`, `boost.py`,
+`replication.py`, `gate.py`, `oref.py`, `ranking.py`, `faults.py`; `controller/oref.py`,
+`boost.py`, `boost_bridge.py`, `boost_autoconfig.py`, `autosens.py`, `inputs.py`,
+`reference.py`; `person/activity.py`; the internals of `analysis/signatures.py`; and most of
+`examples/`. The oref controller is the largest gap, since it drives three of the four cohort
+pairings.

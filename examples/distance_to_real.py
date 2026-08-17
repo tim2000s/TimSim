@@ -47,12 +47,25 @@ LAYERED = "layered_some"
 # two small numbers. The threshold is a tenth of the spread between a real tenth-percentile and
 # ninetieth-percentile person, which is well inside the noise on any of these measures.
 MIN_GAP = 0.10
+
+# Below this the comparison is a statement about which subjects survived rather than about the
+# layers. Runs end when glucose leaves the range the model is defined over, and the runs that
+# fail are the ones that went lowest, so every figure here is conditioned on survival.
+MIN_PAIRED = 10
 OUT = os.path.join(MEASUREMENTS, "distance_to_real.json")
 
 
 def distances(arms, subjects, ref):
     """Per measure: the bare and layered medians, the real median, and the gaps between."""
     keep = paired(arms, "bare", LAYERED, subjects)
+    # `analysis/cohort.py::paired_subjects` refuses a comparison built from partial overlap,
+    # and `bench_tables.paired` does not, so the refusal is repeated here rather than assumed.
+    # A median over a handful of survivors is a statement about which subjects survived.
+    if len(keep) < MIN_PAIRED:
+        raise ValueError(
+            f"only {len(keep)} subjects completed both the bare and the {LAYERED} arm, "
+            f"which is below the {MIN_PAIRED} this comparison needs. Every figure here is "
+            f"conditioned on survival, and at this count it is mostly conditioned on it.")
     out = {"paired": len(keep)}
     for key, name, refkey in MEASURES:
         if not refkey:

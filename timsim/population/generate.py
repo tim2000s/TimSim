@@ -309,6 +309,15 @@ def generate(n=100, seed=2026, shrinkage=0.5, truncate=2.5, split=None, verbose=
                 rejects[why] = rejects.get(why, 0) + 1
                 continue
             rows.append(params)
+            # Total daily insulin is the subject's own basal requirement doubled, on the
+            # conventional half-basal half-bolus split. It is an assumption rather than a
+            # simulated or measured quantity, and two things read it: `therapy/profile.py`
+            # sizes the delivery ceilings from it, and `population/cohort.py::matched_on_traits`
+            # matches cohorts on age and log(TDI) against real people. Because it is a fixed
+            # multiple of basal, that second matching dimension carries no information basal
+            # does not, while the real side of the match is a recorded pump total that includes
+            # how much its owner actually bolused. State that wherever a cohort is described as
+            # matched on daily insulin.
             therapy.append({"Name": name, "CR": cr, "CF": cf, "Age": age,
                             "TDI": derive.basal_rate(params) * 1440 * 2.0})
             made += 1
