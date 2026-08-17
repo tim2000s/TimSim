@@ -51,23 +51,29 @@ LABELS = {
 }
 
 
-def driver_for(name, driver):
+def driver_for(name, driver, prof):
     """A fresh controller for one subject.\n\nThe two bridged algorithms hold a subprocess each and per-subject state, so they cannot\nbe shared. The two built-in ones are strings the runner resolves itself.\n"""
     if driver == "boost":
         from timsim.controller import boost_bridge
-        return boost_bridge.BoostBridgeController(name)
+        return boost_bridge.BoostBridgeController(name, profile=prof)
     if driver == "oref":
         from timsim.controller import oref
-        return oref.OrefController(name)
+        return oref.OrefController(name, profile=prof)
     return driver
 
 
 def one(job):
     """One subject. Returns its own signature values, not a cohort summary.\n\nPer-subject values are what makes a paired comparison possible, and a paired comparison\nis the only honest one here: the same virtual people are run under every rung and every\ndriver, so treating the arms as independent cohorts throws away most of the power and\nsilently compares different sets of people whenever an arm loses a subject.\n"""
     name, layers, driver, days, seed = job
-    ctrl = driver_for(name, driver)
+    # Titrated settings throughout, the same rule every benchmark follows. Passing nothing
+    # ran the physiological settings no real person carries, and three of the signatures
+    # read hypoglycaemia behaviour, which those settings roughly double under oref0 SMB.
+    from timsim.therapy import titrate
+    prof = titrate.profile_for(name)
+    ctrl = driver_for(name, driver, prof)
     try:
-        r = simulate(name, days=days, seed=seed, layers=layers, controller=ctrl)
+        r = simulate(name, days=days, seed=seed, layers=layers, controller=ctrl,
+                     profile=prof)
     finally:
         if hasattr(ctrl, "close"):
             ctrl.close()

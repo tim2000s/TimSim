@@ -122,9 +122,31 @@ def measure_trial(arm=dclp3.CLOSED_LOOP, source="pump"):
                       np.where(seen > 0, hits / np.maximum(seen, 1) * 100, np.nan))
 
 
+def _scaled_profile(name, isf_scale):
+    """A titrated profile with its correction factor weakened further.
+
+    Module-level and composed with `functools.partial` so it survives pickling to a worker,
+    which a closure would not.
+    """
+    from dataclasses import replace
+    from timsim.therapy import titrate
+    p = titrate.profile_for(name)
+    return replace(p, isf=p.isf * float(isf_scale))
+
+
 def run_arm(key, subjects, days, seed=seeds.BENCH):
+    import functools
+    from timsim.therapy import titrate
     layers, kwargs = ARMS[key]
+    # `isf_scale` cannot ride through simulate's kwargs any more: an explicit profile wins
+    # over the arguments `for_subject` would have taken, so the settings arms would silently
+    # have become copies of their partners. It is applied to the titrated profile instead.
+    kwargs = dict(kwargs)
+    scale = kwargs.pop("isf_scale", None)
+    factory = (functools.partial(_scaled_profile, isf_scale=scale) if scale
+               else titrate.profile_for)
     results = simulate_cohort(subjects, days=days, seed=seed, layers=layers,
+                              profile_factory=factory,
                               progress=False, **kwargs)
     found, total = [], 0.0
     hits, seen = np.zeros(24), np.zeros(24)

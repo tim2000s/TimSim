@@ -74,7 +74,11 @@ LABELS = {
 
 
 def run_arm(key, layers, subjects, days, kwargs=None):
+    # Titrated settings, as every benchmark uses; the physiological fallback describes a
+    # person no titration would leave in place.
+    from timsim.therapy import titrate
     results = simulate_cohort(subjects, days=days, seed=seeds.BENCH, layers=layers,
+                              profile_factory=titrate.profile_for,
                               progress=False, **(kwargs or {}))
     stats = signatures.evaluate(results)
     payload = {"label": key, "layers": list(layers), "seed": seeds.BENCH, "days": days,

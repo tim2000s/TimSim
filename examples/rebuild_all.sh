@@ -93,6 +93,26 @@ if todo:
     sys.exit(subprocess.call(args))
 INNER
 
+# 2b. The fixed panels. The capability table, the ablation, the ladder, the hyperglycaemia
+#     gap and the production measurement run on the first adults rather than on a matched
+#     cohort, and they now read the titration store like everything else, so their subjects
+#     must be in it. Titrating against the panel is not circular: titration runs under the
+#     built-in trend loop, which is not among the systems the panels compare.
+stage titrate_panel "$PY" - <<'INNER' || exit 1
+import subprocess, sys, os
+repo = os.environ["PYTHONPATH"].split(":")[0]
+sys.path.insert(0, repo)
+from timsim.therapy import titrate
+panel = [f"adult#{i:03d}" for i in range(1, 41)]
+todo = [s for s in panel if s not in set(titrate.titrated_subjects())]
+print(f"{len(todo)} panel subjects still need titrating")
+if todo:
+    args = [sys.executable, "examples/titrate_cohort.py", "--add", "--workers", "12"]
+    for s in todo:
+        args += ["--subject", s]
+    sys.exit(subprocess.call(args))
+INNER
+
 # 3. The matrix, which is the long pole and feeds the tables and the distance measurement.
 stage bench_matrix env WORKERS="$WORKERS" "$PY" examples/bench_matrix.py || exit 1
 stage replicates "$PY" examples/cohort_replicates.py --n "$COHORT_N" \

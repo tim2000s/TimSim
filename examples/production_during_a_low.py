@@ -41,10 +41,15 @@ def one(name):
                      float(max(q.kp1 - q.kp2 * self.state[3] - q.kp3 * self.state[8], 0.0))))
         return base_step(self, action, *a, **kw)
 
+    # Titrated settings, so the lows this reads production during are the lows the person
+    # would actually have. The insulin state during a low is what makes the figure
+    # interpretable, and untitrated settings roughly double how often lows happen.
+    from timsim.therapy import titrate
+    prof = titrate.profile_for(name)
     V.VaryingPatient.step = traced
     try:
         simulate(name, days=DAYS, seed=SEED, layers=LAYERS, controller="trend",
-                 hypo_egp_defence=0.0, hypo_defence_gain=0.0)
+                 profile=prof, hypo_egp_defence=0.0, hypo_defence_gain=0.0)
     except Exception:
         pass                  # a run that terminates early still contributes what it reached
     finally:

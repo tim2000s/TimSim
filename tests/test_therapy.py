@@ -67,11 +67,31 @@ def test_the_insulin_on_board_ceiling_stops_stacking():
     assert e.bound["iob"] > 0
 
 
-def test_basal_at_or_below_schedule_does_not_count_towards_insulin_on_board():
+def test_basal_at_schedule_does_not_count_towards_insulin_on_board():
     e = Enforcer(PumpLimits(max_basal_u_per_hour=3.0, max_bolus_u=10.0, max_iob_u=6.0))
     for t in range(0, 600, 5):
         e.apply(t, 0.02, 0.0, 0.02, 5.0)
     assert e.iob(600) == pytest.approx(0.0)
+
+
+def test_withheld_basal_counts_negatively_and_gives_its_headroom_back():
+    """A suspension must reduce insulin on board, as AndroidAPS reports it.
+
+    Counting only delivery above schedule meant a suspension never returned its headroom,
+    so an algorithm that had been withholding and asked for a catch-up temporary basal was
+    cut back by a ceiling computed from a figure that never fell. Under oref0 SMB that
+    ceiling bound on 15.6 per cent of steps, and the difference was the bench's.
+    """
+    e = Enforcer(PumpLimits(max_basal_u_per_hour=6.0, max_bolus_u=10.0, max_iob_u=1.0))
+    for t in range(0, 300, 5):                      # an hour's suspension
+        e.apply(t, 0.0, 0.0, 0.02, 5.0)
+    assert e.iob(300) < 0.0
+    # With negative insulin on board there is more than a ceiling's worth of headroom, so a
+    # catch-up above schedule passes untouched where the positive-only ledger clamped it.
+    before = e.bound["iob"]
+    basal, _ = e.apply(300, 4.0 / 60.0, 0.0, 0.02, 5.0)
+    assert basal == pytest.approx(4.0 / 60.0)
+    assert e.bound["iob"] == before
 
 
 def test_the_insulin_on_board_ceiling_also_bounds_basal_above_schedule():

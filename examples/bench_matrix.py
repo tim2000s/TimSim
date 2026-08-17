@@ -95,7 +95,11 @@ def main():
                          "list from the same cohorts and takes a disjoint part of it.")
     ap.add_argument("--out", default=OUT)
     a = ap.parse_args()
-    i, n = (int(x) for x in a.shard.split("/"))
+    # Named so nothing later can shadow them. They were `i` and `n`, and both were: the
+    # progress loop rebound `i` to the completed-row count and the per-pairing print rebound
+    # `n` to the last cohort's size, so the shard stamp recorded neither the index nor the
+    # count. `merge_shards.py` reads that stamp to check it has every shard exactly once.
+    shard_index, shard_count = (int(x) for x in a.shard.split("/"))
 
     from timsim.therapy import titrate
     rec = json.load(open(os.path.join(MEASUREMENTS, "cohorts.json")))
@@ -111,13 +115,13 @@ def main():
         for bench, layers, announcement in BENCHES:
             jobs += [(cohort, controller, bench, n, layers, announcement) for n in subjects]
     total = len(jobs)
-    if n > 1:
-        jobs = jobs[i - 1::n]
-        print(f"shard {i} of {n}: {len(jobs)} of {total} runs", flush=True)
+    if shard_count > 1:
+        jobs = jobs[shard_index - 1::shard_count]
+        print(f"shard {shard_index} of {shard_count}: {len(jobs)} of {total} runs", flush=True)
     print(f"{len(PAIRINGS)} pairings, {len(BENCHES)} benches, {len(jobs)} runs", flush=True)
     for cohort, controller in PAIRINGS:
-        n = len([s for s in rec["cohorts"][cohort]["subjects"] if s in titrated])
-        print(f"  {cohort:9} {controller:11} {n} titrated subjects", flush=True)
+        n_titrated = len([s for s in rec["cohorts"][cohort]["subjects"] if s in titrated])
+        print(f"  {cohort:9} {controller:11} {n_titrated} titrated subjects", flush=True)
 
     rows, t0 = [], time.time()
     with ProcessPoolExecutor(max_workers=int(os.environ.get("WORKERS", "10"))) as ex:
@@ -128,7 +132,8 @@ def main():
             if row.get("error"):
                 print(f"  ! {row['arm']} {row['name']}: {row['error'][:110]}", flush=True)
     json.dump({"population": current, "days": DAYS, "seed": SEED,
-               "shard": {"index": i, "of": n, "runs_in_shard": len(jobs), "runs_total": total},
+               "shard": {"index": shard_index, "of": shard_count,
+                         "runs_in_shard": len(jobs), "runs_total": total},
                "provenance": provenance.stamp(), "runs": rows},
               open(a.out, "w"), indent=1)
     print(f"\nwrote {a.out} after {(time.time()-t0)/60:.1f} min")

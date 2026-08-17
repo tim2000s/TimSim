@@ -687,7 +687,10 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
 
 def _cohort_one(job):
     """One subject of a cohort, in whatever process is running it."""
-    name, days, seed, layers, controller, factory, kwargs = job
+    name, days, seed, layers, controller, factory, profile_factory, kwargs = job
+    kwargs = dict(kwargs)
+    if profile_factory is not None:
+        kwargs["profile"] = profile_factory(name)
     driver = factory(name) if factory is not None else controller
     try:
         with warnings.catch_warnings():
@@ -724,12 +727,17 @@ def _parallelisable(controller, controller_factory):
 
 def simulate_cohort(names=None, days=28, seed=0, layers=DEFAULT_LAYERS,
                     controller=DEFAULT_CONTROLLER, controller_factory=None,
-                    progress=True, workers=1, **kwargs):
+                    profile_factory=None, progress=True, workers=1, **kwargs):
     """Run many subjects. Returns a list of Result, one per subject.
 
     `controller` is the same argument `simulate` takes. `controller_factory` is for an
     algorithm that carries per-subject state: it is called with the subject name and must
     return a fresh instance, so nothing leaks between subjects. Give one or the other.
+
+    `profile_factory` supplies each subject's therapy profile, called with the name. The
+    reason it exists is titration: settings are per subject, `profile` in `kwargs` would
+    hand every subject the same one, and passing nothing runs the physiological settings
+    no real person carries. `timsim.therapy.titrate.profile_for` is the intended value.
 
     `workers` above one spreads the subjects across processes. Results are identical either
     way and are returned in the order `names` gives, because a subject's random stream comes
@@ -763,7 +771,8 @@ def simulate_cohort(names=None, days=28, seed=0, layers=DEFAULT_LAYERS,
             warnings.warn(why, RuntimeWarning, stacklevel=2)
         else:
             from concurrent.futures import ProcessPoolExecutor
-            jobs = [(n, days, seed, layers, controller, controller_factory, kwargs)
+            jobs = [(n, days, seed, layers, controller, controller_factory,
+                     profile_factory, kwargs)
                     for n in names]
             with ProcessPoolExecutor(max_workers=int(workers)) as ex:
                 out = list(ex.map(_cohort_one, jobs))
@@ -778,7 +787,8 @@ def simulate_cohort(names=None, days=28, seed=0, layers=DEFAULT_LAYERS,
         # `subject_seed` now does that from the name; keeping the offset as well would
         # make a subject's run depend on where it sat in `names`, so a subject would
         # come out differently in a full cohort and in a subset of it.
-        r = _cohort_one((name, days, seed, layers, controller, controller_factory, kwargs))
+        r = _cohort_one((name, days, seed, layers, controller, controller_factory,
+                         profile_factory, kwargs))
         out.append(r)
         report(name, r)
     return out

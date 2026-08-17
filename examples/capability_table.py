@@ -26,22 +26,30 @@ from timsim import seeds
 DAYS, SEED = 28, seeds.BENCH
 
 
-def driver_for(name, d):
+def driver_for(name, d, prof):
     if d == "boost":
         from timsim.controller import boost_bridge
-        return boost_bridge.BoostBridgeController(name)
+        return boost_bridge.BoostBridgeController(name, profile=prof)
     if d == "oref":
         from timsim.controller import oref
-        return oref.OrefController(name)
+        return oref.OrefController(name, profile=prof)
     return d
 
 
 def one(job):
     from timsim.simulation.run import simulate
+    from timsim.therapy import titrate
     name, d = job
-    ctrl = driver_for(name, d)
+    # Titrated settings, as every other measurement uses. Passing no profile fell back to
+    # the physiological ones, which no real person carries: the median physiological
+    # correction factor is well under half the recorded DCLP3 value, and handing oref0 SMB
+    # the physiological figure doubles its time below 70 mg/dL. Three of the ten signatures
+    # read hypoglycaemia behaviour, so the table was partly describing the settings.
+    prof = titrate.profile_for(name)
+    ctrl = driver_for(name, d, prof)
     try:
-        r = simulate(name, days=DAYS, seed=SEED, layers=LAYERS, controller=ctrl)
+        r = simulate(name, days=DAYS, seed=SEED, layers=LAYERS, controller=ctrl,
+                     profile=prof)
     except Exception as e:
         return {"name": name, "driver": d, "completed": False, "error": str(e)[:120]}
     finally:

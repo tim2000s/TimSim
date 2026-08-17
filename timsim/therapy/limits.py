@@ -75,12 +75,21 @@ class Enforcer:
     """Applies the limits to a requested action, and records what bound.
 
     Insulin on board is counted the way the open-source systems count it: bolus insulin
-    plus whatever basal was delivered above the scheduled rate. Basal delivered at or
-    below schedule is the person's background requirement rather than something the
-    algorithm added, so counting it would make the ceiling bind on everyone immediately.
+    plus basal delivered away from the scheduled rate, in either direction. Basal at
+    schedule is the person's background requirement and contributes nothing; basal
+    withheld below it contributes negatively, exactly as AndroidAPS reports negative
+    insulin on board during a suspension.
+
+    The negative side is load-bearing, and an earlier version dropped it. Counting only
+    delivery above schedule means a suspension never gives its headroom back, so an
+    algorithm that had been withholding, correctly saw its own insulin on board go
+    negative, and asked for a catch-up temporary basal was cut back by a ceiling computed
+    from a figure that never fell. Under oref0 SMB the ceiling bound on 15.6 per cent of
+    steps; counted the way the systems count it, the same runs bind on well under one
+    per cent, and the difference was the bench's, not the algorithm's.
     """
     limits: PumpLimits
-    doses: list = field(default_factory=list)      # [(minute, units)] above schedule
+    doses: list = field(default_factory=list)      # [(minute, units)] away from schedule
     bound: dict = field(default_factory=lambda: {"basal": 0, "bolus": 0, "iob": 0})
     peak_iob_u: float = 0.0
 
@@ -122,7 +131,8 @@ class Enforcer:
         bolus = _round_down(bolus, lim.bolus_increment_u)
 
         scheduled = max(0.0, float(scheduled_basal_u_per_min))
-        above = max(0.0, basal - scheduled) * sample_minutes
+        deviation = (basal - scheduled) * sample_minutes    # negative when withholding
+        above = max(0.0, deviation)
         remaining = max(0.0, headroom - bolus)
         if above > remaining:
             # Never below the schedule. Rounding down the sum can land under it when the
@@ -134,11 +144,12 @@ class Enforcer:
             capped = _round_down((scheduled + remaining / sample_minutes) * 60.0,
                                  lim.basal_increment_u_per_hour) / 60.0
             basal = max(scheduled, capped)
-            above = max(0.0, basal - scheduled) * sample_minutes
+            deviation = (basal - scheduled) * sample_minutes
+            above = max(0.0, deviation)
             self.bound["iob"] += 1
 
-        if bolus + above > 0:
-            self.doses.append((minute, bolus + above))
+        if abs(bolus + deviation) > 1e-12:
+            self.doses.append((minute, bolus + deviation))
         self.peak_iob_u = max(self.peak_iob_u, on_board + bolus + above)
         return basal, bolus
 

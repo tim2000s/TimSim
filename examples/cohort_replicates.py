@@ -138,17 +138,48 @@ def main():
             if k % 20 == 0 or k == len(jobs):
                 print(f"  {k}/{len(jobs)} done, {(time.time()-t0)/60:.1f} min", flush=True)
 
+    # Two statistics per measure, because they answer different questions and comparing one
+    # against the other misled once. The range of the replicate medians is the spread across
+    # disjoint groups actually drawn. The split-half is the same statistic the real baseline
+    # in `cohort_variation.py` reports, the 95th percentile of the gap between two random
+    # halves, computed here on each replicate's own runs so the two sides can be read against
+    # each other like for like. A range over k groups sits near 1.7 sigma for k of three
+    # while a split-half 95th percentile sits near 2.8, so quoting the first against the
+    # second overstates the trial's variability relative to the bench. Group sizes matter
+    # too and are printed: a median over more people is steadier for that reason alone.
+    def split_half_95(values, draws=5000, seed=0):
+        v = np.asarray(values, float)
+        v = v[np.isfinite(v)]
+        if len(v) < 8:
+            return float("nan")
+        rng_ = np.random.default_rng(seed)
+        gaps = []
+        for _ in range(draws):
+            idx = rng_.permutation(len(v))
+            half = len(v) // 2
+            gaps.append(abs(np.median(v[idx[:half]]) - np.median(v[idx[half:]])))
+        return float(np.percentile(gaps, 95))
+
+    half_sizes = sorted({len([r for r in rows if r["replicate"] == i and r.get("completed")])
+                         for i in range(len(reps))})
+    print(f"\n  completed group sizes {half_sizes}; split halves are half of each. The real "
+          f"baseline's halves are half of its cohort, so compare at the sizes printed.")
     print(f"\n  {'measure':22}" + "".join(f"{f'rep {i}':>10}" for i in range(len(reps)))
-          + f"{'spread':>10}")
+          + f"{'range':>9}{'split95':>9}")
     summary = {}
     for key, label in MEASURES:
-        meds = []
+        meds, halves = [], []
         for i in range(len(reps)):
             v = [r[key] for r in rows if r["replicate"] == i and r.get("completed")]
             meds.append(float(np.median(v)) if v else float("nan"))
+            halves.append(split_half_95(v, seed=i))
         rng = float(np.nanmax(meds) - np.nanmin(meds))
-        summary[key] = {"medians": meds, "range": rng}
-        print(f"  {label:22}" + "".join(f"{m:>10.2f}" for m in meds) + f"{rng:>10.2f}")
+        sh = float(np.nanmedian(halves))
+        summary[key] = {"medians": meds, "range": rng,
+                        "split_half_95_per_replicate": halves,
+                        "split_half_95": sh}
+        print(f"  {label:22}" + "".join(f"{m:>10.2f}" for m in meds)
+              + f"{rng:>9.2f}{sh:>9.2f}")
 
     json.dump({"population": titrate.population_fingerprint(), "controller": CONTROLLER,
                "replicates": [{"subjects": list(n), "match": i} for n, i in reps],

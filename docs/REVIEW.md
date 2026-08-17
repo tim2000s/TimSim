@@ -563,3 +563,72 @@ is off by default and self-consistent. `therapy/insulin.py` returns exactly zero
 duration of action, which is what makes the unpruned ledgers harmless.
 
 `validation/oref.py` is reachable from nothing: no module imports it and no document cites it.
+
+# Fifth and sixth passes: units, and statistics
+
+Different lenses rather than a re-read: every unit conversion on the delivery path, then every
+statistic that reaches a paper.
+
+## R27. Withheld basal never gave its headroom back (severe, corrected)
+
+`Enforcer` claimed to count insulin on board "the way the open-source systems count it" and did
+not: its ledger held only bolus insulin and basal above schedule, so it could never go negative,
+where AndroidAPS reports negative insulin on board through a suspension. An algorithm that had
+been withholding, correctly saw its own figure go negative and asked for a catch-up temporary
+basal was cut back by a ceiling computed from a figure that never fell.
+
+Measured under oref0 SMB over five days: the ceiling bound on 15.6 per cent of steps on one
+subject and 12.8 on another. With deviations counted in both directions the binds fall towards
+the algorithm legitimately riding a ceiling it shares with the pump, and the outcomes move:
+adult#001 takes 3 per cent more insulin and its time below 54 mg/dL rises from 0.20 to 2.92 per
+cent on untitrated settings. The difference was the bench's, not the algorithm's. Held by a
+regression test in which an hour's suspension buys back a catch-up basal untouched.
+
+Related and recorded: oref and Boost keep requested boluses in their ledgers where the reference
+controller reconciles against delivery. Measured under oref, the enforcer clamped zero boluses
+in ten subject-days, so the ledgers agree in practice; basal, the side that was wrong, is
+reconciled by both bridges.
+
+## R28. The shard stamp recorded neither the shard index nor the count (moderate, corrected)
+
+In `bench_matrix.py` the progress loop rebound `i` to the completed-row count and the pairing
+print rebound `n` to the last cohort's size, and the shard stamp was written from both after the
+fact. `merge_shards.py` reads that stamp to check it holds every shard exactly once, so a
+two-machine run would have been unmergeable or, worse, merged on garbage bookkeeping. The
+single-machine default never exercised it.
+
+## R29. The reproducibility comparison set a range against a split-half (moderate, corrected)
+
+The bench's group variation was summarised as the range of the replicate medians over three or
+four disjoint cohorts, and the trial's as the 95th percentile of a split-half gap. Those are
+different statistics with different expectations, near 1.7 sigma for a range of three against
+2.8 for a split-half 95th percentile, and the group sizes differed as well, 90 against halves
+of 67. Both mismatches run the same way and flatter the bench, and the draft claim that the
+bench was more reproducible than the trial rested partly on them. `cohort_replicates.py` now
+computes the same split-half statistic on each replicate's own runs and prints the group sizes
+beside it.
+
+## R30. The fixed panels ran on settings no person carries (moderate, corrected)
+
+The capability table, the layer ablation, the ladder, the hyperglycaemia gap and the production
+measurement all ran their subjects on physiological settings, because `simulate` falls back to
+`for_subject` when no profile is passed and nothing passed one. The package's own doctrine is
+that an untitrated benchmark measures the settings as much as anything, and three of the ten
+capability signatures read hypoglycaemia behaviour directly.
+
+`simulate_cohort` now takes a `profile_factory`, the panels pass `titrate.profile_for`, the
+bridge controllers receive the same profile so the matching guard holds, and the rebuild
+titrates the panel subjects explicitly. The gap script's settings arms, which weakened the
+correction factor through an `isf_scale` argument an explicit profile silences, now scale the
+titrated profile instead; without that they would silently have become copies of their partner
+arms. `configuration_arbiter.py` keeps its own untitrated design, which is internally
+consistent and predates titration, and is recorded here rather than changed.
+
+## Checked and clear, fifth and sixth passes
+
+The delivery unit conversions are consistent end to end: U/min at the pump boundary, U per step
+inside the enforcer and the site, U/h at the oref boundary, with the conversions at the edges
+and nowhere else. `fit_control_iq` fits on the calibration half and reports against the held
+out half with no leak; its held-out rerun is the same deterministic simulation scored against
+the other reference, which is wasteful and harmless. The bootstrap machinery seeds every
+signature's interval separately and identically on both sides of each comparison.
