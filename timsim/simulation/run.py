@@ -475,13 +475,16 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
                     announce="behaviour" in effective,
                     rescue_threshold=threshold, rescue_refractory_min=refractory,
                     announcement=announcement)
+    # The minutes the meals are actually delivered on, computed the same way for every arm so
+    # that the record of what a subject ate does not depend on which layers ran.
+    delivery = behaviour_mod.delivery_schedule(schedule)
     if "behaviour" in effective:
         scenario = BehaviourScenario(
             start, schedule, person,
             **({} if meal_delay_min is None else {"meal_delay_min": meal_delay_min}))
     else:
         scenario = CustomScenario(start_time=start,
-                                  scenario=[(h, g) for h, g, _ in schedule])
+                                  scenario=[(m / 60.0, g) for m, g, _ in delivery])
 
     env = T1DSimEnv(patient,
                     CGMSensor.withName(_sensor_name(sample_minutes),
@@ -614,7 +617,13 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
     cgm = np.asarray([cgm[i] for i in keep], float)
     bg = np.asarray([bg[i] for i in keep], float)
     insulin = np.asarray([insulin[i] for i in keep], float)
-    minutes = np.arange(len(cgm), dtype=float) * step_minutes
+    # The run is primed with one step before the loop, so the first sample is read after the
+    # model has already advanced by one interval and sample i belongs to minute (i+1)*step.
+    # Numbering from zero put the glucose series one interval behind `meal_log` and
+    # `rescue_log`, which carry the model's own clock, so any analysis locating a meal or a
+    # rescue in the series landed one sample early. That is one sample on a peak time of about
+    # 200 minutes, and it is systematic.
+    minutes = (np.arange(len(cgm), dtype=float) + 1.0) * step_minutes
 
     meta = {"seed": seed, "body_weight": body_weight,
             "basal_u_per_min": prof.basal_at(0), "cr": prof.cr_at(12 * 60),
@@ -639,7 +648,9 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
         insulin_units=float(insulin.sum()), insulin_series=insulin,
         rescue_events=person.rescue_events, rescue_grams=person.rescue_grams,
         rescue_log=tuple(person.rescue_log),
-        meal_log=tuple((float(h) * 60.0, float(g)) for h, g, _ in schedule),
+        # What the person was actually given, on the minutes it was given, so the log cannot
+        # disagree with the gut and does not change shape when a layer is switched off.
+        meal_log=tuple((m, g) for m, g, _ in delivery),
         activity_log=() if activity is None else tuple(activity.sessions),
         meals_announced=person.announced_meals,
         meals_unannounced=person.unannounced_meals,

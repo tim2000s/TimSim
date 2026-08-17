@@ -95,6 +95,30 @@ def test_ablating_a_layer_changes_the_layer_and_not_the_month(subject):
             f"against it measures a different month as well as a different mechanism")
 
 
+def test_the_event_logs_and_the_glucose_series_share_one_clock(subject):
+    """A meal or a rescue must be locatable in the series it caused.
+
+    The run is primed with one step before the loop, so the first sample is read after the
+    model has advanced by one interval. Numbering the series from zero put it one interval
+    behind `meal_log` and `rescue_log`, which carry the model's clock, and every analysis that
+    locates an event in the glucose series was a sample early.
+
+    `rescue_log` records the reading that triggered each decision, which makes the alignment
+    checkable rather than assumed.
+    """
+    r = simulate(subject, days=6, seed=11,
+                 layers=("physiology", "behaviour", "sensor", "site"), controller="trend")
+    if not r.rescue_log:
+        pytest.skip("this subject needed no rescue carbohydrate")
+    cgm, mins = np.asarray(r.cgm), np.asarray(r.minutes)
+    for decided, _eaten, _g, trigger in r.rescue_log:
+        hit = mins[np.isclose(cgm, trigger, atol=1e-9)]
+        assert len(hit), f"the reading {trigger} that triggered a rescue is not in the series"
+        assert min(abs(hit - decided)) < 1e-9, (
+            f"a rescue decided at {decided} was triggered by a reading the series places "
+            f"at {hit[np.argmin(abs(hit - decided))]}")
+
+
 def test_the_meal_stream_does_not_move_when_a_component_is_added(subject):
     """Streams are keyed on purpose, so a component added later leaves the others alone."""
     from timsim.simulation.run import stream

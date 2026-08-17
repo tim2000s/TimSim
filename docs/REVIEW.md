@@ -223,3 +223,49 @@ held between 50 and 60 mg/dL, which the clamp cannot promise. They now exclude t
 did not arrive, require most of the panel to arrive, and assert only the direction of the
 result, since a median over eight subjects of a zero-inflated quantity is not stable enough to
 carry a two-sided bound. That instability is the same one that produced the original 0.20.
+
+# Second pass
+
+A second review at the same depth, before any rerun, on the modules the first pass reached only
+in part and on those it did not reach at all.
+
+## R11. Two meals rounding to the same minute lost one of them (moderate, corrected)
+
+`BehaviourScenario` built its schedule as `{int(round(h * 60)): (grams, is_snack)}`. Meals are
+drawn on a continuous clock, so two can round to the same integer minute, and the dict
+comprehension then kept only the later one. `Result.meal_log` was built from the drawn schedule
+rather than from the scenario, so it went on reporting a meal that was never announced, never
+bolused and never reached the gut.
+
+Measured over 200 subjects at 28 days: 20,268 meals drawn, 3 subjects losing one meal each. Rare,
+and silent, and it puts a phantom meal into any analysis that reads the log, which the meal
+response measurement does.
+
+Corrected by merging rather than dropping, since eating twice in one minute is eating once, and
+by deriving the log from the same delivery schedule every arm uses. Grams are now conserved:
+adult#027 draws 102 meals totalling 6,043 g and delivers them on 101 minutes totalling 6,043 g.
+
+## R12. The glucose series ran one sample behind the event logs (moderate, corrected)
+
+The run is primed with one step before the loop opens, so the model has already advanced by one
+interval when the first sample is read. `Result.minutes` was built as `arange(n) * step`, which
+places that first sample at minute zero, while `meal_log` and `rescue_log` carry the model's own
+clock. Every sample was therefore labelled one interval earlier than the events that caused it.
+
+Established rather than argued. `rescue_log` records the reading that triggered each decision, so
+the reading can be located in the series: across ten rescues the decision was stamped exactly 5.0
+minutes after the sample whose value triggered it, on every one.
+
+The delivery path is unaffected, and that is worth stating because it looked like a second
+defect. `person.observe` is called with the post-increment minute, which is the model clock, and
+the scenario collects on the model clock too, so a rescue reaches the gut exactly the intended 4
+to 16 minutes after the reading. The two offsets cancel. What did not cancel was the label on the
+glucose series.
+
+Consequence: any measurement locating an event in the series was one sample early, including the
+meal response and the meal peak timing. One sample on a peak time near 200 minutes is small and
+it is systematic and it is in the direction of reporting meals as peaking sooner than they do.
+
+Corrected by numbering the series from `step_minutes` rather than zero, which is where the first
+sample actually sits. Verified by the same rescue probe, now aligned to 0.0 minutes on every
+rescue, and held by a regression test.

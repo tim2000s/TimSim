@@ -2,3 +2,6 @@
 19:28:18Z  stopped a running meal_response
 19:28:21Z  archived previous outputs to archive_gain020; titration store cleared
 19:28:21Z  START  titrate
+20:45:55Z  === rebuild: defence gain 0.05, titration seed 11, bench seed 101, 12 workers ===
+20:45:58Z  archived previous outputs to archive_pre_review; titration store cleared
+20:45:58Z  START  titrate

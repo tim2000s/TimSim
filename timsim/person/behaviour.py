@@ -476,6 +476,33 @@ class Person:
         return float(sum(take))
 
 
+def delivery_schedule(meals):
+    """Drawn meals as the minutes they are actually delivered on.
+
+    Meals are drawn on a continuous clock and delivered on an integer minute, so two can round
+    to the same one. Keying a plain dict on that minute dropped the earlier of the pair while
+    the run's meal log went on reporting both, which happened in 3 of 200 subjects over 28 days
+    and left a logged meal that was never announced and never reached the gut. They are merged
+    instead: eating twice in the same minute is eating once, and the result counts as a snack
+    only if both parts were snacks.
+
+    Every arm goes through this, so the record of what a subject ate does not depend on which
+    layers were switched on.
+
+    `meals` is [(hours_from_start, grams, is_snack)]; the result is
+    ((minute, grams, is_snack), ...) sorted by minute.
+    """
+    out = {}
+    for h, g, snack in meals:
+        m = int(round(float(h) * 60.0))
+        if m in out:
+            g0, s0 = out[m]
+            out[m] = (g0 + float(g), bool(s0 and snack))
+        else:
+            out[m] = (float(g), bool(snack))
+    return tuple((float(m), g, s) for m, (g, s) in sorted(out.items()))
+
+
 class BehaviourScenario:
     """A mutable scenario: the scheduled meals plus whatever the person eats reactively.
 
@@ -490,7 +517,8 @@ class BehaviourScenario:
         self.person = person
         self.meal_delay_min = float(meal_delay_min)
         # meals: [(hours_from_start, grams, is_snack)]
-        self.sched = {int(round(h * 60.0)): (g, snack) for h, g, snack in meals}
+        self.effective = delivery_schedule(meals)
+        self.sched = {int(m): (g, s) for m, g, s in self.effective}
         # get_action is called once per model minute; the runner steps the environment
         # three minutes at a time, so announcements accumulate and are drained per step.
         self._announced = 0.0
