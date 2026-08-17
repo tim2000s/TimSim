@@ -321,28 +321,33 @@ def hypo_risk(glucose_mgdl, basal_mgdl, threshold=HYPO_RISK_THRESHOLD):
 # `hypo_risk` above cannot carry either arm, because Kovatchev's index saturates at its
 # threshold and returns the same value at 60 mg/dL and at 10. A defence has to keep growing as
 # glucose falls, so both arms use a logistic in glucose instead.
-# Recalibrated in August 2026 against the whole adult class rather than its first twenty, on
-# the reproducible population. Median endogenous glucose production at the clamp plateaus,
-# 34 adults, human reference 0.42 to 0.84 mg/kg/min with a mean of 0.59:
+# Calibrated across 150 adults on the reproducible population. Median endogenous glucose
+# production at the clamp plateaus, against a human reference of 0.42 to 0.84 mg/kg/min with a
+# mean of 0.59 (Rickels et al. 2015, twelve people with long-standing type 1 diabetes):
 #
-#     gain     55 mg/dL   zeros     45 mg/dL   zeros
-#     0.00       0.18     14/34       0.01     17/34
-#     0.15       0.54      9/34       0.41      8/34
-#     0.20       0.65      7/34       0.57      8/34
-#     0.25       0.76      7/34       0.73      7/34
+#     gain     55 mg/dL   zeros      45 mg/dL   zeros
+#     0.000      0.50     53/150       0.32    58/150
+#     0.050      0.61     49/150       0.48    52/150
+#     0.100      0.72     47/150       0.64    50/150
+#     0.150      0.83     44/150       0.79    43/150
+#     0.200      0.95     39/150       0.95    40/150
+#     0.250      1.05     37/150       1.12    35/150
 #
-# 0.20 is the gain whose median is closest to the human mean while staying inside the human
-# interval at both plateaus; 0.15 is marginally closer at 55 mg/dL and falls below the
-# interval at 45. The previous 0.25 is inside the interval too and sits near its top.
+# 0.05 is the gain whose median is closest to the human mean while staying inside the human
+# interval at both plateaus. The undefended model is already inside that interval at 55 mg/dL,
+# at 0.50, so what the defence has to supply is small.
 #
-# The median is the weaker half of this. It moves from 0.18 to 0.49 at gain zero depending on
-# whether the first twenty adults or all thirty-four are used, because the distribution is
-# zero-inflated and the median tracks how many subjects are pinned at zero. The robust
-# statement is the zero count, and no gain fixes it: seven of thirty-four still produce
-# nothing at a plateau where no real person produces nothing. Reproduce with
-# `examples/calibrate_hypo_defence.py`.
+# The gain is fitted on the median because that is the only thing it can move. It shifts the
+# whole distribution and cannot narrow it, and the distribution is far wider than the human one
+# at every gain: p10 to p90 spans 0.00 to 1.85 at the chosen gain against a human 0.42 to 0.84.
+# That width belongs to the published kp1, kp2 and kp3 values.
+#
+# The zero-inflated tail is a separate defect and this mechanism does not repair it. 49 of 150
+# subjects produce nothing at a 55 mg/dL plateau where no real person produces nothing, and
+# raising the gain to 0.25 removes only twelve of them while carrying the median to 1.05, well
+# above the human interval. Reproduce with `examples/calibrate_hypo_defence.py`.
 HYPO_DEFENCE_GAIN = 0.0       # 0 restores stock S2008; 1 would suppress uptake entirely
-HYPO_EGP_DEFENCE = 0.20       # 0 restores stock S2008; 1 removes insulin suppression of EGP
+HYPO_EGP_DEFENCE = 0.05       # 0 restores stock S2008; 1 removes insulin suppression of EGP
 HYPO_DEFENCE_CENTRE = 58.0    # mg/dL, where the defence is half its maximum
 HYPO_DEFENCE_WIDTH = 8.0      # mg/dL, how sharply it comes on
 HYPO_DEFENCE_FLOOR = 0.15     # insulin action never falls below this fraction
