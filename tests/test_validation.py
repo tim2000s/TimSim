@@ -1,4 +1,6 @@
 """The validation suite decides whether anything else can be believed, so it is tested."""
+import itertools
+
 import numpy as np
 import pytest
 
@@ -10,10 +12,18 @@ pytestmark = pytest.mark.skipif(not population.available(),
 
 
 class _Fake:
-    """A stand-in Result carrying only what the level 4 and 5 checks read."""
+    """A stand-in Result carrying only what the level 4 and 5 checks read.
 
-    def __init__(self, tir):
+    It carries a name because the paired checks pair on identity rather than on list
+    position. A fake without one could be paired with anything, which is the looseness those
+    checks were changed to refuse.
+    """
+
+    _next = itertools.count()
+
+    def __init__(self, tir, name=None):
         self.time_in_range = tir
+        self.name = name if name is not None else f"subject#{next(self._next):04d}"
 
 
 def test_the_closure_check_passes():
@@ -25,8 +35,9 @@ def test_the_closure_check_passes():
 def test_a_null_contrast_is_reported_as_null():
     rng = np.random.default_rng(0)
     base = rng.normal(70, 8, 40)
-    a = [_Fake(v) for v in base]
-    b = [_Fake(v + n) for v, n in zip(base, rng.normal(0, 3, 40))]
+    names = [f"subject#{i:04d}" for i in range(len(base))]
+    a = [_Fake(v, n) for v, n in zip(base, names)]
+    b = [_Fake(v + d, n) for v, d, n in zip(base, rng.normal(0, 3, 40), names)]
     assert checks.check_null_contrast_is_null(a, b)["pass"]
 
 
@@ -34,16 +45,18 @@ def test_a_real_difference_is_not_reported_as_null():
     """The null check has to be able to fail, or it is decoration."""
     rng = np.random.default_rng(1)
     base = rng.normal(70, 8, 40)
-    a = [_Fake(v) for v in base]
-    b = [_Fake(v + 10.0) for v in base]
+    names = [f"subject#{i:04d}" for i in range(len(base))]
+    a = [_Fake(v, n) for v, n in zip(base, names)]
+    b = [_Fake(v + 10.0, n) for v, n in zip(base, names)]
     assert not checks.check_null_contrast_is_null(a, b)["pass"]
 
 
 def test_detectable_difference_shrinks_with_more_subjects():
     rng = np.random.default_rng(2)
     base = rng.normal(70, 8, 40)
-    a = [_Fake(v) for v in base]
-    b = [_Fake(v + n) for v, n in zip(base, rng.normal(0, 3, 40))]
+    names = [f"subject#{i:04d}" for i in range(len(base))]
+    a = [_Fake(v, n) for v, n in zip(base, names)]
+    b = [_Fake(v + d, n) for v, d, n in zip(base, rng.normal(0, 3, 40), names)]
     small = minimum_detectable_difference(a, b, n_subjects=20)["value"]
     large = minimum_detectable_difference(a, b, n_subjects=100)["value"]
     assert large < small
@@ -56,14 +69,16 @@ def test_the_known_answer_check_rejects_no_effect():
 
 
 def test_the_known_answer_check_rejects_an_implausible_effect():
-    open_arm = [_Fake(30.0) for _ in range(20)]
-    loop_arm = [_Fake(95.0) for _ in range(20)]
+    names = [f"subject#{i:04d}" for i in range(20)]
+    open_arm = [_Fake(30.0, n) for n in names]
+    loop_arm = [_Fake(95.0, n) for n in names]
     assert not checks.check_closing_the_loop_improves_time_in_range(open_arm, loop_arm)["pass"]
 
 
 def test_the_known_answer_check_accepts_a_plausible_effect():
-    open_arm = [_Fake(68.0) for _ in range(20)]
-    loop_arm = [_Fake(80.0) for _ in range(20)]
+    names = [f"subject#{i:04d}" for i in range(20)]
+    open_arm = [_Fake(68.0, n) for n in names]
+    loop_arm = [_Fake(80.0, n) for n in names]
     assert checks.check_closing_the_loop_improves_time_in_range(open_arm, loop_arm)["pass"]
 
 

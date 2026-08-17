@@ -441,18 +441,50 @@ def check_closing_the_loop_improves_time_in_range(open_results, loop_results):
     implausibly large one, is not reproducing the one intervention whose effect is best
     established, and should not be trusted to rank two loops against each other.
     """
-    paired = [b.time_in_range - a.time_in_range
-              for a, b in zip(open_results, loop_results)]
+    # Not strict: the two arms are different interventions and lose different subjects, so the
+    # comparison goes on the subjects completing both and says how many that was.
+    pairs = _aligned(open_results, loop_results, strict=False)
+    paired = [b.time_in_range - a.time_in_range for a, b in pairs]
     delta = float(np.median(paired))
     lo, hi = S.boot_ci(paired, seed=0)[1:]
+    dropped = max(len(open_results), len(loop_results)) - len(paired)
     return {"check": "closing the loop improves time in range",
             "level": 4, "value": delta, "target": "+2 to +25 percentage points",
             "pass": bool(2.0 <= delta <= 25.0),
             "note": f"paired median {delta:+.1f} pp [{lo:+.1f} to {hi:+.1f}], "
-                    f"n = {len(paired)} subjects"}
+                    f"n = {len(paired)} subjects completing both arms"
+                    + (f", {dropped} completing only one" if dropped else "")}
 
 
 # ---------------------------------------------------------------------- level 5
+
+
+def _aligned(arm_a, arm_b, strict=True):
+    """Pairs of results for the same subject, rather than for the same list position.
+
+    Zipping two arms pairs them by position, which is right only while both lists hold the
+    same subjects in the same order. Nothing guaranteed that, and a paired difference taken
+    across different people is the failure `analysis/cohort.py::paired_subjects` exists to
+    refuse. These are the checks whose job is catching that kind of error, so they should not
+    contain it.
+
+    `strict` distinguishes two situations. An A/A test runs one controller twice, so the arms
+    must hold the same subjects and anything else is a bug worth raising on. A loop against
+    open-loop comparison legitimately loses different subjects in each arm, so there the
+    intersection is taken and the caller reports how many subjects it was left with.
+    """
+    a = {r.name: r for r in arm_a}
+    b = {r.name: r for r in arm_b}
+    common = sorted(set(a) & set(b))
+    if not common:
+        raise ValueError("the two arms share no subject, so no paired difference exists")
+    if strict and len(common) < max(len(a), len(b)):
+        differ = sorted(set(a) ^ set(b))[:4]
+        raise ValueError(
+            f"the arms do not hold the same subjects: {len(common)} in common against "
+            f"{len(a)} and {len(b)}, e.g. {differ}. Summarising each arm over its own "
+            f"survivors compares different people and the bias always runs favourable.")
+    return [(a[n], b[n]) for n in common]
 
 
 def check_null_contrast_is_null(arm_a, arm_b):
@@ -463,7 +495,7 @@ def check_null_contrast_is_null(arm_a, arm_b):
     how a simulator ends up reporting a two-point improvement that is indistinguishable
     from running the same thing twice.
     """
-    paired = [b.time_in_range - a.time_in_range for a, b in zip(arm_a, arm_b)]
+    paired = [b.time_in_range - a.time_in_range for a, b in _aligned(arm_a, arm_b)]
     delta = float(np.median(paired))
     lo, hi = S.boot_ci(paired, seed=1)[1:]
     spans_zero = bool(lo <= 0.0 <= hi)
@@ -484,7 +516,7 @@ def minimum_detectable_difference(arm_a, arm_b, n_subjects=None, power=0.8, alph
     from scipy import stats as sps
 
     paired = np.array([b.time_in_range - a.time_in_range
-                       for a, b in zip(arm_a, arm_b)], float)
+                       for a, b in _aligned(arm_a, arm_b)], float)
     sd = float(paired.std(ddof=1))
     n = int(n_subjects or len(paired))
     z_a = sps.norm.ppf(1 - alpha / 2)

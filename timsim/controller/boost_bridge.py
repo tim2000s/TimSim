@@ -27,6 +27,7 @@ import subprocess
 
 from simglucose.controller.base import Action, Controller
 
+from ..therapy.site import _asleep
 from .boost import BoostController
 
 HERE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -76,13 +77,20 @@ class BoostBridgeController(BoostController):
     is the point: it isolates one error source rather than changing two things at once.
     """
 
-    def __init__(self, name, jar=JAR, java=None, knobs=None, **kwargs):
+    def __init__(self, name, jar=JAR, java=None, knobs=None,
+                 fast_carb_confirm=True, **kwargs):
         super().__init__(name, **kwargs)
         # The three user-facing knobs. They were being read off the cycle with a default, and
         # none of them is a field on it, so every run sent 1.0 and a configuration derived for
         # the subject could not reach the algorithm. `boost_autoconfig` supplies them.
         self.knobs = {"aggression": 1.0, "hypo_caution": 1.0, "sensitivity": 1.0}
         self.knobs.update(knobs or {})
+        # Same story, and it survived that repair. `fastCarbConfirmEnabled` is a field the jar
+        # reads and was being taken from the cycle with a default of True, which no cycle
+        # carries, so every run sent True whatever the subject's configuration said.
+        # `boost_autoconfig` decides it from whether the subject is hypo-prone, and it arrives
+        # here explicitly rather than being fished off an object that does not have it.
+        self.fast_carb_confirm = bool(fast_carb_confirm)
         if not available(jar):
             raise FileNotFoundError(
                 f"no bridge jar at {jar}; build it with bridge/boost/build.sh")
@@ -115,8 +123,18 @@ class BoostBridgeController(BoostController):
             cycle.recent_low_bg, self._cumulative_rise(cycle), cycle.hour,
             1 if cycle.exercise_active else 0,
             1 if cycle.post_exercise_window else 0,
-            1 if getattr(cycle, "asleep", False) else 0,
-            1 if getattr(cycle, "fast_carb_confirm_enabled", True) else 0,
+            # Both of these were read with `getattr(cycle, name, default)` and neither name is
+            # a field on the cycle, so the jar received a constant on every cycle of every
+            # run: never asleep, and fast-carb confirmation always on. That is the failure
+            # `docs/METHODS.md` records under "a missing input must fail, not default", and
+            # these two survived the repair of the other three.
+            #
+            # Both have a real source. The simulated person's night is the same one
+            # `therapy/site.py` uses to decide when a failed set goes unnoticed, and the
+            # confirmation flag arrives through the constructor from `boost_autoconfig.py`,
+            # which sets it from whether the subject is hypo-prone.
+            1 if _asleep(float(cycle.hour) * 60.0) else 0,
+            1 if self.fast_carb_confirm else 0,
             1 if cycle.sensor_quality_ok else 0,
             0, 0, 0, 0.0,                      # profile switch, disconnect, suspend, clock
             float(self.knobs["aggression"]),

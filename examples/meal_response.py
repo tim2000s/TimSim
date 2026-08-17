@@ -45,10 +45,16 @@ class BasalOnly:
 
 
 def _trace(name, prof, meals):
+    """The glucose trace and the clock it sits on.
+
+    The clock travels with it because the run is primed with one step before its loop, so
+    sample `i` is at minute `(i + 1) * step` rather than `i * step`. Locating the meal by
+    array position assumed the other convention and read the window one sample late.
+    """
     from timsim.simulation.run import simulate
     r = simulate(name, days=DAYS, seed=seeds.BENCH, layers=(), controller=BasalOnly(prof),
                  profile=prof, meals=meals)
-    return np.asarray(r.bg, float)
+    return np.asarray(r.bg, float), np.asarray(r.minutes, float)
 
 
 def one(name, grams):
@@ -60,14 +66,17 @@ def one(name, grams):
     """
     from timsim.therapy import titrate
     prof = titrate.profile_for(name)
-    with_meal = _trace(name, prof, [(MEAL_HOUR, grams, False)])
-    without = _trace(name, prof, [])
-    step = 5.0
-    i0 = int(MEAL_HOUR * 60.0 / step)
-    n = min(len(with_meal), len(without))
+    with_meal, minutes = _trace(name, prof, [(MEAL_HOUR, grams, False)])
+    without, _ = _trace(name, prof, [])
+    n = min(len(with_meal), len(without), len(minutes))
+    # Located on the clock rather than by position, so the answer does not depend on where
+    # the series happens to be numbered from.
+    meal_at = MEAL_HOUR * 60.0
+    i0 = int(np.searchsorted(minutes[:n], meal_at))
     if i0 >= n:
         return None
-    i1 = min(n, i0 + int(WINDOW_MIN / step))
+    i1 = int(np.searchsorted(minutes[:n], meal_at + WINDOW_MIN))
+    i1 = min(max(i1, i0 + 1), n)
     delta = with_meal[i0:i1] - without[i0:i1]
     peak_i = int(np.argmax(delta))
     return {"name": name, "grams": grams,
@@ -75,7 +84,7 @@ def one(name, grams):
             "peak_absolute": float(with_meal[i0:i1][peak_i]),
             "rise": float(delta[peak_i]),
             "rise_per_10g": float(delta[peak_i] / (grams / 10.0)),
-            "time_to_peak_min": float(peak_i * step),
+            "time_to_peak_min": float(minutes[i0 + peak_i] - minutes[i0]),
             "counterfactual_drift": float(without[i1 - 1] - without[i0])}
 
 

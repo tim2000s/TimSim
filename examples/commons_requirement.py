@@ -57,7 +57,7 @@ def one(user_dir):
         return None
     t0 = float(sel[0, 0]) / 60000.0
     minutes = WINDOW_DAYS * 1440.0
-    temps = temp_basals(user_dir)
+    temps = temp_basals(user_dir, rates)
     tr = treatments(user_dir)
     tm = np.array([r[0] for r in tr]) if tr else np.zeros(0)
     ins = np.array([r[2] for r in tr]) if tr else np.zeros(0)

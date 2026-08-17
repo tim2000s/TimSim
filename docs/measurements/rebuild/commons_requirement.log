@@ -1,0 +1,17 @@
+  40/240 scanned, 21 usable
+  80/240 scanned, 39 usable
+  120/240 scanned, 57 usable
+  160/240 scanned, 69 usable
+  200/240 scanned, 87 usable
+  240/240 scanned, 102 usable
+
+77 users with a reconstructable daily requirement
+  4 discarded outside 5 to 200 U/day
+  21 discarded for missing treatment records in the window despite adequate glucose coverage
+  Total daily insulin, U/day     median   38.20  IQR  30.24 to  55.00  p10-p90  24.45 to  73.05
+    of it bolus, U/day           median   21.71  IQR  15.21 to  29.40  p10-p90   9.76 to  44.68
+    of it basal, U/day           median   16.10  IQR  11.53 to  23.70  p10-p90   8.83 to  31.85
+  Basal share                    median    0.45  IQR   0.33 to   0.59  p10-p90   0.23 to   0.68
+  Logged carbohydrate, g/day     median  179.64  IQR 128.57 to 223.54  p10-p90  73.86 to 260.57
+
+wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/commons_requirement.json

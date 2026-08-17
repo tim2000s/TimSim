@@ -1,0 +1,23 @@
+  20/240 users, 21641 meals
+  40/240 users, 39945 meals
+  60/240 users, 52990 meals
+  80/240 users, 58078 meals
+  100/240 users, 65227 meals
+  120/240 users, 71762 meals
+  140/240 users, 72876 meals
+  160/240 users, 75580 meals
+  180/240 users, 83631 meals
+  200/240 users, 86132 meals
+  220/240 users, 96192 meals
+  240/240 users, 101882 meals
+
+101882 uncovered meals of 30 to 90 g from 128 users
+
+variant                                                              n     g  rise/10g  peak min  >180 %
+no insulin within 30 min, any baseline                            7996    38     19.71       179    60.5
+no insulin within 30 min, baseline 80 to 180                      5343    35     18.53       189    52.8
+bolus-free 30 min before to 120 after, baseline 80 to 180         2501    33     15.69       248    50.5
+bolus-free a full action duration before and 4 h after, baseline 80 to 180   388    43     17.38       177    62.4
+the same, and the loop within 0.5 U of schedule over 4 h           317    43     15.89       189    58.0
+
+wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/real_meals_dia.json

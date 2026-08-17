@@ -265,15 +265,19 @@ def evaluate(results, criteria=DEFAULT_CRITERIA, design=None, label="system unde
     subject_days = float(sum(r["days_observed"] for r in records))
     incomplete = [r["name"] for r in records if not r["completed"]]
 
-    rows = []
+    # Non-completion is checked whatever criteria were passed. A run ends when glucose leaves
+    # the range the model is defined over, and the runs that fail are the ones that went
+    # lowest, so every other figure here is conditioned on survival. Tying the check to the
+    # presence of a criterion with this key meant a caller supplying its own criteria lost the
+    # one result that invalidates the rest.
+    rows = [{"hazard": "a subject the run could not survive",
+             "metric": "runs that did not complete",
+             "value": float(len(incomplete)), "limit": 0.0, "pass": not incomplete,
+             "rationale": "a run that left the model's range is not a safety result, and "
+                          "every other figure in this verdict is conditioned on survival"}]
     for c in criteria:
         if c.key == "completed":
-            value = float(len(incomplete))
-            ok = not incomplete
-            rows.append({"hazard": c.hazard, "metric": "runs that did not complete",
-                         "value": value, "limit": 0.0, "pass": ok,
-                         "rationale": c.rationale})
-            continue
+            continue                     # checked above, unconditionally
         value = c.measure(records)
         rows.append({"hazard": c.hazard,
                      "metric": f"{c.summary} {c.key}", "value": value,

@@ -250,9 +250,25 @@ class _BasalBolus:
         if self.ratios is not None:
             self.ratios.observe(minute, cgm, self.target)
             cf, cr = cf * self.ratios.factor, cr * self.ratios.factor
+        # A meal bolus is a bolus calculator: cover the carbohydrate, correct what is already
+        # there, and subtract what is already working. Covering the carbohydrate is not bounded
+        # by insulin on board, since the carbohydrate is real and arriving. The correction on
+        # top of it is, and it was not: this line added a full correction with no subtraction,
+        # so every announced meal above 150 mg/dL stacked on whatever was already acting. The
+        # pump's own ceiling caught it rather than the arithmetic, binding on about half a per
+        # cent of steps and leaving peak insulin on board sitting exactly at the ceiling for
+        # every subject measured.
+        #
+        # This is the driver titration runs under, so the stacking reached every subject's
+        # settings: a baseline that provokes hypoglycaemia is answered by the procedure
+        # weakening the settings that are then handed to the algorithms being benchmarked.
+        # `controller/reference.py` records the same defect and the same fix.
+        on_board = self.loop.iob(minute) if self.loop is not None else 0.0
         bolus = 0.0
         if announced_grams > 0:
-            bolus = max(announced_grams / cr + (cgm > 150) * (cgm - self.target) / cf, 0.0)
+            correction = (max((cgm - self.target) / cf - on_board, 0.0)
+                          if cgm > 150 else 0.0)
+            bolus = max(announced_grams / cr + correction, 0.0)
         basal = self.profile.basal_at(minute)
         if self.loop is not None:
             self.loop.observe(minute, cgm)

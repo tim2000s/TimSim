@@ -468,3 +468,98 @@ are the validation harness rather than sources of published figures.
 longer in the papers. `person/activity.py` is a layer that is off by default and has never been
 in the default stack. Those are the grounds for stopping, and they are grounds about relevance
 rather than evidence that the code is right.
+
+# Fourth pass
+
+Over everything the third pass left, on the principle that grounds about relevance are not
+evidence of correctness. 17,520 lines across 100 files.
+
+## R23. A fifth of real temporary basals were being discarded (severe, corrected)
+
+`examples/real_meals.py::temp_basals` kept only records carrying an `absolute` rate and dropped
+the rest, so those periods were scored as if the pump had run its schedule. Measured across 31
+Commons users and 2,047,711 temporary basal records: 82.1 per cent carry an absolute rate, 12.3
+per cent carry only a percentage, and 5.6 per cent carry neither.
+
+The commonest dropped value is a full suspend, so withheld insulin was being counted as
+delivered. The percentage is a change relative to the schedule rather than a fraction of it,
+which the data settles rather than the specification: values run from -100 to +400 in steps of
+ten, symmetric about zero, with -100 the single commonest, and a fraction cannot be negative.
+
+Two published things read this. The meal filters in `docs/PADOVA_LIMITS.md` include one defined
+as "the loop within 0.5 U of schedule over 4 h", which cannot mean what it says while a fifth of
+the loop's actions are invisible. And `examples/commons_requirement.py` reconstructs the daily
+insulin requirement that `matched_on_traits` matches the Commons cohort on.
+
+Rerun after the fix, the requirement moves materially:
+
+    measure                       before     after    change
+    basal_per_day                  17.63     16.10     -1.53
+    scheduled_basal_per_day        17.77     17.77     +0.00
+    bolus_per_day                  21.23     21.71     +0.48
+    tdd                            38.39     38.20     -0.19
+    basal_share                     0.50      0.45     -0.05
+    users qualifying                  71        77         6
+
+Six more users qualify, because the filter admits users with temporary basals in the window and
+theirs had all been invisible. The Commons cohort was therefore matched to a basal requirement
+8.7 per cent too high, drawn from a slightly different set of users.
+
+Worth setting beside R13: the generated population assumes total daily insulin is basal doubled,
+a basal share of 0.50, where these real users measure 0.45.
+
+## R24. The built-in loop's meal correction ignored insulin on board (moderate, corrected)
+
+`_BasalBolus.act` computed a meal bolus as `grams / cr + (cgm > 150) * (cgm - target) / cf`,
+with no subtraction of insulin already acting and no cap. `controller/reference.py` documents
+the same defect and its repair; this one survived.
+
+It matters because this is the driver titration runs under. A baseline that stacks insulin
+provokes hypoglycaemia, and the procedure answers hypoglycaemia by weakening the settings that
+are then handed to the algorithms being benchmarked.
+
+The pump ceiling was catching it rather than the arithmetic: over ten days the insulin-on-board
+limit bound 13, 15 and 15 times on three subjects, about half a per cent of steps, with peak
+insulin on board sitting exactly at the ceiling for every one. After subtracting insulin on
+board from the correction, bindings fall to 12, 14 and 5.
+
+## R25. Two more Boost inputs were constants nothing supplied (moderate, corrected)
+
+`METHODS.md` records three inputs read off the cycle with `getattr(cycle, name, default)` where
+none of the names was a field, so every run sent the default. Two more survived that repair:
+`asleep` defaulted to False and `fast_carb_confirm_enabled` to True, and neither is a field on
+any cycle. The jar reads both, at positions 24 and 25 of its own `FIELDS`.
+
+So the algorithm was told the person is never asleep, on a bench whose infusion-site model turns
+on exactly that distinction, and fast-carb confirmation was pinned on whatever
+`boost_autoconfig.py` had decided for the subject.
+
+Sleep now comes from `therapy/site.py::_asleep`, the same window the person uses, which puts the
+night at 23:00 to 07:00. The confirmation flag arrives through the constructor, as the three
+knobs already did after the same defect was found in them. `V5Config` does not carry it, so
+reading it from there would have raised on the first cycle.
+
+## R26. My own clock correction broke two consumers (moderate, corrected)
+
+R12 renumbered the glucose series so sample `i` sits at minute `(i + 1) * step`. Two places
+located events by array position on the old convention and were left a sample out.
+
+`examples/meal_response.py` indexed the meal as `int(MEAL_HOUR * 60 / step)` and now searches
+the run's own clock, so the window start and the reported time to peak no longer depend on where
+the series is numbered from. `examples/hyperglycaemia_gap.py` binned readings by hour from
+`arange(len(g)) * sample_time`, which put every reading one step early, in a comparison against
+the trial's hour-by-hour profile whose deepest gap sits between midnight and 04:00.
+
+Audited the rest: no other script derives a time or an hour from a sample index.
+
+## Checked and clear
+
+`population/derive.py`, the steady-state closure every generated subject rests on, matches all
+thirty published subjects and is guarded by a test. `validation/compare.py` refuses mismatched
+signals and sample intervals and records the exposure. `validation/ranking.py` carries its own
+account of a statistical error it has already corrected, with the arithmetic. `controller/
+reference.py` reconciles what the pump delivered against what it asked for. `person/activity.py`
+is off by default and self-consistent. `therapy/insulin.py` returns exactly zero beyond the
+duration of action, which is what makes the unpruned ledgers harmless.
+
+`validation/oref.py` is reachable from nothing: no module imports it and no document cites it.

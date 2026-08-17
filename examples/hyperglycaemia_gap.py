@@ -132,7 +132,12 @@ def run_arm(key, subjects, days, seed=seeds.BENCH):
         g = np.asarray(r.cgm, float)
         found += episodes(g, step=r.sample_time)
         total += len(g) * r.sample_time / 1440
-        hour = ((np.arange(len(g)) * r.sample_time // 60) % 24).astype(int)
+        # From the run's own clock, not from the sample index. The run is primed with one
+        # step before its loop, so sample `i` sits at minute `(i + 1) * step`, and rebuilding
+        # the axis from the index put every reading in the hour bin one step early. This
+        # comparison is against the trial's own hour-by-hour profile, where the deepest part
+        # of the gap sits between midnight and 04:00, so the binning has to be right.
+        hour = ((np.asarray(r.minutes, float) // 60) % 24).astype(int)
         for h in range(24):
             m = hour == h
             hits[h] += np.sum(g[m] >= 180)

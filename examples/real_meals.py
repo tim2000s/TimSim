@@ -68,8 +68,26 @@ def basal_schedule(user_dir):
     return best
 
 
-def temp_basals(user_dir):
-    """(start_minute, duration_min, absolute_u_per_h) for every temporary basal."""
+def temp_basals(user_dir, rates=None):
+    """(start_minute, duration_min, absolute_u_per_h) for every temporary basal.
+
+    Records carrying `percent` instead of `absolute` are resolved against the schedule rather
+    than dropped, which needs `rates` from `basal_schedule`. Dropping them treated the period
+    as if the pump had run its schedule, and the commonest dropped value is a full suspend, so
+    withheld insulin was being counted as delivered. Across 31 Commons users and 2,047,711
+    temporary basal records, 82.1 per cent carry an absolute rate, 12.3 per cent carry only a
+    percentage and 5.6 per cent carry neither.
+
+    The percentage is a change relative to the schedule, not a fraction of it, which the data
+    settles rather than the specification: values run from -100 to +400 in steps of ten and are
+    symmetric about zero, with -100 the single commonest value, and a fraction cannot be
+    negative. So -100 is a suspend and +20 is 120 per cent of the scheduled rate.
+
+    The 5.6 per cent carrying neither also carry no duration and are flagged `isFakedTempBasal`
+    by the uploader. They are most likely cancellations, which would end a running temporary
+    basal early, and they are still dropped: reading them as cancellations is a guess, and the
+    effect of guessing wrong is to end a temporary basal that was still running.
+    """
     out = []
     for path in sorted(glob.glob(os.path.join(user_dir, "**", "*treatments*.json"),
                                  recursive=True)):
@@ -81,15 +99,27 @@ def temp_basals(user_dir):
             if t.get("eventType") != "Temp Basal":
                 continue
             stamp = t.get("created_at") or t.get("timestamp")
-            if not isinstance(stamp, str) or t.get("absolute") is None:
+            if not isinstance(stamp, str):
                 continue
             try:
                 import datetime as dt
                 when = dt.datetime.fromisoformat(stamp.replace("Z", "+00:00"))
-                out.append((when.timestamp() / 60.0, float(t.get("duration") or 0),
-                            float(t["absolute"])))
+                minute = when.timestamp() / 60.0
+                duration = float(t.get("duration") or 0)
             except Exception:
                 continue
+            if t.get("absolute") is not None:
+                try:
+                    out.append((minute, duration, float(t["absolute"])))
+                except (TypeError, ValueError):
+                    continue
+            elif t.get("percent") is not None and rates is not None:
+                try:
+                    scheduled = float(rates[int((minute / 60.0) % 24)])
+                    out.append((minute, duration,
+                                scheduled * (1.0 + float(t["percent"]) / 100.0)))
+                except (TypeError, ValueError, IndexError):
+                    continue
     out.sort()
     return out
 
@@ -158,7 +188,8 @@ def meals_for(user_dir):
     carbs = np.array([r[1] for r in tr])
     ins = np.array([r[2] for r in tr])
     bolus_at = tm[ins >= BOLUS_FLOOR_U]
-    rates, temps = basal_schedule(user_dir), temp_basals(user_dir)
+    rates = basal_schedule(user_dir)
+    temps = temp_basals(user_dir, rates)
 
     out = []
     for i in np.nonzero((carbs >= GRAMS_LO) & (carbs <= GRAMS_HI))[0]:
