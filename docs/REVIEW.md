@@ -200,3 +200,26 @@ R3, R5 and R9 are recorded and not yet acted on. None of them moves a published 
 The seed is recorded in `Result.meta`, in the bench matrix and now in the ablation payload, but
 not in every result file, so two outputs can still be compared without their realisation being
 visible. The provenance stamp is the natural place for it.
+
+## R10. The defence gain was fitted partly on clamp failures (moderate, corrected)
+
+`examples/calibrate_hypo_defence.py` read each subject's production at a nominal plateau and
+discarded the glucose the clamp actually achieved, which `clamp` returns alongside it. The
+clamp's controller can only add glucose, so the descent is set by the insulin infusion and a
+sufficiently insulin-resistant subject never arrives: 31 of 150 do not come within 3 mg/dL of
+the 55 mg/dL target, and one of the first eight adults settles at 62.8.
+
+Production is `kp1 - kp2*Gp - kp3*Id`, so a subject held above the plateau reports a lower
+figure than it would at the plateau and is likelier to floor at zero. Pooling them drags the
+median down and inflates the zero count, and the median is what the gain is fitted on.
+
+Corrected by excluding subject-plateau pairs the clamp missed and reporting how many were
+excluded. The undefended median moves from 0.50 to 0.48 mg/kg/min and the chosen gain is
+unchanged at 0.05, so the constant is robust to it. The zero-inflated tail is unchanged in
+proportion, 41 of 110 against 53 of 150.
+
+Two tests in `tests/test_hypo_defence.py` asserted that every subject on an eight-subject panel
+held between 50 and 60 mg/dL, which the clamp cannot promise. They now exclude the subjects that
+did not arrive, require most of the panel to arrive, and assert only the direction of the
+result, since a median over eight subjects of a zero-inflated quantity is not stable enough to
+carry a two-sided bound. That instability is the same one that produced the original 0.20.

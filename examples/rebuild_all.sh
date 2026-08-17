@@ -1,10 +1,18 @@
 #!/usr/bin/env bash
-# Rebuild every measurement in the package from the current population and physiology.
+# Rebuild every measurement in the package from the current population, physiology and seeding.
 #
-# This exists because a physiology constant moved. The hepatic defence gain was fitted on 34
-# adults and refitted on 150, where the answer changed from 0.20 to 0.05, and the gain enters
-# every simulated minute. Nothing measured under the old value can be quoted beside anything
-# measured under the new one, so the whole set is rebuilt rather than patched.
+# Three changes force it, each of which reaches every simulated minute.
+#
+# The hepatic defence gain was fitted on 34 adults and refitted on 150, where the answer moved
+# from 0.20 to 0.05.
+#
+# Each stochastic component now draws from its own stream. A single shared generator made a
+# component's draws depend on which other components ran, so switching a layer off changed the
+# random month as well as the mechanism, and every ablation compared two different months.
+#
+# Titration and evaluation no longer share a seed. Settings were weakened until a subject
+# cleared the hypoglycaemia floors on one month and were then scored on that same month, which
+# reports a fitted quantity in sample. `timsim/seeds.py` holds them apart.
 #
 # The titration store is deleted rather than reused, and that is the subtle part. Its guard is a
 # fingerprint of the population file, which has not changed, so the store would be accepted and
@@ -21,7 +29,7 @@ PY="${PY:-/Users/timstreet/.venvs/boost-insilico/bin/python}"
 export PYTHONPATH="$REPO${PYTHONPATH:+:$PYTHONPATH}"
 M="$REPO/docs/measurements"
 LOGS="$M/rebuild"
-ARCHIVE="$M/archive_gain020"
+ARCHIVE="$M/archive_pre_review"
 PARAMS="$REPO/timsim/population/params"
 mkdir -p "$LOGS" "$ARCHIVE"
 cd "$REPO" || exit 1
@@ -45,7 +53,7 @@ stage () {                     # stage <label> <command...>
   fi
 }
 
-say "=== rebuild at defence gain $(grep -o 'HYPO_EGP_DEFENCE = [0-9.]*' timsim/patient/varying.py | awk '{print $3}'), $WORKERS workers ==="
+say "=== rebuild: defence gain $(grep -o 'HYPO_EGP_DEFENCE = [0-9.]*' timsim/patient/varying.py | awk '{print $3}'), titration seed $(grep -o '^TITRATION = [0-9]*' timsim/seeds.py | awk '{print $3}'), bench seed $(grep -o '^BENCH = [0-9]*' timsim/seeds.py | awk '{print $3}'), $WORKERS workers ==="
 
 # Nothing may still be running against the old constant.
 for p in meal_response bench_matrix titrate_cohort layer_ladder layer_ablation; do
@@ -62,7 +70,7 @@ for f in "$M"/*.json "$M"/*.txt; do
   [ -e "$f" ] && mv "$f" "$ARCHIVE/" 2>/dev/null
 done
 [ -e "$PARAMS/titrated_settings.json" ] && mv "$PARAMS/titrated_settings.json" \
-  "$ARCHIVE/titrated_settings_gain020.json"
+  "$ARCHIVE/titrated_settings_superseded.json"
 say "archived previous outputs to $(basename "$ARCHIVE"); titration store cleared"
 
 # 2. Titration first. Everything simulated downstream reads it, and it is itself an output of

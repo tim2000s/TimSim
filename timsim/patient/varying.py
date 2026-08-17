@@ -326,16 +326,24 @@ def hypo_risk(glucose_mgdl, basal_mgdl, threshold=HYPO_RISK_THRESHOLD):
 # mean of 0.59 (Rickels et al. 2015, twelve people with long-standing type 1 diabetes):
 #
 #     gain     55 mg/dL   zeros      45 mg/dL   zeros
-#     0.000      0.50     53/150       0.32    58/150
-#     0.050      0.61     49/150       0.48    52/150
-#     0.100      0.72     47/150       0.64    50/150
-#     0.150      0.83     44/150       0.79    43/150
-#     0.200      0.95     39/150       0.95    40/150
-#     0.250      1.05     37/150       1.12    35/150
+#     0.000      0.48     41/110       0.34    40/104
+#     0.050      0.62     37/111       0.49    38/107
+#     0.100      0.72     36/112       0.64    36/109
+#     0.150      0.80     33/113       0.79    29/109
+#     0.200      0.89     32/117       0.95    32/118
+#     0.250      1.06     28/119       1.12    29/125
 #
 # 0.05 is the gain whose median is closest to the human mean while staying inside the human
 # interval at both plateaus. The undefended model is already inside that interval at 55 mg/dL,
-# at 0.50, so what the defence has to supply is small.
+# at 0.48, so what the defence has to supply is small.
+#
+# The denominators are below 150 because the clamp does not bring every subject to its target.
+# Its controller can only add glucose, so the descent is set by the insulin, and 31 of the 150
+# never arrive within 3 mg/dL of the 55 mg/dL plateau. Production is read as
+# `kp1 - kp2*Gp - kp3*Id`, so a subject held above the plateau reports a lower figure than it
+# would at the plateau and is likelier to floor at zero; counting those would fit the gain
+# partly on the clamp's failures. Including them moves the undefended median from 0.48 to 0.50
+# and leaves the chosen gain unchanged.
 #
 # The gain is fitted on the median because that is the only thing it can move. It shifts the
 # whole distribution and cannot narrow it, and the distribution is far wider than the human one
