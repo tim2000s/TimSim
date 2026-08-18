@@ -64,8 +64,11 @@ sleep 3
 # 1. Archive, so no stage can silently reuse an output fitted under the old gain.
 for f in "$M"/*.json "$M"/*.txt; do
   case "$(basename "$f")" in
-    cohorts.json) continue ;;                 # cohort membership is a property of the population
-    real_meals.json|real_meals_dia.json|commons_requirement.json) continue ;;   # real data only
+    # Real data only, already rebuilt, and nothing simulated feeds them. `commons_requirement`
+    # is the reconstructed daily insulin the Commons cohort is matched on, and it moved when
+    # the percentage-form temporary basals were recovered, so it has to survive to be matched
+    # against rather than be rebuilt from a population it does not depend on.
+    real_meals.json|real_meals_dia.json|commons_requirement.json) continue ;;
   esac
   [ -e "$f" ] && mv "$f" "$ARCHIVE/" 2>/dev/null
 done
@@ -73,8 +76,21 @@ done
   "$ARCHIVE/titrated_settings_superseded.json"
 say "archived previous outputs to $(basename "$ARCHIVE"); titration store cleared"
 
-# 2. Titration first. Everything simulated downstream reads it, and it is itself an output of
-#    the physiology, so it cannot be carried over.
+# 2. The real-data references, then the cohorts, then titration, in that order because each
+#    reads the one before it. `commons_cohort` computes per-user outcomes from the export and
+#    is population-independent, but `bench_tables` and `cohort_variation` read it, so it has to
+#    exist before anything is scored. `build_cohorts` matches simulated subjects to those users
+#    on the reconstructed daily requirement, which moved when the percentage-form temporary
+#    basals were recovered, so cohort membership moves with it. Titration then runs over the
+#    union of whatever cohorts that produced.
+#
+#    Ordering this wrong is quiet rather than loud: the run completes and the cohorts are the
+#    ones matched to the superseded requirement.
+stage commons_cohort "$PY" examples/commons_cohort.py || exit 1
+stage cohorts "$PY" examples/build_cohorts.py || exit 1
+
+# 3. Titration. Everything simulated downstream reads it, and it is itself an output of the
+#    physiology, so it cannot be carried over.
 stage titrate "$PY" examples/titrate_cohort.py --cohort recorded --workers "$WORKERS" || exit 1
 stage replicate_plan "$PY" examples/cohort_replicates.py --plan-only \
       --n "$COHORT_N" --replicates "$REPLICATES" || exit 1
@@ -93,7 +109,7 @@ if todo:
     sys.exit(subprocess.call(args))
 INNER
 
-# 2b. The fixed panels. The capability table, the ablation, the ladder, the hyperglycaemia
+# 3b. The fixed panels. The capability table, the ablation, the ladder, the hyperglycaemia
 #     gap and the production measurement run on the first adults rather than on a matched
 #     cohort, and they now read the titration store like everything else, so their subjects
 #     must be in it. Titrating against the panel is not circular: titration runs under the
@@ -113,18 +129,18 @@ if todo:
     sys.exit(subprocess.call(args))
 INNER
 
-# 3. The matrix, which is the long pole and feeds the tables and the distance measurement.
+# 4. The matrix, which is the long pole and feeds the tables and the distance measurement.
 stage bench_matrix env WORKERS="$WORKERS" "$PY" examples/bench_matrix.py || exit 1
 stage replicates "$PY" examples/cohort_replicates.py --n "$COHORT_N" \
       --replicates "$REPLICATES" --workers "$WORKERS"
 
-# 4. Derived from the matrix, so cheap and safe to run in sequence.
+# 5. Derived from the matrix, so cheap and safe to run in sequence.
 stage cohort_variation "$PY" examples/cohort_variation.py
 stage bench_tables "$PY" examples/bench_tables.py
 cp "$LOGS/bench_tables.log" "$M/bench_tables.txt" 2>/dev/null
 stage distance_to_real "$PY" examples/distance_to_real.py
 
-# 5. The standalone measurements. Each is independent of the others, so a failure in one is
+# 6. The standalone measurements. Each is independent of the others, so a failure in one is
 #    reported and the rest continue.
 stage clamp "$PY" examples/hypoglycaemic_clamp.py
 stage capability "$PY" examples/capability_table.py
@@ -134,7 +150,6 @@ stage hyperglycaemia_gap "$PY" examples/hyperglycaemia_gap.py
 stage production_low "$PY" examples/production_during_a_low.py
 stage two_benches "$PY" examples/two_benches.py
 stage fit_control_iq "$PY" examples/fit_control_iq.py
-stage commons_cohort "$PY" examples/commons_cohort.py
 stage meal_response "$PY" examples/meal_response.py
 stage autosens_on "$PY" examples/oref_cohort.py --subjects 40 --days 28 \
       --workers "$WORKERS" --out "$M/oref_autosens_on.json"
