@@ -51,11 +51,17 @@ def uptake(p):
     return float((q.Vm0 + q.Vmx * p.state[6]) * p.state[4] / (q.Km0 + p.state[4]))
 
 
-def clamp(name, defence_gain=0.0, egp_gain=0.0, steps=STEPS):
-    """One subject through the protocol. Returns one row per plateau."""
+def clamp(name, defence_gain=0.0, egp_gain=0.0, steps=STEPS, egp_floor=0.0):
+    """One subject through the protocol. Returns one row per plateau.
+
+    `egp_floor` is the minimum production during hypoglycaemia, in mg/kg/min. It is
+    the one mechanism here that is not a scaling, so it is passed separately.
+    """
     p = V.from_population(name)
     if defence_gain or egp_gain:
         p.set_hypo_defence(defence_gain, egp_gain)
+    if egp_floor:
+        p.set_egp_floor(egp_floor)
     q = p._params
     basal = q.u2ss * q.BW / 6000.0                      # U/min
     extra = INSULIN_MU_KG_MIN * q.BW / 1000.0           # mU/kg/min to U/min

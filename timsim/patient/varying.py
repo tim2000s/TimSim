@@ -362,6 +362,33 @@ HYPO_DEFENCE_CENTRE = 58.0    # mg/dL, where the defence is half its maximum
 HYPO_DEFENCE_WIDTH = 8.0      # mg/dL, how sharply it comes on
 HYPO_DEFENCE_FLOOR = 0.15     # insulin action never falls below this fraction
 
+# The minimum production a subject makes during hypoglycaemia, mg/kg/min, scaled in by the same
+# logistic as the defence so it is absent at euglycaemia. Read off Rickels et al. rather than
+# fitted: the bottom of the 0.42 to 0.84 band measured in people with no glucagon response,
+# which is the condition this represents. It binds only where the balance equation has driven
+# production to nothing, which the gains cannot reach.
+# Swept across 110 adults on the reproducible population, the same clamp the defence was fitted
+# on, counting only subjects the clamp brought within 3 mg/dL of the plateau:
+#
+#     floor    55 mg/dL: median   p10   p90   producing nothing
+#      0.00              0.49    0.00  1.73        28/80
+#      0.42              0.48    0.24  1.72         0/82
+#      0.55              0.48    0.32  1.72         0/81
+#
+# The median and the ninetieth percentile do not move and the tenth does, which is what binding
+# selectively means and is the difference from a gain: raising HYPO_EGP_DEFENCE fivefold moved
+# the median from 0.62 to 1.06 and removed nine of thirty-seven from the floor.
+#
+# The nominal value is not the production at the plateau, because it is scaled by the same
+# logistic as the defence and that reads 0.593 at 55 mg/dL and 0.835 at 45. At 0.55 nominal the
+# deeper plateau gives a tenth percentile of 0.44 against Rickels' lower bound of 0.42, so the
+# worst-producing subjects land just inside the band the human measurement was taken in.
+#
+# Whether it moves an outcome is a separate question from whether it fixes the clamp: the
+# insulin driving a spontaneous low is about half the clamp's. `docs/DESIGN_HYPOGLYCAEMIA.md`
+# fixes what would refute it there.
+HYPO_EGP_FLOOR = 0.55         # mg/kg/min at full depth; 0 restores stock S2008
+
 
 def hypo_defence(glucose_mgdl, centre=HYPO_DEFENCE_CENTRE, width=HYPO_DEFENCE_WIDTH):
     """How strongly glucose uptake is being opposed, from zero to one as glucose falls."""
@@ -558,6 +585,17 @@ class VaryingPatient(T1DPatient):
         d = hypo_defence(self.observation.Gsub)
         return max(HYPO_DEFENCE_FLOOR, 1.0 - gain * d)
 
+    def set_egp_floor(self, floor=HYPO_EGP_FLOOR):
+        """A minimum endogenous glucose production during hypoglycaemia, in mg/kg/min.
+
+        Read off Rickels et al. rather than fitted: 0.42 to 0.84 mg/kg/min in twelve people with
+        long-standing type 1 diabetes and no glucagon response, which is the condition a floor
+        represents. Zero restores the stock behaviour, where production reaches nothing.
+        """
+        self._kp10 = float(self._params["kp1"])
+        self._kp30 = float(self._params["kp3"])
+        self._egp_floor = float(floor)
+
     def set_hypo_risk(self, gain=HYPO_RISK_GAIN):
         """Switch on S2013's risk-modulated insulin action below basal glucose.
 
@@ -636,6 +674,27 @@ class VaryingPatient(T1DPatient):
         if eg > 0.0:
             base = self._kp30 * (si if getattr(self, "_varying", False) else 1.0)
             self._params["kp3"] = base * (1.0 - eg * hypo_defence(self.observation.Gsub))
+        # The floor, applied after every term that scales production, because it is the only
+        # mechanism here that is not a scaling and has to see what the scalings left.
+        #
+        # Production is `kp1 - kp2*Gp - kp3*Id` and simglucose clamps it at zero. A third of
+        # subjects reach that clamp at a 55 mg/dL plateau where no real person produces nothing,
+        # and no gain reaches them: multiplying a quantity already at zero returns zero. Raising
+        # `HYPO_EGP_DEFENCE` from 0.05 to 0.25 removes nine of thirty-seven from the floor and
+        # carries the median from 0.62 to 1.06 mg/kg/min, outside the human band, which is a
+        # distribution's centre being moved to reach its tail.
+        #
+        # So this raises `kp1` by exactly the shortfall, which leaves a subject already
+        # producing enough untouched. It is scaled by the same logistic the defence uses, so it
+        # is absent at euglycaemia: a floor applied at every glucose would have the liver
+        # producing during hyperglycaemia, where suppression to nothing is what should happen.
+        floor = getattr(self, "_egp_floor", 0.0)
+        if floor > 0.0:
+            q = self._params
+            want = floor * hypo_defence(self.observation.Gsub)
+            have = self._kp10 - q["kp2"] * self.state[3] - q["kp3"] * self.state[8]
+            q["kp1"] = self._kp10 + max(0.0, want - have)
+
         # Activity multiplies the sensitivity factor and sets the insulin-independent term,
         # so it composes with the diurnal and day-to-day variation rather than replacing it.
         si_act = self._apply_activity(si)

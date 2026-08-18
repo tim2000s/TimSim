@@ -139,3 +139,40 @@ def test_the_calibrated_gain_does_not_carry_the_panel_above_the_human_range():
     kept, rows = _arrived(PANEL, HYPO_EGP_DEFENCE)
     assert len(kept) >= 5, rows
     assert float(np.median(kept)) <= 0.84, rows
+
+
+# ------------------------------------------------------- the production floor
+@pytest.mark.slow
+def test_the_floor_binds_only_where_production_reached_nothing():
+    """It must raise the tail without moving the centre, which is what a gain cannot do.
+
+    Production is `kp1 - kp2*Gp - kp3*Id` and floors at zero, so a multiplier cannot reach the
+    subjects sitting on that floor. Raising the defence gain fivefold removed nine of
+    thirty-seven and carried the median outside the human band; this raises the tenth percentile
+    and leaves the median and the ninetieth where they were.
+    """
+    from examples.hypoglycaemic_clamp import clamp
+    panel = tuple(f"adult#{i:03d}" for i in range(1, 13))
+
+    def plateau(floor):
+        out = []
+        for n in panel:
+            rows = clamp(n, 0.0, V.HYPO_EGP_DEFENCE, egp_floor=floor)
+            for r in rows:
+                if abs(float(r["target"]) - 55.0) < 1e-9 and abs(float(r["glucose"]) - 55.0) <= 3.0:
+                    out.append(float(r["egp"]))
+        return np.array(out, float)
+
+    off, on = plateau(0.0), plateau(0.55)
+    assert len(off) >= 5 and len(on) >= 5, (len(off), len(on))
+    assert int((on < 0.01).sum()) < int((off < 0.01).sum()), "the floor did not reach the tail"
+    assert np.percentile(on, 90) == pytest.approx(np.percentile(off, 90), rel=0.05), \
+        "the floor moved the ninetieth percentile, so it is behaving as a gain"
+
+
+def test_the_floor_is_absent_at_euglycaemia():
+    """An unscaled floor would have the liver producing during hyperglycaemia."""
+    from timsim.patient.varying import hypo_defence
+    assert hypo_defence(180.0) < 0.001
+    assert hypo_defence(120.0) < 0.02
+    assert hypo_defence(45.0) > 0.8

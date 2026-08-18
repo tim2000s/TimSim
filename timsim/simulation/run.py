@@ -79,8 +79,9 @@ from simglucose.simulation.env import T1DSimEnv
 from simglucose.simulation.scenario import CustomScenario
 
 from ..controller.loop import CorrectionLoop
-from ..patient.varying import (HYPO_DEFENCE_GAIN, HYPO_EGP_DEFENCE, HYPO_RISK_GAIN,
-                               MEAL_ABSORPTION_CV, MEAL_ABSORPTION_SCALE, VaryingPatient)
+from ..patient.varying import (HYPO_DEFENCE_GAIN, HYPO_EGP_DEFENCE, HYPO_EGP_FLOOR,
+                               HYPO_RISK_GAIN, MEAL_ABSORPTION_CV,
+                               MEAL_ABSORPTION_SCALE, VaryingPatient)
 from ..person import behaviour as behaviour_mod
 from ..person.behaviour import AdaptiveRatios, BehaviourScenario, Person
 from ..population import params_for, therapy_for
@@ -414,8 +415,8 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
              isf_scale=1.0, settings_spread=None, behaviour_spread=None,
              meal_absorption_cv=None, meal_absorption_scale=None, si_slow_cv=None,
              sessions_per_week=None, hypo_defence_gain=None,
-             hypo_egp_defence=None, set_life_days=None, announcement="some",
-             meal_delay_min=None):
+             hypo_egp_defence=None, hypo_egp_floor=None, rescue_bioavailability=None,
+             set_life_days=None, announcement="some", meal_delay_min=None):
     """Run one subject. Returns a Result.
 
     `layers` is any subset of LAYERS. `controller`, if given, replaces the built-in
@@ -482,6 +483,11 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
                    else float(hypo_egp_defence))
         if defence or hepatic:
             patient.set_hypo_defence(defence, hepatic)
+        # The production floor, which is not a scaling and so is set separately. It binds only
+        # where the balance equation has driven production to nothing.
+        egp_floor = (HYPO_EGP_FLOOR if hypo_egp_floor is None else float(hypo_egp_floor))
+        if egp_floor:
+            patient.set_egp_floor(egp_floor)
 
     if "activity" in effective:
         from ..person.activity import Activity, draw_sessions
@@ -509,7 +515,9 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
     if "behaviour" in effective:
         scenario = BehaviourScenario(
             start, schedule, person,
-            **({} if meal_delay_min is None else {"meal_delay_min": meal_delay_min}))
+            **({} if meal_delay_min is None else {"meal_delay_min": meal_delay_min}),
+            **({} if rescue_bioavailability is None
+               else {"rescue_bioavailability": rescue_bioavailability}))
     else:
         scenario = CustomScenario(start_time=start,
                                   scenario=[(m / 60.0, g) for m, g, _ in delivery])

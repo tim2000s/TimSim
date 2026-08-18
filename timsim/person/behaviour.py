@@ -512,10 +512,23 @@ class BehaviourScenario:
     at the moment the meal is eaten rather than at construction.
     """
 
-    def __init__(self, start_time, meals, person, meal_delay_min=MEAL_ONSET_DELAY_MIN):
+    def __init__(self, start_time, meals, person, meal_delay_min=MEAL_ONSET_DELAY_MIN,
+                 rescue_bioavailability=1.0):
         self.start_time = start_time
         self.person = person
         self.meal_delay_min = float(meal_delay_min)
+        # What fraction of a rescue helping reaches the gut. Meals are untouched.
+        #
+        # Hypoglycaemia rebound is 36 to 40 per cent against a real 23.2 to 28.4 in every
+        # configuration measured, and the carbohydrate response is 21.1 to 21.6 mg/dL per 10 g
+        # against a real 15.9 to 19.7. Rebound is what over-treating a low looks like, so those
+        # may be the same defect twice: the same helping overshoots by about the ratio.
+        #
+        # It scales absorption rather than the helping, so `rescue_grams` still records what the
+        # person ate and only the gut sees less. `docs/PADOVA_LIMITS.md` declined to scale
+        # carbohydrate on two grounds, filter sensitivity and under-reported grams, and both are
+        # about logged meals rather than a rescue treatment.
+        self.rescue_bioavailability = float(rescue_bioavailability)
         # meals: [(hours_from_start, grams, is_snack)]
         self.effective = delivery_schedule(meals)
         self.sched = {int(m): (g, s) for m, g, s in self.effective}
@@ -546,7 +559,8 @@ class BehaviourScenario:
                 self.person.pending.append((minute + self.meal_delay_min, g))
             else:
                 grams += g
-        grams += self.person.due(minute, 1.0)
+        rescue = self.person.due(minute, 1.0) * self.rescue_bioavailability
+        grams += rescue
         self._true += grams
         return ScenarioAction(meal=grams)
 
