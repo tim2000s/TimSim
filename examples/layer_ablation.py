@@ -73,12 +73,15 @@ LABELS = {
 }
 
 
-def run_arm(key, layers, subjects, days, kwargs=None):
+def run_arm(key, layers, subjects, days, kwargs=None, workers=1):
     # Titrated settings, as every benchmark uses; the physiological fallback describes a
     # person no titration would leave in place.
     from timsim.therapy import titrate
+    # Parallel across subjects. `simulate_cohort` documents that results are identical at
+    # any worker count, because a subject's stream comes from its name rather than from where
+    # it runs, and `test_a_cohort_gives_a_subject_the_same_run_whatever_its_position` holds it.
     results = simulate_cohort(subjects, days=days, seed=seeds.BENCH, layers=layers,
-                              profile_factory=titrate.profile_for,
+                              profile_factory=titrate.profile_for, workers=workers,
                               progress=False, **(kwargs or {}))
     stats = signatures.evaluate(results)
     payload = {"label": key, "layers": list(layers), "seed": seeds.BENCH, "days": days,
@@ -126,6 +129,8 @@ def main():
     ap.add_argument("--table", action="store_true")
     ap.add_argument("--subjects", type=int, default=10)
     ap.add_argument("--days", type=int, default=28)
+    ap.add_argument("--workers", type=int, default=1,
+                    help="subjects run in parallel; results do not depend on it")
     a = ap.parse_args()
 
     if a.table:
@@ -135,7 +140,7 @@ def main():
             else [x for x in ARMS if a.arm is None or x[0] == a.arm])
     for key, label, layers, kwargs in arms:
         print(f"running {label} ...", flush=True)
-        run_arm(key, layers, subjects, a.days, kwargs)
+        run_arm(key, layers, subjects, a.days, kwargs, workers=a.workers)
     if a.arm is None:
         print()
         table()

@@ -119,12 +119,8 @@ A rung is carried by the person when the paired movement is distinguishable from
 every driver and points the same way each time. `person` means all 4 agree; a number
 means only that many drivers show it; `-` means no driver does.
 
-| Signature | +behaviour | +physiology | +sensor | +site |
-|---|---|---|---|---|
-| Glucose variability (CV%) | 2/4 +6.21 | 2/4 +3.39 | - | 3/4 +3.64 |
-| Rise tail P(dBG>10/5min) % | person +0.42 | - | person +1.35 | - |
-| Autocorrelation @30min | 2/4 +0.05 | 1/4 +0.01 | 2/4 -0.01 | person +0.03 |
-| Autocorrelation @60min | 2/4 +0.07 | - | 2/4 -0.01 | person +0.08 |
+| Signature | +behaviour | +ph/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 5 leaked semaphore objects to clean up at shutdown: {'/mp-anzrxfbu', '/mp-ypcm5s1k', '/mp-vpp0ta9n', '/mp-k2adbdkl', '/mp-uv25zq__'}
+  warnings.warn(
 | Outcome SD @stuck-high (mg/dL) | 2/4 +2.32 | 3/4 +5.11 | 1/4 +1.28 | 1/4 -2.42 |
 | Diurnal amplitude (mg/dL) | 1/4 +10.09 | person -19.42 | - | 2/4 +9.77 |
 | Hypo recovery to 100 (min) | 3/4 -20.08 | 1/4 +18.06 | 3/4 -21.68 | 1/4 -10.36 |

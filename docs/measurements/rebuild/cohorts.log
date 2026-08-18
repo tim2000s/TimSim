@@ -1,0 +1,20 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+
+dclp3: 90 subjects, matched on age and daily insulin
+  reference   n= 112  TDD median   47.9  age median  28.5  under 18 27.7%
+  cohort      n=  90  TDI median   45.9  age median  30.0  under 18 24.4%
+  match distance median 0.226, p90 0.780
+
+commons: 77 subjects, matched on daily insulin only
+  reference   n=  77  TDD median   38.2  age unknown
+  cohort      n=  77  TDI median   38.1  age median  17.2  under 18 53.2%
+  match distance median 0.003, p90 0.009
+
+close_it: 75 subjects, matched on age and daily insulin
+  reference   n=  75  TDD median   39.7  age median  45.3  under 18  0.0%
+  cohort      n=  75  TDI median   44.8  age median  43.9  under 18  5.3%
+  match distance median 0.202, p90 0.759
+
+union across cohorts: 185 subjects to titrate
+wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/cohorts.json

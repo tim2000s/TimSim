@@ -8,3 +8,14 @@
 22:00:43Z  === rebuild: defence gain 0.05, titration seed 11, bench seed 101, 12 workers ===
 22:00:46Z  archived previous outputs to archive_pre_review; titration store cleared
 22:00:46Z  START  titrate
+04:52:33Z  === rebuild: defence gain 0.05, titration seed 11, bench seed 101, 12 workers ===
+04:52:36Z  archived previous outputs to archive_pre_review; titration store cleared
+04:52:36Z  START  commons_cohort
+04:53:00Z  OK     commons_cohort (0 min)
+04:53:00Z  START  cohorts
+04:53:02Z  OK     cohorts (0 min)
+04:53:02Z  START  titrate
+06:34:38Z  OK     titrate (101 min)
+06:34:38Z  START  replicate_plan
+06:34:40Z  OK     replicate_plan (0 min)
+06:34:40Z  START  titrate_replicates

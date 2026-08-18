@@ -42,3 +42,5 @@
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 5 leaked semaphore objects to clean up at shutdown: {'/mp-2bhd6u1p', '/mp-7n8ei3cb', '/mp-8inl59tm', '/mp-qfzovbus', '/mp-2nbvci1q'}
+  warnings.warn(

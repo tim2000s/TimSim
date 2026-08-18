@@ -134,7 +134,7 @@ def _scaled_profile(name, isf_scale):
     return replace(p, isf=p.isf * float(isf_scale))
 
 
-def run_arm(key, subjects, days, seed=seeds.BENCH):
+def run_arm(key, subjects, days, seed=seeds.BENCH, workers=1):
     import functools
     from timsim.therapy import titrate
     layers, kwargs = ARMS[key]
@@ -146,7 +146,7 @@ def run_arm(key, subjects, days, seed=seeds.BENCH):
     factory = (functools.partial(_scaled_profile, isf_scale=scale) if scale
                else titrate.profile_for)
     results = simulate_cohort(subjects, days=days, seed=seed, layers=layers,
-                              profile_factory=factory,
+                              profile_factory=factory, workers=workers,
                               progress=False, **kwargs)
     found, total = [], 0.0
     hits, seen = np.zeros(24), np.zeros(24)
@@ -247,6 +247,8 @@ def main():
     ap.add_argument("--table", action="store_true")
     ap.add_argument("--subjects", type=int, default=34)
     ap.add_argument("--days", type=int, default=28)
+    ap.add_argument("--workers", type=int, default=1,
+                    help="subjects run in parallel; results do not depend on it")
     a = ap.parse_args()
 
     if not dclp3.available():
@@ -257,7 +259,7 @@ def main():
     subjects = names("adult")[:a.subjects]
     for key in ([a.arm] if a.arm else sorted(ARMS)):
         print(f"running {key} ...", flush=True)
-        run_arm(key, subjects, a.days)
+        run_arm(key, subjects, a.days, workers=a.workers)
     if a.arm is None:
         print()
         table()

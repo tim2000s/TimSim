@@ -1,0 +1,21 @@
+240 user directories in the export
+  20/240 scanned, 12 usable
+  40/240 scanned, 21 usable
+  60/240 scanned, 30 usable
+  80/240 scanned, 39 usable
+  140/240 scanned, 63 usable
+  180/240 scanned, 80 usable
+  200/240 scanned, 88 usable
+  240/240 scanned, 103 usable
+
+usable users: 103   skipped: {'no_cgm': 109, 'short_record': 9, 'sparse_window': 19}
+  tir     median    79.90   IQR   73.21 to   87.22   p10-p90   65.45 to   91.36
+  tbr70   median     2.87   IQR    1.52 to    4.76   p10-p90    0.70 to    6.92
+  tbr54   median     0.43   IQR    0.19 to    0.85   p10-p90    0.04 to    1.80
+  tar180  median    15.05   IQR    9.50 to   23.54   p10-p90    3.66 to   31.24
+  tar250  median     2.25   IQR    0.73 to    5.04   p10-p90    0.18 to    9.34
+  mean    median   134.16   IQR  125.45 to  148.56   p10-p90  115.24 to  159.11
+  cv      median    33.76   IQR   30.72 to   36.89   p10-p90   26.60 to   40.43
+  coverage median 0.950; record length median 315 d
+
+wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/commons_cohort.json
