@@ -138,6 +138,16 @@ def run_arm(key, subjects, days, seed=seeds.BENCH, workers=1):
     import functools
     from timsim.therapy import titrate
     layers, kwargs = ARMS[key]
+    # A subject whose settings never clear the consensus floors is excluded rather than run at
+    # the loosest available, which is the rule every other arm follows: assigning it settings
+    # would present a failure of the model as a settings choice. It is a selection effect, so
+    # it is reported rather than absorbed.
+    have = set(titrate.titrated_subjects())
+    dropped = [n for n in subjects if n not in have]
+    subjects = [n for n in subjects if n in have]
+    if dropped:
+        print(f"  excluded, no settings clear the hypoglycaemia floors: "
+              f"{', '.join(dropped)}", flush=True)
     # `isf_scale` cannot ride through simulate's kwargs any more: an explicit profile wins
     # over the arguments `for_subject` would have taken, so the settings arms would silently
     # have become copies of their partners. It is applied to the titrated profile instead.
@@ -168,7 +178,7 @@ def run_arm(key, subjects, days, seed=seeds.BENCH, workers=1):
                          np.where(seen > 0, hits / np.maximum(seen, 1) * 100, np.nan))
     payload.update({
         "arm": key, "layers": list(layers), "settings": kwargs,
-        "n": len(results), "days": days,
+        "n": len(results), "days": days, "excluded_untitrated": dropped,
         "tir": float(np.mean([r.time_in_range for r in results])),
         "tbr": float(np.mean([r.time_below_70 for r in results])),
         "site_failures_per_30d": float(np.mean(

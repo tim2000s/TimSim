@@ -9,3 +9,17 @@
 06:34:38Z  START  replicate_plan
 06:34:40Z  OK     replicate_plan (0 min)
 06:34:40Z  START  titrate_replicates
+07:50:54Z  OK     titrate_replicates (76 min)
+07:50:54Z  START  titrate_panel
+07:57:35Z  OK     titrate_panel (6 min)
+07:57:35Z  START  bench_matrix
+11:05:59Z  OK     bench_matrix (188 min)
+11:05:59Z  START  replicates
+11:41:44Z  OK     replicates (35 min)
+11:41:44Z  START  cohort_variation
+11:41:46Z  OK     cohort_variation (0 min)
+11:41:46Z  START  bench_tables
+11:41:47Z  OK     bench_tables (0 min)
+11:41:47Z  START  distance_to_real
+11:41:48Z  OK     distance_to_real (0 min)
+11:41:48Z  START  clamp

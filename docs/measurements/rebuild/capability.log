@@ -1,0 +1,32 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+65 of 80 runs completed
+   basal-bolus 16/20
+         trend 17/20
+         boost 16/20
+          oref 16/20
+
+| Signature                              | p10 | median | p90 | reference |
+|---|---|---|---|---|
+| Glucose variability (CV%)              | 31.26 | 38.28 | 44.16 | 29.5 to 34.3 |
+| Rise tail P(Δ>10 mg/dL / 5min) %       | 2.73 | 4.22 | 5.29 | 3.7 to 6.6 |
+| Autocorrelation @30 min                | 0.85 | 0.92 | 0.96 | 0.78 to 0.87 |
+| Autocorrelation @60 min                | 0.58 | 0.76 | 0.88 | 0.5 to 0.68 |
+| Outcome SD @stuck-high +30min (mg/dL)  | 19.63 | 25.50 | 32.94 | 26.5 to 33.5 |
+| Diurnal amplitude (mg/dL)              | 30.04 | 54.94 | 78.42 | 34.7 to 56.3 |
+| Hypo recovery to 100 (min)             | 43.50 | 65.00 | 89.00 | 50 to 59 |
+| Hypo rebound >180 %                    | 19.12 | 39.62 | 60.84 | 23.2 to 28.4 |
+| Compression lows / 30d                 | 2.14 | 4.29 | 4.93 | 1.9 to 5.3 |
+| Sensor jitter (2nd-diff SD)            | 5.56 | 5.62 | 5.72 | 4.5 to 6.7 |

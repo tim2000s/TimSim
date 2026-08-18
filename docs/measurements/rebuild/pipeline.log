@@ -19,3 +19,46 @@
 06:34:38Z  START  replicate_plan
 06:34:40Z  OK     replicate_plan (0 min)
 06:34:40Z  START  titrate_replicates
+07:50:54Z  OK     titrate_replicates (76 min)
+07:50:54Z  START  titrate_panel
+07:57:35Z  OK     titrate_panel (6 min)
+07:57:35Z  START  bench_matrix
+11:05:59Z  OK     bench_matrix (188 min)
+11:05:59Z  START  replicates
+11:41:44Z  OK     replicates (35 min)
+11:41:44Z  START  cohort_variation
+11:41:46Z  OK     cohort_variation (0 min)
+11:41:46Z  START  bench_tables
+11:41:47Z  OK     bench_tables (0 min)
+11:41:47Z  START  distance_to_real
+11:41:48Z  OK     distance_to_real (0 min)
+11:41:48Z  START  clamp
+11:41:49Z  SUPERVISOR derived tables done; stopping the serial standalone section
+11:41:55Z  SUPERVISOR starting the parallel standalone measurements
+11:41:55Z  === standalone measurements, in waves, 14 cores ===
+11:41:55Z  --- wave 1 ---
+11:41:55Z  START  clamp
+11:41:55Z  START  production_low
+11:41:55Z  START  meal_response
+11:41:55Z  START  capability
+11:46:28Z  OK     clamp (4 min)
+11:52:54Z  OK     production_low (10 min)
+12:17:01Z  OK     meal_response (35 min)
+12:18:09Z  OK     capability (36 min)
+12:18:09Z  --- wave 1 done ---
+12:18:09Z  --- wave 2 ---
+12:18:09Z  START  layer_ablation
+12:18:09Z  START  hyperglycaemia_gap
+12:18:09Z  START  two_benches
+12:32:33Z  FAILED hyperglycaemia_gap (14 min) —   File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 396, in __get_result     raise self._exception RuntimeError: adult#026 has no titrated settings. The consensus hypoglycaemia floors were not met at any combination tried, so its settings are not the explanation for what it does and it should be excluded rather than run at the loosest available. 
+12:45:58Z  OK     layer_ablation (27 min)
+15:07:56Z  OK     two_benches (169 min)
+15:07:56Z  --- wave 2 done ---
+15:07:56Z  --- wave 3 ---
+15:07:56Z  START  layer_ladder
+15:07:56Z  START  fit_control_iq
+15:07:56Z  START  autosens_on
+15:07:56Z  START  autosens_off
+15:07:56Z  OK     layer_ladder (0 min)
+15:56:17Z  OK     autosens_off (48 min)
+16:00:30Z  OK     autosens_on (52 min)

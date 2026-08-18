@@ -1,0 +1,78 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+cohort: 40 subjects, DCLP3 closed loop, age matched
+
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+  adolescent#016: done (1/40)
+  adolescent#023: done (2/40)
+  adolescent#043: done (3/40)
+  adolescent#048: done (4/40)
+  adolescent#050: done (5/40)
+  adolescent#059: done (6/40)
+  adolescent#064: done (7/40)
+  adolescent#066: done (8/40)
+  adolescent#095: done (9/40)
+  adolescent#100: done (10/40)
+  adolescent#107: done (11/40)
+  adolescent#117: done (12/40)
+  adolescent#121: done (13/40)
+  adolescent#138: done (14/40)
+  adolescent#139: done (15/40)
+  adult#073: done (16/40)
+  adult#097: done (17/40)
+  adult#101: done (18/40)
+  adult#102: done (19/40)
+  adult#108: done (20/40)
+  adult#115: done (21/40)
+  adult#118: done (22/40)
+  adult#127: done (23/40)
+  adult#128: done (24/40)
+  adult#133: done (25/40)
+  adult#140: done (26/40)
+  adult#154: done (27/40)
+  adult#163: done (28/40)
+  adult#167: done (29/40)
+  adult#194: done (30/40)
+  adult#197: done (31/40)
+  adult#199: done (32/40)
+  adult#203: done (33/40)
+  adult#233: done (34/40)
+  adult#245: done (35/40)
+  adult#256: done (36/40)
+  adult#257: done (37/40)
+  adult#284: done (38/40)
+  adult#288: done (39/40)
+  adult#291: done (40/40)
+
+oref0 SMB on TimSim, 24/40 completed, 49.7 U/day
+
+                                    as the sensor read it        truth
+  mean_mgdl                                        133.21       132.51
+  time_in_range                                     80.42        81.69
+  below_70                                           5.62         4.92
+  below_54                                           2.04         1.76
+  above_180                                         13.96        13.39
+  above_250                                          3.57         3.42
+  tir_sd_between_subjects                            6.97         7.27
+  below_70_sd_between_subjects                       3.56         3.75
+
+what the algorithm did
+  smb_pct                  37.149
+  smb_mean_u               0.535
+  dose_mean_u              0.204
+  zero_temp_pct            43.338
+  temp_issued_pct          78.566
+  eventual_bg_median       119.588
+  carbs_required_pct       2.637
+  autosens_median          1.000
+  autosens_min             1.000
+  autosens_max             1.000
+  autosens_below_1_pct     0.000
+
+DCLP3 closed loop, middle 28 days, sensor readings: TIR 71.0%, above 180 24.65%
+Sensitivity is pinned at 1.0, so the hypoglycaemia figures are an upper bound.
+
+written to /Users/timstreet/StudioProjects/TimSim/docs/measurements/oref_autosens_off.json

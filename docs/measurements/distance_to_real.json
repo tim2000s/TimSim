@@ -1,0 +1,208 @@
+{
+ "population": "704cfac086df54ba",
+ "days": 28,
+ "seed": 101,
+ "layered_arm": "layered_some",
+ "provenance": {
+  "population": "704cfac086df54ba",
+  "settings": "d0dc8ecb0fff4936",
+  "commit": "0a7d4c5e1702f3e881ab5bb4efe04e4a452936ea",
+  "dirty": false,
+  "host": "Tims-Mac-mini.local",
+  "python": "3.14.7",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "when": "2026-08-18T11:41:48+00:00",
+  "simglucose": "unknown"
+ },
+ "pairings": {
+  "dclp3|control-iq": {
+   "paired": 65,
+   "tir": {
+    "bare": 91.71626984126983,
+    "layered": 78.60863095238095,
+    "real": 71.29091374859597,
+    "real_spread_p10_p90": 27.49133043143656,
+    "gap_bare_spreads": 0.7429744494765268,
+    "gap_layered_spreads": 0.26618272338748333,
+    "closed": 0.6417336779548393,
+    "bare_already_within": false
+   },
+   "tbr70": {
+    "bare": 1.6121031746031749,
+    "layered": 2.7777777777777777,
+    "real": 1.35955383340426,
+    "real_spread_p10_p90": 2.2918937419917054,
+    "gap_bare_spreads": 0.11019243020378595,
+    "gap_layered_spreads": 0.6188000422484902,
+    "closed": -4.61563113821978,
+    "bare_already_within": false
+   },
+   "tbr54": {
+    "bare": 0.13640873015873015,
+    "layered": 0.78125,
+    "real": 0.2032472289840002,
+    "real_spread_p10_p90": 0.408022226623109,
+    "gap_bare_spreads": -0.16381092613125928,
+    "gap_layered_spreads": 1.4165962864319699,
+    "closed": -7.647752136489798,
+    "bare_already_within": false
+   },
+   "tar180": {
+    "bare": 6.026785714285714,
+    "layered": 16.939484126984127,
+    "real": 26.866657599720217,
+    "real_spread_p10_p90": 28.55648863828278,
+    "gap_bare_spreads": -0.7297771147358995,
+    "gap_layered_spreads": -0.3476328479485303,
+    "closed": 0.523645177508292,
+    "bare_already_within": false
+   },
+   "mean": {
+    "bare": 129.70760007011978,
+    "layered": 143.95735921945683,
+    "real": 155.44672411434823,
+    "real_spread_p10_p90": 38.91586627581168,
+    "gap_bare_spreads": -0.6614043706956283,
+    "gap_layered_spreads": -0.2952360051158018,
+    "closed": 0.5536225368373526,
+    "bare_already_within": false
+   },
+   "cv": {
+    "bare": 24.809828324294642,
+    "layered": 35.280383914979936,
+    "real": 33.367418234059606,
+    "real_spread_p10_p90": 11.039533486902403,
+    "gap_bare_spreads": -0.7751767699167648,
+    "gap_layered_spreads": 0.17328319925746166,
+    "closed": 0.7764597624925369,
+    "bare_already_within": false
+   }
+  },
+  "dclp3|oref": {
+   "paired": 59,
+   "tir": {
+    "bare": 89.48412698412699,
+    "layered": 81.56001984126983,
+    "real": 71.29091374859597,
+    "real_spread_p10_p90": 27.49133043143656,
+    "gap_bare_spreads": 0.6617800211926786,
+    "gap_layered_spreads": 0.3735398007850162,
+    "closed": 0.43555291966685206,
+    "bare_already_within": false
+   },
+   "tbr70": {
+    "bare": 4.191468253968254,
+    "layered": 4.141865079365079,
+    "real": 1.35955383340426,
+    "real_spread_p10_p90": 2.2918937419917054,
+    "gap_bare_spreads": 1.2356220398346212,
+    "gap_layered_spreads": 1.2139791627263357,
+    "closed": 0.017515774573899856,
+    "bare_already_within": false
+   },
+   "tbr54": {
+    "bare": 0.4836309523809524,
+    "layered": 1.2400793650793651,
+    "real": 0.2032472289840002,
+    "real_spread_p10_p90": 0.408022226623109,
+    "gap_bare_spreads": 0.6871775729412486,
+    "gap_layered_spreads": 2.5411168030634985,
+    "closed": -2.6979041562533004,
+    "bare_already_within": false
+   },
+   "tar180": {
+    "bare": 5.803571428571429,
+    "layered": 14.087301587301587,
+    "real": 26.866657599720217,
+    "real_spread_p10_p90": 28.55648863828278,
+    "gap_bare_spreads": -0.7375937020110958,
+    "gap_layered_spreads": -0.4475114631315927,
+    "closed": 0.3932818814593665,
+    "bare_already_within": false
+   },
+   "mean": {
+    "bare": 121.33839740207459,
+    "layered": 135.7409739222255,
+    "real": 155.44672411434823,
+    "real_spread_p10_p90": 38.91586627581168,
+    "gap_bare_spreads": -0.8764632520457037,
+    "gap_layered_spreads": -0.506368021013859,
+    "closed": 0.4222598382396823,
+    "bare_already_within": false
+   },
+   "cv": {
+    "bare": 28.45839208584054,
+    "layered": 36.25414292437432,
+    "real": 33.367418234059606,
+    "real_spread_p10_p90": 11.039533486902403,
+    "gap_bare_spreads": -0.4446769561452271,
+    "gap_layered_spreads": 0.2614897353895979,
+    "closed": 0.4119557315126581,
+    "bare_already_within": false
+   }
+  },
+  "commons|oref": {
+   "paired": 45,
+   "tir": {
+    "bare": 91.39384920634922,
+    "layered": 82.15525793650794,
+    "real": 80.0524934383202,
+    "real_spread_p10_p90": 22.818268206180377,
+    "gap_bare_spreads": 0.4970296459639819,
+    "gap_layered_spreads": 0.09215267693357204,
+    "closed": 0.8145931984502791,
+    "bare_already_within": false
+   },
+   "tbr70": {
+    "bare": 2.591765873015873,
+    "layered": 4.067460317460317,
+    "real": 2.719356999330208,
+    "real_spread_p10_p90": 5.747768643183467,
+    "gap_bare_spreads": -0.02219837544533925,
+    "gap_layered_spreads": 0.23454376851595876,
+    "closed": null,
+    "bare_already_within": true
+   },
+   "tbr54": {
+    "bare": 0.26041666666666663,
+    "layered": 1.2276785714285714,
+    "real": 0.38875210574057273,
+    "real_spread_p10_p90": 1.7480349248871936,
+    "gap_bare_spreads": -0.07341697654135143,
+    "gap_layered_spreads": 0.47992546015185444,
+    "closed": null,
+    "bare_already_within": true
+   },
+   "tar180": {
+    "bare": 5.022321428571429,
+    "layered": 13.405257936507937,
+    "real": 15.05851755526658,
+    "real_spread_p10_p90": 24.358701719955363,
+    "gap_bare_spreads": -0.4120168735624036,
+    "gap_layered_spreads": -0.06787141768743135,
+    "closed": 0.8352702958483286,
+    "bare_already_within": false
+   },
+   "mean": {
+    "bare": 121.440256808716,
+    "layered": 135.7409739222255,
+    "real": 134.89517448200655,
+    "real_spread_p10_p90": 39.063180251261784,
+    "gap_bare_spreads": -0.3444398942110184,
+    "gap_layered_spreads": 0.02165208861077356,
+    "closed": 0.9371382671558116,
+    "bare_already_within": false
+   },
+   "cv": {
+    "bare": 26.895235146845828,
+    "layered": 36.25414292437432,
+    "real": 33.45073771637317,
+    "real_spread_p10_p90": 11.900268121551004,
+    "gap_bare_spreads": -0.5508701570896152,
+    "gap_layered_spreads": 0.23557496178798484,
+    "closed": 0.5723584609618603,
+    "bare_already_within": false
+   }
+  }
+ }
+}

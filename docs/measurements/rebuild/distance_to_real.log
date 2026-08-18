@@ -1,0 +1,38 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+
+============================================================================================
+dclp3 under control-iq, paired over 65 subjects, 67 real people
+  Measure                          bare  layered     real   gap bare   gap lay   closed
+  Time in range 70-180, %         91.72    78.61    71.29      +0.74     +0.27    +0.64
+  Time below 70, %                 1.61     2.78     1.36      +0.11     +0.62    -4.62
+  Time below 54, %                 0.14     0.78     0.20      -0.16     +1.42    -7.65
+  Time above 180, %                6.03    16.94    26.87      -0.73     -0.35    +0.52
+  Mean sensor glucose, mg/dL     129.71   143.96   155.45      -0.66     -0.30    +0.55
+  Variability, CV %               24.81    35.28    33.37      -0.78     +0.17    +0.78
+  'near' means the bare model started within 0.1 spreads, so no fraction is reported
+
+============================================================================================
+dclp3 under oref, paired over 59 subjects, 67 real people
+  Measure                          bare  layered     real   gap bare   gap lay   closed
+  Time in range 70-180, %         89.48    81.56    71.29      +0.66     +0.37    +0.44
+  Time below 70, %                 4.19     4.14     1.36      +1.24     +1.21    +0.02
+  Time below 54, %                 0.48     1.24     0.20      +0.69     +2.54    -2.70
+  Time above 180, %                5.80    14.09    26.87      -0.74     -0.45    +0.39
+  Mean sensor glucose, mg/dL     121.34   135.74   155.45      -0.88     -0.51    +0.42
+  Variability, CV %               28.46    36.25    33.37      -0.44     +0.26    +0.41
+  'near' means the bare model started within 0.1 spreads, so no fraction is reported
+
+============================================================================================
+commons under oref, paired over 45 subjects, 77 real people
+  Measure                          bare  layered     real   gap bare   gap lay   closed
+  Time in range 70-180, %         91.39    82.16    80.05      +0.50     +0.09    +0.81
+  Time below 70, %                 2.59     4.07     2.72      -0.02     +0.23     near
+  Time below 54, %                 0.26     1.23     0.39      -0.07     +0.48     near
+  Time above 180, %                5.02    13.41    15.06      -0.41     -0.07    +0.84
+  Mean sensor glucose, mg/dL     121.44   135.74   134.90      -0.34     +0.02    +0.94
+  Variability, CV %               26.90    36.25    33.45      -0.55     +0.24    +0.57
+  'near' means the bare model started within 0.1 spreads, so no fraction is reported
+close_it/oref: no per-person reference, skipped
+
+written to /Users/timstreet/StudioProjects/TimSim/docs/measurements/distance_to_real.json
