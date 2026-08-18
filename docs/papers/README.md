@@ -30,6 +30,7 @@ in [ISSUES.md](../ISSUES.md) records what moved and why.
 | 12 | Titration | What do settings measured from physiology cost? | titration logs |
 | 13 | Configuration | How far does configuration move a benchmark? | `bench_matrix.json` |
 | 15 | What S2008 misses | Where does the model depart from people? | [PADOVA_LIMITS.md](../PADOVA_LIMITS.md) |
+| 16 | Two mechanisms and what refuted one | Can counterregulation and exercise be grounded? | `glucagon_calibration.json`, `exercise_calibration.json`, `exercise_arm.json` |
 
 Two results are papers rather than studies, because each carries a claim against real
 populations rather than a property of the package.
@@ -44,6 +45,13 @@ against the CLOSE-IT trial. `meal_response.json`, `real_meals.json` and the anno
 `bench_matrix.json` supply it. Study 07, on meal peak timing, is folded into it: the finding that
 the peak arrives inside the real range once the two clocks are started at the same event belongs
 with the rest of the meal work rather than on its own.
+
+[DESIGN_COUNTERREGULATION_AND_EXERCISE.md](../DESIGN_COUNTERREGULATION_AND_EXERCISE.md) holds
+study 16 in full: what each mechanism had to do to survive, fixed before either was built, and
+what happened. The glucagon gate is refuted on magnitude and is imported by nothing. The exercise
+layer is calibrated, reverses the finding that kept it switched off, and is adopted as a
+switchable arm rather than a default because it worsens the measure the package is already worst
+on and cannot represent exercise type.
 
 The reference documents stay here, because they describe the code rather than the work:
 [MODEL.md](../MODEL.md) for UVA/Padova itself, [SIMULATOR.md](../SIMULATOR.md) for what this
