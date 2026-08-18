@@ -35,7 +35,8 @@ That was thought to explain the hypoglycaemia rebound row, and on reading the so
 material it does not. Two reasons, both worth keeping so the idea is not revisited.
 
 S2013's counterregulation is a glucagon model built for bihormonal systems that infuse
-glucagon as a drug. Hinshaw et al. (2015) publish its action parameters, but the input is a
+glucagon as a drug. Hinshaw et al. (Am J Physiol Endocrinol Metab 2015;309(5):E474-E486)
+publish its action parameters, but the input is a
 glucagon concentration, not a falling glucose, so the secretion half is what would be
 needed and that is unpublished.
 
@@ -111,7 +112,8 @@ SLOW_CV = 0.15
 #
 # `sinusoid` is the one this package started with: a single cosine, lowest at 06:00 and
 # highest at 18:00, applied identically to every subject. Its breakfast value is a good
-# match for the measurement it was aimed at. Hinshaw et al. (2013) put postprandial
+# match for the measurement it was aimed at. Hinshaw et al. (Diabetes 2013;62(7):2223-2229)
+# put postprandial
 # sensitivity at 5.1, 7.5 and 7.2 (10^-4 dL/kg/min per uU/mL) at breakfast, lunch and
 # dinner in 19 subjects with type 1 diabetes, so breakfast sits at 0.68 of the highest
 # meal, and the cosine gives 0.68 at 07:00. It then keeps rising, which makes dinner the
