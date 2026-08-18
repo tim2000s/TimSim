@@ -25,7 +25,25 @@ umol/kg/min per ng/mL, a range spanning a factor of two thousand, which is a par
 could not identify rather than a parameter with a wide true spread.
 
 And this mechanism must not run alongside a defence gain fitted to a population without it, or
-the same production is counted twice. `simulate` refuses that combination.
+the same production is counted twice. Nothing imports this module except its own calibration
+script, which is the state it should stay in while it is refuted.
+
+Two things are wrong with it and are recorded rather than repaired, because repairing a
+mechanism that cannot carry the production it exists to explain would be effort spent on the
+wrong question.
+
+The dynamic arm does not do what it is for. It is meant to make a glucose passing through 50
+mg/dL on the way down secrete more than one sitting at 50, which is the distinction that matters
+for a bench aimed at hypoglycaemia. Measured, the ordering is the wrong way round: arriving at 50
+mg/dL falling at 0.5 mg/dL/min gives 37.58 pmol/L and at 2.0 mg/dL/min gives 36.45. The static
+arm integrates over time below the threshold, so a faster fall spends less time accumulating and
+the dynamic term is too small to make up the difference. `DELTA` would have to be several times
+larger, and there is no measurement to set it from: Hypo-RESOLVE clamps at one depth and reports
+no rate dependence.
+
+The responsivity span is a modelling choice dressed as a measurement. Rickels reports no
+response and Hypo-RESOLVE reports a median, so the two ends are anchored; the uniform draw
+between them is not, and nothing published describes the distribution's shape.
 """
 import numpy as np
 
