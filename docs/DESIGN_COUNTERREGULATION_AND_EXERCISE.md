@@ -136,3 +136,60 @@ it does not reduce that count and does not move the classifier the wrong way.
 The count to beat is the one this rebuild produced, which is four of ten with six failures
 concentrated in variability, both autocorrelations, the outcome spread, hypoglycaemia recovery
 and hypoglycaemia rebound. Exercise plausibly helps three of those and hurts one.
+
+# Outcomes
+
+Both mechanisms were built and measured against the criteria above. Recorded here rather than in
+a separate document so the design and its result cannot drift apart.
+
+## C: refuted on magnitude
+
+Fitting secretion so a maximally responsive subject reaches the measured 9.4 pmol/L at a
+2.8 mmol/L clamp, glucagon drives 0.0864 mg/kg/min at the most favourable parameterisation
+inside the published ranges, which is 14.6 per cent of the 0.59 Rickels measured at that depth.
+Reaching the bottom of the Rickels band would need a gluconeogenesis sensitivity of 78.5 against
+a published upper bound of 16.15.
+
+The design fixed two criteria joined by `or`. The second did not fire, since 14.6 per cent is
+above the tenth set as the floor. The first did. `HYPO_EGP_DEFENCE` stays as the empirical
+stand-in, and `timsim/patient/glucagon.py` is imported by nothing but its own calibration script.
+
+Two defects in the module are recorded in its docstring rather than repaired, because repairing
+a mechanism that cannot carry the production it exists to explain would be effort spent on the
+wrong question. Its dynamic arm produces the wrong ordering, giving more glucagon for a slower
+fall than a faster one, and the shape of the responsivity distribution between its two anchored
+ends is a modelling choice.
+
+## D: calibrated, and switchable rather than default
+
+The layer was too weak by a factor of 2.5, and the claim beside its gains, a 23 mg/dL fall over
+a sixty-minute session, was never measured; the old values gave 10.8 mg/dL. At a scale of 2.5 it
+reproduces both the acute fall (-24.4 against a real -25.8) and the rate of delayed
+hypoglycaemia (25 per cent against a real 21.2), which are separately carried by the
+insulin-independent and insulin-dependent terms.
+
+On the signatures, paired over 26 subjects with bootstrap intervals, three of ten movements
+exclude zero and two of those move a failing signature towards its range: the autocorrelation at
+sixty minutes by -0.017 [-0.030, -0.003] and the outcome spread by +1.123 [+0.584, +1.692].
+None moves away. The concern that it would worsen variability is not supported: +0.536
+[-0.412, +1.534] spans zero, as do hypoglycaemia recovery and rebound.
+
+That reverses the finding that kept the layer off. The docstring recorded it raising both
+autocorrelations "where the whole purpose was to lower them", and that was measured at 40 per
+cent of the calibrated magnitude.
+
+On outcomes, paired across all four pairings of the bench matrix, the effect is almost entirely
+hypoglycaemia absorbed by eating. Rescue carbohydrate rises by 4 to 7 helpings per 30 days in
+every pairing with every interval excluding zero. Time below 70 mg/dL rises in three of four.
+Time in range does not move anywhere.
+
+**Switchable, not default.** Three reasons in order of weight. It worsens time below 54 mg/dL,
+which is the one measure where the layers already move away from real rather than towards it and
+the paper's main negative finding. It cannot represent exercise type, and type is the clearest
+signal in the reference dataset, where anaerobic exercise falls least and this layer would fall
+most. And its schedule has no local grounding, since the Nightscout records carry no exercise
+events.
+
+What it is good for is what the default bench cannot do at all: present exercise-induced
+hypoglycaemia as a challenge an algorithm has to handle. That is a capability worth having as an
+arm and not worth having as a default that degrades the headline comparison.
