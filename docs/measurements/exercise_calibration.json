@@ -1,0 +1,1493 @@
+{
+ "subjects": 20,
+ "session_minutes": 45.0,
+ "real_acute_mgdl": {
+  "walking": -22.3,
+  "aerobic": -25.8,
+  "anaerobic": -9.4
+ },
+ "real_delayed_pct": {
+  "aerobic": 21.2,
+  "resistance": 11.2
+ },
+ "measured": [
+  {
+   "gain_scale": 1.0,
+   "n": 20,
+   "acute_median": -10.82628892873285,
+   "acute_p25": -13.365350935994321,
+   "acute_p75": -8.821624869269556,
+   "hypo_basal_pct": 0.0,
+   "hypo_with_insulin_pct": 5.0
+  },
+  {
+   "gain_scale": 1.5,
+   "n": 20,
+   "acute_median": -15.579866163720823,
+   "acute_p25": -19.17573034197555,
+   "acute_p75": -12.975833104585021,
+   "hypo_basal_pct": 0.0,
+   "hypo_with_insulin_pct": 5.0
+  },
+  {
+   "gain_scale": 2.0,
+   "n": 20,
+   "acute_median": -20.131605237194364,
+   "acute_p25": -24.458854045442123,
+   "acute_p75": -16.956233367468993,
+   "hypo_basal_pct": 0.0,
+   "hypo_with_insulin_pct": 10.0
+  },
+  {
+   "gain_scale": 2.5,
+   "n": 20,
+   "acute_median": -24.38697224406748,
+   "acute_p25": -29.095184817031644,
+   "acute_p75": -20.761813856372676,
+   "hypo_basal_pct": 0.0,
+   "hypo_with_insulin_pct": 25.0
+  }
+ ],
+ "runs": [
+  {
+   "name": "adult#001",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": false,
+   "acute_mgdl": -5.305966847929426,
+   "deepest_after_mgdl": -9.21741079427403,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#002",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": false,
+   "acute_mgdl": -8.857641492682944,
+   "deepest_after_mgdl": -15.81518232236806,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#003",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": false,
+   "acute_mgdl": -14.302514488158295,
+   "deepest_after_mgdl": -19.149552578944196,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#004",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": false,
+   "acute_mgdl": -10.79149056042985,
+   "deepest_after_mgdl": -15.17306086578074,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#005",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": false,
+   "acute_mgdl": -13.323913827128592,
+   "deepest_after_mgdl": -17.426305367900028,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#006",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": false,
+   "acute_mgdl": -13.489662262591509,
+   "deepest_after_mgdl": -17.741743630138615,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#007",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": false,
+   "acute_mgdl": -18.7165567901842,
+   "deepest_after_mgdl": -25.796562421569774,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#008",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": false,
+   "acute_mgdl": -10.572272130691175,
+   "deepest_after_mgdl": -14.348394520713441,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#009",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": false,
+   "acute_mgdl": -8.359738743471326,
+   "deepest_after_mgdl": -14.71164383413037,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#010",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": false,
+   "acute_mgdl": -4.585385345796993,
+   "deepest_after_mgdl": -7.863155935903251,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#011",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": false,
+   "acute_mgdl": -10.861087297035851,
+   "deepest_after_mgdl": -16.91140264032728,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#012",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": false,
+   "acute_mgdl": -11.74781160037918,
+   "deepest_after_mgdl": -16.626542032337056,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#013",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": false,
+   "acute_mgdl": -8.71357499902939,
+   "deepest_after_mgdl": -13.472356154285137,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#014",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": false,
+   "acute_mgdl": -8.4012358610305,
+   "deepest_after_mgdl": -14.11695566692245,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#015",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": false,
+   "acute_mgdl": -11.495715676308464,
+   "deepest_after_mgdl": -19.758395015367654,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#016",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": false,
+   "acute_mgdl": -9.867052013174515,
+   "deepest_after_mgdl": -14.546914039983676,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#017",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": false,
+   "acute_mgdl": -10.502888326023182,
+   "deepest_after_mgdl": -16.89444422289172,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#018",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": false,
+   "acute_mgdl": -14.191504978985847,
+   "deepest_after_mgdl": -18.695957903842185,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#019",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": false,
+   "acute_mgdl": -12.625088044500501,
+   "deepest_after_mgdl": -17.40726297978634,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#020",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": false,
+   "acute_mgdl": -14.460205185828045,
+   "deepest_after_mgdl": -19.802285834442955,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#001",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": false,
+   "acute_mgdl": -7.896255772038728,
+   "deepest_after_mgdl": -13.705735420090974,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#002",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": false,
+   "acute_mgdl": -13.013650907313803,
+   "deepest_after_mgdl": -23.06044049102809,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#003",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": false,
+   "acute_mgdl": -20.419313495491025,
+   "deepest_after_mgdl": -27.084336498261337,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#004",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": false,
+   "acute_mgdl": -15.301139189969206,
+   "deepest_after_mgdl": -21.265390559045528,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#005",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": false,
+   "acute_mgdl": -19.02692250976871,
+   "deepest_after_mgdl": -24.633995222367517,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#006",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": false,
+   "acute_mgdl": -19.622153838596077,
+   "deepest_after_mgdl": -25.60677286235989,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#007",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": false,
+   "acute_mgdl": -27.128771645303402,
+   "deepest_after_mgdl": -37.11697131050124,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#008",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": false,
+   "acute_mgdl": -15.367693095558167,
+   "deepest_after_mgdl": -20.72584103638829,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#009",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": false,
+   "acute_mgdl": -12.288686052478425,
+   "deepest_after_mgdl": -21.38760413507528,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#010",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": false,
+   "acute_mgdl": -6.861401745968692,
+   "deepest_after_mgdl": -11.89569613721173,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#011",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": false,
+   "acute_mgdl": -15.792039231883479,
+   "deepest_after_mgdl": -24.300549898887056,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#012",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": false,
+   "acute_mgdl": -17.21924675964783,
+   "deepest_after_mgdl": -24.180803872698945,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#013",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": false,
+   "acute_mgdl": -12.862379696398676,
+   "deepest_after_mgdl": -19.729806010836853,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#014",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": false,
+   "acute_mgdl": -12.361320899426488,
+   "deepest_after_mgdl": -20.566408644031384,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#015",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": false,
+   "acute_mgdl": -16.565650429164776,
+   "deepest_after_mgdl": -27.94978783359062,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#016",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": false,
+   "acute_mgdl": -14.501174428043896,
+   "deepest_after_mgdl": -21.22213235096683,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#017",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": false,
+   "acute_mgdl": -15.299877722016475,
+   "deepest_after_mgdl": -24.328968989137593,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#018",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": false,
+   "acute_mgdl": -20.098241190276042,
+   "deepest_after_mgdl": -26.16739405963841,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#019",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": false,
+   "acute_mgdl": -18.232832612424687,
+   "deepest_after_mgdl": -24.88195026349608,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#020",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": false,
+   "acute_mgdl": -20.81703649485823,
+   "deepest_after_mgdl": -28.22009458022599,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#001",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": false,
+   "acute_mgdl": -10.443800314741054,
+   "deepest_after_mgdl": -18.084302699211264,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#002",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": false,
+   "acute_mgdl": -16.9856184204163,
+   "deepest_after_mgdl": -29.819652087695687,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#003",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": false,
+   "acute_mgdl": -25.941704192550873,
+   "deepest_after_mgdl": -34.10195902812478,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#004",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": false,
+   "acute_mgdl": -19.312823673923788,
+   "deepest_after_mgdl": -26.552697893631517,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#005",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": false,
+   "acute_mgdl": -24.168598569538233,
+   "deepest_after_mgdl": -30.98839339716818,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#006",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": false,
+   "acute_mgdl": -25.365488657483724,
+   "deepest_after_mgdl": -32.8486319980027,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#007",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": false,
+   "acute_mgdl": -34.926088941675516,
+   "deepest_after_mgdl": -47.32430559618527,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#008",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": false,
+   "acute_mgdl": -19.860804468189997,
+   "deepest_after_mgdl": -26.61659689621547,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#009",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": false,
+   "acute_mgdl": -16.048010591993744,
+   "deepest_after_mgdl": -27.625866959775493,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#010",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": false,
+   "acute_mgdl": -9.127889972586331,
+   "deepest_after_mgdl": -15.91654950190852,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#011",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": false,
+   "acute_mgdl": -20.40240600619873,
+   "deepest_after_mgdl": -31.036087584789698,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#012",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": false,
+   "acute_mgdl": -22.422158179522256,
+   "deepest_after_mgdl": -31.227309857038392,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#013",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": false,
+   "acute_mgdl": -16.868078208627068,
+   "deepest_after_mgdl": -25.667317182940053,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#014",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": false,
+   "acute_mgdl": -16.160930929298416,
+   "deepest_after_mgdl": -26.639673929447866,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#015",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": false,
+   "acute_mgdl": -21.204159772457118,
+   "deepest_after_mgdl": -35.11815813994531,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#016",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": false,
+   "acute_mgdl": -18.93381023187264,
+   "deepest_after_mgdl": -27.49008644032756,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#017",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": false,
+   "acute_mgdl": -19.803880195184206,
+   "deepest_after_mgdl": -31.12566324013605,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#018",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": false,
+   "acute_mgdl": -25.329620473153796,
+   "deepest_after_mgdl": -32.61580036990303,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#019",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": false,
+   "acute_mgdl": -23.403148773420043,
+   "deepest_after_mgdl": -31.609904468034784,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#020",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": false,
+   "acute_mgdl": -26.635296250314326,
+   "deepest_after_mgdl": -35.727020845319544,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#001",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": false,
+   "acute_mgdl": -12.94792067005622,
+   "deepest_after_mgdl": -22.351104746850325,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#002",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": false,
+   "acute_mgdl": -20.773126971268283,
+   "deepest_after_mgdl": -36.09855394029999,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#003",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": false,
+   "acute_mgdl": -30.9338236397859,
+   "deepest_after_mgdl": -40.31940869763977,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#004",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": false,
+   "acute_mgdl": -22.88816975830639,
+   "deepest_after_mgdl": -31.155972950370966,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#005",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": false,
+   "acute_mgdl": -28.80464689342108,
+   "deepest_after_mgdl": -36.59293544583049,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#006",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": false,
+   "acute_mgdl": -30.73594326532462,
+   "deepest_after_mgdl": -39.50886283397861,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#007",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": false,
+   "acute_mgdl": -42.1278513625098,
+   "deepest_after_mgdl": -56.477904261557,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#008",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": false,
+   "acute_mgdl": -24.069906385116184,
+   "deepest_after_mgdl": -32.05625206185681,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#009",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": false,
+   "acute_mgdl": -19.6370153152848,
+   "deepest_after_mgdl": -33.441396505558856,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#010",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": false,
+   "acute_mgdl": -11.382354763426235,
+   "deepest_after_mgdl": -19.901800448214885,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#011",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": false,
+   "acute_mgdl": -24.704038103018775,
+   "deepest_after_mgdl": -37.15627500233785,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#012",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": false,
+   "acute_mgdl": -27.358215366566398,
+   "deepest_after_mgdl": -37.774758575030845,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#013",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": false,
+   "acute_mgdl": -20.727874511685854,
+   "deepest_after_mgdl": -31.291512215645724,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#014",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": false,
+   "acute_mgdl": -19.800765530679485,
+   "deepest_after_mgdl": -32.34216374709486,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#015",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": false,
+   "acute_mgdl": -25.43264989340308,
+   "deepest_after_mgdl": -41.376590229075106,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#016",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": false,
+   "acute_mgdl": -23.164728953926456,
+   "deepest_after_mgdl": -33.35410308482486,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#017",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": false,
+   "acute_mgdl": -24.024434167685286,
+   "deepest_after_mgdl": -37.31812810714672,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#018",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": false,
+   "acute_mgdl": -29.966798587863337,
+   "deepest_after_mgdl": -38.19141151233568,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#019",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": false,
+   "acute_mgdl": -28.16260880872322,
+   "deepest_after_mgdl": -37.65301867112886,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#020",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": false,
+   "acute_mgdl": -31.950956691157785,
+   "deepest_after_mgdl": -42.405473201186055,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#001",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": true,
+   "acute_mgdl": -12.735223492364327,
+   "deepest_after_mgdl": -20.594237959835652,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#002",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": true,
+   "acute_mgdl": -18.821878900800073,
+   "deepest_after_mgdl": -30.067145771633818,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#003",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": true,
+   "acute_mgdl": -22.061296865880124,
+   "deepest_after_mgdl": -27.921598381518294,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#004",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": true,
+   "acute_mgdl": -16.29057070184703,
+   "deepest_after_mgdl": -21.722262798513782,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#005",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": true,
+   "acute_mgdl": -20.871455730911464,
+   "deepest_after_mgdl": -26.8429796524114,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#006",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": true,
+   "acute_mgdl": -26.14555982187416,
+   "deepest_after_mgdl": -31.00441406612353,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#007",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": true,
+   "acute_mgdl": -22.453501144392888,
+   "deepest_after_mgdl": -28.86004200038343,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#008",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": true,
+   "acute_mgdl": -27.595358624665266,
+   "deepest_after_mgdl": -33.897041313154006,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#009",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": true,
+   "acute_mgdl": -17.21338823332914,
+   "deepest_after_mgdl": -26.90765106285049,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#010",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": true,
+   "acute_mgdl": -14.826363546775156,
+   "deepest_after_mgdl": -26.061001505002736,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#011",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": true,
+   "acute_mgdl": -19.345599454263734,
+   "deepest_after_mgdl": -26.39538450783587,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#012",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": true,
+   "acute_mgdl": -20.98652560081659,
+   "deepest_after_mgdl": -27.799807296065467,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#013",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": true,
+   "acute_mgdl": -19.679927442212033,
+   "deepest_after_mgdl": -28.24367824095046,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#014",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": true,
+   "acute_mgdl": -19.721189635947354,
+   "deepest_after_mgdl": -25.94765365483474,
+   "hypo_within_6h": true
+  },
+  {
+   "name": "adult#015",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": true,
+   "acute_mgdl": -14.940820246601163,
+   "deepest_after_mgdl": -22.930808650064137,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#016",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": true,
+   "acute_mgdl": -20.177243803750642,
+   "deepest_after_mgdl": -27.555637726099917,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#017",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": true,
+   "acute_mgdl": -17.21140108948606,
+   "deepest_after_mgdl": -24.94379472486709,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#018",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": true,
+   "acute_mgdl": -15.647511715947473,
+   "deepest_after_mgdl": -19.68148957618213,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#019",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": true,
+   "acute_mgdl": -23.446973577855005,
+   "deepest_after_mgdl": -28.94077992530832,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#020",
+   "intensity": 0.7,
+   "gain_scale": 1.0,
+   "with_meal": true,
+   "acute_mgdl": -19.913220909436163,
+   "deepest_after_mgdl": -25.735039727063878,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#001",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": true,
+   "acute_mgdl": -18.609107430222053,
+   "deepest_after_mgdl": -29.6449892801041,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#002",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": true,
+   "acute_mgdl": -26.151437701500186,
+   "deepest_after_mgdl": -40.04338988728426,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#003",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": true,
+   "acute_mgdl": -30.083190058025124,
+   "deepest_after_mgdl": -37.475448033634265,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#004",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": true,
+   "acute_mgdl": -22.20142795011438,
+   "deepest_after_mgdl": -29.085165080433313,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#005",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": true,
+   "acute_mgdl": -29.125390721895883,
+   "deepest_after_mgdl": -36.83828819895925,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#006",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": true,
+   "acute_mgdl": -35.52152920548269,
+   "deepest_after_mgdl": -41.29534950887286,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#007",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": true,
+   "acute_mgdl": -31.018084097458257,
+   "deepest_after_mgdl": -39.04413344961972,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#008",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": true,
+   "acute_mgdl": -37.51284247057957,
+   "deepest_after_mgdl": -45.007917004290434,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#009",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": true,
+   "acute_mgdl": -24.200904292395037,
+   "deepest_after_mgdl": -36.47850737926413,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#010",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": true,
+   "acute_mgdl": -21.86463365395116,
+   "deepest_after_mgdl": -37.11244090814667,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#011",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": true,
+   "acute_mgdl": -26.315885182432453,
+   "deepest_after_mgdl": -34.85402881357453,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#012",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": true,
+   "acute_mgdl": -29.620533640432598,
+   "deepest_after_mgdl": -38.21982813829271,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#013",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": true,
+   "acute_mgdl": -28.038535587059144,
+   "deepest_after_mgdl": -38.883880102476596,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#014",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": true,
+   "acute_mgdl": -26.642521713926428,
+   "deepest_after_mgdl": -33.88165777275874,
+   "hypo_within_6h": true
+  },
+  {
+   "name": "adult#015",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": true,
+   "acute_mgdl": -20.55145136441743,
+   "deepest_after_mgdl": -30.33065237816251,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#016",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": true,
+   "acute_mgdl": -28.371224826088564,
+   "deepest_after_mgdl": -37.69429788600962,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#017",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": true,
+   "acute_mgdl": -23.95872296178777,
+   "deepest_after_mgdl": -33.64036148405269,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#018",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": true,
+   "acute_mgdl": -21.56917668532543,
+   "deepest_after_mgdl": -26.69821015835136,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#019",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": true,
+   "acute_mgdl": -31.933483435526043,
+   "deepest_after_mgdl": -38.41320087098495,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#020",
+   "intensity": 0.7,
+   "gain_scale": 1.5,
+   "with_meal": true,
+   "acute_mgdl": -27.20935592309614,
+   "deepest_after_mgdl": -34.48110911876731,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#001",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": true,
+   "acute_mgdl": -24.145442357904386,
+   "deepest_after_mgdl": -38.00916203159426,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#002",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": true,
+   "acute_mgdl": -32.281205456115075,
+   "deepest_after_mgdl": -47.76021315269355,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#003",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": true,
+   "acute_mgdl": -36.67506419086027,
+   "deepest_after_mgdl": -45.10836568522353,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#004",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": true,
+   "acute_mgdl": -27.04652434159621,
+   "deepest_after_mgdl": -34.952668179638636,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#005",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": true,
+   "acute_mgdl": -36.19876513916458,
+   "deepest_after_mgdl": -45.26490879821013,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#006",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": true,
+   "acute_mgdl": -43.0682908246103,
+   "deepest_after_mgdl": -49.2642137915321,
+   "hypo_within_6h": true
+  },
+  {
+   "name": "adult#007",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": true,
+   "acute_mgdl": -38.14341794660204,
+   "deepest_after_mgdl": -47.146069851794834,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#008",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": true,
+   "acute_mgdl": -45.586740572480295,
+   "deepest_after_mgdl": -53.879031491856196,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#009",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": true,
+   "acute_mgdl": -30.199169108897962,
+   "deepest_after_mgdl": -44.05365353504989,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#010",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": true,
+   "acute_mgdl": -28.621879535870292,
+   "deepest_after_mgdl": -47.40164081941654,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#011",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": true,
+   "acute_mgdl": -31.93778226631548,
+   "deepest_after_mgdl": -41.33873533089317,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#012",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": true,
+   "acute_mgdl": -37.124178947208705,
+   "deepest_after_mgdl": -46.95567738785229,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#013",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": true,
+   "acute_mgdl": -35.40917819841971,
+   "deepest_after_mgdl": -47.79989165852527,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#014",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": true,
+   "acute_mgdl": -32.10493792566322,
+   "deepest_after_mgdl": -39.771903450104986,
+   "hypo_within_6h": true
+  },
+  {
+   "name": "adult#015",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": true,
+   "acute_mgdl": -25.17049109800297,
+   "deepest_after_mgdl": -35.87256815749038,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#016",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": true,
+   "acute_mgdl": -35.417232415614365,
+   "deepest_after_mgdl": -45.98380783857172,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#017",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": true,
+   "acute_mgdl": -29.67702857510463,
+   "deepest_after_mgdl": -40.655886829414214,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#018",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": true,
+   "acute_mgdl": -26.527927628476988,
+   "deepest_after_mgdl": -32.403249330807796,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#019",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": true,
+   "acute_mgdl": -38.803340457592384,
+   "deepest_after_mgdl": -45.788402898283664,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#020",
+   "intensity": 0.7,
+   "gain_scale": 2.0,
+   "with_meal": true,
+   "acute_mgdl": -33.170819181840116,
+   "deepest_after_mgdl": -41.36372069138899,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#001",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": true,
+   "acute_mgdl": -29.34157439443294,
+   "deepest_after_mgdl": -45.6340085979468,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#002",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": true,
+   "acute_mgdl": -37.38306759234203,
+   "deepest_after_mgdl": -53.853711572634495,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#003",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": true,
+   "acute_mgdl": -42.143482972678896,
+   "deepest_after_mgdl": -51.223519517897955,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#004",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": true,
+   "acute_mgdl": -31.05945597395052,
+   "deepest_after_mgdl": -39.69203546015497,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#005",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": true,
+   "acute_mgdl": -42.27390931012279,
+   "deepest_after_mgdl": -52.31698203546922,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#006",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": true,
+   "acute_mgdl": -49.17589704473177,
+   "deepest_after_mgdl": -55.49167174450449,
+   "hypo_within_6h": true
+  },
+  {
+   "name": "adult#007",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": true,
+   "acute_mgdl": -44.070702836944164,
+   "deepest_after_mgdl": -53.60570211819862,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#008",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": true,
+   "acute_mgdl": -52.19579249565146,
+   "deepest_after_mgdl": -60.96380505558541,
+   "hypo_within_6h": true
+  },
+  {
+   "name": "adult#009",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": true,
+   "acute_mgdl": -35.31934590233307,
+   "deepest_after_mgdl": -50.25408043184993,
+   "hypo_within_6h": true
+  },
+  {
+   "name": "adult#010",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": true,
+   "acute_mgdl": -35.07382875846346,
+   "deepest_after_mgdl": -56.81085324833707,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#011",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": true,
+   "acute_mgdl": -36.49780435891154,
+   "deepest_after_mgdl": -46.36320521385778,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#012",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": true,
+   "acute_mgdl": -43.605374542785114,
+   "deepest_after_mgdl": -54.14268711228053,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#013",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": true,
+   "acute_mgdl": -41.83215976800916,
+   "deepest_after_mgdl": -55.0331411070587,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#014",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": true,
+   "acute_mgdl": -36.4379116051048,
+   "deepest_after_mgdl": -44.232353956157226,
+   "hypo_within_6h": true
+  },
+  {
+   "name": "adult#015",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": true,
+   "acute_mgdl": -29.01172872720724,
+   "deepest_after_mgdl": -40.45730316820392,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#016",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": true,
+   "acute_mgdl": -41.43363932707466,
+   "deepest_after_mgdl": -52.66026470559481,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#017",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": true,
+   "acute_mgdl": -34.52029044996843,
+   "deepest_after_mgdl": -46.26585646979747,
+   "hypo_within_6h": true
+  },
+  {
+   "name": "adult#018",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": true,
+   "acute_mgdl": -30.705407651159973,
+   "deepest_after_mgdl": -37.080458351845564,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#019",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": true,
+   "acute_mgdl": -44.39612690462518,
+   "deepest_after_mgdl": -51.65379075333692,
+   "hypo_within_6h": false
+  },
+  {
+   "name": "adult#020",
+   "intensity": 0.7,
+   "gain_scale": 2.5,
+   "with_meal": true,
+   "acute_mgdl": -38.08897420805826,
+   "deepest_after_mgdl": -46.92268927653379,
+   "hypo_within_6h": false
+  }
+ ]
+}

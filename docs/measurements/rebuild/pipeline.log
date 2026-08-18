@@ -62,3 +62,7 @@
 15:07:56Z  OK     layer_ladder (0 min)
 15:56:17Z  OK     autosens_off (48 min)
 16:00:30Z  OK     autosens_on (52 min)
+16:12:42Z  OK     fit_control_iq (64 min)
+16:12:42Z  --- wave 3 done ---
+16:12:42Z  === standalone measurements finished ===
+16:12:45Z    12:32:33Z  FAILED hyperglycaemia_gap (14 min) —   File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 396, in __get_result     raise self._exception RuntimeError: adult#026 has no titrated settings. The consensus hypoglycaemia floors were not met at any combination tried, so its settings are not the explanation for what it does and it should be excluded rather than run at the loosest available.

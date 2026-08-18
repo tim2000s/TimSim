@@ -1,4 +1,9 @@
-"""Physical activity, which the model has no representation of at all.
+"""Physical activity, which UVA/Padova has no representation of at all.
+
+Two things about this layer's status were wrong in this docstring and are corrected below: its
+magnitude was never measured against anything, and the signature result that keeps it off was
+obtained at a magnitude 2.5 times too small. It remains off by default, and the reason is now a
+question the matrix answers rather than a settled one.
 
 It is probably the largest single driver of real glucose variability that UVA/Padova omits.
 Exercise raises glucose uptake while it happens and leaves insulin sensitivity elevated for
@@ -6,9 +11,10 @@ hours afterwards, and it is a leading cause of hypoglycaemia in type 1 diabetes.
 this package modelled it before: `exercise_active` appears in the adapters only as an input
 that is always false.
 
-It does not work, and the measurement is below rather than at the end. Regressed against
-every signature, paired, under the built-in loop, adding this layer takes the count inside the
-real range from eight of eleven to five. It raises the autocorrelation at thirty minutes by
+It did not work when it was last measured, and that measurement used gains since found to be
+too weak by a factor of 2.5. Regressed against every signature, paired, under the built-in loop,
+adding this layer at the old gains took the count inside the real range from eight of eleven to
+five. It raises the autocorrelation at thirty minutes by
 0.02 +/- 0.01 and at sixty by 0.05 +/- 0.03, both out of range, where the whole purpose was to
 lower them, and it widens variability by 3.2 +/- 0.8, also out of range. Two session
 schedules were tried, one concentrated in the evening and one spread across waking hours, and
@@ -22,10 +28,19 @@ sensitivity, which acts on a horizon of days rather than of hours.
 
 Unlike every other layer here, this one cannot be grounded in the local database. The
 Nightscout records carry no exercise events, so the schedule below comes from the literature
-and is a modelling choice rather than a measurement. What can be checked against data is the
-consequence, which is what the fidelity signatures are for, and the three that this layer is
-aimed at are the ones saying the model is too predictable: the autocorrelation at thirty and
-sixty minutes sits above its range and the spread of outcomes from a stuck high below its own.
+and is a modelling choice rather than a measurement. What can now be grounded is the magnitude,
+against 428,058 sessions from 3,248 people, and that is done at `VMX_GAIN`.
+
+One thing this layer still cannot represent. Real anaerobic exercise lowers glucose least, by
+-0.52 mmol/L against -1.43 for aerobic, because it recruits counter-regulatory hormones that
+oppose the uptake. Here a session's effect rises with its intensity and nothing distinguishes
+the kind of exercise, so the most intense session always falls furthest. Reproducing the real
+ordering needs a session kind, not another gain, and that is not implemented.
+
+What else can be checked against data is the consequence, which is what the fidelity signatures
+are for. The three this layer is aimed at are the ones saying the model is too predictable: the
+autocorrelation at thirty and sixty minutes sits above its range and the spread of outcomes from
+a stuck high below its own.
 
 The magnitudes:
 
@@ -62,12 +77,34 @@ SESSION_HOURS = ((18.0, 3.5, 0.45), (12.0, 3.0, 0.30), (8.0, 2.0, 0.25))
 INTENSITY = (0.35, 1.0)
 
 # What a session does at full intensity. `VMX_GAIN` multiplies insulin-dependent utilisation
-# and `VM0_GAIN` the insulin-independent part, both chosen so that a moderate session of an
-# hour moves glucose by the tens of mg/dL that the literature reports rather than by a
-# clinically implausible amount. At these values a subject held at steady state on basal alone
-# falls 23 mg/dL over a sixty-minute session at intensity 0.7. Both are modelling choices.
-VMX_GAIN = 1.6
-VM0_GAIN = 1.5
+# and `VM0_GAIN` the insulin-independent part.
+#
+# These were modelling choices set to move glucose by "the tens of mg/dL that the literature
+# reports", and the claim beside them, that a subject falls 23 mg/dL over a sixty-minute session
+# at intensity 0.7, was never measured. Measured in `examples/calibrate_exercise.py`, the values
+# they replace produced 10.8 mg/dL over forty-five minutes at that intensity, so the layer was
+# roughly a factor of 2.5 too weak.
+#
+# The reference is 428,058 exercise sessions from 3,248 people with type 1 diabetes, which is a
+# far larger base than anything else in this package rests on. Sweeping a common scale on both
+# gains, twenty titrated adults, one 45-minute session at intensity 0.7:
+#
+#     scale   acute fall   delayed hypoglycaemia within 6 h
+#      1.0      -10.8                 5%
+#      1.5      -15.6                 5%
+#      2.0      -20.1                10%
+#      2.5      -24.4                25%
+#
+#     real, aerobic: -25.8 mg/dL acute, 21.2 per cent delayed
+#
+# 2.5 is adopted because it reproduces both, and they are independent endpoints from the same
+# study rather than one target restated: the acute fall is read on basal alone, where the
+# insulin-independent term carries it, and the delayed rate is read with a bolused meal three
+# hours earlier, where only the insulin-dependent term can act. An earlier version of that
+# measurement read the delayed rate on basal alone and found zero at every gain, which says
+# nothing about the mechanism, since the mechanism needs insulin on board by construction.
+VMX_GAIN = 4.0
+VM0_GAIN = 3.75
 
 # After a session. Sensitivity stays raised and decays with this time constant, which puts
 # most of the effect inside twelve hours and a tail beyond it.
