@@ -1,0 +1,78 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+450 runs, 2 arms across 3 pairings
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+  40/450 done, 6.4 min
+  80/450 done, 12.4 min
+  120/450 done, 18.5 min
+  160/450 done, 24.7 min
+  200/450 done, 31.2 min
+  240/450 done, 37.6 min
+  280/450 done, 44.0 min
+  320/450 done, 50.7 min
+  360/450 done, 56.6 min
+  400/450 done, 63.0 min
+  440/450 done, 68.9 min
+  450/450 done, 70.5 min
+
+=== commons / oref : bio against base, paired over 42 ===
+  measure                base        bio         paired difference
+  Time below 54 %        1.13       0.81       -0.32 [-0.48,-0.16]  *
+  Time below 70 %        3.22       3.08       -0.48 [-0.71,-0.24]  *
+  Rebound %             40.18      32.29      -8.13 [-12.00,-4.10]  *
+  Recovery min          70.00      70.00       +0.18 [-3.87,+4.35]
+  Time in range %       82.49      86.44       +4.27 [+3.45,+5.08]  *
+  Variability %         35.57      32.39       -3.79 [-4.62,-2.97]  *
+  Rescue g/day          36.86      33.86       -3.20 [-6.12,-0.29]  *
+
+=== dclp3 / control-iq : bio against base, paired over 59 ===
+  measure                base        bio         paired difference
+  Time below 54 %        0.77       0.66       -0.12 [-0.27,+0.02]
+  Time below 70 %        2.74       2.43       -0.22 [-0.49,+0.04]
+  Rebound %             38.46      33.33      -6.86 [-10.16,-3.59]  *
+  Recovery min          70.00      70.00       +3.90 [-0.04,+7.97]
+  Time in range %       79.97      83.13       +3.19 [+2.47,+3.91]  *
+  Variability %         34.26      30.44       -3.41 [-4.22,-2.62]  *
+  Rescue g/day          33.13      26.78       -3.32 [-6.16,-0.48]  *
+
+=== dclp3 / oref : bio against base, paired over 57 ===
+  measure                base        bio         paired difference
+  Time below 54 %        1.23       1.33       -0.19 [-0.35,-0.03]  *
+  Time below 70 %        4.14       4.12       -0.33 [-0.59,-0.07]  *
+  Rebound %             36.11      29.41      -7.02 [-10.05,-3.95]  *
+  Recovery min          75.00      75.00       -0.79 [-4.61,+2.98]
+  Time in range %       81.60      85.74       +3.78 [+3.15,+4.45]  *
+  Variability %         35.54      32.44       -3.87 [-4.56,-3.19]  *
+  Rescue g/day          45.53      44.45       -1.21 [-4.02,+1.55]
+
+  completion commons/oref: base 45/63  bio 49/63
+
+  completion dclp3/control-iq: base 65/81  bio 69/81
+
+  completion dclp3/oref: base 59/81  bio 67/81
+
+  * marks a difference whose interval excludes zero
+written to /Users/timstreet/StudioProjects/TimSim/docs/measurements/rescue_bio_alone.json

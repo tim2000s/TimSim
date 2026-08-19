@@ -114,6 +114,37 @@ CARB_ESTIMATE_BIAS = 1.0
 # treat lows without recording them, so 0.44 a day is a lower bound and the true rate sits
 # somewhere above it. That is why the calibration lands at 0.93 rather than being pushed
 # down to 0.44.
+# How much of a rescue helping reaches the gut, as a bioavailability. Meals are untouched.
+#
+# The simulated carbohydrate response is 21.1 to 21.6 mg/dL per 10 g against a real 15.9 to
+# 19.7 across every defensible filter, so the same helping raises glucose about a fifth more
+# here than in life. Rebound is what over-treating a low looks like, and it sat at 36 to 42 per
+# cent against a real 23.2 to 28.4 in every configuration measured, which suggested the two were
+# one defect seen twice.
+#
+# Measured on 450 paired runs across three cohort and controller pairings, against a control
+# with no other mechanism changed:
+#
+#                       rebound      variability    time in range    recovery
+#     commons/oref       -8.13 *        -3.79 *         +4.27 *        +0.18
+#     dclp3/control-iq   -6.86 *        -3.41 *         +3.19 *        +3.90
+#     dclp3/oref         -7.02 *        -3.87 *         +3.78 *        -0.79
+#
+#     * the bootstrap interval on the paired difference excludes zero
+#
+# Rebound moves from 36 to 42 per cent down to 29 to 33, towards the real 23.2 to 28.4.
+# Variability falls from 34.3 to 35.6 down to 30.4 to 32.4, which is inside the real 29.5 to
+# 34.3 rather than above it. Recovery time spans zero in all three, which matters because a
+# mechanism that bought less overshoot at the price of a longer climb would have traded one
+# failure for another, and `docs/DESIGN_HYPOGLYCAEMIA.md` fixed that as the refutation criterion
+# before the run.
+#
+# It scales absorption rather than the helping, so `rescue_grams` still records what the person
+# ate and only the gut sees less. `docs/PADOVA_LIMITS.md` declined to scale carbohydrate on two
+# grounds, filter sensitivity and under-reported grams, and both are about logged meals rather
+# than a rescue treatment, which is neither logged as a meal nor under-reported the same way.
+RESCUE_BIOAVAILABILITY = 0.83
+
 RESCUE_THRESHOLD = 70.0
 RESCUE_PREEMPT_BG = 72.0          # treat early only when already close to the threshold
 RESCUE_PREEMPT_FALL = -3.0        # mg/dL/min, a genuine fast fall
@@ -513,7 +544,7 @@ class BehaviourScenario:
     """
 
     def __init__(self, start_time, meals, person, meal_delay_min=MEAL_ONSET_DELAY_MIN,
-                 rescue_bioavailability=1.0):
+                 rescue_bioavailability=RESCUE_BIOAVAILABILITY):
         self.start_time = start_time
         self.person = person
         self.meal_delay_min = float(meal_delay_min)

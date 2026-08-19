@@ -387,7 +387,11 @@ HYPO_DEFENCE_FLOOR = 0.15     # insulin action never falls below this fraction
 # Whether it moves an outcome is a separate question from whether it fixes the clamp: the
 # insulin driving a spontaneous low is about half the clamp's. `docs/DESIGN_HYPOGLYCAEMIA.md`
 # fixes what would refute it there.
-HYPO_EGP_FLOOR = 0.55         # mg/kg/min at full depth; 0 restores stock S2008
+# Held at zero until the matrix decides it, not because the clamp result is in doubt but
+# because adopting it as the default before the comparison ran made the control arm inherit it:
+# base and floor came out bit-identical, intervals [0.00, 0.00], which is the signature of a
+# harness fault rather than a null result. The arms pass their value explicitly now.
+HYPO_EGP_FLOOR = 0.0          # mg/kg/min at full depth; 0 restores stock S2008
 
 
 def hypo_defence(glucose_mgdl, centre=HYPO_DEFENCE_CENTRE, width=HYPO_DEFENCE_WIDTH):

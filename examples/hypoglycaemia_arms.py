@@ -31,7 +31,7 @@ from concurrent.futures import ProcessPoolExecutor
 
 from timsim import provenance, seeds
 
-OUT = os.path.join(MEASUREMENTS, "hypoglycaemia_arms.json")
+OUT = os.path.join(MEASUREMENTS, "rescue_bio_alone.json")
 DAYS, SEED = 28, seeds.BENCH
 LAYERS = ("physiology", "behaviour", "sensor", "site")
 
@@ -40,10 +40,11 @@ LAYERS = ("physiology", "behaviour", "sensor", "site")
 # about 0.83. It is a bioavailability, so the person still eats what the record says.
 RESCUE_BIO = 0.83
 
+# Every arm states every mechanism explicitly, including the control. Leaving the control to
+# inherit module defaults is what made an earlier run compare a configuration with itself.
 ARMS = {
-    "base":      {},
-    "floor":     {"hypo_egp_floor": 0.55},
-    "floor_bio": {"hypo_egp_floor": 0.55, "rescue_bioavailability": RESCUE_BIO},
+    "base":      {"hypo_egp_floor": 0.0, "rescue_bioavailability": 1.0},
+    "bio":       {"hypo_egp_floor": 0.0, "rescue_bioavailability": RESCUE_BIO},
 }
 
 
@@ -121,7 +122,7 @@ def main():
     report = {}
     for key, arms in sorted(idx.items()):
         base = arms.get("base", {})
-        for arm in ("floor", "floor_bio"):
+        for arm in ("bio",):
             other = arms.get(arm, {})
             keep = [n for n in base
                     if base[n].get("completed") and other.get(n, {}).get("completed")]
