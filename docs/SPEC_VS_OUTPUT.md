@@ -50,7 +50,8 @@ Three stages of the rebuild wrote no measurement file. The clamp, the capability
 production during a low printed a table to standard output and stored nothing, so their figures
 lived in a log that the next run overwrote. The clamp is the calibration basis for the hepatic
 defence gain and the capability table is the source of the headline signature count. All three
-now write a stamped file, and issue 32 records the rest of that story.
+now write a stamped file and all three have been rerun, so this cause is closed. Issue 32 records
+the rest of that story.
 
 Six producers are in no pipeline. `capability_decomposition.py`, `calibrate_hypo_defence.py`,
 `calibrate_glucagon.py`, `calibrate_exercise.py`, `calibrate_egp_floor.py` and
@@ -81,7 +82,7 @@ decimal.
 | titration closes about half of the settings gap | validation paper, METHODS | about 1 to 4 per cent depending on the denominator. 254 of the 298 subjects that clear the floors do so on basal alone and never reach the correction factor |
 | four subjects clear the floors at no combination tried | validation paper | 32 of 330 |
 | on the layered bench most incomplete runs end high | validation paper, METHODS, PADOVA_LIMITS | 54 of 61 end low, and in the DCLP3 Control-IQ cell all thirteen do |
-| capability, ten of ten signatures in range | CAPABILITY, FIDELITY, STUDIES_AUDIT | three of ten on the current panel, four of eleven on the full stack |
+| capability, ten of ten signatures in range | CAPABILITY, FIDELITY, STUDIES_AUDIT | five of ten with the padding the scorer applies, three of ten without it, on 73 of 80 completed runs against a documented 66. See the note below, since the convention decides the number |
 | production at a 55 mg/dL clamp plateau is 0.14 mg/kg/min, and 0.01 at 45 | PADOVA_LIMITS, STUDIES_AUDIT, OVERVIEW | 0.49 and 0.46, both inside the human 0.42 to 0.84. The premise for counterregulation is inverted |
 | production during a low is 1.28 mg/kg/min and holds rather than rising | MODEL, METHODS, PADOVA_LIMITS | 1.11 against 2.10 at euglycaemia, so it falls, at a ratio of 0.53 |
 | autosens is pinned at 1.0, so any oref hypoglycaemia figure is an upper bound | OSAID | autosens is implemented and runs by default. Both arms are measured at 4.85 and 5.48 per cent below 70 mg/dL, so the caveat qualifying every oref figure no longer applies |
@@ -92,6 +93,33 @@ decimal.
 | Commons reference 79.60 across 71 users | METHODS | 80.05 across 77 users |
 | the site layer costs three signatures | GUIDE | it gains one, four of eleven without it against five with |
 | six graded levels of check | README, GUIDE | seven |
+
+## The capability count depends on a convention no document states
+
+`signatures.in_real_range` widens each published interval by ten per cent of its span before
+asking whether a median falls inside. Rerun on 20 August 2026 the shipped configuration puts five
+of ten medians inside with that padding and three of ten without it. The two that only the
+padding admits are glucose variability, at 34.76 against 29.5 to 34.3, and the rise tail, at 3.45
+against 3.7 to 6.6.
+
+`FIDELITY.md` does say so, at line 81, for the ablation table it quotes, and
+`layer_ablation.py` prints the same sentence beneath its own table. `CAPABILITY.md` does not, and
+neither did `capability_table.py` until it was given an output file. So the convention is stated
+where the count is eleven and unstated where the count is ten, which is the reverse of where it
+matters, since the ten-signature panel is the one the headline is drawn from. The figure the
+documents carry, four of ten, matches neither convention.
+
+The rewrite has to state the convention wherever it states the count, because the choice moves
+the headline by two signatures out of ten. The padding is defensible, since the intervals are four
+cohort medians rather than a sampled distribution, but it cannot be invisible while it is doing
+that much work.
+
+Completion also moved, from a documented 66 of 80 runs to 73 of 80, and the ordering by driver
+inverted. The document records oref0 SMB as the worst at 15 of 20 and the built-in loop as the
+best at 18. The current run gives oref0 19 of 20 and the built-in trend loop 20 of 20, with the
+worst being the open-loop and Boost arms at 17 each. Since a subject that stops early is excluded
+from every percentile above, the columns are conditioned on a different set of survivors than the
+ones the document describes.
 
 ## Documents that need rewriting rather than renumbering
 
@@ -111,15 +139,23 @@ measurement.
 
 ## What has to be rerun before the rewrite
 
-| Measurement | Cost | Why |
+| Measurement | State | Why |
 |---|---|---|
-| layer ablation | 89 min | six arms, unstamped, and the reader that combines them now refuses them |
-| hyperglycaemia gap | 208 min | four arms, same |
-| capability table | 22 min | now writes a file, so the headline count becomes checkable |
-| clamp | 1 min | same, and it is the calibration basis for the defence gain |
-| production during a low | 5 min | same |
-| the validation suite, ranking and gate | not yet timed | levels 1, 2, 4, 5, 6 and 7 have no current result, and `docs/validation.json` is from 8 August |
-| the ablation branches, `hypo`, `visentin`, `visentin1` | not yet timed | never rerun by any rebuild; the files on disk are from 7 and 8 August |
+| layer ablation | done, 11 min at twelve workers | six arms, now stamped and binding |
+| hyperglycaemia gap | done, 23 min at twelve workers | four arms, same |
+| capability table | done, 22 min | writes a file for the first time, so the headline count is checkable |
+| clamp | done, 2 min | same, and it is the calibration basis for the defence gain |
+| production during a low | done, 5 min | same |
+| the validation suite, ranking and gate | outstanding, not yet timed | levels 1, 2, 4, 5, 6 and 7 have no current result, and `docs/validation.json` is from 8 August |
+| the ablation branches, `hypo`, `visentin`, `visentin1` | outstanding, not yet timed | never rerun by any rebuild; the files on disk are from 7 and 8 August and record a layer that no longer exists |
+
+The five that are done reproduced exactly. Across the ablation and the gap, 188 figures came back
+identical to the ninth decimal against copies taken before the rerun, and the clamp and production
+figures matched their logs. That was worth establishing on its own: it means every superseded
+value in this document that was read off an unstamped file is correct, and all of them now bind to
+a commit rather than to a log the next run would overwrite. The two long stages take 11 and 23
+minutes rather than the 89 and 208 recorded in the rebuild log, because both were run on a single
+core there and both now take `--workers`.
 
 The six producers with no pipeline stage are a separate decision, since adding them lengthens
 every future rebuild and studies 09, 10 and 16 are what they unblock.

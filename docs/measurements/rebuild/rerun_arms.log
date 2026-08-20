@@ -1,0 +1,11 @@
+10:51:15Z  START clamp
+10:52:57Z  OK    clamp
+10:52:57Z  START production_low
+10:57:52Z  OK    production_low
+10:57:52Z  START capability
+11:19:28Z  OK    capability
+11:19:28Z  START layer_ablation
+11:30:26Z  OK    layer_ablation
+11:30:26Z  START hyperglycaemia_gap
+11:53:40Z  OK    hyperglycaemia_gap
+11:53:40Z  === rerun finished ===

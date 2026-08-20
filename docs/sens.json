@@ -82,5 +82,16 @@
   1.7,
   1.6,
   2.8
- ]
+ ],
+ "provenance": {
+  "population": "704cfac086df54ba",
+  "settings": "5b66a9f91b08d0af",
+  "commit": "ff2a9b77df08176a0028ecb2bf7cb4cdeb9e7406",
+  "dirty": false,
+  "host": "Tims-Mac-mini.local",
+  "python": "3.14.7",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "when": "2026-08-20T11:28:36+00:00",
+  "simglucose": "0.2.11"
+ }
 }
