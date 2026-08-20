@@ -37,12 +37,12 @@
  "provenance": {
   "population": "704cfac086df54ba",
   "settings": "5b66a9f91b08d0af",
-  "commit": "ff2a9b77df08176a0028ecb2bf7cb4cdeb9e7406",
-  "dirty": false,
+  "commit": "a6b3c5e8cca8e07743cf48645cffb6634bc687ae",
+  "dirty": true,
   "host": "Tims-Mac-mini.local",
   "python": "3.14.7",
   "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
-  "when": "2026-08-20T11:54:04+00:00",
+  "when": "2026-08-20T12:26:21+00:00",
   "simglucose": "0.2.11"
  },
  "arms": [
@@ -108,6 +108,72 @@
      "gir_median": 1.9884419119548746,
      "id_median": 459.8477684285354,
      "n_zero": 9,
+     "n": 20
+    }
+   ]
+  },
+  {
+   "uptake_defence": 0.0,
+   "hepatic_defence": 0.05,
+   "steps": [
+    {
+     "target": 90.0,
+     "held_at": 90.44514804768394,
+     "egp_median": 2.005998498191437,
+     "egp_p10": 1.1965413222658559,
+     "egp_p90": 2.5497907277422507,
+     "uptake_median": 4.019884096696986,
+     "gir_median": 2.7894904825195517,
+     "id_median": 203.01566222534234,
+     "n_zero": 0,
+     "n": 20
+    },
+    {
+     "target": 80.0,
+     "held_at": 79.57440096004028,
+     "egp_median": 1.3977494074766161,
+     "egp_p10": 0.06838106836806443,
+     "egp_p90": 2.191107507523811,
+     "uptake_median": 3.7480510120671635,
+     "gir_median": 3.3936191807786447,
+     "id_median": 292.90918696146593,
+     "n_zero": 2,
+     "n": 20
+    },
+    {
+     "target": 65.0,
+     "held_at": 64.18069389292691,
+     "egp_median": 0.848238971275336,
+     "egp_p10": 0.0,
+     "egp_p90": 2.046577474486686,
+     "uptake_median": 3.242862479027532,
+     "gir_median": 2.653577025222643,
+     "id_median": 379.4688875990096,
+     "n_zero": 3,
+     "n": 20
+    },
+    {
+     "target": 55.0,
+     "held_at": 54.67027894832198,
+     "egp_median": 0.5787076953576895,
+     "egp_p10": 0.0,
+     "egp_p90": 2.074411712372287,
+     "uptake_median": 2.885094781548349,
+     "gir_median": 2.611843687236945,
+     "id_median": 440.75471841469675,
+     "n_zero": 6,
+     "n": 20
+    },
+    {
+     "target": 45.0,
+     "held_at": 44.91014462776003,
+     "egp_median": 0.6162475515734562,
+     "egp_p10": 0.0,
+     "egp_p90": 1.9299391894346172,
+     "uptake_median": 2.3302639442600626,
+     "gir_median": 1.9365474544599488,
+     "id_median": 459.8477684285357,
+     "n_zero": 7,
      "n": 20
     }
    ]

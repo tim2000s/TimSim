@@ -41,7 +41,11 @@ OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
 INSULIN_MU_KG_MIN = 1.0                 # the clamp's fixed insulin, on top of basal
 STEPS = [(90.0, 240), (80.0, 120), (65.0, 120), (55.0, 120), (45.0, 120)]
 SETTLE = 30                             # minutes at the end of each plateau that are measured
-GAINS = [(0.0, 0.0), (0.0, 0.15), (0.0, 0.25), (0.0, 0.30)]
+# The shipped hepatic defence is 0.05 and was not among these until 20 August 2026, so nothing
+# on disk showed what the value in use does at a plateau. The sweep was written when the gain was
+# 0.25 and was never narrowed after the refit, which left `PADOVA_LIMITS.md` pointing a reader at
+# this script for a calibration it does not contain.
+GAINS = [(0.0, 0.0), (0.0, 0.05), (0.0, 0.15), (0.0, 0.25), (0.0, 0.30)]
 
 # Rickels et al., long-standing type 1 diabetes at the hypoglycaemic plateau.
 HUMAN_EGP = (0.42, 0.84)
