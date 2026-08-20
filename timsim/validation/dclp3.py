@@ -382,13 +382,25 @@ def therapy_settings(arm=CLOSED_LOOP, calibration_only=True):
     return out
 
 # Level 4's known answer, no longer taken from the literature. DCLP3 randomised it, so this
-# is the effect measured on the people it was measured on.
+# is the effect measured on the people it was measured on. Those fields are real and the
+# rebuild does not move them.
+#
+# `timsim_measured` and `timsim_interval` are a different kind of thing and were sitting here
+# unmarked: they are this package's own reproduction of that effect, frozen as constants on
+# 8 August 2026, on the hundred-subject population, before the gain refit and the reseeding.
+# A rerun of the validation suite does not correct them, because nothing recomputes them. They
+# also cannot be reproduced by the procedure the documentation describes, which compares the
+# `loop` layer on and off, and `loop` has since stopped being a layer at all. Remeasuring means
+# choosing a controller pair rather than a layer, which is a decision rather than a rerun, so
+# they are marked stale here rather than quietly refreshed.
 KNOWN_ANSWER = {
     "outcome": "time in range, percentage points",
     "closed_loop_median": 69.7, "pump_median": 55.7,
     "difference": 13.9, "mann_whitney_p": 6.2e-05,
     "trial_reported": 11.0,
     "timsim_measured": 12.9, "timsim_interval": (8.2, 15.4),
+    "timsim_measured_on": "2026-08-08, population of 100, before the gain refit and reseeding",
+    "timsim_is_stale": True,
     "note": "calibration half only; the trial's own headline figures are 71% against 59%",
 }
 
