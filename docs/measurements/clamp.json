@@ -317,12 +317,12 @@
  "provenance": {
   "population": "704cfac086df54ba",
   "settings": "5b66a9f91b08d0af",
-  "commit": "2436e27e3019c4baa120deba94073e9167c5c958",
-  "dirty": true,
+  "commit": "d565d528f8d0577487bcceb5cd3def981291d5ae",
+  "dirty": false,
   "host": "Tims-Mac-mini.local",
   "python": "3.14.7",
   "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
-  "when": "2026-08-20T12:37:28+00:00",
+  "when": "2026-08-20T12:41:59+00:00",
   "simglucose": "0.2.11"
  },
  "arms": [

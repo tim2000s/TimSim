@@ -45,6 +45,18 @@ PAIRINGS = [("dclp3", "control-iq"), ("dclp3", "oref"),
 BENCHES = [("bare", (), "some"), ("layered_always", LAYERS, "always"),
            ("layered_some", LAYERS, "some"), ("layered_never", LAYERS, "never")]
 
+# The matrix measures the bare model at one meal scenario and the layered model at three, so the
+# cost of withdrawing meal announcement has only ever been measured with the layers switched on.
+# It cannot therefore be attributed: it may be a property of the simulated person or an
+# interaction with the behaviour and site layers. This set measures both arms at all three, under
+# one controller held fixed, which is what makes the layer effect and the announcement effect
+# separable and gives a baseline for reading a later comparison between controllers against.
+BASELINE_BENCHES = [("bare_always", (), "always"), ("bare_some", (), "some"),
+                    ("bare_never", (), "never"),
+                    ("layered_always", LAYERS, "always"),
+                    ("layered_some", LAYERS, "some"),
+                    ("layered_never", LAYERS, "never")]
+
 
 def one(job):
     cohort, controller, bench, name, layers, announcement = job
@@ -94,6 +106,14 @@ def main():
                          "position after the list is built, so every machine builds the same "
                          "list from the same cohorts and takes a disjoint part of it.")
     ap.add_argument("--out", default=OUT)
+    ap.add_argument("--controller",
+                    help="run this one controller against every cohort instead of the recorded "
+                         "pairings. The pairings exist because DCLP3 participants ran Control-IQ "
+                         "and Commons users run oref0, so a pairing is like-for-like and this is "
+                         "not. Use it to measure the person rather than to score an algorithm.")
+    ap.add_argument("--benches", choices=("matrix", "baseline"), default="matrix",
+                    help="'baseline' measures the bare arm at all three meal scenarios as well "
+                         "as the layered arm, which the matrix does not")
     a = ap.parse_args()
     # Named so nothing later can shadow them. They were `i` and `n`, and both were: the
     # progress loop rebound `i` to the completed-row count and the per-pairing print rebound
@@ -109,17 +129,21 @@ def main():
                          f"the population on disk is {current}. Rerun build_cohorts.py.")
     titrated = set(titrate.titrated_subjects())
 
+    benches = BASELINE_BENCHES if a.benches == "baseline" else BENCHES
+    pairings = ([(c, a.controller) for c in sorted(rec["cohorts"])] if a.controller
+                else PAIRINGS)
+
     jobs = []
-    for cohort, controller in PAIRINGS:
+    for cohort, controller in pairings:
         subjects = [s for s in rec["cohorts"][cohort]["subjects"] if s in titrated]
-        for bench, layers, announcement in BENCHES:
+        for bench, layers, announcement in benches:
             jobs += [(cohort, controller, bench, n, layers, announcement) for n in subjects]
     total = len(jobs)
     if shard_count > 1:
         jobs = jobs[shard_index - 1::shard_count]
         print(f"shard {shard_index} of {shard_count}: {len(jobs)} of {total} runs", flush=True)
-    print(f"{len(PAIRINGS)} pairings, {len(BENCHES)} benches, {len(jobs)} runs", flush=True)
-    for cohort, controller in PAIRINGS:
+    print(f"{len(pairings)} pairings, {len(benches)} benches, {len(jobs)} runs", flush=True)
+    for cohort, controller in pairings:
         n_titrated = len([s for s in rec["cohorts"][cohort]["subjects"] if s in titrated])
         print(f"  {cohort:9} {controller:11} {n_titrated} titrated subjects", flush=True)
 
@@ -132,6 +156,13 @@ def main():
             if row.get("error"):
                 print(f"  ! {row['arm']} {row['name']}: {row['error'][:110]}", flush=True)
     json.dump({"population": current, "days": DAYS, "seed": SEED,
+               # Which arms and which cohort-controller pairs this file actually holds. A file
+               # that records only its rows cannot be told apart from one run with different
+               # options, which is how a cell labelled `bare` came to contain the layered arm.
+               "bench_set": a.benches,
+               "benches": [{"name": b, "layers": list(l), "announcement": ann}
+                           for b, l, ann in benches],
+               "pairings": [{"cohort": c, "controller": ctl} for c, ctl in pairings],
                "shard": {"index": shard_index, "of": shard_count,
                          "runs_in_shard": len(jobs), "runs_total": total},
                "provenance": provenance.stamp(), "runs": rows},
