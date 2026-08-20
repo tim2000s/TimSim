@@ -45,23 +45,36 @@ PAIRINGS = [("dclp3", "control-iq"), ("dclp3", "oref"),
 BENCHES = [("bare", (), "some"), ("layered_always", LAYERS, "always"),
            ("layered_some", LAYERS, "some"), ("layered_never", LAYERS, "never")]
 
-# The matrix measures the bare model at one meal scenario and the layered model at three, so the
-# cost of withdrawing meal announcement has only ever been measured with the layers switched on.
-# It cannot therefore be attributed: it may be a property of the simulated person or an
-# interaction with the behaviour and site layers. This set measures both arms at all three, under
-# one controller held fixed, which is what makes the layer effect and the announcement effect
-# separable and gives a baseline for reading a later comparison between controllers against.
-# One bare arm, not three. `run.py` sets `announce="behaviour" in effective`, so meal
-# announcement is a behaviour and there is none to withdraw when the behaviour layer is off: the
-# bare arm announces every meal whatever is asked for. Running it at three scenarios produced
-# three identical arms on 20 August 2026, to every decimal of every measure, and cost a third of
-# that run. The comparison the announcement question needs is not bare against layered at each
-# scenario but the rungs above behaviour at each scenario, since behaviour is where announcement
-# lives and sensor and site are what might interact with it.
+# The same four arms as the matrix, run under one controller against every cohort rather than
+# under each cohort's own algorithm. That measures the person rather than scoring an algorithm,
+# and gives a fixed reference for reading a later comparison between controllers against.
+#
+# One bare arm, because the docstring above is right and was written on 15 August 2026: the bare
+# patient has no behaviour layer and announces everything by construction. A version of this set
+# carrying three bare arms was run on 20 August, produced three arms identical to every decimal
+# of every measure, and spent a third of a 216-minute job establishing what the top of this file
+# already said.
 BASELINE_BENCHES = [("bare", (), "some"),
                     ("layered_always", LAYERS, "always"),
                     ("layered_some", LAYERS, "some"),
                     ("layered_never", LAYERS, "never")]
+
+# The rungs, for asking how far each layer moves the outcomes towards the trial rather than what
+# it does to a fidelity signature. `layer_ladder_by_controller.py` answers a different question,
+# whether a layer moves a signature the same way under every driver, and it cannot answer this
+# one: it records the twelve signatures and no outcome, and it runs on the first N adults rather
+# than on a cohort matched to a trial, so no distance to a real population can be computed from
+# it at all.
+#
+# Here the algorithm is held at whatever that trial's participants ran, the cohort is the one
+# matched to them, and the layers accumulate. There is no loop rung, because the controller does
+# not change up the ladder. `stock` and `site` are the same two arms the matrix calls `bare` and
+# `layered_some`, kept so all five sit on one footing in one file.
+LADDER_BENCHES = [("stock", (), "some"),
+                  ("phys", ("physiology",), "some"),
+                  ("behav", ("physiology", "behaviour"), "some"),
+                  ("sens", ("physiology", "behaviour", "sensor"), "some"),
+                  ("site", ("physiology", "behaviour", "sensor", "site"), "some")]
 
 
 def one(job):
@@ -117,9 +130,10 @@ def main():
                          "pairings. The pairings exist because DCLP3 participants ran Control-IQ "
                          "and Commons users run oref0, so a pairing is like-for-like and this is "
                          "not. Use it to measure the person rather than to score an algorithm.")
-    ap.add_argument("--benches", choices=("matrix", "baseline"), default="matrix",
+    ap.add_argument("--benches", choices=("matrix", "baseline", "ladder"), default="matrix",
                     help="'baseline' measures the bare arm at all three meal scenarios as well "
-                         "as the layered arm, which the matrix does not")
+                         "as the layered arm; 'ladder' accumulates the layers one at a time so "
+                         "each rung's distance to the trial can be read")
     a = ap.parse_args()
     # Named so nothing later can shadow them. They were `i` and `n`, and both were: the
     # progress loop rebound `i` to the completed-row count and the per-pairing print rebound
@@ -135,7 +149,7 @@ def main():
                          f"the population on disk is {current}. Rerun build_cohorts.py.")
     titrated = set(titrate.titrated_subjects())
 
-    benches = BASELINE_BENCHES if a.benches == "baseline" else BENCHES
+    benches = {"baseline": BASELINE_BENCHES, "ladder": LADDER_BENCHES}.get(a.benches, BENCHES)
     pairings = ([(c, a.controller) for c in sorted(rec["cohorts"])] if a.controller
                 else PAIRINGS)
 

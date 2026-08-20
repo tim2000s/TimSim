@@ -758,10 +758,16 @@ The three bare arms came back identical to every decimal of every measure. `run.
 `announce="behaviour" in effective`, so meal announcement is a behaviour: with the behaviour layer
 off there is nothing to withdraw and the bare arm announces every meal whatever is asked for.
 
-**Why it happened.** The design was written from what the arms are called rather than from what
-they do, and the line that settles it was one search away in a file that had been read several
-times that day. This is the reverse of issue 30, where identical numbers meant an option had
-failed to reach the run. Here identical numbers were correct, and the option was meaningless.
+**Why it happened.** Not for want of documentation. `examples/bench_matrix.py`, the file the new
+arm set was added to, has opened since 15 August 2026 with this: "Announcement is a property of
+the person, so it only varies on the layered bench: the bare patient has no behaviour layer and
+announces everything by construction. That gives four arms per pairing rather than six." The new
+set was written directly beneath that paragraph and contradicted it. The design was taken from
+what the arms are called rather than from what the file said they do.
+
+This is the reverse of issue 30, where identical numbers meant an option had failed to reach the
+run. Here identical numbers were correct and the option was meaningless. The signature does not
+distinguish the two, which is why the rule is to establish which before concluding either.
 
 **How it surfaced.** The signature is the same either way, so the check that caught issue 30
 caught this too.
