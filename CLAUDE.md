@@ -54,7 +54,23 @@ above.
 
 ## Working on this package
 
-Run tests with `pytest -q` from the repository root. The suite takes about fourteen minutes
+Read `docs/ISSUES.md` before starting work, and read it again before concluding that a
+measurement is sound. It is the log of every defect found here, and its value is not the list
+but the pattern: most entries are correct arithmetic on the wrong comparison, or a figure that
+could no longer be traced to the code that produced it. Several are the same defect found again
+in a new place after the previous instance was fixed without the cause being, so a fix that
+repairs one call site is not finished until the others have been looked at.
+
+Two signatures in that log are worth carrying into every run. A stage that completes far faster
+than it should has usually skipped its work rather than done it quickly, and two arms that agree
+to every decimal have usually been handed the same configuration. Both have happened more than
+once, and in both directions: an option that failed to reach the workers, and an option that
+reached them and did not apply. Check which before concluding either.
+
+`docs/SPEC_VS_OUTPUT.md` is the companion to it, holding every documented claim that the
+measurements no longer support. Read it before quoting a figure from any document in `docs/`.
+
+Run tests with `pytest -q` from the repository root. The suite takes about eighteen minutes
 and needs simglucose installed along with a generated population under
 `timsim/population/params/`.
 

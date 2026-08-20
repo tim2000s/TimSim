@@ -5,11 +5,19 @@ how it surfaced and what was done about it. Defects introduced during the invest
 logged the same way as ones that were already here, and are marked as such, because a log that
 records only other people's mistakes is not a record of anything.
 
-The dominant pattern is worth stating at the top. Of the twenty-four entries below, five are
-coding errors. Most of the rest are measurements that were correct arithmetic on the wrong
+The dominant pattern is worth stating at the top. Of the thirty-eight entries below, a minority
+are coding errors. Most of the rest are measurements that were correct arithmetic on the wrong
 comparison, or figures that could no longer be traced to the code that produced them. The
 project's own standing rule, that a comparison must be computed the same way on both sides,
 caught more of these than any test did.
+
+A second pattern runs through entries 28 to 38 and is worth naming separately, because it is the
+one that keeps recurring. A measurement that cannot say which experiment produced it will
+eventually be read against one it does not belong to, and the failure is silent every time: the
+output is complete, the arithmetic is right, and nothing looks wrong. Four of those entries are
+the same defect found in a new place after the previous instance was fixed without the cause
+being. The signature to watch for is a stage finishing far faster than it should, or two arms
+agreeing to every decimal.
 
 | # | Found | Issue | Severity |
 |---|---|---|---|
@@ -37,6 +45,20 @@ caught more of these than any test did.
 | 22 | 16 Aug | Disjoint cohort draws exhaust the adult pool | medium |
 | 23 | 16 Aug | `simulate_cohort` ran every subject serially on a fourteen-core machine | medium |
 | 24 | 16 Aug | An absorption test compared a reconstructed ratio against an exact bound | low |
+| 25 | 18 Aug | The hepatic defence gain was fitted on a sample too small to fit it | high |
+| 26 | 18 Aug | The titration store is guarded by the population, and settings depend on the physiology | high |
+| 27 | 19 Aug | Every result stamped itself as not reproducible | high |
+| 28 | 19 Aug | The ladder reported complete in under a minute from the previous day's rungs | high |
+| 29 | 20 Aug | A suppression list excused five producers that had no stamping code to wait for | medium |
+| 30 | 20 Aug | The bench arm reached the file header and never reached a run | high |
+| 31 | 20 Aug | A cell that measured nothing reported OK in three seconds | high |
+| 32 | 20 Aug | Two measurement families lived outside the archive and outside the guard | medium |
+| 33 | 20 Aug | A ceiling check that tested only whether the clamp had fired | high |
+| 34 | 20 Aug | A plan-only run overwrote the results it preceded, and the fix reached one caller of two | medium |
+| 35 | 20 Aug | Three stages of the rebuild produced no measurement file at all | high |
+| 36 | 20 Aug | The rebuild does not rebuild everything | high |
+| 37 | 20 Aug | The matrix carries the placeholder its own guard exists to reject | medium |
+| 38 | 20 Aug | A bench arm was measured three times because the option it varied does not reach it (introduced here) | low |
 
 ---
 
@@ -632,3 +654,123 @@ exactly: 8.4, 8.7 and 10.1 U against ceilings of the same values across three su
 was written, was repaired on 17 August when the ceiling was extended to constrain basal above
 schedule, and the check has not been run since. Had the repair not happened independently, this
 check would have gone on passing.
+
+## 34. A plan-only run overwrote the results it preceded, and the fix reached one caller of two
+
+**What happened.** `cohort_replicates.py --plan-only` prints which subjects a replicate set would
+need and stops. It wrote that plan to the results path. Inside a rebuild this is harmless, because
+the plan stage runs before the results stage and is overwritten by it. Run on its own on 20 August
+2026 it replaced 247 completed runs with a list of names.
+
+**Why it happened.** The two outputs shared a path because in the only order anyone had run them,
+the order made it safe. Nothing recorded that the safety came from the sequence rather than from
+the code.
+
+**Fix, and the half of it that was missed.** The plan writes to its own file and `rebuild_all.sh`
+reads the new path. `examples/overnight.sh` ran the same two stages and was not updated, so it
+called `--plan-only` and then read the old path, which after the fix holds a results file with no
+`need_titration` key. That stage would have titrated nobody and reported it in a line
+indistinguishable from having nothing to do, after which the replicates would have run against
+subjects with no settings. Corrected on 20 August 2026, and the file has since been deleted as
+superseded by `rebuild_all.sh`.
+
+**What it cost.** A 39-minute rerun for the instance. The second caller was never exercised
+between the fix and its correction, so nothing was measured through it.
+
+## 35. Three stages of the rebuild produced no measurement file at all
+
+**What happened.** The hypoglycaemic clamp, the capability table and production during a low
+printed a table to standard output and stored nothing. Their figures lived only in a stage log
+that the next rebuild overwrote. The clamp is the calibration basis for the hepatic defence gain
+and the capability table is the source of the headline signature count, so two of the three carry
+claims the package leads with.
+
+**Why it happened.** Each was written to be read once by the person running it, and neither was
+revisited when the rest of the package moved to stamped measurement files. Logs are not archived,
+not stamped and not covered by the provenance guard, so nothing noticed.
+
+**How it surfaced.** An audit of every quantitative claim against the measurements, which could
+not verify them and had to record why.
+
+**Fix.** All three write a stamped JSON file beside the table they print, and all three have been
+rerun. `production_during_a_low.py` also printed the clamp comparison as a hardcoded sentence
+carrying a superseded 0.14 mg/kg/min; it reads that figure from the clamp's own output now, or
+omits it.
+
+**What it cost.** The larger part of the 581 claims that the audit could not check. Nothing was
+measured wrongly, and nothing could be shown to have been measured rightly.
+
+## 36. The rebuild does not rebuild everything
+
+**What happened.** `rebuild_all.sh` opens by saying it rebuilds every measurement in the package.
+Nine measurement producers were absent from it. Six still are: `capability_decomposition`,
+`calibrate_hypo_defence`, `calibrate_glucagon`, `calibrate_exercise`, `calibrate_egp_floor` and
+`hypoglycaemia_arms`. Their outputs were archived by the rebuild that superseded them and no
+pipeline was ever going to bring them back, so studies 09, 10 and 16 cannot be written from
+anything on disk.
+
+**Three more of the same shape.** The ladder runs at ten subjects because the rebuild passes no
+subject count, while `LADDER.md` documents twenty and its power argument turns on the difference.
+`layer_ablation.py` measures its six rungs when no arm is named and its three branches only when
+one is, so `hypo`, `visentin` and `visentin1` have never been part of a rebuild and the files on
+disk are from 7 and 8 August, recording a `loop` layer that no longer exists. And
+`standalone_parallel.sh` duplicates ten of `rebuild_all.sh`'s stages rather than complementing
+them, so running one after the other, which is how the restate is described, repeats about eleven
+hours of work.
+
+**How it surfaced.** Listing which script writes which measurement, in order to build a map for
+the documentation audit.
+
+**Fix, partial.** `group_floor`, `spread_ratio` and `covariance_estimator` were added, along with
+the three remaining floor cells. The six calibration producers are a cost decision rather than an
+oversight to correct silently, since adding them lengthens every future rebuild, and they are
+recorded in `SPEC_VS_OUTPUT.md` as what studies 09, 10 and 16 need.
+
+## 37. The matrix carries the placeholder its own guard exists to reject
+
+**What happened.** `bench_matrix.json` records `simglucose: unknown`. It ran on 19 August 2026,
+before the version fix landed, so it carries the exact placeholder that issue 27 was raised to
+remove, and `simglucose` is a binding field because it identifies the patient model. This is the
+package's largest measurement: 1,208 runs feeding the tables, the distance figures and every
+paper.
+
+**Why it went unnoticed.** The file is on the `PENDING_REBUILD` list in
+`tests/test_provenance_coverage.py`, which excuses it from both the stamp check and the
+placeholder check. The list is correct that the file predates the fix. What the list cannot say is
+which excused file matters most.
+
+**How it surfaced.** Reading the stamps of the matrix and the baseline side by side to check they
+shared a population and settings, which they do.
+
+**Fix.** Rerun on 20 August 2026 against a clean tree. The population, the settings and the
+simulation code are unchanged since it last ran, so it is expected to reproduce, as the ablation
+and the hyperglycaemia gap did.
+
+**What it cost.** Nothing measurable. What it removes is the ability to say the matrix ran on the
+same patient model as everything else, which the package's own rule requires before two results
+may be combined.
+
+## 38. A bench arm was measured three times because the option it varied does not reach it
+
+**What happened.** A baseline was designed to separate the layer effect from the meal-announcement
+effect by measuring the bare arm at all three announcement scenarios as well as the layered arm.
+The three bare arms came back identical to every decimal of every measure. `run.py` sets
+`announce="behaviour" in effective`, so meal announcement is a behaviour: with the behaviour layer
+off there is nothing to withdraw and the bare arm announces every meal whatever is asked for.
+
+**Why it happened.** The design was written from what the arms are called rather than from what
+they do, and the line that settles it was one search away in a file that had been read several
+times that day. This is the reverse of issue 30, where identical numbers meant an option had
+failed to reach the run. Here identical numbers were correct, and the option was meaningless.
+
+**How it surfaced.** The signature is the same either way, so the check that caught issue 30
+caught this too.
+
+**Fix.** `BASELINE_BENCHES` holds one bare arm, and the reader resolves either name so the file
+already written still reads. The question the design was after is answered by the other cut: the
+layer effect grows from 8.17 to 15.17 points of time in range as announcement is withdrawn, so the
+two interact. Attributing that to a layer needs the rungs above behaviour measured at each
+scenario, which is a ladder question.
+
+**What it cost.** 436 of 1,308 runs, about 72 minutes of a 216-minute job. No result was wrong,
+and a third of the machine time bought nothing.
