@@ -23,9 +23,11 @@ with long-standing type 1 diabetes and severe hypoglycaemia gave endogenous gluc
 of 0.59 +/- 0.12 mg/kg/min at the hypoglycaemic plateau against 1.42 +/- 0.14 in non-diabetic
 controls, with no discernible glucagon response in the diabetic group.
 """
+import argparse
 import json
 import os
 import numpy as np
+from concurrent.futures import ProcessPoolExecutor
 from simglucose.patient.t1dpatient import Action as PAction
 
 from timsim import provenance
@@ -97,13 +99,29 @@ def clamp(name, defence_gain=0.0, egp_gain=0.0, steps=STEPS, egp_floor=0.0):
     return rows
 
 
-def main(n=20):
+def _one(job):
+    """One subject at one gain. Every input travels in the job, which no start method strips.
+
+    macOS spawns rather than forks, so a worker re-imports this module and sees its defaults.
+    Passing the gains through module state would silently run every arm at the default, which
+    is issue 30 in `docs/ISSUES.md`.
+    """
+    name, defence_gain, egp_gain = job
+    return clamp(name, defence_gain, egp_gain)
+
+
+def main(n=20, workers=1):
     subs = [s for s in names() if s.startswith("adult")][:n]
     record = {"subjects": subs, "n": len(subs), "steps": [t for t, _ in STEPS],
               "human_egp": list(HUMAN_EGP), "human_gir": HUMAN_GIR,
               "provenance": provenance.stamp(), "arms": []}
     for gain, eg in GAINS:
-        out = [clamp(s, gain, eg) for s in subs]
+        jobs = [(s, gain, eg) for s in subs]
+        if workers > 1:
+            with ProcessPoolExecutor(max_workers=workers) as ex:
+                out = list(ex.map(_one, jobs))
+        else:
+            out = [_one(j) for j in jobs]
         arm = {"uptake_defence": gain, "hepatic_defence": eg, "steps": []}
         print(f"\nuptake defence {gain}, hepatic defence {eg}, {len(subs)} subjects")
         print(f"  {'target':>7} {'held at':>8} {'EGP':>7} {'uptake':>7} {'GIR':>7} "
@@ -131,4 +149,13 @@ def main(n=20):
 
 
 if __name__ == "__main__":
-    main()
+    ap = argparse.ArgumentParser(description=__doc__)
+    # The default stays at twenty so the figures already quoted keep their basis. The gain in
+    # use was fitted across 150 adults, and the class holds 300, so anything read against the
+    # calibration should say which of the three it ran.
+    ap.add_argument("--subjects", type=int, default=20)
+    ap.add_argument("--workers", type=int, default=1,
+                    help="subjects run in parallel; the protocol is per subject so the "
+                         "result does not depend on it")
+    a = ap.parse_args()
+    main(n=a.subjects, workers=a.workers)
