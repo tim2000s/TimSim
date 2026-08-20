@@ -334,6 +334,28 @@ def ages(arm=CLOSED_LOOP, calibration_only=True):
     return a.dropna().to_numpy(float)
 
 
+def ages_by_participant(arm=CLOSED_LOOP, calibration_only=True):
+    """The same ages, keyed by participant, so an outcome can be split by age.
+
+    `ages` drops the identifier, which is all a cohort matcher needs and not enough for a
+    subgroup analysis: without the key there is no way to ask what the trial's under-18s did
+    as against its adults. This is the only demographic the release keeps, so it is the only
+    subgroup that can be cut on the real side at all. The Commons carries no age, and the
+    CLOSE-IT reference is a stand-in whose ages are drawn uniformly across the eligibility
+    range, so neither supports this.
+    """
+    import pandas as pd
+
+    d = pd.read_csv(_path("DiabScreening_a.txt"), sep="|", encoding="utf-16")
+    keep = set(roster().query(f"trtGroup == '{arm}'").PtID)
+    if calibration_only:
+        keep &= set(split()["calibration"])
+    d = d.loc[d.PtID.isin(keep), ["PtID", "AgeAtEnrollment"]].copy()
+    d["AgeAtEnrollment"] = pd.to_numeric(d["AgeAtEnrollment"], errors="coerce")
+    d = d.dropna(subset=["AgeAtEnrollment"])
+    return {int(p): float(a) for p, a in zip(d.PtID, d.AgeAtEnrollment)}
+
+
 def therapy_settings(arm=CLOSED_LOOP, calibration_only=True):
     """Each participant's prescribed basal profile, carbohydrate ratio and correction factor.
 
