@@ -223,7 +223,10 @@ stage covariance_estimator "$PY" examples/covariance_estimator.py
 stage clamp "$PY" examples/hypoglycaemic_clamp.py
 stage capability "$PY" examples/capability_table.py
 stage layer_ablation "$PY" examples/layer_ablation.py
-stage layer_ladder "$PY" examples/layer_ladder_by_controller.py
+# The subject count is passed rather than defaulted, so a change to the default cannot silently
+# change what a rebuild measures. Forty is set from what the ladder's statistic resolves, and the
+# working is in the script. Twenty arms of forty subjects is 800 runs, near two and a half hours.
+stage layer_ladder "$PY" examples/layer_ladder_by_controller.py --subjects 40 --workers "$WORKERS"
 stage hyperglycaemia_gap "$PY" examples/hyperglycaemia_gap.py
 stage production_low "$PY" examples/production_during_a_low.py
 stage two_benches "$PY" examples/two_benches.py

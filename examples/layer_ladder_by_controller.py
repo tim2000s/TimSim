@@ -250,7 +250,30 @@ def table(data):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--subjects", type=int, default=10)
+    # Forty, set from what the ladder's own statistic can resolve rather than from a number in a
+    # document. The paired standard deviation of a rung movement was measured across the twenty
+    # arms on disk, and the smallest movement resolvable at 95 per cent is below, as a fraction
+    # of the width of each signature's real range:
+    #
+    #     signature     N=10  N=20  N=40  N=90        signature     N=10  N=20  N=40  N=90
+    #     cv            0.47  0.33  0.23  0.16        hypo_rec      1.23  0.87  0.62  0.41
+    #     tail          0.11  0.08  0.06  0.04        hypo_reb      1.95  1.38  0.97  0.65
+    #     acf30         0.16  0.11  0.08  0.05        compress      0.15  0.10  0.07  0.05
+    #     acf60         0.17  0.12  0.09  0.06        noise         0.01  0.00  0.00  0.00
+    #     outcome       0.21  0.15  0.11  0.07        drift         0.16  0.11  0.08  0.05
+    #     diurnal       0.34  0.24  0.17  0.11        insulin_cv    0.22  0.16  0.11  0.07
+    #
+    # Ten resolves a quarter of the real range on eight signatures of twelve, twenty on nine and
+    # forty on ten. Ninety also reaches ten, so the returns stop at forty and the extra 1,000
+    # runs buy nothing the ladder reports on. Ten is what the script used to default to, and
+    # `LADDER.md` records a movement appearing under two drivers of four at ten and under all
+    # four at twenty, which is what a subject count chosen badly looks like from the inside.
+    #
+    # The two it cannot resolve at any affordable size are the hypoglycaemia pair. Rebound needs
+    # 0.97 of its real range at forty and 0.65 at ninety, and recovery 0.62 and 0.41. So the
+    # ladder cannot adjudicate a hypoglycaemia movement, and that is a property of the measure
+    # rather than of the sample: it is the same statistic the group floor is widest on.
+    p.add_argument("--subjects", type=int, default=40)
     p.add_argument("--days", type=int, default=28)
     p.add_argument("--seed", type=int, default=seeds.BENCH)
     p.add_argument("--workers", type=int, default=8)
