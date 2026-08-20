@@ -13,6 +13,8 @@ went lowest, so every percentile here is conditioned on survival.
 
     python examples/capability_table.py
 """
+import json
+import os
 import numpy as np
 from concurrent.futures import ProcessPoolExecutor
 
@@ -21,9 +23,15 @@ from timsim.analysis import signatures
 SUBJECTS = [f"adult#{i:03d}" for i in range(1, 21)]
 DRIVERS = ["basal-bolus", "trend", "boost", "oref"]
 LAYERS = ("physiology", "behaviour", "sensor", "site")
-from timsim import seeds
+from timsim import provenance, seeds
 
 DAYS, SEED = 28, seeds.BENCH
+
+# This printed a table and wrote nothing, so the headline capability figure existed only in a
+# log that the next rebuild overwrote. A documentation audit on 20 August 2026 could not verify
+# any of it, and the log is neither stamped nor archived. It writes a stamped file now.
+OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                   "docs", "measurements", "capability_table.json")
 
 
 def driver_for(name, d, prof):
@@ -72,6 +80,7 @@ def main(workers=6):
 
     print(f"\n| {'Signature':<38} | p10 | median | p90 | reference |")
     print("|---|---|---|---|---|")
+    summary = {}
     for k, label, _ in signatures.SIGS:
         a = np.asarray([r["values"][k] for r in ok if k in r.get("values", {})], dtype=float)
         a = a[np.isfinite(a)]
@@ -79,8 +88,25 @@ def main(workers=6):
             continue
         b = signatures.REAL_RANGE.get(k)
         ref = f"{b[0]:g} to {b[1]:g}" if b else ""
+        summary[k] = {"label": label, "n": int(len(a)),
+                      "p10": float(np.percentile(a, 10)), "median": float(np.median(a)),
+                      "p90": float(np.percentile(a, 90)),
+                      "real_range": list(b) if b else None,
+                      "in_real_range": bool(signatures.in_real_range(k, float(np.median(a))))
+                      if b else None}
         print(f"| {label:<38} | {np.percentile(a, 10):.2f} | {np.median(a):.2f} | "
               f"{np.percentile(a, 90):.2f} | {ref} |")
+
+    inside = sum(1 for v in summary.values() if v["in_real_range"])
+    scored = sum(1 for v in summary.values() if v["in_real_range"] is not None)
+    print(f"\n{inside} of {scored} simulated medians inside the real range")
+    json.dump({"subjects": SUBJECTS, "drivers": DRIVERS, "layers": list(LAYERS),
+               "days": DAYS, "seed": SEED, "provenance": provenance.stamp(),
+               "completed": len(ok), "n_runs": len(rows),
+               "inside_real_range": inside, "scored": scored,
+               "summary": summary, "runs": rows},
+              open(OUT, "w"), indent=1)
+    print(f"wrote {OUT}")
 
 
 if __name__ == "__main__":

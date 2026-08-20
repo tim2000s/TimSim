@@ -23,11 +23,20 @@ with long-standing type 1 diabetes and severe hypoglycaemia gave endogenous gluc
 of 0.59 +/- 0.12 mg/kg/min at the hypoglycaemic plateau against 1.42 +/- 0.14 in non-diabetic
 controls, with no discernible glucagon response in the diabetic group.
 """
+import json
+import os
 import numpy as np
 from simglucose.patient.t1dpatient import Action as PAction
 
+from timsim import provenance
 from timsim.patient import varying as V
 from timsim.population import names
+
+# The clamp is the calibration basis for the hepatic defence gain, and it printed a table and
+# wrote nothing. Every figure it produced lived in a log the next rebuild overwrote, which left
+# about thirty documented numbers unverifiable in the audit of 20 August 2026.
+OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                   "docs", "measurements", "clamp.json")
 
 INSULIN_MU_KG_MIN = 1.0                 # the clamp's fixed insulin, on top of basal
 STEPS = [(90.0, 240), (80.0, 120), (65.0, 120), (55.0, 120), (45.0, 120)]
@@ -86,20 +95,35 @@ def clamp(name, defence_gain=0.0, egp_gain=0.0, steps=STEPS, egp_floor=0.0):
 
 def main(n=20):
     subs = [s for s in names() if s.startswith("adult")][:n]
+    record = {"subjects": subs, "n": len(subs), "steps": [t for t, _ in STEPS],
+              "human_egp": list(HUMAN_EGP), "human_gir": HUMAN_GIR,
+              "provenance": provenance.stamp(), "arms": []}
     for gain, eg in GAINS:
         out = [clamp(s, gain, eg) for s in subs]
+        arm = {"uptake_defence": gain, "hepatic_defence": eg, "steps": []}
         print(f"\nuptake defence {gain}, hepatic defence {eg}, {len(subs)} subjects")
         print(f"  {'target':>7} {'held at':>8} {'EGP':>7} {'uptake':>7} {'GIR':>7} "
               f"{'Id':>7} {'EGP p10':>8} {'EGP p90':>8} {'n zero':>7}")
         for i, (t, _) in enumerate(STEPS):
             col = lambda k: np.asarray([o[i][k] for o in out], dtype=float)
             e = col("egp")
+            arm["steps"].append({
+                "target": float(t), "held_at": float(np.median(col("glucose"))),
+                "egp_median": float(np.median(e)), "egp_p10": float(np.percentile(e, 10)),
+                "egp_p90": float(np.percentile(e, 90)),
+                "uptake_median": float(np.median(col("uptake"))),
+                "gir_median": float(np.median(col("gir"))),
+                "id_median": float(np.median(col("id"))),
+                "n_zero": int((e <= 0).sum()), "n": int(len(e))})
             print(f"  {t:7.0f} {np.median(col('glucose')):8.1f} {np.median(e):7.2f} "
                   f"{np.median(col('uptake')):7.2f} {np.median(col('gir')):7.2f} "
                   f"{np.median(col('id')):7.1f} {np.percentile(e, 10):8.2f} "
                   f"{np.percentile(e, 90):8.2f} {int((e <= 0).sum()):4d}/{len(e)}")
+        record["arms"].append(arm)
     print(f"\n  human, long-standing type 1 diabetes: EGP {HUMAN_EGP[0]} to {HUMAN_EGP[1]}, "
           f"glucose infusion {HUMAN_GIR}, both mg/kg/min at the plateau")
+    json.dump(record, open(OUT, "w"), indent=1)
+    print(f"\nwrote {OUT}")
 
 
 if __name__ == "__main__":

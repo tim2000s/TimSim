@@ -11,10 +11,17 @@ measurement is wrong about the model; only one of them is comparable with a publ
 
     python examples/production_during_a_low.py
 """
+import json
+import os
 import numpy as np
 from concurrent.futures import ProcessPoolExecutor
 
-from timsim import seeds
+from timsim import provenance, seeds
+
+# Printed to stdout and wrote nothing, so its figures were quoted in four documents from a log
+# that the next rebuild overwrote.
+OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                   "docs", "measurements", "production_low.json")
 
 SUBJECTS = [f"adult#{i:03d}" for i in range(1, 21)]
 
@@ -72,12 +79,32 @@ def main(workers=7):
         rows = [r for r in ex.map(one, SUBJECTS) if r]
     print(f"{len(rows)} of {len(SUBJECTS)} subjects reached below {LOW:.0f} mg/dL")
     a = np.asarray([[r["id_low"], r["id_eu"], r["egp_low"], r["egp_eu"]] for r in rows])
+    keys = ("id_low", "id_eu", "egp_low", "egp_eu")
+    summary = {}
     for i, label in ((0, f"remote insulin below {LOW:.0f}"), (1, "remote insulin at 90 to 130"),
                      (2, f"production below {LOW:.0f}"), (3, "production at 90 to 130")):
+        summary[keys[i]] = {"label": label, "median": float(np.median(a[:, i])),
+                            "p10": float(np.percentile(a[:, i], 10)),
+                            "p90": float(np.percentile(a[:, i], 90))}
         print(f"  {label:>28}  median {np.median(a[:, i]):7.2f}  "
               f"p10 {np.percentile(a[:, i], 10):7.2f}  p90 {np.percentile(a[:, i], 90):7.2f}")
-    print("\n  the clamp holds remote insulin at 441 at its 55 mg/dL plateau, where production\n"
-          "  reads 0.14 mg/kg/min; the human reference at that plateau is 0.42 to 0.84")
+    # The clamp figures were printed here as constants and went stale: the line read 0.14
+    # mg/kg/min at the 55 mg/dL plateau long after the refit put the undefended model at 0.49,
+    # inside the human band. They are read from the clamp's own output now, or omitted.
+    try:
+        clamp = json.load(open(os.path.join(os.path.dirname(OUT), "clamp.json")))
+        step = next(s for a_ in clamp["arms"] if a_["hepatic_defence"] == 0.0
+                    for s in a_["steps"] if s["target"] == 55)
+        print(f"\n  the clamp holds remote insulin at {step['id_median']:.0f} at its 55 mg/dL "
+              f"plateau, where production reads {step['egp_median']:.2f} mg/kg/min; the human "
+              f"reference at that plateau is 0.42 to 0.84")
+    except (OSError, ValueError, KeyError, StopIteration):
+        print("\n  clamp.json is not on disk, so the plateau comparison is omitted rather than "
+              "quoted from a constant")
+    json.dump({"subjects": SUBJECTS, "low_threshold": LOW, "n_reaching_low": len(rows),
+               "n_subjects": len(SUBJECTS), "provenance": provenance.stamp(),
+               "summary": summary, "runs": rows}, open(OUT, "w"), indent=1)
+    print(f"\nwrote {OUT}")
 
 
 if __name__ == "__main__":

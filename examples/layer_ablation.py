@@ -98,6 +98,17 @@ def run_arm(key, layers, subjects, days, kwargs=None, workers=1):
 
 def table():
     data = {k: json.load(open(os.path.join(OUT, f"{k}.json"))) for k, _, _, _ in ARMS}
+    # Six arms, measured in six separate runs, read against each other here. `provenance` says
+    # that anything combining results checks the stamps agree before it combines them, and this
+    # reader was not doing it. The arms also write into `docs` rather than `docs/measurements`,
+    # so the rebuild's archive step never moved them and an arm could survive a rebuild that
+    # replaced its neighbours. That is the shape of issue 28 with the detection removed.
+    unstamped = sorted(k for k, d in data.items() if not d.get("provenance"))
+    if unstamped:
+        raise SystemExit(
+            f"these arms carry no provenance stamp, so nothing can show they belong to the same "
+            f"experiment as the others: {', '.join(unstamped)}. Rerun the ablation.")
+    provenance.check_compatible([d["provenance"] for d in data.values()], strict_dirty=False)
     heads = [h for _, h, _, _ in ARMS]
     print("| Signature | Real range | " + " | ".join(heads) + " | In range |")
     print("|---" * (len(heads) + 3) + "|")

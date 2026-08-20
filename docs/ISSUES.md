@@ -571,3 +571,64 @@ gone wrong.
 **What it cost.** Six seconds of machine time and two files of NaN, both deleted. Had anything
 read them the NaN would have been visible immediately. What would not have been visible is the
 log, which is committed and recorded two cells as measured.
+
+## 32. Two measurement families lived outside the archive and outside the guard
+
+**What happened.** Measurements are written to three places, not one. Most go to
+`docs/measurements`, which the rebuild archives and the provenance test reads. The ladder writes
+to `docs/ladder`, which was added to both after issue 28. The layer ablation and the
+hyperglycaemia gap write one file per arm into `docs` itself, and were in neither. So the six
+ablation arms and the four gap arms were never archived between rebuilds and were never checked
+for a stamp, and each family is read back by a `table()` that combines its arms into a comparison.
+
+**Why it happened.** The archive step walks `docs/measurements`, and the guard globs the same
+directory. Both were written against where measurements are supposed to go rather than against
+where they actually go. Issue 28 found the same thing for the ladder and fixed the instance:
+`docs/ladder` was named explicitly and the cause, that no one had enumerated the output
+locations, was left alone. Two more families were sitting behind it.
+
+**How it surfaced.** Building a map of every measurement file for a documentation audit, which
+required listing where each one lives. Nothing else would have shown it, because the failure is
+an absence: no stage reported anything, no table looked wrong, and the arms on disk were in fact
+consistent with each other by luck rather than by check.
+
+**Fix.** Three parts, matching the three that were missing. Both `table()` functions refuse an
+arm with no stamp and call `provenance.check_compatible` on the arms they combine, which is what
+that module says anything combining results must do and what neither reader was doing. The
+rebuild archives both families by name rather than by wildcard, since `docs` also holds older
+artefacts that no stage regenerates and a glob would destroy them. And the provenance test now
+covers all three families in `docs`, asserting both that each arm is stamped and that the arms of
+one family bind to each other.
+
+**What it cost.** Nothing measurable, and that is the uncomfortable part. The arms on disk were
+written in one sitting each and are consistent, so no published figure is known to be wrong. The
+new tests fail on them, correctly, because unstamped files cannot be shown to be consistent, only
+assumed to be. Both families need rerunning at about 89 minutes and 208 minutes to clear it, and
+the test message says to rerun rather than to add an exclusion.
+
+## 33. A ceiling check that tested only whether the clamp had fired
+
+**What happened.** `check_delivery_limits_bind` is a level 1 check, the level whose failure
+invalidates every level above it. Its verdict was that each of the three counters had fired at
+least once. Whether any ceiling actually held was never asserted, so a run whose insulin on board
+finished above the ceiling passed as long as the clamp had fired somewhere along the way. Its
+stored result, from 8 August 2026, reports a peak of 10.8 U against a declared 8.6 and records a
+pass.
+
+**Why it happened.** The check was written to catch a bench whose limits were absent altogether,
+which is what "bind" means and what the counters measure. Binding is necessary and not
+sufficient, and the note the check prints carried the peak and the ceiling side by side without
+anything comparing them. A reader would have had to do the subtraction the check declined to do.
+
+**How it surfaced.** A documentation audit read the note and the verdict against each other. The
+two numbers in it, 10.8 against 8.6, are the same pair the comment in `therapy/limits.py` uses to
+describe the defect that comment was written to repair, which is what made it worth chasing.
+
+**Fix.** The check asserts that insulin on board stays under its own ceiling, with a tolerance of
+one bolus increment because the peak is recorded before rounding. Run on current code it holds
+exactly: 8.4, 8.7 and 10.1 U against ceilings of the same values across three subjects.
+
+**What it cost.** Nothing, and only by luck of sequencing. The breach was real when that result
+was written, was repaired on 17 August when the ceiling was extended to constrain basal above
+schedule, and the check has not been run since. Had the repair not happened independently, this
+check would have gone on passing.

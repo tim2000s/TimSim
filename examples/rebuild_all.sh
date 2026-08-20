@@ -103,6 +103,30 @@ if ls "$REPO"/docs/arbiter_* >/dev/null 2>&1; then
   mv "$REPO"/docs/arbiter_* "$ARCHIVE/arbiter/" 2>/dev/null
   say "archived $(ls -1 "$ARCHIVE/arbiter" | wc -l | tr -d ' ') stale arbiter outputs"
 fi
+
+# The layer ablation and the hyperglycaemia gap write into docs as well, one file per arm, and
+# each reads its own files back to build a table. They were the last two families outside this
+# step, so an arm could survive a rebuild that replaced its neighbours and the table combining
+# them would say nothing. Both readers now refuse arms whose stamps do not agree, and both are
+# archived here so the question does not arise. The named files are listed rather than globbed,
+# because docs also holds older artefacts that no stage regenerates and that would be destroyed
+# by a wildcard.
+# `hypo`, `visentin` and `visentin1` are branches of the ablation rather than rungs of it, and
+# `layer_ablation.py` run with no `--arm` measures the six rungs and not the three branches. So
+# they were never rebuilt and never archived: the three files on disk are dated 7 and 8 August
+# 2026, they carry a `loop` layer that no longer exists, and FIDELITY's Visentin comparison is
+# read from them. Archiving them makes their absence visible instead of leaving four-month-old
+# figures sitting beside current ones.
+for f in all phys behav loop sens stock hypo visentin visentin1; do
+  [ -e "$REPO/docs/$f.json" ] && { mkdir -p "$ARCHIVE/ablation"; \
+    mv "$REPO/docs/$f.json" "$ARCHIVE/ablation/" 2>/dev/null; }
+done
+[ -d "$ARCHIVE/ablation" ] && say "archived $(ls -1 "$ARCHIVE/ablation" | wc -l | tr -d ' ') stale ablation arms"
+if ls "$REPO"/docs/gap_*.json >/dev/null 2>&1; then
+  mkdir -p "$ARCHIVE/gap"
+  mv "$REPO"/docs/gap_*.json "$ARCHIVE/gap/" 2>/dev/null
+  say "archived $(ls -1 "$ARCHIVE/gap" | wc -l | tr -d ' ') stale hyperglycaemia gap arms"
+fi
 say "archived previous outputs to $(basename "$ARCHIVE"); titration store cleared"
 
 # 2. The real-data references, then the cohorts, then titration, in that order because each
@@ -184,6 +208,15 @@ stage cohort_variation "$PY" examples/cohort_variation.py
 stage bench_tables "$PY" examples/bench_tables.py
 cp "$LOGS/bench_tables.log" "$M/bench_tables.txt" 2>/dev/null
 stage distance_to_real "$PY" examples/distance_to_real.py
+
+# Also derived and also cheap, and absent from this script until 20 August 2026. `group_floor`
+# reads the matrix and the distance table, `spread_ratio` reads the matrix, and
+# `covariance_estimator` is parameter arithmetic over the population. All three were written
+# after this script and none was added to it, so each would have carried figures from the
+# previous population into the next rebuild while the files it reads were replaced underneath.
+stage group_floor "$PY" examples/group_floor.py
+stage spread_ratio "$PY" examples/spread_ratio.py
+stage covariance_estimator "$PY" examples/covariance_estimator.py
 
 # 6. The standalone measurements. Each is independent of the others, so a failure in one is
 #    reported and the rest continue.

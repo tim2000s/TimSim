@@ -195,6 +195,19 @@ def table(arms=None):
     arms = arms or [k for k in ARMS
                     if os.path.exists(os.path.join(OUT, f"gap_{k}.json"))]
     data = {k: json.load(open(os.path.join(OUT, f"gap_{k}.json"))) for k in arms}
+    # The arms are selected by which files happen to exist, so a stale arm is included silently
+    # and a missing one disappears from the table without saying so. Both are checked now: every
+    # arm read has to carry a stamp, and the stamps have to agree with each other, because these
+    # files live in `docs` rather than `docs/measurements` and the archive step never moved them.
+    unstamped = sorted(k for k, d in data.items() if not d.get("provenance"))
+    if unstamped:
+        raise SystemExit(
+            f"these arms carry no provenance stamp, so nothing can show they belong to the same "
+            f"experiment as the others: {', '.join(unstamped)}. Rerun the gap measurement.")
+    provenance.check_compatible([d["provenance"] for d in data.values()], strict_dirty=False)
+    if len(arms) < len(ARMS):
+        print(f"note: {len(ARMS) - len(arms)} of {len(ARMS)} arms are absent from disk and are "
+              f"not in the table below: {', '.join(k for k in ARMS if k not in arms)}")
     trial = measure_trial()
 
     rows = [("excursions above 180 per day", "episodes_per_day", 2),

@@ -176,6 +176,15 @@ def check_delivery_limits_bind(name, days=2):
     simglucose's own pump would accept 150 units in one step. The limits in
     `therapy/limits.py` sit in front of it, and a bench whose ceilings do not bind is
     testing an algorithm with its safeties removed.
+
+    Binding is necessary and not sufficient, which this check used to miss. The verdict was
+    that each of the three counters had fired at least once, so a run whose insulin on board
+    ended above the ceiling passed as long as the clamp had fired on the way. The stored
+    result from 8 August 2026 says exactly that: it reports a peak of 10.8 U against a
+    declared 8.6 and records a pass. Those are the same two numbers the comment in
+    `therapy/limits.py` uses to describe the defect it was written to repair, and the check
+    has not been run since that repair landed on 17 August. The ceiling holding is asserted
+    now as well as the clamp firing, so the question cannot be left open again.
     """
     from simglucose.controller.base import Action
 
@@ -186,14 +195,18 @@ def check_delivery_limits_bind(name, days=2):
     r = simulate(name, days=days, seed=0, layers=(), controller=Greedy())
     bound = r.meta["limit_bound"]
     hit = sum(bound.values())
+    peak, ceiling = r.meta["peak_iob_u"], r.meta["max_iob_u"]
+    # A tolerance of one bolus increment, since the peak is recorded before rounding down.
+    held = peak <= ceiling + 0.05
     return {"check": "delivery limits bind on an algorithm that asks for too much",
             "level": 1, "value": float(hit),
-            "target": "the basal, bolus and insulin-on-board ceilings all bind",
-            "pass": bool(bound["basal"] > 0 and bound["bolus"] > 0 and bound["iob"] > 0),
+            "target": "the three ceilings all bind, and insulin on board stays under its own",
+            "pass": bool(bound["basal"] > 0 and bound["bolus"] > 0 and bound["iob"] > 0
+                         and held),
             "note": f"clamped {bound['basal']} times on basal, {bound['bolus']} on bolus "
                     f"and {bound['iob']} on insulin on board; peak insulin on board "
-                    f"{r.meta['peak_iob_u']:.1f} U against a ceiling of "
-                    f"{r.meta['max_iob_u']:.1f}"}
+                    f"{peak:.1f} U against a ceiling of {ceiling:.1f}"
+                    f"{'' if held else ', which it exceeds'}"}
 
 
 # ---------------------------------------------------------------------- level 2

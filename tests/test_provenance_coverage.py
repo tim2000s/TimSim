@@ -103,6 +103,55 @@ def test_the_simglucose_version_resolves():
     assert version[0].isdigit(), version
 
 
+# Measurement families that write into `docs` rather than `docs/measurements`. They were outside
+# both the archive step and this guard until 20 August 2026, which is two of the three defences
+# the ladder needed. Each is one file per arm, and each is read back by a `table()` that combines
+# the arms, so an unstamped arm is one that cannot be shown to belong with its neighbours.
+DOCS_FAMILIES = {
+    "ablation": ["all.json", "phys.json", "behav.json", "loop.json", "sens.json", "stock.json"],
+    "hyperglycaemia gap": ["gap_nosite.json", "gap_site.json", "gap_settings.json",
+                           "gap_both.json"],
+    "arbiter": ["arbiter_bare.json", "arbiter_both.json", "arbiter_default.json",
+                "arbiter_settings.json", "arbiter_site.json", "arbiter_visentin.json"],
+}
+
+
+@pytest.mark.parametrize("family", sorted(DOCS_FAMILIES))
+def test_docs_measurement_families_are_stamped_if_present(family):
+    """An arm with no stamp cannot be combined with the others, and these are always combined."""
+    docs = os.path.join(REPO, "docs")
+    present = [n for n in DOCS_FAMILIES[family] if os.path.exists(os.path.join(docs, n))]
+    if not present:
+        pytest.skip(f"no {family} arms on disk")
+    unstamped = [n for n in present
+                 if json.load(open(os.path.join(docs, n))).get("provenance") is None]
+    assert not unstamped, (
+        f"{family} arms carry no provenance stamp and are read against each other by a "
+        f"table(): {unstamped}. Rerun the measurement rather than adding an exclusion.")
+
+
+@pytest.mark.parametrize("family", sorted(DOCS_FAMILIES))
+def test_docs_measurement_families_agree_with_each_other(family):
+    """Arms of one family are one experiment, so their stamps have to bind."""
+    docs = os.path.join(REPO, "docs")
+    stamps = []
+    for name in DOCS_FAMILIES[family]:
+        path = os.path.join(docs, name)
+        if not os.path.exists(path):
+            continue
+        stamp = json.load(open(path)).get("provenance")
+        if stamp:
+            stamps.append((name, stamp))
+    if len(stamps) < 2:
+        pytest.skip(f"fewer than two stamped {family} arms on disk")
+    first_name, first = stamps[0]
+    for name, other in stamps[1:]:
+        for field in provenance.BINDING:
+            assert first.get(field) == other.get(field), (
+                f"{family}: {name} and {first_name} disagree on {field}, so they are two "
+                f"experiments and the table combining them would mix them")
+
+
 def test_ladder_rungs_are_stamped_if_present():
     """The rungs are the case that failed, so they are asserted directly."""
     rungs = glob.glob(os.path.join(REPO, "docs", "ladder", "*.json"))
