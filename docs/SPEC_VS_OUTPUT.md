@@ -162,4 +162,14 @@ should have confirmed it could not have. It now asserts the ceiling as well as t
 `production_during_a_low.py` printed the clamp comparison as a hardcoded sentence carrying the old
 0.14 mg/kg/min. It reads the figure from the clamp's output now, or omits it.
 
-The rest is recorded as issues 29 to 32.
+The arbiter's `default` arm carries three layers and was labelled "the four default layers", where
+`DEFAULT_LAYERS` holds four including the site layer. Any table keyed on those labels therefore
+read the three-layer arm as the shipped configuration, which reverses the comparison the arm
+exists to make, since `default` is the comparator for `site` rather than the shipped stack. It is
+now labelled for what it is. The comment beside it also gave stale settings figures: `isf_scale`
+2.4 puts the median correction factor at 41.2 mg/dL per unit across the 34 adults the arbiter
+runs, against 17.2 from their own physiology, where the comment said 35.3 and 14.7 on the
+hundred-subject population. DCLP3 participants ran 40.0 across all 112 and 35.0 across the
+calibration half, so that arm sits at the top of what real people ran rather than in the middle.
+
+The rest is recorded as issues 29 to 33.

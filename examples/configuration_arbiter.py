@@ -44,10 +44,17 @@ OUT = os.path.join(HERE, "docs")
 
 BASE = ("physiology", "behaviour", "sensor")
 
-# `isf_scale` 2.4 puts the median correction factor at 35.3 mg/dL per unit, which is what
-# DCLP3 participants ran, against the 14.7 measured from the subjects' own physiology.
+# `isf_scale` 2.4 puts the median correction factor at 41.2 mg/dL per unit across the 34 adults
+# this runs, against the 17.2 measured from their own physiology. DCLP3 participants ran 40.0
+# across all 112 and 35.0 across the 67 in the calibration half, so the arm sits at the top of
+# what real people ran rather than in the middle of it. The figures were 35.3 and 14.7 on the
+# hundred-subject population and both moved when it grew to 600.
 CONFIGS = {
-    "default": (BASE, {}, "the four default layers"),
+    # Three layers, not four. This is the shipped configuration with the site layer taken off,
+    # which is what makes it the comparator for `site`. It was labelled "the four default
+    # layers" while `DEFAULT_LAYERS` held four including site, so a table keyed on these labels
+    # read the three-layer arm as the shipped one.
+    "default": (BASE, {}, "the default layers without infusion site failure"),
     "site": (BASE + ("site",), {}, "and infusion sites that fail"),
     "settings": (BASE, {"isf_scale": 2.4}, "and the settings real people run"),
     "both": (BASE + ("site",), {"isf_scale": 2.4}, "both"),
