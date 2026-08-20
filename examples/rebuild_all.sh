@@ -160,8 +160,24 @@ INNER
 
 # 4. The matrix, which is the long pole and feeds the tables and the distance measurement.
 stage bench_matrix env WORKERS="$WORKERS" "$PY" examples/bench_matrix.py || exit 1
+# The group floor, in every cell the distance table reports rather than in one quoted for the
+# rest. It is a property of the arm and the algorithm: measured on 20 August 2026 it ran 0.43,
+# 0.53, 0.70 and 1.49 percentage points on time below 54 mg/dL across the four, so the single
+# figure previously carried was too permissive by a factor of 2.8 in the worst of them. The
+# cells do not even rank together across statistics, since the cell with the loosest floor on
+# hypoglycaemia has the tightest of the four on mean glucose.
+#
+# The cohorts are chosen from the reference and the seed alone, so all four draw the same
+# subjects and the plan titrated above covers every one of them. Four cells at 38 to 45 minutes,
+# so about 2 h 45 m against the 40 minutes one cell used to cost.
 stage replicates "$PY" examples/cohort_replicates.py --n "$COHORT_N" \
       --replicates "$REPLICATES" --workers "$WORKERS"
+stage replicates_bare "$PY" examples/cohort_replicates.py --n "$COHORT_N" \
+      --replicates "$REPLICATES" --workers "$WORKERS" --arm bare
+stage replicates_oref "$PY" examples/cohort_replicates.py --n "$COHORT_N" \
+      --replicates "$REPLICATES" --workers "$WORKERS" --controller oref
+stage replicates_oref_bare "$PY" examples/cohort_replicates.py --n "$COHORT_N" \
+      --replicates "$REPLICATES" --workers "$WORKERS" --controller oref --arm bare
 
 # 5. Derived from the matrix, so cheap and safe to run in sequence.
 stage cohort_variation "$PY" examples/cohort_variation.py

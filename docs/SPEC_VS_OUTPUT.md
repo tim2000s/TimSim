@@ -28,7 +28,7 @@ published parameter tables. The simulated figures do not.
 
 | Claim | Where | Now |
 |---|---|---|
-| hypoglycaemia group effect 1.63 spreads | FIDELITY, LADDER, validation paper | superseded twice: 0.72 at n=90, and the baseline it is measured against was itself recomputed over the sealed half |
+| hypoglycaemia group effect 1.63 spreads | FIDELITY, LADDER, validation paper | superseded three times: 0.72 at n=90, then the baseline recomputed over the sealed half, and now a single figure at all. Measured in four cells on 20 August 2026 it is 1.06, 1.29, 1.72 and 3.65 spreads, so the cell has to be named with it |
 | capability, ten of ten signatures in range | CAPABILITY, FIDELITY, STUDIES_AUDIT | four of ten, and the attribution is in `capability_decomposition.json` |
 | ladder, nine of 47 movements carried | STUDIES_AUDIT, ISSUES | remeasured on clean rungs after the stale-cache reuse; the count is in `docs/ladder/` |
 | hepatic defence gain 0.25, then 0.20 | EVIDENCE, FIDELITY, METHODS, ISSUES | 0.05, fitted across 150 adults on plateau arrivals only |
