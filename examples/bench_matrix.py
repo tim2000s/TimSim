@@ -51,8 +51,14 @@ BENCHES = [("bare", (), "some"), ("layered_always", LAYERS, "always"),
 # interaction with the behaviour and site layers. This set measures both arms at all three, under
 # one controller held fixed, which is what makes the layer effect and the announcement effect
 # separable and gives a baseline for reading a later comparison between controllers against.
-BASELINE_BENCHES = [("bare_always", (), "always"), ("bare_some", (), "some"),
-                    ("bare_never", (), "never"),
+# One bare arm, not three. `run.py` sets `announce="behaviour" in effective`, so meal
+# announcement is a behaviour and there is none to withdraw when the behaviour layer is off: the
+# bare arm announces every meal whatever is asked for. Running it at three scenarios produced
+# three identical arms on 20 August 2026, to every decimal of every measure, and cost a third of
+# that run. The comparison the announcement question needs is not bare against layered at each
+# scenario but the rungs above behaviour at each scenario, since behaviour is where announcement
+# lives and sensor and site are what might interact with it.
+BASELINE_BENCHES = [("bare", (), "some"),
                     ("layered_always", LAYERS, "always"),
                     ("layered_some", LAYERS, "some"),
                     ("layered_never", LAYERS, "never")]

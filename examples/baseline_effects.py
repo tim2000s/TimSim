@@ -131,16 +131,19 @@ def main():
         print(f"\n{'=' * 78}\n{name}, {len(subjects)} subjects\n")
         completion(arms)
         rec = {"n": len(subjects), "layer_effect": {}, "announcement_effect": {}}
+        # One bare arm serves all three comparisons, because announcement is gated on the
+        # behaviour layer and the bare arm therefore has only one meal scenario. Files written
+        # before 20 August 2026 carry three identical bare arms; either name resolves.
+        bare = "bare" if "bare" in arms else "bare_some"
         for ann in ("always", "some", "never"):
-            r = effect(arms, f"bare_{ann}", f"layered_{ann}", subjects,
+            r = effect(arms, bare, f"layered_{ann}", subjects,
                        f"layers, at announcement {ann}", rng)
             if r:
                 rec["layer_effect"][ann] = r
-        for arm in ("bare", "layered"):
-            r = effect(arms, f"{arm}_always", f"{arm}_never", subjects,
-                       f"announcement, always against never, {arm} arm", rng)
-            if r:
-                rec["announcement_effect"][arm] = r
+        r = effect(arms, "layered_always", "layered_never", subjects,
+                   "announcement, always against never, layered arm", rng)
+        if r:
+            rec["announcement_effect"]["layered"] = r
 
         # The age split, on DCLP3 alone and on age rather than class.
         if name == "dclp3":
