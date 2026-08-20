@@ -41,7 +41,7 @@ REAL_DATA_ONLY = {"real_meals.json", "real_meals_dia.json", "commons_requirement
 # never end and `control_iq_fit.json` sat unguarded on disk while the bench read it. All five
 # stamp now, which is what makes the sentence above true. Checking a suppression list against
 # the code it excuses is the only way that kind of entry surfaces.
-PENDING_REBUILD = {"bench_matrix.json", "control_iq_fit.json",
+PENDING_REBUILD = {"control_iq_fit.json",
                    "meal_response.json", "two_benches.json", "oref_autosens_on.json",
                    "oref_autosens_off.json", "capability_decomposition.json",
                    "hypoglycaemia_arms.json", "rescue_bio_alone.json",
