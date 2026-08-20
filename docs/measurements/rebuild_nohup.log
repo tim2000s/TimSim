@@ -1,25 +1,49 @@
-04:52:33Z  === rebuild: defence gain 0.05, titration seed 11, bench seed 101, 12 workers ===
-04:52:36Z  archived previous outputs to archive_pre_review; titration store cleared
-04:52:36Z  START  commons_cohort
-04:53:00Z  OK     commons_cohort (0 min)
-04:53:00Z  START  cohorts
-04:53:02Z  OK     cohorts (0 min)
-04:53:02Z  START  titrate
-06:34:38Z  OK     titrate (101 min)
-06:34:38Z  START  replicate_plan
-06:34:40Z  OK     replicate_plan (0 min)
-06:34:40Z  START  titrate_replicates
-07:50:54Z  OK     titrate_replicates (76 min)
-07:50:54Z  START  titrate_panel
-07:57:35Z  OK     titrate_panel (6 min)
-07:57:35Z  START  bench_matrix
-11:05:59Z  OK     bench_matrix (188 min)
-11:05:59Z  START  replicates
-11:41:44Z  OK     replicates (35 min)
-11:41:44Z  START  cohort_variation
-11:41:46Z  OK     cohort_variation (0 min)
-11:41:46Z  START  bench_tables
-11:41:47Z  OK     bench_tables (0 min)
-11:41:47Z  START  distance_to_real
-11:41:48Z  OK     distance_to_real (0 min)
-11:41:48Z  START  clamp
+07:14:03Z  === rebuild: defence gain 0.05, titration seed 11, bench seed 101, 12 workers ===
+07:14:07Z  archived previous outputs to archive_pre_review; titration store cleared
+07:14:07Z  START  commons_cohort
+07:14:33Z  OK     commons_cohort (0 min)
+07:14:33Z  START  cohorts
+07:14:34Z  OK     cohorts (0 min)
+07:14:34Z  START  titrate
+08:53:40Z  OK     titrate (99 min)
+08:53:40Z  START  replicate_plan
+08:53:42Z  OK     replicate_plan (0 min)
+08:53:42Z  START  titrate_replicates
+10:05:02Z  OK     titrate_replicates (71 min)
+10:05:02Z  START  titrate_panel
+10:15:32Z  OK     titrate_panel (10 min)
+10:15:32Z  START  bench_matrix
+13:37:13Z  OK     bench_matrix (201 min)
+13:37:13Z  START  replicates
+14:16:27Z  OK     replicates (39 min)
+14:16:27Z  START  cohort_variation
+14:16:29Z  OK     cohort_variation (0 min)
+14:16:29Z  START  bench_tables
+14:16:30Z  OK     bench_tables (0 min)
+14:16:30Z  START  distance_to_real
+14:16:31Z  OK     distance_to_real (0 min)
+14:16:31Z  START  clamp
+14:18:16Z  OK     clamp (1 min)
+14:18:16Z  START  capability
+14:40:36Z  OK     capability (22 min)
+14:40:36Z  START  layer_ablation
+16:09:40Z  OK     layer_ablation (89 min)
+16:09:40Z  START  layer_ladder
+16:09:41Z  OK     layer_ladder (0 min)
+16:09:41Z  START  hyperglycaemia_gap
+19:37:48Z  OK     hyperglycaemia_gap (208 min)
+19:37:48Z  START  production_low
+19:42:54Z  OK     production_low (5 min)
+19:42:54Z  START  two_benches
+22:24:22Z  OK     two_benches (161 min)
+22:24:22Z  START  fit_control_iq
+23:09:35Z  OK     fit_control_iq (45 min)
+23:09:35Z  START  meal_response
+23:33:43Z  OK     meal_response (24 min)
+23:33:43Z  START  autosens_on
+23:40:01Z  OK     autosens_on (6 min)
+23:40:01Z  START  autosens_off
+23:46:23Z  OK     autosens_off (6 min)
+23:46:23Z  === finished ===
+23:46:26Z    12:32:33Z  FAILED hyperglycaemia_gap (14 min) —   File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 396, in __get_result     raise self._exception RuntimeError: adult#026 has no titrated settings. The consensus hypoglycaemia floors were not met at any combination tried, so its settings are not the explanation for what it does and it should be excluded rather than run at the loosest available.
+23:46:26Z    16:12:45Z    12:32:33Z  FAILED hyperglycaemia_gap (14 min) —   File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 396, in __get_result     raise self._exception RuntimeError: adult#026 has no titrated settings. The consensus hypoglycaemia floors were not met at any combination tried, so its settings are not the explanation for what it does and it should be excluded rather than run at the loosest available.

@@ -55,9 +55,16 @@ MIN_PAIRED = 10
 OUT = os.path.join(MEASUREMENTS, "distance_to_real.json")
 
 
-def distances(arms, subjects, ref):
-    """Per measure: the bare and layered medians, the real median, and the gaps between."""
-    keep = paired(arms, "bare", LAYERED, subjects)
+def distances(arms, subjects, ref, require_complete=True):
+    """Per measure: the bare and layered medians, the real median, and the gaps between.
+
+    Runs that stop early are excluded by default and they do not stop at random: the layered
+    arm loses subjects to hypoglycaemia that the bare arm does not, so the default measures the
+    layered arm on the subjects that avoided a severe low and understates the hypoglycaemia gap.
+    Passing `require_complete=False` repeats the comparison using each run's statistics over the
+    period it survived, which bounds the effect from the other side.
+    """
+    keep = paired(arms, "bare", LAYERED, subjects, require_complete)
     # `analysis/cohort.py::paired_subjects` refuses a comparison built from partial overlap,
     # and `bench_tables.paired` does not, so the refusal is repeated here rather than assumed.
     # A median over a handful of survivors is a statement about which subjects survived.
@@ -103,8 +110,14 @@ def main():
         if not isinstance(r, list) or not r:
             print(f"{cohort}/{controller}: no per-person reference, skipped")
             continue
-        res = distances(arms, sorted({n for by in arms.values() for n in by}), r)
+        subjects = sorted({n for by in arms.values() for n in by})
+        res = distances(arms, subjects, r)
         out["pairings"][f"{cohort}|{controller}"] = res
+        try:
+            out["pairings"][f"{cohort}|{controller}|as_observed"] = distances(
+                arms, subjects, r, require_complete=False)
+        except ValueError as exc:
+            print(f"{cohort}/{controller}: as-observed comparison unavailable: {exc}")
 
         print(f"\n{'=' * 92}\n{cohort} under {controller}, "
               f"paired over {res['paired']} subjects, {len(r)} real people")

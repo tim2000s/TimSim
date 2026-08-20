@@ -1,0 +1,450 @@
+{
+ "population": "704cfac086df54ba",
+ "arm": "layered_some",
+ "days": 28,
+ "provenance": {
+  "population": "704cfac086df54ba",
+  "settings": "5b66a9f91b08d0af",
+  "commit": "c169447d481b42d69f271611c5ffa63f4508eb9b",
+  "dirty": true,
+  "host": "Tims-Mac-mini.local",
+  "python": "3.14.7",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "when": "2026-08-20T03:36:11+00:00",
+  "simglucose": "0.2.11"
+ },
+ "pairings": {
+  "commons|oref": {
+   "completers": {
+    "n": 48,
+    "measures": {
+     "tir": {
+      "label": "Time in range 70-180, %",
+      "simulated_sd": 7.0202396196527515,
+      "real_sd": 13.08822981349188,
+      "ratio": 0.5363780831855506,
+      "ratio_interval": [
+       0.3705389192540099,
+       0.8316155981249881
+      ],
+      "real_n": 77
+     },
+     "tbr70": {
+      "label": "Time below 70, %",
+      "simulated_sd": 2.06613810361565,
+      "real_sd": 2.4534213792466786,
+      "ratio": 0.8421456342937943,
+      "ratio_interval": [
+       0.6351224337946707,
+       1.1176559836882045
+      ],
+      "real_n": 77
+     },
+     "tbr54": {
+      "label": "Time below 54, %",
+      "simulated_sd": 0.8681271288676029,
+      "real_sd": 0.9577148019396015,
+      "ratio": 0.906456835698308,
+      "ratio_interval": [
+       0.6261407180177199,
+       1.468597799017931
+      ],
+      "real_n": 77
+     },
+     "tar180": {
+      "label": "Time above 180, %",
+      "simulated_sd": 6.163852942072704,
+      "real_sd": 13.48095041689584,
+      "ratio": 0.4572268832283124,
+      "ratio_interval": [
+       0.3190971689672878,
+       0.7124797948016975
+      ],
+      "real_n": 77
+     },
+     "mean": {
+      "label": "Mean sensor glucose, mg/dL",
+      "simulated_sd": 9.738165878539185,
+      "real_sd": 23.62569002116331,
+      "ratio": 0.4121854587026231,
+      "ratio_interval": [
+       0.28503121963689876,
+       0.662812718609484
+      ],
+      "real_n": 77
+     },
+     "cv": {
+      "label": "Variability, CV %",
+      "simulated_sd": 5.07449342856659,
+      "real_sd": 5.202956170806062,
+      "ratio": 0.9753096628104845,
+      "ratio_interval": [
+       0.7321616196323744,
+       1.2710663278715617
+      ],
+      "real_n": 77
+     }
+    }
+   },
+   "as_observed": {
+    "n": 63,
+    "measures": {
+     "tir": {
+      "label": "Time in range 70-180, %",
+      "simulated_sd": 7.663461143350201,
+      "real_sd": 13.08822981349188,
+      "ratio": 0.5855231190584989,
+      "ratio_interval": [
+       0.423121868009324,
+       0.8840106916123526
+      ],
+      "real_n": 77
+     },
+     "tbr70": {
+      "label": "Time below 70, %",
+      "simulated_sd": 3.7061709275780115,
+      "real_sd": 2.4534213792466786,
+      "ratio": 1.5106132843417175,
+      "ratio_interval": [
+       1.0602062939809516,
+       2.0916837746888226
+      ],
+      "real_n": 77
+     },
+     "tbr54": {
+      "label": "Time below 54, %",
+      "simulated_sd": 1.788906769701378,
+      "real_sd": 0.9577148019396015,
+      "ratio": 1.8678909066440386,
+      "ratio_interval": [
+       1.1609750670850667,
+       3.1009979410946036
+      ],
+      "real_n": 77
+     },
+     "tar180": {
+      "label": "Time above 180, %",
+      "simulated_sd": 6.75664386170669,
+      "real_sd": 13.48095041689584,
+      "ratio": 0.5011993704270662,
+      "ratio_interval": [
+       0.3641963059147725,
+       0.7741344337184938
+      ],
+      "real_n": 77
+     },
+     "mean": {
+      "label": "Mean sensor glucose, mg/dL",
+      "simulated_sd": 11.37525422099553,
+      "real_sd": 23.62569002116331,
+      "ratio": 0.4814781795073861,
+      "ratio_interval": [
+       0.3418470028508936,
+       0.7635244724450644
+      ],
+      "real_n": 77
+     },
+     "cv": {
+      "label": "Variability, CV %",
+      "simulated_sd": 5.797027731925097,
+      "real_sd": 5.202956170806062,
+      "ratio": 1.1141796205111987,
+      "ratio_interval": [
+       0.8674131316898773,
+       1.432197586139967
+      ],
+      "real_n": 77
+     }
+    }
+   }
+  },
+  "dclp3|control-iq": {
+   "completers": {
+    "n": 71,
+    "measures": {
+     "tir": {
+      "label": "Time in range 70-180, %",
+      "simulated_sd": 7.4250308523542765,
+      "real_sd": 10.21389354532696,
+      "ratio": 0.7269540082245485,
+      "ratio_interval": [
+       0.5934639133092954,
+       0.8822928467421377
+      ],
+      "real_n": 67
+     },
+     "tbr70": {
+      "label": "Time below 70, %",
+      "simulated_sd": 1.9382100980756172,
+      "real_sd": 1.0119336397590282,
+      "ratio": 1.9153529657707231,
+      "ratio_interval": [
+       1.4997655039605093,
+       2.474472195602348
+      ],
+      "real_n": 67
+     },
+     "tbr54": {
+      "label": "Time below 54, %",
+      "simulated_sd": 0.9423052783720326,
+      "real_sd": 0.19828657604781133,
+      "ratio": 4.75223939589749,
+      "ratio_interval": [
+       3.3403367332280816,
+       6.734626835752601
+      ],
+      "real_n": 67
+     },
+     "tar180": {
+      "label": "Time above 180, %",
+      "simulated_sd": 7.002259485271237,
+      "real_sd": 10.342030162072223,
+      "ratio": 0.6770681747720024,
+      "ratio_interval": [
+       0.5528494593606323,
+       0.8229636875805172
+      ],
+      "real_n": 67
+     },
+     "mean": {
+      "label": "Mean sensor glucose, mg/dL",
+      "simulated_sd": 9.349842648548469,
+      "real_sd": 14.673011527787287,
+      "ratio": 0.6372136102286863,
+      "ratio_interval": [
+       0.5130486863340961,
+       0.7885181025647067
+      ],
+      "real_n": 67
+     },
+     "cv": {
+      "label": "Variability, CV %",
+      "simulated_sd": 5.697945321229171,
+      "real_sd": 4.102052713962424,
+      "ratio": 1.389047318147498,
+      "ratio_interval": [
+       1.137239020375457,
+       1.6855067769715462
+      ],
+      "real_n": 67
+     }
+    }
+   },
+   "as_observed": {
+    "n": 84,
+    "measures": {
+     "tir": {
+      "label": "Time in range 70-180, %",
+      "simulated_sd": 7.758423792040925,
+      "real_sd": 10.21389354532696,
+      "ratio": 0.7595951296741823,
+      "ratio_interval": [
+       0.6269672664314885,
+       0.9241367562557441
+      ],
+      "real_n": 67
+     },
+     "tbr70": {
+      "label": "Time below 70, %",
+      "simulated_sd": 2.900728279360822,
+      "real_sd": 1.0119336397590282,
+      "ratio": 2.8665202592252714,
+      "ratio_interval": [
+       2.07307204323687,
+       3.8836174108095998
+      ],
+      "real_n": 67
+     },
+     "tbr54": {
+      "label": "Time below 54, %",
+      "simulated_sd": 1.4455940071413707,
+      "real_sd": 0.19828657604781133,
+      "ratio": 7.29042800553884,
+      "ratio_interval": [
+       4.8218540144323,
+       10.498684243426387
+      ],
+      "real_n": 67
+     },
+     "tar180": {
+      "label": "Time above 180, %",
+      "simulated_sd": 7.107615978575732,
+      "real_sd": 10.342030162072223,
+      "ratio": 0.6872553905945663,
+      "ratio_interval": [
+       0.5715011779834447,
+       0.8266678128233331
+      ],
+      "real_n": 67
+     },
+     "mean": {
+      "label": "Mean sensor glucose, mg/dL",
+      "simulated_sd": 10.129964895491295,
+      "real_sd": 14.673011527787287,
+      "ratio": 0.6903807630974382,
+      "ratio_interval": [
+       0.571368465171997,
+       0.844310471902605
+      ],
+      "real_n": 67
+     },
+     "cv": {
+      "label": "Variability, CV %",
+      "simulated_sd": 5.993673714779113,
+      "real_sd": 4.102052713962424,
+      "ratio": 1.4611401005106674,
+      "ratio_interval": [
+       1.2199472775148288,
+       1.7621662433568313
+      ],
+      "real_n": 67
+     }
+    }
+   }
+  },
+  "dclp3|oref": {
+   "completers": {
+    "n": 66,
+    "measures": {
+     "tir": {
+      "label": "Time in range 70-180, %",
+      "simulated_sd": 6.961516331259977,
+      "real_sd": 10.21389354532696,
+      "ratio": 0.6815732218439849,
+      "ratio_interval": [
+       0.5574023337753449,
+       0.829539540572529
+      ],
+      "real_n": 67
+     },
+     "tbr70": {
+      "label": "Time below 70, %",
+      "simulated_sd": 2.322721577386679,
+      "real_sd": 1.0119336397590282,
+      "ratio": 2.29532993679288,
+      "ratio_interval": [
+       1.7368355479676096,
+       3.01971769418076
+      ],
+      "real_n": 67
+     },
+     "tbr54": {
+      "label": "Time below 54, %",
+      "simulated_sd": 1.0128361816906066,
+      "real_sd": 0.19828657604781133,
+      "ratio": 5.107941252898478,
+      "ratio_interval": [
+       3.7709224199869915,
+       6.986270705744474
+      ],
+      "real_n": 67
+     },
+     "tar180": {
+      "label": "Time above 180, %",
+      "simulated_sd": 6.596618577710223,
+      "real_sd": 10.342030162072223,
+      "ratio": 0.6378456139010588,
+      "ratio_interval": [
+       0.5087247360711836,
+       0.7897058604392486
+      ],
+      "real_n": 67
+     },
+     "mean": {
+      "label": "Mean sensor glucose, mg/dL",
+      "simulated_sd": 10.997947125845148,
+      "real_sd": 14.673011527787287,
+      "ratio": 0.7495357790060739,
+      "ratio_interval": [
+       0.5941456071497946,
+       0.932961532383425
+      ],
+      "real_n": 67
+     },
+     "cv": {
+      "label": "Variability, CV %",
+      "simulated_sd": 5.395445332490439,
+      "real_sd": 4.102052713962424,
+      "ratio": 1.3153037536854684,
+      "ratio_interval": [
+       1.0830054412815313,
+       1.6000442860301767
+      ],
+      "real_n": 67
+     }
+    }
+   },
+   "as_observed": {
+    "n": 84,
+    "measures": {
+     "tir": {
+      "label": "Time in range 70-180, %",
+      "simulated_sd": 7.320895020908839,
+      "real_sd": 10.21389354532696,
+      "ratio": 0.7167585004112639,
+      "ratio_interval": [
+       0.5893170945543733,
+       0.8702984891410664
+      ],
+      "real_n": 67
+     },
+     "tbr70": {
+      "label": "Time below 70, %",
+      "simulated_sd": 3.070511539970392,
+      "real_sd": 1.0119336397590282,
+      "ratio": 3.034301281555946,
+      "ratio_interval": [
+       2.1952994809344455,
+       4.189382570065345
+      ],
+      "real_n": 67
+     },
+     "tbr54": {
+      "label": "Time below 54, %",
+      "simulated_sd": 1.745757727544954,
+      "real_sd": 0.19828657604781133,
+      "ratio": 8.804215405504873,
+      "ratio_interval": [
+       5.224067505188213,
+       13.813444012826915
+      ],
+      "real_n": 67
+     },
+     "tar180": {
+      "label": "Time above 180, %",
+      "simulated_sd": 6.794707901226612,
+      "real_sd": 10.342030162072223,
+      "ratio": 0.6569994280373634,
+      "ratio_interval": [
+       0.5339524845379993,
+       0.8065645718891616
+      ],
+      "real_n": 67
+     },
+     "mean": {
+      "label": "Mean sensor glucose, mg/dL",
+      "simulated_sd": 11.420463260056694,
+      "real_sd": 14.673011527787287,
+      "ratio": 0.7783312402112532,
+      "ratio_interval": [
+       0.6313006262170721,
+       0.959692500754034
+      ],
+      "real_n": 67
+     },
+     "cv": {
+      "label": "Variability, CV %",
+      "simulated_sd": 5.856906029751872,
+      "real_sd": 4.102052713962424,
+      "ratio": 1.4277988212624229,
+      "ratio_interval": [
+       1.1535139518875235,
+       1.7550754921170917
+      ],
+      "real_n": 67
+     }
+    }
+   }
+  }
+ }
+}

@@ -28,18 +28,32 @@ MEASUREMENTS = os.path.join(REPO, "docs", "measurements")
 import json
 import time
 import argparse
+import collections
 import numpy as np
 from concurrent.futures import ProcessPoolExecutor
 
 from timsim.population import cohort, names as all_names
 from timsim.therapy import titrate
 
-from timsim import seeds
+from timsim import provenance, seeds
 
 DAYS, SEED = 28, seeds.BENCH
 LAYERS = ("physiology", "behaviour", "sensor", "site")
 CONTROLLER = "control-iq"
 OUT = os.path.join(MEASUREMENTS, "cohort_replicates.json")
+
+# The floor this measures is a property of the arm and the algorithm, not of the bench. It was
+# measured in one cell, the layered arm under the Control-IQ stand-in, and quoted for the bare
+# arm and for oref0 SMB as well. Read off the bench matrix, the floor on time below 54 mg/dL
+# ranges from 0.34 to 2.83 spreads across the sixteen cells the matrix contains, so one cell
+# does not stand for another. `--controller` and `--arm` select the cell and the output is
+# suffixed with it, leaving the default invocation writing where it always did.
+ARMS = {"layered": ("physiology", "behaviour", "sensor", "site"), "bare": ()}
+
+# Below this many completed runs the replicate medians are not worth writing down. The real
+# cells complete between 78 and 84 of 90 per replicate, so this only fires on a cell that has
+# gone wrong rather than on one that lost a few subjects.
+MIN_COMPLETED = 30
 MEASURES = [("tir_cgm", "Time in range, %"), ("tbr70_cgm", "Time below 70, %"),
             ("tbr54_cgm", "Time below 54, %"), ("tar180_cgm", "Time above 180, %"),
             ("mean_cgm", "Mean glucose, mg/dL"), ("cv_cgm", "Variability, CV %")]
@@ -59,18 +73,44 @@ def disjoint(reference, k=4, n=25, seed=0):
 
 
 def one(job):
-    name, replicate = job
+    """Every input a run needs travels in the job, and comes back out with its result.
+
+    The arm and the algorithm used to be module globals assigned by `main`, under a comment
+    saying the workers inherited them at fork. macOS starts subprocesses by spawn, so each
+    worker re-imported this module and read the defaults at the bottom of it. `--arm bare` and
+    `--controller oref` reached the metadata written beside the results and never reached a
+    single run. The bare cell measured on 20 August 2026 was the layered cell to every decimal
+    of all 247 runs, and said `"arm": "bare"` at the top of the file.
+
+    So the values are passed per job, which no start method can strip, and each row carries the
+    arm it was actually measured under so that `main` can refuse to write a mislabelled file.
+
+    `oref` is not a name `simulate` accepts. It is the real algorithm behind a bridge and has to
+    be built per subject and closed afterwards, which is what `bench_matrix.py` does. Passing the
+    string straight through raised on all 247 runs the first time the option reached a run at
+    all, the defect above having stopped it reaching one before that.
+    """
+    name, replicate, layers, controller = job
     from timsim.simulation.run import simulate
     prof = titrate.profile_for(name)
+    ctrl = controller
     try:
-        r = simulate(name, days=DAYS, seed=SEED, layers=LAYERS, controller=CONTROLLER,
+        if controller == "oref":
+            from timsim.controller import oref
+            ctrl = oref.OrefController(name, profile=prof)
+        r = simulate(name, days=DAYS, seed=SEED, layers=layers, controller=ctrl,
                      profile=prof, announcement="some")
     except Exception as exc:
         return {"replicate": replicate, "name": name, "completed": False,
+                "layers": list(layers), "controller": controller,
                 "error": str(exc)[:160]}
+    finally:
+        if hasattr(ctrl, "close"):
+            ctrl.close()
     cgm = np.asarray(r.cgm, float)
     days = max(len(cgm) * 5.0 / 1440.0, 1e-9)
     return {"replicate": replicate, "name": name, "completed": bool(r.completed),
+            "layers": list(layers), "controller": controller,
             "tir_cgm": float(100 * np.mean((cgm >= 70) & (cgm <= 180))),
             "tbr70_cgm": float(100 * np.mean(cgm < 70)),
             "tbr54_cgm": float(100 * np.mean(cgm < 54)),
@@ -82,12 +122,20 @@ def one(job):
 
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--controller", default=CONTROLLER,
+                    help="algorithm the replicates run under")
+    ap.add_argument("--arm", default="layered", choices=sorted(ARMS),
+                    help="bench arm; the floor differs between them by up to eightfold")
     ap.add_argument("--replicates", type=int, default=4)
     ap.add_argument("--n", type=int, default=25)
     ap.add_argument("--workers", type=int, default=6)
     ap.add_argument("--plan-only", action="store_true",
                     help="print the cohorts and what they would need, and stop")
     a = ap.parse_args()
+    layers, controller = ARMS[a.arm], a.controller
+    out_path = OUT
+    if (a.controller, a.arm) != (CONTROLLER, "layered"):
+        out_path = OUT.replace(".json", f"_{a.controller}_{a.arm}.json")
 
     from examples.build_cohorts import dclp3_traits
     reference = dclp3_traits()
@@ -114,9 +162,16 @@ def main():
           f"{100*np.mean(ref_age<18):>6.0f}%{np.median(ref_tdi):>8.1f}")
     print(f"\n{len(need)} subjects need titrating before these can run")
     if a.plan_only:
+        # A separate file from the results. The plan used to be written to the results path,
+        # which is harmless inside the rebuild because the plan runs first and the results
+        # overwrite it, and destructive anywhere else: running `--plan-only` after a completed
+        # replicate set replaces 247 runs with a list of subject names. That happened on
+        # 20 August 2026 and cost a 39-minute rerun.
+        plan_path = out_path.replace(".json", "_plan.json")
         json.dump({"replicates": [{"subjects": list(n), "match": i} for n, i in reps],
-                   "need_titration": sorted(need)}, open(OUT, "w"), indent=1)
-        print(f"wrote the plan to {OUT}")
+                   "need_titration": sorted(need), "provenance": provenance.stamp()},
+                  open(plan_path, "w"), indent=1)
+        print(f"wrote the plan to {plan_path}")
         return
     # A subject whose settings never clear the consensus floors is excluded rather than run at
     # the loosest available, which is the same rule the main arms follow. It is a selection
@@ -130,13 +185,39 @@ def main():
                 print(f"  replicate {i}: {', '.join(names)}")
     print("\nrunning " + ", ".join(f"{len(u)}" for u in usable) + " subjects per replicate")
 
-    jobs = [(n, i) for i, names in enumerate(usable) for n in names]
+    jobs = [(n, i, layers, controller) for i, names in enumerate(usable) for n in names]
     rows, t0 = [], time.time()
     with ProcessPoolExecutor(max_workers=a.workers) as ex:
         for k, row in enumerate(ex.map(one, jobs), 1):
             rows.append(row)
             if k % 20 == 0 or k == len(jobs):
                 print(f"  {k}/{len(jobs)} done, {(time.time()-t0)/60:.1f} min", flush=True)
+
+    # What the rows say they were measured under, against what was asked for. The arm reached
+    # the header of the output and not the runs once, and the file was indistinguishable from a
+    # real measurement of a cell it had never visited.
+    wrong = [r for r in rows if tuple(r.get("layers", ())) != tuple(layers)
+             or r.get("controller") != controller]
+    if wrong:
+        raise SystemExit(
+            f"{len(wrong)} of {len(rows)} runs were measured under "
+            f"{wrong[0].get('controller')} with layers {wrong[0].get('layers')}, against the "
+            f"{controller} {a.arm} arm this was asked for. Nothing is written.")
+
+    # A cell where every run raised took three seconds, printed a table of NaN and exited zero,
+    # so the harness driving it recorded OK. Refusing to write is what makes that visible, since
+    # the completion time was the only other signal and nothing reads it.
+    done = [r for r in rows if r.get("completed")]
+    if len(done) < MIN_COMPLETED:
+        # A run that raised and a run that finished early fail differently and are worth
+        # separating, since the first is usually a defect here and the second is the subject.
+        raised = [r for r in rows if r.get("error")]
+        worst = collections.Counter(r["error"] for r in raised).most_common(1)
+        detail = (f"{len(raised)} raised, most commonly: {worst[0][0]}" if worst
+                  else "none raised, so the runs started and stopped short")
+        raise SystemExit(
+            f"only {len(done)} of {len(rows)} runs completed, below the {MIN_COMPLETED} needed "
+            f"for a median to mean anything, so nothing is written. {detail}")
 
     # Two statistics per measure, because they answer different questions and comparing one
     # against the other misled once. The range of the replicate medians is the spread across
@@ -181,10 +262,12 @@ def main():
         print(f"  {label:22}" + "".join(f"{m:>10.2f}" for m in meds)
               + f"{rng:>9.2f}{sh:>9.2f}")
 
-    json.dump({"population": titrate.population_fingerprint(), "controller": CONTROLLER,
+    json.dump({"population": titrate.population_fingerprint(), "controller": controller,
+               "arm": a.arm, "layers": list(layers),
+               "provenance": provenance.stamp(),
                "replicates": [{"subjects": list(n), "match": i} for n, i in reps],
-               "runs": rows, "summary": summary}, open(OUT, "w"), indent=1)
-    print(f"\nwrote {OUT}")
+               "runs": rows, "summary": summary}, open(out_path, "w"), indent=1)
+    print(f"\nwrote {out_path}")
 
 
 if __name__ == "__main__":

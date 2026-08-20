@@ -26,6 +26,7 @@ import numpy as np
 from concurrent.futures import ProcessPoolExecutor
 
 from examples.hypoglycaemic_clamp import clamp, HUMAN_EGP
+from timsim import provenance
 from timsim.population import names
 
 GAINS = (0.0, 0.05, 0.075, 0.10, 0.125, 0.15, 0.20, 0.25)
@@ -111,6 +112,7 @@ def main(n=34, workers=6):
     if not ok:
         print("  no gain keeps the median inside at both plateaus; reporting the closest on 55")
     json.dump({"human": {"range": list(HUMAN_EGP), "mean": HUMAN_MEAN},
+               "provenance": provenance.stamp(),
                "n_subjects": len(subs), "rows": rows, "recommended": pick["gain"]},
               open(OUT, "w"), indent=1)
     print(f"wrote {OUT}")

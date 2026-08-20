@@ -28,6 +28,8 @@ sys.path.insert(0, REPO)
 MEASUREMENTS = os.path.join(REPO, "docs", "measurements")
 
 import json
+
+from timsim import provenance
 import numpy as np
 
 DRAWS = 5000
@@ -154,6 +156,7 @@ def main():
         report["arms"][f"{cohort}|{controller}|{bench}"] = arm
         print()
 
+    report["provenance"] = provenance.stamp()
     json.dump(report, open(OUT, "w"), indent=1)
     print(f"wrote {OUT}")
 

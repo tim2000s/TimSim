@@ -3,19 +3,19 @@
 3 disjoint cohorts of 90, matched to 112 DCLP3 closed-loop participants
 
    rep    match     age    <18     TDI  titrated   new
-     0    0.226    30.0    24%    45.9        81     9
-     1    0.469    30.2    19%    48.4        75    15
-     2    0.733    31.0    32%    48.5        81     9
+     0    0.226    30.0    24%    45.9        84     6
+     1    0.469    30.2    19%    48.4        80    10
+     2    0.733    31.0    32%    48.5        83     7
   real             28.5    28%    47.9
 
-33 subjects need titrating before these can run
+23 subjects need titrating before these can run
 
 excluded, no settings clear the hypoglycaemia floors:
-  replicate 0: adolescent#095, adolescent#096, adolescent#130, adult#045, adult#070, adult#094, adult#178, adult#222, child#072
-  replicate 1: adolescent#033, adolescent#040, adolescent#048, adolescent#056, adolescent#060, adolescent#105, adolescent#122, adolescent#148, adult#026, adult#068, adult#086, adult#145, adult#214, child#067, child#087
-  replicate 2: adolescent#059, adolescent#082, adolescent#087, adolescent#097, adolescent#103, adolescent#111, adult#028, adult#075, child#135
+  replicate 0: adolescent#023, adolescent#095, adult#045, adult#178, adult#209, child#072
+  replicate 1: adolescent#040, adolescent#048, adolescent#056, adolescent#105, adolescent#148, adult#068, adult#086, adult#145, child#067, child#087
+  replicate 2: adolescent#001, adolescent#082, adolescent#103, adolescent#111, adolescent#119, adult#075, child#135
 
-running 81, 75, 81 subjects per replicate
+running 84, 80, 83 subjects per replicate
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
@@ -40,27 +40,28 @@ running 81, 75, 81 subjects per replicate
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
-  20/237 done, 3.9 min
-  40/237 done, 6.3 min
-  60/237 done, 10.0 min
-  80/237 done, 12.3 min
-  100/237 done, 15.8 min
-  120/237 done, 18.3 min
-  140/237 done, 21.8 min
-  160/237 done, 24.5 min
-  180/237 done, 27.7 min
-  200/237 done, 30.5 min
-  220/237 done, 33.7 min
-  237/237 done, 35.7 min
+  20/247 done, 4.0 min
+  40/247 done, 7.6 min
+  60/247 done, 9.9 min
+  80/247 done, 13.1 min
+  100/247 done, 16.3 min
+  120/247 done, 19.5 min
+  140/247 done, 22.7 min
+  160/247 done, 25.5 min
+  180/247 done, 29.0 min
+  200/247 done, 32.3 min
+  220/247 done, 35.3 min
+  240/247 done, 38.1 min
+  247/247 done, 39.2 min
 
-  completed group sizes [64, 65]; split halves are half of each. The real baseline's halves are half of its cohort, so compare at the sizes printed.
+  completed group sizes [71, 72, 73]; split halves are half of each. The real baseline's halves are half of its cohort, so compare at the sizes printed.
 
   measure                    rep 0     rep 1     rep 2    range  split95
-  Time in range, %           78.61     78.16     78.69     0.53     4.35
-  Time below 70, %            2.78      3.72      3.62     0.94     1.68
-  Time below 54, %            0.78      1.05      1.04     0.27     0.63
-  Time above 180, %          16.94     17.24     17.37     0.43     4.19
-  Mean glucose, mg/dL       143.96    143.38    142.82     1.14     4.64
-  Variability, CV %          35.28     36.96     34.73     2.23     3.05
+  Time in range, %           82.09     79.87     81.64     2.22     3.55
+  Time below 70, %            2.59      3.86      2.96     1.26     1.21
+  Time below 54, %            0.77      1.17      0.91     0.40     0.53
+  Time above 180, %          14.88     15.70     14.29     1.41     3.42
+  Mean glucose, mg/dL       141.68    141.09    138.54     3.13     4.10
+  Variability, CV %          31.29     34.15     31.72     2.85     2.40
 
 wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/cohort_replicates.json

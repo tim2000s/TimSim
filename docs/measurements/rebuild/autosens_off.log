@@ -6,6 +6,26 @@ cohort: 40 subjects, DCLP3 closed loop, age matched
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
   adolescent#016: done (1/40)
   adolescent#023: done (2/40)
   adolescent#043: done (3/40)
@@ -47,26 +67,26 @@ cohort: 40 subjects, DCLP3 closed loop, age matched
   adult#288: done (39/40)
   adult#291: done (40/40)
 
-oref0 SMB on TimSim, 24/40 completed, 49.7 U/day
+oref0 SMB on TimSim, 31/40 completed, 53.2 U/day
 
                                     as the sensor read it        truth
-  mean_mgdl                                        133.21       132.51
-  time_in_range                                     80.42        81.69
-  below_70                                           5.62         4.92
-  below_54                                           2.04         1.76
-  above_180                                         13.96        13.39
-  above_250                                          3.57         3.42
-  tir_sd_between_subjects                            6.97         7.27
-  below_70_sd_between_subjects                       3.56         3.75
+  mean_mgdl                                        128.33       127.66
+  time_in_range                                     83.58        85.11
+  below_70                                           5.48         4.68
+  below_54                                           1.91         1.53
+  above_180                                         10.95        10.21
+  above_250                                          1.99         1.89
+  tir_sd_between_subjects                            5.58         5.63
+  below_70_sd_between_subjects                       2.82         3.01
 
 what the algorithm did
-  smb_pct                  37.149
-  smb_mean_u               0.535
-  dose_mean_u              0.204
-  zero_temp_pct            43.338
-  temp_issued_pct          78.566
-  eventual_bg_median       119.588
-  carbs_required_pct       2.637
+  smb_pct                  35.614
+  smb_mean_u               0.528
+  dose_mean_u              0.192
+  zero_temp_pct            44.975
+  temp_issued_pct          80.559
+  eventual_bg_median       118.612
+  carbs_required_pct       2.182
   autosens_median          1.000
   autosens_min             1.000
   autosens_max             1.000

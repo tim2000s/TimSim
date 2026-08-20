@@ -67,8 +67,12 @@ stage titrate_replicates "" "$PY" - <<'INNER'
 import json, os, subprocess, sys
 sys.path.insert(0, os.environ["PYTHONPATH"].split(":")[0])
 from timsim.therapy import titrate
+# The plan moved to its own file when `--plan-only` was found to overwrite the results it was
+# supposed to precede. Reading the old path here returned a results file with no
+# `need_titration` key, so this stage titrated nobody and said so in a line that looks the same
+# as having nothing to do.
 plan = json.load(open(os.path.join(os.environ["PYTHONPATH"].split(":")[0],
-                                   "docs", "measurements", "cohort_replicates.json")))
+                                   "docs", "measurements", "cohort_replicates_plan.json")))
 todo = [s for s in plan.get("need_titration", []) if s not in set(titrate.titrated_subjects())]
 print(f"{len(todo)} replicate subjects still need titrating")
 if todo:

@@ -2,36 +2,36 @@
   import pkg_resources
 
 ============================================================================================
-dclp3 under control-iq, paired over 65 subjects, 67 real people
+dclp3 under control-iq, paired over 71 subjects, 67 real people
   Measure                          bare  layered     real   gap bare   gap lay   closed
-  Time in range 70-180, %         91.72    78.61    71.29      +0.74     +0.27    +0.64
-  Time below 70, %                 1.61     2.78     1.36      +0.11     +0.62    -4.62
-  Time below 54, %                 0.14     0.78     0.20      -0.16     +1.42    -7.65
-  Time above 180, %                6.03    16.94    26.87      -0.73     -0.35    +0.52
-  Mean sensor glucose, mg/dL     129.71   143.96   155.45      -0.66     -0.30    +0.55
-  Variability, CV %               24.81    35.28    33.37      -0.78     +0.17    +0.78
+  Time in range 70-180, %         91.36    82.09    71.29      +0.73     +0.39    +0.46
+  Time below 70, %                 1.61     2.59     1.36      +0.11     +0.54    -3.88
+  Time below 54, %                 0.16     0.77     0.20      -0.10     +1.39   -12.45
+  Time above 180, %                6.47    14.88    26.87      -0.71     -0.42    +0.41
+  Mean sensor glucose, mg/dL     129.96   141.68   155.45      -0.65     -0.35    +0.46
+  Variability, CV %               24.98    31.29    33.37      -0.76     -0.19    +0.75
   'near' means the bare model started within 0.1 spreads, so no fraction is reported
 
 ============================================================================================
-dclp3 under oref, paired over 59 subjects, 67 real people
+dclp3 under oref, paired over 65 subjects, 67 real people
   Measure                          bare  layered     real   gap bare   gap lay   closed
-  Time in range 70-180, %         89.48    81.56    71.29      +0.66     +0.37    +0.44
-  Time below 70, %                 4.19     4.14     1.36      +1.24     +1.21    +0.02
-  Time below 54, %                 0.48     1.24     0.20      +0.69     +2.54    -2.70
-  Time above 180, %                5.80    14.09    26.87      -0.74     -0.45    +0.39
-  Mean sensor glucose, mg/dL     121.34   135.74   155.45      -0.88     -0.51    +0.42
-  Variability, CV %               28.46    36.25    33.37      -0.44     +0.26    +0.41
+  Time in range 70-180, %         87.30    82.95    71.29      +0.58     +0.42    +0.27
+  Time below 70, %                 4.84     3.50     1.36      +1.52     +0.93    +0.39
+  Time below 54, %                 0.78     1.17     0.20      +1.42     +2.36    -0.67
+  Time above 180, %                6.29    10.73    26.87      -0.72     -0.57    +0.22
+  Mean sensor glucose, mg/dL     121.44   130.18   155.45      -0.87     -0.65    +0.26
+  Variability, CV %               29.61    33.45    33.37      -0.34     +0.01    +0.98
   'near' means the bare model started within 0.1 spreads, so no fraction is reported
 
 ============================================================================================
-commons under oref, paired over 45 subjects, 77 real people
+commons under oref, paired over 48 subjects, 77 real people
   Measure                          bare  layered     real   gap bare   gap lay   closed
-  Time in range 70-180, %         91.39    82.16    80.05      +0.50     +0.09    +0.81
-  Time below 70, %                 2.59     4.07     2.72      -0.02     +0.23     near
-  Time below 54, %                 0.26     1.23     0.39      -0.07     +0.48     near
-  Time above 180, %                5.02    13.41    15.06      -0.41     -0.07    +0.84
-  Mean sensor glucose, mg/dL     121.44   135.74   134.90      -0.34     +0.02    +0.94
-  Variability, CV %               26.90    36.25    33.45      -0.55     +0.24    +0.57
+  Time in range 70-180, %         90.41    86.25    80.05      +0.45     +0.27    +0.40
+  Time below 70, %                 2.19     3.37     2.72      -0.09     +0.11     near
+  Time below 54, %                 0.26     0.85     0.39      -0.07     +0.26     near
+  Time above 180, %                6.37    10.16    15.06      -0.36     -0.20    +0.44
+  Mean sensor glucose, mg/dL     121.37   131.62   134.90      -0.35     -0.08    +0.76
+  Variability, CV %               27.24    32.45    33.45      -0.52     -0.08    +0.84
   'near' means the bare model started within 0.1 spreads, so no fraction is reported
 close_it/oref: no per-person reference, skipped
 

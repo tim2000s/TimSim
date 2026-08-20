@@ -464,15 +464,28 @@ per-subject coverage and makes the virtual subjects less like real people. Both 
 and neither cancels the other. The likely reason is that the matched cohort brings in
 adolescents, whose hypoglycaemia here is more extreme than any trial participant's.
 
-The spread is the more useful part, because it is wrong in both directions at once:
+The spread is the more useful part, because it is wrong in both directions at once. The figures
+below were computed by hand and pooled across pairings, and both of those turned out to matter.
+`examples/spread_ratio.py` now recomputes them per pairing into
+[spread_ratio.json](measurements/spread_ratio.json), with intervals from resampling both sides:
 
-| Statistic | Simulated spread against real, all 100 |
-|---|---|
-| Time below 54 | 2.74 times too wide |
-| Variability | 1.67 times too wide |
-| Time below 70 | 1.38 times too wide |
-| Mean glucose | 0.59 times too narrow |
-| Time in range, above 180, above 250 | 0.76 to 0.81, close |
+| Statistic | DCLP3, Control-IQ | DCLP3, oref0 | Commons, oref0 | Pooled figure previously quoted |
+|---|---|---|---|---|
+| Time below 54 | 4.75 [3.34, 6.73] | 5.11 [3.77, 6.99] | 0.91 [0.63, 1.47] | 2.74 too wide |
+| Time below 70 | 1.92 [1.50, 2.47] | 2.30 [1.74, 3.02] | 0.84 [0.64, 1.12] | 1.38 too wide |
+| Variability | 1.39 [1.14, 1.69] | 1.32 [1.08, 1.60] | 0.98 [0.73, 1.27] | 1.67 too wide |
+| Time in range | 0.73 [0.59, 0.88] | 0.68 [0.56, 0.83] | 0.54 [0.37, 0.83] | 0.76 to 0.81 |
+| Time above 180 | 0.68 [0.55, 0.82] | 0.64 [0.51, 0.79] | 0.46 [0.32, 0.71] | 0.76 to 0.81 |
+| Mean glucose | 0.64 [0.51, 0.79] | 0.75 [0.59, 0.93] | 0.41 [0.29, 0.66] | 0.59 too narrow |
+
+Pooling hid the largest effect in the table. The hypoglycaemia spread is 4.75 to 5.11 times the
+trial's and 0.91 of the do-it-yourself population's, because the trial participants barely go
+below 54 mg/dL and their between-participant standard deviation there is 0.20 percentage points
+against 0.96 in the Commons. A single number for "the" hypoglycaemia spread does not exist.
+
+Excluding the runs that stopped early, which the table above does, understates it further.
+Including them at the duration each survived gives 7.29 and 8.80 against the trial and 1.87
+against the Commons, because the runs that stop are the ones that went furthest low.
 
 So the population is too alike in where its glucose sits and far too different in how much
 hypoglycaemia it has. A narrow spread of mean glucose makes a bench look more decisive than
@@ -518,6 +531,30 @@ correction factor, age and daily basal is 0.35, for carbohydrate ratio against m
 The physiological differences between subjects are largely erased before they reach the
 outcome, because every subject is dosed by settings measured from its own model and a loop
 that corrects towards one target.
+
+The covariance shrinkage in `population/generate.py` is not the cause and cannot be, which was
+tested rather than assumed after it was proposed as one. `examples/covariance_estimator.py`
+writes [covariance_estimator.json](measurements/covariance_estimator.json) and reports three
+things. The estimator returns `(1-a)*S + a*diag(S)`, so every diagonal entry survives at every
+intensity and the marginal spread is the sample one regardless: measured, the generated
+marginals are 0.83 to 1.07 of the published ones with a median of 0.92 to 0.94, the shortfall
+being the 2.5-sigma truncation and the screen. The correlation between basal production and
+insulin sensitivity, which the shrinkage halves from a published +0.773 to +0.386 in adults,
+falls inside the 95% Fisher interval of the published estimate at +0.279 to +0.943, and the
+same holds in the other two classes; that correlation is +0.773, +0.442 and -0.321 across
+adults, adolescents and children, and +0.287 pooling all thirty with class means removed. And
+the intensity minimising expected squared error towards a diagonal target is 0.422, 0.483 and
+0.893 against the 0.50 in use, so restoring correlations would move away from the optimum in
+every class. Of 406 pairwise correlations per class, 8 to 11% clear the n=10 critical value
+against 5% expected by chance.
+
+The narrow spread is therefore inherited from thirty published people whose fasting glucose
+lies between 133.4 and 152.8 mg/dL, and from what the model does not represent at all. Widening
+the marginals to reach the trial's 14.2 mg/dL needs a factor near 2.2, which widens the
+hypoglycaemia spread in the same proportion, and that spread already runs at 4.75 to 5.11
+times the trial's.
+[The spread paper](paper/spread_paper.md) puts this beside two populations built by other
+groups, which land at 0.50 to 0.63 and about 0.35 on the same quantity.
 
 That points at a mechanism the package does not have. Real settings are titrated against an
 imperfect history and then left alone, so they diverge from what a person's physiology would
@@ -605,7 +642,9 @@ no different from euglycaemia, so the model is qualitatively right about the sha
 response and wrong about its level by a factor of four.
 
 The spread also shrinks once run-to-run noise is removed, from 2.74 times the trial's to
-2.17, on the same correction applied to mean glucose. It remains the worst-fitting statistic
+2.17, on the same correction applied to mean glucose. Both figures sit on the pooled basis
+that the per-pairing table above supersedes, so what survives from them is the fifth they
+differ by rather than either value. It remains the worst-fitting statistic
 and it remains unexplained. Since no parameter predicts it and every source of variation
 widens it, the likeliest reading is that it is emergent: a subject goes low when a meal bolus
 overshoots, which depends on the joint behaviour of carbohydrate ratio, meal size and insulin
@@ -629,6 +668,13 @@ the subject's name. At a coefficient of variation of 0.30, across all 100 subjec
 | Spread ratio, variability | 1.63 | 1.90 | 1.00 |
 | Real participants covered | 91.0% | 94.0% | |
 | Virtual subjects resembling a real one | 73.5% | 64.9% | |
+
+The spread-ratio rows here and in the settings table below are on the pooled basis that the
+per-pairing table earlier in this document supersedes. Both columns were computed the same
+way, so the movement between them is what the mechanism did; the levels are not comparable
+with the per-pairing figures, which put the same hypoglycaemia spread at 4.75 to 5.11 against
+the trial and 0.91 against the Commons. Recomputing these two tables per pairing needs the
+with and without arms rerunning.
 
 It is the best lever found and the only one that has improved per-subject coverage. It also
 takes the share of plausible virtual subjects down by 8.6 points and widens the spread of

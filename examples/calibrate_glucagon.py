@@ -24,6 +24,7 @@ MEASUREMENTS = os.path.join(REPO, "docs", "measurements")
 import json
 import numpy as np
 
+from timsim import provenance
 from timsim.patient import glucagon as G
 
 OUT = os.path.join(MEASUREMENTS, "glucagon_calibration.json")
@@ -130,7 +131,8 @@ def main():
     if refuted and not under_a_tenth:
         print(f"  It contributes a real minority, {best['share']:.1%}, and cannot carry the rest.")
 
-    json.dump({"fitted_sigma": sigma, "responsivity": top,
+    json.dump({"provenance": provenance.stamp(),
+               "fitted_sigma": sigma, "responsivity": top,
                "concentration_pmol_l": conc - G.BASAL_PMOL_L,
                "target_pmol_l": G.T1D_RESPONSE_PMOL_L,
                "rows": rows, "best": best,

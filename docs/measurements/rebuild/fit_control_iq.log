@@ -3,7 +3,7 @@
 DCLP3 closed loop: 67 calibration participants, 45 held out
   calibration TIR 71.29  mean 155.4
   held out    TIR 73.76  mean 154.7
-cohort matched to the calibration half: 18 titrated subjects, match distance 0.097
+cohort matched to the calibration half: 19 titrated subjects, match distance 0.097
 
 fitting 12 configurations on the calibration half
 
@@ -27,7 +27,7 @@ fitting 12 configurations on the calibration half
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
-   1/12 basal x2.0 corr 3U iob 4U  -> d=0.109  TIR 77.8  mean 146.1  16/18 completed  [5.7 min]
+   1/12 basal x2.0 corr 3U iob 4U  -> d=0.293  TIR 80.0  mean 144.6  19/19 completed  [3.6 min]
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
@@ -48,7 +48,7 @@ fitting 12 configurations on the calibration half
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
-   2/12 basal x2.0 corr 3U iob 8U  -> d=0.295  TIR 76.8  mean 147.2  15/18 completed  [11.3 min]
+   2/12 basal x2.0 corr 3U iob 8U  -> d=0.645  TIR 79.5  mean 145.4  19/19 completed  [7.1 min]
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
@@ -69,7 +69,7 @@ fitting 12 configurations on the calibration half
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
-   3/12 basal x2.0 corr 6U iob 4U  -> d=0.151  TIR 77.8  mean 146.1  16/18 completed  [16.1 min]
+   3/12 basal x2.0 corr 6U iob 4U  -> d=0.296  TIR 80.3  mean 144.1  19/19 completed  [10.7 min]
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
@@ -90,7 +90,7 @@ fitting 12 configurations on the calibration half
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
-   4/12 basal x2.0 corr 6U iob 8U  -> d=0.244  TIR 78.8  mean 146.1  14/18 completed  [21.0 min]
+   4/12 basal x2.0 corr 6U iob 8U  -> d=0.656  TIR 79.5  mean 143.9  19/19 completed  [14.2 min]
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
@@ -111,7 +111,7 @@ fitting 12 configurations on the calibration half
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
-   5/12 basal x3.0 corr 3U iob 4U  -> d=1.415  TIR 78.0  mean 141.8  14/18 completed  [25.8 min]
+   5/12 basal x3.0 corr 3U iob 4U  -> d=1.815  TIR 80.8  mean 138.7  16/19 completed  [17.6 min]
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
@@ -132,7 +132,7 @@ fitting 12 configurations on the calibration half
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
-   6/12 basal x3.0 corr 3U iob 8U  -> d=1.779  TIR 77.8  mean 143.1  15/18 completed  [30.8 min]
+   6/12 basal x3.0 corr 3U iob 8U  -> d=1.704  TIR 80.0  mean 138.2  16/19 completed  [21.0 min]
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
@@ -153,7 +153,7 @@ fitting 12 configurations on the calibration half
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
-   7/12 basal x3.0 corr 6U iob 4U  -> d=1.657  TIR 79.0  mean 141.9  15/18 completed  [35.7 min]
+   7/12 basal x3.0 corr 6U iob 4U  -> d=2.026  TIR 81.3  mean 138.7  17/19 completed  [24.5 min]
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
@@ -174,7 +174,7 @@ fitting 12 configurations on the calibration half
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
-   8/12 basal x3.0 corr 6U iob 8U  -> d=1.886  TIR 78.8  mean 143.1  15/18 completed  [40.3 min]
+   8/12 basal x3.0 corr 6U iob 8U  -> d=1.025  TIR 82.2  mean 137.5  16/19 completed  [28.0 min]
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
@@ -195,7 +195,7 @@ fitting 12 configurations on the calibration half
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
-   9/12 basal x4.0 corr 3U iob 4U  -> d=3.703  TIR 77.9  mean 138.4  12/18 completed  [45.0 min]
+   9/12 basal x4.0 corr 3U iob 4U  -> d=4.976  TIR 78.9  mean 136.1  16/19 completed  [31.3 min]
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
@@ -216,7 +216,7 @@ fitting 12 configurations on the calibration half
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
-  10/12 basal x4.0 corr 3U iob 8U  -> d=1.642  TIR 79.7  mean 137.6  11/18 completed  [49.4 min]
+  10/12 basal x4.0 corr 3U iob 8U  -> d=3.552  TIR 79.1  mean 136.3  17/19 completed  [34.8 min]
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
@@ -237,7 +237,7 @@ fitting 12 configurations on the calibration half
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
-  11/12 basal x4.0 corr 6U iob 4U  -> d=2.716  TIR 77.9  mean 138.4  12/18 completed  [54.1 min]
+  11/12 basal x4.0 corr 6U iob 4U  -> d=3.233  TIR 79.3  mean 137.8  17/19 completed  [38.3 min]
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
@@ -258,9 +258,9 @@ fitting 12 configurations on the calibration half
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
-  12/12 basal x4.0 corr 6U iob 8U  -> d=3.325  TIR 81.6  mean 137.6  13/18 completed  [58.9 min]
+  12/12 basal x4.0 corr 6U iob 8U  -> d=3.762  TIR 78.0  mean 137.0  15/19 completed  [41.7 min]
 
-best on the calibration half: {'max_basal_scale': 2.0, 'max_correction_u': 3.0, 'max_iob_u': 4.0}  d=0.109
+best on the calibration half: {'max_basal_scale': 2.0, 'max_correction_u': 3.0, 'max_iob_u': 4.0}  d=0.293
 
 running the fitted configuration against the held-out half
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
@@ -283,15 +283,15 @@ running the fitted configuration against the held-out half
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
-  fitted, held out:      d=0.180
-  fitted, calibration:   d=0.109
+  fitted, held out:      d=0.417
+  fitted, calibration:   d=0.293
 
   measure          sim  held out  gap/spread
-  tir            77.76     73.76       +0.13
-  tbr70           2.17      1.23       +0.42
-  tbr54           0.45      0.14       +0.88
-  tar180         20.10     25.71       -0.18
-  mean          146.11    154.67       -0.19
-  cv             34.29     32.14       +0.22
+  tir            80.05     73.76       +0.21
+  tbr70           3.11      1.23       +0.83
+  tbr54           0.58      0.14       +1.28
+  tar180         16.84     25.71       -0.28
+  mean          144.64    154.67       -0.22
+  cv             32.49     32.14       +0.04
 
 wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/control_iq_fit.json

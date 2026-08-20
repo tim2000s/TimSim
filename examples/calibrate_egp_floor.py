@@ -25,6 +25,7 @@ from concurrent.futures import ProcessPoolExecutor
 
 from examples.hypoglycaemic_clamp import clamp, HUMAN_EGP
 from examples.calibrate_hypo_defence import PLATEAU_TOLERANCE
+from timsim import provenance
 from timsim.population import names
 from timsim.patient import varying as V
 
@@ -93,7 +94,8 @@ def main(n=110, workers=10):
               f"({'under ten' if few else 'still above ten'}), median {p['median']:.2f} "
               f"({'inside' if inside else 'OUTSIDE'} the human band)"
               f"{'   <- both met' if few and inside else ''}")
-    json.dump({"floors": rows, "human": list(HUMAN_EGP)}, open(OUT, "w"), indent=1)
+    json.dump({"floors": rows, "human": list(HUMAN_EGP),
+               "provenance": provenance.stamp()}, open(OUT, "w"), indent=1)
     print(f"\nwritten to {OUT}")
 
 

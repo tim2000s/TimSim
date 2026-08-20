@@ -1,18 +1,19 @@
-"""Do the production floor and the rescue absorption scale move the outcome, not just the clamp?
+"""Does the rescue absorption scale move the outcome, not just the clamp?
 
 The clamp is where the defect was found and the matrix is where it matters. A subject producing
 0.3 mg/kg/min instead of nothing at a clamp may still fall just as far during a spontaneous low,
 because the insulin driving one is about half the clamp's.
 
-Three arms, paired on the subject, on the cohorts the bench matrix uses:
+Two arms, paired on the subject, on the cohorts the bench matrix uses:
 
     base        the shipped configuration
-    floor       plus the production floor
-    floor+bio   plus the rescue absorption scale, on top of the floor
+    bio         plus the rescue absorption scale
 
-The order is fixed by `docs/DESIGN_HYPOGLYCAEMIA.md` and it is not arbitrary. The floor changes
-how deep lows get, which changes how much rescue carbohydrate is eaten, which is what the second
-mechanism acts on, so the second has to be measured against a bench that already has the first.
+It was designed for three. `docs/DESIGN_HYPOGLYCAEMIA.md` put a production floor first, on the
+reasoning that the floor changes how deep lows get and so changes how much rescue carbohydrate
+is eaten, which is what the second mechanism acts on. The floor was refuted against the criteria
+fixed before it was built and was removed, so that ordering no longer applies and the floor is
+held at zero in both arms.
 
     python examples/hypoglycaemia_arms.py
 """

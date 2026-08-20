@@ -13,6 +13,7 @@ import json
 import os
 import numpy as np
 from concurrent.futures import ProcessPoolExecutor
+from timsim import provenance
 from timsim.simulation.run import simulate
 from timsim.analysis import signatures
 from timsim.therapy import titrate
@@ -68,7 +69,8 @@ if __name__ == "__main__":
     jobs = [(n, a) for a in ARMS for n in SUBJECTS]
     with ProcessPoolExecutor(max_workers=6) as ex:
         rows = list(ex.map(one, jobs))
-    json.dump(rows, open(OUT, "w"), indent=1)
+    json.dump({"rows": rows, "provenance": provenance.stamp()},
+              open(OUT, "w"), indent=1)
     idx = {(r["arm"], r["name"]): r for r in rows}
     keep = sorted({n for _, n in idx if idx.get(("padova", n), {}).get("completed")
                    and idx.get(("timsim", n), {}).get("completed")})

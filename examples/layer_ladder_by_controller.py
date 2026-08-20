@@ -10,7 +10,7 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from timsim import signatures, simulate                          # noqa: E402
-from timsim import seeds
+from timsim import provenance, seeds
 from timsim.population import names                              # noqa: E402
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -85,14 +85,40 @@ def one(job):
     return {"name": name, "completed": bool(r.completed), "values": values}
 
 
+def _reusable(path, now):
+    """Whether a rung already on disk was produced by the experiment running now.
+
+    Resuming matters here because the ladder is twenty rungs and hours long, so a rung that
+    exists is not recomputed. Skipping on the file's existence alone is what made a rebuild on
+    19 August 2026 report the ladder complete in under a minute from rungs measured the
+    previous day, under settings that had since been retitrated and an absorption scale that
+    had since changed. The rungs carried no stamp, so nothing could detect it. A rung is now
+    reused only when its stamp binds against the current one on every field that identifies
+    the experiment, and an unstamped rung never binds.
+    """
+    if not os.path.exists(path):
+        return False
+    try:
+        stored = json.load(open(path)).get("provenance")
+    except (ValueError, OSError):
+        return False
+    if not stored:
+        return False
+    return all(stored.get(k) == now.get(k) for k in provenance.BINDING)
+
+
 def run(subjects, days, seed, workers):
     os.makedirs(OUT, exist_ok=True)
+    now = provenance.stamp()
     for driver in DRIVERS:
         for key, label, layers in RUNGS:
             path = os.path.join(OUT, f"{driver}__{key}.json")
-            if os.path.exists(path):
+            if _reusable(path, now):
                 print(f"  {driver} {label}: already done", flush=True)
                 continue
+            if os.path.exists(path):
+                print(f"  {driver} {label}: on disk but from another experiment, rerunning",
+                      flush=True)
             # One seed for the whole rung. The subject name is folded into the random
             # stream inside `simulate`, so offsetting by position would only make a
             # subject's month depend on where it sat in `subjects`.
@@ -102,7 +128,7 @@ def run(subjects, days, seed, workers):
             json.dump({"driver": driver, "rung": key, "label": label,
                        "layers": list(layers), "subjects": rows,
                        "completed": int(sum(r["completed"] for r in rows)),
-                       "n": len(rows)}, open(path, "w"), indent=1)
+                       "n": len(rows), "provenance": now}, open(path, "w"), indent=1)
             print(f"  {driver} {label}: done, "
                   f"{sum(r['completed'] for r in rows)}/{len(rows)} completed", flush=True)
 

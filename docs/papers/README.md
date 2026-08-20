@@ -32,8 +32,8 @@ in [ISSUES.md](../ISSUES.md) records what moved and why.
 | 15 | What S2008 misses | Where does the model depart from people? | [PADOVA_LIMITS.md](../PADOVA_LIMITS.md) |
 | 16 | Two mechanisms and what refuted one | Can counterregulation and exercise be grounded? | `glucagon_calibration.json`, `exercise_calibration.json`, `exercise_arm.json` |
 
-Two results are papers rather than studies, because each carries a claim against real
-populations rather than a property of the package.
+Four results are papers rather than studies, because each carries a claim against real
+populations or against the published literature rather than a property of the package.
 
 [The validation paper](../paper/validation_paper.md) asks whether the layers move the bare model
 towards a real closed-loop cohort, measured against DCLP3 and the OpenAPS Data Commons in units
@@ -45,6 +45,21 @@ against the CLOSE-IT trial. `meal_response.json`, `real_meals.json` and the anno
 `bench_matrix.json` supply it. Study 07, on meal peak timing, is folded into it: the finding that
 the peak arrives inside the real range once the two clocks are started at the same event belongs
 with the rest of the meal work rather than on its own.
+
+[The identifiability paper](../paper/identifiability_paper.md) asks whether the population could
+be fitted to real people instead of resampled from thirty published ones, and answers that
+neither dataset supports it. It joins a review of every published identification of UVA/Padova
+and of comparable models to an audit of what the S2008 implementation leaves free and of what
+DCLP3 and the Commons contain. Nothing in it is measured by simulation, so none of its figures
+move with a rebuild.
+
+[The spread paper](../paper/spread_paper.md) asks why virtual populations carry less variation
+between subjects than real cohorts do, and tests the covariance shrinkage that has been blamed
+for it. The charge is refuted:
+[covariance_estimator.json](../measurements/covariance_estimator.json) supplies that half, and
+`examples/covariance_estimator.py` is parameter arithmetic that runs beside a rebuild. Its
+figures describing this package's own population come from [FIDELITY.md](../FIDELITY.md) and move
+with one.
 
 [DESIGN_COUNTERREGULATION_AND_EXERCISE.md](../DESIGN_COUNTERREGULATION_AND_EXERCISE.md) holds
 study 16 in full: what each mechanism had to do to survive, fixed before either was built, and

@@ -41,6 +41,14 @@ export COHORT_N
 
 say () { printf '%s  %s\n' "$(date -u +%H:%M:%SZ)" "$*" | tee -a "$LOGS/pipeline.log"; }
 
+# The log is appended to across runs, so the summary at the end has to know where this one
+# begins. Without that it greps the whole file, re-reports every historical failure as though
+# it had just happened, and writes those lines back into the file it grepped, so each run
+# nests the previous run's failure inside its own. A clean rebuild on 19 August 2026 signed
+# off by reporting a failure from a run that had ended eleven hours earlier.
+LOG_START=$(wc -l < "$LOGS/pipeline.log" 2>/dev/null || echo 0)
+this_run () { tail -n "+$((LOG_START + 1))" "$LOGS/pipeline.log" 2>/dev/null; }
+
 stage () {                     # stage <label> <command...>
   local label="$1"; shift
   local t0; t0=$(date +%s)
@@ -74,6 +82,27 @@ for f in "$M"/*.json "$M"/*.txt; do
 done
 [ -e "$PARAMS/titrated_settings.json" ] && mv "$PARAMS/titrated_settings.json" \
   "$ARCHIVE/titrated_settings_superseded.json"
+
+# The ladder does not write into "$M". It writes one file per rung into docs/ladder and skips
+# any rung already there, so a loop over "$M" leaves twenty stale rungs in place and the stage
+# reports complete in under a minute from measurements made under the previous configuration.
+# That happened on 19 August 2026. The rungs are now stamped and the skip is guarded, so this
+# is the second of two defences rather than the only one.
+if [ -d "$REPO/docs/ladder" ] && [ -n "$(ls -A "$REPO/docs/ladder" 2>/dev/null)" ]; then
+  mkdir -p "$ARCHIVE/ladder"
+  mv "$REPO"/docs/ladder/*.json "$ARCHIVE/ladder/" 2>/dev/null
+  say "archived $(ls -1 "$ARCHIVE/ladder" | wc -l | tr -d ' ') stale ladder rungs"
+fi
+
+# The arbiter has the same problem and one more: it was not in this script at all, so its six
+# configurations were four days old and measured on a population that had since been
+# regenerated, while `--table` read them against each other and printed a complete comparison.
+# Its rows are now stamped and refused when they do not bind, and it runs below.
+if ls "$REPO"/docs/arbiter_* >/dev/null 2>&1; then
+  mkdir -p "$ARCHIVE/arbiter"
+  mv "$REPO"/docs/arbiter_* "$ARCHIVE/arbiter/" 2>/dev/null
+  say "archived $(ls -1 "$ARCHIVE/arbiter" | wc -l | tr -d ' ') stale arbiter outputs"
+fi
 say "archived previous outputs to $(basename "$ARCHIVE"); titration store cleared"
 
 # 2. The real-data references, then the cohorts, then titration, in that order because each
@@ -99,7 +128,7 @@ import json, os, subprocess, sys
 repo = os.environ["PYTHONPATH"].split(":")[0]
 sys.path.insert(0, repo)
 from timsim.therapy import titrate
-plan = json.load(open(os.path.join(repo, "docs", "measurements", "cohort_replicates.json")))
+plan = json.load(open(os.path.join(repo, "docs", "measurements", "cohort_replicates_plan.json")))
 todo = [s for s in plan.get("need_titration", []) if s not in set(titrate.titrated_subjects())]
 print(f"{len(todo)} replicate subjects still need titrating")
 if todo:
@@ -156,6 +185,19 @@ stage autosens_on "$PY" examples/oref_cohort.py --subjects 40 --days 28 \
 stage autosens_off "$PY" examples/oref_cohort.py --subjects 40 --days 28 \
       --workers "$WORKERS" --pin-autosens 1.0 --out "$M/oref_autosens_off.json"
 
+# The classifier arbiter, which `docs/FIDELITY.md` reports a whole section from. Six full
+# cohort runs at about half an hour each, so it goes last and is the one stage worth killing if
+# the rest is needed sooner. It was omitted from this script until 19 August 2026, which is how
+# its outputs came to be four days older than the population they were read against.
+stage arbiter "$PY" examples/configuration_arbiter.py --subjects 34
+stage arbiter_table "$PY" examples/configuration_arbiter.py --table
+
 say "=== finished ==="
-grep -c '^.*OK ' "$LOGS/pipeline.log" 2>/dev/null | xargs -I{} say "{} stages succeeded"
-grep 'FAILED' "$LOGS/pipeline.log" 2>/dev/null | while read -r l; do say "  $l"; done
+this_run | grep -c 'OK ' | xargs -I{} say "{} stages succeeded in this run"
+failures=$(this_run | grep -c 'FAILED ')
+if [ "$failures" -gt 0 ]; then
+  say "$failures stages FAILED in this run:"
+  this_run | grep 'FAILED ' | cut -c1-160 | while read -r l; do say "  $l"; done
+else
+  say "no stage failed in this run"
+fi

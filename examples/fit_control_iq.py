@@ -39,7 +39,7 @@ from timsim.population import cohort
 from timsim.therapy import titrate
 from timsim.validation import dclp3
 
-from timsim import seeds
+from timsim import provenance, seeds
 
 DAYS, SEED = 28, seeds.BENCH
 LAYERS = ("physiology", "behaviour", "sensor", "site")
@@ -191,6 +191,7 @@ def main():
         print(f"  {m:10}{sim[m]:>10.2f}{held_med[m]:>10.2f}{gaps_held[m]:>+12.2f}")
 
     json.dump({"population": titrate.population_fingerprint(),
+               "provenance": provenance.stamp(),
                "cohort": names, "grid": {k: list(v) for k, v in GRID.items()},
                "calibration": {"n": len(cal_out), "median": cal_med, "spread": cal_spread},
                "held_out": {"n": len(held_out), "median": held_med, "spread": held_spread},

@@ -3,122 +3,122 @@
 population 704cfac086df54ba, 28 days, seed 101
 
 ====================================================================================================
-dclp3  under  control-iq   (81 subjects)
+dclp3  under  control-iq   (84 subjects)
   arm               completed   terminations
-  bare               81/81      none
-  layered_always     65/81      adolescent#004:hypo, adolescent#006:hypo, adolescent#011:hyper, adolescent#027:hypo, adolescent#067:hypo, adolescent#079:hypo, adolescent#125:hyper, adult#004:hyper, adult#110:hypo, adult#139:hypo, adult#152:hypo, adult#209:hypo, adult#213:hypo, adult#221:hypo, adult#252:hypo, adult#259:hypo
-  layered_some       65/81      adolescent#004:hypo, adolescent#006:hypo, adolescent#023:hypo, adolescent#079:hypo, adolescent#088:hypo, adolescent#107:hypo, adult#004:hyper, adult#005:hyper, adult#038:hyper, adult#108:hyper, adult#152:hypo, adult#160:hypo, adult#209:hypo, adult#213:hypo, adult#252:hypo, adult#293:hypo
-  layered_never      61/81      adolescent#004:hypo, adolescent#006:hypo, adolescent#019:hyper, adolescent#023:hypo, adolescent#067:hypo, adolescent#079:hypo, adolescent#080:hypo, adolescent#102:hyper, adolescent#135:hyper, adult#066:hyper, adult#108:hypo, adult#110:hypo, adult#144:hyper, adult#157:hyper, adult#209:hypo, adult#212:hypo, adult#218:hyper, adult#221:hypo, adult#259:hypo, adult#293:hyper
+  bare               84/84      none
+  layered_always     73/84      adolescent#003:hyper, adolescent#004:hypo, adolescent#006:hypo, adolescent#027:hyper, adolescent#079:hypo, adolescent#096:hypo, adolescent#139:hyper, adult#004:hyper, adult#082:hypo, adult#213:hypo, adult#222:hypo
+  layered_some       71/84      adolescent#004:hypo, adolescent#006:hypo, adolescent#067:hypo, adolescent#096:hypo, adult#070:hypo, adult#082:hypo, adult#110:hypo, adult#139:hypo, adult#144:hypo, adult#152:hypo, adult#157:hypo, adult#250:hypo, adult#252:hypo
+  layered_never      72/84      adolescent#004:hypo, adolescent#006:hypo, adolescent#027:hyper, adolescent#067:hypo, adolescent#096:hypo, adolescent#107:hypo, adult#004:hyper, adult#011:hyper, adult#082:hypo, adult#094:hyper, adult#139:hypo, adult#222:hypo
+
+  bare S2008 against the layered bench   paired over 71 subjects
+  Measure                                 bare    layered_some       paired diff        real  gap/spread
+  Time in range 70-180, %                91.36           82.09      -8.16 ±1.73        71.29       +0.39
+  Time below 70, %                        1.61            2.59      +0.35 ±0.79         1.36       +0.54
+  Time below 54, %                        0.16            0.77      +0.31 ±0.34         0.20       +1.39
+  Time above 180, %                       6.47           14.88      +7.81 ±1.31        26.87       -0.42
+  Mean sensor glucose, mg/dL            129.96          141.68     +11.66 ±1.64       155.45       -0.35
+  Variability, CV %                      24.98           31.29      +5.80 ±1.54        33.37       -0.19
+  Insulin, U/day                         43.80           48.23      +5.63 ±1.26 
+  Rescue helpings per 30 d                0.00           42.86     +46.06 ±5.68 
+
+  meal announcement withdrawn   paired over 68 subjects
+  Measure                       layered_always   layered_never       paired diff
+  Time in range 70-180, %                82.76           77.28      -5.33 ±0.86 
+  Time below 70, %                        2.72            2.92      +0.35 ±0.28 
+  Time below 54, %                        0.76            0.85      +0.19 ±0.16 
+  Time above 180, %                      13.99           19.15      +4.98 ±0.71 
+  Mean sensor glucose, mg/dL            140.02          146.09      +6.35 ±0.88 
+  Variability, CV %                      31.80           33.07      +2.30 ±0.70 
+  Insulin, U/day                         48.92           46.99      -3.53 ±0.69 
+  Rescue helpings per 30 d               43.39           45.00      +2.85 ±3.54 
+
+====================================================================================================
+dclp3  under  oref   (84 subjects)
+  arm               completed   terminations
+  bare               82/84      adult#222:hypo, adult#252:hypo
+  layered_always     69/84      adolescent#004:hypo, adolescent#006:hypo, adolescent#011:hyper, adolescent#079:hypo, adolescent#107:hypo, adult#005:hyper, adult#070:hypo, adult#082:hypo, adult#108:hypo, adult#152:hypo, adult#160:hypo, adult#218:hypo, adult#252:hypo, adult#260:hypo, adult#293:hypo
+  layered_some       66/84      adolescent#004:hypo, adolescent#006:hypo, adolescent#027:hypo, adolescent#031:hypo, adolescent#079:hypo, adolescent#096:hypo, adolescent#107:hypo, adult#070:hypo, adult#082:hypo, adult#108:hypo, adult#139:hypo, adult#152:hypo, adult#160:hypo, adult#194:hypo, adult#212:hypo, adult#213:hypo, adult#218:hyper, adult#252:hypo
+  layered_never      74/84      adolescent#004:hypo, adolescent#006:hypo, adolescent#079:hypo, adolescent#107:hyper, adolescent#147:hyper, adult#070:hypo, adult#110:hypo, adult#139:hypo, adult#152:hypo, adult#293:hypo
 
   bare S2008 against the layered bench   paired over 65 subjects
   Measure                                 bare    layered_some       paired diff        real  gap/spread
-  Time in range 70-180, %                91.72           78.61     -11.72 ±1.76        71.29       +0.27
-  Time below 70, %                        1.61            2.78      +0.88 ±0.62         1.36       +0.62
-  Time below 54, %                        0.14            0.78      +0.61 ±0.24         0.20       +1.42
-  Time above 180, %                       6.03           16.94     +10.84 ±1.43        26.87       -0.35
-  Mean sensor glucose, mg/dL            129.71          143.96     +15.41 ±1.75       155.45       -0.30
-  Variability, CV %                      24.81           35.28      +9.50 ±1.55        33.37       +0.17
-  Insulin, U/day                         41.44           49.09      +7.63 ±1.15 
-  Rescue helpings per 30 d                0.00           48.21     +50.84 ±6.54 
+  Time in range 70-180, %                87.30           82.95      -2.41 ±1.68        71.29       +0.42
+  Time below 70, %                        4.84            3.50      -1.91 ±1.03         1.36       +0.93
+  Time below 54, %                        0.78            1.17      -0.50 ±0.50         0.20       +2.36
+  Time above 180, %                       6.29           10.73      +4.31 ±1.30        26.87       -0.57
+  Mean sensor glucose, mg/dL            121.44          130.18      +9.56 ±2.00       155.45       -0.65
+  Variability, CV %                      29.61           33.45      +2.82 ±1.32        33.37       +0.01
+  Insulin, U/day                         46.29           53.63     +10.21 ±1.76 
+  Rescue helpings per 30 d                0.00           54.64     +62.54 ±7.27 
 
-  meal announcement withdrawn   paired over 53 subjects
+  meal announcement withdrawn   paired over 66 subjects
   Measure                       layered_always   layered_never       paired diff
-  Time in range 70-180, %                81.65           74.96      -5.83 ±0.91 
-  Time below 70, %                        2.63            3.31      +0.40 ±0.28 
-  Time below 54, %                        0.81            1.05      +0.27 ±0.15 
-  Time above 180, %                      16.08           20.97      +5.43 ±0.83 
-  Mean sensor glucose, mg/dL            142.70          150.02      +7.11 ±1.05 
-  Variability, CV %                      32.98           35.34      +3.06 ±0.79 
-  Insulin, U/day                         51.88           48.78      -2.69 ±0.71 
-  Rescue helpings per 30 d               46.07           48.21      +3.88 ±3.35 
-
-====================================================================================================
-dclp3  under  oref   (81 subjects)
-  arm               completed   terminations
-  bare               80/81      adult#252:hypo
-  layered_always     55/81      adolescent#004:hypo, adolescent#006:hypo, adolescent#019:hyper, adolescent#023:hypo, adolescent#027:hypo, adolescent#031:hyper, adolescent#079:hypo, adolescent#088:hyper, adolescent#107:hypo, adolescent#142:hyper, adult#004:hyper, adult#082:hypo, adult#102:hypo, adult#108:hyper, adult#139:hypo, adult#152:hyper, adult#157:hyper, adult#160:hypo, adult#201:hyper, adult#209:hypo, adult#212:hypo, adult#213:hypo, adult#250:hypo, adult#252:hypo, adult#276:hyper, adult#293:hypo
-  layered_some       59/81      adolescent#004:hypo, adolescent#006:hypo, adolescent#011:hypo, adolescent#019:hyper, adolescent#023:hypo, adolescent#031:hyper, adolescent#079:hypo, adolescent#107:hypo, adolescent#142:hyper, adolescent#147:hyper, adult#082:hypo, adult#110:hyper, adult#139:hypo, adult#152:hypo, adult#157:hyper, adult#194:hypo, adult#201:hyper, adult#209:hypo, adult#213:hypo, adult#250:hypo, adult#252:hypo, adult#293:hypo
-  layered_never      63/81      adolescent#004:hypo, adolescent#006:hypo, adolescent#011:hyper, adolescent#031:hypo, adolescent#067:hypo, adolescent#079:hypo, adolescent#088:hyper, adolescent#107:hypo, adult#004:hyper, adult#008:hyper, adult#110:hyper, adult#139:hypo, adult#160:hypo, adult#194:hypo, adult#212:hypo, adult#213:hypo, adult#252:hypo, adult#293:hypo
-
-  bare S2008 against the layered bench   paired over 59 subjects
-  Measure                                 bare    layered_some       paired diff        real  gap/spread
-  Time in range 70-180, %                89.48           81.56      -6.84 ±1.64        71.29       +0.37
-  Time below 70, %                        4.19            4.14      -1.12 ±1.11         1.36       +1.21
-  Time below 54, %                        0.48            1.24      -0.12 ±0.54         0.20       +2.54
-  Time above 180, %                       5.80           14.09      +7.96 ±1.16        26.87       -0.45
-  Mean sensor glucose, mg/dL            121.34          135.74     +14.33 ±1.89       155.45       -0.51
-  Variability, CV %                      28.46           36.25      +7.68 ±1.46        33.37       +0.26
-  Insulin, U/day                         45.92           54.98     +11.44 ±1.68 
-  Rescue helpings per 30 d                0.00           65.36     +67.12 ±7.07 
-
-  meal announcement withdrawn   paired over 50 subjects
-  Measure                       layered_always   layered_never       paired diff
-  Time in range 70-180, %                83.51           81.18      -2.04 ±0.74 
-  Time below 70, %                        3.89            3.91      -0.17 ±0.27 
-  Time below 54, %                        1.18            1.12      -0.12 ±0.18 
-  Time above 180, %                      12.62           15.65      +2.20 ±0.64 
-  Mean sensor glucose, mg/dL            133.59          137.91      +3.54 ±0.92 
-  Variability, CV %                      35.18           36.82      +1.16 ±0.95 
-  Insulin, U/day                         54.83           53.27      -1.75 ±0.61 
-  Rescue helpings per 30 d               60.54           60.54      -2.98 ±3.30 
+  Time in range 70-180, %                83.77           82.69      -1.78 ±0.65 
+  Time below 70, %                        3.82            3.67      -0.29 ±0.25 
+  Time below 54, %                        1.13            1.07      -0.17 ±0.16 
+  Time above 180, %                      11.48           12.77      +2.07 ±0.56 
+  Mean sensor glucose, mg/dL            130.23          131.87      +3.75 ±0.76 
+  Variability, CV %                      33.24           32.87      +0.81 ±0.57 
+  Insulin, U/day                         51.19           49.99      -2.24 ±0.54 
+  Rescue helpings per 30 d               58.93           53.57      -4.66 ±3.09 
 
 ====================================================================================================
 commons  under  oref   (63 subjects)
   arm               completed   terminations
   bare               63/63      none
-  layered_always     47/63      adolescent#023:hypo, adolescent#027:hypo, adolescent#037:hyper, adolescent#047:hyper, adolescent#101:hyper, adolescent#128:hypo, adolescent#134:hyper, adolescent#138:hypo, adolescent#145:hyper, adolescent#149:hyper, adult#006:hyper, adult#084:hyper, adult#105:hypo, adult#209:hypo, adult#289:hypo, child#097:hyper
-  layered_some       45/63      adolescent#023:hypo, adolescent#047:hypo, adolescent#101:hyper, adolescent#106:hyper, adolescent#128:hyper, adolescent#145:hyper, adolescent#149:hyper, adult#006:hyper, adult#020:hypo, adult#073:hypo, adult#084:hyper, adult#085:hypo, adult#209:hypo, adult#217:hypo, adult#264:hyper, adult#267:hypo, child#097:hyper, child#121:hyper
-  layered_never      49/63      adolescent#047:hypo, adolescent#101:hyper, adolescent#134:hyper, adolescent#145:hyper, adult#006:hyper, adult#020:hypo, adult#073:hypo, adult#084:hyper, adult#217:hypo, adult#219:hypo, adult#278:hyper, child#030:hyper, child#097:hyper, child#121:hyper
+  layered_always     49/63      adolescent#101:hyper, adolescent#106:hyper, adolescent#128:hypo, adolescent#138:hypo, adolescent#145:hyper, adult#020:hypo, adult#021:hypo, adult#073:hypo, adult#084:hypo, adult#085:hypo, adult#105:hypo, adult#217:hypo, adult#219:hypo, child#097:hypo
+  layered_some       48/63      adolescent#027:hypo, adolescent#106:hyper, adolescent#128:hypo, adolescent#145:hypo, adult#020:hypo, adult#073:hypo, adult#084:hypo, adult#085:hypo, adult#105:hypo, adult#214:hypo, adult#217:hypo, adult#267:hypo, child#093:hyper, child#097:hyper, child#121:hyper
+  layered_never      53/63      adolescent#047:hyper, adolescent#106:hyper, adolescent#128:hyper, adolescent#138:hypo, adolescent#145:hyper, adult#028:hypo, adult#105:hypo, adult#217:hypo, child#093:hyper, child#121:hyper
 
-  bare S2008 against the layered bench   paired over 45 subjects
+  bare S2008 against the layered bench   paired over 48 subjects
   Measure                                 bare    layered_some       paired diff        real  gap/spread
-  Time in range 70-180, %                91.39           82.16      -9.16 ±1.84        80.05       +0.09
-  Time below 70, %                        2.59            4.07      +0.24 ±0.84         2.72       +0.23
-  Time below 54, %                        0.26            1.23      +0.51 ±0.34         0.39       +0.48
-  Time above 180, %                       5.02           13.41      +8.92 ±1.56        15.06       -0.07
-  Mean sensor glucose, mg/dL            121.44          135.74     +14.64 ±2.03       134.90       +0.02
-  Variability, CV %                      26.90           36.25      +8.99 ±1.61        33.45       +0.24
-  Insulin, U/day                         39.93           50.00      +9.88 ±1.78 
-  Rescue helpings per 30 d                0.00           58.93     +59.17 ±9.94 
+  Time in range 70-180, %                90.41           86.25      -4.22 ±2.09        80.05       +0.27
+  Time below 70, %                        2.19            3.37      -0.71 ±1.13         2.72       +0.11
+  Time below 54, %                        0.26            0.85      -0.15 ±0.66         0.39       +0.26
+  Time above 180, %                       6.37           10.16      +4.93 ±1.45        15.06       -0.20
+  Mean sensor glucose, mg/dL            121.37          131.62      +9.84 ±1.91       134.90       -0.08
+  Variability, CV %                      27.24           32.45      +4.60 ±1.54        33.45       -0.08
+  Insulin, U/day                         40.53           48.08      +8.50 ±1.54 
+  Rescue helpings per 30 d                0.00           53.04     +52.72 ±7.67 
 
-  meal announcement withdrawn   paired over 40 subjects
+  meal announcement withdrawn   paired over 45 subjects
   Measure                       layered_always   layered_never       paired diff
-  Time in range 70-180, %                83.17           81.12      -2.35 ±0.91 
-  Time below 70, %                        3.24            3.23      -0.27 ±0.23 
-  Time below 54, %                        1.07            0.99      -0.16 ±0.16 
-  Time above 180, %                      12.87           15.82      +2.62 ±0.90 
-  Mean sensor glucose, mg/dL            135.08          139.81      +4.04 ±1.13 
-  Variability, CV %                      34.96           35.74      +1.11 ±0.84 
-  Insulin, U/day                         51.46           51.52      -1.24 ±0.69 
-  Rescue helpings per 30 d               54.11           53.04      -2.89 ±2.90 
+  Time in range 70-180, %                86.30           84.44      -1.32 ±0.72 
+  Time below 70, %                        3.17            3.27      -0.16 ±0.37 
+  Time below 54, %                        0.89            0.83      -0.06 ±0.19 
+  Time above 180, %                      10.24           11.87      +1.48 ±0.61 
+  Mean sensor glucose, mg/dL            132.91          132.88      +2.50 ±0.81 
+  Variability, CV %                      31.78           33.17      +0.53 ±0.73 
+  Insulin, U/day                         50.03           46.54      -2.19 ±0.72 
+  Rescue helpings per 30 d               48.21           51.43      -2.21 ±4.62 
 
 ====================================================================================================
-close_it  under  oref   (69 subjects)
+close_it  under  oref   (71 subjects)
   arm               completed   terminations
-  bare               66/69      adult#027:hypo, adult#106:hypo, adult#279:hypo
-  layered_always     47/69      adolescent#005:hyper, adolescent#016:hyper, adolescent#032:hyper, adult#004:hyper, adult#027:hypo, adult#047:hypo, adult#074:hypo, adult#078:hypo, adult#082:hypo, adult#083:hyper, adult#087:hypo, adult#104:hyper, adult#106:hyper, adult#152:hyper, adult#157:hyper, adult#160:hypo, adult#209:hypo, adult#210:hypo, adult#213:hypo, adult#250:hypo, adult#276:hyper, adult#279:hypo
-  layered_some       49/69      adolescent#005:hyper, adolescent#032:hyper, adolescent#078:hyper, adult#027:hypo, adult#047:hypo, adult#082:hypo, adult#083:hyper, adult#085:hypo, adult#087:hypo, adult#096:hyper, adult#104:hyper, adult#110:hyper, adult#152:hypo, adult#154:hypo, adult#157:hyper, adult#194:hypo, adult#209:hypo, adult#210:hypo, adult#213:hypo, adult#250:hypo
-  layered_never      59/69      adolescent#032:hyper, adult#004:hyper, adult#087:hypo, adult#110:hyper, adult#160:hypo, adult#194:hypo, adult#210:hypo, adult#213:hypo, adult#234:hyper, adult#279:hypo
+  bare               67/71      adult#027:hypo, adult#106:hypo, adult#222:hypo, adult#279:hypo
+  layered_always     56/71      adolescent#104:hyper, adult#027:hypo, adult#070:hypo, adult#082:hypo, adult#083:hypo, adult#085:hypo, adult#087:hypo, adult#152:hypo, adult#154:hypo, adult#160:hypo, adult#177:hypo, adult#218:hypo, adult#260:hypo, adult#279:hypo, adult#283:hypo
+  layered_some       56/71      adolescent#078:hypo, adolescent#104:hyper, adult#070:hypo, adult#078:hypo, adult#082:hypo, adult#085:hypo, adult#087:hypo, adult#152:hypo, adult#160:hypo, adult#177:hypo, adult#194:hypo, adult#210:hypo, adult#213:hypo, adult#218:hyper, adult#279:hypo
+  layered_never      63/71      adolescent#016:hyper, adolescent#032:hyper, adult#055:hyper, adult#070:hypo, adult#083:hypo, adult#087:hypo, adult#110:hypo, adult#152:hypo
 
-  bare S2008 against the layered bench   paired over 47 subjects
+  bare S2008 against the layered bench   paired over 53 subjects
   Measure                                 bare    layered_some       paired diff
-  Time in range 70-180, %                87.98           82.16      -5.87 ±1.76 
-  Time below 70, %                        5.84            4.22      -1.59 ±1.12 
-  Time below 54, %                        0.88            1.33      -0.13 ±0.52 
-  Time above 180, %                       5.88           13.58      +7.46 ±1.24 
-  Mean sensor glucose, mg/dL            120.89          133.03     +14.01 ±1.78 
-  Variability, CV %                      29.16           36.25      +6.95 ±1.53 
-  Insulin, U/day                         44.41           52.00     +10.08 ±1.39 
-  Rescue helpings per 30 d                0.00           64.29     +67.98 ±8.26 
+  Time in range 70-180, %                86.93           84.57      -1.14 ±1.80 
+  Time below 70, %                        6.92            4.32      -2.28 ±1.11 
+  Time below 54, %                        0.94            1.22      -0.53 ±0.52 
+  Time above 180, %                       6.05           10.65      +3.43 ±1.22 
+  Mean sensor glucose, mg/dL            120.50          128.36      +8.27 ±1.70 
+  Variability, CV %                      29.88           34.15      +2.77 ±1.41 
+  Insulin, U/day                         43.93           50.10      +8.07 ±1.27 
+  Rescue helpings per 30 d                0.00           68.57     +69.36 ±9.01 
 
-  meal announcement withdrawn   paired over 44 subjects
+  meal announcement withdrawn   paired over 52 subjects
   Measure                       layered_always   layered_never       paired diff
-  Time in range 70-180, %                83.01           81.36      -1.75 ±0.75 
-  Time below 70, %                        4.35            3.86      -0.40 ±0.31 
-  Time below 54, %                        1.25            1.25      -0.25 ±0.20 
-  Time above 180, %                      12.67           14.23      +2.15 ±0.60 
-  Mean sensor glucose, mg/dL            132.62          135.89      +3.78 ±0.87 
-  Variability, CV %                      35.20           37.56      +0.72 ±0.91 
-  Insulin, U/day                         53.19           51.42      -1.70 ±0.55 
-  Rescue helpings per 30 d               64.29           60.00      -6.33 ±3.69 
+  Time in range 70-180, %                85.21           83.94      -2.30 ±0.71 
+  Time below 70, %                        4.17            4.19      -0.10 ±0.32 
+  Time below 54, %                        1.20            1.35      +0.03 ±0.19 
+  Time above 180, %                      10.30           11.99      +2.40 ±0.61 
+  Mean sensor glucose, mg/dL            128.54          131.05      +3.75 ±0.63 
+  Variability, CV %                      33.96           33.15      +0.77 ±0.69 
+  Insulin, U/day                         48.02           46.77      -1.92 ±0.57 
+  Rescue helpings per 30 d               66.43           62.14      -2.66 ±4.18 
 

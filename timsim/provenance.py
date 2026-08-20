@@ -76,6 +76,27 @@ def _settings_digest():
         return None
 
 
+def _simglucose_version():
+    """The installed patient model's version, from the distribution rather than the module.
+
+    `simglucose` defines no `__version__`, so reading that attribute returned the string
+    "unknown" on every run of every machine. Since `simglucose` is one of the binding fields,
+    that made the field worse than absent: two results computed under different versions of the
+    patient model compared as compatible, because both claimed ignorance in the same words.
+    The distribution metadata carries the version and is what is read now.
+    """
+    try:
+        from importlib import metadata
+        return metadata.version("simglucose")
+    except Exception:
+        pass
+    try:
+        import simglucose
+        return getattr(simglucose, "__version__", None)
+    except Exception:
+        return None
+
+
 def stamp(**extra):
     """Everything needed to say whether two results belong to the same experiment."""
     out = {"population": _population(),
@@ -86,11 +107,7 @@ def stamp(**extra):
            "python": sys.version.split()[0],
            "platform": platform.platform(),
            "when": datetime.now(timezone.utc).isoformat(timespec="seconds")}
-    try:
-        import simglucose
-        out["simglucose"] = getattr(simglucose, "__version__", "unknown")
-    except Exception:
-        out["simglucose"] = None
+    out["simglucose"] = _simglucose_version()
     out.update(extra)
     return out
 

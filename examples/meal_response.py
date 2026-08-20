@@ -19,6 +19,7 @@ from concurrent.futures import ProcessPoolExecutor
 
 import numpy as np
 
+from timsim import provenance
 from timsim import seeds
 from simglucose.controller.base import Action
 
@@ -110,7 +111,8 @@ def main():
               f"peak at {np.median(tp):.0f} min "
               f"(IQR {np.percentile(tp,25):.0f} to {np.percentile(tp,75):.0f}); "
               f"absolute peak {np.median(pk):.0f} mg/dL", flush=True)
-    json.dump(rows, open(OUT, "w"), indent=1)
+    json.dump({"rows": rows, "provenance": provenance.stamp()},
+              open(OUT, "w"), indent=1)
     print(f"wrote {OUT}")
 
 

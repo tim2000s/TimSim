@@ -439,3 +439,135 @@ three characters dropped the leading character of every staged path, no path mat
 exclusion, and the flag stayed set for exactly the reason it had just been changed to ignore. It
 was caught by checking the flag against a tree that should have read clean rather than by
 assuming the edit worked.
+
+## 28. The ladder reported complete in under a minute from the previous day's rungs
+
+**What happened.** The 19 August 2026 rebuild logged `OK layer_ladder (0 min)` and printed a
+full signature table. Every rung had been measured the previous afternoon, between 16:17 and
+18:03 on 18 August, under settings that this rebuild had retitrated at 09:53 and an absorption
+scale that had changed since. The table described a configuration that no longer existed.
+
+**Why it happened, twice.** `layer_ladder_by_controller.py` writes one file per rung into
+`docs/ladder` and skips any rung whose file is already there. That skip is wanted: the ladder is
+twenty rungs and about an hour and three quarters, so a rerun after an interruption should not
+start again. It was conditioned on the file existing and nothing else. The rungs carried no
+provenance stamp, so no check was possible even in principle.
+
+The archive step in `rebuild_all.sh` should have removed them and did not, because it walks
+`docs/measurements` and the ladder writes somewhere else. The same defect was found and
+corrected once before by archiving the rungs by hand, which fixed the instance and left the
+cause in place.
+
+**How it surfaced.** A stage that had taken 106 minutes reporting 0. The completion time was the
+only signal: the output was a complete, plausible table, and nothing in it indicated its age.
+
+**Fix.** Two, because either alone would have failed. Each rung now carries a provenance stamp
+and is reused only when that stamp binds against the current one on every field in `BINDING`; an
+unstamped rung never binds, so the twenty already on disk could not have been reused. And the
+archive step now moves `docs/ladder` as well, with the reason recorded beside it.
+
+**What it cost.** Nothing downstream, because the ladder feeds a study rather than the matrix,
+and it was caught before anything was written from it. Had the completion time been 5 minutes
+rather than 0 it would probably not have been noticed.
+
+## 29. A suppression list excused five producers that had no stamping code to wait for
+
+**What happened.** `tests/test_provenance_coverage.py` asserts that every measurement on disk
+records the experiment that produced it, with an allow-list, `PENDING_REBUILD`, for files written
+before the guard existed. Fourteen names sat on that list under one justification: each
+producer now stamps, each file merely predates the change, so each entry clears at the next
+rebuild. It was true of nine. `fit_control_iq`, `capability_decomposition`, `calibrate_exercise`,
+`calibrate_glucagon` and `calibrate_egp_floor` wrote no stamp at all, so those five entries
+described a wait with no end.
+
+**Why it happened.** The list was assembled by running the guard and adding whatever failed. A
+file that fails because its producer stamps and a file that fails because its producer does not
+are identical at the point of failure, and the producers were never read afterwards. The
+justification was then written once, over the whole list, from the majority case.
+
+**How it surfaced.** By reading the five producers the list named instead of the list itself,
+during an unrelated check of which measurements bind to the current population.
+
+**What it cost.** Less than it might have. `control_iq_fit.json` was the live entry, on disk and
+read by the Control-IQ stand-in, and it does record a population fingerprint of its own, which
+matches the population in use. What it does not record is the settings digest, the commit or the
+patient model version, so the field that matters most happened to be present and the rest were
+absent. The other four are archived and nothing reads them.
+
+**Fix.** All five producers stamp. `cohort_replicates.json` was regenerated after the guard went
+in and is removed from the list, so it is now checked rather than excused, and the thirteen that
+remain carry the property the comment claims. The comment records that the list was audited
+against the code it excuses, since a suppression that is never read against its subject is
+indistinguishable from one that is no longer needed.
+
+A sixth producer turned up on the same sweep by a different route. `calibrate_hypo_defence.py`
+did not stamp either, and it was on no list, because its output is archived rather than on disk
+and a guard that reads what is present cannot see a file that is absent. It supplies study 10 and
+will be regenerated, at which point it would have written the first unstamped measurement of the
+new set. It stamps now. Every producer of a measurement that depends on the population does; the
+four that do not are the ones computed from real records alone, where a population stamp would
+be a fiction.
+
+## 30. The bench arm reached the file header and never reached a run
+
+**What happened.** `cohort_replicates.py` gained `--controller` and `--arm` so that the group
+floor could be measured in cells other than the single one it had been quoted from. Both values
+were assigned to module globals inside `main` and read by the worker function, under a comment
+saying the workers inherited them at fork. macOS starts subprocesses by spawn. Each worker
+re-imported the module and read the defaults defined beside the function, so every run used the
+layered arm under the Control-IQ stand-in no matter what was asked for. The metadata written
+beside the results was produced in the parent and recorded the request faithfully, so the file
+carried `"arm": "bare"` and `"layers": []` above 247 runs of the layered arm.
+
+**Why it happened.** The comment asserted a start method rather than checking one, and it was
+written on a machine where the assertion is false. Nothing compared the two halves of the
+output: the header came from the parent and the rows from the children, and no code read either
+against the other.
+
+**How it surfaced.** The bare cell reported a summary table identical to the layered cell's in
+all thirty-six figures. Two arms agreeing to two decimals on six statistics across three
+replicates is not a result, and comparing the rows confirmed it, with all 247 matching to within
+1e-9 on mean glucose.
+
+**Fix.** The arm and the algorithm travel in each job tuple, which no start method can strip.
+Each row returns the layers and the controller it was measured under, and the script refuses to
+write a file whose rows disagree with the arm requested. Checked on a seven-subject run before
+the full cells were restarted: the bare arm sits 5 to 21 mg/dL below the layered arm on the same
+subjects, which is the direction the layers move a subject.
+
+**What it cost.** Thirty-nine minutes of machine time and no conclusion, since it was caught on
+the first cell the option produced and the file was removed before anything read it. The
+dangerous case is the one that did not happen. Had the two arms come out close rather than
+identical, the table would have read as a finding, and a floor that does not differ between arms
+is precisely the result this measurement exists to test for.
+
+## 31. A cell that measured nothing reported OK in three seconds
+
+**What happened.** With the arm and the algorithm reaching the workers for the first time,
+`--controller oref` reached `simulate` and was rejected, because `oref` is not among the four
+names that function accepts. All 247 runs raised. The script then took medians over an empty
+set, printed a table of NaN, wrote it to disk and exited zero, so the harness recorded
+`OK oref_layered` three seconds after starting it and did the same for the second oref cell.
+
+**Why it happened, in two parts.** oref0 SMB is the real algorithm behind a bridge rather than a
+name the simulator knows, so `bench_matrix.py` builds an `OrefController` per subject and closes
+it afterwards. `cohort_replicates.py` gained a `--controller` option that passed its argument
+straight through, and nothing had exercised that path, because issue 30 meant the value never
+left the parent process. One defect concealed the other for as long as it lasted.
+
+The second part is that nothing refused to write. The summary is built with `nanmedian` and its
+relatives, which turn an empty set into NaN rather than into an error, so the output was complete
+in structure and empty of measurement.
+
+**How it surfaced.** A forty-minute cell finishing in three seconds, which is the same signal as
+issue 28 and was again the only one available.
+
+**Fix.** The worker builds the controller the way the matrix does, per subject and closed in a
+`finally`. The script refuses to write when fewer than 30 runs completed, naming the most common
+failure and separating runs that raised from runs that started and stopped short. Real cells
+complete between 78 and 84 of 90 per replicate, so the threshold only fires on a cell that has
+gone wrong.
+
+**What it cost.** Six seconds of machine time and two files of NaN, both deleted. Had anything
+read them the NaN would have been visible immediately. What would not have been visible is the
+log, which is committed and recorded two cells as measured.

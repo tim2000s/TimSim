@@ -1,10 +1,10 @@
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
-4 pairings, 4 benches, 1176 runs
-  dclp3     control-iq  81 titrated subjects
-  dclp3     oref        81 titrated subjects
+4 pairings, 4 benches, 1208 runs
+  dclp3     control-iq  84 titrated subjects
+  dclp3     oref        84 titrated subjects
   commons   oref        63 titrated subjects
-  close_it  oref        69 titrated subjects
+  close_it  oref        71 titrated subjects
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
@@ -29,64 +29,66 @@
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
-  20/1176 done, 4.1 min
-  40/1176 done, 8.0 min
-  60/1176 done, 10.2 min
-  80/1176 done, 14.1 min
-  100/1176 done, 17.3 min
-  120/1176 done, 20.0 min
-  140/1176 done, 23.7 min
-  160/1176 done, 26.1 min
-  180/1176 done, 29.6 min
-  200/1176 done, 32.1 min
-  220/1176 done, 35.5 min
-  240/1176 done, 38.2 min
-  260/1176 done, 40.3 min
-  280/1176 done, 43.9 min
-  300/1176 done, 46.6 min
-  320/1176 done, 49.5 min
-  340/1176 done, 53.2 min
-  360/1176 done, 57.2 min
-  380/1176 done, 60.2 min
-  400/1176 done, 64.3 min
-  420/1176 done, 66.9 min
-  440/1176 done, 70.5 min
-  460/1176 done, 73.5 min
-  480/1176 done, 76.1 min
-  500/1176 done, 79.0 min
-  520/1176 done, 82.5 min
-  540/1176 done, 85.8 min
-  560/1176 done, 88.8 min
-  580/1176 done, 91.7 min
-  600/1176 done, 95.1 min
-  620/1176 done, 98.2 min
-  640/1176 done, 101.4 min
-  660/1176 done, 105.0 min
-  680/1176 done, 108.9 min
-  700/1176 done, 112.5 min
-  720/1176 done, 115.8 min
-  740/1176 done, 118.8 min
-  760/1176 done, 121.7 min
-  780/1176 done, 125.2 min
-  800/1176 done, 128.2 min
-  820/1176 done, 131.0 min
-  840/1176 done, 133.9 min
-  860/1176 done, 137.0 min
-  880/1176 done, 140.5 min
-  900/1176 done, 143.8 min
-  920/1176 done, 147.4 min
-  940/1176 done, 150.9 min
-  960/1176 done, 154.7 min
-  980/1176 done, 157.6 min
-  1000/1176 done, 161.5 min
-  1020/1176 done, 163.9 min
-  1040/1176 done, 166.5 min
-  1060/1176 done, 170.2 min
-  1080/1176 done, 172.7 min
-  1100/1176 done, 176.0 min
-  1120/1176 done, 179.3 min
-  1140/1176 done, 183.0 min
-  1160/1176 done, 186.4 min
-  1176/1176 done, 188.4 min
+  20/1208 done, 4.1 min
+  40/1208 done, 8.0 min
+  60/1208 done, 10.3 min
+  80/1208 done, 14.1 min
+  100/1208 done, 17.4 min
+  120/1208 done, 20.2 min
+  140/1208 done, 23.8 min
+  160/1208 done, 26.5 min
+  180/1208 done, 29.7 min
+  200/1208 done, 32.7 min
+  220/1208 done, 36.2 min
+  240/1208 done, 38.6 min
+  260/1208 done, 41.8 min
+  280/1208 done, 44.5 min
+  300/1208 done, 47.8 min
+  320/1208 done, 51.0 min
+  340/1208 done, 55.0 min
+  360/1208 done, 58.4 min
+  380/1208 done, 62.0 min
+  400/1208 done, 66.5 min
+  420/1208 done, 69.6 min
+  440/1208 done, 73.1 min
+  460/1208 done, 75.7 min
+  480/1208 done, 79.7 min
+  500/1208 done, 82.5 min
+  520/1208 done, 85.8 min
+  540/1208 done, 89.4 min
+  560/1208 done, 92.4 min
+  580/1208 done, 95.4 min
+  600/1208 done, 98.8 min
+  620/1208 done, 102.3 min
+  640/1208 done, 105.5 min
+  660/1208 done, 109.5 min
+  680/1208 done, 112.4 min
+  700/1208 done, 116.5 min
+  720/1208 done, 120.6 min
+  740/1208 done, 123.4 min
+  760/1208 done, 127.6 min
+  780/1208 done, 129.9 min
+  800/1208 done, 134.3 min
+  820/1208 done, 137.5 min
+  840/1208 done, 140.3 min
+  860/1208 done, 144.1 min
+  880/1208 done, 146.9 min
+  900/1208 done, 150.4 min
+  920/1208 done, 153.6 min
+  940/1208 done, 157.6 min
+  960/1208 done, 160.7 min
+  980/1208 done, 164.4 min
+  1000/1208 done, 167.7 min
+  1020/1208 done, 171.4 min
+  1040/1208 done, 174.1 min
+  1060/1208 done, 177.7 min
+  1080/1208 done, 180.9 min
+  1100/1208 done, 184.2 min
+  1120/1208 done, 186.9 min
+  1140/1208 done, 190.0 min
+  1160/1208 done, 193.5 min
+  1180/1208 done, 196.9 min
+  1200/1208 done, 200.2 min
+  1208/1208 done, 201.7 min
 
-wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/bench_matrix.json after 188.4 min
+wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/bench_matrix.json after 201.7 min

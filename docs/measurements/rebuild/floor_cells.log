@@ -1,0 +1,22 @@
+03:37:54Z  START control-iq_layered
+04:15:59Z  OK    control-iq_layered
+04:15:59Z  START control-iq_bare
+05:51:09Z  === resumed after restart ===
+05:51:09Z  START control-iq_bare
+06:29:54Z  OK    control-iq_bare
+06:29:54Z  START oref_layered
+06:34:33Z  === relaunched, arm and controller now reach the workers ===
+06:34:33Z  START control-iq_bare
+06:35:35Z  NOTE: the OK at 06:29:54Z was mislabelled; its runs were the layered arm. See ISSUES.md 30.
+07:15:55Z  OK    control-iq_bare
+07:15:55Z  START oref_layered
+07:15:58Z  OK    oref_layered
+07:15:58Z  START oref_bare
+07:16:01Z  OK    oref_bare
+07:16:01Z  === floor cells finished ===
+07:19:59Z  === oref cells, controller now built per subject ===
+07:19:59Z  START oref_layered
+08:01:02Z  OK    oref_layered
+08:01:02Z  START oref_bare
+08:46:03Z  OK    oref_bare
+08:46:03Z  === floor cells finished ===

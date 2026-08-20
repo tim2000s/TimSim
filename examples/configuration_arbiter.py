@@ -35,7 +35,7 @@ import argparse, json, os
 
 import numpy as np
 
-from timsim import simulate_cohort
+from timsim import provenance, simulate_cohort
 from timsim.population import names
 from timsim.validation import dclp3, replication
 
@@ -72,15 +72,39 @@ def run_config(key, subjects, days, seed=0, permutations=100):
                 "n_subjects_run": len(results),
                 "time_in_range": float(np.mean([r.time_in_range for r in results])),
                 "time_above_180": float(np.mean([r.time_above_180 for r in results])),
-                "time_below_70": float(np.mean([r.time_below_70 for r in results]))})
+                "time_below_70": float(np.mean([r.time_below_70 for r in results])),
+                "provenance": provenance.stamp()})
     os.makedirs(OUT, exist_ok=True)
     json.dump(out, open(os.path.join(OUT, f"arbiter_{key}.json"), "w"), indent=1)
     return out
 
 
 def table():
-    have = [k for k in CONFIGS
-            if os.path.exists(os.path.join(OUT, f"arbiter_{k}.json"))]
+    """Every configuration on disk that belongs to the experiment running now.
+
+    The rows are read against each other, so mixing populations makes the table meaningless
+    while leaving it complete and plausible. These files sit in `docs/` rather than
+    `docs/measurements/`, which is where the rebuild archives, and this script is not part of
+    the rebuild, so nothing clears them. On 19 August 2026 they were four days old and measured
+    on a population that had since been regenerated. A row is now shown only if its stamp binds
+    against the current one, and anything dropped is named.
+    """
+    now = provenance.stamp()
+    have, stale = [], []
+    for k in CONFIGS:
+        path = os.path.join(OUT, f"arbiter_{k}.json")
+        if not os.path.exists(path):
+            continue
+        stored = json.load(open(path)).get("provenance")
+        if stored and all(stored.get(f) == now.get(f) for f in provenance.BINDING):
+            have.append(k)
+        else:
+            stale.append(k)
+    if stale:
+        print(f"omitted, measured under another experiment: {', '.join(sorted(stale))}\n")
+    if not have:
+        print("no configuration on disk belongs to the current experiment")
+        return
     data = {k: json.load(open(os.path.join(OUT, f"arbiter_{k}.json"))) for k in have}
     order = sorted(have, key=lambda k: data[k]["auc"])
 

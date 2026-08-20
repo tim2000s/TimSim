@@ -30,6 +30,7 @@ import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from timsim import provenance
 from timsim import simulate                                          # noqa: E402
 from timsim import seeds
 from timsim.controller import oref as O                              # noqa: E402
@@ -145,7 +146,7 @@ def main():
 
     if args.out:
         with open(args.out, "w") as fh:
-            json.dump({"stats": stats, "runs": [
+            json.dump({"stats": stats, "provenance": provenance.stamp(), "runs": [
                 {k: v for k, v in r.items() if k != "bg"} for r in runs]}, fh, indent=2)
         print(f"\nwritten to {args.out}")
 

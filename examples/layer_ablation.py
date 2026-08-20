@@ -20,6 +20,7 @@ subjects over 28 days.
 """
 import argparse, json, os
 
+from timsim import provenance
 from timsim import signatures, simulate_cohort
 from timsim import seeds
 from timsim.population import names
@@ -90,6 +91,7 @@ def run_arm(key, layers, subjects, days, kwargs=None, workers=1):
                "n": len(results),
                "tbr": [round(r.time_below_70, 1) for r in results]}
     os.makedirs(OUT, exist_ok=True)
+    payload["provenance"] = provenance.stamp()
     json.dump(payload, open(os.path.join(OUT, f"{key}.json"), "w"), indent=1)
     return payload
 

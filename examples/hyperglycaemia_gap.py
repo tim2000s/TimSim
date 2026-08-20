@@ -36,7 +36,7 @@ import argparse, json, os
 
 import numpy as np
 
-from timsim import simulate_cohort
+from timsim import provenance, simulate_cohort
 from timsim import seeds
 from timsim.analysis import signatures
 from timsim.population import names
@@ -186,6 +186,7 @@ def run_arm(key, subjects, days, seed=seeds.BENCH, workers=1):
         "stats": {k: list(v) for k, v in signatures.evaluate(results).items()},
     })
     os.makedirs(OUT, exist_ok=True)
+    payload["provenance"] = provenance.stamp()
     json.dump(payload, open(os.path.join(OUT, f"gap_{key}.json"), "w"), indent=1)
     return payload
 

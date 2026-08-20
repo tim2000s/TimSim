@@ -31,7 +31,7 @@ import json
 import numpy as np
 from concurrent.futures import ProcessPoolExecutor
 
-from timsim import seeds
+from timsim import provenance, seeds
 from timsim.analysis import signatures as S
 
 OUT = os.path.join(MEASUREMENTS, "capability_decomposition.json")
@@ -132,6 +132,7 @@ def main(workers=10):
     print("\n  * marks a median inside the real range, with the 10 per cent padding applied")
 
     json.dump({"arms": {a: dict(ARMS[a], layers=list(ARMS[a]["layers"])) for a in ARMS},
+               "provenance": provenance.stamp(),
                "report": report, "counts": counts, "runs": rows},
               open(OUT, "w"), indent=1)
     print(f"\nwritten to {OUT}")

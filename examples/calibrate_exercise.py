@@ -39,7 +39,7 @@ from concurrent.futures import ProcessPoolExecutor
 
 from simglucose.controller.base import Action
 
-from timsim import seeds
+from timsim import provenance, seeds
 
 OUT = os.path.join(MEASUREMENTS, "exercise_calibration.json")
 
@@ -170,6 +170,7 @@ def main(n_subjects=20, workers=6):
 
     json.dump({"subjects": len(subjects), "session_minutes": SESSION_MIN,
                "real_acute_mgdl": REAL, "real_delayed_pct": REAL_DELAYED,
+               "provenance": provenance.stamp(),
                "measured": out, "runs": rows}, open(OUT, "w"), indent=1)
     print(f"\nwritten to {OUT}")
 
