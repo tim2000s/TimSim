@@ -48,6 +48,8 @@ def main():
     ap.add_argument("--days", type=int, default=28)
     ap.add_argument("--seed", type=int, default=seeds.TITRATION)
     ap.add_argument("--workers", type=int, default=6)
+    ap.add_argument("--subjects-from", dest="subjects_from",
+                    help="a file of subject names, one per line, to titrate exactly")
     ap.add_argument("--add", action="store_true",
                     help="merge into the existing store instead of replacing it, and skip "
                          "subjects already titrated against this population")
@@ -57,6 +59,13 @@ def main():
 
     if a.subject:
         names = list(a.subject)
+    elif a.subjects_from:
+        # A file of names, one per line. `--subject` repeated is the alternative and a list of
+        # this length does not survive a shell reliably: an argument list collapsed by zsh is
+        # issue 21. This exists to retitrate exactly the membership an existing store holds,
+        # which is built in three stages and cannot be reproduced by any single `--cohort`.
+        with open(a.subjects_from) as fh:
+            names = [ln.strip() for ln in fh if ln.strip()]
         print(f"titrating {len(names)} named subjects")
     elif a.cohort == "recorded":
         import json, os
