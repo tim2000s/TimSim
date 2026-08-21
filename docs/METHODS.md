@@ -223,6 +223,27 @@ rather than reading the quantity off an ordinary run. Endogenous glucose product
 spontaneous lows gives 1.28 mg/kg/min and at a clamped 55 mg/dL plateau gives 0.14 on the same
 subjects, because the insulin differs; `examples/hypoglycaemic_clamp.py` exists for this.
 
+## Report the way the trials report
+
+Time in range, time below range and time above range are given as a median, a mean and the range
+of values across subjects. All three, and not one of them.
+
+The reason is like-for-like. DCLP3 and CLOSE-IT report time in range as a mean with a spread, and
+the CLOSE-IT reference held here is a mean and a standard deviation because that is all its paper
+published. Quoting a simulated median against a published mean is a comparison computed
+differently on the two sides, which is the failure this document exists to prevent.
+
+The median stays as well, and deliberately. A third of subjects sit at zero on time below 54
+mg/dL, so the mean and the median disagree there by about a factor of two and a symmetric
+interval around the mean describes neither the centre nor the tails. The median is the robust
+statistic and the mean is what the paper being compared against printed, so both are carried and
+the table says which the real side is quoted on.
+
+The range across subjects is a third thing and is not the bootstrap interval on the median. The
+interval says whether the centre differs from the trial. The range says how varied the simulated
+population is, and a population can sit on the real median while being far narrower than the real
+cohort, which makes a bench look more decisive than it is.
+
 ## What a result has to carry
 
 A benchmark figure from this package is not interpretable without its settings provenance, its

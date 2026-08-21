@@ -67,6 +67,7 @@ def real_summary(ref):
             continue
         v = np.asarray(vals, float)
         out[refkey] = {"median": float(np.median(v)),
+                       "mean": float(np.mean(v)),
                        "p10": float(np.percentile(v, 10)),
                        "p90": float(np.percentile(v, 90)),
                        "spread": float(np.percentile(v, 90) - np.percentile(v, 10)),
@@ -118,8 +119,17 @@ def main():
                 # population can sit on the real median while being far narrower than the real
                 # cohort, which makes a bench look more decisive than it is.
                 p10, p90 = float(np.percentile(v, 10)), float(np.percentile(v, 90))
+                # The mean as well as the median, because DCLP3 and CLOSE-IT report time in
+                # range as a mean and quoting a median against a published mean is a comparison
+                # computed differently on the two sides. The median stays because a third of
+                # subjects sit at zero on time below 54 mg/dL, where the two disagree by about a
+                # factor of two. And the full range, which is neither of the other two: the
+                # interval says whether the centre differs, the range says how varied the
+                # population is.
                 rr = real.get(refkey)
-                cell = {"median": med, "interval": [lo, hi], "n": len(v),
+                cell = {"median": med, "mean": float(np.mean(v)), "sd": float(np.std(v, ddof=1)),
+                        "min": float(np.min(v)), "max": float(np.max(v)),
+                        "interval": [lo, hi], "n": len(v),
                         "p10": p10, "p90": p90, "spread": p90 - p10}
                 if rr:
                     cell["real_median"] = rr["median"]
@@ -138,14 +148,16 @@ def main():
 
         for key, name, refkey in MEASURES:
             rr = real.get(refkey)
-            meds, verds, gaps, spans, ratios = [], [], [], [], []
+            meds, means, rngs, verds, gaps, spans, ratios = [], [], [], [], [], [], []
             for rung in RUNGS:
                 c = rec["rungs"][rung]["measures"].get(key)
                 if not c:
-                    for lst in (meds, verds, gaps, spans, ratios):
+                    for lst in (meds, means, rngs, verds, gaps, spans, ratios):
                         lst.append(f"{'-':>14}")
                     continue
                 meds.append(f"{c['median']:>14.2f}")
+                means.append(f"{c['mean']:>9.2f}+-{c['sd']:<3.0f}")
+                rngs.append(f"{c['min']:>7.1f}-{c['max']:<6.1f}")
                 spans.append(f"{c['p10']:>7.1f}-{c['p90']:<6.1f}")
                 ratios.append(f"{c['spread_ratio']:>14.2f}" if c.get("spread_ratio")
                               else f"{'-':>14}")
@@ -156,6 +168,9 @@ def main():
                 gaps.append(f"{c['gap_spreads']:>+14.2f}" if "gap_spreads" in c else f"{'-':>14}")
             print(f"\n  {name:26}" + "".join(meds) +
                   (f"{rr['median']:>10.2f}" if rr else f"{'-':>10}"))
+            print(f"  {'  mean +- sd':26}" + "".join(means) +
+                  (f"{rr['mean']:>10.2f}" if rr and rr.get("mean") is not None else ""))
+            print(f"  {'  range across subjects':26}" + "".join(rngs))
             print(f"  {'  p10 to p90 of subjects':26}" + "".join(spans) +
                   (f"{rr['p10']:>5.1f}-{rr['p90']:<5.1f}" if rr and rr.get("p10") is not None
                    else ""))
