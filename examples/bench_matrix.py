@@ -42,8 +42,10 @@ OUT = os.path.join(MEASUREMENTS, "bench_matrix.json")
 
 PAIRINGS = [("dclp3", "control-iq"), ("dclp3", "oref"),
             ("commons", "oref"), ("close_it", "oref")]
-BENCHES = [("bare", (), "some"), ("layered_always", LAYERS, "always"),
-           ("layered_some", LAYERS, "some"), ("layered_never", LAYERS, "never")]
+BENCHES = [("bare", (), "some", "titrated"),
+           ("layered_always", LAYERS, "always", "titrated"),
+           ("layered_some", LAYERS, "some", "titrated"),
+           ("layered_never", LAYERS, "never", "titrated")]
 
 # The same four arms as the matrix, run under one controller against every cohort rather than
 # under each cohort's own algorithm. That measures the person rather than scoring an algorithm,
@@ -54,10 +56,10 @@ BENCHES = [("bare", (), "some"), ("layered_always", LAYERS, "always"),
 # carrying three bare arms was run on 20 August, produced three arms identical to every decimal
 # of every measure, and spent a third of a 216-minute job establishing what the top of this file
 # already said.
-BASELINE_BENCHES = [("bare", (), "some"),
-                    ("layered_always", LAYERS, "always"),
-                    ("layered_some", LAYERS, "some"),
-                    ("layered_never", LAYERS, "never")]
+BASELINE_BENCHES = [("bare", (), "some", "titrated"),
+                    ("layered_always", LAYERS, "always", "titrated"),
+                    ("layered_some", LAYERS, "some", "titrated"),
+                    ("layered_never", LAYERS, "never", "titrated")]
 
 # The rungs, for asking how far each layer moves the outcomes towards the trial rather than what
 # it does to a fidelity signature. `layer_ladder_by_controller.py` answers a different question,
@@ -70,19 +72,55 @@ BASELINE_BENCHES = [("bare", (), "some"),
 # matched to them, and the layers accumulate. There is no loop rung, because the controller does
 # not change up the ladder. `stock` and `site` are the same two arms the matrix calls `bare` and
 # `layered_some`, kept so all five sit on one footing in one file.
-LADDER_BENCHES = [("stock", (), "some"),
-                  ("phys", ("physiology",), "some"),
-                  ("behav", ("physiology", "behaviour"), "some"),
-                  ("sens", ("physiology", "behaviour", "sensor"), "some"),
-                  ("site", ("physiology", "behaviour", "sensor", "site"), "some")]
+LADDER_BENCHES = [("stock", (), "some", "titrated"),
+                  ("phys", ("physiology",), "some", "titrated"),
+                  ("behav", ("physiology", "behaviour"), "some", "titrated"),
+                  ("sens", ("physiology", "behaviour", "sensor"), "some", "titrated"),
+                  ("site", ("physiology", "behaviour", "sensor", "site"), "some", "titrated")]
+
+# The validation set: what a user gets from stock S2008, what each layer changes on its own, and
+# what all four change together, on cohorts matched to a real study.
+#
+# Two reference points rather than one, because an arm with no layers is not stock S2008. It still
+# carries this package's titrated settings and its delivery limits, and both move outcomes as much
+# as some layers do: handing oref0 the physiological correction factor instead of the titrated one
+# doubles its time below 70 mg/dL. `stock` is dosed from the subject's own physiology, which is
+# what simglucose gives you, and `base` is the same body on titrated settings. The difference
+# between them is how much of this package's improvement is settings and delivery discipline
+# rather than physiology and behaviour, and it is a result rather than an overhead.
+#
+# Each layer stands alone against `base`, so its effect is not entangled with the ones below it on
+# a cumulative ladder.
+#
+# Meal announcement is carried only by the arms containing behaviour. `run.py` sets
+# `announce="behaviour" in effective`, so an arm without it is told the exact carbohydrate of
+# every meal and the announcement setting does nothing. Running the others at three settings
+# produces three identical arms, which is issue 38.
+_DEFAULT = ("physiology", "behaviour", "sensor", "site")
+VALIDATION_BENCHES = [
+    ("stock", (), "some", "physiological"),
+    ("base", (), "some", "titrated"),
+    ("physiology", ("physiology",), "some", "titrated"),
+    ("behaviour", ("behaviour",), "some", "titrated"),
+    ("sensor", ("sensor",), "some", "titrated"),
+    ("site", ("site",), "some", "titrated"),
+    ("all_layers", _DEFAULT, "some", "titrated"),
+    ("behaviour_announced", ("behaviour",), "always", "titrated"),
+    ("behaviour_unannounced", ("behaviour",), "never", "titrated"),
+    ("all_layers_announced", _DEFAULT, "always", "titrated"),
+    ("all_layers_unannounced", _DEFAULT, "never", "titrated"),
+]
 
 
 def one(job):
-    cohort, controller, bench, name, layers, announcement = job
+    cohort, controller, bench, name, layers, announcement, settings = job
     from timsim.simulation.run import simulate
-    from timsim.therapy import titrate
+    from timsim.therapy import profile as profile_mod, titrate
     arm = f"{cohort}|{controller}|{bench}"
-    prof = titrate.profile_for(name)
+    # How the subject is dosed travels in the job with everything else, so no start method can
+    # strip it and no arm can be run on settings other than the ones it is labelled with.
+    prof = (titrate.profile_for(name) if settings == "titrated"
+            else profile_mod.for_subject(name))
     ctrl, t0 = controller, time.time()
     try:
         if controller == "oref":
@@ -92,6 +130,7 @@ def one(job):
                      profile=prof, announcement=announcement)
     except Exception as exc:
         return {"arm": arm, "cohort": cohort, "controller": controller, "bench": bench,
+                "settings": settings, "layers": list(layers), "announcement": announcement,
                 "name": name, "completed": False, "error": str(exc)[:200],
                 "seconds": time.time() - t0}
     finally:
@@ -102,6 +141,7 @@ def one(job):
     bg = np.asarray(r.bg, dtype=float)
     days = max(len(bg) * 5.0 / 1440.0, 1e-9)
     out = {"arm": arm, "cohort": cohort, "controller": controller, "bench": bench,
+           "settings": settings, "layers": list(layers), "announcement": announcement,
            "name": name, "completed": bool(r.completed), "days": float(days),
            "seconds": time.time() - t0,
            "insulin_per_day": float(getattr(r, "insulin_units", float("nan")) / days),
@@ -130,7 +170,8 @@ def main():
                          "pairings. The pairings exist because DCLP3 participants ran Control-IQ "
                          "and Commons users run oref0, so a pairing is like-for-like and this is "
                          "not. Use it to measure the person rather than to score an algorithm.")
-    ap.add_argument("--benches", choices=("matrix", "baseline", "ladder"), default="matrix",
+    ap.add_argument("--benches", choices=("matrix", "baseline", "ladder", "validation"),
+                    default="matrix",
                     help="'baseline' measures the bare arm at all three meal scenarios as well "
                          "as the layered arm; 'ladder' accumulates the layers one at a time so "
                          "each rung's distance to the trial can be read")
@@ -149,15 +190,17 @@ def main():
                          f"the population on disk is {current}. Rerun build_cohorts.py.")
     titrated = set(titrate.titrated_subjects())
 
-    benches = {"baseline": BASELINE_BENCHES, "ladder": LADDER_BENCHES}.get(a.benches, BENCHES)
+    benches = {"baseline": BASELINE_BENCHES, "ladder": LADDER_BENCHES,
+               "validation": VALIDATION_BENCHES}.get(a.benches, BENCHES)
     pairings = ([(c, a.controller) for c in sorted(rec["cohorts"])] if a.controller
                 else PAIRINGS)
 
     jobs = []
     for cohort, controller in pairings:
         subjects = [s for s in rec["cohorts"][cohort]["subjects"] if s in titrated]
-        for bench, layers, announcement in benches:
-            jobs += [(cohort, controller, bench, n, layers, announcement) for n in subjects]
+        for bench, layers, announcement, settings in benches:
+            jobs += [(cohort, controller, bench, n, layers, announcement, settings)
+                     for n in subjects]
     total = len(jobs)
     if shard_count > 1:
         jobs = jobs[shard_index - 1::shard_count]
@@ -180,8 +223,8 @@ def main():
                # that records only its rows cannot be told apart from one run with different
                # options, which is how a cell labelled `bare` came to contain the layered arm.
                "bench_set": a.benches,
-               "benches": [{"name": b, "layers": list(l), "announcement": ann}
-                           for b, l, ann in benches],
+               "benches": [{"name": b, "layers": list(l), "announcement": ann,
+                            "settings": st} for b, l, ann, st in benches],
                "pairings": [{"cohort": c, "controller": ctl} for c, ctl in pairings],
                "shard": {"index": shard_index, "of": shard_count,
                          "runs_in_shard": len(jobs), "runs_total": total},
