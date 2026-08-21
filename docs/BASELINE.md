@@ -1,4 +1,4 @@
-# The contribution of each simulation layer to agreement with real closed-loop cohorts
+# Agreement with real closed-loop cohorts under the combined simulation layers and titrated settings
 
 ## Introduction
 
@@ -8,11 +8,16 @@ beyond quantisation, no person who mistimes a meal or misjudges its carbohydrate
 day-to-day movement in insulin sensitivity. A cohort of its subjects run under a closed loop
 therefore spends more time in the target range than the people such a loop is prescribed to.
 
-This package adds four layers to close part of that distance. Their combined effect has been
-reported before. Their individual contributions have not, and neither has the contribution of the
-settings the subjects are dosed on, which is a choice this package makes rather than a property of
-the model. The measurement below separates them, against three real populations and the algorithm
-each of those populations used.
+This package makes two changes to close part of that distance. It adds four layers to the person,
+and it titrates the settings each subject is dosed on rather than deriving them from that
+subject's own physiology, which is a quantity no person has. What the two changes achieve together
+is the subject of this report. It has not been reported before: an earlier series of studies was
+withdrawn in August 2026 when the hepatic defence gain was refitted, and nothing measured under
+the previous value can be quoted beside anything measured under the current one.
+
+The measurement below reports the combined configuration against three real populations, each run
+under the algorithm that population used, and then separates the contribution of the settings from
+that of the layers.
 
 ## Methods
 
@@ -58,45 +63,9 @@ no participant-level data, so it supports no median, no spread and no test.
 
 ## Results
 
-### The two reference points
+### The combined configuration against the three references
 
-Titration of the settings, holding the model unchanged, moved no outcome measurably on the DCLP3
-cohort. Time in range was 90.8 per cent (95% CI 88.6 to 92.7) in the stock arm and 90.8 (89.0 to
-92.7) after titration. It moved completion, from 81 of 84 subjects to 84 of 84, and removed the
-three hypoglycaemic terminations the stock arm recorded. Time below 54 mg/dL was 0.3 per cent
-(0.1 to 0.6) and 0.2 (0.1 to 0.5).
-
-### Individual layers, DCLP3 cohort
-
-Medians with 95 per cent intervals, each layer applied alone to the titrated arm.
-
-| Arm | TIR % | TBR 70 % | TBR 54 % | TAR 180 % | Mean mg/dL | CV % | Completed |
-|---|---|---|---|---|---|---|---|
-| stock | 90.8 (88.6-92.7) | 1.9 (1.5-3.4) | 0.3 (0.1-0.6) | 6.0 (4.0-7.2) | 126.0 | 25.8 | 81/84 |
-| titrated | 90.8 (89.0-92.7) | 1.8 (1.3-2.8) | 0.2 (0.1-0.5) | 6.3 (5.2-8.7) | 128.7 | 25.5 | 84/84 |
-| physiology | 84.9 (82.9-87.0) | 5.2 (4.0-7.1) | 1.6 (1.1-2.5) | 8.9 (7.8-9.9) | 129.9 | 31.8 | 55/84 |
-| behaviour | 91.3 (89.5-92.8) | 1.1 (0.7-1.5) | 0.1 (0.0-0.1) | 7.6 (5.9-8.6) | 131.5 | 24.7 | 84/84 |
-| sensor | 90.2 (88.9-92.4) | 2.0 (1.5-3.0) | 0.3 (0.2-0.6) | 6.3 (5.3-8.7) | 128.6 | 25.7 | 84/84 |
-| site | 83.1 (80.4-85.2) | 1.6 (1.3-2.5) | 0.3 (0.1-0.4) | 13.8 | 138.9 | 30.1 | 82/84 |
-| all four | 82.1 (79.6-83.1) | 2.6 (2.3-3.5) | 0.8 (0.5-1.1) | 14.9 | 141.7 | 31.3 | 71/84 |
-| DCLP3 | 71.3 | 1.4 | 0.2 | 26.9 | 155.5 | 33.4 | 67 |
-
-The infusion site layer accounts for most of the movement in the measures describing where glucose
-sits. Applied alone it raised time above 180 mg/dL from 6.3 to 13.8 per cent and mean glucose from
-128.7 to 138.9 mg/dL, against 14.9 and 141.7 for all four layers together.
-
-The physiology layer accounts for the movement in variability, raising the coefficient of
-variation from 25.5 to 31.8 per cent against a reference 33.4. This is the only arm on any measure
-whose median cannot be distinguished from the DCLP3 participants.
-
-The sensor layer moved no outcome measurably. Its function is to place compression lows and
-measurement error in front of the algorithm rather than to alter the underlying glucose.
-
-The behaviour layer applied alone reduced time below range, from 1.8 to 1.1 per cent below 70
-mg/dL and from 0.2 to 0.1 below 54, because it supplies the rescue carbohydrate the model
-otherwise lacks.
-
-### All four layers against the three references
+Medians, all four layers on titrated settings.
 
 | Measure | DCLP3 sim | DCLP3 real | Commons sim | Commons real | CLOSE-IT sim | CLOSE-IT real |
 |---|---|---|---|---|---|---|
@@ -107,28 +76,73 @@ otherwise lacks.
 | Mean glucose | 141.7 | 155.5 | 131.6 | 134.9 | 129.2 | not published |
 | Variability CV % | 31.3 | 33.4 | 32.5 | 33.5 | 34.3 | not published |
 
-Against DCLP3 the layers reduced the difference in time in range from 19.6 to 10.8 percentage
-points and in mean glucose from 29.4 to 13.8 mg/dL, and every arm remained distinguishable from
-the participants on both measures. Against the Commons the full stack was indistinguishable from
-the reference on mean glucose and on variability.
+Against the unmodified model on the DCLP3 cohort the combined configuration moved time in range
+from 90.8 per cent (95% CI 88.6 to 92.7) to 82.1 (79.6 to 83.1), mean glucose from 126.0 to 141.7
+mg/dL, time above 180 mg/dL from 6.0 (4.0 to 7.2) to 14.9, and the coefficient of variation from
+25.8 to 31.3. The reference values are 71.3, 155.5, 26.9 and 33.4. The difference from the
+participants in time in range fell from 19.6 to 10.8 percentage points and in mean glucose from
+29.4 to 13.8 mg/dL. On both the simulated median remained distinguishable from the reference.
+
+Two measures came within the interval of a reference. On the Commons cohort the combined
+configuration recorded mean glucose of 131.6 mg/dL against 134.9 and a coefficient of variation of
+32.5 per cent against 33.5, neither distinguishable from the reference. No configuration achieved
+this against DCLP3 on any measure.
+
+Time below 54 mg/dL moved away from the references. The unmodified model recorded 0.3 per cent
+(0.1 to 0.6) against a DCLP3 reference of 0.2, and the combined configuration 0.8 (0.5 to 1.1).
+Against the Commons the same comparison is 0.9 per cent against 0.4.
+
+### The settings and the layers separated
+
+Titration of the settings, with the model unchanged, moved no outcome measurably on the DCLP3
+cohort. Time in range was 90.8 per cent (88.6 to 92.7) before and 90.8 (89.0 to 92.7) after, and
+time below 54 mg/dL 0.3 (0.1 to 0.6) and 0.2 (0.1 to 0.5). It moved completion, from 81 of 84
+subjects to 84 of 84, removing the three hypoglycaemic terminations the unmodified arm recorded.
+
+The outcome movement reported above is therefore attributable to the layers, and the completion
+movement to the settings.
 
 ### Meal announcement
 
-| Arm | Announced | Default | Unannounced |
+| Configuration | Announced | Default | Unannounced |
 |---|---|---|---|
-| behaviour, TIR % | 95.0 | 91.3 | 82.6 |
-| all four, TIR % | 82.7 | 82.1 | 77.2 |
-| all four, mean glucose | 139.7 | 141.7 | 146.1 |
+| all four layers, TIR % | 82.7 | 82.1 | 77.2 |
+| all four layers, mean glucose | 139.7 | 141.7 | 146.1 |
 
-Withdrawing announcement cost 5.5 percentage points of time in range with all four layers present
-and 12.4 with the behaviour layer alone, through time above range rather than below it.
+Withdrawing meal announcement cost 5.5 percentage points of time in range, through time above
+range rather than below it. Announcement is carried by the behaviour layer, so the unmodified and
+single-layer arms other than behaviour receive the exact carbohydrate content of every meal and
+cannot express this variation.
+
+### Attribution to individual layers
+
+Each layer was also applied alone to the titrated arm, on the DCLP3 cohort. Medians with 95 per
+cent intervals.
+
+| Arm | TIR % | TBR 70 % | TBR 54 % | TAR 180 % | Mean mg/dL | CV % | Completed |
+|---|---|---|---|---|---|---|---|
+| titrated, no layers | 90.8 (89.0-92.7) | 1.8 (1.3-2.8) | 0.2 (0.1-0.5) | 6.3 (5.2-8.7) | 128.7 | 25.5 | 84/84 |
+| physiology | 84.9 (82.9-87.0) | 5.2 (4.0-7.1) | 1.6 (1.1-2.5) | 8.9 (7.8-9.9) | 129.9 | 31.8 | 55/84 |
+| behaviour | 91.3 (89.5-92.8) | 1.1 (0.7-1.5) | 0.1 (0.0-0.1) | 7.6 (5.9-8.6) | 131.5 | 24.7 | 84/84 |
+| sensor | 90.2 (88.9-92.4) | 2.0 (1.5-3.0) | 0.3 (0.2-0.6) | 6.3 (5.3-8.7) | 128.6 | 25.7 | 84/84 |
+| site | 83.1 (80.4-85.2) | 1.6 (1.3-2.5) | 0.3 (0.1-0.4) | 13.8 | 138.9 | 30.1 | 82/84 |
+| all four | 82.1 (79.6-83.1) | 2.6 (2.3-3.5) | 0.8 (0.5-1.1) | 14.9 | 141.7 | 31.3 | 71/84 |
+
+The infusion site layer accounts for most of the movement in the measures describing where glucose
+sits, raising time above 180 mg/dL from 6.3 to 13.8 per cent and mean glucose from 128.7 to 138.9
+mg/dL against 14.9 and 141.7 for the combined configuration. The physiology layer accounts for the
+movement in variability, raising the coefficient of variation from 25.5 to 31.8 per cent. The
+sensor layer moved no outcome measurably, which is consistent with its function of placing
+measurement error in front of the algorithm rather than altering the underlying glucose. The
+behaviour layer applied alone reduced time below range, from 1.8 to 1.1 per cent below 70 mg/dL,
+because it supplies rescue carbohydrate the model otherwise lacks.
 
 ### Completion
 
 | Arm | Completed | Terminations |
 |---|---|---|
 | stock | 81/84 | 3 hypoglycaemic |
-| titrated | 84/84 | none |
+| titrated, no layers | 84/84 | none |
 | physiology | 55/84 | 28 hypoglycaemic, 1 hyperglycaemic |
 | behaviour | 84/84 | none |
 | sensor | 84/84 | none |
@@ -136,29 +150,30 @@ and 12.4 with the behaviour layer alone, through time above range rather than be
 | all four | 71/84 | 13 hypoglycaemic |
 | all four, unannounced | 72/84 | 8 hypoglycaemic, 4 hyperglycaemic |
 
-The physiology layer applied alone lost 29 of 84 subjects, 28 of them hypoglycaemically. It
-carries the physiological variation without the behaviour layer that supplies rescue
-carbohydrate, so a subject whose glucose falls has no means of recovery. Its outcome medians are
-computed over the subjects that avoided a terminating low, and its agreement with the reference on
-variability is conditioned on that selection.
+The combined configuration lost 13 of 84 subjects, all hypoglycaemically. The physiology layer
+applied alone lost 29, 28 of them hypoglycaemically: it carries the physiological variation
+without the behaviour layer that supplies rescue carbohydrate, so a subject whose glucose falls
+has no means of recovery. Outcome medians for that arm are computed over the subjects that avoided
+a terminating low.
 
 ## Discussion
 
-The layers move the model in the direction of the real cohorts on the measures describing where
-glucose sits, and close approximately a third of the distance to DCLP3 on time in range and on
-mean glucose. They close the variability difference almost entirely. On the strongest of the three
-pairings no configuration produced a cohort indistinguishable from the participants on time in
-range, mean glucose or time above range, so a benchmark run here is run on a population that
-remains about ten percentage points of time in range better controlled than the DCLP3 arm.
+The combined configuration moves the model towards the real cohorts on every measure describing
+where glucose sits, closing approximately a third of the distance to the DCLP3 participants in
+time in range and in mean glucose, and closing the variability difference almost entirely. Against
+DCLP3 it produced no measure on which the simulated median could not be distinguished from the
+participants, so an algorithm benchmarked here is benchmarked on a population that remains about
+ten percentage points of time in range better controlled than that trial arm. Against the Commons
+it reached agreement on mean glucose and on variability, which is the closest correspondence
+obtained.
 
-Two layers account for almost all of the effect and they act on different measures. The site layer
-acts on hyperglycaemia and the physiology layer on variability. The sensor layer alters what the
-algorithm observes rather than what the subject experiences, and its absence from these outcomes
-is consistent with that design.
+Within the layers, two account for almost all of the effect and act on different measures. The
+site layer acts on hyperglycaemia and the physiology layer on variability. The sensor layer alters
+what the algorithm observes rather than what the subject experiences, which is consistent with its
+absence from these outcomes.
 
-Time below 54 mg/dL is the exception to the pattern. The stock model agrees with the DCLP3
-participants at 0.3 per cent against 0.2, and every layered arm exceeds them, reaching 0.8 per cent
-with all four layers. The same measure carries the widest floor between disjoint cohorts drawn
+Time below 54 mg/dL moved in the opposite direction to the rest. The unmodified model agrees with
+the DCLP3 participants at 0.3 per cent against 0.2, and the combined configuration records 0.8. The same measure carries the widest floor between disjoint cohorts drawn
 from this population, at 1.06 to 3.65 spreads depending on the cell, and the largest excess in the
 package's between-subject spread, at five to seven times the reference. Inferences about
 hypoglycaemia drawn from this bench are the least supported of any reported here.
