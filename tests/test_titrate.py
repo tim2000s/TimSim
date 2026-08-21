@@ -140,14 +140,44 @@ def test_titration_runs_under_a_fixed_reference_regimen():
 
 # ------------------------------------------------------- what the store is trusted for
 def _store_with(tmp_path, name, **overrides):
-    """A one-subject store carrying the current population's fingerprint."""
+    """A one-subject store carrying the current population and code fingerprints."""
     import json
     rec = {"name": name, "scale": 1.0, "basal_scale": 1.0, "found": True}
     rec.update(overrides)
     path = tmp_path / "settings.json"
     path.write_text(json.dumps(
-        {"meta": {"population": T.population_fingerprint()}, "subjects": {name: rec}}))
+        {"meta": {"population": T.population_fingerprint(), "code": T.code_fingerprint()},
+         "subjects": {name: rec}}))
     return str(path)
+
+
+def test_a_store_without_a_code_fingerprint_is_refused(tmp_path):
+    """A store predating the field cannot be shown to match the physiology now on disk.
+
+    The population fingerprint sees a different set of bodies. It cannot see the same bodies
+    dosed by a different ladder, or run against changed delivery limits, which is a different
+    procedure reaching a different answer about what settings are safe.
+    """
+    import json
+    name = population.names("adult")[0]
+    path = tmp_path / "old.json"
+    path.write_text(json.dumps(
+        {"meta": {"population": T.population_fingerprint()},
+         "subjects": {name: {"name": name, "scale": 1.0, "basal_scale": 1.0, "found": True}}}))
+    with pytest.raises(RuntimeError, match="no code fingerprint"):
+        T.profile_for(name, path=str(path))
+
+
+def test_a_store_from_different_code_is_refused(tmp_path):
+    """And one carrying a fingerprint that does not match is refused by value."""
+    import json
+    name = population.names("adult")[0]
+    path = tmp_path / "stale.json"
+    path.write_text(json.dumps(
+        {"meta": {"population": T.population_fingerprint(), "code": "0000deadbeef0000"},
+         "subjects": {name: {"name": name, "scale": 1.0, "basal_scale": 1.0, "found": True}}}))
+    with pytest.raises(RuntimeError, match="fingerprinted"):
+        T.profile_for(name, path=str(path))
 
 
 @pytest.mark.parametrize("field,value", [

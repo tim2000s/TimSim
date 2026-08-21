@@ -27,7 +27,15 @@ from timsim import seeds
 
 def _one(job):
     name, days, seed = job
-    return titrate.titrate_subject(name, days=days, seed=seed)
+    # A fault is returned rather than raised, so one subject's failure does not throw away a
+    # multi-hour cohort, and it is returned as a fault rather than as a clinical exclusion so
+    # `main` can refuse to save a store that is quietly missing subjects. Before 21 August 2026
+    # the two were the same outcome and an excluded subject could be a crashed one.
+    try:
+        return titrate.titrate_subject(name, days=days, seed=seed)
+    except titrate.TitrationError as exc:
+        return {"name": name, "scale": None, "basal_scale": None, "lever": None,
+                "found": False, "fatal": True, "error": str(exc)[:300], "trace": []}
 
 
 def main():
@@ -89,6 +97,20 @@ def main():
         merged = dict(existing["subjects"])
         merged.update({r["name"]: r for r in out})
         out = list(merged.values())
+
+    # A store is not written while any subject crashed. Saving one would record those subjects
+    # as having no settings that clear the clinical floors, which is what every downstream
+    # cohort reads to exclude them, and the exclusion would be a fault wearing a finding's
+    # clothes.
+    fatal = [r for r in out if r.get("fatal")]
+    if fatal:
+        for r in fatal[:5]:
+            print(f"  ! {r['name']}: {r.get('error', '')[:160]}")
+        raise SystemExit(
+            f"{len(fatal)} of {len(out)} subjects failed for a reason that is not a clinical "
+            f"result, so nothing is written. These would otherwise be saved as subjects no "
+            f"settings could dose safely and dropped from every cohort. Fix the cause and "
+            f"rerun; `--add` will fill in only what is missing.")
 
     found = [r for r in out if r["found"]]
     path = titrate.save(out, meta={"days": a.days, "seed": a.seed,

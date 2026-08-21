@@ -205,6 +205,40 @@ def time_in_band(lo=70.0, hi=180.0):
 
 
 # --------------------------------------------------------------------------- comparing
+def _match_exposure(real, simulated, take=MIDDLE, tolerance=0.01):
+    """Cap both cohorts so their total exposure agrees, not just their per-subject budget.
+
+    The budget was the smaller of the two mean days per subject, applied per subject. A subject
+    whose record is shorter than the budget keeps all of it, so the totals only agree when both
+    cohorts are evenly distributed. Durations of one day and 199 against 100 and 100 have the
+    same mean, and sampling at 100 gives 101 days against 200 while the result asserted that
+    exposure was matched. Simulated cohorts are exactly the uneven case, because a run that
+    terminates early leaves a short record and the runs that terminate are the ones that went
+    furthest wrong.
+
+    So the budget is now searched for rather than assumed: the cohort with the greater total is
+    capped at whatever per-subject budget brings its total to the other's. That leaves the
+    shorter cohort whole and trims only the one with days to spare.
+    """
+    a, b = real.sample(real.days, take), simulated.sample(simulated.days, take)
+    if min(a.days, b.days) <= 0:
+        return a, b
+    long_, short_ = (a, b) if a.days > b.days else (b, a)
+    target = short_.days
+    if long_.days - target <= tolerance * max(target, 1e-9):
+        return (a, b)
+    # Total sampled days rise monotonically with the per-subject budget, so bisect on it.
+    lo, hi = 0.0, long_.days
+    for _ in range(60):
+        mid = 0.5 * (lo + hi)
+        if long_.sample(mid, take).days < target:
+            lo = mid
+        else:
+            hi = mid
+    capped = long_.sample(0.5 * (lo + hi), take)
+    return (capped, short_) if long_ is a else (short_, capped)
+
+
 def compare(real, simulated, statistic, match_exposure=True, take=MIDDLE,
             allow_signal_mismatch=False):
     """Put two cohorts side by side, having checked they can be.
@@ -233,9 +267,7 @@ def compare(real, simulated, statistic, match_exposure=True, take=MIDDLE,
             "or pass allow_signal_mismatch=True to measure the difference on purpose.")
 
     if match_exposure:
-        days_each = min(real.days / max(real.subjects, 1),
-                        simulated.days / max(simulated.subjects, 1))
-        real, simulated = real.sample(days_each, take), simulated.sample(days_each, take)
+        real, simulated = _match_exposure(real, simulated, take)
 
     out = {"statistic": getattr(statistic, "__name__", "statistic"),
            "real": {"name": real.name, "subjects": real.subjects, "days": real.days,
@@ -244,7 +276,12 @@ def compare(real, simulated, statistic, match_exposure=True, take=MIDDLE,
                          "days": simulated.days, **statistic(simulated)},
            "signal": real.signal if real.signal == simulated.signal else
                      f"{real.signal} against {simulated.signal}",
-           "exposure_matched": bool(match_exposure)}
+           # Whether exposure actually agrees, measured after the fact, rather than whether
+           # matching was requested. The two were the same field until 21 August 2026.
+           "exposure_matched": bool(
+               match_exposure and abs(real.days - simulated.days)
+               <= 0.01 * max(real.days, simulated.days, 1e-9)),
+           "exposure_requested": bool(match_exposure)}
     if real.signal != simulated.signal:
         out["warning"] = ("signals differ, so these figures are not like for like and the "
                           "difference between them is partly the measurement")

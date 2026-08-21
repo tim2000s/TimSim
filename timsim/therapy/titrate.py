@@ -137,6 +137,15 @@ def failures(report):
     return tuple(out)
 
 
+class TitrationError(RuntimeError):
+    """A titration attempt failed for a reason that is not a clinical result.
+
+    Kept distinct so a caller can tell a subject who cannot be dosed safely from a subject
+    whose run never happened. The first is a finding and excludes the subject from every
+    cohort; the second is a fault and should stop the work rather than quietly shrink it.
+    """
+
+
 def _profile(name, isf_scale, basal_scale):
     from dataclasses import replace
     from . import profile as profile_mod
@@ -170,9 +179,19 @@ def titrate_subject(name, days=28, seed=0, layers=None, scales=SCALES,
         try:
             r = run(name, days=days, seed=seed, layers=layers, controller=driver, profile=prof)
         except Exception as exc:
+            # A rung that raises is not a rung that failed the clinical floors, and until
+            # 21 August 2026 both produced the same verdict: the ladder carried on and the
+            # subject could be recorded as having no settings that cleared the floors. A
+            # missing dependency, an unpicklable argument or an ordinary programming defect
+            # was therefore indistinguishable from a subject who genuinely cannot be dosed
+            # safely, and the exclusion is load-bearing: excluded subjects are dropped from
+            # every cohort. A run that terminates does not raise, it returns `completed`
+            # False, so nothing expected arrives here.
             trace.append({"scale": isf_scale, "basal_scale": basal_scale,
                           "completed": False, "error": str(exc)[:140]})
-            return False
+            raise TitrationError(
+                f"titrating {name} at isf_scale {isf_scale} and basal_scale {basal_scale} "
+                f"raised {type(exc).__name__}: {exc}") from exc
         rep = consensus_report(r.cgm)
         trace.append({"scale": isf_scale, "basal_scale": basal_scale,
                       "completed": bool(r.completed),
@@ -224,6 +243,29 @@ def population_fingerprint(path=PARAMS):
         return None
 
 
+# The modules whose behaviour decides what a titration finds. A change to any of them makes an
+# existing store a record of a different procedure, and the population fingerprint cannot see it:
+# the subjects are the same bodies, dosed by different code.
+_CODE = ("patient/varying.py", "patient/glucagon.py", "simulation/run.py",
+         "person/behaviour.py", "person/activity.py", "therapy/limits.py",
+         "therapy/profile.py", "therapy/insulin.py", "therapy/titrate.py")
+
+
+def code_fingerprint(root=None):
+    """A digest of the code a titration outcome depends on, or None if it cannot be read."""
+    import hashlib
+    root = root or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    h = hashlib.sha256()
+    for rel in _CODE:
+        try:
+            with open(os.path.join(root, rel), "rb") as fh:
+                h.update(rel.encode())
+                h.update(fh.read())
+        except OSError:
+            return None
+    return h.hexdigest()[:16]
+
+
 def save(results, path=STORE, meta=None):
     """Record a titration, including the subjects it failed on and the trace for each.
 
@@ -233,6 +275,12 @@ def save(results, path=STORE, meta=None):
     """
     meta = dict(meta or {})
     meta.setdefault("population", population_fingerprint())
+    meta.setdefault("code", code_fingerprint())
+    try:
+        from importlib import metadata as _md
+        meta.setdefault("simglucose", _md.version("simglucose"))
+    except Exception:
+        meta.setdefault("simglucose", None)
     payload = {"meta": meta, "subjects": {r["name"]: r for r in results}}
     tmp = f"{path}.partial"
     with open(tmp, "w") as fh:
@@ -244,8 +292,16 @@ def save(results, path=STORE, meta=None):
 
 
 def check_population(store, path=PARAMS):
-    """Raise when a store was fitted to a different population than the one present."""
-    recorded = (store.get("meta") or {}).get("population")
+    """Raise when a store was fitted to a different population or by different code.
+
+    The population fingerprint alone was checked until 21 August 2026. It cannot see a change
+    to the physiology, the delivery limits or the ladder itself: the subjects are the same
+    bodies and the settings were found by a different procedure. Everything a titration outcome
+    depends on is now recorded and compared, and a store written before that carries no code
+    fingerprint and is refused rather than assumed current.
+    """
+    meta = store.get("meta") or {}
+    recorded = meta.get("population")
     current = population_fingerprint(path)
     if recorded is None:
         raise RuntimeError(
@@ -256,6 +312,21 @@ def check_population(store, path=PARAMS):
             f"These titrated settings were fitted to population {recorded} and the population "
             f"on disk is {current}. Subject names are reused across generations, so applying "
             f"them would dose each subject on another body's settings. Rerun "
+            f"`python examples/titrate_cohort.py`.")
+
+    code_now = code_fingerprint()
+    code_was = meta.get("code")
+    if code_was is None:
+        raise RuntimeError(
+            "These titrated settings record no code fingerprint, so they cannot be shown to "
+            "have been produced by the physiology, delivery limits and ladder now on disk. "
+            "Rerun `python examples/titrate_cohort.py`.")
+    if code_now is not None and code_was != code_now:
+        raise RuntimeError(
+            f"These titrated settings were produced by code fingerprinted {code_was} and the "
+            f"code on disk fingerprints {code_now}. A settings ladder run against different "
+            f"physiology or different delivery limits found different settings, and the "
+            f"population fingerprint cannot see that. Rerun "
             f"`python examples/titrate_cohort.py`.")
 
 

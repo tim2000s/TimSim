@@ -335,12 +335,35 @@ def _require_matching_profile(controller, prof):
     """Refuse a run where the controller doses against different settings from the rig.
 
     Compared on the values rather than on identity, since a caller may reasonably rebuild an
-    equal profile. Only the three quantities an algorithm doses from are checked, because a
-    controller is entitled to differ on the target it is asked to hold.
+    equal profile. The target is deliberately excluded, because a controller is entitled to
+    differ on the glucose it is asked to hold.
+
+    Basal, sensitivity and carbohydrate ratio were the only three checked until 21 August 2026,
+    and they are not the only inputs a dose is computed from. oref0 reads `max_iob` off the
+    profile's limits and every algorithm here reads the duration of insulin action, so a
+    controller could compute against a four-hour DIA or a 12 U ceiling while the rig enforced
+    five hours and 8 U, agree on all three of the old fields, and pass.
     """
     other = getattr(controller, "profile", None)
     if other is None or other is prof:
         return
+    for field in ("dia_min",):
+        a, b = getattr(prof, field, None), getattr(other, field, None)
+        if a is not None and b is not None and not np.isclose(float(a), float(b)):
+            raise ValueError(
+                f"the controller's {field} is {b:g} and this run's is {a:g}. An algorithm "
+                f"dosing on a different duration of insulin action from the rig delivering it "
+                f"is computing insulin on board against a curve that is not being used.")
+    la, lb = getattr(prof, "limits", None), getattr(other, "limits", None)
+    if la is not None and lb is not None:
+        for field in ("max_iob_u", "max_basal_u_per_hour", "max_bolus_u",
+                      "basal_increment_u_per_hour", "bolus_increment_u"):
+            a, b = getattr(la, field, None), getattr(lb, field, None)
+            if a is not None and b is not None and not np.isclose(float(a), float(b)):
+                raise ValueError(
+                    f"the controller's {field} is {b:g} and the rig enforces {a:g}. The "
+                    f"algorithm would dose to a ceiling that is not the one being applied, so "
+                    f"its restraint and the rig's would be measured as one thing.")
     for field in ("basal_u_per_hour", "isf", "cr"):
         a = np.asarray(getattr(prof, field), dtype=float)
         b = np.asarray(getattr(other, field), dtype=float)
@@ -734,18 +757,23 @@ def _cohort_one(job):
     kwargs = dict(kwargs)
     if profile_factory is not None:
         kwargs["profile"] = profile_factory(name)
-    driver = factory(name) if factory is not None else controller
+    # Only an instance this call created is closed. A controller passed in belongs to the
+    # caller, and a serial cohort hands the same object to every subject in turn: closing it
+    # after the first left an `OrefController` with a dead node subprocess and a
+    # `BoostController` with a dead JVM, to be used again by the next subject.
+    owned = factory is not None
+    driver = factory(name) if owned else controller
     try:
         with warnings.catch_warnings():
             warnings.simplefilter("once", UserWarning)
             return simulate(name, days=days, seed=seed, layers=layers,
                             controller=driver, **kwargs)
     finally:
-        if hasattr(driver, "close"):
+        if owned and hasattr(driver, "close"):
             driver.close()
 
 
-def _parallelisable(controller, controller_factory):
+def _parallelisable(controller, controller_factory, profile_factory=None, kwargs=None):
     """Whether this cohort can be spread across processes, and why not when it cannot.
 
     A worker receives its job by pickle, so anything holding a live resource cannot cross.
@@ -756,15 +784,21 @@ def _parallelisable(controller, controller_factory):
     factory is for.
     """
     import pickle
-    for what, label in ((controller, "controller"), (controller_factory, "controller_factory")):
-        if what is None or isinstance(what, str):
+    candidates = [(controller, "controller"), (controller_factory, "controller_factory"),
+                  (profile_factory, "profile_factory")]
+    # The job carries the keyword arguments too, so a fault configuration or a profile built by
+    # a lambda crosses with it. Testing only the two controller slots promised a serial fallback
+    # and then died in the pool instead of taking it.
+    for key, value in (kwargs or {}).items():
+        candidates.append((value, f"kwargs[{key!r}]"))
+    for what, label in candidates:
+        if what is None or isinstance(what, (str, int, float, bool)):
             continue
         try:
             pickle.dumps(what)
         except Exception:
             return False, (f"{label} cannot be sent to a worker process, so the cohort runs "
-                           f"serially; pass a controller_factory defined at module level to "
-                           f"parallelise it")
+                           f"serially; define it at module level to parallelise it")
     return True, None
 
 
@@ -809,7 +843,8 @@ def simulate_cohort(names=None, days=28, seed=0, layers=DEFAULT_LAYERS,
               f"{'' if s['completed'] else 'DID NOT COMPLETE'}", flush=True)
 
     if workers and workers > 1:
-        ok, why = _parallelisable(controller, controller_factory)
+        ok, why = _parallelisable(controller, controller_factory,
+                                  profile_factory, kwargs)
         if not ok:
             warnings.warn(why, RuntimeWarning, stacklevel=2)
         else:

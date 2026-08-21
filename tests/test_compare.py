@@ -182,3 +182,34 @@ def test_a_subject_profile_covers_every_clinical_zone():
     p = C.subject_profile(v)
     assert set(p) >= {n for _, _, n in C.ZONES} | {"mean", "cv"}
     assert sum(p[n] for _, _, n in C.ZONES) == pytest.approx(100.0)
+
+
+def test_exposure_is_matched_on_the_total_not_the_mean():
+    """Capping each subject at the mean leaves uneven cohorts unmatched, and said otherwise.
+
+    Durations of one day and 199 have the same mean as 100 and 100, so the per-subject budget
+    was 100 and the sampled totals were 101 against 200 while `exposure_matched` reported true.
+    Simulated cohorts are exactly this shape, because a run that terminates early leaves a short
+    record and the runs that terminate are the ones that went furthest wrong.
+    """
+    mk = lambda name, durs: C.Cohort(
+        name, C.READING, 5.0,
+        tuple((f"{name}{i}", np.full(int(d * 288), 100.0)) for i, d in enumerate(durs)))
+
+    for a_durs, b_durs in ([1, 199], [100, 100]), ([50, 50], [100, 100]), \
+                          ([28, 28, 3, 2], [180] * 4):
+        out = C.compare(mk("a", a_durs), mk("b", b_durs), C.time_in_band())
+        a_days, b_days = out["real"]["days"], out["simulated"]["days"]
+        assert abs(a_days - b_days) <= 0.01 * max(a_days, b_days), (a_durs, b_durs, out)
+        assert out["exposure_matched"] is True
+
+
+def test_exposure_matched_reports_the_outcome_not_the_request():
+    """The field said whether matching was asked for, which is not the same question."""
+    mk = lambda name, durs: C.Cohort(
+        name, C.READING, 5.0,
+        tuple((f"{name}{i}", np.full(int(d * 288), 100.0)) for i, d in enumerate(durs)))
+    out = C.compare(mk("a", [10, 10]), mk("b", [40, 40]), C.time_in_band(),
+                    match_exposure=False)
+    assert out["exposure_requested"] is False
+    assert out["exposure_matched"] is False
