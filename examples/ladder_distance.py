@@ -5,7 +5,14 @@ site accumulating, with the algorithm held at whatever that trial's participants
 cohort matched to them. This reads that into one table per pairing: what the rung produced, and
 how far it sits from the real population, in units of the spread between real people.
 
-Two things are reported beside every rung and neither is decoration.
+A gap is reported as distinguishable only when the real median falls outside the simulated
+cohort's 95 per cent interval, which is issue 16 in `docs/ISSUES.md`. Expressing a difference in
+units of the real between-person spread says how large it is and not whether it survives the
+cohort having been drawn differently, and on these runs several differences quoted that way are
+inside the interval. The spread column is kept beside the verdict as a magnitude, never as the
+evidence.
+
+Two more things are reported beside every rung and neither is decoration.
 
 Completion, because a run stops when glucose leaves the range the model is defined over, the runs
 that stop are the ones that went furthest wrong, and every median is therefore conditioned on
@@ -32,8 +39,8 @@ MEASUREMENTS = os.path.join(REPO, "docs", "measurements")
 
 import numpy as np
 
-from examples.bench_tables import references
-from timsim import provenance
+from examples.bench_tables import BOOTSTRAP, _ci, references
+from timsim import provenance, seeds
 
 RUNGS = ["stock", "phys", "behav", "sens", "site"]
 LABELS = {"stock": "S2008 bare", "phys": "+physiology", "behav": "+behaviour",
@@ -79,60 +86,78 @@ def main():
     for r in d["runs"]:
         idx.setdefault((r["cohort"], r["controller"]), {}).setdefault(r["bench"], []).append(r)
     refs = references()
+    rng = np.random.default_rng(seeds.BENCH)
 
-    report = {"file": os.path.basename(a.file), "provenance": provenance.stamp(), "pairings": {}}
+    report = {"file": os.path.basename(a.file), "provenance": provenance.stamp(),
+              "test": "the real median falls outside the simulated cohort's 95% interval",
+              "bootstrap": BOOTSTRAP, "pairings": {}}
+
     for (cohort, controller), arms in sorted(idx.items()):
         real = real_summary(refs.get(cohort, {}))
-        print(f"\n{'=' * 92}\n{cohort} under {controller}")
         n_real = next((v["n"] for v in real.values() if v.get("n")), None)
+        print(f"\n{'=' * 96}\n{cohort} under {controller}")
         print(f"reference: {n_real} participants" if n_real else
-              "reference: published summaries only, no participants, so no spread")
+              "reference: published summaries only, no participants")
 
-        print(f"\n  {'rung':13}{'completed':>11}" +
-              "".join(f"{LABELS[r][:11]:>13}" for r in []) )
-        print(f"  {'':13}{'':>11}" + "".join(f"{m[1][:22]:>24}" for m in MEASURES[:2]))
         rec = {"controller": controller, "reference_n": n_real, "rungs": {}}
         for rung in RUNGS:
             rows = arms.get(rung, [])
             done = [r for r in rows if r.get("completed")]
             entry = {"completed": len(done), "run": len(rows), "measures": {}}
-            cells = []
             for key, _, refkey in MEASURES:
-                v = [r[key] for r in done if key in r]
+                v = [r[key] for r in done if key in r and np.isfinite(r[key])]
                 if not v:
                     continue
                 med = float(np.median(v))
+                lo, hi = _ci(v, rng)
                 rr = real.get(refkey)
-                gap = None
-                if rr and rr.get("spread"):
-                    gap = (med - rr["median"]) / rr["spread"]
-                entry["measures"][key] = {"median": med, "gap_spreads": gap,
-                                          "real_median": rr["median"] if rr else None}
-                cells.append((med, gap))
+                cell = {"median": med, "interval": [lo, hi], "n": len(v)}
+                if rr:
+                    cell["real_median"] = rr["median"]
+                    cell["differs"] = not (lo <= rr["median"] <= hi)
+                    if rr.get("spread"):
+                        cell["gap_spreads"] = (med - rr["median"]) / rr["spread"]
+                entry["measures"][key] = cell
             rec["rungs"][rung] = entry
-            print(f"  {LABELS[rung]:13}{len(done):>6}/{len(rows):<4}" +
-                  "".join(f"{m:>12.2f}{('' if g is None else f'{g:+.2f}'):>12}"
-                          for m, g in cells[:2]))
-        report["pairings"][f"{cohort}|{controller}"] = rec
 
-        # The full table, one row per measure, so every rung is readable across.
-        print(f"\n  {'measure':24}" + "".join(f"{LABELS[r]:>14}" for r in RUNGS) + f"{'real':>10}")
+        print(f"\n  {'':26}" + "".join(f"{LABELS[r]:>14}" for r in RUNGS) + f"{'real':>10}")
+        print(f"  {'completed':26}" +
+              "".join(f"{rec['rungs'][r]['completed']:>9}/{rec['rungs'][r]['run']:<4}"
+                      for r in RUNGS))
+
         for key, name, refkey in MEASURES:
             rr = real.get(refkey)
-            line = f"  {name:24}"
+            meds, verds, gaps = [], [], []
             for rung in RUNGS:
-                m = rec["rungs"][rung]["measures"].get(key)
-                line += f"{m['median']:>14.2f}" if m else f"{'-':>14}"
-            line += f"{rr['median']:>10.2f}" if rr else f"{'-':>10}"
-            print(line)
+                c = rec["rungs"][rung]["measures"].get(key)
+                if not c:
+                    meds.append(f"{'-':>14}"); verds.append(f"{'-':>14}"); gaps.append(f"{'-':>14}")
+                    continue
+                meds.append(f"{c['median']:>14.2f}")
+                if "differs" in c:
+                    verds.append(f"{('differs' if c['differs'] else 'same'):>14}")
+                else:
+                    verds.append(f"{'no test':>14}")
+                gaps.append(f"{c['gap_spreads']:>+14.2f}" if "gap_spreads" in c else f"{'-':>14}")
+            print(f"\n  {name:26}" + "".join(meds) +
+                  (f"{rr['median']:>10.2f}" if rr else f"{'-':>10}"))
+            print(f"  {'  against real':26}" + "".join(verds))
             if rr and rr.get("spread"):
-                gaps = "".join(
-                    f"{rec['rungs'][r]['measures'][key]['gap_spreads']:>+14.2f}"
-                    if rec["rungs"][r]["measures"].get(key) else f"{'-':>14}" for r in RUNGS)
-                print(f"  {'  in spreads of real':24}{gaps}")
+                print(f"  {'  magnitude, spreads':26}" + "".join(gaps))
+
+        # The headline: how many measures a rung cannot be told apart from the trial on.
+        print(f"\n  {'indistinguishable from real':26}", end="")
+        for rung in RUNGS:
+            ms = [c for c in rec["rungs"][rung]["measures"].values() if "differs" in c]
+            same = sum(1 for c in ms if not c["differs"])
+            rec["rungs"][rung]["indistinguishable"] = same
+            rec["rungs"][rung]["tested"] = len(ms)
+            print(f"{(f'{same} of {len(ms)}' if ms else '-'):>14}", end="")
+        print()
+        report["pairings"][f"{cohort}|{controller}"] = rec
 
     json.dump(report, open(a.out, "w"), indent=1)
-    print(f"\nwrote {a.out}")
+    print(f"\n\nwrote {a.out}")
 
 
 if __name__ == "__main__":
