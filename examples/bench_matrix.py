@@ -42,6 +42,13 @@ OUT = os.path.join(MEASUREMENTS, "bench_matrix.json")
 
 PAIRINGS = [("dclp3", "control-iq"), ("dclp3", "oref"),
             ("commons", "oref"), ("close_it", "oref")]
+
+# The validation set drops `dclp3 | oref`. That pairing exists in the matrix to compare two
+# algorithms on one cohort, which is a different question; as a comparison against real people it
+# has no reference, because DCLP3 participants ran Control-IQ and there is no published cohort of
+# them running oref0. Each pairing here is a real population and the algorithm those people
+# actually used.
+VALIDATION_PAIRINGS = [("dclp3", "control-iq"), ("commons", "oref"), ("close_it", "oref")]
 BENCHES = [("bare", (), "some", "titrated"),
            ("layered_always", LAYERS, "always", "titrated"),
            ("layered_some", LAYERS, "some", "titrated"),
@@ -147,7 +154,12 @@ def one(job):
            "insulin_per_day": float(getattr(r, "insulin_units", float("nan")) / days),
            "rescue_per_30d": float(30.0 * getattr(r, "rescue_events", 0) / days),
            "final_bg": float(bg[-1]), "lowest_bg": float(np.min(bg)),
-           "highest_bg": float(np.max(bg))}
+           "highest_bg": float(np.max(bg)),
+           # Why a run ended, from `classify_termination`, rather than left to be reconstructed
+           # from the final reading. It carries the direction, the day it stopped and whether an
+           # infusion site failure was in progress, and every median above is conditioned on
+           # survival, so the reasons belong beside the numbers rather than in a separate audit.
+           "termination": getattr(r, "termination", None)}
     for sig, lab in ((cgm, "cgm"), (bg, "bg")):
         out[f"tir_{lab}"] = float(100.0 * np.mean((sig >= 70) & (sig <= 180)))
         out[f"tbr70_{lab}"] = float(100.0 * np.mean(sig < 70))
@@ -192,8 +204,9 @@ def main():
 
     benches = {"baseline": BASELINE_BENCHES, "ladder": LADDER_BENCHES,
                "validation": VALIDATION_BENCHES}.get(a.benches, BENCHES)
+    default_pairings = VALIDATION_PAIRINGS if a.benches == "validation" else PAIRINGS
     pairings = ([(c, a.controller) for c in sorted(rec["cohorts"])] if a.controller
-                else PAIRINGS)
+                else default_pairings)
 
     jobs = []
     for cohort, controller in pairings:
