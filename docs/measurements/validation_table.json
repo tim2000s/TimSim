@@ -1,0 +1,3635 @@
+{
+ "file": "validation.json",
+ "provenance": {
+  "population": "704cfac086df54ba",
+  "settings": "9d2477050d300b51",
+  "commit": "50ed77b9cd7aa2fa0dbd1b7bb6444d9291d9666f",
+  "dirty": true,
+  "host": "Tims-Mac-mini.local",
+  "python": "3.14.7",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "when": "2026-08-21T21:59:26+00:00",
+  "simglucose": "0.2.11"
+ },
+ "verdict": "the real median falls outside the simulated 95% interval",
+ "pairings": {
+  "close_it|oref": {
+   "controller": "oref",
+   "reference_n": null,
+   "arms": {
+    "stock": {
+     "tir_cgm": {
+      "median": 85.31125992063491,
+      "mean": 84.2802501860119,
+      "sd": 10.332465723808799,
+      "min": 59.08978174603175,
+      "max": 99.28075396825396,
+      "interval": [
+       82.421875,
+       89.0625
+      ],
+      "completed": 64,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 7
+      },
+      "verdict": "-"
+     },
+     "tbr70_cgm": {
+      "median": 7.4094742063492065,
+      "mean": 8.222695002480158,
+      "sd": 6.488616561197373,
+      "min": 0.08680555555555555,
+      "max": 26.959325396825395,
+      "interval": [
+       5.146329365079366,
+       9.120783730158731
+      ],
+      "completed": 64,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 7
+      },
+      "verdict": "-"
+     },
+     "tbr54_cgm": {
+      "median": 1.4384920634920635,
+      "mean": 2.874077690972222,
+      "sd": 3.579334855076779,
+      "min": 0.0,
+      "max": 17.42311507936508,
+      "interval": [
+       0.8804563492063492,
+       2.312748015873016
+      ],
+      "completed": 64,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 7
+      },
+      "verdict": "-"
+     },
+     "tar180_cgm": {
+      "median": 5.964781746031746,
+      "mean": 7.497054811507936,
+      "sd": 5.545659531931963,
+      "min": 0.6324404761904762,
+      "max": 25.471230158730158,
+      "interval": [
+       4.166666666666666,
+       9.052579365079366
+      ],
+      "completed": 64,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 7
+      },
+      "verdict": "-"
+     },
+     "mean_cgm": {
+      "median": 118.66073213343947,
+      "mean": 119.45932794999617,
+      "sd": 6.426955560997246,
+      "min": 104.0442423975778,
+      "max": 141.8177622886715,
+      "interval": [
+       117.56325445211007,
+       120.8136330969532
+      ],
+      "completed": 64,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 7
+      },
+      "verdict": "-"
+     },
+     "cv_cgm": {
+      "median": 31.92272142238508,
+      "mean": 32.12078508355706,
+      "sd": 8.36816296154499,
+      "min": 15.625316217575515,
+      "max": 50.67256323732621,
+      "interval": [
+       28.932640628101268,
+       35.007809261074414
+      ],
+      "completed": 64,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 7
+      },
+      "verdict": "-"
+     },
+     "completion": {
+      "completed": 64,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 7
+      }
+     }
+    },
+    "base": {
+     "tir_cgm": {
+      "median": 86.08630952380952,
+      "mean": 84.34686685619519,
+      "sd": 9.982217953731956,
+      "min": 63.64087301587301,
+      "max": 99.28075396825396,
+      "interval": [
+       82.53968253968253,
+       89.05009920634922
+      ],
+      "completed": 67,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 4
+      },
+      "verdict": "-"
+     },
+     "tbr70_cgm": {
+      "median": 7.2296626984126995,
+      "mean": 7.7599354418384285,
+      "sd": 6.035440296130107,
+      "min": 0.08680555555555555,
+      "max": 24.231150793650794,
+      "interval": [
+       4.9603174603174605,
+       8.903769841269842
+      ],
+      "completed": 67,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 4
+      },
+      "verdict": "-"
+     },
+     "tbr54_cgm": {
+      "median": 1.3764880952380951,
+      "mean": 2.6659855484482344,
+      "sd": 3.132884072795255,
+      "min": 0.0,
+      "max": 12.648809523809524,
+      "interval": [
+       0.8308531746031746,
+       2.3561507936507935
+      ],
+      "completed": 67,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 4
+      },
+      "verdict": "-"
+     },
+     "tar180_cgm": {
+      "median": 6.2872023809523805,
+      "mean": 7.893197701966359,
+      "sd": 5.697942694373176,
+      "min": 0.6324404761904762,
+      "max": 25.471230158730158,
+      "interval": [
+       5.133928571428571,
+       9.164186507936508
+      ],
+      "completed": 67,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 4
+      },
+      "verdict": "-"
+     },
+     "mean_cgm": {
+      "median": 119.85473639891626,
+      "mean": 121.06305116026672,
+      "sd": 6.903863588678951,
+      "min": 104.83203095640341,
+      "max": 145.82805735152806,
+      "interval": [
+       118.27118932857627,
+       121.96907493910511
+      ],
+      "completed": 67,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 4
+      },
+      "verdict": "-"
+     },
+     "cv_cgm": {
+      "median": 31.63261971068085,
+      "mean": 31.797345731293962,
+      "sd": 8.124780723296524,
+      "min": 15.625316217575515,
+      "max": 49.43028882838514,
+      "interval": [
+       28.77607858203164,
+       34.28223188583581
+      ],
+      "completed": 67,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 4
+      },
+      "verdict": "-"
+     },
+     "completion": {
+      "completed": 67,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 4
+      }
+     }
+    },
+    "physiology": {
+     "tir_cgm": {
+      "median": 86.85515873015873,
+      "mean": 86.20997299382717,
+      "sd": 5.013363860798925,
+      "min": 76.81051587301587,
+      "max": 96.50297619047619,
+      "interval": [
+       85.05704365079364,
+       89.0376984126984
+      ],
+      "completed": 36,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 34,
+       "hyperglycaemic": 1
+      },
+      "verdict": "-"
+     },
+     "tbr70_cgm": {
+      "median": 5.828373015873016,
+      "mean": 6.802868716931217,
+      "sd": 3.6965912480327323,
+      "min": 0.33482142857142855,
+      "max": 14.70734126984127,
+      "interval": [
+       4.854910714285714,
+       7.688492063492064
+      ],
+      "completed": 36,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 34,
+       "hyperglycaemic": 1
+      },
+      "verdict": "-"
+     },
+     "tbr54_cgm": {
+      "median": 2.095734126984127,
+      "mean": 2.845637676366843,
+      "sd": 2.1342307542342795,
+      "min": 0.0,
+      "max": 8.18452380952381,
+      "interval": [
+       1.5873015873015872,
+       3.2614087301587302
+      ],
+      "completed": 36,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 34,
+       "hyperglycaemic": 1
+      },
+      "verdict": "-"
+     },
+     "tar180_cgm": {
+      "median": 6.8886408730158735,
+      "mean": 6.9871582892416235,
+      "sd": 2.936285354840059,
+      "min": 1.8849206349206349,
+      "max": 16.307043650793652,
+      "interval": [
+       5.766369047619048,
+       7.725694444444444
+      ],
+      "completed": 36,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 34,
+       "hyperglycaemic": 1
+      },
+      "verdict": "-"
+     },
+     "mean_cgm": {
+      "median": 120.63289281983245,
+      "mean": 121.451130543487,
+      "sd": 5.7776404224454705,
+      "min": 111.95518461724431,
+      "max": 132.51613796954607,
+      "interval": [
+       119.46806265962671,
+       122.60637698608373
+      ],
+      "completed": 36,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 34,
+       "hyperglycaemic": 1
+      },
+      "verdict": "-"
+     },
+     "cv_cgm": {
+      "median": 31.47309226469168,
+      "mean": 32.30996599785486,
+      "sd": 5.363459363063005,
+      "min": 20.36206180932227,
+      "max": 43.653486427929536,
+      "interval": [
+       29.770552215803548,
+       33.4191049324491
+      ],
+      "completed": 36,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 34,
+       "hyperglycaemic": 1
+      },
+      "verdict": "-"
+     },
+     "completion": {
+      "completed": 36,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 34,
+       "hyperglycaemic": 1
+      }
+     }
+    },
+    "behaviour": {
+     "tir_cgm": {
+      "median": 89.57093253968253,
+      "mean": 88.24963670914376,
+      "sd": 7.675228857878929,
+      "min": 63.095238095238095,
+      "max": 99.64037698412699,
+      "interval": [
+       86.76835317460318,
+       91.72867063492063
+      ],
+      "completed": 71,
+      "run": 71,
+      "terminations": {},
+      "verdict": "-"
+     },
+     "tbr70_cgm": {
+      "median": 3.881448412698413,
+      "mean": 4.430401855577912,
+      "sd": 3.360200576883537,
+      "min": 0.0992063492063492,
+      "max": 14.360119047619047,
+      "interval": [
+       3.3110119047619047,
+       4.6999007936507935
+      ],
+      "completed": 71,
+      "run": 71,
+      "terminations": {},
+      "verdict": "-"
+     },
+     "tbr54_cgm": {
+      "median": 0.3968253968253968,
+      "mean": 0.895651687905209,
+      "sd": 1.2108774668841207,
+      "min": 0.0,
+      "max": 6.25,
+      "interval": [
+       0.23561507936507936,
+       0.855654761904762
+      ],
+      "completed": 71,
+      "run": 71,
+      "terminations": {},
+      "verdict": "-"
+     },
+     "tar180_cgm": {
+      "median": 6.361607142857142,
+      "mean": 7.319961435278337,
+      "sd": 5.3801126616628885,
+      "min": 0.26041666666666663,
+      "max": 25.582837301587304,
+      "interval": [
+       4.997519841269842,
+       8.147321428571429
+      ],
+      "completed": 71,
+      "run": 71,
+      "terminations": {},
+      "verdict": "-"
+     },
+     "mean_cgm": {
+      "median": 121.51874361210157,
+      "mean": 122.5225526836973,
+      "sd": 6.950820309763805,
+      "min": 108.83675162527996,
+      "max": 145.29432987730175,
+      "interval": [
+       119.88860076824247,
+       122.7916538836137
+      ],
+      "completed": 71,
+      "run": 71,
+      "terminations": {},
+      "verdict": "-"
+     },
+     "cv_cgm": {
+      "median": 28.651624093462175,
+      "mean": 29.02606357674394,
+      "sd": 6.558105458746501,
+      "min": 15.111482731989888,
+      "max": 44.04325529460453,
+      "interval": [
+       26.245399855253805,
+       30.816142736359154
+      ],
+      "completed": 71,
+      "run": 71,
+      "terminations": {},
+      "verdict": "-"
+     },
+     "completion": {
+      "completed": 71,
+      "run": 71,
+      "terminations": {}
+     }
+    },
+    "sensor": {
+     "tir_cgm": {
+      "median": 83.81076388888889,
+      "mean": 83.21214375901877,
+      "sd": 10.410595048325014,
+      "min": 61.75595238095239,
+      "max": 99.06994047619048,
+      "interval": [
+       80.59275793650794,
+       87.98983134920636
+      ],
+      "completed": 66,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 5
+      },
+      "verdict": "-"
+     },
+     "tbr70_cgm": {
+      "median": 9.331597222222221,
+      "mean": 9.281618265993265,
+      "sd": 6.632791070340073,
+      "min": 0.26041666666666663,
+      "max": 25.880456349206348,
+      "interval": [
+       6.206597222222222,
+       10.639880952380953
+      ],
+      "completed": 66,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 5
+      },
+      "verdict": "-"
+     },
+     "tbr54_cgm": {
+      "median": 1.9965277777777777,
+      "mean": 3.341825998075998,
+      "sd": 3.62357715797207,
+      "min": 0.0248015873015873,
+      "max": 14.794146825396826,
+      "interval": [
+       1.2834821428571428,
+       3.236607142857143
+      ],
+      "completed": 66,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 5
+      },
+      "verdict": "-"
+     },
+     "tar180_cgm": {
+      "median": 5.704365079365079,
+      "mean": 7.506237974987974,
+      "sd": 5.566060308831168,
+      "min": 0.6572420634920635,
+      "max": 24.78918650793651,
+      "interval": [
+       4.799107142857143,
+       8.668154761904761
+      ],
+      "completed": 66,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 5
+      },
+      "verdict": "-"
+     },
+     "mean_cgm": {
+      "median": 117.65504597253963,
+      "mean": 118.60548360324819,
+      "sd": 6.967032110563595,
+      "min": 102.90284635575486,
+      "max": 143.1766729052909,
+      "interval": [
+       115.91975547699435,
+       118.94477209938569
+      ],
+      "completed": 66,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 5
+      },
+      "verdict": "-"
+     },
+     "cv_cgm": {
+      "median": 32.29716314880529,
+      "mean": 32.94599331758165,
+      "sd": 8.286324902012469,
+      "min": 16.418670216821628,
+      "max": 51.05989579203102,
+      "interval": [
+       29.898578633884,
+       35.61035760178955
+      ],
+      "completed": 66,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 5
+      },
+      "verdict": "-"
+     },
+     "completion": {
+      "completed": 66,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 5
+      }
+     }
+    },
+    "site": {
+     "tir_cgm": {
+      "median": 82.35367063492063,
+      "mean": 80.94608801231935,
+      "sd": 9.608197498920005,
+      "min": 61.66914682539682,
+      "max": 98.83432539682539,
+      "interval": [
+       78.36061507936508,
+       84.90823412698413
+      ],
+      "completed": 67,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 4
+      },
+      "verdict": "-"
+     },
+     "tbr70_cgm": {
+      "median": 6.336805555555555,
+      "mean": 6.606476545842217,
+      "sd": 5.14234922364762,
+      "min": 0.08680555555555555,
+      "max": 18.3655753968254,
+      "interval": [
+       4.4146825396825395,
+       7.204861111111111
+      ],
+      "completed": 67,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 4
+      },
+      "verdict": "-"
+     },
+     "tbr54_cgm": {
+      "median": 1.1780753968253967,
+      "mean": 2.3182080668088125,
+      "sd": 2.6820963074823916,
+      "min": 0.0,
+      "max": 10.466269841269842,
+      "interval": [
+       0.6944444444444444,
+       2.368551587301587
+      ],
+      "completed": 67,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 4
+      },
+      "verdict": "-"
+     },
+     "tar180_cgm": {
+      "median": 11.594742063492063,
+      "mean": 12.447435441838424,
+      "sd": 6.443145662349854,
+      "min": 1.0788690476190477,
+      "max": 30.33234126984127,
+      "interval": [
+       9.98263888888889,
+       13.578869047619047
+      ],
+      "completed": 67,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 4
+      },
+      "verdict": "-"
+     },
+     "mean_cgm": {
+      "median": 127.36921870127694,
+      "mean": 128.86970964180043,
+      "sd": 8.65777124574412,
+      "min": 112.59393067464023,
+      "max": 158.44336517603287,
+      "interval": [
+       125.20235769867438,
+       130.49318311510726
+      ],
+      "completed": 67,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 4
+      },
+      "verdict": "-"
+     },
+     "cv_cgm": {
+      "median": 33.39742568762544,
+      "mean": 34.29854019591777,
+      "sd": 7.604306099483821,
+      "min": 16.476961568694772,
+      "max": 50.20728766754571,
+      "interval": [
+       30.577552167087017,
+       36.580563982719035
+      ],
+      "completed": 67,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 4
+      },
+      "verdict": "-"
+     },
+     "completion": {
+      "completed": 67,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 4
+      }
+     }
+    },
+    "all_layers": {
+     "tir_cgm": {
+      "median": 84.23859126984127,
+      "mean": 83.4991939484127,
+      "sd": 6.780316030726576,
+      "min": 63.61607142857143,
+      "max": 97.01140873015873,
+      "interval": [
+       81.49181547619048,
+       85.9623015873016
+      ],
+      "completed": 56,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 13,
+       "hyperglycaemic": 2
+      },
+      "verdict": "-"
+     },
+     "tbr70_cgm": {
+      "median": 4.451884920634921,
+      "mean": 4.807743409863946,
+      "sd": 2.759094550480064,
+      "min": 0.2976190476190476,
+      "max": 11.85515873015873,
+      "interval": [
+       3.4102182539682535,
+       5.3261408730158735
+      ],
+      "completed": 56,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 13,
+       "hyperglycaemic": 2
+      },
+      "verdict": "-"
+     },
+     "tbr54_cgm": {
+      "median": 1.3578869047619047,
+      "mean": 1.647091128117914,
+      "sd": 1.3427011956350696,
+      "min": 0.0496031746031746,
+      "max": 5.890376984126984,
+      "interval": [
+       0.8680555555555556,
+       1.8291170634920633
+      ],
+      "completed": 56,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 13,
+       "hyperglycaemic": 2
+      },
+      "verdict": "-"
+     },
+     "tar180_cgm": {
+      "median": 10.708085317460316,
+      "mean": 11.693062641723357,
+      "sd": 5.573821156906805,
+      "min": 1.8725198412698412,
+      "max": 28.93105158730159,
+      "interval": [
+       8.804563492063494,
+       12.481398809523808
+      ],
+      "completed": 56,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 13,
+       "hyperglycaemic": 2
+      },
+      "verdict": "-"
+     },
+     "mean_cgm": {
+      "median": 129.236458605681,
+      "mean": 130.22150996507816,
+      "sd": 8.798129115161442,
+      "min": 117.48280403634669,
+      "max": 156.5239275580806,
+      "interval": [
+       125.46958513401205,
+       131.72422905589883
+      ],
+      "completed": 56,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 13,
+       "hyperglycaemic": 2
+      },
+      "verdict": "-"
+     },
+     "cv_cgm": {
+      "median": 34.32076564172514,
+      "mean": 34.480822075288,
+      "sd": 5.6291339133337495,
+      "min": 20.717330435661317,
+      "max": 45.31791481261862,
+      "interval": [
+       32.96836919530741,
+       36.97538197657816
+      ],
+      "completed": 56,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 13,
+       "hyperglycaemic": 2
+      },
+      "verdict": "-"
+     },
+     "completion": {
+      "completed": 56,
+      "run": 71,
+      "terminations": {
+       "hypoglycaemic": 13,
+       "hyperglycaemic": 2
+      }
+     }
+    },
+    "behaviour_announced": {
+     "tir_cgm": {
+      "median": 91.10863095238095,
+      "mean": 88.91229320366644,
+      "sd": 7.837139441686206,
+      "min": 61.582341269841265,
+      "max": 99.59077380952381,
+      "interval": [
+       87.33878968253968,
+       93.25396825396825
+      ],
+      "completed": 71,
+      "run": 71,
+      "terminations": {},
+      "verdict": "-"
+     },
+     "tbr70_cgm": {
+      "median": 4.104662698412699,
+      "mean": 4.516159456740443,
+      "sd": 3.3028183774703526,
+      "min": 0.0248015873015873,
+      "max": 13.715277777777779,
+      "interval": [
+       3.0009920634920637,
+       4.662698412698413
+      ],
+      "completed": 71,
+      "run": 71,
+      "terminations": {},
+      "verdict": "-"
+     },
+     "tbr54_cgm": {
+      "median": 0.496031746031746,
+      "mean": 0.946826794097921,
+      "sd": 1.2868519478388882,
+      "min": 0.0,
+      "max": 6.597222222222222,
+      "interval": [
+       0.23561507936507936,
+       0.8060515873015874
+      ],
+      "completed": 71,
+      "run": 71,
+      "terminations": {},
+      "verdict": "-"
+     },
+     "tar180_cgm": {
+      "median": 4.910714285714286,
+      "mean": 6.571547339593114,
+      "sd": 5.523540090438692,
+      "min": 0.33482142857142855,
+      "max": 27.36855158730159,
+      "interval": [
+       3.8194444444444446,
+       6.622023809523809
+      ],
+      "completed": 71,
+      "run": 71,
+      "terminations": {},
+      "verdict": "-"
+     },
+     "mean_cgm": {
+      "median": 120.4730467574095,
+      "mean": 121.41263307256193,
+      "sd": 6.986198894120763,
+      "min": 107.1731273475137,
+      "max": 146.8915901363795,
+      "interval": [
+       118.5773170320303,
+       121.77932636628857
+      ],
+      "completed": 71,
+      "run": 71,
+      "terminations": {},
+      "verdict": "-"
+     },
+     "cv_cgm": {
+      "median": 27.39708355387485,
+      "mean": 28.526283466773315,
+      "sd": 6.844733191140949,
+      "min": 14.83164987919071,
+      "max": 45.69387944211271,
+      "interval": [
+       25.88618226781112,
+       30.676685593820938
+      ],
+      "completed": 71,
+      "run": 71,
+      "terminations": {},
+      "verdict": "-"
+     },
+     "completion": {
+      "completed": 71,
+      "run": 71,
+      "terminations": {}
+     }
+    },
+    "behaviour_unannounced": {
+     "tir_cgm": {
+      "median": 86.28472222222223,
+      "mean": 85.76371173469387,
+      "sd": 8.398478787873861,
+      "min": 61.247519841269835,
+      "max": 99.35515873015873,
+      "interval": [
+       83.37673611111111,
+       88.72767857142857
+      ],
+      "completed": 70,
+      "run": 71,
+      "terminations": {
+       "hyperglycaemic": 1
+      },
+      "verdict": "-"
+     },
+     "tbr70_cgm": {
+      "median": 3.8194444444444446,
+      "mean": 4.1960742630385495,
+      "sd": 3.2339981797356936,
+      "min": 0.0496031746031746,
+      "max": 12.648809523809524,
+      "interval": [
+       3.013392857142857,
+       4.595114087301578
+      ],
+      "completed": 70,
+      "run": 71,
+      "terminations": {
+       "hyperglycaemic": 1
+      },
+      "verdict": "-"
+     },
+     "tbr54_cgm": {
+      "median": 0.45882936507936506,
+      "mean": 0.8349277210884354,
+      "sd": 1.146146444686247,
+      "min": 0.0,
+      "max": 5.716765873015873,
+      "interval": [
+       0.1736111111111111,
+       0.7316468253968254
+      ],
+      "completed": 70,
+      "run": 71,
+      "terminations": {
+       "hyperglycaemic": 1
+      },
+      "verdict": "-"
+     },
+     "tar180_cgm": {
+      "median": 9.27579365079365,
+      "mean": 10.040214002267572,
+      "sd": 6.425735165466154,
+      "min": 0.5952380952380952,
+      "max": 29.303075396825395,
+      "interval": [
+       6.907242063492063,
+       11.656746031746032
+      ],
+      "completed": 70,
+      "run": 71,
+      "terminations": {
+       "hyperglycaemic": 1
+      },
+      "verdict": "-"
+     },
+     "mean_cgm": {
+      "median": 125.38998631496912,
+      "mean": 126.65286520490746,
+      "sd": 8.394429537702017,
+      "min": 109.45097580098103,
+      "max": 153.39406589802317,
+      "interval": [
+       123.63694327204902,
+       126.85439849624593
+      ],
+      "completed": 70,
+      "run": 71,
+      "terminations": {
+       "hyperglycaemic": 1
+      },
+      "verdict": "-"
+     },
+     "cv_cgm": {
+      "median": 30.063359307091442,
+      "mean": 30.508661045408203,
+      "sd": 6.510301757592677,
+      "min": 16.210158606532524,
+      "max": 43.63281927355382,
+      "interval": [
+       28.033241844995572,
+       32.159963508904916
+      ],
+      "completed": 70,
+      "run": 71,
+      "terminations": {
+       "hyperglycaemic": 1
+      },
+      "verdict": "-"
+     },
+     "completion": {
+      "completed": 70,
+      "run": 71,
+      "terminations": {
+       "hyperglycaemic": 1
+      }
+     }
+    },
+    "all_layers_announced": {
+     "tir_cgm": {
+      "median": 84.63541666666667,
+      "mean": 84.09753224206351,
+      "sd": 6.616414502764626,
+      "min": 60.813492063492056,
+      "max": 97.29662698412699,
+      "interval": [
+       82.46527777777777,
+       86.47693452380952
+      ],
+      "completed": 56,
+      "run": 71,
+      "terminations": {
+       "hyperglycaemic": 1,
+       "hypoglycaemic": 14
+      },
+      "verdict": "-"
+     },
+     "tbr70_cgm": {
+      "median": 4.172867063492063,
+      "mean": 4.8338736536281175,
+      "sd": 2.7069961080886147,
+      "min": 0.2976190476190476,
+      "max": 11.34672619047619,
+      "interval": [
+       3.5962301587301586,
+       5.5059523809523805
+      ],
+      "completed": 56,
+      "run": 71,
+      "terminations": {
+       "hyperglycaemic": 1,
+       "hypoglycaemic": 14
+      },
+      "verdict": "-"
+     },
+     "tbr54_cgm": {
+      "median": 1.1966765873015874,
+      "mean": 1.630482922335601,
+      "sd": 1.2773528676301633,
+      "min": 0.06200396825396825,
+      "max": 5.357142857142857,
+      "interval": [
+       1.066468253968254,
+       1.7857142857142856
+      ],
+      "completed": 56,
+      "run": 71,
+      "terminations": {
+       "hyperglycaemic": 1,
+       "hypoglycaemic": 14
+      },
+      "verdict": "-"
+     },
+     "tar180_cgm": {
+      "median": 10.323660714285714,
+      "mean": 11.06859410430839,
+      "sd": 5.359846684120625,
+      "min": 1.9717261904761905,
+      "max": 32.31646825396825,
+      "interval": [
+       8.909970238095237,
+       11.638144841269842
+      ],
+      "completed": 56,
+      "run": 71,
+      "terminations": {
+       "hyperglycaemic": 1,
+       "hypoglycaemic": 14
+      },
+      "verdict": "-"
+     },
+     "mean_cgm": {
+      "median": 128.5358622689766,
+      "mean": 129.48691629339126,
+      "sd": 8.438446125214972,
+      "min": 115.45399605153784,
+      "max": 159.15602109081232,
+      "interval": [
+       125.47877685411095,
+       130.324653139854
+      ],
+      "completed": 56,
+      "run": 71,
+      "terminations": {
+       "hyperglycaemic": 1,
+       "hypoglycaemic": 14
+      },
+      "verdict": "-"
+     },
+     "cv_cgm": {
+      "median": 33.95528572771684,
+      "mean": 33.967318282850584,
+      "sd": 5.930487302431009,
+      "min": 20.323774872409736,
+      "max": 46.96921064978841,
+      "interval": [
+       31.641622742822495,
+       36.3704316493607
+      ],
+      "completed": 56,
+      "run": 71,
+      "terminations": {
+       "hyperglycaemic": 1,
+       "hypoglycaemic": 14
+      },
+      "verdict": "-"
+     },
+     "completion": {
+      "completed": 56,
+      "run": 71,
+      "terminations": {
+       "hyperglycaemic": 1,
+       "hypoglycaemic": 14
+      }
+     }
+    },
+    "all_layers_unannounced": {
+     "tir_cgm": {
+      "median": 80.90277777777779,
+      "mean": 81.38325932224741,
+      "sd": 6.775076952182393,
+      "min": 62.673611111111114,
+      "max": 96.20535714285714,
+      "interval": [
+       78.78224206349206,
+       84.99503968253968
+      ],
+      "completed": 63,
+      "run": 71,
+      "terminations": {
+       "hyperglycaemic": 3,
+       "hypoglycaemic": 5
+      },
+      "verdict": "-"
+     },
+     "tbr70_cgm": {
+      "median": 4.625496031746032,
+      "mean": 5.113063744016125,
+      "sd": 2.588081511809331,
+      "min": 0.16121031746031744,
+      "max": 11.21031746031746,
+      "interval": [
+       4.017857142857143,
+       5.394345238095238
+      ],
+      "completed": 63,
+      "run": 71,
+      "terminations": {
+       "hyperglycaemic": 3,
+       "hypoglycaemic": 5
+      },
+      "verdict": "-"
+     },
+     "tbr54_cgm": {
+      "median": 1.4632936507936507,
+      "mean": 1.8004771352985638,
+      "sd": 1.2496844978168868,
+      "min": 0.03720238095238095,
+      "max": 5.629960317460317,
+      "interval": [
+       1.2028769841269842,
+       1.9717261904761905
+      ],
+      "completed": 63,
+      "run": 71,
+      "terminations": {
+       "hyperglycaemic": 3,
+       "hypoglycaemic": 5
+      },
+      "verdict": "-"
+     },
+     "tar180_cgm": {
+      "median": 12.251984126984127,
+      "mean": 13.503676933736456,
+      "sd": 6.035459810832235,
+      "min": 2.579365079365079,
+      "max": 30.344742063492063,
+      "interval": [
+       11.185515873015873,
+       14.384920634920634
+      ],
+      "completed": 63,
+      "run": 71,
+      "terminations": {
+       "hyperglycaemic": 3,
+       "hypoglycaemic": 5
+      },
+      "verdict": "-"
+     },
+     "mean_cgm": {
+      "median": 130.96165654039544,
+      "mean": 132.63943730835496,
+      "sd": 9.50076599658563,
+      "min": 112.33120371909082,
+      "max": 158.30323428359154,
+      "interval": [
+       129.0473514857097,
+       134.4719528529249
+      ],
+      "completed": 63,
+      "run": 71,
+      "terminations": {
+       "hyperglycaemic": 3,
+       "hypoglycaemic": 5
+      },
+      "verdict": "-"
+     },
+     "cv_cgm": {
+      "median": 34.74313349920009,
+      "mean": 34.993177478646864,
+      "sd": 5.2371131312378845,
+      "min": 21.428940206918462,
+      "max": 45.98743998787787,
+      "interval": [
+       32.46977588786658,
+       37.06315262014519
+      ],
+      "completed": 63,
+      "run": 71,
+      "terminations": {
+       "hyperglycaemic": 3,
+       "hypoglycaemic": 5
+      },
+      "verdict": "-"
+     },
+     "completion": {
+      "completed": 63,
+      "run": 71,
+      "terminations": {
+       "hyperglycaemic": 3,
+       "hypoglycaemic": 5
+      }
+     }
+    }
+   }
+  },
+  "commons|oref": {
+   "controller": "oref",
+   "reference_n": 77,
+   "arms": {
+    "stock": {
+     "tir_cgm": {
+      "median": 88.82688492063491,
+      "mean": 86.35652681771634,
+      "sd": 9.6991440774726,
+      "min": 57.76289682539682,
+      "max": 99.40476190476191,
+      "interval": [
+       84.01537698412699,
+       91.35664682539682
+      ],
+      "completed": 62,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 1
+      },
+      "verdict": "differs"
+     },
+     "tbr70_cgm": {
+      "median": 4.706101190476191,
+      "mean": 6.403409818228367,
+      "sd": 6.330963789723073,
+      "min": 0.06200396825396825,
+      "max": 27.393353174603174,
+      "interval": [
+       2.5542534722222223,
+       7.415674603174603
+      ],
+      "completed": 62,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 1
+      },
+      "verdict": "same"
+     },
+     "tbr54_cgm": {
+      "median": 0.9548611111111112,
+      "mean": 2.3991535458269326,
+      "sd": 3.608489286542469,
+      "min": 0.0,
+      "max": 19.122023809523807,
+      "interval": [
+       0.26041666666666663,
+       1.6121031746031749
+      ],
+      "completed": 62,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 1
+      },
+      "verdict": "same"
+     },
+     "tar180_cgm": {
+      "median": 7.087053571428571,
+      "mean": 7.2400633640553,
+      "sd": 5.322022123533875,
+      "min": 0.11160714285714285,
+      "max": 27.591765873015873,
+      "interval": [
+       4.916914682539683,
+       9.188988095238097
+      ],
+      "completed": 62,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 1
+      },
+      "verdict": "differs"
+     },
+     "mean_cgm": {
+      "median": 121.29067761913116,
+      "mean": 120.60325835175755,
+      "sd": 6.937512735131404,
+      "min": 104.44979468032778,
+      "max": 146.18556603605293,
+      "interval": [
+       118.40917757098845,
+       122.00445743467262
+      ],
+      "completed": 62,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 1
+      },
+      "verdict": "differs"
+     },
+     "cv_cgm": {
+      "median": 29.45303226867869,
+      "mean": 29.95272647706606,
+      "sd": 8.115887673487041,
+      "min": 15.107097493115447,
+      "max": 51.11149500681204,
+      "interval": [
+       27.46570094423702,
+       32.13407979070564
+      ],
+      "completed": 62,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 1
+      },
+      "verdict": "differs"
+     },
+     "completion": {
+      "completed": 62,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 1
+      }
+     }
+    },
+    "base": {
+     "tir_cgm": {
+      "median": 88.74007936507937,
+      "mean": 86.62407092466616,
+      "sd": 9.367780435948804,
+      "min": 57.76289682539682,
+      "max": 99.40476190476191,
+      "interval": [
+       84.375,
+       91.35664682539682
+      ],
+      "completed": 63,
+      "run": 63,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "tbr70_cgm": {
+      "median": 4.1790674603174605,
+      "mean": 5.384109662383473,
+      "sd": 5.664052035032689,
+      "min": 0.06200396825396825,
+      "max": 24.231150793650794,
+      "interval": [
+       1.4508928571428572,
+       5.642361111111112
+      ],
+      "completed": 63,
+      "run": 63,
+      "terminations": {},
+      "verdict": "same"
+     },
+     "tbr54_cgm": {
+      "median": 0.6324404761904762,
+      "mean": 1.9294060216679265,
+      "sd": 3.058885022097272,
+      "min": 0.0,
+      "max": 15.401785714285715,
+      "interval": [
+       0.248015873015873,
+       1.0912698412698412
+      ],
+      "completed": 63,
+      "run": 63,
+      "terminations": {},
+      "verdict": "same"
+     },
+     "tar180_cgm": {
+      "median": 7.316468253968254,
+      "mean": 7.991819412950366,
+      "sd": 5.788871884014303,
+      "min": 0.11160714285714285,
+      "max": 27.591765873015873,
+      "interval": [
+       4.9603174603174605,
+       10.143849206349206
+      ],
+      "completed": 63,
+      "run": 63,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "mean_cgm": {
+      "median": 121.99549981883571,
+      "mean": 123.17515665012955,
+      "sd": 8.142030617730164,
+      "min": 107.88343886406199,
+      "max": 146.18556603605293,
+      "interval": [
+       119.47400354143795,
+       123.58243311473369
+      ],
+      "completed": 63,
+      "run": 63,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "cv_cgm": {
+      "median": 29.178738959939043,
+      "mean": 29.195103811499568,
+      "sd": 7.789735959799465,
+      "min": 15.107097493115447,
+      "max": 50.933724132447225,
+      "interval": [
+       27.230509739841878,
+       30.483990300366997
+      ],
+      "completed": 63,
+      "run": 63,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "completion": {
+      "completed": 63,
+      "run": 63,
+      "terminations": {}
+     }
+    },
+    "physiology": {
+     "tir_cgm": {
+      "median": 88.51686507936508,
+      "mean": 87.01577853363568,
+      "sd": 5.960790885780405,
+      "min": 70.63492063492063,
+      "max": 97.24702380952381,
+      "interval": [
+       84.85863095238095,
+       90.20337301587301
+      ],
+      "completed": 42,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 21
+      },
+      "verdict": "differs"
+     },
+     "tbr70_cgm": {
+      "median": 4.365079365079366,
+      "mean": 5.33765589569161,
+      "sd": 3.572865109860759,
+      "min": 0.1240079365079365,
+      "max": 14.161706349206348,
+      "interval": [
+       3.484623015873016,
+       6.541418650793651
+      ],
+      "completed": 42,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 21
+      },
+      "verdict": "differs"
+     },
+     "tbr54_cgm": {
+      "median": 1.457093253968254,
+      "mean": 2.1057728647014358,
+      "sd": 1.8019651910634353,
+      "min": 0.0,
+      "max": 6.175595238095238,
+      "interval": [
+       0.930059523809524,
+       2.808779761904762
+      ],
+      "completed": 42,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 21
+      },
+      "verdict": "differs"
+     },
+     "tar180_cgm": {
+      "median": 7.142857142857142,
+      "mean": 7.646565570672713,
+      "sd": 4.39578171952536,
+      "min": 0.8060515873015874,
+      "max": 21.515376984126984,
+      "interval": [
+       6.008184523809524,
+       7.899305555555555
+      ],
+      "completed": 42,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 21
+      },
+      "verdict": "differs"
+     },
+     "mean_cgm": {
+      "median": 122.05917055745368,
+      "mean": 124.10108555009133,
+      "sd": 8.57020236212429,
+      "min": 107.06003495145734,
+      "max": 150.44575387802936,
+      "interval": [
+       120.7138629914648,
+       125.71225022103799
+      ],
+      "completed": 42,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 21
+      },
+      "verdict": "differs"
+     },
+     "cv_cgm": {
+      "median": 31.507085660862803,
+      "mean": 31.50127888874235,
+      "sd": 6.0998975411767855,
+      "min": 19.84768242644227,
+      "max": 46.97473897539881,
+      "interval": [
+       29.415665843437097,
+       32.50331536797624
+      ],
+      "completed": 42,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 21
+      },
+      "verdict": "differs"
+     },
+     "completion": {
+      "completed": 42,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 21
+      }
+     }
+    },
+    "behaviour": {
+     "tir_cgm": {
+      "median": 91.72867063492063,
+      "mean": 90.17679988662131,
+      "sd": 6.7847612400856345,
+      "min": 68.86160714285714,
+      "max": 99.39236111111111,
+      "interval": [
+       88.87648809523809,
+       93.61359126984127
+      ],
+      "completed": 63,
+      "run": 63,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "tbr70_cgm": {
+      "median": 2.418154761904762,
+      "mean": 2.948829994960948,
+      "sd": 2.6499174142818003,
+      "min": 0.06200396825396825,
+      "max": 10.466269841269842,
+      "interval": [
+       1.2648809523809523,
+       3.2242063492063497
+      ],
+      "completed": 63,
+      "run": 63,
+      "terminations": {},
+      "verdict": "same"
+     },
+     "tbr54_cgm": {
+      "median": 0.1984126984126984,
+      "mean": 0.5588230662635424,
+      "sd": 0.8311840941119615,
+      "min": 0.0,
+      "max": 3.8566468253968256,
+      "interval": [
+       0.11160714285714285,
+       0.4340277777777778
+      ],
+      "completed": 63,
+      "run": 63,
+      "terminations": {},
+      "verdict": "same"
+     },
+     "tar180_cgm": {
+      "median": 5.654761904761905,
+      "mean": 6.874370118417739,
+      "sd": 5.1671004229229665,
+      "min": 0.1240079365079365,
+      "max": 23.41269841269841,
+      "interval": [
+       4.476686507936508,
+       7.6140873015873005
+      ],
+      "completed": 63,
+      "run": 63,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "mean_cgm": {
+      "median": 122.188413366019,
+      "mean": 123.4064498787286,
+      "sd": 7.563239444409137,
+      "min": 108.84716427936887,
+      "max": 141.1456789514193,
+      "interval": [
+       120.19720394343801,
+       123.8072405071978
+      ],
+      "completed": 63,
+      "run": 63,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "cv_cgm": {
+      "median": 26.703812629655367,
+      "mean": 26.89458159444893,
+      "sd": 6.36889260346233,
+      "min": 15.011420292934597,
+      "max": 42.82017970937411,
+      "interval": [
+       24.444477927842275,
+       29.251522968885567
+      ],
+      "completed": 63,
+      "run": 63,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "completion": {
+      "completed": 63,
+      "run": 63,
+      "terminations": {}
+     }
+    },
+    "sensor": {
+     "tir_cgm": {
+      "median": 87.62400793650794,
+      "mean": 85.92829941116229,
+      "sd": 9.757406830504648,
+      "min": 55.939980158730165,
+      "max": 99.25595238095238,
+      "interval": [
+       83.0233134920635,
+       90.14136904761905
+      ],
+      "completed": 62,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 1
+      },
+      "verdict": "differs"
+     },
+     "tbr70_cgm": {
+      "median": 5.009920634920634,
+      "mean": 6.381808435739887,
+      "sd": 6.097821280907255,
+      "min": 0.18601190476190474,
+      "max": 25.855654761904763,
+      "interval": [
+       2.1453373015873014,
+       7.224082341269833
+      ],
+      "completed": 62,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 1
+      },
+      "verdict": "same"
+     },
+     "tbr54_cgm": {
+      "median": 1.1036706349206349,
+      "mean": 2.3189484126984126,
+      "sd": 3.3446924753859313,
+      "min": 0.01240079365079365,
+      "max": 17.435515873015873,
+      "interval": [
+       0.3720238095238095,
+       1.6865079365079365
+      ],
+      "completed": 62,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 1
+      },
+      "verdict": "same"
+     },
+     "tar180_cgm": {
+      "median": 6.746031746031745,
+      "mean": 7.689892153097798,
+      "sd": 5.599955783048356,
+      "min": 0.1488095238095238,
+      "max": 26.40128968253968,
+      "interval": [
+       4.613095238095238,
+       9.722222222222223
+      ],
+      "completed": 62,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 1
+      },
+      "verdict": "differs"
+     },
+     "mean_cgm": {
+      "median": 119.14075240943512,
+      "mean": 121.0388528706958,
+      "sd": 8.108021210797574,
+      "min": 105.35826539004418,
+      "max": 144.23104143302731,
+      "interval": [
+       117.70952924374522,
+       121.49333377523737
+      ],
+      "completed": 62,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 1
+      },
+      "verdict": "differs"
+     },
+     "cv_cgm": {
+      "median": 30.292287609671106,
+      "mean": 30.158413028140902,
+      "sd": 7.900637699246689,
+      "min": 15.725852300817891,
+      "max": 51.85705720393952,
+      "interval": [
+       27.687540298172504,
+       31.614200792352065
+      ],
+      "completed": 62,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 1
+      },
+      "verdict": "differs"
+     },
+     "completion": {
+      "completed": 62,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 1
+      }
+     }
+    },
+    "site": {
+     "tir_cgm": {
+      "median": 84.18278769841271,
+      "mean": 82.06345206093192,
+      "sd": 9.508823886676636,
+      "min": 54.00545634920635,
+      "max": 99.0079365079365,
+      "interval": [
+       80.90277777777779,
+       85.86309523809524
+      ],
+      "completed": 62,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 1
+      },
+      "verdict": "differs"
+     },
+     "tbr70_cgm": {
+      "median": 2.759176587301587,
+      "mean": 4.5364903353814645,
+      "sd": 4.96590053238661,
+      "min": 0.0,
+      "max": 23.028273809523807,
+      "interval": [
+       1.2028769841269842,
+       4.365079365079365
+      ],
+      "completed": 62,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 1
+      },
+      "verdict": "same"
+     },
+     "tbr54_cgm": {
+      "median": 0.5890376984126984,
+      "mean": 1.5747007808499742,
+      "sd": 2.433054439363874,
+      "min": 0.0,
+      "max": 12.909226190476192,
+      "interval": [
+       0.0744047619047619,
+       1.0788690476190477
+      ],
+      "completed": 62,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 1
+      },
+      "verdict": "same"
+     },
+     "tar180_cgm": {
+      "median": 12.431795634920634,
+      "mean": 13.400057603686632,
+      "sd": 6.937484586525397,
+      "min": 0.8928571428571428,
+      "max": 34.47420634920635,
+      "interval": [
+       10.881696428571427,
+       14.84375
+      ],
+      "completed": 62,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 1
+      },
+      "verdict": "differs"
+     },
+     "mean_cgm": {
+      "median": 131.8904262287661,
+      "mean": 132.54055388196903,
+      "sd": 10.112861348960715,
+      "min": 110.8970189741012,
+      "max": 157.75789238887833,
+      "interval": [
+       129.31490330993995,
+       134.92150226151995
+      ],
+      "completed": 62,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 1
+      },
+      "verdict": "same"
+     },
+     "cv_cgm": {
+      "median": 31.31711404065973,
+      "mean": 32.34675154568349,
+      "sd": 7.484442069366918,
+      "min": 17.37653259495981,
+      "max": 52.7691257286689,
+      "interval": [
+       30.21703763125619,
+       33.09333426642478
+      ],
+      "completed": 62,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 1
+      },
+      "verdict": "differs"
+     },
+     "completion": {
+      "completed": 62,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 1
+      }
+     }
+    },
+    "all_layers": {
+     "tir_cgm": {
+      "median": 86.25372023809524,
+      "mean": 84.29465319113756,
+      "sd": 7.0202396196527515,
+      "min": 65.31498015873017,
+      "max": 97.34623015873017,
+      "interval": [
+       82.92410714285714,
+       87.09077380952381
+      ],
+      "completed": 48,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 11,
+       "hyperglycaemic": 4
+      },
+      "verdict": "differs"
+     },
+     "tbr70_cgm": {
+      "median": 3.3668154761904763,
+      "mean": 3.4342447916666665,
+      "sd": 2.06613810361565,
+      "min": 0.2232142857142857,
+      "max": 9.027777777777777,
+      "interval": [
+       2.306547619047619,
+       3.90625
+      ],
+      "completed": 48,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 11,
+       "hyperglycaemic": 4
+      },
+      "verdict": "same"
+     },
+     "tbr54_cgm": {
+      "median": 0.8494543650793651,
+      "mean": 1.0770605985449735,
+      "sd": 0.8681271288676029,
+      "min": 0.0,
+      "max": 3.8070436507936503,
+      "interval": [
+       0.5518353174603174,
+       1.4136904761904763
+      ],
+      "completed": 48,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 11,
+       "hyperglycaemic": 4
+      },
+      "verdict": "differs"
+     },
+     "tar180_cgm": {
+      "median": 10.15625,
+      "mean": 12.271102017195767,
+      "sd": 6.163852942072704,
+      "min": 1.6617063492063493,
+      "max": 26.40128968253968,
+      "interval": [
+       8.953373015873016,
+       14.211309523809524
+      ],
+      "completed": 48,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 11,
+       "hyperglycaemic": 4
+      },
+      "verdict": "differs"
+     },
+     "mean_cgm": {
+      "median": 131.61913031434756,
+      "mean": 133.06443373052517,
+      "sd": 9.738165878539185,
+      "min": 110.69105197203022,
+      "max": 157.30810545462552,
+      "interval": [
+       128.67129642526928,
+       135.85238981631002
+      ],
+      "completed": 48,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 11,
+       "hyperglycaemic": 4
+      },
+      "verdict": "same"
+     },
+     "cv_cgm": {
+      "median": 32.454702759666276,
+      "mean": 32.39701817694877,
+      "sd": 5.07449342856659,
+      "min": 19.592271699113155,
+      "max": 44.020067396853555,
+      "interval": [
+       31.13994637644071,
+       34.12818807944093
+      ],
+      "completed": 48,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 11,
+       "hyperglycaemic": 4
+      },
+      "verdict": "same"
+     },
+     "completion": {
+      "completed": 48,
+      "run": 63,
+      "terminations": {
+       "hypoglycaemic": 11,
+       "hyperglycaemic": 4
+      }
+     }
+    },
+    "behaviour_announced": {
+     "tir_cgm": {
+      "median": 93.20436507936508,
+      "mean": 91.15882464096751,
+      "sd": 6.445821407553444,
+      "min": 68.26636904761905,
+      "max": 99.54117063492063,
+      "interval": [
+       90.53819444444444,
+       93.99801587301587
+      ],
+      "completed": 63,
+      "run": 63,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "tbr70_cgm": {
+      "median": 2.4057539682539684,
+      "mean": 2.881708238851096,
+      "sd": 2.7106292732563375,
+      "min": 0.0744047619047619,
+      "max": 11.160714285714286,
+      "interval": [
+       1.1904761904761905,
+       3.2242063492063497
+      ],
+      "completed": 63,
+      "run": 63,
+      "terminations": {},
+      "verdict": "same"
+     },
+     "tbr54_cgm": {
+      "median": 0.18601190476190474,
+      "mean": 0.5117787855883095,
+      "sd": 0.739651707282664,
+      "min": 0.0,
+      "max": 3.63343253968254,
+      "interval": [
+       0.06200396825396825,
+       0.42162698412698413
+      ],
+      "completed": 63,
+      "run": 63,
+      "terminations": {},
+      "verdict": "same"
+     },
+     "tar180_cgm": {
+      "median": 5.121527777777778,
+      "mean": 5.9594671201814045,
+      "sd": 4.7673383194022065,
+      "min": 0.1240079365079365,
+      "max": 23.846726190476193,
+      "interval": [
+       3.9558531746031744,
+       6.622023809523809
+      ],
+      "completed": 63,
+      "run": 63,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "mean_cgm": {
+      "median": 121.13283690950719,
+      "mean": 122.35375676598919,
+      "sd": 7.178274812839987,
+      "min": 108.37343917527653,
+      "max": 138.9253836644073,
+      "interval": [
+       119.21304156204933,
+       122.6415013836778
+      ],
+      "completed": 63,
+      "run": 63,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "cv_cgm": {
+      "median": 26.158224882095965,
+      "mean": 26.17583802971763,
+      "sd": 6.395084439590774,
+      "min": 15.189260312023412,
+      "max": 44.404764319427436,
+      "interval": [
+       24.219190419457604,
+       27.70338057416105
+      ],
+      "completed": 63,
+      "run": 63,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "completion": {
+      "completed": 63,
+      "run": 63,
+      "terminations": {}
+     }
+    },
+    "behaviour_unannounced": {
+     "tir_cgm": {
+      "median": 89.48412698412699,
+      "mean": 87.21025447215922,
+      "sd": 8.371658466874317,
+      "min": 67.29910714285714,
+      "max": 99.46676587301587,
+      "interval": [
+       84.75942460317461,
+       91.87748015873017
+      ],
+      "completed": 63,
+      "run": 63,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "tbr70_cgm": {
+      "median": 2.2197420634920637,
+      "mean": 2.9832766439909295,
+      "sd": 2.756353357185549,
+      "min": 0.06200396825396825,
+      "max": 11.607142857142858,
+      "interval": [
+       1.215277777777778,
+       3.5342261904761902
+      ],
+      "completed": 63,
+      "run": 63,
+      "terminations": {},
+      "verdict": "same"
+     },
+     "tbr54_cgm": {
+      "median": 0.1984126984126984,
+      "mean": 0.5631535021415972,
+      "sd": 0.8581285471416013,
+      "min": 0.0,
+      "max": 4.6875,
+      "interval": [
+       0.0744047619047619,
+       0.4340277777777778
+      ],
+      "completed": 63,
+      "run": 63,
+      "terminations": {},
+      "verdict": "same"
+     },
+     "tar180_cgm": {
+      "median": 7.663690476190476,
+      "mean": 9.806468883849835,
+      "sd": 7.0113422942975,
+      "min": 0.2232142857142857,
+      "max": 26.822916666666668,
+      "interval": [
+       6.733630952380952,
+       10.776289682539684
+      ],
+      "completed": 63,
+      "run": 63,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "mean_cgm": {
+      "median": 124.56107687515936,
+      "mean": 127.18219712457521,
+      "sd": 9.28645888495163,
+      "min": 109.25503976467746,
+      "max": 152.63456491599746,
+      "interval": [
+       123.38522515504782,
+       127.54552835033581
+      ],
+      "completed": 63,
+      "run": 63,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "cv_cgm": {
+      "median": 29.148280199375684,
+      "mean": 28.9298483504537,
+      "sd": 6.6804368131224265,
+      "min": 15.41535266508527,
+      "max": 43.81928564453607,
+      "interval": [
+       26.856302672184423,
+       31.231585722685764
+      ],
+      "completed": 63,
+      "run": 63,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "completion": {
+      "completed": 63,
+      "run": 63,
+      "terminations": {}
+     }
+    },
+    "all_layers_announced": {
+     "tir_cgm": {
+      "median": 84.51140873015873,
+      "mean": 83.55553530936183,
+      "sd": 7.591624786485401,
+      "min": 64.29811507936508,
+      "max": 97.47023809523809,
+      "interval": [
+       80.40674603174604,
+       88.02083333333334
+      ],
+      "completed": 49,
+      "run": 63,
+      "terminations": {
+       "hyperglycaemic": 3,
+       "hypoglycaemic": 11
+      },
+      "verdict": "differs"
+     },
+     "tbr70_cgm": {
+      "median": 3.1746031746031744,
+      "mean": 3.541312358276644,
+      "sd": 2.1914185459075437,
+      "min": 0.21081349206349206,
+      "max": 9.052579365079366,
+      "interval": [
+       2.7529761904761902,
+       3.90625
+      ],
+      "completed": 49,
+      "run": 63,
+      "terminations": {
+       "hyperglycaemic": 3,
+       "hypoglycaemic": 11
+      },
+      "verdict": "differs"
+     },
+     "tbr54_cgm": {
+      "median": 1.0044642857142858,
+      "mean": 1.1375830093942338,
+      "sd": 0.9793250701914948,
+      "min": 0.0,
+      "max": 4.476686507936508,
+      "interval": [
+       0.607638888888889,
+       1.2648809523809523
+      ],
+      "completed": 49,
+      "run": 63,
+      "terminations": {
+       "hyperglycaemic": 3,
+       "hypoglycaemic": 11
+      },
+      "verdict": "differs"
+     },
+     "tar180_cgm": {
+      "median": 12.016369047619047,
+      "mean": 12.903152332361515,
+      "sd": 6.616262192177571,
+      "min": 1.5749007936507935,
+      "max": 30.208333333333332,
+      "interval": [
+       8.891369047619047,
+       16.294642857142858
+      ],
+      "completed": 49,
+      "run": 63,
+      "terminations": {
+       "hyperglycaemic": 3,
+       "hypoglycaemic": 11
+      },
+      "verdict": "same"
+     },
+     "mean_cgm": {
+      "median": 133.5703968855729,
+      "mean": 134.13747553946305,
+      "sd": 10.29995197723784,
+      "min": 112.66771995120594,
+      "max": 158.80968437589684,
+      "interval": [
+       129.62436696177693,
+       136.2231396164006
+      ],
+      "completed": 49,
+      "run": 63,
+      "terminations": {
+       "hyperglycaemic": 3,
+       "hypoglycaemic": 11
+      },
+      "verdict": "same"
+     },
+     "cv_cgm": {
+      "median": 32.78272954059147,
+      "mean": 32.85448528668161,
+      "sd": 5.720822042033384,
+      "min": 19.442305903629006,
+      "max": 48.75724949199161,
+      "interval": [
+       30.90926249796736,
+       34.98895370055463
+      ],
+      "completed": 49,
+      "run": 63,
+      "terminations": {
+       "hyperglycaemic": 3,
+       "hypoglycaemic": 11
+      },
+      "verdict": "same"
+     },
+     "completion": {
+      "completed": 49,
+      "run": 63,
+      "terminations": {
+       "hyperglycaemic": 3,
+       "hypoglycaemic": 11
+      }
+     }
+    },
+    "all_layers_unannounced": {
+     "tir_cgm": {
+      "median": 84.23859126984127,
+      "mean": 82.40491165019466,
+      "sd": 7.490227834263989,
+      "min": 66.91468253968253,
+      "max": 97.29662698412699,
+      "interval": [
+       81.54761904761905,
+       85.29265873015873
+      ],
+      "completed": 53,
+      "run": 63,
+      "terminations": {
+       "hyperglycaemic": 6,
+       "hypoglycaemic": 4
+      },
+      "verdict": "differs"
+     },
+     "tbr70_cgm": {
+      "median": 3.6458333333333335,
+      "mean": 3.8964229559748422,
+      "sd": 2.388309399317374,
+      "min": 0.16121031746031744,
+      "max": 10.491071428571429,
+      "interval": [
+       2.765376984126984,
+       4.4146825396825395
+      ],
+      "completed": 53,
+      "run": 63,
+      "terminations": {
+       "hyperglycaemic": 6,
+       "hypoglycaemic": 4
+      },
+      "verdict": "differs"
+     },
+     "tbr54_cgm": {
+      "median": 1.0912698412698412,
+      "mean": 1.3233752620545076,
+      "sd": 1.1097694475933193,
+      "min": 0.0,
+      "max": 5.394345238095238,
+      "interval": [
+       0.744047619047619,
+       1.3764880952380951
+      ],
+      "completed": 53,
+      "run": 63,
+      "terminations": {
+       "hyperglycaemic": 6,
+       "hypoglycaemic": 4
+      },
+      "verdict": "differs"
+     },
+     "tar180_cgm": {
+      "median": 11.867559523809524,
+      "mean": 13.698665393830487,
+      "sd": 6.806642477737632,
+      "min": 1.6865079365079365,
+      "max": 28.410218253968257,
+      "interval": [
+       10.453869047619047,
+       14.285714285714285
+      ],
+      "completed": 53,
+      "run": 63,
+      "terminations": {
+       "hyperglycaemic": 6,
+       "hypoglycaemic": 4
+      },
+      "verdict": "differs"
+     },
+     "mean_cgm": {
+      "median": 132.58508665373145,
+      "mean": 134.75619305653598,
+      "sd": 11.01934425992486,
+      "min": 112.33120371909082,
+      "max": 160.30682806186354,
+      "interval": [
+       130.4751101391592,
+       137.43432909860937
+      ],
+      "completed": 53,
+      "run": 63,
+      "terminations": {
+       "hyperglycaemic": 6,
+       "hypoglycaemic": 4
+      },
+      "verdict": "same"
+     },
+     "cv_cgm": {
+      "median": 34.87278120253216,
+      "mean": 33.85177097652311,
+      "sd": 5.56068402397035,
+      "min": 19.763988853028295,
+      "max": 46.49971281625801,
+      "interval": [
+       31.91998846921381,
+       35.795138942778
+      ],
+      "completed": 53,
+      "run": 63,
+      "terminations": {
+       "hyperglycaemic": 6,
+       "hypoglycaemic": 4
+      },
+      "verdict": "same"
+     },
+     "completion": {
+      "completed": 53,
+      "run": 63,
+      "terminations": {
+       "hyperglycaemic": 6,
+       "hypoglycaemic": 4
+      }
+     }
+    }
+   }
+  },
+  "dclp3|control-iq": {
+   "controller": "control-iq",
+   "reference_n": 67,
+   "arms": {
+    "stock": {
+     "tir_cgm": {
+      "median": 90.84821428571429,
+      "mean": 88.75018371546149,
+      "sd": 8.144573989248695,
+      "min": 67.1626984126984,
+      "max": 99.16914682539682,
+      "interval": [
+       88.60367063492063,
+       92.73313492063492
+      ],
+      "completed": 81,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 3
+      },
+      "verdict": "differs"
+     },
+     "tbr70_cgm": {
+      "median": 1.9469246031746033,
+      "mean": 3.84991059180874,
+      "sd": 4.251105312097151,
+      "min": 0.0,
+      "max": 22.48263888888889,
+      "interval": [
+       1.5128968253968254,
+       3.4474206349206353
+      ],
+      "completed": 81,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 3
+      },
+      "verdict": "differs"
+     },
+     "tbr54_cgm": {
+      "median": 0.3224206349206349,
+      "mean": 1.121735988634137,
+      "sd": 1.9096236267068645,
+      "min": 0.0,
+      "max": 12.475198412698413,
+      "interval": [
+       0.1488095238095238,
+       0.6448412698412698
+      ],
+      "completed": 81,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 3
+      },
+      "verdict": "same"
+     },
+     "tar180_cgm": {
+      "median": 6.026785714285714,
+      "mean": 7.399905692729766,
+      "sd": 5.979534886945672,
+      "min": 0.23561507936507936,
+      "max": 23.846726190476193,
+      "interval": [
+       4.04265873015873,
+       7.242063492063493
+      ],
+      "completed": 81,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 3
+      },
+      "verdict": "differs"
+     },
+     "mean_cgm": {
+      "median": 126.04674603433823,
+      "mean": 127.95706811199571,
+      "sd": 8.149820691761171,
+      "min": 110.97841904888352,
+      "max": 153.14604720546177,
+      "interval": [
+       125.10368944561458,
+       128.2982179012706
+      ],
+      "completed": 81,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 3
+      },
+      "verdict": "differs"
+     },
+     "cv_cgm": {
+      "median": 25.83324181127636,
+      "mean": 27.046424886180557,
+      "sd": 7.351357134251356,
+      "min": 13.268238262875606,
+      "max": 45.03642939043587,
+      "interval": [
+       24.32599744210705,
+       28.207509560619236
+      ],
+      "completed": 81,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 3
+      },
+      "verdict": "differs"
+     },
+     "completion": {
+      "completed": 81,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 3
+      }
+     }
+    },
+    "base": {
+     "tir_cgm": {
+      "median": 90.77380952380953,
+      "mean": 88.57665462018142,
+      "sd": 8.201054898798716,
+      "min": 67.80753968253968,
+      "max": 99.16914682539682,
+      "interval": [
+       89.0376984126984,
+       92.72073412698413
+      ],
+      "completed": 84,
+      "run": 84,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "tbr70_cgm": {
+      "median": 1.8229166666666667,
+      "mean": 3.2689377834467117,
+      "sd": 3.834689454551692,
+      "min": 0.0,
+      "max": 16.096230158730158,
+      "interval": [
+       1.3392857142857142,
+       2.8149801587301586
+      ],
+      "completed": 84,
+      "run": 84,
+      "terminations": {},
+      "verdict": "same"
+     },
+     "tbr54_cgm": {
+      "median": 0.2294146825396825,
+      "mean": 0.8972859977324263,
+      "sd": 1.4985069102435238,
+      "min": 0.0,
+      "max": 7.8000992063492065,
+      "interval": [
+       0.14260912698412698,
+       0.45262896825396826
+      ],
+      "completed": 84,
+      "run": 84,
+      "terminations": {},
+      "verdict": "same"
+     },
+     "tar180_cgm": {
+      "median": 6.293402777777778,
+      "mean": 8.154407596371883,
+      "sd": 6.071382383726672,
+      "min": 0.23561507936507936,
+      "max": 27.20734126984127,
+      "interval": [
+       5.208333333333333,
+       8.699156746031747
+      ],
+      "completed": 84,
+      "run": 84,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "mean_cgm": {
+      "median": 128.70749638651495,
+      "mean": 130.22792911515558,
+      "sd": 7.6185238319162005,
+      "min": 117.59375394836047,
+      "max": 153.14604720546177,
+      "interval": [
+       127.41776251888655,
+       130.6997891760893
+      ],
+      "completed": 84,
+      "run": 84,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "cv_cgm": {
+      "median": 25.48230357857883,
+      "mean": 26.775607411068975,
+      "sd": 7.205470530191836,
+      "min": 13.268238262875606,
+      "max": 45.03642939043587,
+      "interval": [
+       24.193517271692127,
+       27.33113897590508
+      ],
+      "completed": 84,
+      "run": 84,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "completion": {
+      "completed": 84,
+      "run": 84,
+      "terminations": {}
+     }
+    },
+    "physiology": {
+     "tir_cgm": {
+      "median": 84.85863095238095,
+      "mean": 84.53508297258297,
+      "sd": 6.409435224333784,
+      "min": 66.10863095238095,
+      "max": 96.6765873015873,
+      "interval": [
+       82.91170634920636,
+       86.96676587301587
+      ],
+      "completed": 55,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 28,
+       "hyperglycaemic": 1
+      },
+      "verdict": "differs"
+     },
+     "tbr70_cgm": {
+      "median": 5.158730158730158,
+      "mean": 5.568407287157287,
+      "sd": 3.4570126714430196,
+      "min": 0.1736111111111111,
+      "max": 13.764880952380953,
+      "interval": [
+       4.04265873015873,
+       7.118055555555555
+      ],
+      "completed": 55,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 28,
+       "hyperglycaemic": 1
+      },
+      "verdict": "differs"
+     },
+     "tbr54_cgm": {
+      "median": 1.6245039682539684,
+      "mean": 2.1500721500721496,
+      "sd": 1.8183234468605398,
+      "min": 0.0,
+      "max": 6.7832341269841265,
+      "interval": [
+       1.066468253968254,
+       2.4801587301587302
+      ],
+      "completed": 55,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 28,
+       "hyperglycaemic": 1
+      },
+      "verdict": "differs"
+     },
+     "tar180_cgm": {
+      "median": 8.891369047619047,
+      "mean": 9.896509740259738,
+      "sd": 5.460396970217873,
+      "min": 2.1453373015873014,
+      "max": 26.599702380952383,
+      "interval": [
+       7.787698412698413,
+       9.88343253968254
+      ],
+      "completed": 55,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 28,
+       "hyperglycaemic": 1
+      },
+      "verdict": "differs"
+     },
+     "mean_cgm": {
+      "median": 129.86132546805078,
+      "mean": 131.38322664776615,
+      "sd": 9.576826602670327,
+      "min": 115.69549884934705,
+      "max": 161.21860751414272,
+      "interval": [
+       127.41385973550557,
+       133.18104159109888
+      ],
+      "completed": 55,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 28,
+       "hyperglycaemic": 1
+      },
+      "verdict": "differs"
+     },
+     "cv_cgm": {
+      "median": 31.821871351671895,
+      "mean": 32.00165199350718,
+      "sd": 5.497694469556591,
+      "min": 19.017948880238663,
+      "max": 45.78572820778415,
+      "interval": [
+       29.953044846150927,
+       33.43346645474949
+      ],
+      "completed": 55,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 28,
+       "hyperglycaemic": 1
+      },
+      "verdict": "same"
+     },
+     "completion": {
+      "completed": 55,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 28,
+       "hyperglycaemic": 1
+      }
+     }
+    },
+    "behaviour": {
+     "tir_cgm": {
+      "median": 91.28844246031747,
+      "mean": 90.03404313114136,
+      "sd": 6.205989748400698,
+      "min": 65.95982142857143,
+      "max": 99.04513888888889,
+      "interval": [
+       89.53993055555556,
+       92.80753968253968
+      ],
+      "completed": 84,
+      "run": 84,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "tbr70_cgm": {
+      "median": 1.1036706349206349,
+      "mean": 1.7305012282690857,
+      "sd": 1.9604082094160595,
+      "min": 0.0,
+      "max": 11.743551587301587,
+      "interval": [
+       0.7192460317460317,
+       1.5316530257936487
+      ],
+      "completed": 84,
+      "run": 84,
+      "terminations": {},
+      "verdict": "same"
+     },
+     "tbr54_cgm": {
+      "median": 0.055803571428571425,
+      "mean": 0.2685362339380197,
+      "sd": 0.6629259501620979,
+      "min": 0.0,
+      "max": 5.357142857142857,
+      "interval": [
+       0.0248015873015873,
+       0.0992063492063492
+      ],
+      "completed": 84,
+      "run": 84,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "tar180_cgm": {
+      "median": 7.614087301587302,
+      "mean": 8.235455640589569,
+      "sd": 5.034967677417885,
+      "min": 0.6448412698412698,
+      "max": 23.598710317460316,
+      "interval": [
+       5.927579365079365,
+       8.61235119047619
+      ],
+      "completed": 84,
+      "run": 84,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "mean_cgm": {
+      "median": 131.46133824459625,
+      "mean": 132.31422576136296,
+      "sd": 5.566244985572852,
+      "min": 123.22228826170975,
+      "max": 150.37182116324058,
+      "interval": [
+       129.97908995491235,
+       133.16358633189267
+      ],
+      "completed": 84,
+      "run": 84,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "cv_cgm": {
+      "median": 24.665918848786006,
+      "mean": 25.537222767845076,
+      "sd": 5.8528106522975625,
+      "min": 13.642121629625562,
+      "max": 42.30462171747311,
+      "interval": [
+       23.32056969538241,
+       26.988034461764126
+      ],
+      "completed": 84,
+      "run": 84,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "completion": {
+      "completed": 84,
+      "run": 84,
+      "terminations": {}
+     }
+    },
+    "sensor": {
+     "tir_cgm": {
+      "median": 90.24057539682539,
+      "mean": 88.4110154478458,
+      "sd": 8.153174618830088,
+      "min": 67.73313492063492,
+      "max": 99.03273809523809,
+      "interval": [
+       88.8764880952381,
+       92.3921130952381
+      ],
+      "completed": 84,
+      "run": 84,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "tbr70_cgm": {
+      "median": 1.9965277777777777,
+      "mean": 3.4537686602418747,
+      "sd": 3.7935678004922355,
+      "min": 0.0992063492063492,
+      "max": 16.121031746031747,
+      "interval": [
+       1.488095238095238,
+       3.044394841269841
+      ],
+      "completed": 84,
+      "run": 84,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "tbr54_cgm": {
+      "median": 0.3224206349206349,
+      "mean": 0.9804008408919125,
+      "sd": 1.509108347314245,
+      "min": 0.0,
+      "max": 7.7752976190476195,
+      "interval": [
+       0.1736111111111111,
+       0.6324404761904762
+      ],
+      "completed": 84,
+      "run": 84,
+      "terminations": {},
+      "verdict": "same"
+     },
+     "tar180_cgm": {
+      "median": 6.336805555555555,
+      "mean": 8.135215891912319,
+      "sd": 6.031905492343673,
+      "min": 0.2976190476190476,
+      "max": 26.946924603174605,
+      "interval": [
+       5.276537698412699,
+       8.69295634920635
+      ],
+      "completed": 84,
+      "run": 84,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "mean_cgm": {
+      "median": 128.57084831251916,
+      "mean": 129.77447667216762,
+      "sd": 7.579537053371768,
+      "min": 117.63376400722555,
+      "max": 152.37580857756004,
+      "interval": [
+       126.69870907425229,
+       130.58013609474568
+      ],
+      "completed": 84,
+      "run": 84,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "cv_cgm": {
+      "median": 25.71833387382758,
+      "mean": 27.048720198170795,
+      "sd": 7.163004940057234,
+      "min": 13.821783615357772,
+      "max": 45.6907116044087,
+      "interval": [
+       24.483223282249483,
+       27.288531966720985
+      ],
+      "completed": 84,
+      "run": 84,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "completion": {
+      "completed": 84,
+      "run": 84,
+      "terminations": {}
+     }
+    },
+    "site": {
+     "tir_cgm": {
+      "median": 83.10391865079364,
+      "mean": 82.4132549361208,
+      "sd": 7.961163208033812,
+      "min": 58.54414682539682,
+      "max": 98.00347222222221,
+      "interval": [
+       80.36954365079364,
+       85.21825396825396
+      ],
+      "completed": 82,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 1,
+       "hyperglycaemic": 1
+      },
+      "verdict": "differs"
+     },
+     "tbr70_cgm": {
+      "median": 1.6431051587301588,
+      "mean": 2.8282883275261326,
+      "sd": 3.2473332519621465,
+      "min": 0.0,
+      "max": 15.240575396825399,
+      "interval": [
+       1.3082837301587302,
+       2.5421626984126986
+      ],
+      "completed": 82,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 1,
+       "hyperglycaemic": 1
+      },
+      "verdict": "same"
+     },
+     "tbr54_cgm": {
+      "median": 0.2976190476190476,
+      "mean": 0.7401156600851723,
+      "sd": 1.1393491534924576,
+      "min": 0.0,
+      "max": 5.902777777777778,
+      "interval": [
+       0.13640873015873015,
+       0.4340277777777778
+      ],
+      "completed": 82,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 1,
+       "hyperglycaemic": 1
+      },
+      "verdict": "same"
+     },
+     "tar180_cgm": {
+      "median": 13.83308531746032,
+      "mean": 14.758456736353079,
+      "sd": 6.97147984070526,
+      "min": 1.984126984126984,
+      "max": 34.01537698412698,
+      "interval": [
+       12.140376984126984,
+       15.531994047619047
+      ],
+      "completed": 82,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 1,
+       "hyperglycaemic": 1
+      },
+      "verdict": "differs"
+     },
+     "mean_cgm": {
+      "median": 138.91817532883414,
+      "mean": 139.8171012271369,
+      "sd": 9.583119650769456,
+      "min": 119.64139199048896,
+      "max": 159.73754877505755,
+      "interval": [
+       135.92347058457364,
+       142.9775293888945
+      ],
+      "completed": 82,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 1,
+       "hyperglycaemic": 1
+      },
+      "verdict": "differs"
+     },
+     "cv_cgm": {
+      "median": 30.09682648376394,
+      "mean": 30.516221717841766,
+      "sd": 6.568930936794158,
+      "min": 13.91935787288697,
+      "max": 46.008316447450134,
+      "interval": [
+       28.90186361143099,
+       32.09142500563628
+      ],
+      "completed": 82,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 1,
+       "hyperglycaemic": 1
+      },
+      "verdict": "differs"
+     },
+     "completion": {
+      "completed": 82,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 1,
+       "hyperglycaemic": 1
+      }
+     }
+    },
+    "all_layers": {
+     "tir_cgm": {
+      "median": 82.09325396825396,
+      "mean": 80.9715934495864,
+      "sd": 7.4250308523542765,
+      "min": 61.27232142857143,
+      "max": 96.96180555555556,
+      "interval": [
+       79.57589285714286,
+       83.13492063492063
+      ],
+      "completed": 71,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 13
+      },
+      "verdict": "differs"
+     },
+     "tbr70_cgm": {
+      "median": 2.591765873015873,
+      "mean": 3.028588195841717,
+      "sd": 1.9382100980756172,
+      "min": 0.11160714285714285,
+      "max": 8.544146825396826,
+      "interval": [
+       2.34375,
+       3.4722222222222223
+      ],
+      "completed": 71,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 13
+      },
+      "verdict": "differs"
+     },
+     "tbr54_cgm": {
+      "median": 0.7688492063492063,
+      "mean": 1.0042896266487813,
+      "sd": 0.9423052783720326,
+      "min": 0.0,
+      "max": 4.749503968253968,
+      "interval": [
+       0.5456349206349206,
+       1.0912698412698412
+      ],
+      "completed": 71,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 13
+      },
+      "verdict": "differs"
+     },
+     "tar180_cgm": {
+      "median": 14.880952380952381,
+      "mean": 15.999818354571875,
+      "sd": 7.002259485271237,
+      "min": 2.455357142857143,
+      "max": 30.456349206349202,
+      "interval": [
+       13.182043650793652,
+       17.894345238095237
+      ],
+      "completed": 71,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 13
+      },
+      "verdict": "differs"
+     },
+     "mean_cgm": {
+      "median": 141.67803569788717,
+      "mean": 142.660381301761,
+      "sd": 9.349842648548469,
+      "min": 127.09718940283332,
+      "max": 165.03567381438043,
+      "interval": [
+       138.67332783179864,
+       144.47857194752763
+      ],
+      "completed": 71,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 13
+      },
+      "verdict": "differs"
+     },
+     "cv_cgm": {
+      "median": 31.293173269738265,
+      "mean": 32.0914876857368,
+      "sd": 5.697945321229171,
+      "min": 18.603948989671053,
+      "max": 45.44190274049612,
+      "interval": [
+       29.887285397582616,
+       33.3595929338322
+      ],
+      "completed": 71,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 13
+      },
+      "verdict": "differs"
+     },
+     "completion": {
+      "completed": 71,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 13
+      }
+     }
+    },
+    "behaviour_announced": {
+     "tir_cgm": {
+      "median": 94.99627976190476,
+      "mean": 92.97967450869237,
+      "sd": 5.717074046862862,
+      "min": 71.8998015873016,
+      "max": 99.52876984126983,
+      "interval": [
+       93.35317460317461,
+       95.93889508928572
+      ],
+      "completed": 84,
+      "run": 84,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "tbr70_cgm": {
+      "median": 0.7378472222222222,
+      "mean": 1.3720592403628118,
+      "sd": 1.7958407387125683,
+      "min": 0.0,
+      "max": 10.677083333333332,
+      "interval": [
+       0.5270337301587301,
+       1.128472222222222
+      ],
+      "completed": 84,
+      "run": 84,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "tbr54_cgm": {
+      "median": 0.0496031746031746,
+      "mean": 0.19206467309145878,
+      "sd": 0.4739958808407305,
+      "min": 0.0,
+      "max": 3.831845238095238,
+      "interval": [
+       0.018601190476190476,
+       0.0744047619047619
+      ],
+      "completed": 84,
+      "run": 84,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "tar180_cgm": {
+      "median": 4.3092757936507935,
+      "mean": 5.648266250944822,
+      "sd": 4.672252460804085,
+      "min": 0.38442460317460314,
+      "max": 20.85813492063492,
+      "interval": [
+       3.224206349206349,
+       5.642361111111112
+      ],
+      "completed": 84,
+      "run": 84,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "mean_cgm": {
+      "median": 129.2127597655888,
+      "mean": 129.9021495962355,
+      "sd": 5.354768907624433,
+      "min": 119.69689320421004,
+      "max": 146.82247823259354,
+      "interval": [
+       127.71525001230745,
+       130.78030580536623
+      ],
+      "completed": 84,
+      "run": 84,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "cv_cgm": {
+      "median": 22.02498390921831,
+      "mean": 23.077208089833142,
+      "sd": 5.671963231525327,
+      "min": 12.781331450458724,
+      "max": 38.47588203153011,
+      "interval": [
+       20.836280239897864,
+       23.245051653715258
+      ],
+      "completed": 84,
+      "run": 84,
+      "terminations": {},
+      "verdict": "differs"
+     },
+     "completion": {
+      "completed": 84,
+      "run": 84,
+      "terminations": {}
+     }
+    },
+    "behaviour_unannounced": {
+     "tir_cgm": {
+      "median": 82.58928571428571,
+      "mean": 81.80131239242685,
+      "sd": 7.898669109335907,
+      "min": 62.56200396825397,
+      "max": 97.8546626984127,
+      "interval": [
+       80.14632936507937,
+       84.87103174603175
+      ],
+      "completed": 83,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 1
+      },
+      "verdict": "differs"
+     },
+     "tbr70_cgm": {
+      "median": 1.7857142857142856,
+      "mean": 2.7326568177471797,
+      "sd": 2.750508126177334,
+      "min": 0.0,
+      "max": 14.918154761904761,
+      "interval": [
+       1.1160714285714286,
+       2.765376984126984
+      ],
+      "completed": 83,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 1
+      },
+      "verdict": "same"
+     },
+     "tbr54_cgm": {
+      "median": 0.1240079365079365,
+      "mean": 0.4661503155479059,
+      "sd": 0.8582874390821906,
+      "min": 0.0,
+      "max": 6.2872023809523805,
+      "interval": [
+       0.0744047619047619,
+       0.33482142857142855
+      ],
+      "completed": 83,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 1
+      },
+      "verdict": "same"
+     },
+     "tar180_cgm": {
+      "median": 14.992559523809524,
+      "mean": 15.46603078982597,
+      "sd": 6.339450521366031,
+      "min": 2.108134920634921,
+      "max": 31.721230158730158,
+      "interval": [
+       12.983630952380953,
+       16.852678571428573
+      ],
+      "completed": 83,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 1
+      },
+      "verdict": "differs"
+     },
+     "mean_cgm": {
+      "median": 138.11457606577244,
+      "mean": 139.0330143943888,
+      "sd": 6.843269924923909,
+      "min": 126.7589981408164,
+      "max": 160.25701873583984,
+      "interval": [
+       136.04046276635015,
+       139.15889819925656
+      ],
+      "completed": 83,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 1
+      },
+      "verdict": "differs"
+     },
+     "cv_cgm": {
+      "median": 29.914824383495723,
+      "mean": 30.377226523508014,
+      "sd": 6.527249276109325,
+      "min": 15.002319362698318,
+      "max": 44.12288255238755,
+      "interval": [
+       28.023547110245726,
+       30.953656624111048
+      ],
+      "completed": 83,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 1
+      },
+      "verdict": "differs"
+     },
+     "completion": {
+      "completed": 83,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 1
+      }
+     }
+    },
+    "all_layers_announced": {
+     "tir_cgm": {
+      "median": 82.73809523809523,
+      "mean": 81.84676696020875,
+      "sd": 7.473522666602567,
+      "min": 64.24851190476191,
+      "max": 97.35863095238095,
+      "interval": [
+       80.33234126984127,
+       85.32986111111111
+      ],
+      "completed": 73,
+      "run": 84,
+      "terminations": {
+       "hyperglycaemic": 4,
+       "hypoglycaemic": 7
+      },
+      "verdict": "differs"
+     },
+     "tbr70_cgm": {
+      "median": 2.864583333333333,
+      "mean": 3.302688084366167,
+      "sd": 2.3208671030053196,
+      "min": 0.0992063492063492,
+      "max": 10.52827380952381,
+      "interval": [
+       2.1577380952380953,
+       3.100198412698413
+      ],
+      "completed": 73,
+      "run": 84,
+      "terminations": {
+       "hyperglycaemic": 4,
+       "hypoglycaemic": 7
+      },
+      "verdict": "differs"
+     },
+     "tbr54_cgm": {
+      "median": 0.7688492063492063,
+      "mean": 1.0866832463579037,
+      "sd": 1.0581253808815863,
+      "min": 0.01240079365079365,
+      "max": 5.133928571428571,
+      "interval": [
+       0.533234126984127,
+       0.9176587301587302
+      ],
+      "completed": 73,
+      "run": 84,
+      "terminations": {
+       "hyperglycaemic": 4,
+       "hypoglycaemic": 7
+      },
+      "verdict": "differs"
+     },
+     "tar180_cgm": {
+      "median": 14.012896825396826,
+      "mean": 14.85054495542509,
+      "sd": 6.754815634766551,
+      "min": 2.1577380952380953,
+      "max": 32.11805555555556,
+      "interval": [
+       11.07390873015873,
+       16.827876984126984
+      ],
+      "completed": 73,
+      "run": 84,
+      "terminations": {
+       "hyperglycaemic": 4,
+       "hypoglycaemic": 7
+      },
+      "verdict": "differs"
+     },
+     "mean_cgm": {
+      "median": 139.6888742212811,
+      "mean": 140.2908959974565,
+      "sd": 9.513910294059544,
+      "min": 121.73444480198916,
+      "max": 163.71577636841792,
+      "interval": [
+       135.83180316747723,
+       142.27955049554387
+      ],
+      "completed": 73,
+      "run": 84,
+      "terminations": {
+       "hyperglycaemic": 4,
+       "hypoglycaemic": 7
+      },
+      "verdict": "differs"
+     },
+     "cv_cgm": {
+      "median": 32.13342952716836,
+      "mean": 31.498581556601533,
+      "sd": 5.341619590402666,
+      "min": 18.515618069568124,
+      "max": 41.89098209676951,
+      "interval": [
+       29.708067036193178,
+       33.10758868837814
+      ],
+      "completed": 73,
+      "run": 84,
+      "terminations": {
+       "hyperglycaemic": 4,
+       "hypoglycaemic": 7
+      },
+      "verdict": "differs"
+     },
+     "completion": {
+      "completed": 73,
+      "run": 84,
+      "terminations": {
+       "hyperglycaemic": 4,
+       "hypoglycaemic": 7
+      }
+     }
+    },
+    "all_layers_unannounced": {
+     "tir_cgm": {
+      "median": 77.17633928571428,
+      "mean": 76.67272927689595,
+      "sd": 7.84466574311583,
+      "min": 55.629960317460316,
+      "max": 96.15575396825396,
+      "interval": [
+       75.46502976190476,
+       78.73883928571428
+      ],
+      "completed": 72,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 8,
+       "hyperglycaemic": 4
+      },
+      "verdict": "differs"
+     },
+     "tbr70_cgm": {
+      "median": 3.0319940476190474,
+      "mean": 3.5586833112874783,
+      "sd": 2.524786053424995,
+      "min": 0.0744047619047619,
+      "max": 12.36359126984127,
+      "interval": [
+       2.232142857142857,
+       3.8628472222222223
+      ],
+      "completed": 72,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 8,
+       "hyperglycaemic": 4
+      },
+      "verdict": "differs"
+     },
+     "tbr54_cgm": {
+      "median": 0.855654761904762,
+      "mean": 1.2709091159611994,
+      "sd": 1.2846428359691537,
+      "min": 0.0,
+      "max": 6.944444444444445,
+      "interval": [
+       0.6756882440476191,
+       1.166294642857134
+      ],
+      "completed": 72,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 8,
+       "hyperglycaemic": 4
+      },
+      "verdict": "differs"
+     },
+     "tar180_cgm": {
+      "median": 19.1468253968254,
+      "mean": 19.76858741181658,
+      "sd": 6.981968775608658,
+      "min": 3.422619047619048,
+      "max": 38.504464285714285,
+      "interval": [
+       16.976686507936506,
+       21.397569444444443
+      ],
+      "completed": 72,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 8,
+       "hyperglycaemic": 4
+      },
+      "verdict": "differs"
+     },
+     "mean_cgm": {
+      "median": 146.08516737346054,
+      "mean": 146.76523022708645,
+      "sd": 8.846400559768039,
+      "min": 131.09088212241954,
+      "max": 171.1107670643519,
+      "interval": [
+       142.99608018950724,
+       148.63602818692607
+      ],
+      "completed": 72,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 8,
+       "hyperglycaemic": 4
+      },
+      "verdict": "differs"
+     },
+     "cv_cgm": {
+      "median": 33.06786692648595,
+      "mean": 33.537937398917535,
+      "sd": 5.721672644845824,
+      "min": 19.355724051943227,
+      "max": 50.16661511023567,
+      "interval": [
+       31.16794421504804,
+       34.92009453023538
+      ],
+      "completed": 72,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 8,
+       "hyperglycaemic": 4
+      },
+      "verdict": "same"
+     },
+     "completion": {
+      "completed": 72,
+      "run": 84,
+      "terminations": {
+       "hypoglycaemic": 8,
+       "hyperglycaemic": 4
+      }
+     }
+    }
+   }
+  }
+ }
+}
