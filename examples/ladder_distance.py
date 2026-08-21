@@ -67,6 +67,8 @@ def real_summary(ref):
             continue
         v = np.asarray(vals, float)
         out[refkey] = {"median": float(np.median(v)),
+                       "p10": float(np.percentile(v, 10)),
+                       "p90": float(np.percentile(v, 90)),
                        "spread": float(np.percentile(v, 90) - np.percentile(v, 10)),
                        "n": len(v), "sd": float(np.std(v, ddof=1))}
     return out
@@ -110,13 +112,22 @@ def main():
                     continue
                 med = float(np.median(v))
                 lo, hi = _ci(v, rng)
+                # Two different things, and reporting only the first is what the note of
+                # 9 August 2026 warns against. The interval is uncertainty in the centre and
+                # decides the verdict. p10 to p90 is the spread across subjects, and a
+                # population can sit on the real median while being far narrower than the real
+                # cohort, which makes a bench look more decisive than it is.
+                p10, p90 = float(np.percentile(v, 10)), float(np.percentile(v, 90))
                 rr = real.get(refkey)
-                cell = {"median": med, "interval": [lo, hi], "n": len(v)}
+                cell = {"median": med, "interval": [lo, hi], "n": len(v),
+                        "p10": p10, "p90": p90, "spread": p90 - p10}
                 if rr:
                     cell["real_median"] = rr["median"]
                     cell["differs"] = not (lo <= rr["median"] <= hi)
                     if rr.get("spread"):
                         cell["gap_spreads"] = (med - rr["median"]) / rr["spread"]
+                        cell["real_spread"] = rr["spread"]
+                        cell["spread_ratio"] = (p90 - p10) / rr["spread"] if rr["spread"] else None
                 entry["measures"][key] = cell
             rec["rungs"][rung] = entry
 
@@ -127,13 +138,17 @@ def main():
 
         for key, name, refkey in MEASURES:
             rr = real.get(refkey)
-            meds, verds, gaps = [], [], []
+            meds, verds, gaps, spans, ratios = [], [], [], [], []
             for rung in RUNGS:
                 c = rec["rungs"][rung]["measures"].get(key)
                 if not c:
-                    meds.append(f"{'-':>14}"); verds.append(f"{'-':>14}"); gaps.append(f"{'-':>14}")
+                    for lst in (meds, verds, gaps, spans, ratios):
+                        lst.append(f"{'-':>14}")
                     continue
                 meds.append(f"{c['median']:>14.2f}")
+                spans.append(f"{c['p10']:>7.1f}-{c['p90']:<6.1f}")
+                ratios.append(f"{c['spread_ratio']:>14.2f}" if c.get("spread_ratio")
+                              else f"{'-':>14}")
                 if "differs" in c:
                     verds.append(f"{('differs' if c['differs'] else 'same'):>14}")
                 else:
@@ -141,8 +156,12 @@ def main():
                 gaps.append(f"{c['gap_spreads']:>+14.2f}" if "gap_spreads" in c else f"{'-':>14}")
             print(f"\n  {name:26}" + "".join(meds) +
                   (f"{rr['median']:>10.2f}" if rr else f"{'-':>10}"))
-            print(f"  {'  against real':26}" + "".join(verds))
+            print(f"  {'  p10 to p90 of subjects':26}" + "".join(spans) +
+                  (f"{rr['p10']:>5.1f}-{rr['p90']:<5.1f}" if rr and rr.get("p10") is not None
+                   else ""))
+            print(f"  {'  median against real':26}" + "".join(verds))
             if rr and rr.get("spread"):
+                print(f"  {'  spread against real':26}" + "".join(ratios))
                 print(f"  {'  magnitude, spreads':26}" + "".join(gaps))
 
         # The headline: how many measures a rung cannot be told apart from the trial on.
