@@ -92,8 +92,13 @@ def main():
     a = ap.parse_args()
 
     d = json.load(open(a.file))
-    if d.get("bench_set") != "validation":
-        raise SystemExit(f"{a.file} records bench_set {d.get('bench_set')!r}, not 'validation'.")
+    # `combined` is the four arms `docs/BASELINE.md` reports and is a subset of `validation`.
+    # Arms absent from the file are skipped below rather than reported empty, so a combined file
+    # yields a four-arm table and a validation file the full eleven. Any other set is refused,
+    # because reading the baseline or matrix sets here would silently drop most of their rows.
+    if d.get("bench_set") not in ("validation", "combined"):
+        raise SystemExit(f"{a.file} records bench_set {d.get('bench_set')!r}, "
+                         "which is neither 'validation' nor 'combined'.")
 
     idx = {}
     for r in d["runs"]:
