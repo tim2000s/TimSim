@@ -1,0 +1,11 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+  20/103
+  40/103
+  60/103
+  80/103
+  100/103
+
+103 users with a computable jitter
+  p10 3.50  median 5.30  p90 7.45  mean 5.56  sd 2.13
+wrote docs/measurements/real_sensor_jitter.json

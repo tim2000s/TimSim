@@ -140,8 +140,35 @@ DEFAULT_MEALS = [
     (22.0, 1.0, 18, 10, 0.35, True),
 ]
 
-SENSOR_NOISE_SIGMA = 2.0
+# Every subject was given the same sensor until 22 August 2026, so the population varied in the
+# noise it received and not in how noisy its sensor was. Measured across the 103 OpenAPS Data
+# Commons users of the reference cohort with the same second-difference statistic the simulator is
+# scored on, real per-person jitter has a median of 5.30 mg/dL and a tenth to ninetieth percentile
+# of 3.50 to 7.45. The population spanned 5.55 to 5.70, so its centre was already right and it
+# carried no spread at all.
+#
+# Jitter is a second-difference standard deviation, to which white noise of standard deviation s
+# contributes s times the square root of six and the curvature of the glucose itself contributes
+# the rest. With the sensor layer off that curvature measures 2.4 mg/dL, which puts the real
+# quantiles at sigma 1.04, 1.93 and 2.88. A lognormal about a median of 1.93 carries them, with
+# the log standard deviation fitted to both tails rather than to their ratio: 0.33 gives a jitter
+# tenth percentile of 3.92 and a ninetieth of 7.60 against a real 3.50 and 7.45, where fitting the
+# ratio alone matched the tenth and overshot the ninetieth by a full mg/dL. The residual is the
+# real distribution having a lighter right tail than a lognormal, which is not worth a second
+# parameter at 103 users.
+#
+# The draw takes its own stream, so a subject's noise level does not disturb the realisation of
+# the noise itself and the two can be varied independently.
+SENSOR_NOISE_SIGMA = 1.93
+SENSOR_NOISE_LOG_SD = 0.33
 SENSOR_COMPRESSION_PER_30D = 4.5
+
+
+def sensor_style(name, seed, sigma=SENSOR_NOISE_SIGMA, log_sd=SENSOR_NOISE_LOG_SD):
+    """How noisy this subject's sensor is, held for the whole run."""
+    if not log_sd:
+        return float(sigma)
+    return float(sigma * stream(name, seed, "sensor_style").lognormal(0.0, log_sd))
 
 
 @dataclass
@@ -430,7 +457,7 @@ def stream(name, seed, purpose):
 def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
              controller=DEFAULT_CONTROLLER,
              meals=None,
-             sensor_noise=SENSOR_NOISE_SIGMA,
+             sensor_noise=None,
              compression_per_30d=SENSOR_COMPRESSION_PER_30D,
              params=None, settings=None, profile=None, diurnal_basal=False,
              limits=None, faults=None, sample_minutes=DEFAULT_SAMPLE_MINUTES,
@@ -556,8 +583,11 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
 
     artefacts = None
     if "sensor" in effective:
+        # None means this subject's own noise level. A number applies that level to everybody,
+        # which an ablation needs and a cohort does not.
+        noise = sensor_style(name, seed) if sensor_noise is None else float(sensor_noise)
         artefacts = OnlineArtefacts(stream(name, seed, "sensor"), steps, step_minutes,
-                                    noise_sigma=sensor_noise,
+                                    noise_sigma=noise,
                                     compression_per_30d=compression_per_30d)
 
     enforcer = Enforcer(prof.limits)
