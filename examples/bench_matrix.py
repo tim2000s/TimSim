@@ -119,6 +119,14 @@ VALIDATION_BENCHES = [
 ]
 
 
+# The four arms `docs/BASELINE.md` reports: the model as simglucose supplies it, and this package
+# as it ships at each meal-announcement condition. A subset of `VALIDATION_BENCHES`, kept separate
+# so the document can be rebuilt without paying for the seven single-layer arms it does not use.
+COMBINED_BENCHES = [b for b in VALIDATION_BENCHES
+                    if b[0] in ("stock", "all_layers", "all_layers_announced",
+                                "all_layers_unannounced")]
+
+
 def one(job):
     cohort, controller, bench, name, layers, announcement, settings = job
     from timsim.simulation.run import simulate
@@ -182,7 +190,7 @@ def main():
                          "pairings. The pairings exist because DCLP3 participants ran Control-IQ "
                          "and Commons users run oref0, so a pairing is like-for-like and this is "
                          "not. Use it to measure the person rather than to score an algorithm.")
-    ap.add_argument("--benches", choices=("matrix", "baseline", "ladder", "validation"),
+    ap.add_argument("--benches", choices=("matrix", "baseline", "ladder", "validation", "combined"),
                     default="matrix",
                     help="'baseline' measures the bare arm at all three meal scenarios as well "
                          "as the layered arm; 'ladder' accumulates the layers one at a time so "
@@ -203,8 +211,10 @@ def main():
     titrated = set(titrate.titrated_subjects())
 
     benches = {"baseline": BASELINE_BENCHES, "ladder": LADDER_BENCHES,
-               "validation": VALIDATION_BENCHES}.get(a.benches, BENCHES)
-    default_pairings = VALIDATION_PAIRINGS if a.benches == "validation" else PAIRINGS
+               "validation": VALIDATION_BENCHES,
+               "combined": COMBINED_BENCHES}.get(a.benches, BENCHES)
+    default_pairings = (VALIDATION_PAIRINGS if a.benches in ("validation", "combined")
+                        else PAIRINGS)
     pairings = ([(c, a.controller) for c in sorted(rec["cohorts"])] if a.controller
                 else default_pairings)
 
