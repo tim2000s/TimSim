@@ -360,6 +360,138 @@ RESCUE_THRESHOLD_BOUNDS = (55.0, 88.0)
 RESCUE_REFRACTORY_BOUNDS = (15.0, 240.0)
 
 
+# How much subjects differ from each other in how closely they follow the therapy.
+#
+# Every subject here announces the same share of meals, misestimates carbohydrate by the same
+# amount and runs settings of the same quality, so the population varies in what happens to it
+# and not in what it does. Real people vary in both, and the three vary together: someone who
+# misses boluses is also someone counting carbohydrate carelessly and running settings nobody
+# has revisited. One latent draw per subject therefore drives all three rather than three
+# independent draws, which would let a subject be careless about boluses and meticulous about
+# carbohydrate and would not produce a group of people who do badly.
+#
+# It acts on the odds of missing a bolus rather than on the probability, so every subject stays
+# inside zero and one without a clipping rule that would pile subjects up at the ends.
+#
+# The size comes from the literature on missed and mistimed doses rather than from either
+# reference population, because both of those are what the mechanism is judged against and a
+# parameter taken from them would stop the comparison being a test. Robinson et al. review the
+# field (Diabetes Technology and Therapeutics 2021;23(8):845-857) and the pump-alarm study in it
+# reports 4.9 missed meal boluses a week with a standard deviation of 3.7 across individuals, a
+# between-person coefficient of variation of 0.76 on the rate at which a person misses a bolus.
+#
+# `ENGAGEMENT_SPREAD` is the standard deviation on the log-odds scale that reproduces that
+# coefficient of variation at the population's own announcement rate, solved in
+# `engagement_spread_for_cv` rather than asserted, so the number can be rederived if the
+# announcement rate changes.
+#
+# Off by default until the measurement in docs/DESIGN_ALIGNMENT.md section D is made.
+ENGAGEMENT_CV = 0.0
+ENGAGEMENT_SPREAD = 1.047
+
+# The quadrature the mean-preserving offset is solved against, and the offsets already solved.
+# Fixed rather than redrawn so two runs of one subject agree and so the offset is a property of
+# the parameter rather than of when it was first asked for.
+_Z = np.random.default_rng(0).standard_normal(200000)
+_OFFSETS = {}
+
+# How far the carbohydrate estimate degrades across the same range, as the exponent applied to
+# the latent draw. A modelling choice: nothing measures how strongly bolus omission and counting
+# error travel together in one person, only that both are worse in the less engaged.
+#
+# Settings quality was drawn with them in the first version of this mechanism and is not, for two
+# reasons. The correction-factor sweep in docs/DESIGN_ALIGNMENT.md section A found that lever
+# moves time in range by nothing at all under a Control-IQ-shaped loop, because basal modulation
+# replaces whatever the correction channel stops delivering, so coupling it here would add a free
+# parameter that cannot act. And an external controller is constructed by the caller against the
+# profile it was handed, so scaling the profile inside `simulate` would put the rig and the
+# algorithm on different settings, which `_require_matching_profile` exists to prevent.
+ENGAGEMENT_CARB_COUPLING = 0.30
+
+
+def _mean_preserving_offset(base, s, z):
+    """The log-odds shift holding the population miss rate at the rate `base` encodes.
+
+    Spreading a probability on the log-odds scale moves its mean as well as its spread, because
+    the inverse logit is not linear. Without this the mechanism would lower the announcement
+    rate as well as vary it, and any change in outcome would be two effects rather than one.
+    """
+    target = 1.0 / (1.0 + np.exp(-base))
+    lo, hi = -6.0, 6.0
+    for _ in range(80):
+        mid = 0.5 * (lo + hi)
+        if float(np.mean(1.0 / (1.0 + np.exp(-(base + mid + s * z))))) < target:
+            lo = mid
+        else:
+            hi = mid
+    return 0.5 * (lo + hi)
+
+
+def engagement_spread_for_cv(cv, p_miss, n=200000, seed=0):
+    """The log-odds spread and offset giving a between-person CV of `cv` on the miss rate.
+
+    Returns `(spread, offset)`. Solved numerically because a logit-normal has no closed form
+    for either quantity, and solved jointly because the offset holding the mean depends on the
+    spread. Returns zeros for a non-positive target, which is the mechanism switched off.
+    """
+    if cv <= 0:
+        return 0.0, 0.0
+    z = np.random.default_rng(seed).standard_normal(n)
+    base = np.log(p_miss / (1.0 - p_miss))
+
+    def achieved(s):
+        b = _mean_preserving_offset(base, s, z)
+        p = 1.0 / (1.0 + np.exp(-(base + b + s * z)))
+        return float(np.std(p) / np.mean(p)), b
+
+    lo, hi = 0.0, 8.0
+    for _ in range(50):
+        mid = 0.5 * (lo + hi)
+        if achieved(mid)[0] < cv:
+            lo = mid
+        else:
+            hi = mid
+    s = 0.5 * (lo + hi)
+    return s, achieved(s)[1]
+
+
+def engagement_for(name, cv=ENGAGEMENT_CV, seed=0, spread=None):
+    """One subject's engagement, as its announcement rates and its counting error.
+
+    Returns `(p_main, p_snack, carb_cv)`. At `cv <= 0` it returns the population values
+    unchanged, which is the mechanism switched off and reproduces every arm run before it.
+
+    Keyed on the subject name so a cohort is reproducible without regenerating the population,
+    and so two runs of the same subject agree. The draw is a single standard normal, and a
+    subject above the mean both misses more boluses and counts carbohydrate worse, because that
+    is one person rather than two.
+    """
+    if cv <= 0:
+        return P_ANNOUNCE_MAIN, P_ANNOUNCE_SNACK, CARB_ESTIMATE_CV
+    import hashlib
+
+    digest = hashlib.sha256(f"engagement:{name}:{seed}".encode()).digest()
+    z = float(np.random.default_rng(int.from_bytes(digest[:8], "big")).standard_normal())
+    s = ENGAGEMENT_SPREAD if spread is None else float(spread)
+
+    def shifted(p):
+        """Announcement probability after moving the odds of missing by `s * z`.
+
+        The offset is solved per meal type, because holding the mean depends on where the rate
+        starts and a main meal and a snack do not start in the same place.
+        """
+        miss = 1.0 - p
+        base = np.log(miss / (1.0 - miss))
+        b = _OFFSETS.get(round(p, 6))
+        if b is None:
+            b = _mean_preserving_offset(base, s, _Z)
+            _OFFSETS[round(p, 6)] = b
+        return float(1.0 - 1.0 / (1.0 + np.exp(-(base + b + s * z))))
+
+    return (shifted(P_ANNOUNCE_MAIN), shifted(P_ANNOUNCE_SNACK),
+            float(CARB_ESTIMATE_CV * np.exp(ENGAGEMENT_CARB_COUPLING * s * z)))
+
+
 def rescue_style(name, cv=BEHAVIOUR_SPREAD_CV, seed=0):
     """One subject's treating style: the glucose they act on and how long they then wait.
 
@@ -401,8 +533,16 @@ class Person:
     def __init__(self, rng, rescue=True, announce=True,
                  rescue_threshold=RESCUE_THRESHOLD,
                  rescue_refractory_min=RESCUE_REFRACTORY_MIN,
-                 p_treat_low=None, announcement="some"):
+                 p_treat_low=None, announcement="some",
+                 p_announce_main=P_ANNOUNCE_MAIN, p_announce_snack=P_ANNOUNCE_SNACK,
+                 carb_estimate_cv=CARB_ESTIMATE_CV):
         self.rng = rng
+        # Per-subject rather than module-level, so an engaged and a disengaged subject differ
+        # in what they do and not only in what happens to them. They default to the population
+        # values, which is what every arm before `engagement_cv` used.
+        self.p_announce_main = float(p_announce_main)
+        self.p_announce_snack = float(p_announce_snack)
+        self.carb_estimate_cv = float(carb_estimate_cv)
         self.p_treat_low = float(P_TREAT_LOW if p_treat_low is None else p_treat_low)
         self.rescue_on = rescue
         self.announce_on = announce
@@ -437,14 +577,14 @@ class Person:
         # one controller, announcing every meal then scored worse than announcing some, which is
         # backwards and was the streams diverging rather than an effect.
         u = self.rng.random()
-        sigma = np.sqrt(np.log(1 + CARB_ESTIMATE_CV ** 2))
+        sigma = np.sqrt(np.log(1 + self.carb_estimate_cv ** 2))
         estimate = float(grams * CARB_ESTIMATE_BIAS
                          * self.rng.lognormal(-0.5 * sigma ** 2, sigma))
         if self.announcement == "never":
             self.unannounced_meals += 1
             return 0.0
         if self.announcement == "some":
-            p = P_ANNOUNCE_SNACK if is_snack else P_ANNOUNCE_MAIN
+            p = self.p_announce_snack if is_snack else self.p_announce_main
             if u > p:
                 self.unannounced_meals += 1
                 return 0.0

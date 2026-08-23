@@ -278,6 +278,91 @@ The consequence for mechanism C is that it has more to close rather than less. A
 arm under the algorithm those participants actually ran, the shortfall in time above 180 mg/dL is
 11.5 percentage points, and under the shipped algorithm it is larger still.
 
+## D. Per-subject engagement
+
+Written after the decile measurement and before implementation. It is the mechanism to build
+rather than C, for the reason in the next paragraph.
+
+### What the deciles changed
+
+Time above 180 mg/dL by percentile of subject says the shortfall is not a displacement of the whole
+population:
+
+| Percentile | 10 | 25 | 50 | 75 | 90 |
+|---|---|---|---|---|---|
+| DCLP3 simulated | 8.9 | 10.7 | 15.4 | 19.8 | 25.0 |
+| DCLP3 real | 12.0 | 18.5 | 26.9 | 35.7 | 40.6 |
+| Commons simulated | 6.0 | 8.0 | 10.9 | 16.7 | 20.5 |
+| Commons real | 5.0 | 9.7 | 15.1 | 22.7 | 29.3 |
+
+Against the Commons the simulated best-controlled tenth already carries slightly more time above
+180 than its real counterpart, and the difference grows at every percentile above it. A
+within-subject episodic term of the kind C proposes moves every subject and would close the median
+while leaving the ninetieth percentile 9 to 16 points short. What is missing is a group of people
+who do badly, not a worse day for everybody.
+
+### Structure
+
+Every subject in this package announces 80 per cent of main meals and 35 per cent of snacks,
+misestimates carbohydrate at a coefficient of variation of 0.25, and carries settings measured from
+its own physiology. Real people differ from each other in all three, and they differ together: the
+person who misses boluses is also the person counting carbohydrate carelessly and running settings
+nobody has revisited. `therapy/profile.py` already names per-subject behaviour as the untested
+candidate for the population's narrowness.
+
+So this is one latent draw per subject, held for the run, driving all three. It acts on the odds of
+missing a bolus rather than on the probability, which keeps every subject inside zero and one
+without a clipping rule, and the same draw scales the carbohydrate estimation error and the
+settings accuracy in the same direction.
+
+The population mean is held at its present value and only the spread is added, so the mechanism
+supplies a distribution rather than a shift. Any movement in the median is then a consequence of
+the outcome being a convex function of the behaviour, which is a property of the model rather than
+something imposed.
+
+### Where the spread comes from
+
+Not from either reference population, since both are what the mechanism is judged against. The
+between-person spread comes from the published literature on missed and mistimed insulin doses,
+which reports a mean of 4.9 missed meal boluses a week with a standard deviation of 3.7 across
+individuals, a between-person coefficient of variation of 0.76 on the rate at which a person misses
+a bolus (Robinson et al., *Diabetes Technology and Therapeutics* 2021;23(8):845-857, and the pump
+alarm study it reviews).
+
+That figure sets one parameter. Solving for the log-odds spread reproducing it gives 1.047, and
+holding the population mean while spreading on that scale needs an offset of -0.287, because the
+inverse logit is not linear and a spread applied without it would lower the announcement rate as
+well as vary it. Both are solved in `engagement_spread_for_cv` rather than asserted, so they can be
+rederived if the announcement rate moves. The population it produces announces 80.7 per cent of
+main meals against a population value of 80.0, with a tenth to ninetieth percentile of 0.60 to
+0.96, a worst subject at 0.17 and 5.2 per cent of subjects announcing fewer than half.
+
+Nothing in the mechanism is chosen by looking at time in range, time above 180 or any glucose
+outcome in either reference, which is what keeps every row below a test.
+
+### What would refute it
+
+The criteria are about shape rather than level, because a mechanism that adds spread should be
+judged on the distribution it produces.
+
+It must widen the between-subject spread of time in range, presently 0.70 of the reference against
+DCLP3 and 0.54 against the Commons, to 0.85 or above in both. Below that it has not supplied the
+missing variation whatever it does to the median.
+
+It must produce the tail rather than a shift. The ninetieth percentile of time above 180 mg/dL must
+rise from 25.0 towards the real 40.6 by at least half, meaning 32.8 or above against DCLP3, and the
+tenth percentile must not rise by more than 3 points. A mechanism that moves both ends equally has
+displaced the population and failed on the thing the deciles asked for.
+
+It must not raise time below 54 mg/dL above its present 0.9 per cent. Missing a bolus raises
+glucose and cannot lower it, so a mechanism that produces lows has been implemented wrongly.
+
+It must not disturb the meal-announcement contrast, which currently costs the simulated cohort 2.3
+percentage points of time in range against a published 2.2. Outside 1.0 to 3.5 points, a result
+this package currently gets right has been broken to fix one it gets wrong.
+
+It must not cost completion below 65 of 84 subjects on the DCLP3 cohort.
+
 ## What is deliberately not proposed
 
 A term fitted to time in range. Every parameter in this package that was fitted to the statistic it

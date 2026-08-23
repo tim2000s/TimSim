@@ -466,7 +466,8 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
              meal_absorption_cv=None, meal_absorption_scale=None, si_slow_cv=None,
              sessions_per_week=None, hypo_defence_gain=None,
              hypo_egp_defence=None, hypo_egp_floor=None, rescue_bioavailability=None,
-             set_life_days=None, announcement="some", meal_delay_min=None):
+             set_life_days=None, announcement="some", meal_delay_min=None,
+             engagement_cv=None):
     """Run one subject. Returns a Result.
 
     `layers` is any subset of LAYERS. `controller`, if given, replaces the built-in
@@ -555,10 +556,17 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
 
     threshold, refractory = behaviour_mod.rescue_style(
         name, 0.0 if behaviour_spread is None else behaviour_spread)
+    # How closely this subject follows the therapy, drawn once and held for the run. At the
+    # default of zero it returns the population values and the run is identical to one taken
+    # before the mechanism existed, which is what makes the arm switchable off.
+    p_main, p_snack, carb_cv = behaviour_mod.engagement_for(
+        name, behaviour_mod.ENGAGEMENT_CV if engagement_cv is None else engagement_cv)
     person = Person(rng, rescue="behaviour" in effective,
                     announce="behaviour" in effective,
                     rescue_threshold=threshold, rescue_refractory_min=refractory,
-                    announcement=announcement)
+                    announcement=announcement,
+                    p_announce_main=p_main, p_announce_snack=p_snack,
+                    carb_estimate_cv=carb_cv)
     # The minutes the meals are actually delivered on, computed the same way for every arm so
     # that the record of what a subject ate does not depend on which layers ran.
     delivery = behaviour_mod.delivery_schedule(schedule)
