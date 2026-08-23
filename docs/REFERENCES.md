@@ -58,7 +58,7 @@ rather than published summaries, except CLOSE-IT.
 |---|---|---|
 | DCLP3, the third international diabetes closed loop trial | 112 closed-loop participants running Control-IQ, split into a calibration half of 67 and a sealed held-out half. The primary reference for time in range, hypoglycaemia, the hour-by-hour hyperglycaemia profile, and the recorded pump settings that give a real correction factor median of 40.0 mg/dL per unit | requested from the trial group; `DCLP3_DIR` |
 | OpenAPS Data Commons, April 2026 export | 240 user directories, of which 131 carry a readable glucose series, 103 hold a 28-day window at adequate coverage, and 71 of those also hold pump records. Supplies the oref-family reference population, the real uncovered meal responses, and the reconstructed daily insulin requirement cohorts are matched on | requested from the Commons |
-| CLOSE-IT | The meal announcement comparison. Published summaries only, since the trial releases no per-participant data, so it supports a mean and a standard deviation and no per-person spread | published summaries |
+| CLOSE-IT | The meal announcement comparison, and the only randomised population running the same algorithm family as the Commons. Time in range alone, as a mean and a standard deviation per arm: 69 ± 13 per cent announced and 66 ± 8 unannounced, adjusted difference -2.2 (95% CI -6.2 to 1.7), across 75 adults. Time below 70, time below 54, time above 180 and mean glucose are not reported for either arm, and there is no per-participant data | published summaries |
 
 ## The trial publications
 
@@ -68,6 +68,7 @@ The two datasets have papers, and the package cited neither. Both are now verifi
 |---|---|
 | Brown SA, Kovatchev BP, Raghinaru D et al. Six-month randomized, multicenter trial of closed-loop control in type 1 diabetes. *New England Journal of Medicine* 2019;381(18):1707–1717. PMID 31618560, ClinicalTrials.gov NCT03563313 | DCLP3, the trial the primary reference population comes from |
 | Fabricius TW et al. Counterregulatory hormone and symptom responses to hypoglycaemia in people with type 1 diabetes, insulin-treated type 2 diabetes or without diabetes: the Hypo-RESOLVE hypoglycaemic clamp study. *Acta Diabetologica* 2024;61(5):623–633. PMID 38376580 | The measured glucagon response to hypoglycaemia in type 1 diabetes, 9.4 ± 0.8 pmol/L across 47 participants against 30.6 ± 4.7 in 16 controls at a 2.8 mmol/L clamp. Not yet used; it is the calibration target a secretion model would need |
+| Wilkinson TJ et al. Study protocol for a randomised open-label clinical trial examining the safety and efficacy of the Android Artificial Pancreas System (AAPS). *BMJ Open* 2024;14(2):e078171 | CLOSE-IT, the protocol. The results exist as a conference presentation at ATTD 2025 and not as a paper, so every CLOSE-IT figure quoted here traces to an abstract. That is weaker provenance than any other reference in this table and the figures carry it |
 
 ## Corrections found while verifying
 

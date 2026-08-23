@@ -1,5 +1,15 @@
 # Proximity to real closed-loop cohorts under the simulator as configured, against stock UVA/Padova S2008
 
+## Summary
+
+The configured simulator sits closer to all three real populations than the stock model does on
+every measure describing where glucose sits, and further from them on both hypoglycaemia measures.
+How much closer depends on which real population is asked, by more than the difference between the
+algorithms being run: 4.6 percentage points of time in range against a self-selected group of
+people who built their own closed loop, 9.5 against a randomised trial arm, and 15.5 against a
+randomised trial of the same algorithm family as the first. The reference belongs in any statement
+of how far this simulator sits from real people, because on its own the number is not one thing.
+
 ## Introduction
 
 The UVA/Padova S2008 model reproduces the glucoregulatory physiology of type 1 diabetes and omits
@@ -115,8 +125,64 @@ to 0.7 points above the reference under every arm, including the stock one.
 | Mean glucose mg/dL | 118.6 (117.5-120.8) | 127.8 (124.5-130.5) | 128.5 (125.5-131.5) | 130.4 (129.0-133.2) | not published |
 | Variability CV % | 32.0 (28.9-34.4) | 33.8 (31.0-36.8) | 34.2 (32.3-36.6) | 35.2 (33.2-37.2) | not published |
 
-This reference supports no test. Its published mean time in range is 66.0 per cent against a
-simulated 84.2 at the default condition, the widest difference in this report.
+This reference supports no test. Comparison with it goes on means, since that is what it publishes,
+and the arms line up with the two conditions it randomised. Its announced arm reports 69 ± 13 per
+cent against a simulated mean of 84.2, and its unannounced arm 66 ± 8 against a simulated 81.9, so
+the difference is 15.2 and 15.9 percentage points and is the widest in this report.
+
+The contrast the trial was built to measure agrees closely. Withdrawing meal announcement costs the
+simulated cohort 2.3 percentage points of time in range on the means, against a published adjusted
+difference of 2.2 with a 95 per cent interval of -6.2 to 1.7. The level is 15 points out and the
+effect is right to a tenth of a point, and those are separate properties.
+
+### Which real population is being asked
+
+The three references disagree about how far this simulator sits from real people, and the
+disagreement is larger than anything the simulator does. Running both cohorts under both
+controllers separates the possible causes, paired per subject over those completing both arms
+(`examples/controller_crosscheck.py`).
+
+| Cohort | Control-IQ stand-in | oref0 SMB | Paired difference, 95 per cent interval | n |
+|---|---|---|---|---|
+| DCLP3, 84 subjects | 80.8 | 84.4 | -3.32 (-3.89 to -2.10) | 64 |
+| Commons, 64 subjects | 82.9 | 84.6 | -2.93 (-3.78 to -1.19) | 48 |
+
+The two simulated cohorts behave almost alike, 2.1 percentage points apart under the stand-in and
+0.3 under oref0. The two real populations do not: a median time in range of 71.3 for the trial arm
+and 80.1 for the Commons users, 8.8 apart. So the five-point difference between the two pairings'
+gaps decomposes into 3.6 points of controller, 0.2 of cohort and 8.8 of reference population
+running the other way.
+
+Holding the algorithm fixed and varying only the selection of people makes the same point without
+the simulator in it. The Commons users and the CLOSE-IT participants both ran an oref-derived
+system, and their times in range are 80.1 and 69.0 per cent. The DCLP3 participants ran a different
+algorithm and reached 71.3. Two randomised populations on different algorithms sit within 2.3
+points of each other, and a self-selected population on the same algorithm as one of them sits 11
+points above both.
+
+The stand-in is also the less favourable of the two controllers rather than the more favourable
+one, spending 4.25 percentage points more time above 180 mg/dL than oref0 on the same subjects.
+Running the DCLP3 cohort under the shipped algorithm widens its distance from the trial from 9.5
+percentage points to 13.1, so none of the gap is explained by the Control-IQ arm being a shape
+rather than the real thing.
+
+### Where the missing hyperglycaemia sits
+
+Time above 180 mg/dL by percentile of subject, configured arm against reference participants.
+
+| Percentile | 10 | 25 | 50 | 75 | 90 |
+|---|---|---|---|---|---|
+| DCLP3 simulated | 8.9 | 10.7 | 15.4 | 19.8 | 25.0 |
+| DCLP3 real | 12.0 | 18.5 | 26.9 | 35.7 | 40.6 |
+| Difference | +3.1 | +7.8 | +11.5 | +15.9 | +15.6 |
+| Commons simulated | 6.0 | 8.0 | 10.9 | 16.7 | 20.5 |
+| Commons real | 5.0 | 9.7 | 15.1 | 22.7 | 29.3 |
+| Difference | -1.0 | +1.7 | +4.2 | +6.1 | +8.8 |
+
+Against the Commons the simulated best-controlled tenth already carries slightly more time above
+180 than its real counterpart, and the difference then grows at every percentile above it. The
+shortfall is not a uniform displacement of glucose. It is an absent group of subjects who do badly,
+and the same shape holds against DCLP3 with a displacement underneath it.
 
 ### Between-subject spread
 
@@ -164,6 +230,14 @@ An algorithm benchmarked on this configuration is benchmarked on a population th
 ten percentage points of time in range better controlled than that trial arm, and the direction of
 that residual should be assumed to flatter any algorithm scored on it.
 
+How large that residual is depends on the reference and not on the simulator. The same configured
+cohorts sit 4.6 percentage points above the Commons users, 9.5 above the DCLP3 arm and 15.5 above
+the CLOSE-IT participants, and the crosscheck attributes 3.6 points of that range to the choice of
+controller and 0.2 to the choice of cohort. What is left is the people. A randomised trial arm and
+a group who chose to build their own closed loop differ by 11 percentage points while running the
+same family of algorithm, and this simulator resembles the second. That is the most useful single
+statement in this report and it is a statement about the reference rather than about the model.
+
 Withdrawing meal announcement moves every measure closer to the DCLP3 participants and brings time
 in range to within 5.8 points. This is a property of the benchmark rather than of the model. Real
 participants announced their meals, so an unannounced arm reaches the trial's outcomes by imposing a
@@ -186,16 +260,37 @@ run wider than real instead. Drawing a per-subject sensor noise level rather tha
 brought the variability spread from 1.80 to 1.37 of the reference on DCLP3 and to 1.14 on the
 Commons, which is the closest either has been, and it did not move the location measures.
 
-Three limitations bound these results. Completion differs between the stock and configured arms by
+Four candidate explanations of the residual were tested and none survived. Meal announcement is not
+it, since the unannounced arm tells the algorithm about no meal at all and still sits 5.8 points
+above the DCLP3 participants. Survivor bias is not it, since assigning every terminating subject a
+time in range of 40 per cent moves the cohort median from 80.8 to 80.0. The quantity of insulin is
+not it, at a delivered 47.6 U/day against the trial's recorded 47.0. The correction factor is not
+it: a sweep across multipliers of 1.0 to 2.5, carrying it from 17.1 to 46.6 mg/dL per unit and so
+across the trial's recorded 40.0, left time in range between 80.7 and 81.0 per cent throughout,
+because basal modulation replaces what the correction channel stops delivering and total insulin
+fell only 5 per cent. That sweep did improve hypoglycaemia monotonically, taking time below 54
+mg/dL from 0.9 to 0.5 per cent, which is recorded in `docs/DESIGN_ALIGNMENT.md` and is a separate
+finding from this one.
+
+Four limitations bound these results. Completion differs between the stock and configured arms by
 up to 16 subjects, so they do not describe the same set of people, and the configured medians are
 conditioned on a group that excludes more of the subjects reaching a terminating low. The CLOSE-IT
 reference is a published summary without participant-level data, so no test was possible against it
-and its cohort was matched on drawn rather than recorded ages. The three reference populations also
-differ in kind: DCLP3 randomised its participants, the Commons is self-selected among people who
-chose an open-source system, and agreement with one is not agreement with the other.
+and its cohort was matched on drawn rather than recorded ages; its results also exist as a
+conference presentation rather than a paper, which is weaker provenance than any other figure here.
+The three reference populations differ in kind, so agreement with one is not agreement with
+another. And the Control-IQ arm is a shape built from a published description rather than the
+shipped algorithm, which the crosscheck shows costs 3.3 percentage points of time in range against
+oref0 on the same subjects.
 
 ## Provenance
 
 Population fingerprint 704cfac086df54ba, titrated settings a37df6ce355212c7, simglucose 0.2.11,
-commit 9bf157da. Measurements in [validation.json](measurements/validation.json), produced by
-`examples/bench_matrix.py --benches combined`, tabulated by `examples/validation_table.py`.
+commit 9bf157da. The four arms are in [validation.json](measurements/validation.json), produced by
+`examples/bench_matrix.py --benches combined` and tabulated by `examples/validation_table.py`. The
+controller comparison is in
+[controller_crosscheck.json](measurements/controller_crosscheck.json), produced by
+`examples/controller_crosscheck.py`. The correction-factor sweep is in
+[settings_sweep.json](measurements/settings_sweep.json), produced by
+`examples/settings_sweep.py`. The CLOSE-IT figures come from a conference presentation rather than
+a paper, and `docs/REFERENCES.md` records what that means.
