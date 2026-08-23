@@ -113,6 +113,43 @@ traded one pairing for another rather than improved the model.
 
 Every signature in `docs/FIDELITY.md` is reported with it, whatever the five criteria above say.
 
+### Result: refuted on its primary criterion
+
+Measured by `examples/settings_sweep.py` on the 84-subject DCLP3 cohort under the Control-IQ
+stand-in, all four layers, 28 days, multipliers applied on top of the adopted titration:
+
+| Multiplier | Correction factor | Completed | TIR % | TAR180 % | TBR70 % | TBR54 % | Mean glucose | U/day |
+|---|---|---|---|---|---|---|---|---|
+| 1.00 | 17.1 | 72 | 80.8 | 15.4 | 3.1 | 0.9 | 141.1 | 47.6 |
+| 1.50 | 27.9 | 76 | 80.7 | 16.4 | 2.6 | 0.7 | 144.3 | 46.8 |
+| 2.00 | 34.5 | 76 | 81.0 | 16.8 | 2.2 | 0.6 | 145.7 | 46.0 |
+| 2.50 | 46.6 | 75 | 80.8 | 16.9 | 2.1 | 0.5 | 146.1 | 45.3 |
+| real | 40.0 | 67 | 71.3 | 26.9 | 1.4 | 0.2 | 155.4 | 47.0 |
+
+Time in range does not move at all. Across a 2.7-fold weakening of the correction factor, which
+carries it from well below real practice to well above it, the cohort median stays between 80.7 and
+81.0 per cent. Time above 180 mg/dL rises by 1.5 points against the 5.8 the criterion required, so
+the mechanism is refuted as an explanation of the gap.
+
+The reason is visible in the last column. Total insulin falls by 5 per cent, from 47.6 to 45.3
+U/day, while the correction factor weakens by a factor of 2.7. The loop replaces what the
+correction channel stops delivering, because basal modulation rises with predicted glucose and
+carries on doing so whatever the correction factor says. A feedback controller with a second
+channel is not sensitive to the first.
+
+This contradicts the older arm in `docs/gap_settings.json`, where the same lever at a comparable
+magnitude took time in range from 83.3 to 76.7 per cent. That arm ran under the `trend` driver,
+which corrects towards 120 mg/dL on every five-minute reading, so the correction factor is its
+dominant control channel and there is nothing to compensate. Sensitivity to settings is a property
+of the controller rather than of the person, and a settings result measured under one driver does
+not transfer to another.
+
+Two of the five criteria pass and are worth keeping. Hypoglycaemia improves monotonically: time
+below 54 mg/dL falls from 0.9 to 0.5 per cent against a real 0.2, and time below 70 from 3.1 to 2.1
+against a real 1.4. Completion rises from 72 to 75 of 84. So clinically derived settings are
+defensible on their own terms and address the hypoglycaemia gap, which is the other place this
+package sits furthest from real people. They are not an answer to the time-in-range gap.
+
 ## B. Closed-loop downtime
 
 ### Structure
@@ -146,6 +183,64 @@ way the mechanism is trading the gap it addresses for the one that is already wo
 It must widen the between-subject spread of time in range from the present 0.70 of the reference
 towards 1.0. A mechanism that shifts the median without widening the distribution has not supplied
 the missing tail, and the tail is half of what is wrong.
+
+## C. One-sided episodic insulin resistance
+
+Added after A was refuted, so its criteria are fixed before it is built but not before A reported.
+
+### Structure
+
+Occasional episodes during which a subject's insulin sensitivity is reduced, lasting from half a
+day to several days, with no matching episodes of raised sensitivity. Real people have intercurrent
+illness, menstrual cycles, corticosteroids and periods of stress, and all of them raise insulin
+requirement for a while and then stop. Nothing in this package represents any of them.
+
+The asymmetry is the point and distinguishes it from `SLOW_CV` in `patient/varying.py`, which
+already supplies a multi-day sensitivity term at a coefficient of variation of 0.15 and a
+correlation time of nine days. That term is lognormal and centred, so it gives a resistant week and
+a sensitive week in equal measure, and the sensitive weeks return glucose that the resistant weeks
+took away. A one-sided term does not.
+
+### Why it should work
+
+It is the only remaining structure that produces sustained hyperglycaemia a feedback loop cannot
+correct. The sweep above shows that weakening the settings does not, because the loop compensates.
+The site layer already supplies episodic under-delivery and is calibrated against the trial's
+excursion duration distribution, and pushing it further overshoots the excursion peaks by 17 mg/dL
+at the ninetieth percentile, which is recorded in `therapy/site.py`. A resistance episode raises
+insulin requirement without capping delivery, so it lengthens excursions without sharpening them.
+
+It should also add hyperglycaemia without adding hypoglycaemia, which matters because time below 54
+mg/dL is already four times the reference and is the measure every other mechanism has made worse.
+
+### What would refute it
+
+It must carry the DCLP3 median time above 180 mg/dL at least half way from 15.4 to 26.9, meaning
+21.2 or above, at a magnitude and frequency set from the literature on illness and cycle-related
+insulin requirement rather than from the outcome.
+
+It must not raise time below 54 mg/dL above its present 0.9 per cent. A one-sided resistance term
+that produces lows has been implemented wrongly.
+
+It must lengthen the excursion duration distribution rather than raise its peaks. The trial spends
+9.4 per cent of its time in excursions of three to six hours and 6.6 per cent past six hours; the
+ninetieth percentile of excursion peaks is 293 mg/dL against a simulated 260 to 282. A mechanism
+that reaches the time by raising peaks past 293 has matched a total by the wrong route.
+
+It must not narrow the between-subject spread of time in range, presently 0.70 of the reference.
+
+## What the gap may not be the person's at all
+
+The DCLP3 pairing runs a stand-in for Control-IQ whose unpublished parameters are, by the admission
+in `controller/loop.py`, the ones that drive the result: the basal multiplier when glucose is
+predicted high, the ceiling on a single automatic correction, and the prediction itself. The
+Commons pairing runs oref0 SMB, which is the real algorithm rather than a shape resembling it, and
+its gap is 4.6 percentage points of time in range against the DCLP3 pairing's 9.5.
+
+That difference has to be accounted for before any person-side mechanism is judged, because a
+mechanism sized to close 9.5 points will overshoot if half of the 9.5 belongs to the controller.
+The measurement that separates them runs one cohort under both controllers and compares the
+simulated arms with each other, which needs no real reference and costs one cohort-pair of runs.
 
 ## What is deliberately not proposed
 
