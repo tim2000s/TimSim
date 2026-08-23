@@ -417,6 +417,50 @@ description of a population than a single announcement rate applied to everybody
 nothing, and it slightly improves the measure this package is furthest out on. It does not do what
 it was built for and the row above says so.
 
+## The recovery rate matches, and the durations say something else
+
+Both refutations above ended by pointing at excursion durations: this model's excursions above 180
+mg/dL have a median of 40 to 45 minutes against the trial's 60 to 65, which was read as the loop
+recovering too completely. Measured directly (`examples/excursion_recovery.py`, 40 subjects, 28
+days, 2,496 simulated excursions against 37,502 from the trial's calibration participants), the
+durations do not support that reading.
+
+| Arm | Excursions/day | Median duration | p90 duration | Median peak | Fall rate | U/day |
+|---|---|---|---|---|---|---|
+| Configured, closed loop | 2.70 | 45 min | 200 min | 198 | 62.7 | 46.6 |
+| Scheduled basal only | 3.80 | 30 min | 545 min | 190 | 44.0 | 23.4 |
+| DCLP3 | 3.49 | 60 min | 265 min | 209 | 59.5 | not comparable |
+
+Fall rate is mg/dL per hour from the peak back to the threshold.
+
+The descent rate is right. At 62.7 mg/dL per hour against the trial's 59.5, this model brings a
+high down at very nearly the rate the trial's participants did. The duration difference is a
+consequence of where the excursion starts from: a peak of 198 is 18 mg/dL above the threshold and
+takes 17 minutes to clear at that rate, and a peak of 209 is 29 above and takes 29. Observed fall
+times are 20 and 30 minutes. Peak height accounts for the whole of it and nothing is left for the
+loop to explain.
+
+The shortfall in time above 180 mg/dL is then frequency multiplied by duration. At 2.70 excursions
+a day of 45 minutes against 3.49 of 60, the ratio is 0.581, against a measured ratio of time above
+180 of 0.572. So the model needs 29 per cent more excursions and peaks 11 mg/dL higher, and it does
+not need slower recoveries.
+
+The open-loop arm settles the other half of the question. Removing the loop entirely halves
+delivered insulin, from 46.6 to 23.4 U/day, and the descent still runs at 44.0 mg/dL per hour, so
+S2008 does dispose of a glucose load largely by itself. Holding insulin action at basal, the median
+subject's net disposal at 260 mg/dL is 1.68 mg/kg/min, a spontaneous fall of 55 mg/dL per hour,
+split roughly half between suppression of endogenous production through `kp2` and mass-action
+uptake, with renal excretion contributing 3 per cent above the model's threshold of 183 mg/dL.
+
+That glucose effectiveness is worth suspecting on the literature, since glucose-induced suppression
+of endogenous glucose production is impaired in insulin-deficient type 1 diabetes and needs
+permissive insulin to act at all. But it cannot be adjusted on the strength of the durations,
+because the durations are already right. Lowering it would raise the peaks, which is wanted, and
+slow the descent, which is not: the descent has 3.2 mg/dL per hour of headroom before it leaves the
+trial's rate behind. Any change to that term has to be judged on peak height with the descent rate
+held as a constraint rather than as a target, and it does nothing about the 29 per cent shortfall
+in how often an excursion happens at all.
+
 ## What is deliberately not proposed
 
 A term fitted to time in range. Every parameter in this package that was fitted to the statistic it
