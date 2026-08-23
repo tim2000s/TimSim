@@ -506,6 +506,63 @@ since a mixed evening meal absorbing over four to six hours puts glucose into ex
 02:00 window this table finds empty, and that has literature to ground it independently of any
 reference trace.
 
+## E. The intake clock
+
+Written after the day decomposition and the intake extraction, and before any glucose measurement
+of the change.
+
+### Structure
+
+The meal template is regrounded on when real people log carbohydrate. The extraction
+(`examples/intake_clock.py`) places 292,140 entries from 147 Commons users at their local hour
+through the timezone each user's own profile records, so no clock is inferred. The measured
+distribution disagrees with the template at both ends of the day: real intake peaks at 08:00 where
+the template's breakfast sat at 07:00, and the six hours from 21:00 to 03:00 carry 12.8 per cent
+of real grams against the template's 3.6. That empty night window is the one carrying 43 per cent
+of the mean-glucose deficit against DCLP3, and the too-early breakfast is the one window where the
+simulator runs high.
+
+The new template reproduces the measured share of grams in every window to within 0.7 percentage
+points, at 5.2 eating occasions a day against a logged 5.56 and the old template's 3.64. Total
+intake is held near the old level, 192 g/day expected at 70 kg against a logged median of 162,
+because logged grams under-state eaten grams and the under-statement cannot be placed by hour.
+
+Nothing in the template was chosen by looking at a glucose trace. The grounding is logged usage
+from the Commons; DCLP3 was not consulted at all, and the Commons glucose outcomes were not
+consulted either, so both pairings remain tests.
+
+### What it forces
+
+The meal schedule is part of the person rather than a layer, so this changes every arm including
+stock, and it changes what titration finds. The whole chain reruns: titration, the four baseline
+arms, and the day profile. When the chain lands, every measurement bound to settings store a37df6ce, including the tables in
+`docs/BASELINE.md`, describes the previous template and says so in its provenance.
+
+### What would refute it
+
+Fixed before the chain runs.
+
+The night deficit must close by at least a third. The six hours from 21:00 to 03:00 carry 43.0 per
+cent of the whole day's mean-glucose deficit, with per-hour gaps of -20 to -27 mg/dL from 22:00 to
+02:00; after the change the mean gap over that window must shrink by at least a third of its
+current size.
+
+The breakfast overshoot must close. The simulator runs +8.0 mg/dL at 07:00 and +4.3 at 06:00
+against participants at their nadir; both hours must come to within 5 mg/dL of the reference or
+below it.
+
+Time below 54 mg/dL must not exceed 0.9 per cent on the DCLP3 pairing. Night eating with a loop
+active is a route to overnight lows, and hypoglycaemia is already the measure furthest from real.
+
+The meal-announcement contrast must stay between 1.0 and 3.5 percentage points of time in range on
+the means, against CLOSE-IT's published 2.2. More night snacks means more unannounced
+carbohydrate, and a contrast pushed outside that band has broken a result the package gets right.
+
+Completion must not fall below 65 of 84 on the DCLP3 cohort.
+
+Every signature in `docs/FIDELITY.md` is reported with the change, whatever the criteria above
+say.
+
 ## What is deliberately not proposed
 
 A term fitted to time in range. Every parameter in this package that was fitted to the statistic it

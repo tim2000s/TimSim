@@ -132,12 +132,37 @@ SENSOR_BY_SAMPLE_TIME = {1.0: "Navigator", 3.0: "Dexcom", 5.0: "GuardianRT"}
 DEFAULT_SAMPLE_MINUTES = 5.0
 
 # (centre hour, hour spread, grams, gram spread, probability it happens, is it a snack)
+#
+# Regrounded on 24 August 2026 against 292,140 carbohydrate entries from 147 OpenAPS Data
+# Commons users over 48,454 user-days, each entry placed at its local hour through the
+# timezone the user's own Nightscout profile records (`examples/intake_clock.py`, output in
+# `docs/measurements/intake_clock.json`). The previous template ate three meals and an
+# occasional snack on a conventional clock, and it disagreed with the record at both ends of
+# the day: real intake peaks at 08:00 where the template's breakfast sat at 07:00, and the six
+# hours from 21:00 to 03:00 carry 12.8 per cent of real grams against the template's 3.6.
+#
+# The rows below reproduce the measured share of grams in every window of the day to within
+# 0.7 percentage points (morning 16.1 against a real 15.9, midday 32.1 against 31.4, afternoon
+# 13.7 against 14.2, evening 25.5 against 24.8, night 12.4 against 12.8), at 5.2 eating
+# occasions a day against a logged 5.56 and the old template's 3.64.
+#
+# Two deliberate departures from the record. Total intake is held near the old template's level,
+# at 192 g/day expected at 70 kg rather than the logged median of 162, because logged grams
+# under-state eaten grams and the under-statement cannot be placed by hour. And the 00:36 snack
+# inherits `draw_meals`' clipping of draws to 00:30 at the earliest, so a small pile-up sits at
+# the clip rather than the tail wrapping past midnight.
+#
+# This is usage data, not a glucose outcome: no trace from any reference population was
+# consulted, so the comparisons against DCLP3 and the Commons remain tests of the template
+# rather than restatements of it.
 DEFAULT_MEALS = [
-    (7.0, 1.0, 45, 15, 0.92, False),
-    (12.5, 1.2, 65, 20, 0.95, False),
-    (18.5, 1.3, 80, 25, 0.97, False),
-    (15.5, 1.5, 20, 10, 0.45, True),
-    (22.0, 1.0, 18, 10, 0.35, True),
+    (8.4, 1.2, 36, 13, 0.90, False),
+    (11.0, 0.9, 10, 5, 0.45, True),
+    (12.8, 1.0, 54, 18, 0.95, False),
+    (16.2, 1.1, 29, 13, 0.80, True),
+    (19.0, 0.9, 52, 19, 0.95, False),
+    (22.1, 1.2, 32, 14, 0.70, True),
+    (0.6, 1.5, 20, 11, 0.45, True),
 ]
 
 # Every subject was given the same sensor until 22 August 2026, so the population varied in the
