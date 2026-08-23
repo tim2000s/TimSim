@@ -461,6 +461,51 @@ trial's rate behind. Any change to that term has to be judged on peak height wit
 held as a constraint rather than as a target, and it does nothing about the 29 per cent shortfall
 in how often an excursion happens at all.
 
+## Where in the day the deficit lives
+
+Measured by `examples/day_profile.py`, 72 completing subjects of the DCLP3 cohort against the
+trial's calibration participants, mean glucose by hour of day, both sides' hours computed from
+their own clocks.
+
+The deficit is not uniform. It spans +8.0 to -26.8 mg/dL across the day, so the displacement
+reading, under which peaks 11 mg/dL low and 29 per cent fewer crossings were one downward shift,
+does not survive either. Its share by window:
+
+    21:00 to 03:00    43.0 per cent of the whole day's deficit, in a quarter of the day
+    03:00 to 09:00     2.6 per cent
+    09:00 to 15:00    25.4 per cent
+    15:00 to 21:00    29.0 per cent
+
+The two traces have different shapes rather than different levels. The participants' day is one
+long climb: from a nadir of 134.8 mg/dL at 06:00 they rise more or less monotonically to 167.7 at
+22:00, hold above 160 from 20:00 to midnight, and decay slowly through the night to the next
+nadir. The simulated day is flat with three bumps: meal rises at 08:00, 14:00 and 20:00, each
+returned to a baseline near 134 within about three hours, including the dinner rise, which is
+cleared by 02:00 while the participants' evening glucose is still at 152.
+
+The inter-meal troughs say it most compactly. The simulated cohort returns to 132 to 135 mg/dL
+between every pair of meals, which is its own fasting level, so each meal starts from scratch. The
+participants' troughs ratchet upward through the day, 136.8 at 07:00, 151.4 at 11:00, 156.3 at
+17:00, so each meal starts from the incompletely cleared remains of the last. The descent rate
+being right and the excursions being too short are reconciled here: real excursions are long
+because the next input arrives before the last one has cleared, not because the fall is slow.
+
+Two hours of the day the simulator is not low but high: +8.0 at 07:00 and +4.3 at 06:00, which is
+the template's 07:00 breakfast landing at the participants' nadir. Real breakfasts evidently land
+later.
+
+This points away from mechanism B. Closed-loop downtime raises the trace wherever it falls and
+would fill the 03:00 to 09:00 window, where the deficit is 2.6 per cent of the total, as readily
+as the evening, where it is 43. What the shape asks for is input into the evening and night that
+the template does not currently supply, and a check on when the template eats at all. Both are
+measurable from records rather than tunable: the Commons carbohydrate entries carry timestamps,
+`examples/real_meals.py` already parses them, and an hour-of-day distribution of real logged
+intake is usage data of the same standing as the announcement literature, not a glucose outcome.
+The candidate the evening deficit suggests beyond timing is absorption that outlasts the entry,
+since a mixed evening meal absorbing over four to six hours puts glucose into exactly the 22:00 to
+02:00 window this table finds empty, and that has literature to ground it independently of any
+reference trace.
+
 ## What is deliberately not proposed
 
 A term fitted to time in range. Every parameter in this package that was fitted to the statistic it
