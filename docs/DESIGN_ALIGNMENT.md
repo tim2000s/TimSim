@@ -363,6 +363,60 @@ this package currently gets right has been broken to fix one it gets wrong.
 
 It must not cost completion below 65 of 84 subjects on the DCLP3 cohort.
 
+### Result: refuted, and the loop absorbed it
+
+Measured by `examples/engagement_arm.py`, each cohort under the algorithm its reference population
+ran, all four layers, 28 days, both arms rerun on one code version and one settings store.
+
+| | DCLP3 off | DCLP3 on | DCLP3 real | Commons off | Commons on | Commons real |
+|---|---|---|---|---|---|---|
+| Time in range % | 80.8 | 82.1 | 71.3 | 84.6 | 84.3 | 80.1 |
+| Time above 180 % | 15.4 | 15.7 | 26.9 | 10.9 | 11.1 | 15.1 |
+| Time below 54 % | 0.9 | 0.7 | 0.2 | 1.1 | 1.2 | 0.4 |
+| Spread ratio, time in range | 0.699 | 0.727 | 1.0 | 0.537 | 0.523 | 1.0 |
+
+Paired over the subjects completing both arms, the difference in time above 180 mg/dL is -0.07
+percentage points with a 95 per cent interval of -0.47 to +0.34 on DCLP3, and -0.06 with -0.32 to
++0.13 on the Commons. Nothing moved.
+
+The mechanism did what it was built to do at the behavioural level. The share of meals a subject
+actually announced ran from 0.57 to 0.78 across the cohort with it off and from 0.32 to 0.93 with
+it on, so the arms are not two copies of one configuration and this is a refutation rather than a
+plumbing failure. Subjects announcing less do run higher, at a correlation of -0.22 between
+announced share and time above 180 on DCLP3, but the effect is far too small to move the cohort.
+
+Every criterion fails. The spread ratio reaches 0.727 against DCLP3 where 0.85 was required and
+falls to 0.523 against the Commons. The ninetieth percentile of time above 180 moves from 25.0 to
+25.7 where 32.8 was required. Time in range moves the wrong way on DCLP3, rising 1.3 points.
+
+Two criteria that were about not breaking things pass: time below 54 mg/dL falls from 0.9 to 0.7
+per cent, and completion holds at 70 of 84.
+
+### What the two refutations have in common
+
+This is the second mechanism to change what reaches the person and leave the outcome where it was.
+Weakening the correction factor by a factor of 2.7 moved time in range by 0.3 percentage points
+because basal modulation replaced the withdrawn correction insulin. Withholding a third of a
+subject's meal boluses moves it by 0.29 because the same modulation covers the meal after the fact.
+
+So the model's difficulty is not in what happens to the simulated person. It is in how completely
+the loop recovers from whatever happens, and that is a property the excursion durations already
+recorded: DCLP3 excursions above 180 mg/dL have a median duration of 65 minutes and a ninetieth
+percentile of 265, against 40 and 190 for this model with the site layer off. The peaks match and
+the durations do not. A simulator whose excursions end too quickly cannot accumulate time above
+range however many excursions are provoked, which is what both of these arms have now demonstrated
+from opposite directions.
+
+The next measurement is therefore about recovery rather than about provocation, and
+`examples/hyperglycaemia_gap.py` already produces the duration distribution it needs.
+
+### Disposition
+
+Kept and off, as `BEHAVIOUR_SPREAD_CV` and the activity layer are. The mechanism is a better
+description of a population than a single announcement rate applied to everybody, it costs
+nothing, and it slightly improves the measure this package is furthest out on. It does not do what
+it was built for and the row above says so.
+
 ## What is deliberately not proposed
 
 A term fitted to time in range. Every parameter in this package that was fitted to the statistic it
