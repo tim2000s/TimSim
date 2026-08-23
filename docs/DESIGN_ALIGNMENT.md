@@ -242,6 +242,42 @@ mechanism sized to close 9.5 points will overshoot if half of the 9.5 belongs to
 The measurement that separates them runs one cohort under both controllers and compares the
 simulated arms with each other, which needs no real reference and costs one cohort-pair of runs.
 
+### Result: the controller accounts for 3.6 points and in the opposite direction
+
+Measured by `examples/controller_crosscheck.py`, both cohorts under both controllers, all four
+layers, 28 days, paired per subject over those completing both arms.
+
+| Cohort | Control-IQ stand-in | oref0 SMB | Paired difference, 95 per cent interval | n |
+|---|---|---|---|---|
+| DCLP3, 84 subjects | 80.8 | 84.4 | -3.32 (-3.89 to -2.10) | 64 |
+| Commons, 64 subjects | 82.9 | 84.6 | -2.93 (-3.78 to -1.19) | 48 |
+
+The stand-in is the less favourable controller, not the more favourable one. It spends 4.25
+percentage points more time above 180 mg/dL than oref0 does on the same subjects and 1.23 points
+less below 70. Running the DCLP3 cohort under the real algorithm instead widens its distance from
+the trial participants from 9.5 percentage points to 13.1, so nothing in the gap is explained by
+the stand-in flattering the simulator.
+
+The measurement settles a second question it was not built for. The two simulated cohorts behave
+almost identically under the same controller, differing by 2.1 points under the stand-in and 0.3
+under oref0. The two real populations differ by 8.8, at a median time in range of 71.3 for the
+trial arm and 80.1 for the Commons users. So the disagreement between the pairings is not a
+property of either cohort or of either algorithm:
+
+    difference between the two pairings' gaps      5.0 points
+      of which the controller                      3.6
+      of which the cohort                          0.2
+      of which the two real populations            8.8, in the opposite direction
+
+A randomised trial arm and a self-selected group of people who chose to build their own closed
+loop are different populations, and this simulator resembles the second. Any statement about how
+far it sits from real people carries the reference in it, and the honest range is 4.6 percentage
+points against the Commons and 9.5 to 13.1 against DCLP3 depending on the algorithm.
+
+The consequence for mechanism C is that it has more to close rather than less. Against the trial
+arm under the algorithm those participants actually ran, the shortfall in time above 180 mg/dL is
+11.5 percentage points, and under the shipped algorithm it is larger still.
+
 ## What is deliberately not proposed
 
 A term fitted to time in range. Every parameter in this package that was fitted to the statistic it
