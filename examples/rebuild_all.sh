@@ -80,8 +80,14 @@ for f in "$M"/*.json "$M"/*.txt; do
   esac
   [ -e "$f" ] && mv "$f" "$ARCHIVE/" 2>/dev/null
 done
-[ -e "$PARAMS/titrated_settings.json" ] && mv "$PARAMS/titrated_settings.json" \
-  "$ARCHIVE/titrated_settings_superseded.json"
+# The store moves aside only when it is about to be rebuilt. Under SKIP_TITRATION the whole point
+# is to keep it, and moving it here left the guard below checking a file that no longer existed,
+# which failed the run and destroyed the store the run was meant to preserve. It was recovered
+# from the Drive copy. A guard that runs after the thing it guards has been deleted is not a guard.
+if [ "${SKIP_TITRATION:-0}" != "1" ]; then
+  [ -e "$PARAMS/titrated_settings.json" ] && mv "$PARAMS/titrated_settings.json" \
+    "$ARCHIVE/titrated_settings_superseded.json"
+fi
 
 # The ladder does not write into "$M". It writes one file per rung into docs/ladder and skips
 # any rung already there, so a loop over "$M" leaves twenty stale rungs in place and the stage

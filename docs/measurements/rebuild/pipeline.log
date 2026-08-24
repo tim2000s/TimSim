@@ -115,3 +115,14 @@
 23:46:23Z  === finished ===
 23:46:26Z    12:32:33Z  FAILED hyperglycaemia_gap (14 min) —   File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 396, in __get_result     raise self._exception RuntimeError: adult#026 has no titrated settings. The consensus hypoglycaemia floors were not met at any combination tried, so its settings are not the explanation for what it does and it should be excluded rather than run at the loosest available.
 23:46:26Z    16:12:45Z    12:32:33Z  FAILED hyperglycaemia_gap (14 min) —   File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 396, in __get_result     raise self._exception RuntimeError: adult#026 has no titrated settings. The consensus hypoglycaemia floors were not met at any combination tried, so its settings are not the explanation for what it does and it should be excluded rather than run at the loosest available.
+12:37:01Z  === rebuild: defence gain 0.05, titration seed 11, bench seed 101, 13 workers ===
+12:37:04Z  archived 20 stale ladder rungs
+12:37:04Z  archived 12 stale arbiter outputs
+12:37:04Z  archived 9 stale ablation arms
+12:37:04Z  archived 4 stale hyperglycaemia gap arms
+12:37:04Z  archived previous outputs to archive_pre_review; titration store cleared
+12:37:04Z  START  commons_cohort
+12:37:29Z  OK     commons_cohort (0 min)
+12:37:29Z  START  cohorts
+12:37:30Z  OK     cohorts (0 min)
+12:37:31Z  FAILED titrate skip requested but the store does not match the population or code on disk
