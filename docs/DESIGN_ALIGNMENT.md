@@ -563,6 +563,55 @@ Completion must not fall below 65 of 84 on the DCLP3 cohort.
 Every signature in `docs/FIDELITY.md` is reported with the change, whatever the criteria above
 say.
 
+### Result: refuted on its primary criterion, and the template is kept anyway
+
+The chain ran overnight on 23 to 24 August: retitration, the four arms, the day profile. Verdicts
+against the criteria as fixed:
+
+    night deficit closes by a third      FAIL   mean gap over 21:00-03:00 went 22.4 to 20.4
+                                                mg/dL, a 9 per cent reduction
+    breakfast overshoot closes           PASS   +8.0 at 07:00 became -1.7, +4.3 at 06:00
+                                                became -0.4
+    time below 54 at or under 0.9        PASS   0.55 per cent, from 0.9
+    announcement contrast 1.0 to 3.5     PASS   +1.29 points on the means
+    completion holds                     PASS   79 of 86, above the scaled floor of 67
+
+The night window took some of what it was given, its share of the deficit falling from 43.0 to
+36.1 per cent, but most of the added intake was absorbed as everything else has been: the loop
+covers an announced snack and trails an unannounced one, and either way glucose is returned before
+the hours the deficit lives in. Meanwhile the rest of the day moved the wrong way. Splitting the
+old template's three large meals into smaller and more frequent ones makes each rise easier to
+correct, so time above 180 mg/dL on the default arm fell from 15.4 to 13.7 per cent and time in
+range rose from 80.8 to 83.3 against a reference 71.3. Eleven more subjects also cleared
+titration, 306 against 295, for the same reason.
+
+The template stays despite the refutation, because its grounding does not depend on what it was
+hoped to do to glucose. It reproduces the logged intake clock of 147 real users to within 0.7
+percentage points per window where the old template disagreed with that record by a factor of 3.6
+at night, and the two criteria that measure its local consequences, the breakfast hours and the
+announcement contrast, both pass. What is refuted is the hypothesis that the intake clock explains
+the night deficit, and the row above records that.
+
+### Three absorbed perturbations are a finding about the model
+
+Every input-side change tried has now been absorbed by the loop and the model together:
+
+    correction factor weakened 2.7-fold        time in range moved 0.3 points
+    a third of meal boluses withheld           0.29 points
+    night intake raised 3.6-fold               night gap closed 9 per cent
+
+Real closed-loop cohorts do not behave this way: their evening glucose persists into the night at
+150 to 167 mg/dL under the same class of controller. A model in which no input-side perturbation
+can produce sustained elevation, combined with a measured spontaneous disposal of 55 mg/dL per
+hour at 260 mg/dL with insulin held at basal, says the disposal side is too strong rather than the
+input side too gentle. The remaining candidate is glucose effectiveness, `kp2` and the
+insulin-independent part of utilisation, which the clamp literature reports impaired in type 1
+diabetes and which S2008 inherited from identification that included people without it. Any change
+there is a physiology change, to be made switchable, grounded on the published impairment rather
+than on any reference trace, and judged on peak height with the descent rate held as a constraint,
+since the descent is currently right at 62.7 against a real 59.5 mg/dL per hour and has 3.2 of
+headroom.
+
 ## What is deliberately not proposed
 
 A term fitted to time in range. Every parameter in this package that was fitted to the statistic it
