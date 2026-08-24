@@ -164,14 +164,44 @@ to 385.
 
 ### The human comparison
 
-Insulin's suppression of hepatic glucose production is fast. It begins within about 15 minutes of
-insulin reaching the liver and is at or near maximal within 20 to 80 minutes, and it dissipates
-with plasma insulin rather than outlasting it by hours. The clinical duration of insulin aspart is
-3 to 5 hours in total.
+Insulin's suppression of hepatic glucose production is fast, and the measured time course is a
+matter of tens of minutes rather than hours.
 
-The model's suppression peaks at 5 hours and persists past 10. The delay is not a matter of degree:
-a signal peaking three hours after the insulin that drives it has already peaked is a different
-shape from the measured one, not a slower version of it.
+| Source | Measurement |
+|---|---|
+| Edgerton DS et al., *Diabetes* 2010;59(11):2766-2775 | Under hyperinsulinaemia, hepatic glucose output falls 75 per cent within 30 minutes and is completely inhibited by 60 minutes. Net hepatic glycogenolytic flux falls 43 per cent by 30 minutes and is completely inhibited by 60 |
+| Clamp literature, human | Suppression begins within about 15 minutes and is at or near maximal within 20 to 80 minutes |
+| Product labelling, insulin aspart | Total duration of action 3 to 5 hours |
+
+The Edgerton figures are from tracer studies in conscious dogs, which is the preparation this
+kinetics is usually measured in, and the human clamp figures agree with them on the scale.
+
+The model's suppression peaks at 5 hours and persists past 10. That is not a slower version of the
+measured shape. A signal peaking three hours after the insulin driving it has peaked and begun
+falling is a different shape, and the direction of the disagreement is that the model's liver keeps
+responding to insulin that is no longer there.
+
+### Whether the licensed successors fix it
+
+They do not. Both were checked because adopting a successor would be a much smaller step than
+editing S2008.
+
+S2013 (Dalla Man C, Micheletto F, Lv D, Breton M, Kovatchev B, Cobelli C, *Journal of Diabetes
+Science and Technology* 2014;8(1):26-34) leaves the gastrointestinal tract, glucose kinetics and
+insulin kinetics identical to S2008, and rewrites the liver only to add glucagon. Its production
+equation becomes `EGP = kp1 - kp2*Gp - kp3*XL + xi*XH`, where `XL` is the same delayed insulin
+signal under the same parameter `ki`, and the new term carries glucagon action rather than
+changing the insulin pathway. Subcutaneous absorption is unchanged.
+
+S2017 (Visentin R, Campos-Nanez E, Schiavon M et al., *Journal of Diabetes Science and Technology*
+2018;12(2):273-281) makes `kp3` and `Vmx` vary through the day to represent insulin-sensitivity
+classes and the dawn phenomenon. That changes the gain of insulin's action on the liver and leaves
+its delay alone. This package already implements those classes, in `SI_CLASSES` in
+`timsim/patient/varying.py`, so the S2017 feature bearing on the liver is present here and does not
+touch this entry.
+
+So the delay is common to S2008, S2013 and S2017, and no licensed version of the model available
+to adopt has a different one.
 
 ### What follows
 
@@ -197,17 +227,40 @@ insulin it cannot see.
 
 ### Recommendation
 
-This is the first entry where a change to S2008 is worth considering, and it should not be made on
-this evidence alone. Three things are needed first. A human reference with a time course rather
-than a qualitative statement, since the entry currently rests on 15 minutes to onset and 20 to 80
-minutes to maximal, which is enough to show the shapes differ and not enough to fit a rate
-constant to. A check of whether S2013 or S2017 revised `ki`, since adopting a licensed successor
-is a smaller step than editing the model. And a switchable implementation with criteria fixed
-first, because a faster `ki` moves every simulated minute, so every measurement in this repository
-would describe the model as it was before the change.
+This is the first entry where a change to S2008 is worth considering. Two of the three questions
+that were open when it was written are now answered: there is a quantitative human time course, and
+neither licensed successor revises the pathway, so there is nothing to adopt instead.
 
-The prior expectation should be that this is worth a large fraction of the residual, and that
-expectation is exactly what makes fixing the parameter to the outcome a live risk.
+What that leaves is the change itself, and it should be made carefully rather than quickly. A
+faster `ki` moves every simulated minute, so every measurement in this repository would describe
+the model as it was before it. It has to be switchable, defaulting to the published value, so that
+S2008 as published remains runnable and every existing figure stays reproducible.
+
+The value should come from the human time course rather than from any glucose outcome here.
+Edgerton's 75 per cent suppression by 30 minutes and completion by 60 gives a target the pathway
+can be fitted to directly, on its own clamp, with the fit checked against the same clamp before any
+cohort is run. Fitting `ki` to time in range would be the largest single instance of the thing this
+repository has had to withdraw work for twice, and the strength of the prior here is what makes it
+a live risk rather than a theoretical one.
+
+One caveat belongs with the change. The parameter was identified on healthy subjects under a triple
+tracer meal protocol, where endogenous insulin rises and falls with the meal, and a delay fitted in
+that setting may be standing in for something else the model does not represent. A `ki` that
+reproduces Edgerton's suppression curve is not guaranteed to reproduce the meal responses the
+original identification matched, and both need checking rather than one.
+
+## Where the audit stands
+
+| Entry | Divergence | Direction against the residual | Recommendation |
+|---|---|---|---|
+| 1. Glucose effectiveness | 0.0065 min^-1 against a published 0.011 to 0.021 | Against: correcting it would shorten excursions further | No change |
+| 2. Fasting equilibrium | 142 mg/dL against a real nadir of 134.8 | Neutral, 7 mg/dL | No change |
+| 3. Liver insulin delay | Suppression peaks at 5 h against a measured 20 to 80 min | With: explains both halves | Change, carefully, switchable |
+
+Two of three entries conclude that the model is right or close enough, which is the outcome the
+audit was written to be able to reach. The third is the one that matters, and it is the only place
+so far where S2008 and its successors disagree with a measurement in a direction that would account
+for what this package cannot reproduce.
 
 ## Entries not yet made
 

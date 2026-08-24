@@ -612,6 +612,20 @@ than on any reference trace, and judged on peak height with the descent rate hel
 since the descent is currently right at 62.7 against a real 59.5 mg/dL per hour and has 3.2 of
 headroom.
 
+## Where the residual is now believed to live
+
+Seven mechanisms above are refuted, all of them on the input side or in the controller. The audit
+in `docs/PADOVA_AUDIT.md` measured the model itself and found one divergence whose direction
+matches: a bolus of insulin suppresses hepatic glucose production for eight hours, peaking in the
+fifth, where the measured human response falls 75 per cent within 30 minutes and is complete by 60.
+Plasma insulin and insulin-dependent uptake are both right; the liver pathway is not, and from the
+sixth hour onward it is most of what a dose is still doing.
+
+That accounts for the shape the refutations left behind. It is a mechanism for the inter-meal
+troughs failing to ratchet through the day, for three input-side perturbations being absorbed, and
+for insulin-on-board being understated against the 300-minute duration every algorithm here is
+given. Nothing further should be proposed on the input side until it has been tested.
+
 ## What is deliberately not proposed
 
 A term fitted to time in range. Every parameter in this package that was fitted to the statistic it
