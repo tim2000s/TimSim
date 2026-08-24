@@ -118,6 +118,97 @@ measures describing where glucose sits.
 No change to the model. The entry is a constraint on protocols and a contribution to the
 population-narrowness question.
 
+## 3. Insulin suppresses hepatic production for eight hours, peaking at five
+
+### What was measured
+
+A single-dose euglycaemic clamp, in silico, on 40 subjects (`examples/insulin_kinetics.py`). Each
+subject is clamped at its own basal glucose for four hours so the start is a steady state, given
+0.3 U/kg subcutaneously, and held for ten hours more. The infusion needed to hold the clamp is the
+action profile of that dose, which is what a single-dose clamp measures in a person.
+
+| Quantity | Median | p10 to p90 | Human reference |
+|---|---|---|---|
+| Plasma insulin peak, min | 49.5 | 38.9 to 57.0 | 52 to 60 for aspart |
+| Peak infusion, mg/kg/min | 9.1 | 4.9 to 13.9 | 8.70 in healthy subjects |
+| Total infusion over 10 h, mg/kg | 2086 | 1285 to 3580 | 2054 in healthy subjects |
+| Infusion peak, min | 115 | 78 to 169 | 45 to 90 clinically, 141 to 169 in one healthy cohort |
+| Time to 95 per cent of effect, min | 540 | 420 to 546 | 180 to 300 clinically |
+
+Absorption is right. Plasma insulin peaks at 49.5 minutes against a published 52 to 60 for
+aspart, and the height and total area of the action curve sit on the reference figures. What
+diverges is how long the dose goes on acting: a quarter of its effect, 25.4 per cent with a tenth
+to ninetieth percentile of 14.7 to 33.4, is delivered after five hours, and 17.1 per cent after
+six.
+
+Decomposing the curve into fluxes says which pathway carries the tail. Changes from the pre-bolus
+steady state, in mg/kg/min, median over subjects by hour:
+
+| Hour | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Plasma insulin | 34.6 | 32.2 | 18.3 | 9.2 | 3.8 | 1.5 | 0.6 | 0.2 | 0.1 | 0.0 |
+| Insulin-dependent uptake | +3.85 | +6.54 | +5.16 | +3.25 | +1.72 | +0.84 | +0.38 | +0.15 | +0.07 | +0.04 |
+| Endogenous production | -0.11 | -0.72 | -1.24 | -1.54 | -1.58 | -1.53 | -1.08 | -0.74 | -0.58 | -0.44 |
+| Glucose infusion | 2.95 | 6.91 | 6.54 | 4.83 | 3.47 | 2.35 | 1.69 | 1.12 | 0.80 | 0.42 |
+
+Plasma insulin is gone by the sixth hour and uptake follows it down, at 0.04 mg/kg/min by the
+tenth. Production does not. Its suppression peaks in the fifth hour, three hours after plasma
+insulin has peaked and begun falling, and is still at 0.44 mg/kg/min in the tenth. From the sixth
+hour onward, suppressed production rather than stimulated uptake is most of what the dose is still
+doing.
+
+The pathway is `ki`, the rate constant of the two-stage delay carrying plasma insulin to its
+action on the liver. Its median is 0.0086 min^-1, a time constant of 116 minutes applied twice,
+which puts the peak of the liver signal at 280 minutes with a tenth to ninetieth percentile of 177
+to 385.
+
+### The human comparison
+
+Insulin's suppression of hepatic glucose production is fast. It begins within about 15 minutes of
+insulin reaching the liver and is at or near maximal within 20 to 80 minutes, and it dissipates
+with plasma insulin rather than outlasting it by hours. The clinical duration of insulin aspart is
+3 to 5 hours in total.
+
+The model's suppression peaks at 5 hours and persists past 10. The delay is not a matter of degree:
+a signal peaking three hours after the insulin that drives it has already peaked is a different
+shape from the measured one, not a slower version of it.
+
+### What follows
+
+This is the first entry whose direction matches the residual, and it matches both halves of it.
+
+Prolonged suppression of production is what stops the simulated trace ratcheting upward through
+the day. `docs/measurements/day_profile.json` records real participants whose inter-meal troughs
+climb, 136.8 mg/dL at 07:00 to 151.4 at 11:00 to 156.3 at 17:00, against a simulated cohort
+returning to its fasting level between every pair of meals. A bolus that goes on holding
+production down for eight hours is a mechanism for exactly that difference, and it acts through
+the flux that sets where glucose sits between meals rather than through the peaks.
+
+It also explains why three input-side perturbations were absorbed. Weakening the correction
+factor, withholding a third of meal boluses and raising night intake all change how much insulin
+arrives and when; none of them changes the fact that whatever did arrive over the preceding eight
+hours is still suppressing production.
+
+And it bears on hypoglycaemia, which is the measure this package sits furthest from real on. Every
+algorithm here is told the duration of insulin action is 300 minutes, which is what
+`therapy/profile.py` supplies and what the shipped algorithms assume. A quarter of each dose acts
+after that, so insulin-on-board is understated by construction and the loop redoses against
+insulin it cannot see.
+
+### Recommendation
+
+This is the first entry where a change to S2008 is worth considering, and it should not be made on
+this evidence alone. Three things are needed first. A human reference with a time course rather
+than a qualitative statement, since the entry currently rests on 15 minutes to onset and 20 to 80
+minutes to maximal, which is enough to show the shapes differ and not enough to fit a rate
+constant to. A check of whether S2013 or S2017 revised `ki`, since adopting a licensed successor
+is a smaller step than editing the model. And a switchable implementation with criteria fixed
+first, because a faster `ki` moves every simulated minute, so every measurement in this repository
+would describe the model as it was before the change.
+
+The prior expectation should be that this is worth a large fraction of the residual, and that
+expectation is exactly what makes fixing the parameter to the outcome a live risk.
+
 ## Entries not yet made
 
 The counterregulation floor is documented in `docs/DESIGN_ALIGNMENT.md` and in
