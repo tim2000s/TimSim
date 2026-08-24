@@ -252,6 +252,24 @@ HYPO_RISK_SCALE = 1.509       # Kovatchev's LBGI scale
 # published, so the pair cannot currently be implemented together.
 HYPO_RISK_GAIN = 0.0
 
+# How much faster the liver sees insulin than S2008 says it does.
+#
+# `ki` is the rate constant of the two-stage delay carrying plasma insulin to its action on
+# endogenous glucose production. At the published median of 0.0086 min^-1 the time constant is 116
+# minutes applied twice, which puts the peak of the liver signal 280 minutes after a subcutaneous
+# bolus, three hours after plasma insulin has peaked and begun falling, and leaves a dose still
+# suppressing production past ten hours. A quarter of each dose's effect on glucose arrives after
+# five hours, which is the duration of insulin action every algorithm here is told.
+#
+# Measured in people, insulin suppresses hepatic glucose output by 75 per cent within 30 minutes
+# and completely by 60 (Edgerton DS et al., Diabetes 2010;59(11):2766-2775). The disagreement is a
+# shape rather than a degree, and it is common to S2008, S2013 and S2017, so no licensed successor
+# supplies a corrected value.
+#
+# 1.0 is S2008 as published. The measurement, the sourcing and the criteria for changing it are in
+# `docs/PADOVA_AUDIT.md` entry 3.
+LIVER_DELAY_SCALE = 1.0
+
 
 def hypo_risk(glucose_mgdl, basal_mgdl, threshold=HYPO_RISK_THRESHOLD):
     """The risk term of equation A12, which is the low half of Kovatchev's risk index."""
@@ -599,6 +617,25 @@ class VaryingPatient(T1DPatient):
         self._kp10 = float(self._params["kp1"])
         self._kp30 = float(self._params["kp3"])
         self._egp_floor = float(floor)
+
+    def set_liver_delay(self, scale=LIVER_DELAY_SCALE):
+        """Scale `ki`, the rate of the delay carrying plasma insulin to its action on the liver.
+
+        `scale` multiplies the published `ki`, so 1.0 is S2008 as published and larger values make
+        the liver respond sooner. It is a timing change and nothing else: `kp1`, `kp2` and `kp3`
+        keep their published values, so how strongly insulin suppresses production is untouched.
+
+        The published value puts the peak of the liver signal at 280 minutes, three hours after
+        plasma insulin has peaked and begun falling, and leaves a bolus suppressing production
+        past ten hours. Measured in people, suppression falls 75 per cent within 30 minutes and is
+        complete by 60. `docs/PADOVA_AUDIT.md` entry 3 has the measurement on both sides and the
+        reasons this is a timing divergence rather than a difference of degree.
+
+        Off by default, because a change to a published model is a change this package has to
+        justify each time it is switched on rather than inherit silently.
+        """
+        self._ki0 = float(self._params["ki"])
+        self._params["ki"] = self._ki0 * float(scale)
 
     def set_hypo_risk(self, gain=HYPO_RISK_GAIN):
         """Switch on S2013's risk-modulated insulin action below basal glucose.

@@ -624,7 +624,15 @@ sixth hour onward it is most of what a dose is still doing.
 That accounts for the shape the refutations left behind. It is a mechanism for the inter-meal
 troughs failing to ratchet through the day, for three input-side perturbations being absorbed, and
 for insulin-on-board being understated against the 300-minute duration every algorithm here is
-given. Nothing further should be proposed on the input side until it has been tested.
+given.
+
+It was tested and it cannot be acted on. No value of `ki` reproduces both the clamp and the meal
+response: the clamp needs eleven times the published value and the meal response is lost above
+twice it, and the two requirements do not overlap. One first-order delay is carrying two responses
+with different timescales, and the published value sits where the meal identification put it. So
+the eighth mechanism fails differently from the seven before it. It is not absent or too small; the
+model cannot represent it, and correcting it means two insulin actions on the liver rather than a
+re-tuned one. `docs/PADOVA_AUDIT.md` entry 3 has the measurement and the arithmetic.
 
 ## What is deliberately not proposed
 

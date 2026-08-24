@@ -45,7 +45,7 @@ class BasalOnly:
         pass
 
 
-def _trace(name, prof, meals):
+def _trace(name, prof, meals, liver_delay=None):
     """The glucose trace and the clock it sits on.
 
     The clock travels with it because the run is primed with one step before its loop, so
@@ -54,11 +54,11 @@ def _trace(name, prof, meals):
     """
     from timsim.simulation.run import simulate
     r = simulate(name, days=DAYS, seed=seeds.BENCH, layers=(), controller=BasalOnly(prof),
-                 profile=prof, meals=meals)
+                 profile=prof, meals=meals, liver_delay=liver_delay)
     return np.asarray(r.bg, float), np.asarray(r.minutes, float)
 
 
-def one(name, grams):
+def one(name, grams, liver_delay=None):
     """The meal's own contribution, against the same subject eating nothing.
 
     On basal alone a subject is not at steady state and drifts, so the rise measured from a
@@ -67,8 +67,8 @@ def one(name, grams):
     """
     from timsim.therapy import titrate
     prof = titrate.profile_for(name)
-    with_meal, minutes = _trace(name, prof, [(MEAL_HOUR, grams, False)])
-    without, _ = _trace(name, prof, [])
+    with_meal, minutes = _trace(name, prof, [(MEAL_HOUR, grams, False)], liver_delay)
+    without, _ = _trace(name, prof, [], liver_delay)
     n = min(len(with_meal), len(without), len(minutes))
     # Located on the clock rather than by position, so the answer does not depend on where
     # the series happens to be numbered from.
@@ -80,7 +80,7 @@ def one(name, grams):
     i1 = min(max(i1, i0 + 1), n)
     delta = with_meal[i0:i1] - without[i0:i1]
     peak_i = int(np.argmax(delta))
-    return {"name": name, "grams": grams,
+    return {"name": name, "grams": grams, "liver_delay": liver_delay,
             "baseline": float(without[i0]),
             "peak_absolute": float(with_meal[i0:i1][peak_i]),
             "rise": float(delta[peak_i]),

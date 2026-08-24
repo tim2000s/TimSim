@@ -255,12 +255,132 @@ original identification matched, and both need checking rather than one.
 |---|---|---|---|
 | 1. Glucose effectiveness | 0.0065 min^-1 against a published 0.011 to 0.021 | Against: correcting it would shorten excursions further | No change |
 | 2. Fasting equilibrium | 142 mg/dL against a real nadir of 134.8 | Neutral, 7 mg/dL | No change |
-| 3. Liver insulin delay | Suppression peaks at 5 h against a measured 20 to 80 min | With: explains both halves | Change, carefully, switchable |
+| 3. Liver insulin delay | Suppression peaks at 5 h against a measured 20 to 80 min | With: explains both halves | No change: no value of `ki` meets both the clamp and the meal |
 
-Two of three entries conclude that the model is right or close enough, which is the outcome the
-audit was written to be able to reach. The third is the one that matters, and it is the only place
-so far where S2008 and its successors disagree with a measurement in a direction that would account
-for what this package cannot reproduce.
+All three entries conclude no change, for three different reasons. Entry 1 diverges in the
+direction that would make the residual worse. Entry 2 is small enough not to matter. Entry 3
+diverges in the direction that would explain the residual and cannot be corrected by the parameter
+that carries it, because the same parameter is what makes the meal response right and the two
+requirements do not overlap.
+
+That third result is the useful one. The gap this package cannot close is, on the evidence so far,
+a structural property of the S2008 liver rather than a tuning error, and closing it would mean
+replacing one first-order delay with two rather than adjusting the one that is there.
+
+## Testing entry 3: what would refute a faster liver delay
+
+Written before the parameter is changed and before any cohort is run, so the criteria cannot be
+chosen once the answer is known. This is the eighth mechanism proposed against the residual and
+seven have been refuted, several of which were argued as confidently as this one.
+
+### The change
+
+`ki` becomes settable, defaulting to the published value, so S2008 as published stays runnable and
+every figure measured before the change stays reproducible. Nothing else moves: `kp1`, `kp2` and
+`kp3` keep their published values, so the strength of insulin's effect on the liver is untouched
+and only its timing changes.
+
+The value comes from Edgerton's suppression curve on its own clamp, fitted before any cohort runs
+and checked against that curve rather than against any glucose outcome. The target is 75 per cent
+suppression of hepatic production within 30 minutes of a step in insulin and complete suppression
+by 60.
+
+### Gate 1: the parameter must reproduce the human suppression curve
+
+On a hyperinsulinaemic euglycaemic clamp, at the fitted value, suppression at 30 minutes must land
+between 65 and 85 per cent and suppression at 60 minutes above 90. Outside that the fit has failed
+and nothing downstream is worth running.
+
+### Gate 2: the model must still reproduce what it was identified on
+
+`ki` was identified on healthy subjects under a triple-tracer meal protocol, so a faster value may
+break the behaviour it was fitted for. After the change the simulated meal response must keep its
+agreement with the real one already recorded in `docs/measurements/meal_response.json`: trough to
+peak within 20 minutes of the real 112, and rise per gram within 25 per cent of the real 1.41
+mg/dL. A change that closes the residual by breaking the model's own validation target has not
+improved the model, and this gate is the reason the entry cannot be judged on cohort outcomes
+alone.
+
+### Gate 3: the residual
+
+Judged on the DCLP3 pairing at the default announcement condition, against the arms in
+`docs/measurements/baseline_2026-08-24/`.
+
+Time above 180 mg/dL must rise from 13.7 per cent at least half way to the trial's 26.9, meaning
+20.3 or above. Below that the delay is a contributing term rather than the explanation, whatever
+else it does.
+
+It must not overshoot: a median above 32 per cent, or time in range below 62, says the parameter
+has been pushed past what the human curve supports and any agreement is coincidental.
+
+Time below 54 mg/dL must not rise above its present 0.5 per cent. Insulin that stops acting sooner
+should reduce unseen insulin-on-board and improve this measure, and a failure to improve it would
+say the mechanism is not doing what this entry claims.
+
+The Commons pairing must not lose the agreements it holds. Mean glucose and variability both agree
+there at present, and a change that fixes DCLP3 by breaking the Commons has traded one reference
+for another.
+
+Completion must hold at 65 of 86 or better on the DCLP3 cohort.
+
+### Result: the two gates cannot both be met, and the parameter is not the fix
+
+Gate 1 asks the liver to reproduce Edgerton's clamp. Gate 2 asks it to keep reproducing the meal
+response the parameter was identified on. Measured across six values of the scale on 40 subjects
+(`examples/liver_delay_fit.py` and `examples/meal_with_bolus.py`):
+
+| `ki` scale | Clamp suppression at 30 min | Gate 1 | Meal trough to peak | Gate 2 |
+|---|---|---|---|---|
+| 1 (published) | 1 % | fail | 102 min | pass |
+| 2 | 6 % | fail | 95 min | pass |
+| 4 | 20 % | fail | 62 min | fail |
+| 6 | 34 % | fail | 65 min | fail |
+| 8 | 47 % | fail | 68 min | fail |
+| 11 | 69 % | pass | 68 min | fail |
+
+Gate 1 needs 65 to 85 per cent suppression at 30 minutes, which no value below eleven reaches.
+Gate 2 needs trough to peak within 20 minutes of the real 112, which no value above two reaches.
+The two requirements do not overlap, and there is no value of `ki` that satisfies both. Rise per
+10 g stays inside the real 15.9 to 19.7 at every scale, so the meal failure is a timing failure
+and not a magnitude one.
+
+The published value is the one that reproduces the meal. At a scale of 1 the simulated meal peaks
+102 minutes after its trough against a real 112, comfortably inside the real spread of 70 to 165,
+and speeding the liver moves it to 62 to 68, below the real tenth percentile. So S2008 as
+published is right about the thing it was fitted to and wrong about the clamp, and the parameter
+cannot be moved without trading one for the other.
+
+### What that means
+
+The divergence in entry 3 is real and it is not a mis-set number. One first-order delay carries
+plasma insulin to the liver, and it has to serve two responses with different timescales: the
+acute suppression a clamp measures in tens of minutes, and whatever slower behaviour the meal
+identification needed. A single time constant can sit at one or the other. The model's authors
+put it where the meal data wanted, which is a defensible choice for a meal simulation model and
+is the origin of the shape this package runs into over a 24-hour closed loop with repeated boluses.
+
+Fixing it properly means a structural change rather than a parameter: two insulin actions on the
+liver with separate time constants, a fast one calibrated on the clamp and a slow one carrying
+whatever the meal identification needed. That is a different model, not a re-tuned one, and it
+would need identifying against both datasets rather than gated against them.
+
+### Recommendation
+
+No change to `ki`. The switch stays in the code, defaulting to the published value, because the
+measurement above needs to be reproducible and because a future two-timescale implementation would
+use the same entry point. Entry 3's earlier recommendation to change the parameter is withdrawn on
+this evidence.
+
+The residual in `docs/DESIGN_ALIGNMENT.md` therefore remains unexplained after eight mechanisms.
+What has changed is that the eighth is the first to fail for a reason worth having: not that the
+mechanism was absent or too small, but that the model cannot represent it and the published
+parameter is already at the best compromise available within the structure.
+
+### What is reported either way
+
+Every signature in `docs/FIDELITY.md`, the hour-of-day profile against DCLP3, and the excursion
+decomposition, since the entry's claim is specifically about inter-meal troughs ratcheting and
+about excursion duration rather than about a headline percentage.
 
 ## Entries not yet made
 

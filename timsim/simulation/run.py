@@ -80,7 +80,7 @@ from simglucose.simulation.scenario import CustomScenario
 
 from ..controller.loop import CorrectionLoop
 from ..patient.varying import (HYPO_DEFENCE_GAIN, HYPO_EGP_DEFENCE, HYPO_EGP_FLOOR,
-                               HYPO_RISK_GAIN, MEAL_ABSORPTION_CV,
+                               HYPO_RISK_GAIN, LIVER_DELAY_SCALE, MEAL_ABSORPTION_CV,
                                MEAL_ABSORPTION_SCALE, VaryingPatient)
 from ..person import behaviour as behaviour_mod
 from ..person.behaviour import AdaptiveRatios, BehaviourScenario, Person
@@ -492,7 +492,7 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
              sessions_per_week=None, hypo_defence_gain=None,
              hypo_egp_defence=None, hypo_egp_floor=None, rescue_bioavailability=None,
              set_life_days=None, announcement="some", meal_delay_min=None,
-             engagement_cv=None):
+             engagement_cv=None, liver_delay=None):
     """Run one subject. Returns a Result.
 
     `layers` is any subset of LAYERS. `controller`, if given, replaces the built-in
@@ -533,6 +533,12 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
         **({} if settings_spread is None else {"settings_spread": settings_spread}))
 
     patient = VaryingPatient(params)
+    # The liver insulin delay, applied outside the layer blocks because it is a property of the
+    # published model rather than of anything this package adds, so it holds for the stock arm
+    # too. 1.0 is S2008 as published; `docs/PADOVA_AUDIT.md` entry 3 has the measurement.
+    delay = (LIVER_DELAY_SCALE if liver_delay is None else float(liver_delay))
+    if delay != 1.0:
+        patient.set_liver_delay(delay)
     # Meal-to-meal absorption variation belongs to the physiology layer: it is a property of
     # the gut rather than of anything the person decides or the sensor reports.
     if "physiology" in effective:
