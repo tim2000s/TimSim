@@ -144,7 +144,36 @@ stage cohorts "$PY" examples/build_cohorts.py || exit 1
 
 # 3. Titration. Everything simulated downstream reads it, and it is itself an output of the
 #    physiology, so it cannot be carried over.
-stage titrate "$PY" examples/titrate_cohort.py --cohort recorded --workers "$WORKERS" || exit 1
+# `SKIP_TITRATION=1` keeps the store on disk and rebuilds everything downstream against it.
+#
+# The default is to retitrate, and that default is right whenever the physiology has moved, since
+# settings are an output of it and the population fingerprint cannot see the difference. It is
+# wrong when the store is already current and something downstream is being rebuilt to match a
+# published figure: retitrating then produces a different store for no reason, and every document
+# quoting the old one describes a set of settings that no longer exists anywhere.
+#
+# The guard checks rather than trusts. Both fingerprints in the store must match what is on disk,
+# which is exactly what `titrate.check_population` demands of any consumer, so a store that would
+# be refused downstream cannot be carried past this point either.
+if [ "${SKIP_TITRATION:-0}" = "1" ]; then
+  if "$PY" - <<'CHECK'
+import json, sys
+sys.path.insert(0, ".")
+from timsim.therapy import titrate
+m = json.load(open(titrate.STORE))["meta"]
+ok = (m.get("population") == titrate.population_fingerprint()
+      and m.get("code") == titrate.code_fingerprint())
+sys.exit(0 if ok else 1)
+CHECK
+  then
+    say "SKIP   titrate (store matches the population and code on disk)"
+  else
+    say "FAILED titrate skip requested but the store does not match the population or code on disk"
+    exit 1
+  fi
+else
+  stage titrate "$PY" examples/titrate_cohort.py --cohort recorded --workers "$WORKERS" || exit 1
+fi
 stage replicate_plan "$PY" examples/cohort_replicates.py --plan-only \
       --n "$COHORT_N" --replicates "$REPLICATES" || exit 1
 stage titrate_replicates "$PY" - <<'INNER' || exit 1
@@ -243,6 +272,25 @@ stage autosens_off "$PY" examples/oref_cohort.py --subjects 40 --days 28 \
 # its outputs came to be four days older than the population they were read against.
 stage arbiter "$PY" examples/configuration_arbiter.py --subjects 34
 stage arbiter_table "$PY" examples/configuration_arbiter.py --table
+
+# Producers that had no stage here. `baseline_effects` and `capability_decomposition` were found
+# outside the pipeline by the audit of 20 August 2026, which is why studies 09 and 14 could not be
+# rebuilt from anything on disk. The rest are the model audit and the residual ledger, written
+# between 22 and 24 August, whose outputs `docs/PADOVA_AUDIT.md` and `docs/DESIGN_ALIGNMENT.md`
+# quote directly.
+stage baseline_effects "$PY" examples/baseline_effects.py
+stage capability_decomposition "$PY" examples/capability_decomposition.py
+stage intake_clock "$PY" examples/intake_clock.py
+stage day_profile env WORKERS="$WORKERS" "$PY" examples/day_profile.py --subjects 84 --workers "$WORKERS"
+stage excursion_recovery "$PY" examples/excursion_recovery.py --subjects 40 --workers "$WORKERS"
+stage glucose_effectiveness "$PY" examples/glucose_effectiveness.py --subjects 40 --workers "$WORKERS"
+stage insulin_kinetics "$PY" examples/insulin_kinetics.py --subjects 40 --workers "$WORKERS"
+stage liver_delay_fit "$PY" examples/liver_delay_fit.py --subjects 20
+stage meal_with_bolus "$PY" examples/meal_with_bolus.py --subjects 40 --workers "$WORKERS"
+stage controller_crosscheck "$PY" examples/controller_crosscheck.py --workers "$WORKERS"
+stage combined_arms env WORKERS="$WORKERS" "$PY" examples/bench_matrix.py --benches combined \
+      --out docs/measurements/validation.json
+stage validation_table "$PY" examples/validation_table.py
 
 say "=== finished ==="
 this_run | grep -c 'OK ' | xargs -I{} say "{} stages succeeded in this run"
