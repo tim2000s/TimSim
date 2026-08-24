@@ -100,6 +100,12 @@ The DCLP3 closed-loop participants' hour-of-day profile reaches its nadir at 06:
 model's unperturbed equilibrium. That is a smaller difference than any of the figures in
 `docs/BASELINE.md` and does not obviously need correcting.
 
+The measured 141.8 is not a property of this package's population generation. S2008 draws basal
+glucose from its joint distribution at an average of 140 mg/dL, so the measurement reproduces the
+published release. S2013 lowered that average to 120, which makes this a property of the
+unlicensed version specifically and one the licensed successor has already addressed. Entry 4 has
+the sources.
+
 ### What follows
 
 The entry exists because the equilibrium constrains what the clamp in entry 1 could measure: an
@@ -256,6 +262,7 @@ original identification matched, and both need checking rather than one.
 | 1. Glucose effectiveness | 0.0065 min^-1 against a published 0.011 to 0.021 | Against: correcting it would shorten excursions further | No change |
 | 2. Fasting equilibrium | 142 mg/dL against a real nadir of 134.8 | Neutral, 7 mg/dL | No change |
 | 3. Liver insulin delay | Suppression peaks at 5 h against a measured 20 to 80 min | With: explains both halves | No change: no value of `ki` meets both the clamp and the meal |
+| 4. Nondiabetic parameter provenance | Subjects derive from a nondiabetic joint distribution | Bears on the population's narrowness | No change available |
 
 All three entries conclude no change, for three different reasons. Entry 1 diverges in the
 direction that would make the residual worse. Entry 2 is small enough not to matter. Entry 3
@@ -381,6 +388,77 @@ parameter is already at the best compromise available within the structure.
 Every signature in `docs/FIDELITY.md`, the hour-of-day profile against DCLP3, and the excursion
 decomposition, since the entry's claim is specifically about inter-meal troughs ratcheting and
 about excursion duration rather than about a headline percentage.
+
+## 4. The virtual population descends from nondiabetic parameter distributions
+
+### What the model's own papers say
+
+This entry needs no simulation. It is what the releases record about where their subjects come
+from, and it bears on several of the measurements above.
+
+The parameters were identified on people without diabetes. Dalla Man et al. fitted the meal model
+to a normal-subject database under a triple-tracer protocol, and the simulator paper states that
+"at the time of the first release of the simulator, reliable joint parameter distributions were
+available for a nondiabetic adult population". The type 1 subjects were made from those: "the T1DM
+parameter joint distributions were derived from those available in the nondiabetic adult
+populations", with "certain clinically relevant modifications introduced in the average parameter
+vector", of which the paper's example is that basal endogenous glucose production was assumed
+higher.
+
+So the virtual population is a nondiabetic joint distribution with adjustments to its mean, rather
+than a distribution identified on people with type 1 diabetes. The adjustments act on the average
+parameter vector; the covariance structure and the spread are inherited.
+
+S2013 did not change this. It moved the average basal glucose from 140 to 120 mg/dL, and generated
+the new counterregulation parameters "from an appropriate joint distribution" rather than from
+identification. Its hypoglycaemia utilisation model was validated against 32 subjects with type 1
+diabetes under clamp, but that validated the model rather than generating the parameter
+distributions. Its glucagon kinetics come from 13 datasets in 11 adults.
+
+### What follows for the measurements above
+
+It supplies a mechanism for the population's narrowness, which is the largest single limitation on
+what this package can be used for. The cohorts carry 0.46 to 0.68 of the real between-subject
+spread on every measure describing where glucose sits. A joint distribution taken from people
+without diabetes should be expected to produce that: glycaemic outcomes vary far less between
+people whose glucose is regulated than between people whose glucose is managed. Widening it is not
+a matter of adding noise to the parameters, since the covariance rather than the marginal spread is
+what was inherited.
+
+It also dates entry 2. The population's basal glucose has a median of 141.8 mg/dL, which is the
+S2008 average of 140 rather than anything this package chose, and S2013 already moved that average
+to 120. So entry 2 is a property of the unlicensed release specifically, and the licensed successor
+has addressed it.
+
+And it explains entry 3 without excusing it. `ki` was identified on a meal protocol in people
+without diabetes, whose insulin rises and falls endogenously with the meal. A delay fitted in that
+condition is being asked here to describe a liver responding to repeated exogenous subcutaneous
+boluses across a closed-loop day, which is not the condition it was measured in.
+
+### The same criticism applied to this audit
+
+The references used against the model above are not drawn from people with type 1 diabetes either,
+and the audit should say so rather than let a reader assume otherwise.
+
+Entry 1 compares glucose effectiveness against 0.021 min^-1 in people without diabetes and 0.011 in
+type 2 diabetes, because a type 1 figure was not found. Entry 3 compares the suppression of hepatic
+production against Edgerton et al., which is a tracer study in conscious dogs, supported by human
+clamp figures that are qualitative. Only the outcome references, DCLP3 and the Commons, are type 1
+populations, and those are glucose traces rather than fluxes.
+
+That scarcity is not incidental. Measuring endogenous glucose production or glucose effectiveness
+requires tracer studies that are rarely done in type 1 diabetes, which is why the model was built
+the way it was and why this audit compares against what exists. It bounds both. A divergence
+established against a canine or nondiabetic reference is a reason to investigate rather than a
+demonstration that the model is wrong about people with type 1 diabetes.
+
+### Recommendation
+
+No change is available. The provenance cannot be corrected without a joint parameter distribution
+identified on people with type 1 diabetes, which does not exist publicly and which this package
+cannot produce. It is recorded because it is the most likely origin of the population narrowness
+that limits every between-subject claim made here, and because a reader of any figure in this
+repository should know that the subjects underneath it began as people without diabetes.
 
 ## Entries not yet made
 
