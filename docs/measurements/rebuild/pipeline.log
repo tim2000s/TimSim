@@ -126,3 +126,48 @@
 12:37:29Z  START  cohorts
 12:37:30Z  OK     cohorts (0 min)
 12:37:31Z  FAILED titrate skip requested but the store does not match the population or code on disk
+12:38:35Z  === rebuild: defence gain 0.05, titration seed 11, bench seed 101, 13 workers ===
+12:38:38Z  archived 9 stale ablation arms
+12:38:38Z  archived previous outputs to archive_pre_review; titration store cleared
+12:38:38Z  START  commons_cohort
+12:39:01Z  OK     commons_cohort (0 min)
+12:39:01Z  START  cohorts
+12:39:02Z  OK     cohorts (0 min)
+12:39:03Z  SKIP   titrate (store matches the population and code on disk)
+12:39:03Z  START  replicate_plan
+12:39:04Z  OK     replicate_plan (0 min)
+12:39:04Z  START  titrate_replicates
+12:39:06Z  OK     titrate_replicates (0 min)
+12:39:06Z  START  titrate_panel
+12:39:07Z  OK     titrate_panel (0 min)
+12:39:07Z  START  bench_matrix
+16:07:40Z  OK     bench_matrix (208 min)
+16:07:40Z  START  replicates
+16:46:43Z  OK     replicates (39 min)
+16:46:43Z  START  replicates_bare
+17:28:05Z  OK     replicates_bare (41 min)
+17:28:05Z  START  replicates_oref
+18:10:43Z  OK     replicates_oref (42 min)
+18:10:43Z  START  replicates_oref_bare
+18:55:48Z  OK     replicates_oref_bare (45 min)
+18:55:48Z  START  cohort_variation
+18:55:50Z  OK     cohort_variation (0 min)
+18:55:50Z  START  bench_tables
+18:55:52Z  OK     bench_tables (0 min)
+18:55:52Z  START  distance_to_real
+18:55:53Z  OK     distance_to_real (0 min)
+18:55:53Z  START  group_floor
+18:55:57Z  OK     group_floor (0 min)
+18:55:57Z  START  spread_ratio
+18:55:58Z  OK     spread_ratio (0 min)
+18:55:58Z  START  covariance_estimator
+18:55:59Z  OK     covariance_estimator (0 min)
+18:55:59Z  START  clamp
+18:58:11Z  OK     clamp (2 min)
+18:58:11Z  START  capability
+19:20:54Z  OK     capability (22 min)
+19:20:54Z  START  layer_ablation
+20:49:11Z  OK     layer_ablation (88 min)
+20:49:11Z  START  layer_ladder
+20:55:36Z  FAILED layer_ladder (6 min) —   File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 396, in __get_result     raise self._exception RuntimeError: adult#026 has no titrated settings. The consensus hypoglycaemia floors were not met at any combination tried, so its settings are not the explanation for what it does and it should be excluded rather than run at the loosest available. 
+20:55:36Z  START  hyperglycaemia_gap

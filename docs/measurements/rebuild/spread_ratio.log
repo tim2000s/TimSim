@@ -1,0 +1,52 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/spread_ratio.json
+
+=== commons|oref
+  completers, 65 subjects
+    Time in range 70-180, %      simulated    7.05  real   13.09  ratio  0.54 [0.39,0.82]
+    Time below 70, %             simulated    2.29  real    2.45  ratio  0.93 [0.72,1.23]
+    Time below 54, %             simulated    1.04  real    0.96  ratio  1.09 [0.77,1.76]
+    Time above 180, %            simulated    6.50  real   13.48  ratio  0.48 [0.34,0.75]
+    Mean sensor glucose, mg/dL   simulated   10.88  real   23.63  ratio  0.46 [0.32,0.74]
+    Variability, CV %            simulated    5.26  real    5.20  ratio  1.01 [0.79,1.29]
+  as_observed, 70 subjects
+    Time in range 70-180, %      simulated    7.10  real   13.09  ratio  0.54 [0.40,0.83]
+    Time below 70, %             simulated    2.34  real    2.45  ratio  0.96 [0.75,1.25]
+    Time below 54, %             simulated    1.06  real    0.96  ratio  1.11 [0.77,1.78]
+    Time above 180, %            simulated    6.58  real   13.48  ratio  0.49 [0.35,0.74]
+    Mean sensor glucose, mg/dL   simulated   11.03  real   23.63  ratio  0.47 [0.33,0.75]
+    Variability, CV %            simulated    5.32  real    5.20  ratio  1.02 [0.80,1.30]
+
+=== dclp3|control-iq
+  completers, 79 subjects
+    Time in range 70-180, %      simulated    6.98  real   10.21  ratio  0.68 [0.57,0.82]
+    Time below 70, %             simulated    1.95  real    1.01  ratio  1.93 [1.50,2.50]
+    Time below 54, %             simulated    0.87  real    0.20  ratio  4.38 [3.26,5.96]
+    Time above 180, %            simulated    6.40  real   10.34  ratio  0.62 [0.51,0.76]
+    Mean sensor glucose, mg/dL   simulated    8.40  real   14.67  ratio  0.57 [0.46,0.71]
+    Variability, CV %            simulated    4.80  real    4.10  ratio  1.17 [0.97,1.43]
+  as_observed, 86 subjects
+    Time in range 70-180, %      simulated    8.14  real   10.21  ratio  0.80 [0.64,0.99]
+    Time below 70, %             simulated    2.65  real    1.01  ratio  2.62 [1.85,3.56]
+    Time below 54, %             simulated    1.35  real    0.20  ratio  6.81 [4.39,10.05]
+    Time above 180, %            simulated    6.94  real   10.34  ratio  0.67 [0.55,0.81]
+    Mean sensor glucose, mg/dL   simulated    8.76  real   14.67  ratio  0.60 [0.49,0.73]
+    Variability, CV %            simulated    5.78  real    4.10  ratio  1.41 [1.14,1.73]
+
+=== dclp3|oref
+  completers, 77 subjects
+    Time in range 70-180, %      simulated    6.52  real   10.21  ratio  0.64 [0.51,0.78]
+    Time below 70, %             simulated    2.17  real    1.01  ratio  2.14 [1.67,2.79]
+    Time below 54, %             simulated    0.94  real    0.20  ratio  4.73 [3.61,6.38]
+    Time above 180, %            simulated    6.14  real   10.34  ratio  0.59 [0.48,0.73]
+    Mean sensor glucose, mg/dL   simulated    9.77  real   14.67  ratio  0.67 [0.54,0.83]
+    Variability, CV %            simulated    4.99  real    4.10  ratio  1.22 [1.01,1.47]
+  as_observed, 86 subjects
+    Time in range 70-180, %      simulated    6.67  real   10.21  ratio  0.65 [0.54,0.79]
+    Time below 70, %             simulated    2.42  real    1.01  ratio  2.39 [1.84,3.16]
+    Time below 54, %             simulated    1.20  real    0.20  ratio  6.08 [4.10,9.08]
+    Time above 180, %            simulated    6.20  real   10.34  ratio  0.60 [0.49,0.73]
+    Mean sensor glucose, mg/dL   simulated    9.99  real   14.67  ratio  0.68 [0.56,0.83]
+    Variability, CV %            simulated    5.20  real    4.10  ratio  1.27 [1.06,1.52]
+

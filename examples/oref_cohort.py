@@ -30,6 +30,7 @@ import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from examples.panel import dosable
 from timsim import provenance
 from timsim import simulate                                          # noqa: E402
 from timsim import seeds
@@ -108,7 +109,7 @@ def main():
             print(f"note: {shortfall} short of the requested age composition")
         matched_to = "DCLP3 closed loop, age matched"
     except Exception as exc:
-        picked = names()[:args.subjects]
+        picked = dosable(args.subjects, None)
         matched_to = f"unmatched ({type(exc).__name__}: no DCLP3 data to match against)"
     print(f"cohort: {len(picked)} subjects, {matched_to}\n")
     jobs = [(n, args.days, args.seed, args.target, args.pin_autosens) for n in picked]

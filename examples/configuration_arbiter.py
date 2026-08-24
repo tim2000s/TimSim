@@ -36,6 +36,7 @@ import argparse, json, os
 import numpy as np
 
 from timsim import provenance, simulate_cohort
+from examples.panel import dosable
 from timsim.population import names
 from timsim.validation import dclp3, replication
 
@@ -156,7 +157,7 @@ def main():
                          "See docs/VALIDATION.md and set DCLP3_DIR.")
     if a.table:
         return table()
-    subjects = names("adult")[:a.subjects]
+    subjects = dosable(a.subjects, "adult")
     for key in ([a.config] if a.config else sorted(CONFIGS)):
         print(f"running {key} ...", flush=True)
         d = run_config(key, subjects, a.days, permutations=a.permutations)

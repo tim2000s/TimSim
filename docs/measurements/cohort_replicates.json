@@ -1,0 +1,5219 @@
+{
+ "population": "704cfac086df54ba",
+ "controller": "control-iq",
+ "arm": "layered",
+ "layers": [
+  "physiology",
+  "behaviour",
+  "sensor",
+  "site"
+ ],
+ "provenance": {
+  "population": "704cfac086df54ba",
+  "settings": "046e0da5bc380688",
+  "commit": "86bb7bd4cfe245e45d118c5d96457efd0e4127f5",
+  "dirty": false,
+  "host": "Tims-Mac-mini.local",
+  "python": "3.14.7",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "when": "2026-08-24T16:46:43+00:00",
+  "simglucose": "0.2.11"
+ },
+ "replicates": [
+  {
+   "subjects": [
+    "adolescent#003",
+    "adolescent#004",
+    "adolescent#006",
+    "adolescent#010",
+    "adolescent#011",
+    "adolescent#019",
+    "adolescent#021",
+    "adolescent#023",
+    "adolescent#027",
+    "adolescent#031",
+    "adolescent#036",
+    "adolescent#041",
+    "adolescent#045",
+    "adolescent#050",
+    "adolescent#067",
+    "adolescent#079",
+    "adolescent#080",
+    "adolescent#083",
+    "adolescent#088",
+    "adolescent#089",
+    "adolescent#095",
+    "adolescent#096",
+    "adolescent#102",
+    "adolescent#107",
+    "adolescent#117",
+    "adolescent#125",
+    "adolescent#130",
+    "adolescent#135",
+    "adolescent#139",
+    "adolescent#142",
+    "adolescent#147",
+    "adult#004",
+    "adult#005",
+    "adult#007",
+    "adult#008",
+    "adult#009",
+    "adult#010",
+    "adult#011",
+    "adult#038",
+    "adult#041",
+    "adult#045",
+    "adult#046",
+    "adult#053",
+    "adult#058",
+    "adult#063",
+    "adult#066",
+    "adult#070",
+    "adult#071",
+    "adult#072",
+    "adult#081",
+    "adult#082",
+    "adult#094",
+    "adult#101",
+    "adult#102",
+    "adult#108",
+    "adult#110",
+    "adult#113",
+    "adult#118",
+    "adult#134",
+    "adult#139",
+    "adult#144",
+    "adult#152",
+    "adult#157",
+    "adult#160",
+    "adult#171",
+    "adult#178",
+    "adult#179",
+    "adult#194",
+    "adult#198",
+    "adult#201",
+    "adult#209",
+    "adult#212",
+    "adult#213",
+    "adult#218",
+    "adult#221",
+    "adult#222",
+    "adult#223",
+    "adult#238",
+    "adult#245",
+    "adult#250",
+    "adult#252",
+    "adult#259",
+    "adult#260",
+    "adult#263",
+    "adult#268",
+    "adult#276",
+    "adult#277",
+    "adult#293",
+    "adult#299",
+    "child#072"
+   ],
+   "match": {
+    "n": 90,
+    "requested": 90,
+    "median_distance": 0.2257112254158628,
+    "p90_distance": 0.7798301728864414
+   }
+  },
+  {
+   "subjects": [
+    "adolescent#002",
+    "adolescent#005",
+    "adolescent#008",
+    "adolescent#018",
+    "adolescent#024",
+    "adolescent#032",
+    "adolescent#033",
+    "adolescent#040",
+    "adolescent#043",
+    "adolescent#048",
+    "adolescent#051",
+    "adolescent#055",
+    "adolescent#056",
+    "adolescent#060",
+    "adolescent#071",
+    "adolescent#076",
+    "adolescent#084",
+    "adolescent#085",
+    "adolescent#092",
+    "adolescent#105",
+    "adolescent#116",
+    "adolescent#122",
+    "adolescent#127",
+    "adolescent#128",
+    "adolescent#129",
+    "adolescent#136",
+    "adolescent#143",
+    "adolescent#144",
+    "adolescent#148",
+    "adolescent#150",
+    "adult#006",
+    "adult#019",
+    "adult#026",
+    "adult#030",
+    "adult#036",
+    "adult#037",
+    "adult#040",
+    "adult#047",
+    "adult#055",
+    "adult#059",
+    "adult#060",
+    "adult#062",
+    "adult#064",
+    "adult#068",
+    "adult#078",
+    "adult#084",
+    "adult#086",
+    "adult#088",
+    "adult#104",
+    "adult#111",
+    "adult#114",
+    "adult#119",
+    "adult#122",
+    "adult#125",
+    "adult#126",
+    "adult#130",
+    "adult#136",
+    "adult#140",
+    "adult#145",
+    "adult#147",
+    "adult#149",
+    "adult#151",
+    "adult#154",
+    "adult#156",
+    "adult#159",
+    "adult#175",
+    "adult#177",
+    "adult#183",
+    "adult#186",
+    "adult#191",
+    "adult#197",
+    "adult#204",
+    "adult#205",
+    "adult#207",
+    "adult#214",
+    "adult#220",
+    "adult#228",
+    "adult#231",
+    "adult#232",
+    "adult#233",
+    "adult#234",
+    "adult#236",
+    "adult#241",
+    "adult#258",
+    "adult#280",
+    "adult#282",
+    "adult#285",
+    "adult#289",
+    "child#067",
+    "child#087"
+   ],
+   "match": {
+    "n": 90,
+    "requested": 90,
+    "median_distance": 0.4690519922770341,
+    "p90_distance": 1.007141075310902
+   }
+  },
+  {
+   "subjects": [
+    "adolescent#001",
+    "adolescent#016",
+    "adolescent#017",
+    "adolescent#026",
+    "adolescent#028",
+    "adolescent#039",
+    "adolescent#046",
+    "adolescent#049",
+    "adolescent#059",
+    "adolescent#062",
+    "adolescent#063",
+    "adolescent#065",
+    "adolescent#072",
+    "adolescent#077",
+    "adolescent#078",
+    "adolescent#082",
+    "adolescent#086",
+    "adolescent#087",
+    "adolescent#093",
+    "adolescent#094",
+    "adolescent#097",
+    "adolescent#099",
+    "adolescent#103",
+    "adolescent#104",
+    "adolescent#108",
+    "adolescent#109",
+    "adolescent#110",
+    "adolescent#111",
+    "adolescent#113",
+    "adolescent#115",
+    "adolescent#119",
+    "adolescent#141",
+    "adolescent#145",
+    "adult#001",
+    "adult#012",
+    "adult#016",
+    "adult#021",
+    "adult#022",
+    "adult#027",
+    "adult#028",
+    "adult#031",
+    "adult#032",
+    "adult#033",
+    "adult#039",
+    "adult#042",
+    "adult#043",
+    "adult#048",
+    "adult#050",
+    "adult#074",
+    "adult#075",
+    "adult#083",
+    "adult#085",
+    "adult#087",
+    "adult#096",
+    "adult#097",
+    "adult#099",
+    "adult#105",
+    "adult#115",
+    "adult#131",
+    "adult#164",
+    "adult#165",
+    "adult#173",
+    "adult#181",
+    "adult#184",
+    "adult#185",
+    "adult#189",
+    "adult#193",
+    "adult#199",
+    "adult#210",
+    "adult#216",
+    "adult#224",
+    "adult#237",
+    "adult#239",
+    "adult#243",
+    "adult#246",
+    "adult#251",
+    "adult#254",
+    "adult#272",
+    "adult#273",
+    "adult#274",
+    "adult#275",
+    "adult#287",
+    "adult#288",
+    "adult#290",
+    "adult#291",
+    "adult#298",
+    "child#052",
+    "child#086",
+    "child#099",
+    "child#135"
+   ],
+   "match": {
+    "n": 90,
+    "requested": 90,
+    "median_distance": 0.7328825710987096,
+    "p90_distance": 1.2633402435119812
+   }
+  }
+ ],
+ "runs": [
+  {
+   "replicate": 0,
+   "name": "adolescent#003",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 74.87599206349206,
+   "tbr70_cgm": 5.853174603174603,
+   "tbr54_cgm": 2.4429563492063493,
+   "tar180_cgm": 19.270833333333336,
+   "mean_cgm": 143.70542964616467,
+   "cv_cgm": 36.27561434092304,
+   "insulin_per_day": 46.83775713108508
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#004",
+   "completed": false,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 53.4158149542765,
+   "tbr70_cgm": 15.06186121570737,
+   "tbr54_cgm": 8.122646584185047,
+   "tar180_cgm": 31.522323830016134,
+   "mean_cgm": 146.85230959021678,
+   "cv_cgm": 48.68449274566442,
+   "insulin_per_day": 43.429241487962585
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#006",
+   "completed": false,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 78.11534500514932,
+   "tbr70_cgm": 9.320288362512873,
+   "tbr54_cgm": 3.5015447991761075,
+   "tar180_cgm": 12.564366632337794,
+   "mean_cgm": 134.03122237865665,
+   "cv_cgm": 45.886685076309504,
+   "insulin_per_day": 36.81152990983267
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#010",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 91.28224206349206,
+   "tbr70_cgm": 2.294146825396825,
+   "tbr54_cgm": 0.33482142857142855,
+   "tar180_cgm": 6.423611111111111,
+   "mean_cgm": 131.77207654737705,
+   "cv_cgm": 25.264752220415335,
+   "insulin_per_day": 36.94473081608543
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#011",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 74.96279761904762,
+   "tbr70_cgm": 2.1825396825396823,
+   "tbr54_cgm": 0.744047619047619,
+   "tar180_cgm": 22.854662698412696,
+   "mean_cgm": 155.48344706537517,
+   "cv_cgm": 30.017037008622413,
+   "insulin_per_day": 89.55616779734744
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#019",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 72.03621031746032,
+   "tbr70_cgm": 3.373015873015873,
+   "tbr54_cgm": 0.9796626984126984,
+   "tar180_cgm": 24.590773809523807,
+   "mean_cgm": 150.86754782995052,
+   "cv_cgm": 36.5039521797753,
+   "insulin_per_day": 50.28221192300997
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#021",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 92.19990079365078,
+   "tbr70_cgm": 0.9672619047619048,
+   "tbr54_cgm": 0.11160714285714285,
+   "tar180_cgm": 6.8328373015873005,
+   "mean_cgm": 131.78370265095674,
+   "cv_cgm": 25.626344437751136,
+   "insulin_per_day": 31.05407858066346
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#023",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 70.72172619047619,
+   "tbr70_cgm": 6.8080357142857135,
+   "tbr54_cgm": 2.7157738095238098,
+   "tar180_cgm": 22.470238095238095,
+   "mean_cgm": 145.38231958365077,
+   "cv_cgm": 37.63027807768339,
+   "insulin_per_day": 35.253693629470256
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#027",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 72.55704365079364,
+   "tbr70_cgm": 3.7822420634920633,
+   "tbr54_cgm": 1.488095238095238,
+   "tar180_cgm": 23.660714285714285,
+   "mean_cgm": 149.11932044420456,
+   "cv_cgm": 36.111610765679146,
+   "insulin_per_day": 37.20385487169044
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#031",
+   "completed": false,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 74.18322442992398,
+   "tbr70_cgm": 2.8137084944659287,
+   "tbr54_cgm": 0.8801173489798639,
+   "tar180_cgm": 23.00306707561008,
+   "mean_cgm": 150.97416088618579,
+   "cv_cgm": 33.940417597343824,
+   "insulin_per_day": 49.53126162381264
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#036",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 87.06597222222221,
+   "tbr70_cgm": 0.0992063492063492,
+   "tbr54_cgm": 0.03720238095238095,
+   "tar180_cgm": 12.834821428571427,
+   "mean_cgm": 147.37372926233047,
+   "cv_cgm": 20.07790091822746,
+   "insulin_per_day": 38.80905540488315
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#041",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 92.31150793650794,
+   "tbr70_cgm": 1.3640873015873016,
+   "tbr54_cgm": 0.28521825396825395,
+   "tar180_cgm": 6.324404761904762,
+   "mean_cgm": 133.19024938104334,
+   "cv_cgm": 23.729688713770148,
+   "insulin_per_day": 41.027253098024175
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#045",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 95.69692460317461,
+   "tbr70_cgm": 0.78125,
+   "tbr54_cgm": 0.08680555555555555,
+   "tar180_cgm": 3.5218253968253967,
+   "mean_cgm": 133.24811120002778,
+   "cv_cgm": 19.45888816440512,
+   "insulin_per_day": 55.93043320707011
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#050",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 90.51339285714286,
+   "tbr70_cgm": 1.3888888888888888,
+   "tbr54_cgm": 0.26041666666666663,
+   "tar180_cgm": 8.097718253968255,
+   "mean_cgm": 135.9537124210122,
+   "cv_cgm": 23.92642778864615,
+   "insulin_per_day": 62.0214656849353
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#067",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 73.36309523809523,
+   "tbr70_cgm": 7.862103174603174,
+   "tbr54_cgm": 3.7450396825396823,
+   "tar180_cgm": 18.77480158730159,
+   "mean_cgm": 135.73961377277575,
+   "cv_cgm": 37.14115707063049,
+   "insulin_per_day": 51.36937507331441
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#079",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 85.57787698412699,
+   "tbr70_cgm": 3.844246031746032,
+   "tbr54_cgm": 1.0912698412698412,
+   "tar180_cgm": 10.577876984126984,
+   "mean_cgm": 134.14987105160174,
+   "cv_cgm": 29.152095107199543,
+   "insulin_per_day": 49.53229118914475
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#080",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 77.64136904761905,
+   "tbr70_cgm": 4.6999007936507935,
+   "tbr54_cgm": 1.9097222222222223,
+   "tar180_cgm": 17.658730158730158,
+   "mean_cgm": 140.33533911164773,
+   "cv_cgm": 32.34725598440255,
+   "insulin_per_day": 43.61806167397949
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#083",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 88.24404761904762,
+   "tbr70_cgm": 0.6944444444444444,
+   "tbr54_cgm": 0.0744047619047619,
+   "tar180_cgm": 11.061507936507937,
+   "mean_cgm": 140.41463390031953,
+   "cv_cgm": 26.08902857788343,
+   "insulin_per_day": 65.10789423458054
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#088",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 81.75843253968253,
+   "tbr70_cgm": 3.2242063492063497,
+   "tbr54_cgm": 1.0912698412698412,
+   "tar180_cgm": 15.01736111111111,
+   "mean_cgm": 142.2111516952565,
+   "cv_cgm": 30.076355348385363,
+   "insulin_per_day": 67.99769858743971
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#089",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 96.05654761904762,
+   "tbr70_cgm": 1.277281746031746,
+   "tbr54_cgm": 0.3968253968253968,
+   "tar180_cgm": 2.666170634920635,
+   "mean_cgm": 127.94125716281677,
+   "cv_cgm": 21.811384733849774,
+   "insulin_per_day": 45.280774733657736
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#102",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 87.04117063492063,
+   "tbr70_cgm": 1.3640873015873016,
+   "tbr54_cgm": 0.08680555555555555,
+   "tar180_cgm": 11.594742063492063,
+   "mean_cgm": 139.26427542757978,
+   "cv_cgm": 27.685993104214766,
+   "insulin_per_day": 39.50910159386883
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#107",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 85.15625,
+   "tbr70_cgm": 2.839781746031746,
+   "tbr54_cgm": 1.1408730158730158,
+   "tar180_cgm": 12.003968253968255,
+   "mean_cgm": 137.61964336536317,
+   "cv_cgm": 29.198893311298267,
+   "insulin_per_day": 81.0352034564729
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#117",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 79.1170634920635,
+   "tbr70_cgm": 2.6413690476190474,
+   "tbr54_cgm": 0.9796626984126984,
+   "tar180_cgm": 18.24156746031746,
+   "mean_cgm": 144.75734906642637,
+   "cv_cgm": 28.027504844362195,
+   "insulin_per_day": 49.175295778720006
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#125",
+   "completed": false,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 56.38455827765405,
+   "tbr70_cgm": 8.351893095768375,
+   "tbr54_cgm": 4.491462509279881,
+   "tar180_cgm": 35.26354862657758,
+   "mean_cgm": 162.93072358234238,
+   "cv_cgm": 42.833503940459366,
+   "insulin_per_day": 55.80133992172027
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#130",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 83.18452380952381,
+   "tbr70_cgm": 0.1736111111111111,
+   "tbr54_cgm": 0.03720238095238095,
+   "tar180_cgm": 16.64186507936508,
+   "mean_cgm": 149.92933117104062,
+   "cv_cgm": 26.749756752851322,
+   "insulin_per_day": 67.89060526042793
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#135",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 89.99255952380952,
+   "tbr70_cgm": 0.3472222222222222,
+   "tbr54_cgm": 0.08680555555555555,
+   "tar180_cgm": 9.660218253968255,
+   "mean_cgm": 140.1704863750025,
+   "cv_cgm": 22.942741916827174,
+   "insulin_per_day": 37.27310235217921
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#139",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 92.31150793650794,
+   "tbr70_cgm": 0.9672619047619048,
+   "tbr54_cgm": 0.0496031746031746,
+   "tar180_cgm": 6.721230158730158,
+   "mean_cgm": 134.93198155308318,
+   "cv_cgm": 23.117410187367682,
+   "insulin_per_day": 33.17814106448624
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#142",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 85.82589285714286,
+   "tbr70_cgm": 4.030257936507937,
+   "tbr54_cgm": 1.0044642857142858,
+   "tar180_cgm": 10.143849206349206,
+   "mean_cgm": 132.03035596149326,
+   "cv_cgm": 31.755297470204948,
+   "insulin_per_day": 40.47756089380885
+  },
+  {
+   "replicate": 0,
+   "name": "adolescent#147",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 70.05208333333334,
+   "tbr70_cgm": 0.3720238095238095,
+   "tbr54_cgm": 0.03720238095238095,
+   "tar180_cgm": 29.575892857142854,
+   "mean_cgm": 163.42019557944388,
+   "cv_cgm": 30.834649053225927,
+   "insulin_per_day": 73.00985982005314
+  },
+  {
+   "replicate": 0,
+   "name": "adult#004",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 75.5704365079365,
+   "tbr70_cgm": 1.8973214285714284,
+   "tbr54_cgm": 0.5952380952380952,
+   "tar180_cgm": 22.532242063492063,
+   "mean_cgm": 154.1239289816758,
+   "cv_cgm": 33.96023277316775,
+   "insulin_per_day": 62.67256647825233
+  },
+  {
+   "replicate": 0,
+   "name": "adult#005",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 79.52628968253968,
+   "tbr70_cgm": 1.6245039682539684,
+   "tbr54_cgm": 0.4712301587301587,
+   "tar180_cgm": 18.849206349206348,
+   "mean_cgm": 145.54452047947044,
+   "cv_cgm": 29.41547651553292,
+   "insulin_per_day": 63.89897097206493
+  },
+  {
+   "replicate": 0,
+   "name": "adult#007",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 83.03571428571429,
+   "tbr70_cgm": 1.9097222222222223,
+   "tbr54_cgm": 0.4464285714285714,
+   "tar180_cgm": 15.054563492063492,
+   "mean_cgm": 144.0002983612565,
+   "cv_cgm": 25.893121063201505,
+   "insulin_per_day": 43.3446015300485
+  },
+  {
+   "replicate": 0,
+   "name": "adult#008",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 77.5545634920635,
+   "tbr70_cgm": 1.9717261904761905,
+   "tbr54_cgm": 0.4712301587301587,
+   "tar180_cgm": 20.473710317460316,
+   "mean_cgm": 149.73769514024698,
+   "cv_cgm": 34.582044313353585,
+   "insulin_per_day": 54.089189160376016
+  },
+  {
+   "replicate": 0,
+   "name": "adult#009",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 89.99255952380952,
+   "tbr70_cgm": 2.194940476190476,
+   "tbr54_cgm": 0.28521825396825395,
+   "tar180_cgm": 7.8125,
+   "mean_cgm": 130.0506380080694,
+   "cv_cgm": 26.20532808990897,
+   "insulin_per_day": 45.61874929645791
+  },
+  {
+   "replicate": 0,
+   "name": "adult#010",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 90.51339285714286,
+   "tbr70_cgm": 3.1374007936507935,
+   "tbr54_cgm": 1.277281746031746,
+   "tar180_cgm": 6.349206349206349,
+   "mean_cgm": 132.0245742706447,
+   "cv_cgm": 24.809590286475945,
+   "insulin_per_day": 44.59099118295979
+  },
+  {
+   "replicate": 0,
+   "name": "adult#011",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 72.8670634920635,
+   "tbr70_cgm": 5.952380952380952,
+   "tbr54_cgm": 2.232142857142857,
+   "tar180_cgm": 21.180555555555554,
+   "mean_cgm": 143.6917943153045,
+   "cv_cgm": 37.78286362135258,
+   "insulin_per_day": 46.88005411543895
+  },
+  {
+   "replicate": 0,
+   "name": "adult#038",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 74.81398809523809,
+   "tbr70_cgm": 1.5004960317460319,
+   "tbr54_cgm": 0.3968253968253968,
+   "tar180_cgm": 23.685515873015873,
+   "mean_cgm": 156.8296993245565,
+   "cv_cgm": 35.31206754252254,
+   "insulin_per_day": 66.63463405836367
+  },
+  {
+   "replicate": 0,
+   "name": "adult#041",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 89.13690476190477,
+   "tbr70_cgm": 2.318948412698413,
+   "tbr54_cgm": 0.26041666666666663,
+   "tar180_cgm": 8.544146825396826,
+   "mean_cgm": 133.9088510590349,
+   "cv_cgm": 24.713449182784288,
+   "insulin_per_day": 33.54411197603403
+  },
+  {
+   "replicate": 0,
+   "name": "adult#045",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 72.90426587301587,
+   "tbr70_cgm": 3.546626984126984,
+   "tbr54_cgm": 0.8804563492063492,
+   "tar180_cgm": 23.549107142857142,
+   "mean_cgm": 148.23894020208272,
+   "cv_cgm": 31.103324728843912,
+   "insulin_per_day": 40.25003837896852
+  },
+  {
+   "replicate": 0,
+   "name": "adult#046",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 87.35119047619048,
+   "tbr70_cgm": 0.5828373015873016,
+   "tbr54_cgm": 0.0248015873015873,
+   "tar180_cgm": 12.065972222222223,
+   "mean_cgm": 143.16851402277598,
+   "cv_cgm": 23.083034381910586,
+   "insulin_per_day": 57.822361755102484
+  },
+  {
+   "replicate": 0,
+   "name": "adult#053",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 79.12946428571429,
+   "tbr70_cgm": 6.026785714285714,
+   "tbr54_cgm": 2.628968253968254,
+   "tar180_cgm": 14.84375,
+   "mean_cgm": 137.52705936404158,
+   "cv_cgm": 37.63012789582088,
+   "insulin_per_day": 77.64828170530082
+  },
+  {
+   "replicate": 0,
+   "name": "adult#058",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 84.28819444444444,
+   "tbr70_cgm": 2.0089285714285716,
+   "tbr54_cgm": 0.248015873015873,
+   "tar180_cgm": 13.702876984126986,
+   "mean_cgm": 140.42068357057812,
+   "cv_cgm": 26.44348621944921,
+   "insulin_per_day": 28.074195227486147
+  },
+  {
+   "replicate": 0,
+   "name": "adult#063",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 82.87450396825396,
+   "tbr70_cgm": 3.90625,
+   "tbr54_cgm": 1.1904761904761905,
+   "tar180_cgm": 13.219246031746032,
+   "mean_cgm": 135.07356193120486,
+   "cv_cgm": 33.964592249273224,
+   "insulin_per_day": 51.60938203493582
+  },
+  {
+   "replicate": 0,
+   "name": "adult#066",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 85.01984126984127,
+   "tbr70_cgm": 2.4801587301587302,
+   "tbr54_cgm": 0.2728174603174603,
+   "tar180_cgm": 12.5,
+   "mean_cgm": 135.2027408424741,
+   "cv_cgm": 29.796755994523252,
+   "insulin_per_day": 40.040096535436355
+  },
+  {
+   "replicate": 0,
+   "name": "adult#071",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 89.44692460317461,
+   "tbr70_cgm": 1.5004960317460319,
+   "tbr54_cgm": 0.28521825396825395,
+   "tar180_cgm": 9.052579365079366,
+   "mean_cgm": 140.85322448162026,
+   "cv_cgm": 22.295122190569735,
+   "insulin_per_day": 88.2479754793628
+  },
+  {
+   "replicate": 0,
+   "name": "adult#072",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 88.36805555555556,
+   "tbr70_cgm": 3.038194444444444,
+   "tbr54_cgm": 0.744047619047619,
+   "tar180_cgm": 8.59375,
+   "mean_cgm": 131.39928285573922,
+   "cv_cgm": 30.928872081187006,
+   "insulin_per_day": 64.76786187767884
+  },
+  {
+   "replicate": 0,
+   "name": "adult#081",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 79.16666666666666,
+   "tbr70_cgm": 2.0337301587301586,
+   "tbr54_cgm": 0.33482142857142855,
+   "tar180_cgm": 18.799603174603174,
+   "mean_cgm": 146.11215284485158,
+   "cv_cgm": 30.540439385625724,
+   "insulin_per_day": 47.53529947167222
+  },
+  {
+   "replicate": 0,
+   "name": "adult#082",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 79.27827380952381,
+   "tbr70_cgm": 6.659226190476191,
+   "tbr54_cgm": 2.7157738095238098,
+   "tar180_cgm": 14.0625,
+   "mean_cgm": 135.30574881681144,
+   "cv_cgm": 32.87260811980174,
+   "insulin_per_day": 42.05628853231273
+  },
+  {
+   "replicate": 0,
+   "name": "adult#094",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 82.56448412698413,
+   "tbr70_cgm": 4.489087301587301,
+   "tbr54_cgm": 1.5128968253968254,
+   "tar180_cgm": 12.946428571428573,
+   "mean_cgm": 135.3352821551312,
+   "cv_cgm": 34.02077029993694,
+   "insulin_per_day": 37.50974060621284
+  },
+  {
+   "replicate": 0,
+   "name": "adult#101",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 86.18551587301587,
+   "tbr70_cgm": 1.3020833333333335,
+   "tbr54_cgm": 0.0992063492063492,
+   "tar180_cgm": 12.512400793650794,
+   "mean_cgm": 137.8847797131447,
+   "cv_cgm": 30.30092290525458,
+   "insulin_per_day": 48.77253664791163
+  },
+  {
+   "replicate": 0,
+   "name": "adult#102",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 89.0873015873016,
+   "tbr70_cgm": 2.4677579365079363,
+   "tbr54_cgm": 0.5456349206349206,
+   "tar180_cgm": 8.444940476190476,
+   "mean_cgm": 130.0768831182523,
+   "cv_cgm": 28.12804011018561,
+   "insulin_per_day": 59.6121158971863
+  },
+  {
+   "replicate": 0,
+   "name": "adult#108",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 86.1359126984127,
+   "tbr70_cgm": 4.6750992063492065,
+   "tbr54_cgm": 1.314484126984127,
+   "tar180_cgm": 9.188988095238097,
+   "mean_cgm": 130.4983395048891,
+   "cv_cgm": 30.01613197051868,
+   "insulin_per_day": 56.386186962154774
+  },
+  {
+   "replicate": 0,
+   "name": "adult#110",
+   "completed": false,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 73.63367799113738,
+   "tbr70_cgm": 5.539143279172822,
+   "tbr54_cgm": 2.58493353028065,
+   "tar180_cgm": 20.82717872968981,
+   "mean_cgm": 145.63902608230669,
+   "cv_cgm": 41.40629634741547,
+   "insulin_per_day": 53.17231763682099
+  },
+  {
+   "replicate": 0,
+   "name": "adult#113",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 74.08234126984127,
+   "tbr70_cgm": 7.676091269841271,
+   "tbr54_cgm": 2.839781746031746,
+   "tar180_cgm": 18.24156746031746,
+   "mean_cgm": 139.4702077646963,
+   "cv_cgm": 40.757521523198264,
+   "insulin_per_day": 101.73367240789754
+  },
+  {
+   "replicate": 0,
+   "name": "adult#118",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 86.68154761904762,
+   "tbr70_cgm": 1.9965277777777777,
+   "tbr54_cgm": 0.7192460317460317,
+   "tar180_cgm": 11.321924603174603,
+   "mean_cgm": 138.1826202158056,
+   "cv_cgm": 27.22019606739258,
+   "insulin_per_day": 44.59095652468958
+  },
+  {
+   "replicate": 0,
+   "name": "adult#134",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 87.51240079365078,
+   "tbr70_cgm": 2.1453373015873014,
+   "tbr54_cgm": 0.6200396825396826,
+   "tar180_cgm": 10.342261904761903,
+   "mean_cgm": 135.6292570928072,
+   "cv_cgm": 31.200265550371142,
+   "insulin_per_day": 44.91415378904143
+  },
+  {
+   "replicate": 0,
+   "name": "adult#139",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 85.05704365079364,
+   "tbr70_cgm": 7.130456349206349,
+   "tbr54_cgm": 3.050595238095238,
+   "tar180_cgm": 7.8125,
+   "mean_cgm": 125.37522716337182,
+   "cv_cgm": 31.394588819891464,
+   "insulin_per_day": 45.81044250410199
+  },
+  {
+   "replicate": 0,
+   "name": "adult#144",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 67.31150793650794,
+   "tbr70_cgm": 5.171130952380952,
+   "tbr54_cgm": 1.7485119047619049,
+   "tar180_cgm": 27.51736111111111,
+   "mean_cgm": 149.47183887435554,
+   "cv_cgm": 37.42109504534424,
+   "insulin_per_day": 94.86501886326914
+  },
+  {
+   "replicate": 0,
+   "name": "adult#152",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 85.1314484126984,
+   "tbr70_cgm": 6.981646825396826,
+   "tbr54_cgm": 2.3313492063492065,
+   "tar180_cgm": 7.886904761904762,
+   "mean_cgm": 124.81996305500518,
+   "cv_cgm": 31.879100822812138,
+   "insulin_per_day": 35.34143590245516
+  },
+  {
+   "replicate": 0,
+   "name": "adult#157",
+   "completed": false,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 73.27810650887574,
+   "tbr70_cgm": 12.118343195266272,
+   "tbr54_cgm": 5.798816568047338,
+   "tar180_cgm": 14.603550295857989,
+   "mean_cgm": 128.71888323265327,
+   "cv_cgm": 42.12765248350905,
+   "insulin_per_day": 32.770662642873475
+  },
+  {
+   "replicate": 0,
+   "name": "adult#160",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 84.33779761904762,
+   "tbr70_cgm": 5.183531746031746,
+   "tbr54_cgm": 1.9345238095238095,
+   "tar180_cgm": 10.478670634920634,
+   "mean_cgm": 131.28286795422756,
+   "cv_cgm": 30.695275193140677,
+   "insulin_per_day": 43.831260031199186
+  },
+  {
+   "replicate": 0,
+   "name": "adult#171",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 85.3546626984127,
+   "tbr70_cgm": 1.9097222222222223,
+   "tbr54_cgm": 0.3100198412698413,
+   "tar180_cgm": 12.735615079365079,
+   "mean_cgm": 139.31661064993853,
+   "cv_cgm": 29.727927249745907,
+   "insulin_per_day": 86.92022423397232
+  },
+  {
+   "replicate": 0,
+   "name": "adult#178",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 66.33184523809523,
+   "tbr70_cgm": 6.225198412698413,
+   "tbr54_cgm": 2.380952380952381,
+   "tar180_cgm": 27.442956349206348,
+   "mean_cgm": 153.6234101996269,
+   "cv_cgm": 41.290896981086796,
+   "insulin_per_day": 52.0304919135299
+  },
+  {
+   "replicate": 0,
+   "name": "adult#179",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 89.52132936507937,
+   "tbr70_cgm": 1.3392857142857142,
+   "tbr54_cgm": 0.1488095238095238,
+   "tar180_cgm": 9.139384920634921,
+   "mean_cgm": 137.96356135827372,
+   "cv_cgm": 23.51798144137618,
+   "insulin_per_day": 34.08703202983317
+  },
+  {
+   "replicate": 0,
+   "name": "adult#194",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 82.41567460317461,
+   "tbr70_cgm": 2.8273809523809526,
+   "tbr54_cgm": 0.4712301587301587,
+   "tar180_cgm": 14.756944444444445,
+   "mean_cgm": 141.13544264307112,
+   "cv_cgm": 30.80705198075063,
+   "insulin_per_day": 31.17183702454434
+  },
+  {
+   "replicate": 0,
+   "name": "adult#198",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 84.05257936507937,
+   "tbr70_cgm": 2.095734126984127,
+   "tbr54_cgm": 0.4712301587301587,
+   "tar180_cgm": 13.851686507936508,
+   "mean_cgm": 141.98777827166222,
+   "cv_cgm": 28.481748022706544,
+   "insulin_per_day": 37.0271736622725
+  },
+  {
+   "replicate": 0,
+   "name": "adult#201",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 67.12549603174604,
+   "tbr70_cgm": 1.277281746031746,
+   "tbr54_cgm": 0.248015873015873,
+   "tar180_cgm": 31.59722222222222,
+   "mean_cgm": 162.0876763869875,
+   "cv_cgm": 33.7614902596279,
+   "insulin_per_day": 109.33105574761021
+  },
+  {
+   "replicate": 0,
+   "name": "adult#209",
+   "completed": false,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 69.37020683244248,
+   "tbr70_cgm": 5.368347664420172,
+   "tbr54_cgm": 2.602835231234023,
+   "tar180_cgm": 25.26144550313735,
+   "mean_cgm": 154.23703002585458,
+   "cv_cgm": 37.27487931653098,
+   "insulin_per_day": 44.6600455109667
+  },
+  {
+   "replicate": 0,
+   "name": "adult#212",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 82.93650793650794,
+   "tbr70_cgm": 1.5749007936507935,
+   "tbr54_cgm": 0.5084325396825397,
+   "tar180_cgm": 15.48859126984127,
+   "mean_cgm": 145.3049712620092,
+   "cv_cgm": 26.742673667147326,
+   "insulin_per_day": 67.67059561822593
+  },
+  {
+   "replicate": 0,
+   "name": "adult#213",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 81.88244047619048,
+   "tbr70_cgm": 3.335813492063492,
+   "tbr54_cgm": 1.215277777777778,
+   "tar180_cgm": 14.781746031746032,
+   "mean_cgm": 139.3750628242699,
+   "cv_cgm": 31.57643808452161,
+   "insulin_per_day": 30.10822044580245
+  },
+  {
+   "replicate": 0,
+   "name": "adult#218",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 78.79464285714286,
+   "tbr70_cgm": 2.294146825396825,
+   "tbr54_cgm": 0.6448412698412698,
+   "tar180_cgm": 18.911210317460316,
+   "mean_cgm": 143.74555473531805,
+   "cv_cgm": 33.07010902068879,
+   "insulin_per_day": 51.82297439234879
+  },
+  {
+   "replicate": 0,
+   "name": "adult#221",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 70.2876984126984,
+   "tbr70_cgm": 5.146329365079365,
+   "tbr54_cgm": 1.7361111111111112,
+   "tar180_cgm": 24.56597222222222,
+   "mean_cgm": 149.26977101504772,
+   "cv_cgm": 36.79525966216567,
+   "insulin_per_day": 47.169634659384386
+  },
+  {
+   "replicate": 0,
+   "name": "adult#222",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 81.51041666666666,
+   "tbr70_cgm": 3.869047619047619,
+   "tbr54_cgm": 1.7485119047619049,
+   "tar180_cgm": 14.620535714285715,
+   "mean_cgm": 138.74578898903013,
+   "cv_cgm": 34.82795207138261,
+   "insulin_per_day": 35.82540185080829
+  },
+  {
+   "replicate": 0,
+   "name": "adult#223",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 83.25892857142857,
+   "tbr70_cgm": 1.3020833333333335,
+   "tbr54_cgm": 0.3224206349206349,
+   "tar180_cgm": 15.438988095238097,
+   "mean_cgm": 141.26139652498497,
+   "cv_cgm": 27.49892409374746,
+   "insulin_per_day": 47.762628340179766
+  },
+  {
+   "replicate": 0,
+   "name": "adult#238",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 79.26587301587301,
+   "tbr70_cgm": 0.0992063492063492,
+   "tbr54_cgm": 0.01240079365079365,
+   "tar180_cgm": 20.634920634920633,
+   "mean_cgm": 158.89785234461897,
+   "cv_cgm": 25.534834898624187,
+   "insulin_per_day": 72.54855666619987
+  },
+  {
+   "replicate": 0,
+   "name": "adult#245",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 83.49454365079364,
+   "tbr70_cgm": 1.5500992063492065,
+   "tbr54_cgm": 0.18601190476190474,
+   "tar180_cgm": 14.955357142857142,
+   "mean_cgm": 144.13701316435726,
+   "cv_cgm": 29.562703546606613,
+   "insulin_per_day": 60.637944493105906
+  },
+  {
+   "replicate": 0,
+   "name": "adult#250",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 88.00843253968253,
+   "tbr70_cgm": 4.290674603174603,
+   "tbr54_cgm": 1.0788690476190477,
+   "tar180_cgm": 7.700892857142858,
+   "mean_cgm": 126.35711997397702,
+   "cv_cgm": 30.263753871692526,
+   "insulin_per_day": 33.78943997712019
+  },
+  {
+   "replicate": 0,
+   "name": "adult#252",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 82.44047619047619,
+   "tbr70_cgm": 5.865575396825397,
+   "tbr54_cgm": 1.3020833333333335,
+   "tar180_cgm": 11.693948412698413,
+   "mean_cgm": 133.04002190305053,
+   "cv_cgm": 30.54066541991408,
+   "insulin_per_day": 73.8689701910135
+  },
+  {
+   "replicate": 0,
+   "name": "adult#259",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 74.7891865079365,
+   "tbr70_cgm": 2.021329365079365,
+   "tbr54_cgm": 0.818452380952381,
+   "tar180_cgm": 23.189484126984127,
+   "mean_cgm": 151.62444010307672,
+   "cv_cgm": 32.61813061867065,
+   "insulin_per_day": 45.02881691127474
+  },
+  {
+   "replicate": 0,
+   "name": "adult#260",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 76.87251984126983,
+   "tbr70_cgm": 3.422619047619048,
+   "tbr54_cgm": 1.5004960317460319,
+   "tar180_cgm": 19.70486111111111,
+   "mean_cgm": 144.69838925345607,
+   "cv_cgm": 35.63121306050959,
+   "insulin_per_day": 52.10592412701745
+  },
+  {
+   "replicate": 0,
+   "name": "adult#263",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 78.41021825396825,
+   "tbr70_cgm": 0.9300595238095238,
+   "tbr54_cgm": 0.06200396825396825,
+   "tar180_cgm": 20.65972222222222,
+   "mean_cgm": 150.47594886622352,
+   "cv_cgm": 27.33519196865542,
+   "insulin_per_day": 130.79916139171516
+  },
+  {
+   "replicate": 0,
+   "name": "adult#268",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 90.92261904761905,
+   "tbr70_cgm": 2.380952380952381,
+   "tbr54_cgm": 0.5208333333333333,
+   "tar180_cgm": 6.696428571428571,
+   "mean_cgm": 132.2388895252148,
+   "cv_cgm": 25.423725727782283,
+   "insulin_per_day": 49.74088850331395
+  },
+  {
+   "replicate": 0,
+   "name": "adult#276",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 86.49553571428571,
+   "tbr70_cgm": 1.5004960317460319,
+   "tbr54_cgm": 0.13640873015873015,
+   "tar180_cgm": 12.003968253968255,
+   "mean_cgm": 140.14164795719265,
+   "cv_cgm": 30.004935659144778,
+   "insulin_per_day": 114.33310550646618
+  },
+  {
+   "replicate": 0,
+   "name": "adult#277",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 91.09623015873017,
+   "tbr70_cgm": 1.8849206349206349,
+   "tbr54_cgm": 0.23561507936507936,
+   "tar180_cgm": 7.0188492063492065,
+   "mean_cgm": 131.52817980647922,
+   "cv_cgm": 24.70165255890988,
+   "insulin_per_day": 26.715113833848275
+  },
+  {
+   "replicate": 0,
+   "name": "adult#293",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 80.33234126984127,
+   "tbr70_cgm": 2.802579365079365,
+   "tbr54_cgm": 0.855654761904762,
+   "tar180_cgm": 16.865079365079367,
+   "mean_cgm": 142.5700479424211,
+   "cv_cgm": 29.84877543411027,
+   "insulin_per_day": 103.92329926727487
+  },
+  {
+   "replicate": 0,
+   "name": "adult#299",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 85.80109126984127,
+   "tbr70_cgm": 2.3313492063492065,
+   "tbr54_cgm": 0.5208333333333333,
+   "tar180_cgm": 11.867559523809524,
+   "mean_cgm": 137.75805493423357,
+   "cv_cgm": 27.41988129062775,
+   "insulin_per_day": 94.10802121713326
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#002",
+   "completed": false,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 85.59678303783586,
+   "tbr70_cgm": 1.1149698409797113,
+   "tbr54_cgm": 0.3655638822884299,
+   "tar180_cgm": 13.288247121184426,
+   "mean_cgm": 142.82150201582414,
+   "cv_cgm": 30.28496775849698,
+   "insulin_per_day": 33.31255892142654
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#005",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 85.57787698412699,
+   "tbr70_cgm": 2.517361111111111,
+   "tbr54_cgm": 0.2232142857142857,
+   "tar180_cgm": 11.904761904761903,
+   "mean_cgm": 135.7959489735038,
+   "cv_cgm": 29.203973202309673,
+   "insulin_per_day": 28.12723726901674
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#008",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 93.93601190476191,
+   "tbr70_cgm": 1.1532738095238095,
+   "tbr54_cgm": 0.248015873015873,
+   "tar180_cgm": 4.910714285714286,
+   "mean_cgm": 134.89578169287157,
+   "cv_cgm": 20.70056331311621,
+   "insulin_per_day": 42.674185513080694
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#018",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 90.4265873015873,
+   "tbr70_cgm": 1.69890873015873,
+   "tbr54_cgm": 0.23561507936507936,
+   "tar180_cgm": 7.874503968253968,
+   "mean_cgm": 133.7002571127205,
+   "cv_cgm": 25.330658662626146,
+   "insulin_per_day": 32.30445027047114
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#024",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 91.30704365079364,
+   "tbr70_cgm": 1.215277777777778,
+   "tbr54_cgm": 0.42162698412698413,
+   "tar180_cgm": 7.477678571428571,
+   "mean_cgm": 138.3344185855574,
+   "cv_cgm": 20.81033817774248,
+   "insulin_per_day": 38.453815117169064
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#032",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 79.51388888888889,
+   "tbr70_cgm": 1.2400793650793651,
+   "tbr54_cgm": 0.35962301587301587,
+   "tar180_cgm": 19.246031746031747,
+   "mean_cgm": 148.72904493817333,
+   "cv_cgm": 31.50216374013711,
+   "insulin_per_day": 45.176531690028014
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#033",
+   "completed": false,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 76.77655677655679,
+   "tbr70_cgm": 10.586080586080586,
+   "tbr54_cgm": 6.5567765567765575,
+   "tar180_cgm": 12.637362637362637,
+   "mean_cgm": 131.1122571379797,
+   "cv_cgm": 44.767116674248335,
+   "insulin_per_day": 31.729283516483523
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#043",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 77.57936507936508,
+   "tbr70_cgm": 4.303075396825397,
+   "tbr54_cgm": 2.194940476190476,
+   "tar180_cgm": 18.117559523809522,
+   "mean_cgm": 143.31237917201395,
+   "cv_cgm": 30.129943987256034,
+   "insulin_per_day": 30.49905377844814
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#048",
+   "completed": false,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 61.22071516646116,
+   "tbr70_cgm": 9.864364981504316,
+   "tbr54_cgm": 5.94944512946979,
+   "tar180_cgm": 28.914919852034526,
+   "mean_cgm": 152.58666555422778,
+   "cv_cgm": 45.12016165510689,
+   "insulin_per_day": 47.90504737278846
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#051",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 91.6046626984127,
+   "tbr70_cgm": 2.6413690476190474,
+   "tbr54_cgm": 0.8432539682539683,
+   "tar180_cgm": 5.753968253968254,
+   "mean_cgm": 129.02447990118398,
+   "cv_cgm": 24.648715919024283,
+   "insulin_per_day": 32.27333812761027
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#055",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 81.34920634920636,
+   "tbr70_cgm": 2.666170634920635,
+   "tbr54_cgm": 0.8432539682539683,
+   "tar180_cgm": 15.984623015873014,
+   "mean_cgm": 141.75773385618555,
+   "cv_cgm": 31.37619277976913,
+   "insulin_per_day": 55.223323588047
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#071",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 89.11210317460318,
+   "tbr70_cgm": 2.8149801587301586,
+   "tbr54_cgm": 0.6696428571428571,
+   "tar180_cgm": 8.072916666666668,
+   "mean_cgm": 133.50286387695024,
+   "cv_cgm": 26.07292289768163,
+   "insulin_per_day": 35.65017586434716
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#076",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 81.4608134920635,
+   "tbr70_cgm": 5.580357142857143,
+   "tbr54_cgm": 2.232142857142857,
+   "tar180_cgm": 12.958829365079366,
+   "mean_cgm": 133.95932362490927,
+   "cv_cgm": 35.250003915506824,
+   "insulin_per_day": 48.898313406069015
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#084",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 85.57787698412699,
+   "tbr70_cgm": 0.9672619047619048,
+   "tbr54_cgm": 0.1240079365079365,
+   "tar180_cgm": 13.45486111111111,
+   "mean_cgm": 144.8214720238646,
+   "cv_cgm": 25.803320969216074,
+   "insulin_per_day": 49.62942238205778
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#085",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 76.92212301587301,
+   "tbr70_cgm": 2.666170634920635,
+   "tbr54_cgm": 0.7192460317460317,
+   "tar180_cgm": 20.411706349206348,
+   "mean_cgm": 148.45706103289496,
+   "cv_cgm": 34.385645789580124,
+   "insulin_per_day": 64.63830821929095
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#092",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 84.66021825396825,
+   "tbr70_cgm": 1.8601190476190477,
+   "tbr54_cgm": 0.4712301587301587,
+   "tar180_cgm": 13.479662698412698,
+   "mean_cgm": 140.4875399895796,
+   "cv_cgm": 26.341263451992315,
+   "insulin_per_day": 53.27936816384504
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#105",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 75.14880952380952,
+   "tbr70_cgm": 5.443948412698413,
+   "tbr54_cgm": 2.5297619047619047,
+   "tar180_cgm": 19.407242063492063,
+   "mean_cgm": 143.8614260102159,
+   "cv_cgm": 37.114913128191496,
+   "insulin_per_day": 37.92820472212179
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#116",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 66.54265873015873,
+   "tbr70_cgm": 7.787698412698413,
+   "tbr54_cgm": 3.757440476190476,
+   "tar180_cgm": 25.669642857142854,
+   "mean_cgm": 150.43933304744422,
+   "cv_cgm": 37.7812942095363,
+   "insulin_per_day": 36.70885136804301
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#122",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 81.65922619047619,
+   "tbr70_cgm": 4.389880952380952,
+   "tbr54_cgm": 1.8229166666666667,
+   "tar180_cgm": 13.950892857142858,
+   "mean_cgm": 140.30679467898824,
+   "cv_cgm": 31.645770824642263,
+   "insulin_per_day": 31.245512082268526
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#127",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 84.84623015873017,
+   "tbr70_cgm": 2.9637896825396823,
+   "tbr54_cgm": 0.6448412698412698,
+   "tar180_cgm": 12.189980158730158,
+   "mean_cgm": 137.8056018850132,
+   "cv_cgm": 32.36140596514829,
+   "insulin_per_day": 37.3727383058009
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#128",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 82.10565476190477,
+   "tbr70_cgm": 3.298611111111111,
+   "tbr54_cgm": 0.8928571428571428,
+   "tar180_cgm": 14.595734126984128,
+   "mean_cgm": 137.24294005932165,
+   "cv_cgm": 31.49959509342583,
+   "insulin_per_day": 54.61858207138831
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#129",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 91.34424603174604,
+   "tbr70_cgm": 1.7981150793650793,
+   "tbr54_cgm": 0.3720238095238095,
+   "tar180_cgm": 6.857638888888889,
+   "mean_cgm": 133.2260409568209,
+   "cv_cgm": 24.384120074146768,
+   "insulin_per_day": 41.20655695534889
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#136",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 72.6810515873016,
+   "tbr70_cgm": 2.3561507936507935,
+   "tbr54_cgm": 0.6696428571428571,
+   "tar180_cgm": 24.96279761904762,
+   "mean_cgm": 156.99524980442325,
+   "cv_cgm": 37.25748455598883,
+   "insulin_per_day": 68.15802358082243
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#143",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 83.35813492063492,
+   "tbr70_cgm": 3.335813492063492,
+   "tbr54_cgm": 0.4836309523809524,
+   "tar180_cgm": 13.306051587301587,
+   "mean_cgm": 137.21540541222782,
+   "cv_cgm": 34.32047195111736,
+   "insulin_per_day": 52.08859940721516
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#144",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 90.26537698412699,
+   "tbr70_cgm": 1.0416666666666665,
+   "tbr54_cgm": 0.1984126984126984,
+   "tar180_cgm": 8.692956349206348,
+   "mean_cgm": 137.52435467426588,
+   "cv_cgm": 24.926982942114623,
+   "insulin_per_day": 55.473202725689454
+  },
+  {
+   "replicate": 1,
+   "name": "adolescent#150",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 87.10317460317461,
+   "tbr70_cgm": 0.9672619047619048,
+   "tbr54_cgm": 0.1984126984126984,
+   "tar180_cgm": 11.929563492063492,
+   "mean_cgm": 141.62563986695432,
+   "cv_cgm": 28.131685386721305,
+   "insulin_per_day": 34.286051902324
+  },
+  {
+   "replicate": 1,
+   "name": "adult#006",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 67.95634920634922,
+   "tbr70_cgm": 4.761904761904762,
+   "tbr54_cgm": 1.029265873015873,
+   "tar180_cgm": 27.281746031746028,
+   "mean_cgm": 153.51031645134566,
+   "cv_cgm": 39.597987358323074,
+   "insulin_per_day": 86.77741514506113
+  },
+  {
+   "replicate": 1,
+   "name": "adult#019",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 84.99503968253968,
+   "tbr70_cgm": 1.7857142857142856,
+   "tbr54_cgm": 0.1488095238095238,
+   "tar180_cgm": 13.219246031746032,
+   "mean_cgm": 135.80575270772528,
+   "cv_cgm": 29.868114552126723,
+   "insulin_per_day": 56.75200081923968
+  },
+  {
+   "replicate": 1,
+   "name": "adult#030",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 82.21726190476191,
+   "tbr70_cgm": 7.7752976190476195,
+   "tbr54_cgm": 2.6909722222222223,
+   "tar180_cgm": 10.007440476190476,
+   "mean_cgm": 129.32887809335315,
+   "cv_cgm": 32.44021784295567,
+   "insulin_per_day": 63.998140215083644
+  },
+  {
+   "replicate": 1,
+   "name": "adult#036",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 76.32688492063492,
+   "tbr70_cgm": 2.517361111111111,
+   "tbr54_cgm": 0.8060515873015874,
+   "tar180_cgm": 21.15575396825397,
+   "mean_cgm": 152.48272502847468,
+   "cv_cgm": 33.51018303913817,
+   "insulin_per_day": 123.23959686866488
+  },
+  {
+   "replicate": 1,
+   "name": "adult#037",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 80.18353174603175,
+   "tbr70_cgm": 4.228670634920635,
+   "tbr54_cgm": 1.2028769841269842,
+   "tar180_cgm": 15.587797619047619,
+   "mean_cgm": 139.326490317703,
+   "cv_cgm": 29.68144932829311,
+   "insulin_per_day": 83.44636180852488
+  },
+  {
+   "replicate": 1,
+   "name": "adult#040",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 88.72767857142857,
+   "tbr70_cgm": 2.2445436507936507,
+   "tbr54_cgm": 0.28521825396825395,
+   "tar180_cgm": 9.027777777777777,
+   "mean_cgm": 132.80814622893155,
+   "cv_cgm": 28.64265779336278,
+   "insulin_per_day": 51.908540318847976
+  },
+  {
+   "replicate": 1,
+   "name": "adult#047",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 88.26884920634922,
+   "tbr70_cgm": 3.3854166666666665,
+   "tbr54_cgm": 0.9176587301587302,
+   "tar180_cgm": 8.345734126984127,
+   "mean_cgm": 127.41143680605516,
+   "cv_cgm": 27.585811825981235,
+   "insulin_per_day": 40.066972867582955
+  },
+  {
+   "replicate": 1,
+   "name": "adult#055",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 77.87698412698413,
+   "tbr70_cgm": 8.060515873015873,
+   "tbr54_cgm": 3.7202380952380953,
+   "tar180_cgm": 14.0625,
+   "mean_cgm": 131.8620956215394,
+   "cv_cgm": 39.57184455360349,
+   "insulin_per_day": 83.1846822583859
+  },
+  {
+   "replicate": 1,
+   "name": "adult#059",
+   "completed": false,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 63.43366778149387,
+   "tbr70_cgm": 2.6755852842809364,
+   "tbr54_cgm": 1.2263099219620959,
+   "tar180_cgm": 33.8907469342252,
+   "mean_cgm": 161.20685558541265,
+   "cv_cgm": 32.260037076457394,
+   "insulin_per_day": 56.095144206279656
+  },
+  {
+   "replicate": 1,
+   "name": "adult#060",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 80.53075396825396,
+   "tbr70_cgm": 3.2118055555555554,
+   "tbr54_cgm": 0.6448412698412698,
+   "tar180_cgm": 16.257440476190478,
+   "mean_cgm": 139.98642913687652,
+   "cv_cgm": 35.122787151369025,
+   "insulin_per_day": 91.59126171967182
+  },
+  {
+   "replicate": 1,
+   "name": "adult#062",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 83.64335317460318,
+   "tbr70_cgm": 0.4588293650793651,
+   "tbr54_cgm": 0.01240079365079365,
+   "tar180_cgm": 15.897817460317459,
+   "mean_cgm": 147.1801517100483,
+   "cv_cgm": 25.50194686099262,
+   "insulin_per_day": 60.445791666666665
+  },
+  {
+   "replicate": 1,
+   "name": "adult#064",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 72.92906746031747,
+   "tbr70_cgm": 1.3888888888888888,
+   "tbr54_cgm": 0.1488095238095238,
+   "tar180_cgm": 25.682043650793652,
+   "mean_cgm": 154.99893116846016,
+   "cv_cgm": 29.79417734626263,
+   "insulin_per_day": 89.65136129096628
+  },
+  {
+   "replicate": 1,
+   "name": "adult#078",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 74.72718253968253,
+   "tbr70_cgm": 7.130456349206349,
+   "tbr54_cgm": 2.170138888888889,
+   "tar180_cgm": 18.14236111111111,
+   "mean_cgm": 141.0957999185977,
+   "cv_cgm": 36.620630515100345,
+   "insulin_per_day": 35.81377098783632
+  },
+  {
+   "replicate": 1,
+   "name": "adult#084",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 73.32589285714286,
+   "tbr70_cgm": 5.902777777777778,
+   "tbr54_cgm": 2.294146825396825,
+   "tar180_cgm": 20.771329365079367,
+   "mean_cgm": 144.38854233293733,
+   "cv_cgm": 42.4148177018983,
+   "insulin_per_day": 45.98635499683586
+  },
+  {
+   "replicate": 1,
+   "name": "adult#088",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 80.51835317460318,
+   "tbr70_cgm": 7.899305555555555,
+   "tbr54_cgm": 2.5669642857142856,
+   "tar180_cgm": 11.58234126984127,
+   "mean_cgm": 129.16378811325836,
+   "cv_cgm": 35.72791113451503,
+   "insulin_per_day": 59.33164966036852
+  },
+  {
+   "replicate": 1,
+   "name": "adult#104",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 70.99454365079364,
+   "tbr70_cgm": 3.39781746031746,
+   "tbr54_cgm": 0.78125,
+   "tar180_cgm": 25.60763888888889,
+   "mean_cgm": 153.77254422396368,
+   "cv_cgm": 34.181030734625516,
+   "insulin_per_day": 69.33520137541107
+  },
+  {
+   "replicate": 1,
+   "name": "adult#111",
+   "completed": false,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 78.79282218597064,
+   "tbr70_cgm": 8.97226753670473,
+   "tbr54_cgm": 4.893964110929853,
+   "tar180_cgm": 12.234910277324634,
+   "mean_cgm": 127.82200782801932,
+   "cv_cgm": 40.954702333532396,
+   "insulin_per_day": 72.05089722675368
+  },
+  {
+   "replicate": 1,
+   "name": "adult#114",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 87.59920634920636,
+   "tbr70_cgm": 0.1736111111111111,
+   "tbr54_cgm": 0.0248015873015873,
+   "tar180_cgm": 12.22718253968254,
+   "mean_cgm": 143.43068767071935,
+   "cv_cgm": 23.86519754593337,
+   "insulin_per_day": 67.8695786146113
+  },
+  {
+   "replicate": 1,
+   "name": "adult#119",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 81.18799603174604,
+   "tbr70_cgm": 4.315476190476191,
+   "tbr54_cgm": 1.4384920634920635,
+   "tar180_cgm": 14.496527777777779,
+   "mean_cgm": 136.7873661850865,
+   "cv_cgm": 31.7576357657758,
+   "insulin_per_day": 51.65035254457713
+  },
+  {
+   "replicate": 1,
+   "name": "adult#122",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 83.22172619047619,
+   "tbr70_cgm": 1.599702380952381,
+   "tbr54_cgm": 0.533234126984127,
+   "tar180_cgm": 15.178571428571427,
+   "mean_cgm": 142.7412521508107,
+   "cv_cgm": 31.53934985425849,
+   "insulin_per_day": 55.82108433938345
+  },
+  {
+   "replicate": 1,
+   "name": "adult#125",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 81.63442460317461,
+   "tbr70_cgm": 3.8194444444444446,
+   "tbr54_cgm": 0.8308531746031746,
+   "tar180_cgm": 14.546130952380953,
+   "mean_cgm": 138.54427317205932,
+   "cv_cgm": 30.564153767136993,
+   "insulin_per_day": 68.8906025805958
+  },
+  {
+   "replicate": 1,
+   "name": "adult#126",
+   "completed": false,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 84.06902588470676,
+   "tbr70_cgm": 4.976866324871827,
+   "tbr54_cgm": 1.7756658747030136,
+   "tar180_cgm": 10.954107790421407,
+   "mean_cgm": 133.36340899242688,
+   "cv_cgm": 32.25454742606921,
+   "insulin_per_day": 55.062358275521646
+  },
+  {
+   "replicate": 1,
+   "name": "adult#130",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 81.67162698412699,
+   "tbr70_cgm": 4.600694444444445,
+   "tbr54_cgm": 1.128472222222222,
+   "tar180_cgm": 13.727678571428573,
+   "mean_cgm": 135.22612771973107,
+   "cv_cgm": 35.19692273446486,
+   "insulin_per_day": 50.535141822528495
+  },
+  {
+   "replicate": 1,
+   "name": "adult#136",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 85.56547619047619,
+   "tbr70_cgm": 3.3234126984126986,
+   "tbr54_cgm": 0.8308531746031746,
+   "tar180_cgm": 11.11111111111111,
+   "mean_cgm": 132.48096480265892,
+   "cv_cgm": 32.07354694744989,
+   "insulin_per_day": 47.99226492679271
+  },
+  {
+   "replicate": 1,
+   "name": "adult#140",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 81.0515873015873,
+   "tbr70_cgm": 2.058531746031746,
+   "tbr54_cgm": 0.5084325396825397,
+   "tar180_cgm": 16.889880952380953,
+   "mean_cgm": 143.55790281657653,
+   "cv_cgm": 30.94405340756525,
+   "insulin_per_day": 78.7187718738159
+  },
+  {
+   "replicate": 1,
+   "name": "adult#147",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 68.9484126984127,
+   "tbr70_cgm": 5.555555555555555,
+   "tbr54_cgm": 2.1205357142857144,
+   "tar180_cgm": 25.496031746031743,
+   "mean_cgm": 154.45245836927788,
+   "cv_cgm": 44.29076727234248,
+   "insulin_per_day": 58.433364372142556
+  },
+  {
+   "replicate": 1,
+   "name": "adult#149",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 77.9141865079365,
+   "tbr70_cgm": 4.997519841269842,
+   "tbr54_cgm": 1.4384920634920635,
+   "tar180_cgm": 17.088293650793652,
+   "mean_cgm": 139.22347002812091,
+   "cv_cgm": 37.15629802498039,
+   "insulin_per_day": 50.036711775243525
+  },
+  {
+   "replicate": 1,
+   "name": "adult#151",
+   "completed": false,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 74.53222453222453,
+   "tbr70_cgm": 12.928794178794178,
+   "tbr54_cgm": 5.340436590436591,
+   "tar180_cgm": 12.538981288981288,
+   "mean_cgm": 124.08685019287657,
+   "cv_cgm": 38.57533638708162,
+   "insulin_per_day": 52.10613305613307
+  },
+  {
+   "replicate": 1,
+   "name": "adult#154",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 84.1765873015873,
+   "tbr70_cgm": 4.327876984126984,
+   "tbr54_cgm": 1.2524801587301588,
+   "tar180_cgm": 11.495535714285714,
+   "mean_cgm": 131.76209826429957,
+   "cv_cgm": 33.034343165271466,
+   "insulin_per_day": 57.30135427475432
+  },
+  {
+   "replicate": 1,
+   "name": "adult#156",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 80.05952380952381,
+   "tbr70_cgm": 6.2127976190476195,
+   "tbr54_cgm": 2.132936507936508,
+   "tar180_cgm": 13.727678571428573,
+   "mean_cgm": 134.50676113636817,
+   "cv_cgm": 39.448429045079706,
+   "insulin_per_day": 109.66049497600163
+  },
+  {
+   "replicate": 1,
+   "name": "adult#159",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 87.25198412698413,
+   "tbr70_cgm": 0.6200396825396826,
+   "tbr54_cgm": 0.0744047619047619,
+   "tar180_cgm": 12.12797619047619,
+   "mean_cgm": 138.40802319668876,
+   "cv_cgm": 27.628229022798713,
+   "insulin_per_day": 67.09923653225212
+  },
+  {
+   "replicate": 1,
+   "name": "adult#175",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 80.29513888888889,
+   "tbr70_cgm": 3.459821428571429,
+   "tbr54_cgm": 1.3888888888888888,
+   "tar180_cgm": 16.245039682539684,
+   "mean_cgm": 138.1266875179348,
+   "cv_cgm": 32.12299466714562,
+   "insulin_per_day": 42.618016250512696
+  },
+  {
+   "replicate": 1,
+   "name": "adult#177",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 73.87152777777779,
+   "tbr70_cgm": 3.273809523809524,
+   "tbr54_cgm": 1.0540674603174605,
+   "tar180_cgm": 22.854662698412696,
+   "mean_cgm": 151.431951112345,
+   "cv_cgm": 35.421558700129836,
+   "insulin_per_day": 59.997475483337226
+  },
+  {
+   "replicate": 1,
+   "name": "adult#183",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 71.98660714285714,
+   "tbr70_cgm": 2.951388888888889,
+   "tbr54_cgm": 0.8680555555555556,
+   "tar180_cgm": 25.062003968253972,
+   "mean_cgm": 153.65740490442448,
+   "cv_cgm": 35.113865354245355,
+   "insulin_per_day": 53.258568319761316
+  },
+  {
+   "replicate": 1,
+   "name": "adult#186",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 80.93998015873017,
+   "tbr70_cgm": 0.7192460317460317,
+   "tbr54_cgm": 0.0744047619047619,
+   "tar180_cgm": 18.340773809523807,
+   "mean_cgm": 150.00722746595136,
+   "cv_cgm": 27.244468044881383,
+   "insulin_per_day": 59.11296538745528
+  },
+  {
+   "replicate": 1,
+   "name": "adult#191",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 80.82837301587301,
+   "tbr70_cgm": 8.407738095238097,
+   "tbr54_cgm": 3.7822420634920633,
+   "tar180_cgm": 10.76388888888889,
+   "mean_cgm": 129.40134322193154,
+   "cv_cgm": 33.2139830709325,
+   "insulin_per_day": 53.06740152440254
+  },
+  {
+   "replicate": 1,
+   "name": "adult#197",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 88.61607142857143,
+   "tbr70_cgm": 2.951388888888889,
+   "tbr54_cgm": 0.533234126984127,
+   "tar180_cgm": 8.432539682539684,
+   "mean_cgm": 127.50192653690142,
+   "cv_cgm": 28.76271825236018,
+   "insulin_per_day": 44.00130653909083
+  },
+  {
+   "replicate": 1,
+   "name": "adult#204",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 67.48511904761905,
+   "tbr70_cgm": 5.716765873015873,
+   "tbr54_cgm": 2.6413690476190474,
+   "tar180_cgm": 26.798115079365083,
+   "mean_cgm": 149.00365663807165,
+   "cv_cgm": 41.23530064925223,
+   "insulin_per_day": 62.58784408629502
+  },
+  {
+   "replicate": 1,
+   "name": "adult#205",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 84.33779761904762,
+   "tbr70_cgm": 1.1036706349206349,
+   "tbr54_cgm": 0.28521825396825395,
+   "tar180_cgm": 14.558531746031747,
+   "mean_cgm": 143.0393536665498,
+   "cv_cgm": 25.10795842330282,
+   "insulin_per_day": 56.16748371055137
+  },
+  {
+   "replicate": 1,
+   "name": "adult#207",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 83.43253968253968,
+   "tbr70_cgm": 3.3482142857142856,
+   "tbr54_cgm": 0.6324404761904762,
+   "tar180_cgm": 13.219246031746032,
+   "mean_cgm": 135.64930103315487,
+   "cv_cgm": 32.89656707658299,
+   "insulin_per_day": 89.60239907827933
+  },
+  {
+   "replicate": 1,
+   "name": "adult#214",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 69.06001984126983,
+   "tbr70_cgm": 7.142857142857142,
+   "tbr54_cgm": 2.5421626984126986,
+   "tar180_cgm": 23.797123015873016,
+   "mean_cgm": 144.01949145898212,
+   "cv_cgm": 35.936011312756506,
+   "insulin_per_day": 47.14771885669534
+  },
+  {
+   "replicate": 1,
+   "name": "adult#220",
+   "completed": false,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 71.81232091690545,
+   "tbr70_cgm": 4.4054441260744985,
+   "tbr54_cgm": 1.8624641833810889,
+   "tar180_cgm": 23.78223495702006,
+   "mean_cgm": 148.1495767867559,
+   "cv_cgm": 36.46869115931457,
+   "insulin_per_day": 57.231273362377046
+  },
+  {
+   "replicate": 1,
+   "name": "adult#228",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 91.53025793650794,
+   "tbr70_cgm": 0.992063492063492,
+   "tbr54_cgm": 0.13640873015873015,
+   "tar180_cgm": 7.477678571428571,
+   "mean_cgm": 133.14102889484795,
+   "cv_cgm": 25.643011733121885,
+   "insulin_per_day": 35.002436464084134
+  },
+  {
+   "replicate": 1,
+   "name": "adult#231",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 84.30059523809523,
+   "tbr70_cgm": 2.6413690476190474,
+   "tbr54_cgm": 1.1036706349206349,
+   "tar180_cgm": 13.058035714285715,
+   "mean_cgm": 135.09147820951225,
+   "cv_cgm": 31.378774701044254,
+   "insulin_per_day": 47.190894667773755
+  },
+  {
+   "replicate": 1,
+   "name": "adult#232",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 76.40128968253968,
+   "tbr70_cgm": 6.8328373015873005,
+   "tbr54_cgm": 2.0461309523809526,
+   "tar180_cgm": 16.765873015873016,
+   "mean_cgm": 137.07598846304933,
+   "cv_cgm": 36.135420031970206,
+   "insulin_per_day": 69.45032127076112
+  },
+  {
+   "replicate": 1,
+   "name": "adult#233",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 85.1810515873016,
+   "tbr70_cgm": 4.476686507936508,
+   "tbr54_cgm": 0.9176587301587302,
+   "tar180_cgm": 10.342261904761903,
+   "mean_cgm": 131.83172778172022,
+   "cv_cgm": 30.989633043301584,
+   "insulin_per_day": 45.76371513344893
+  },
+  {
+   "replicate": 1,
+   "name": "adult#234",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 78.52182539682539,
+   "tbr70_cgm": 1.5625,
+   "tbr54_cgm": 0.08680555555555555,
+   "tar180_cgm": 19.9156746031746,
+   "mean_cgm": 146.5425425269195,
+   "cv_cgm": 29.87652464399466,
+   "insulin_per_day": 70.0058353893803
+  },
+  {
+   "replicate": 1,
+   "name": "adult#236",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 76.72371031746032,
+   "tbr70_cgm": 2.194940476190476,
+   "tbr54_cgm": 0.4340277777777778,
+   "tar180_cgm": 21.081349206349206,
+   "mean_cgm": 148.86384853345538,
+   "cv_cgm": 32.4095924370714,
+   "insulin_per_day": 47.38104954545047
+  },
+  {
+   "replicate": 1,
+   "name": "adult#241",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 75.23561507936508,
+   "tbr70_cgm": 5.927579365079365,
+   "tbr54_cgm": 2.889384920634921,
+   "tar180_cgm": 18.836805555555554,
+   "mean_cgm": 144.85914375028125,
+   "cv_cgm": 39.43531025280284,
+   "insulin_per_day": 74.4933789397386
+  },
+  {
+   "replicate": 1,
+   "name": "adult#258",
+   "completed": false,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 76.38691322901849,
+   "tbr70_cgm": 7.361308677098151,
+   "tbr54_cgm": 3.3072546230440967,
+   "tar180_cgm": 16.251778093883356,
+   "mean_cgm": 133.82928022285697,
+   "cv_cgm": 32.70216531103141,
+   "insulin_per_day": 48.541330889156065
+  },
+  {
+   "replicate": 1,
+   "name": "adult#280",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 74.54117063492063,
+   "tbr70_cgm": 3.3234126984126986,
+   "tbr54_cgm": 1.1408730158730158,
+   "tar180_cgm": 22.135416666666664,
+   "mean_cgm": 148.17891924220166,
+   "cv_cgm": 35.09681919365855,
+   "insulin_per_day": 112.7606141925697
+  },
+  {
+   "replicate": 1,
+   "name": "adult#282",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 74.55357142857143,
+   "tbr70_cgm": 0.818452380952381,
+   "tbr54_cgm": 0.11160714285714285,
+   "tar180_cgm": 24.627976190476193,
+   "mean_cgm": 153.099576466696,
+   "cv_cgm": 30.232239307080327,
+   "insulin_per_day": 59.92031903150467
+  },
+  {
+   "replicate": 1,
+   "name": "adult#285",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 82.97371031746032,
+   "tbr70_cgm": 2.3561507936507935,
+   "tbr54_cgm": 0.33482142857142855,
+   "tar180_cgm": 14.67013888888889,
+   "mean_cgm": 141.26220489894095,
+   "cv_cgm": 30.885674263931246,
+   "insulin_per_day": 51.18546150589663
+  },
+  {
+   "replicate": 1,
+   "name": "adult#289",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 73.95833333333334,
+   "tbr70_cgm": 5.096726190476191,
+   "tbr54_cgm": 1.7485119047619049,
+   "tar180_cgm": 20.944940476190478,
+   "mean_cgm": 144.77392252641098,
+   "cv_cgm": 32.44950854498263,
+   "insulin_per_day": 54.530325184865625
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#001",
+   "completed": false,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 78.1095890410959,
+   "tbr70_cgm": 2.054794520547945,
+   "tbr54_cgm": 0.410958904109589,
+   "tar180_cgm": 19.835616438356166,
+   "mean_cgm": 148.020806305719,
+   "cv_cgm": 29.931296833608954,
+   "insulin_per_day": 34.69054532761385
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#016",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 88.05803571428571,
+   "tbr70_cgm": 1.5625,
+   "tbr54_cgm": 0.26041666666666663,
+   "tar180_cgm": 10.379464285714286,
+   "mean_cgm": 137.3039686537552,
+   "cv_cgm": 28.78291511720793,
+   "insulin_per_day": 34.418190814726806
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#017",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 71.16815476190477,
+   "tbr70_cgm": 3.8070436507936503,
+   "tbr54_cgm": 1.4632936507936507,
+   "tar180_cgm": 25.02480158730159,
+   "mean_cgm": 151.20112421201515,
+   "cv_cgm": 31.577755495201668,
+   "insulin_per_day": 35.48968102285812
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#026",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 93.71279761904762,
+   "tbr70_cgm": 0.6944444444444444,
+   "tbr54_cgm": 0.0496031746031746,
+   "tar180_cgm": 5.592757936507937,
+   "mean_cgm": 133.66333879524473,
+   "cv_cgm": 21.34545167190973,
+   "insulin_per_day": 48.335971344926335
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#028",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 98.26388888888889,
+   "tbr70_cgm": 0.0992063492063492,
+   "tbr54_cgm": 0.0496031746031746,
+   "tar180_cgm": 1.636904761904762,
+   "mean_cgm": 138.19334365676158,
+   "cv_cgm": 14.109232835715567,
+   "insulin_per_day": 50.912023881582634
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#039",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 75.64484126984127,
+   "tbr70_cgm": 4.327876984126984,
+   "tbr54_cgm": 1.2400793650793651,
+   "tar180_cgm": 20.027281746031747,
+   "mean_cgm": 144.88011210682285,
+   "cv_cgm": 33.04756667731749,
+   "insulin_per_day": 38.02491556793098
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#046",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 90.63740079365078,
+   "tbr70_cgm": 4.166666666666666,
+   "tbr54_cgm": 1.0912698412698412,
+   "tar180_cgm": 5.1959325396825395,
+   "mean_cgm": 127.79346680741912,
+   "cv_cgm": 25.889957043395324,
+   "insulin_per_day": 24.77916666666667
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#049",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 78.26140873015873,
+   "tbr70_cgm": 1.9345238095238095,
+   "tbr54_cgm": 0.38442460317460314,
+   "tar180_cgm": 19.80406746031746,
+   "mean_cgm": 149.99054424090053,
+   "cv_cgm": 36.57787012794285,
+   "insulin_per_day": 48.937069723656464
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#059",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 80.95238095238095,
+   "tbr70_cgm": 4.067460317460317,
+   "tbr54_cgm": 1.5749007936507935,
+   "tar180_cgm": 14.98015873015873,
+   "mean_cgm": 143.85122297297696,
+   "cv_cgm": 30.732170376592027,
+   "insulin_per_day": 31.019101792421054
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#062",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 87.6984126984127,
+   "tbr70_cgm": 1.2276785714285714,
+   "tbr54_cgm": 0.2728174603174603,
+   "tar180_cgm": 11.07390873015873,
+   "mean_cgm": 144.0790165277259,
+   "cv_cgm": 25.03690315459944,
+   "insulin_per_day": 47.1053904633165
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#063",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 89.2733134920635,
+   "tbr70_cgm": 0.1488095238095238,
+   "tbr54_cgm": 0.0496031746031746,
+   "tar180_cgm": 10.577876984126984,
+   "mean_cgm": 145.5649258048331,
+   "cv_cgm": 20.06416005748037,
+   "insulin_per_day": 53.48541699375494
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#065",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 81.41121031746032,
+   "tbr70_cgm": 4.489087301587301,
+   "tbr54_cgm": 1.3392857142857142,
+   "tar180_cgm": 14.099702380952381,
+   "mean_cgm": 138.44440469601741,
+   "cv_cgm": 32.09394107848288,
+   "insulin_per_day": 31.99051956881787
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#072",
+   "completed": false,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 86.44282101713965,
+   "tbr70_cgm": 5.788142736723799,
+   "tbr54_cgm": 3.0205113796010115,
+   "tar180_cgm": 7.769036246136555,
+   "mean_cgm": 130.44800776586973,
+   "cv_cgm": 28.62874056692348,
+   "insulin_per_day": 33.50733146241134
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#077",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 81.87003968253968,
+   "tbr70_cgm": 1.7981150793650793,
+   "tbr54_cgm": 0.5084325396825397,
+   "tar180_cgm": 16.331845238095237,
+   "mean_cgm": 146.77455830119513,
+   "cv_cgm": 33.36178953603888,
+   "insulin_per_day": 50.10868745380243
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#078",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 75.49603174603175,
+   "tbr70_cgm": 5.109126984126984,
+   "tbr54_cgm": 2.6413690476190474,
+   "tar180_cgm": 19.39484126984127,
+   "mean_cgm": 145.12795581843517,
+   "cv_cgm": 40.92490554263556,
+   "insulin_per_day": 24.76653361234679
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#082",
+   "completed": false,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 82.2634431012922,
+   "tbr70_cgm": 3.2096706961233847,
+   "tbr54_cgm": 1.4380992080033346,
+   "tar180_cgm": 14.52688620258441,
+   "mean_cgm": 141.81672807850595,
+   "cv_cgm": 28.063282759377277,
+   "insulin_per_day": 34.26386829674727
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#086",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 79.86111111111111,
+   "tbr70_cgm": 2.6785714285714284,
+   "tbr54_cgm": 0.7564484126984127,
+   "tar180_cgm": 17.46031746031746,
+   "mean_cgm": 147.81229473719415,
+   "cv_cgm": 31.82196266102141,
+   "insulin_per_day": 32.22126960552684
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#093",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 75.63244047619048,
+   "tbr70_cgm": 9.449404761904761,
+   "tbr54_cgm": 3.90625,
+   "tar180_cgm": 14.918154761904761,
+   "mean_cgm": 132.33746588529405,
+   "cv_cgm": 39.79034251771374,
+   "insulin_per_day": 39.886725111737825
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#094",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 85.46626984126983,
+   "tbr70_cgm": 1.215277777777778,
+   "tbr54_cgm": 0.2232142857142857,
+   "tar180_cgm": 13.318452380952381,
+   "mean_cgm": 143.69826745939818,
+   "cv_cgm": 27.503720575451155,
+   "insulin_per_day": 46.687687720651574
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#099",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 87.04117063492063,
+   "tbr70_cgm": 0.3968253968253968,
+   "tbr54_cgm": 0.0496031746031746,
+   "tar180_cgm": 12.562003968253968,
+   "mean_cgm": 144.24892222295765,
+   "cv_cgm": 24.930646384228627,
+   "insulin_per_day": 47.252142579091924
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#103",
+   "completed": false,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 57.466461403122935,
+   "tbr70_cgm": 8.115240818121839,
+   "tbr54_cgm": 4.508467121178799,
+   "tar180_cgm": 34.418297778755225,
+   "mean_cgm": 162.83328488961473,
+   "cv_cgm": 44.552621466165576,
+   "insulin_per_day": 25.455182069093613
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#104",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 89.24851190476191,
+   "tbr70_cgm": 3.658234126984127,
+   "tbr54_cgm": 0.992063492063492,
+   "tar180_cgm": 7.093253968253968,
+   "mean_cgm": 129.33954973412133,
+   "cv_cgm": 27.627035008530125,
+   "insulin_per_day": 24.07173959105875
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#108",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 86.84275793650794,
+   "tbr70_cgm": 2.170138888888889,
+   "tbr54_cgm": 0.4092261904761905,
+   "tar180_cgm": 10.987103174603174,
+   "mean_cgm": 139.4861318425695,
+   "cv_cgm": 26.847417441713635,
+   "insulin_per_day": 32.61683235031045
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#109",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 97.4454365079365,
+   "tbr70_cgm": 0.13640873015873015,
+   "tbr54_cgm": 0.0248015873015873,
+   "tar180_cgm": 2.418154761904762,
+   "mean_cgm": 136.37149835041546,
+   "cv_cgm": 17.107386993222324,
+   "insulin_per_day": 35.97421627557304
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#110",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 81.25,
+   "tbr70_cgm": 1.1780753968253967,
+   "tbr54_cgm": 0.42162698412698413,
+   "tar180_cgm": 17.5719246031746,
+   "mean_cgm": 150.42644160854437,
+   "cv_cgm": 27.431884289545394,
+   "insulin_per_day": 54.29892915775763
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#111",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 82.08085317460318,
+   "tbr70_cgm": 3.980654761904762,
+   "tbr54_cgm": 1.1160714285714286,
+   "tar180_cgm": 13.938492063492063,
+   "mean_cgm": 141.11716236415307,
+   "cv_cgm": 33.28286695380153,
+   "insulin_per_day": 21.820854183861094
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#113",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 86.83035714285714,
+   "tbr70_cgm": 2.2073412698412698,
+   "tbr54_cgm": 0.5456349206349206,
+   "tar180_cgm": 10.962301587301587,
+   "mean_cgm": 139.9259619080423,
+   "cv_cgm": 29.470851083829373,
+   "insulin_per_day": 45.36123884577594
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#115",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 94.06001984126983,
+   "tbr70_cgm": 1.128472222222222,
+   "tbr54_cgm": 0.248015873015873,
+   "tar180_cgm": 4.811507936507937,
+   "mean_cgm": 132.9139005312029,
+   "cv_cgm": 20.67750617280936,
+   "insulin_per_day": 29.080873939335813
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#119",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 87.25198412698413,
+   "tbr70_cgm": 1.9097222222222223,
+   "tbr54_cgm": 0.6324404761904762,
+   "tar180_cgm": 10.838293650793652,
+   "mean_cgm": 139.12141041704834,
+   "cv_cgm": 25.57334621438002,
+   "insulin_per_day": 33.41792206929277
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#141",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 83.77976190476191,
+   "tbr70_cgm": 1.0912698412698412,
+   "tbr54_cgm": 0.0992063492063492,
+   "tar180_cgm": 15.128968253968253,
+   "mean_cgm": 145.8290757084484,
+   "cv_cgm": 25.06415571160262,
+   "insulin_per_day": 43.68767564852499
+  },
+  {
+   "replicate": 2,
+   "name": "adolescent#145",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 80.14632936507937,
+   "tbr70_cgm": 5.282738095238095,
+   "tbr54_cgm": 2.1825396825396823,
+   "tar180_cgm": 14.570932539682541,
+   "mean_cgm": 139.91608835834396,
+   "cv_cgm": 32.03383137001127,
+   "insulin_per_day": 39.7371549452433
+  },
+  {
+   "replicate": 2,
+   "name": "adult#001",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 82.6016865079365,
+   "tbr70_cgm": 2.492559523809524,
+   "tbr54_cgm": 0.8432539682539683,
+   "tar180_cgm": 14.905753968253968,
+   "mean_cgm": 140.45684648084884,
+   "cv_cgm": 28.518137736359744,
+   "insulin_per_day": 60.7404374411402
+  },
+  {
+   "replicate": 2,
+   "name": "adult#012",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 85.78869047619048,
+   "tbr70_cgm": 2.802579365079365,
+   "tbr54_cgm": 0.7192460317460317,
+   "tar180_cgm": 11.408730158730158,
+   "mean_cgm": 140.40900624834225,
+   "cv_cgm": 25.809505947613413,
+   "insulin_per_day": 57.633692220702564
+  },
+  {
+   "replicate": 2,
+   "name": "adult#016",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 82.50248015873017,
+   "tbr70_cgm": 3.9930555555555554,
+   "tbr54_cgm": 1.3268849206349207,
+   "tar180_cgm": 13.504464285714285,
+   "mean_cgm": 137.7574406133152,
+   "cv_cgm": 35.000405991216766,
+   "insulin_per_day": 61.38972403147503
+  },
+  {
+   "replicate": 2,
+   "name": "adult#021",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 74.45436507936508,
+   "tbr70_cgm": 6.733630952380952,
+   "tbr54_cgm": 2.7777777777777777,
+   "tar180_cgm": 18.81200396825397,
+   "mean_cgm": 138.8342656679479,
+   "cv_cgm": 38.28314795045843,
+   "insulin_per_day": 55.572009234991015
+  },
+  {
+   "replicate": 2,
+   "name": "adult#022",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 85.75148809523809,
+   "tbr70_cgm": 1.525297619047619,
+   "tbr54_cgm": 0.6324404761904762,
+   "tar180_cgm": 12.723214285714285,
+   "mean_cgm": 138.33703155209434,
+   "cv_cgm": 27.390085205598467,
+   "insulin_per_day": 57.55797844101358
+  },
+  {
+   "replicate": 2,
+   "name": "adult#027",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 80.05952380952381,
+   "tbr70_cgm": 4.402281746031746,
+   "tbr54_cgm": 1.6865079365079365,
+   "tar180_cgm": 15.538194444444445,
+   "mean_cgm": 139.53879472357195,
+   "cv_cgm": 31.938340286970508,
+   "insulin_per_day": 73.99130303392131
+  },
+  {
+   "replicate": 2,
+   "name": "adult#028",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 75.35962301587301,
+   "tbr70_cgm": 1.8725198412698412,
+   "tbr54_cgm": 0.248015873015873,
+   "tar180_cgm": 22.767857142857142,
+   "mean_cgm": 149.76879128327332,
+   "cv_cgm": 32.43737678227945,
+   "insulin_per_day": 67.10670453650239
+  },
+  {
+   "replicate": 2,
+   "name": "adult#031",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 80.76636904761905,
+   "tbr70_cgm": 1.6617063492063493,
+   "tbr54_cgm": 0.3100198412698413,
+   "tar180_cgm": 17.5719246031746,
+   "mean_cgm": 145.4237270688191,
+   "cv_cgm": 34.747633694588494,
+   "insulin_per_day": 45.3424174930286
+  },
+  {
+   "replicate": 2,
+   "name": "adult#032",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 83.13492063492063,
+   "tbr70_cgm": 3.187003968253968,
+   "tbr54_cgm": 0.5456349206349206,
+   "tar180_cgm": 13.678075396825399,
+   "mean_cgm": 134.63206045057404,
+   "cv_cgm": 31.123748123149728,
+   "insulin_per_day": 58.352989841308734
+  },
+  {
+   "replicate": 2,
+   "name": "adult#033",
+   "completed": false,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 79.32330827067669,
+   "tbr70_cgm": 8.145363408521304,
+   "tbr54_cgm": 2.731829573934837,
+   "tar180_cgm": 12.531328320802004,
+   "mean_cgm": 133.50769301943456,
+   "cv_cgm": 40.0634751790182,
+   "insulin_per_day": 40.37418176137421
+  },
+  {
+   "replicate": 2,
+   "name": "adult#039",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 86.9295634920635,
+   "tbr70_cgm": 7.006448412698413,
+   "tbr54_cgm": 2.9017857142857144,
+   "tar180_cgm": 6.063988095238095,
+   "mean_cgm": 121.32863896305669,
+   "cv_cgm": 30.288721898647157,
+   "insulin_per_day": 37.13377976190476
+  },
+  {
+   "replicate": 2,
+   "name": "adult#042",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 85.49107142857143,
+   "tbr70_cgm": 3.162202380952381,
+   "tbr54_cgm": 1.0912698412698412,
+   "tar180_cgm": 11.34672619047619,
+   "mean_cgm": 136.6144309311681,
+   "cv_cgm": 28.210002757769566,
+   "insulin_per_day": 61.101785334388865
+  },
+  {
+   "replicate": 2,
+   "name": "adult#043",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 83.3953373015873,
+   "tbr70_cgm": 5.592757936507937,
+   "tbr54_cgm": 1.3764880952380951,
+   "tar180_cgm": 11.011904761904761,
+   "mean_cgm": 132.35525328182143,
+   "cv_cgm": 30.860700215587617,
+   "insulin_per_day": 43.326622031368274
+  },
+  {
+   "replicate": 2,
+   "name": "adult#048",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 92.10069444444444,
+   "tbr70_cgm": 2.368551587301587,
+   "tbr54_cgm": 0.21081349206349206,
+   "tar180_cgm": 5.530753968253968,
+   "mean_cgm": 123.87706010090189,
+   "cv_cgm": 26.9789430062173,
+   "insulin_per_day": 47.216231152846476
+  },
+  {
+   "replicate": 2,
+   "name": "adult#050",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 85.9375,
+   "tbr70_cgm": 3.2366071428571432,
+   "tbr54_cgm": 1.3392857142857142,
+   "tar180_cgm": 10.825892857142858,
+   "mean_cgm": 136.27669728829406,
+   "cv_cgm": 31.66903669582474,
+   "insulin_per_day": 48.167519526414885
+  },
+  {
+   "replicate": 2,
+   "name": "adult#074",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 88.24404761904762,
+   "tbr70_cgm": 2.6413690476190474,
+   "tbr54_cgm": 0.9424603174603174,
+   "tar180_cgm": 9.114583333333332,
+   "mean_cgm": 130.1814356084215,
+   "cv_cgm": 27.99220574041267,
+   "insulin_per_day": 60.16625183689075
+  },
+  {
+   "replicate": 2,
+   "name": "adult#083",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 73.61111111111111,
+   "tbr70_cgm": 6.535218253968254,
+   "tbr54_cgm": 1.8353174603174605,
+   "tar180_cgm": 19.853670634920633,
+   "mean_cgm": 143.00397900867907,
+   "cv_cgm": 36.8709781158348,
+   "insulin_per_day": 58.27341068593892
+  },
+  {
+   "replicate": 2,
+   "name": "adult#085",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 91.2078373015873,
+   "tbr70_cgm": 4.228670634920635,
+   "tbr54_cgm": 0.6572420634920635,
+   "tar180_cgm": 4.563492063492063,
+   "mean_cgm": 120.07974656684122,
+   "cv_cgm": 27.133328212577887,
+   "insulin_per_day": 52.97211309523808
+  },
+  {
+   "replicate": 2,
+   "name": "adult#087",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 78.3358134920635,
+   "tbr70_cgm": 9.709821428571429,
+   "tbr54_cgm": 4.526289682539683,
+   "tar180_cgm": 11.954365079365079,
+   "mean_cgm": 128.3942225161864,
+   "cv_cgm": 34.1881483270542,
+   "insulin_per_day": 42.37283626531411
+  },
+  {
+   "replicate": 2,
+   "name": "adult#096",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 79.29067460317461,
+   "tbr70_cgm": 6.039186507936508,
+   "tbr54_cgm": 2.7529761904761902,
+   "tar180_cgm": 14.67013888888889,
+   "mean_cgm": 138.5265084928215,
+   "cv_cgm": 35.35872294452346,
+   "insulin_per_day": 55.433454375246534
+  },
+  {
+   "replicate": 2,
+   "name": "adult#097",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 88.50446428571429,
+   "tbr70_cgm": 3.3110119047619047,
+   "tbr54_cgm": 0.607638888888889,
+   "tar180_cgm": 8.18452380952381,
+   "mean_cgm": 130.6716780052934,
+   "cv_cgm": 27.902801165775426,
+   "insulin_per_day": 52.691769175768705
+  },
+  {
+   "replicate": 2,
+   "name": "adult#099",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 68.34077380952381,
+   "tbr70_cgm": 0.5952380952380952,
+   "tbr54_cgm": 0.08680555555555555,
+   "tar180_cgm": 31.063988095238095,
+   "mean_cgm": 163.5660496345848,
+   "cv_cgm": 30.13940983889489,
+   "insulin_per_day": 69.70138411426251
+  },
+  {
+   "replicate": 2,
+   "name": "adult#105",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 79.35267857142857,
+   "tbr70_cgm": 5.667162698412699,
+   "tbr54_cgm": 2.021329365079365,
+   "tar180_cgm": 14.98015873015873,
+   "mean_cgm": 137.69870786309497,
+   "cv_cgm": 35.96849091945242,
+   "insulin_per_day": 54.066018088402515
+  },
+  {
+   "replicate": 2,
+   "name": "adult#115",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 79.14186507936508,
+   "tbr70_cgm": 3.8070436507936503,
+   "tbr54_cgm": 0.9548611111111112,
+   "tar180_cgm": 17.05109126984127,
+   "mean_cgm": 141.19606249891507,
+   "cv_cgm": 31.37408586228177,
+   "insulin_per_day": 62.74303463069821
+  },
+  {
+   "replicate": 2,
+   "name": "adult#131",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 82.72569444444444,
+   "tbr70_cgm": 3.6458333333333335,
+   "tbr54_cgm": 0.855654761904762,
+   "tar180_cgm": 13.628472222222221,
+   "mean_cgm": 135.74261896822537,
+   "cv_cgm": 30.98113393178534,
+   "insulin_per_day": 71.26912152511638
+  },
+  {
+   "replicate": 2,
+   "name": "adult#164",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 82.01884920634922,
+   "tbr70_cgm": 3.6458333333333335,
+   "tbr54_cgm": 1.5004960317460319,
+   "tar180_cgm": 14.335317460317459,
+   "mean_cgm": 136.35273088752936,
+   "cv_cgm": 32.68326499804383,
+   "insulin_per_day": 40.20636161141223
+  },
+  {
+   "replicate": 2,
+   "name": "adult#165",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 78.85664682539682,
+   "tbr70_cgm": 1.277281746031746,
+   "tbr54_cgm": 0.1984126984126984,
+   "tar180_cgm": 19.866071428571427,
+   "mean_cgm": 148.58285187921564,
+   "cv_cgm": 28.582539486478392,
+   "insulin_per_day": 97.78926907255195
+  },
+  {
+   "replicate": 2,
+   "name": "adult#173",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 84.28819444444444,
+   "tbr70_cgm": 1.1036706349206349,
+   "tbr54_cgm": 0.13640873015873015,
+   "tar180_cgm": 14.608134920634921,
+   "mean_cgm": 139.8122899037202,
+   "cv_cgm": 29.505525613123893,
+   "insulin_per_day": 54.05463871447152
+  },
+  {
+   "replicate": 2,
+   "name": "adult#181",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 71.82539682539682,
+   "tbr70_cgm": 6.324404761904762,
+   "tbr54_cgm": 2.6165674603174605,
+   "tar180_cgm": 21.85019841269841,
+   "mean_cgm": 143.5332563540655,
+   "cv_cgm": 36.427255060813714,
+   "insulin_per_day": 55.14510185079108
+  },
+  {
+   "replicate": 2,
+   "name": "adult#184",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 84.79662698412699,
+   "tbr70_cgm": 3.980654761904762,
+   "tbr54_cgm": 1.3268849206349207,
+   "tar180_cgm": 11.222718253968255,
+   "mean_cgm": 136.48610388740576,
+   "cv_cgm": 33.24963335482647,
+   "insulin_per_day": 61.31425114567653
+  },
+  {
+   "replicate": 2,
+   "name": "adult#185",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 89.12450396825396,
+   "tbr70_cgm": 1.0912698412698412,
+   "tbr54_cgm": 0.42162698412698413,
+   "tar180_cgm": 9.78422619047619,
+   "mean_cgm": 137.28506140954275,
+   "cv_cgm": 24.436361959369023,
+   "insulin_per_day": 61.641326544933236
+  },
+  {
+   "replicate": 2,
+   "name": "adult#189",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 83.5689484126984,
+   "tbr70_cgm": 2.5421626984126986,
+   "tbr54_cgm": 0.4712301587301587,
+   "tar180_cgm": 13.88888888888889,
+   "mean_cgm": 137.05295309068507,
+   "cv_cgm": 30.674977608741123,
+   "insulin_per_day": 63.71893281520532
+  },
+  {
+   "replicate": 2,
+   "name": "adult#193",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 74.75198412698413,
+   "tbr70_cgm": 1.9097222222222223,
+   "tbr54_cgm": 0.248015873015873,
+   "tar180_cgm": 23.338293650793652,
+   "mean_cgm": 148.89468429355173,
+   "cv_cgm": 34.3297756696404,
+   "insulin_per_day": 54.832736691461676
+  },
+  {
+   "replicate": 2,
+   "name": "adult#199",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 66.3814484126984,
+   "tbr70_cgm": 3.125,
+   "tbr54_cgm": 1.1656746031746033,
+   "tar180_cgm": 30.49355158730159,
+   "mean_cgm": 157.7122449550924,
+   "cv_cgm": 32.86848795476594,
+   "insulin_per_day": 119.65528085567563
+  },
+  {
+   "replicate": 2,
+   "name": "adult#210",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 82.6016865079365,
+   "tbr70_cgm": 6.163194444444445,
+   "tbr54_cgm": 1.7361111111111112,
+   "tar180_cgm": 11.235119047619047,
+   "mean_cgm": 129.76323971463194,
+   "cv_cgm": 34.960665889890876,
+   "insulin_per_day": 92.64040582511946
+  },
+  {
+   "replicate": 2,
+   "name": "adult#216",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 80.30753968253968,
+   "tbr70_cgm": 1.5873015873015872,
+   "tbr54_cgm": 0.2728174603174603,
+   "tar180_cgm": 18.10515873015873,
+   "mean_cgm": 144.59356068735667,
+   "cv_cgm": 27.58641918202493,
+   "insulin_per_day": 70.43433980680011
+  },
+  {
+   "replicate": 2,
+   "name": "adult#224",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 69.5064484126984,
+   "tbr70_cgm": 14.67013888888889,
+   "tbr54_cgm": 6.15079365079365,
+   "tar180_cgm": 15.823412698412698,
+   "mean_cgm": 126.67281166684599,
+   "cv_cgm": 42.81154253878315,
+   "insulin_per_day": 48.34473546570483
+  },
+  {
+   "replicate": 2,
+   "name": "adult#237",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 67.89434523809523,
+   "tbr70_cgm": 9.10218253968254,
+   "tbr54_cgm": 4.278273809523809,
+   "tar180_cgm": 23.00347222222222,
+   "mean_cgm": 144.5863470108887,
+   "cv_cgm": 45.539776296477,
+   "insulin_per_day": 80.08048520339653
+  },
+  {
+   "replicate": 2,
+   "name": "adult#239",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 72.94146825396825,
+   "tbr70_cgm": 12.313988095238097,
+   "tbr54_cgm": 5.146329365079365,
+   "tar180_cgm": 14.744543650793652,
+   "mean_cgm": 127.99008999556614,
+   "cv_cgm": 40.37428168587582,
+   "insulin_per_day": 60.46438019792534
+  },
+  {
+   "replicate": 2,
+   "name": "adult#243",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 75.68204365079364,
+   "tbr70_cgm": 5.629960317460317,
+   "tbr54_cgm": 2.1577380952380953,
+   "tar180_cgm": 18.68799603174603,
+   "mean_cgm": 143.37356872306518,
+   "cv_cgm": 37.71800500930259,
+   "insulin_per_day": 107.6647921943924
+  },
+  {
+   "replicate": 2,
+   "name": "adult#246",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 91.69146825396825,
+   "tbr70_cgm": 2.294146825396825,
+   "tbr54_cgm": 0.6572420634920635,
+   "tar180_cgm": 6.014384920634921,
+   "mean_cgm": 133.68529958078298,
+   "cv_cgm": 23.344656221576262,
+   "insulin_per_day": 92.6569921075691
+  },
+  {
+   "replicate": 2,
+   "name": "adult#251",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 79.36507936507937,
+   "tbr70_cgm": 4.278273809523809,
+   "tbr54_cgm": 1.351686507936508,
+   "tar180_cgm": 16.356646825396826,
+   "mean_cgm": 137.48420360565697,
+   "cv_cgm": 32.220908003895566,
+   "insulin_per_day": 61.969073024400736
+  },
+  {
+   "replicate": 2,
+   "name": "adult#254",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 75.14880952380952,
+   "tbr70_cgm": 8.333333333333332,
+   "tbr54_cgm": 3.459821428571429,
+   "tar180_cgm": 16.517857142857142,
+   "mean_cgm": 134.2256037014954,
+   "cv_cgm": 33.872939545991855,
+   "insulin_per_day": 50.52589238566658
+  },
+  {
+   "replicate": 2,
+   "name": "adult#272",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 81.31200396825396,
+   "tbr70_cgm": 1.636904761904762,
+   "tbr54_cgm": 0.21081349206349206,
+   "tar180_cgm": 17.05109126984127,
+   "mean_cgm": 144.30327328983,
+   "cv_cgm": 33.921006072247856,
+   "insulin_per_day": 70.69848129934721
+  },
+  {
+   "replicate": 2,
+   "name": "adult#273",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 78.3358134920635,
+   "tbr70_cgm": 1.6493055555555556,
+   "tbr54_cgm": 0.607638888888889,
+   "tar180_cgm": 20.014880952380953,
+   "mean_cgm": 148.75431983935022,
+   "cv_cgm": 32.13626904905517,
+   "insulin_per_day": 95.89960152692417
+  },
+  {
+   "replicate": 2,
+   "name": "adult#274",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 74.56597222222221,
+   "tbr70_cgm": 1.029265873015873,
+   "tbr54_cgm": 0.1240079365079365,
+   "tar180_cgm": 24.404761904761905,
+   "mean_cgm": 155.95531257034543,
+   "cv_cgm": 32.98375245108965,
+   "insulin_per_day": 55.54672763448561
+  },
+  {
+   "replicate": 2,
+   "name": "adult#275",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 82.45287698412699,
+   "tbr70_cgm": 2.517361111111111,
+   "tbr54_cgm": 0.5084325396825397,
+   "tar180_cgm": 15.029761904761903,
+   "mean_cgm": 138.18024957091623,
+   "cv_cgm": 33.20105324446094,
+   "insulin_per_day": 60.052580052299206
+  },
+  {
+   "replicate": 2,
+   "name": "adult#287",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 83.66815476190477,
+   "tbr70_cgm": 1.1408730158730158,
+   "tbr54_cgm": 0.18601190476190474,
+   "tar180_cgm": 15.190972222222221,
+   "mean_cgm": 142.5939211627449,
+   "cv_cgm": 27.33902630449925,
+   "insulin_per_day": 53.94284710619417
+  },
+  {
+   "replicate": 2,
+   "name": "adult#288",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 88.95089285714286,
+   "tbr70_cgm": 2.380952380952381,
+   "tbr54_cgm": 0.3100198412698413,
+   "tar180_cgm": 8.668154761904761,
+   "mean_cgm": 130.2732830733189,
+   "cv_cgm": 28.566087727868847,
+   "insulin_per_day": 103.3967037658874
+  },
+  {
+   "replicate": 2,
+   "name": "adult#290",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 78.03819444444444,
+   "tbr70_cgm": 4.04265873015873,
+   "tbr54_cgm": 1.0540674603174605,
+   "tar180_cgm": 17.919146825396826,
+   "mean_cgm": 138.2432634604795,
+   "cv_cgm": 33.62643856362105,
+   "insulin_per_day": 75.57612452712947
+  },
+  {
+   "replicate": 2,
+   "name": "adult#291",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 79.37748015873017,
+   "tbr70_cgm": 0.5704365079365079,
+   "tbr54_cgm": 0.13640873015873015,
+   "tar180_cgm": 20.052083333333336,
+   "mean_cgm": 149.11288806050243,
+   "cv_cgm": 29.923211525534228,
+   "insulin_per_day": 97.31453270325116
+  },
+  {
+   "replicate": 2,
+   "name": "adult#298",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 94.04761904761905,
+   "tbr70_cgm": 1.8353174603174605,
+   "tbr54_cgm": 0.23561507936507936,
+   "tar180_cgm": 4.117063492063492,
+   "mean_cgm": 129.94752989416327,
+   "cv_cgm": 21.728012982533734,
+   "insulin_per_day": 37.2869687826489
+  },
+  {
+   "replicate": 2,
+   "name": "child#052",
+   "completed": false,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 40.57507987220447,
+   "tbr70_cgm": 26.517571884984026,
+   "tbr54_cgm": 13.738019169329075,
+   "tar180_cgm": 32.9073482428115,
+   "mean_cgm": 160.03107769404906,
+   "cv_cgm": 73.4200369798612,
+   "insulin_per_day": 54.39699680511182
+  },
+  {
+   "replicate": 2,
+   "name": "child#086",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 89.99255952380952,
+   "tbr70_cgm": 4.9603174603174605,
+   "tbr54_cgm": 1.1780753968253967,
+   "tar180_cgm": 5.047123015873016,
+   "mean_cgm": 123.1275882765082,
+   "cv_cgm": 29.04393545259427,
+   "insulin_per_day": 13.902258152306413
+  },
+  {
+   "replicate": 2,
+   "name": "child#099",
+   "completed": true,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 75.78125,
+   "tbr70_cgm": 3.4970238095238098,
+   "tbr54_cgm": 0.7688492063492063,
+   "tar180_cgm": 20.721726190476193,
+   "mean_cgm": 147.17758940765466,
+   "cv_cgm": 38.199030507255664,
+   "insulin_per_day": 44.26687283217462
+  },
+  {
+   "replicate": 2,
+   "name": "child#135",
+   "completed": false,
+   "layers": [
+    "physiology",
+    "behaviour",
+    "sensor",
+    "site"
+   ],
+   "controller": "control-iq",
+   "tir_cgm": 72.04246713852376,
+   "tbr70_cgm": 0.5561172901921132,
+   "tbr54_cgm": 0.0,
+   "tar180_cgm": 27.401415571284126,
+   "mean_cgm": 156.2118573851357,
+   "cv_cgm": 28.815783959069172,
+   "insulin_per_day": 17.65694636467853
+  }
+ ],
+ "summary": {
+  "tir_cgm": {
+   "medians": [
+    83.25892857142857,
+    81.34920634920636,
+    82.26686507936509
+   ],
+   "range": 1.9097222222222143,
+   "split_half_95_per_replicate": [
+    3.335813492063494,
+    2.809089781746044,
+    3.0753968253968225
+   ],
+   "split_half_95": 3.0753968253968225
+  },
+  "tbr70_cgm": {
+   "medians": [
+    2.294146825396825,
+    3.2118055555555554,
+    2.963789682539683
+   ],
+   "range": 0.9176587301587302,
+   "split_half_95_per_replicate": [
+    0.8122519841269842,
+    0.8060515873015874,
+    1.357886904761905
+   ],
+   "split_half_95": 0.8122519841269842
+  },
+  "tbr54_cgm": {
+   "medians": [
+    0.5456349206349206,
+    0.8308531746031746,
+    0.7378472222222222
+   ],
+   "range": 0.28521825396825407,
+   "split_half_95_per_replicate": [
+    0.42162698412698413,
+    0.3782242063492064,
+    0.49603174603174593
+   ],
+   "split_half_95": 0.42162698412698413
+  },
+  "tar180_cgm": {
+   "medians": [
+    13.702876984126986,
+    14.558531746031747,
+    14.589533730158731
+   ],
+   "range": 0.8866567460317452,
+   "split_half_95_per_replicate": [
+    3.019593253968253,
+    2.796378968253972,
+    1.9658358134920653
+   ],
+   "split_half_95": 2.796378968253972
+  },
+  "mean_cgm": {
+   "medians": [
+    140.14164795719265,
+    139.98642913687652,
+    138.97783804249812
+   ],
+   "range": 1.163809914694525,
+   "split_half_95_per_replicate": [
+    4.063607735953013,
+    4.954988023261942,
+    3.03520157638494
+   ],
+   "split_half_95": 4.063607735953013
+  },
+  "cv_cgm": {
+   "medians": [
+    30.01613197051868,
+    31.645770824642263,
+    31.052441027467534
+   ],
+   "range": 1.6296388541235842,
+   "split_half_95_per_replicate": [
+    1.8343014141302614,
+    1.963517406766092,
+    2.6531664826572587
+   ],
+   "split_half_95": 1.963517406766092
+  }
+ }
+}

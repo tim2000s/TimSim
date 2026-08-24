@@ -1,0 +1,35 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/group_floor.json
+
+cell                                                 tir    tar180     tbr70     tbr54      mean        cv
+bare|control-iq|dclp3                               0.07      0.07      0.37      0.33      0.07      0.25
+bare|oref|close_it                                 3.99*     2.64*     1.71*     0.58*     2.72*     3.34*
+bare|oref|commons                                   0.10      0.09      0.31      0.15      0.13      0.27
+bare|oref|dclp3                                     0.10      0.07      0.70      0.61      0.06      0.19
+layered_always|control-iq|dclp3                     0.12      0.08      0.37      0.84      0.10      0.24
+layered_always|oref|close_it                       2.54*     2.55*     1.10*     0.56*     3.67*     2.34*
+layered_always|oref|commons                         0.21      0.14      0.15      0.18      0.13      0.30
+layered_always|oref|dclp3                           0.10      0.10      0.35      1.19      0.12      0.31
+layered_never|control-iq|dclp3                      0.14      0.12      0.40      0.65      0.10      0.26
+layered_never|oref|close_it                        2.82*     2.56*     1.25*     0.57*     4.40*     2.72*
+layered_never|oref|commons                          0.21      0.18      0.24      0.33      0.13      0.26
+layered_never|oref|dclp3                            0.12      0.09      0.39      0.70      0.10      0.22
+layered_some|control-iq|dclp3                       0.12      0.10      0.36      1.00      0.10      0.16
+layered_some|oref|close_it                         3.51*     2.91*     1.30*     0.53*     4.10*     2.67*
+layered_some|oref|commons                           0.18      0.17      0.26      0.32      0.13      0.22
+layered_some|oref|dclp3                             0.12      0.09      0.38      0.84      0.15      0.28
+
+p95 of |median(A) - median(B)| over disjoint halves, in units of the reference's
+p10 to p90 spread. An asterisk marks a cell with no matching reference spread, where
+the figure is in the measure's own units instead.
+
+
+Layered minus bare, paired on subject and seed. Observed difference against the
+floor on that difference, both in spreads. 'yes' means the difference exceeds it.
+
+cell                                        tir             tar180              tbr70              tbr54               mean                 cv
+control-iq|dclp3               -0.45/ 0.13 yes   +0.36/ 0.11 yes   +0.63/ 0.39 yes   +1.19/ 1.00 yes   +0.35/ 0.11 yes   +0.82/ 0.21 yes
+oref|close_it                                 -                  -                  -                  -                  -                  -
+oref|commons                   -0.35/ 0.17 yes   +0.25/ 0.18 yes   +0.37/ 0.24 yes   +0.59/ 0.27 yes   +0.23/ 0.15 yes   +0.75/ 0.28 yes
+oref|dclp3                     -0.28/ 0.14 yes   +0.24/ 0.08 yes   +0.53/ 0.63  no   +1.73/ 0.81 yes   +0.22/ 0.14 yes   +0.57/ 0.26 yes

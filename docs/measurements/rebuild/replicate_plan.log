@@ -3,10 +3,10 @@
 3 disjoint cohorts of 90, matched to 112 DCLP3 closed-loop participants
 
    rep    match     age    <18     TDI  titrated   new
-     0    0.226    30.0    24%    45.9        84     6
-     1    0.469    30.2    19%    48.4        20    70
-     2    0.733    31.0    32%    48.5        23    67
+     0    0.226    30.0    24%    45.9        86     4
+     1    0.469    30.2    19%    48.4        80    10
+     2    0.733    31.0    32%    48.5        87     3
   real             28.5    28%    47.9
 
-143 subjects need titrating before these can run
-wrote the plan to /Users/timstreet/StudioProjects/TimSim/docs/measurements/cohort_replicates.json
+17 subjects need titrating before these can run
+wrote the plan to /Users/timstreet/StudioProjects/TimSim/docs/measurements/cohort_replicates_plan.json

@@ -9,6 +9,14 @@ uptake defence 0.0, hepatic defence 0.0, 20 subjects
        55     54.9    0.49    2.89    2.49   440.8     0.00     2.02    6/20
        45     44.7    0.46    2.44    1.99   459.8     0.00     1.87    9/20
 
+uptake defence 0.0, hepatic defence 0.05, 20 subjects
+   target  held at     EGP  uptake     GIR      Id  EGP p10  EGP p90  n zero
+       90     90.4    2.01    4.02    2.79   203.0     1.20     2.55    0/20
+       80     79.6    1.40    3.75    3.39   292.9     0.07     2.19    2/20
+       65     64.2    0.85    3.24    2.65   379.5     0.00     2.05    3/20
+       55     54.7    0.58    2.89    2.61   440.8     0.00     2.07    6/20
+       45     44.9    0.62    2.33    1.94   459.8     0.00     1.93    7/20
+
 uptake defence 0.0, hepatic defence 0.15, 20 subjects
    target  held at     EGP  uptake     GIR      Id  EGP p10  EGP p90  n zero
        90     90.4    2.01    4.02    2.79   203.0     1.20     2.55    0/20
@@ -34,3 +42,5 @@ uptake defence 0.0, hepatic defence 0.3, 20 subjects
        45     45.0    1.35    2.36    1.70   459.8     0.02     2.33    2/20
 
   human, long-standing type 1 diabetes: EGP 0.42 to 0.84, glucose infusion 3.1, both mg/kg/min at the plateau
+
+wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/clamp.json

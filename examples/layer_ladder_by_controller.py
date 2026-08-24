@@ -11,6 +11,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from timsim import signatures, simulate                          # noqa: E402
 from timsim import provenance, seeds
+from examples.panel import dosable
 from timsim.population import names                              # noqa: E402
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -280,7 +281,7 @@ def main():
     p.add_argument("--table", action="store_true")
     a = p.parse_args()
     if not a.table:
-        run(names("adult")[:a.subjects], a.days, a.seed, a.workers)
+        run(dosable(a.subjects, "adult"), a.days, a.seed, a.workers)
     table(load())
 
 

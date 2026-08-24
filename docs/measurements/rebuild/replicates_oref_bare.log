@@ -1,0 +1,69 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+3 disjoint cohorts of 90, matched to 112 DCLP3 closed-loop participants
+
+   rep    match     age    <18     TDI  titrated   new
+     0    0.226    30.0    24%    45.9        86     4
+     1    0.469    30.2    19%    48.4        80    10
+     2    0.733    31.0    32%    48.5        87     3
+  real             28.5    28%    47.9
+
+17 subjects need titrating before these can run
+
+excluded, no settings clear the hypoglycaemia floors:
+  replicate 0: adolescent#095, adolescent#096, adult#070, child#072
+  replicate 1: adolescent#040, adolescent#056, adolescent#060, adolescent#148, adult#026, adult#068, adult#086, adult#145, child#067, child#087
+  replicate 2: adolescent#087, adolescent#097, adult#075
+
+running 86, 80, 87 subjects per replicate
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+  20/253 done, 4.6 min
+  40/253 done, 9.0 min
+  60/253 done, 11.5 min
+  80/253 done, 16.0 min
+  100/253 done, 18.5 min
+  120/253 done, 23.0 min
+  140/253 done, 25.5 min
+  160/253 done, 29.4 min
+  180/253 done, 32.5 min
+  200/253 done, 36.8 min
+  220/253 done, 39.4 min
+  240/253 done, 43.2 min
+  253/253 done, 45.0 min
+
+  completed group sizes [77, 84, 85]; split halves are half of each. The real baseline's halves are half of its cohort, so compare at the sizes printed.
+
+  measure                    rep 0     rep 1     rep 2    range  split95
+  Time in range, %           93.08     89.88     93.67     3.79     3.63
+  Time below 70, %            2.72      3.83      1.98     1.85     1.61
+  Time below 54, %            0.32      0.71      0.27     0.44     0.38
+  Time above 180, %           3.45      5.32      3.37     1.95     1.86
+  Mean glucose, mg/dL       120.16    121.03    121.22     1.06     2.47
+  Variability, CV %          24.63     27.48     24.26     3.21     3.61
+
+wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/cohort_replicates_oref_bare.json

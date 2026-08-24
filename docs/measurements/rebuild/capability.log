@@ -12,21 +12,24 @@
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
-73 of 80 runs completed
-   basal-bolus 17/20
+76 of 80 runs completed
+   basal-bolus 18/20
          trend 20/20
-         boost 17/20
-          oref 19/20
+         boost 20/20
+          oref 18/20
 
 | Signature                              | p10 | median | p90 | reference |
 |---|---|---|---|---|
-| Glucose variability (CV%)              | 29.53 | 34.76 | 42.46 | 29.5 to 34.3 |
-| Rise tail P(Δ>10 mg/dL / 5min) %       | 2.44 | 3.45 | 4.62 | 3.7 to 6.6 |
-| Autocorrelation @30 min                | 0.87 | 0.91 | 0.96 | 0.78 to 0.87 |
-| Autocorrelation @60 min                | 0.64 | 0.76 | 0.90 | 0.5 to 0.68 |
-| Outcome SD @stuck-high +30min (mg/dL)  | 18.19 | 24.37 | 31.27 | 26.5 to 33.5 |
-| Diurnal amplitude (mg/dL)              | 28.68 | 46.99 | 68.09 | 34.7 to 56.3 |
-| Hypo recovery to 100 (min)             | 50.00 | 70.00 | 92.00 | 50 to 59 |
-| Hypo rebound >180 %                    | 13.08 | 33.33 | 54.37 | 23.2 to 28.4 |
-| Compression lows / 30d                 | 2.14 | 3.21 | 5.14 | 1.9 to 5.3 |
-| Sensor jitter (2nd-diff SD)            | 5.55 | 5.63 | 5.70 | 4.5 to 6.7 |
+| Glucose variability (CV%)              | 27.29 | 31.89 | 39.21 | 29.5 to 34.3 |
+| Rise tail P(Δ>10 mg/dL / 5min) %       | 1.83 | 2.90 | 5.01 | 3.7 to 6.6 |
+| Autocorrelation @30 min                | 0.86 | 0.91 | 0.95 | 0.78 to 0.87 |
+| Autocorrelation @60 min                | 0.62 | 0.75 | 0.87 | 0.5 to 0.68 |
+| Outcome SD @stuck-high +30min (mg/dL)  | 17.95 | 22.75 | 28.22 | 26.5 to 33.5 |
+| Diurnal amplitude (mg/dL)              | 21.15 | 37.03 | 60.90 | 34.7 to 56.3 |
+| Hypo recovery to 100 (min)             | 45.00 | 68.75 | 85.00 | 50 to 59 |
+| Hypo rebound >180 %                    | 9.31 | 29.71 | 54.09 | 23.2 to 28.4 |
+| Compression lows / 30d                 | 3.21 | 4.29 | 5.36 | 1.9 to 5.3 |
+| Sensor jitter (2nd-diff SD)            | 4.34 | 5.16 | 7.61 | 4.5 to 6.7 |
+
+4 of 10 simulated medians inside the real range
+wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/capability_table.json

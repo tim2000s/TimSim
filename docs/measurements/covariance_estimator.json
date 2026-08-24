@@ -1,0 +1,97 @@
+{
+ "alpha_in_use": 0.5,
+ "alpha_source": "generate.generate default",
+ "free_parameters": 29,
+ "pair": [
+  "EGPb",
+  "Vmx"
+ ],
+ "critical_r_n10": 0.6319,
+ "provenance": {
+  "population": "704cfac086df54ba",
+  "settings": "046e0da5bc380688",
+  "commit": "86bb7bd4cfe245e45d118c5d96457efd0e4127f5",
+  "dirty": false,
+  "host": "Tims-Mac-mini.local",
+  "python": "3.14.7",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "when": "2026-08-24T18:55:59+00:00",
+  "simglucose": "0.2.11"
+ },
+ "classes": {
+  "adult": {
+   "n": 10,
+   "covariance_rank": 9,
+   "r_published": 0.7728662178581738,
+   "r_interval": [
+    0.27901174923174266,
+    0.9434122003165496
+   ],
+   "r_after_shrinkage": 0.3864331089290869,
+   "shrunk_inside_published_interval": true,
+   "optimal_diagonal_shrinkage": 0.4220296286454054,
+   "correlations_total": 406,
+   "correlations_beyond_critical": 46,
+   "correlations_beyond_critical_fraction": 0.11330049261083744
+  },
+  "adolescent": {
+   "n": 10,
+   "covariance_rank": 9,
+   "r_published": 0.44153442603479076,
+   "r_interval": [
+    -0.26051567020045996,
+    0.8381528265466069
+   ],
+   "r_after_shrinkage": 0.22076721301739538,
+   "shrunk_inside_published_interval": true,
+   "optimal_diagonal_shrinkage": 0.4832934915081772,
+   "correlations_total": 406,
+   "correlations_beyond_critical": 44,
+   "correlations_beyond_critical_fraction": 0.10837438423645321
+  },
+  "child": {
+   "n": 10,
+   "covariance_rank": 9,
+   "r_published": -0.3209334866164052,
+   "r_interval": [
+    -0.7907702870701178,
+    0.38686614543540176
+   ],
+   "r_after_shrinkage": -0.1604667433082026,
+   "shrunk_inside_published_interval": true,
+   "optimal_diagonal_shrinkage": 0.8929520245888887,
+   "correlations_total": 406,
+   "correlations_beyond_critical": 31,
+   "correlations_beyond_critical_fraction": 0.07635467980295567
+  }
+ },
+ "pooled": {
+  "n": 30,
+  "note": "class means removed before pooling, so this is within-class covariation",
+  "covariance_rank": 27,
+  "r_published": 0.28692626847567476
+ },
+ "generated": {
+  "adult": {
+   "n": 300,
+   "marginal_sd_ratio_min": 0.8489257140444307,
+   "marginal_sd_ratio_median": 0.9195149637607364,
+   "marginal_sd_ratio_max": 0.9966292373824538,
+   "r_realised": 0.34950449812505135
+  },
+  "adolescent": {
+   "n": 150,
+   "marginal_sd_ratio_min": 0.8821982611437095,
+   "marginal_sd_ratio_median": 0.9445107749755366,
+   "marginal_sd_ratio_max": 1.072243011532029,
+   "r_realised": 0.10220086670234514
+  },
+  "child": {
+   "n": 150,
+   "marginal_sd_ratio_min": 0.8264728348505024,
+   "marginal_sd_ratio_median": 0.9201246937162602,
+   "marginal_sd_ratio_max": 0.9997326895068082,
+   "r_realised": -0.03602764345797707
+  }
+ }
+}
