@@ -1,0 +1,1308 @@
+{
+ "provenance": {
+  "population": "704cfac086df54ba",
+  "settings": "9252e3400f4c6249",
+  "commit": "a61cd5f7db0c7f2a773cdb01b1ed88fdf60c222d",
+  "dirty": true,
+  "host": "Tims-Mac-mini.local",
+  "python": "3.14.7",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "when": "2026-08-23T21:24:13+00:00",
+  "simglucose": "0.2.11"
+ },
+ "users": 147,
+ "user_days": 48454,
+ "entries": 292140,
+ "entries_per_day": {
+  "median": 5.561837455830389,
+  "p10": 2.6187569026874464,
+  "p90": 9.36877380045697
+ },
+ "grams_per_day": {
+  "median": 161.6004746835443,
+  "p10": 76.55595060110186,
+  "p90": 228.10322308233643
+ },
+ "by_hour_grams": [
+  2.2920212985512034,
+  1.4269224419036612,
+  0.8560036323110579,
+  0.747743220373963,
+  0.6088578858298592,
+  0.8825318859124117,
+  3.1706422586370575,
+  7.146702233045775,
+  7.4270710364469394,
+  7.466180294712511,
+  6.575461262228093,
+  9.591367069798158,
+  14.583052998720436,
+  12.409663392083212,
+  8.478244933338837,
+  6.826086597597721,
+  6.452506088248648,
+  10.126404424815288,
+  15.250919428736534,
+  14.068015024559378,
+  11.434420274899903,
+  8.061105378296942,
+  5.214954389730466,
+  3.2511330333924966
+ ],
+ "by_hour_entries": [
+  0.12256986007347175,
+  0.08075700664547819,
+  0.053617864366203,
+  0.04552771700994758,
+  0.03597226235192141,
+  0.048602798530565074,
+  0.116956288438519,
+  0.2358731993230693,
+  0.25642877780988155,
+  0.26563338424072314,
+  0.2593387542824122,
+  0.3197465637511867,
+  0.432079910843274,
+  0.3948074462376687,
+  0.3238948280843687,
+  0.2934742229743674,
+  0.28028645725843065,
+  0.3498988731580468,
+  0.47087959714368266,
+  0.46475007223345854,
+  0.41377388863664505,
+  0.33252156684690637,
+  0.257646427539522,
+  0.17418582573162175
+ ],
+ "template_by_hour_grams": [
+  1.1051964385122628e-08,
+  4.458680657624847e-06,
+  0.0006617268818430921,
+  0.03612906358745139,
+  0.7256716450241659,
+  5.3620292992640985,
+  14.575581068605661,
+  14.578993093373683,
+  5.441436243530661,
+  1.6284517522847013,
+  5.164310646993209,
+  14.575764944526503,
+  20.853419009440856,
+  15.50538372745883,
+  7.245025390805707,
+  4.956834972061772,
+  9.28845157698659,
+  18.702557824651,
+  24.143305557359493,
+  17.893714754889324,
+  8.117614289931712,
+  3.8800186983886733,
+  2.427465825506784,
+  0.8305704593386787
+ ],
+ "windows": {
+  "morning 05-10": {
+   "real_grams_share": 15.8767530144625,
+   "template_grams_share": 21.2248102148122
+  },
+  "midday 10-15": {
+   "real_grams_share": 31.41978385016246,
+   "template_grams_share": 32.329304242800774
+  },
+  "afternoon 15-18": {
+   "real_grams_share": 14.241119829628813,
+   "template_grams_share": 16.815838973601057
+  },
+  "evening 18-21": {
+   "real_grams_share": 24.796986959645025,
+   "template_grams_share": 25.597797831147513
+  },
+  "night 21-03": {
+   "real_grams_share": 12.839912154712886,
+   "template_grams_share": 3.643442784183911
+  },
+  "smallhours 03-05": {
+   "real_grams_share": 0.8254441913883012,
+   "template_grams_share": 0.38880595345454466
+  }
+ },
+ "per_user": [
+  {
+   "user": "00221634",
+   "tz": "Europe/Berlin",
+   "n": 1510,
+   "days": 151,
+   "entries_per_day": 10.0,
+   "grams_per_day": 188.7086092715232
+  },
+  {
+   "user": "00309157",
+   "tz": "Australia/Brisbane",
+   "n": 1418,
+   "days": 186,
+   "entries_per_day": 7.623655913978495,
+   "grams_per_day": 136.5215053763441
+  },
+  {
+   "user": "00897741",
+   "tz": "US/Pacific",
+   "n": 4298,
+   "days": 610,
+   "entries_per_day": 7.045901639344263,
+   "grams_per_day": 102.9032786885246
+  },
+  {
+   "user": "01352464",
+   "tz": "Europe/Stockholm",
+   "n": 3100,
+   "days": 538,
+   "entries_per_day": 5.762081784386617,
+   "grams_per_day": 142.36802973977694
+  },
+  {
+   "user": "01884126",
+   "tz": "US/Central",
+   "n": 1302,
+   "days": 184,
+   "entries_per_day": 7.076086956521739,
+   "grams_per_day": 130.30434782608697
+  },
+  {
+   "user": "02033176",
+   "tz": "Australia/Brisbane",
+   "n": 3727,
+   "days": 315,
+   "entries_per_day": 11.831746031746032,
+   "grams_per_day": 225.13333333333333
+  },
+  {
+   "user": "02050717",
+   "tz": "Europe/Berlin",
+   "n": 330,
+   "days": 143,
+   "entries_per_day": 2.3076923076923075,
+   "grams_per_day": 125.6013986013986
+  },
+  {
+   "user": "02199852",
+   "tz": "America/Denver",
+   "n": 1545,
+   "days": 620,
+   "entries_per_day": 2.4919354838709675,
+   "grams_per_day": 143.7225806451613
+  },
+  {
+   "user": "02611986",
+   "tz": "Etc/GMT-3",
+   "n": 4620,
+   "days": 715,
+   "entries_per_day": 6.461538461538462,
+   "grams_per_day": 196.1153846153846
+  },
+  {
+   "user": "03572116",
+   "tz": "Australia/Brisbane",
+   "n": 1181,
+   "days": 255,
+   "entries_per_day": 4.631372549019608,
+   "grams_per_day": 77.51921568627452
+  },
+  {
+   "user": "04762925",
+   "tz": "US/Mountain",
+   "n": 556,
+   "days": 174,
+   "entries_per_day": 3.1954022988505746,
+   "grams_per_day": 156.2816091954023
+  },
+  {
+   "user": "05274556",
+   "tz": "America/Montreal",
+   "n": 477,
+   "days": 96,
+   "entries_per_day": 4.96875,
+   "grams_per_day": 140.78125
+  },
+  {
+   "user": "07886752",
+   "tz": "US/Pacific",
+   "n": 498,
+   "days": 69,
+   "entries_per_day": 7.217391304347826,
+   "grams_per_day": 163.2463768115942
+  },
+  {
+   "user": "11933900",
+   "tz": "America/New_York",
+   "n": 3263,
+   "days": 473,
+   "entries_per_day": 6.898520084566596,
+   "grams_per_day": 150.66384778012684
+  },
+  {
+   "user": "13029224",
+   "tz": "US/Eastern",
+   "n": 1588,
+   "days": 376,
+   "entries_per_day": 4.223404255319149,
+   "grams_per_day": 153.6462765957447
+  },
+  {
+   "user": "13484299",
+   "tz": "America/Denver",
+   "n": 940,
+   "days": 261,
+   "entries_per_day": 3.6015325670498086,
+   "grams_per_day": 96.7088122605364
+  },
+  {
+   "user": "13783771",
+   "tz": "America/Chicago",
+   "n": 4668,
+   "days": 742,
+   "entries_per_day": 6.291105121293801,
+   "grams_per_day": 211.4501347708895
+  },
+  {
+   "user": "14092221",
+   "tz": "US/Mountain",
+   "n": 10462,
+   "days": 1009,
+   "entries_per_day": 10.368681863230922,
+   "grams_per_day": 196.72101090188306
+  },
+  {
+   "user": "15558575",
+   "tz": "US/Eastern",
+   "n": 1164,
+   "days": 203,
+   "entries_per_day": 5.733990147783251,
+   "grams_per_day": 249.95073891625617
+  },
+  {
+   "user": "15634563",
+   "tz": "Europe/London",
+   "n": 2375,
+   "days": 492,
+   "entries_per_day": 4.8272357723577235,
+   "grams_per_day": 173.0487804878049
+  },
+  {
+   "user": "16975609",
+   "tz": "Europe/Paris",
+   "n": 2463,
+   "days": 551,
+   "entries_per_day": 4.47005444646098,
+   "grams_per_day": 91.19963702359347
+  },
+  {
+   "user": "17161370",
+   "tz": "Europe/London",
+   "n": 11392,
+   "days": 1642,
+   "entries_per_day": 6.9378806333739345,
+   "grams_per_day": 217.4961084043849
+  },
+  {
+   "user": "18991425",
+   "tz": "Europe/Stockholm",
+   "n": 2608,
+   "days": 223,
+   "entries_per_day": 11.695067264573991,
+   "grams_per_day": 133.60538116591928
+  },
+  {
+   "user": "20216809",
+   "tz": "US/Pacific",
+   "n": 2064,
+   "days": 603,
+   "entries_per_day": 3.4228855721393034,
+   "grams_per_day": 68.19825870646767
+  },
+  {
+   "user": "20396154",
+   "tz": "US/Pacific",
+   "n": 4952,
+   "days": 964,
+   "entries_per_day": 5.136929460580913,
+   "grams_per_day": 202.48029045643153
+  },
+  {
+   "user": "20649783",
+   "tz": "US/Eastern",
+   "n": 481,
+   "days": 89,
+   "entries_per_day": 5.404494382022472,
+   "grams_per_day": 119.38202247191012
+  },
+  {
+   "user": "21946407",
+   "tz": "Canada/Pacific",
+   "n": 1618,
+   "days": 275,
+   "entries_per_day": 5.883636363636364,
+   "grams_per_day": 194.07272727272726
+  },
+  {
+   "user": "22961398",
+   "tz": "America/New_York",
+   "n": 234,
+   "days": 143,
+   "entries_per_day": 1.6363636363636365,
+   "grams_per_day": 115.81818181818181
+  },
+  {
+   "user": "23428091",
+   "tz": "Europe/Dublin",
+   "n": 668,
+   "days": 144,
+   "entries_per_day": 4.638888888888889,
+   "grams_per_day": 139.57291666666666
+  },
+  {
+   "user": "23711486",
+   "tz": "ETC/GMT-2",
+   "n": 821,
+   "days": 332,
+   "entries_per_day": 2.4728915662650603,
+   "grams_per_day": 57.403614457831324
+  },
+  {
+   "user": "24448124",
+   "tz": "Europe/Amsterdam",
+   "n": 8147,
+   "days": 839,
+   "entries_per_day": 9.710369487485101,
+   "grams_per_day": 241.60977353992848
+  },
+  {
+   "user": "24587372",
+   "tz": "Australia/Brisbane",
+   "n": 1058,
+   "days": 157,
+   "entries_per_day": 6.738853503184713,
+   "grams_per_day": 134.29299363057325
+  },
+  {
+   "user": "25692073",
+   "tz": "Europe/Berlin",
+   "n": 11549,
+   "days": 1210,
+   "entries_per_day": 9.544628099173554,
+   "grams_per_day": 171.21570247933883
+  },
+  {
+   "user": "26856617",
+   "tz": "Europe/Berlin",
+   "n": 5603,
+   "days": 628,
+   "entries_per_day": 8.921974522292993,
+   "grams_per_day": 138.56528662420382
+  },
+  {
+   "user": "27526291",
+   "tz": "Europe/Berlin",
+   "n": 249,
+   "days": 37,
+   "entries_per_day": 6.72972972972973,
+   "grams_per_day": 198.56756756756758
+  },
+  {
+   "user": "27700103",
+   "tz": "Europe/Berlin",
+   "n": 2521,
+   "days": 257,
+   "entries_per_day": 9.809338521400779,
+   "grams_per_day": 169.61322957198442
+  },
+  {
+   "user": "27819368",
+   "tz": "Europe/Berlin",
+   "n": 1891,
+   "days": 535,
+   "entries_per_day": 3.5345794392523366,
+   "grams_per_day": 143.69594392523365
+  },
+  {
+   "user": "28176124",
+   "tz": "Europe/Helsinki",
+   "n": 769,
+   "days": 254,
+   "entries_per_day": 3.02755905511811,
+   "grams_per_day": 148.3228346456693
+  },
+  {
+   "user": "28608066",
+   "tz": "US/Pacific",
+   "n": 520,
+   "days": 155,
+   "entries_per_day": 3.3548387096774195,
+   "grams_per_day": 270.9612903225806
+  },
+  {
+   "user": "28756888",
+   "tz": "Europe/Madrid",
+   "n": 1013,
+   "days": 272,
+   "entries_per_day": 3.724264705882353,
+   "grams_per_day": 93.09926470588235
+  },
+  {
+   "user": "28768536",
+   "tz": "US/Pacific",
+   "n": 940,
+   "days": 101,
+   "entries_per_day": 9.306930693069306,
+   "grams_per_day": 207.65346534653466
+  },
+  {
+   "user": "32407882",
+   "tz": "US/Eastern",
+   "n": 1333,
+   "days": 275,
+   "entries_per_day": 4.847272727272728,
+   "grams_per_day": 241.4181818181818
+  },
+  {
+   "user": "32997134",
+   "tz": "America/New_York",
+   "n": 571,
+   "days": 66,
+   "entries_per_day": 8.651515151515152,
+   "grams_per_day": 212.65151515151516
+  },
+  {
+   "user": "33831564",
+   "tz": "Europe/Zurich",
+   "n": 68,
+   "days": 12,
+   "entries_per_day": 5.666666666666667,
+   "grams_per_day": 129.16666666666666
+  },
+  {
+   "user": "35187603",
+   "tz": "Europe/Paris",
+   "n": 772,
+   "days": 73,
+   "entries_per_day": 10.575342465753424,
+   "grams_per_day": 333.67123287671234
+  },
+  {
+   "user": "35533061",
+   "tz": "America/New_York",
+   "n": 937,
+   "days": 163,
+   "entries_per_day": 5.748466257668712,
+   "grams_per_day": 195.0
+  },
+  {
+   "user": "35719805",
+   "tz": "America/Toronto",
+   "n": 377,
+   "days": 104,
+   "entries_per_day": 3.625,
+   "grams_per_day": 93.22115384615384
+  },
+  {
+   "user": "37764532",
+   "tz": "Europe/Amsterdam",
+   "n": 243,
+   "days": 101,
+   "entries_per_day": 2.405940594059406,
+   "grams_per_day": 57.48514851485149
+  },
+  {
+   "user": "37875431",
+   "tz": "US/Pacific",
+   "n": 650,
+   "days": 258,
+   "entries_per_day": 2.5193798449612403,
+   "grams_per_day": 75.21705426356588
+  },
+  {
+   "user": "37948668",
+   "tz": "US/Central",
+   "n": 1225,
+   "days": 273,
+   "entries_per_day": 4.487179487179487,
+   "grams_per_day": 103.22234432234433
+  },
+  {
+   "user": "37998755",
+   "tz": "America/Vancouver",
+   "n": 364,
+   "days": 62,
+   "entries_per_day": 5.870967741935484,
+   "grams_per_day": 244.70967741935485
+  },
+  {
+   "user": "39182506",
+   "tz": "Europe/Berlin",
+   "n": 3220,
+   "days": 550,
+   "entries_per_day": 5.8545454545454545,
+   "grams_per_day": 173.18
+  },
+  {
+   "user": "39986716",
+   "tz": "US/Central",
+   "n": 4163,
+   "days": 654,
+   "entries_per_day": 6.365443425076452,
+   "grams_per_day": 179.48929663608564
+  },
+  {
+   "user": "40237051",
+   "tz": "Europe/Berlin",
+   "n": 649,
+   "days": 77,
+   "entries_per_day": 8.428571428571429,
+   "grams_per_day": 216.4935064935065
+  },
+  {
+   "user": "40634871",
+   "tz": "ETC/GMT+7",
+   "n": 6444,
+   "days": 1264,
+   "entries_per_day": 5.098101265822785,
+   "grams_per_day": 161.6004746835443
+  },
+  {
+   "user": "40997757",
+   "tz": "US/Pacific",
+   "n": 851,
+   "days": 125,
+   "entries_per_day": 6.808,
+   "grams_per_day": 216.848
+  },
+  {
+   "user": "41131654",
+   "tz": "Pacific/Auckland",
+   "n": 2236,
+   "days": 430,
+   "entries_per_day": 5.2,
+   "grams_per_day": 171.30232558139534
+  },
+  {
+   "user": "42052178",
+   "tz": "Europe/Amsterdam",
+   "n": 5202,
+   "days": 466,
+   "entries_per_day": 11.163090128755364,
+   "grams_per_day": 165.2038626609442
+  },
+  {
+   "user": "42360672",
+   "tz": "US/Eastern",
+   "n": 718,
+   "days": 232,
+   "entries_per_day": 3.0948275862068964,
+   "grams_per_day": 128.26896551724138
+  },
+  {
+   "user": "43589707",
+   "tz": "US/Eastern",
+   "n": 648,
+   "days": 298,
+   "entries_per_day": 2.174496644295302,
+   "grams_per_day": 90.91275167785236
+  },
+  {
+   "user": "45025419",
+   "tz": "US/Central",
+   "n": 6352,
+   "days": 1029,
+   "entries_per_day": 6.172983479105928,
+   "grams_per_day": 161.96793002915453
+  },
+  {
+   "user": "45120081",
+   "tz": "Europe/Oslo",
+   "n": 1647,
+   "days": 272,
+   "entries_per_day": 6.055147058823529,
+   "grams_per_day": 173.18014705882354
+  },
+  {
+   "user": "46253612",
+   "tz": "Europe/London",
+   "n": 2162,
+   "days": 167,
+   "entries_per_day": 12.946107784431138,
+   "grams_per_day": 177.4131736526946
+  },
+  {
+   "user": "47323535",
+   "tz": "Europe/Budapest",
+   "n": 1574,
+   "days": 283,
+   "entries_per_day": 5.561837455830389,
+   "grams_per_day": 205.7208480565371
+  },
+  {
+   "user": "47750728",
+   "tz": "US/Arizona",
+   "n": 1976,
+   "days": 311,
+   "entries_per_day": 6.353697749196141,
+   "grams_per_day": 76.87138263665595
+  },
+  {
+   "user": "48509634",
+   "tz": "ETC/GMT-1",
+   "n": 7683,
+   "days": 1294,
+   "entries_per_day": 5.937403400309119,
+   "grams_per_day": 167.44590417310664
+  },
+  {
+   "user": "48540630",
+   "tz": "ETC/GMT+7",
+   "n": 93,
+   "days": 19,
+   "entries_per_day": 4.894736842105263,
+   "grams_per_day": 179.21052631578948
+  },
+  {
+   "user": "49141524",
+   "tz": "Europe/Berlin",
+   "n": 1637,
+   "days": 243,
+   "entries_per_day": 6.7366255144032925,
+   "grams_per_day": 122.81893004115226
+  },
+  {
+   "user": "49182092",
+   "tz": "Europe/London",
+   "n": 3673,
+   "days": 580,
+   "entries_per_day": 6.332758620689655,
+   "grams_per_day": 230.96724137931034
+  },
+  {
+   "user": "49623237",
+   "tz": "America/New_York",
+   "n": 1321,
+   "days": 250,
+   "entries_per_day": 5.284,
+   "grams_per_day": 132.492
+  },
+  {
+   "user": "50311906",
+   "tz": "US/Eastern",
+   "n": 636,
+   "days": 175,
+   "entries_per_day": 3.6342857142857143,
+   "grams_per_day": 173.0457142857143
+  },
+  {
+   "user": "51336122",
+   "tz": "US/Pacific",
+   "n": 511,
+   "days": 204,
+   "entries_per_day": 2.5049019607843137,
+   "grams_per_day": 94.65196078431373
+  },
+  {
+   "user": "51968000",
+   "tz": "Australia/Queensland",
+   "n": 299,
+   "days": 99,
+   "entries_per_day": 3.0202020202020203,
+   "grams_per_day": 29.939393939393938
+  },
+  {
+   "user": "52804089",
+   "tz": "US/Pacific",
+   "n": 241,
+   "days": 134,
+   "entries_per_day": 1.7985074626865671,
+   "grams_per_day": 74.07761194029851
+  },
+  {
+   "user": "54280576",
+   "tz": "Europe/Bucharest",
+   "n": 123,
+   "days": 13,
+   "entries_per_day": 9.461538461538462,
+   "grams_per_day": 71.84615384615384
+  },
+  {
+   "user": "56568290",
+   "tz": "US/Eastern",
+   "n": 995,
+   "days": 93,
+   "entries_per_day": 10.698924731182796,
+   "grams_per_day": 194.4516129032258
+  },
+  {
+   "user": "56958831",
+   "tz": "Europe/London",
+   "n": 330,
+   "days": 95,
+   "entries_per_day": 3.473684210526316,
+   "grams_per_day": 114.41052631578947
+  },
+  {
+   "user": "60844515",
+   "tz": "US/Eastern",
+   "n": 2092,
+   "days": 382,
+   "entries_per_day": 5.476439790575916,
+   "grams_per_day": 118.5
+  },
+  {
+   "user": "61179686",
+   "tz": "America/New_York",
+   "n": 2340,
+   "days": 264,
+   "entries_per_day": 8.863636363636363,
+   "grams_per_day": 178.1818181818182
+  },
+  {
+   "user": "63047517",
+   "tz": "Europe/Luxembourg",
+   "n": 149,
+   "days": 41,
+   "entries_per_day": 3.6341463414634148,
+   "grams_per_day": 148.53658536585365
+  },
+  {
+   "user": "63725802",
+   "tz": "Europe/Rome",
+   "n": 1354,
+   "days": 248,
+   "entries_per_day": 5.459677419354839,
+   "grams_per_day": 196.0201612903226
+  },
+  {
+   "user": "64024750",
+   "tz": "US/Eastern",
+   "n": 385,
+   "days": 135,
+   "entries_per_day": 2.8518518518518516,
+   "grams_per_day": 81.71851851851852
+  },
+  {
+   "user": "64406000",
+   "tz": "Australia/Brisbane",
+   "n": 2721,
+   "days": 404,
+   "entries_per_day": 6.735148514851486,
+   "grams_per_day": 80.04455445544555
+  },
+  {
+   "user": "65143138",
+   "tz": "Europe/Stockholm",
+   "n": 543,
+   "days": 105,
+   "entries_per_day": 5.171428571428572,
+   "grams_per_day": 101.07619047619048
+  },
+  {
+   "user": "66019205",
+   "tz": "US/Eastern",
+   "n": 596,
+   "days": 157,
+   "entries_per_day": 3.7961783439490446,
+   "grams_per_day": 76.0828025477707
+  },
+  {
+   "user": "66773091",
+   "tz": "Europe/Berlin",
+   "n": 3139,
+   "days": 438,
+   "entries_per_day": 7.166666666666667,
+   "grams_per_day": 142.42694063926942
+  },
+  {
+   "user": "66836068",
+   "tz": "Europe/London",
+   "n": 3291,
+   "days": 365,
+   "entries_per_day": 9.016438356164384,
+   "grams_per_day": 170.10191780821918
+  },
+  {
+   "user": "66937570",
+   "tz": "Australia/Sydney",
+   "n": 2042,
+   "days": 455,
+   "entries_per_day": 4.487912087912088,
+   "grams_per_day": 120.26593406593406
+  },
+  {
+   "user": "67167655",
+   "tz": "Australia/Brisbane",
+   "n": 1214,
+   "days": 191,
+   "entries_per_day": 6.356020942408377,
+   "grams_per_day": 163.10994764397907
+  },
+  {
+   "user": "67208817",
+   "tz": "America/New_York",
+   "n": 4506,
+   "days": 856,
+   "entries_per_day": 5.264018691588785,
+   "grams_per_day": 270.1241238317757
+  },
+  {
+   "user": "67539697",
+   "tz": "US/Eastern",
+   "n": 1378,
+   "days": 712,
+   "entries_per_day": 1.9353932584269662,
+   "grams_per_day": 19.33932584269663
+  },
+  {
+   "user": "68026248",
+   "tz": "America/Edmonton",
+   "n": 1597,
+   "days": 329,
+   "entries_per_day": 4.854103343465046,
+   "grams_per_day": 164.2066869300912
+  },
+  {
+   "user": "68267781",
+   "tz": "US/Mountain",
+   "n": 512,
+   "days": 258,
+   "entries_per_day": 1.9844961240310077,
+   "grams_per_day": 66.02713178294573
+  },
+  {
+   "user": "69587086",
+   "tz": "America/Detroit",
+   "n": 80,
+   "days": 16,
+   "entries_per_day": 5.0,
+   "grams_per_day": 181.0
+  },
+  {
+   "user": "69739062",
+   "tz": "Europe/Madrid",
+   "n": 517,
+   "days": 142,
+   "entries_per_day": 3.640845070422535,
+   "grams_per_day": 143.51408450704224
+  },
+  {
+   "user": "70454270",
+   "tz": "Europe/London",
+   "n": 2865,
+   "days": 194,
+   "entries_per_day": 14.768041237113403,
+   "grams_per_day": 275.6340206185567
+  },
+  {
+   "user": "70811987",
+   "tz": "Europe/Berlin",
+   "n": 692,
+   "days": 105,
+   "entries_per_day": 6.59047619047619,
+   "grams_per_day": 182.04761904761904
+  },
+  {
+   "user": "71236754",
+   "tz": "US/Central",
+   "n": 750,
+   "days": 197,
+   "entries_per_day": 3.8071065989847717,
+   "grams_per_day": 56.06218274111675
+  },
+  {
+   "user": "71397255",
+   "tz": "US/Eastern",
+   "n": 112,
+   "days": 30,
+   "entries_per_day": 3.7333333333333334,
+   "grams_per_day": 103.96666666666667
+  },
+  {
+   "user": "71618088",
+   "tz": "US/Eastern",
+   "n": 1980,
+   "days": 473,
+   "entries_per_day": 4.186046511627907,
+   "grams_per_day": 82.21828752642706
+  },
+  {
+   "user": "72492570",
+   "tz": "US/Eastern",
+   "n": 3330,
+   "days": 513,
+   "entries_per_day": 6.491228070175438,
+   "grams_per_day": 169.03508771929825
+  },
+  {
+   "user": "73398408",
+   "tz": "US/Pacific",
+   "n": 1678,
+   "days": 265,
+   "entries_per_day": 6.332075471698113,
+   "grams_per_day": 149.73962264150944
+  },
+  {
+   "user": "73521474",
+   "tz": "US/Pacific",
+   "n": 519,
+   "days": 87,
+   "entries_per_day": 5.9655172413793105,
+   "grams_per_day": 293.4712643678161
+  },
+  {
+   "user": "74077367",
+   "tz": "Europe/Belgrade",
+   "n": 2449,
+   "days": 273,
+   "entries_per_day": 8.97069597069597,
+   "grams_per_day": 168.7069597069597
+  },
+  {
+   "user": "74175219",
+   "tz": "US/Eastern",
+   "n": 2753,
+   "days": 458,
+   "entries_per_day": 6.010917030567685,
+   "grams_per_day": 145.81004366812226
+  },
+  {
+   "user": "76817975",
+   "tz": "Europe/London",
+   "n": 2285,
+   "days": 399,
+   "entries_per_day": 5.726817042606516,
+   "grams_per_day": 242.6315789473684
+  },
+  {
+   "user": "77411181",
+   "tz": "Canada/Mountain",
+   "n": 2275,
+   "days": 570,
+   "entries_per_day": 3.991228070175439,
+   "grams_per_day": 210.3640350877193
+  },
+  {
+   "user": "78420229",
+   "tz": "Europe/Paris",
+   "n": 684,
+   "days": 89,
+   "entries_per_day": 7.685393258426966,
+   "grams_per_day": 252.13483146067415
+  },
+  {
+   "user": "79526193",
+   "tz": "Canada/Eastern",
+   "n": 1986,
+   "days": 401,
+   "entries_per_day": 4.952618453865337,
+   "grams_per_day": 199.9501246882793
+  },
+  {
+   "user": "79751050",
+   "tz": "Europe/Berlin",
+   "n": 8537,
+   "days": 948,
+   "entries_per_day": 9.005274261603375,
+   "grams_per_day": 168.29008438818565
+  },
+  {
+   "user": "80373992",
+   "tz": "Europe/Rome",
+   "n": 1596,
+   "days": 217,
+   "entries_per_day": 7.354838709677419,
+   "grams_per_day": 193.7741935483871
+  },
+  {
+   "user": "80501215",
+   "tz": "Canada/Pacific",
+   "n": 67,
+   "days": 15,
+   "entries_per_day": 4.466666666666667,
+   "grams_per_day": 246.53333333333333
+  },
+  {
+   "user": "80625186",
+   "tz": "Europe/Berlin",
+   "n": 6862,
+   "days": 980,
+   "entries_per_day": 7.002040816326531,
+   "grams_per_day": 210.76795918367347
+  },
+  {
+   "user": "80796147",
+   "tz": "Europe/Amsterdam",
+   "n": 5519,
+   "days": 850,
+   "entries_per_day": 6.492941176470588,
+   "grams_per_day": 279.23764705882354
+  },
+  {
+   "user": "81195091",
+   "tz": "Europe/Amsterdam",
+   "n": 882,
+   "days": 153,
+   "entries_per_day": 5.764705882352941,
+   "grams_per_day": 189.11699346405229
+  },
+  {
+   "user": "81680176",
+   "tz": "Europe/Madrid",
+   "n": 216,
+   "days": 75,
+   "entries_per_day": 2.88,
+   "grams_per_day": 62.25333333333333
+  },
+  {
+   "user": "84109428",
+   "tz": "Australia/Sydney",
+   "n": 846,
+   "days": 208,
+   "entries_per_day": 4.0673076923076925,
+   "grams_per_day": 220.00480769230768
+  },
+  {
+   "user": "84241955",
+   "tz": "America/Los_Angeles",
+   "n": 180,
+   "days": 28,
+   "entries_per_day": 6.428571428571429,
+   "grams_per_day": 187.82142857142858
+  },
+  {
+   "user": "84589080",
+   "tz": "US/Michigan",
+   "n": 471,
+   "days": 243,
+   "entries_per_day": 1.9382716049382716,
+   "grams_per_day": 116.35390946502058
+  },
+  {
+   "user": "84984656",
+   "tz": "US/Pacific",
+   "n": 467,
+   "days": 92,
+   "entries_per_day": 5.076086956521739,
+   "grams_per_day": 66.48913043478261
+  },
+  {
+   "user": "85653830",
+   "tz": "US/Central",
+   "n": 221,
+   "days": 73,
+   "entries_per_day": 3.0273972602739727,
+   "grams_per_day": 118.58904109589041
+  },
+  {
+   "user": "86025410",
+   "tz": "US/Eastern",
+   "n": 2271,
+   "days": 373,
+   "entries_per_day": 6.088471849865952,
+   "grams_per_day": 128.76112600536194
+  },
+  {
+   "user": "86323903",
+   "tz": "US/Eastern",
+   "n": 1134,
+   "days": 329,
+   "entries_per_day": 3.4468085106382977,
+   "grams_per_day": 151.41033434650456
+  },
+  {
+   "user": "87770486",
+   "tz": "US/Central",
+   "n": 593,
+   "days": 75,
+   "entries_per_day": 7.906666666666666,
+   "grams_per_day": 156.48533333333333
+  },
+  {
+   "user": "88004055",
+   "tz": "Europe/Berlin",
+   "n": 917,
+   "days": 348,
+   "entries_per_day": 2.6350574712643677,
+   "grams_per_day": 73.43103448275862
+  },
+  {
+   "user": "88252802",
+   "tz": "Asia/Tokyo",
+   "n": 5893,
+   "days": 1071,
+   "entries_per_day": 5.502334267040149,
+   "grams_per_day": 178.82651727357612
+  },
+  {
+   "user": "89032650",
+   "tz": "Europe/Oslo",
+   "n": 2232,
+   "days": 271,
+   "entries_per_day": 8.236162361623617,
+   "grams_per_day": 171.71586715867159
+  },
+  {
+   "user": "89710417",
+   "tz": "US/Eastern",
+   "n": 952,
+   "days": 120,
+   "entries_per_day": 7.933333333333334,
+   "grams_per_day": 151.81775000000002
+  },
+  {
+   "user": "89727223",
+   "tz": "Australia/NSW",
+   "n": 647,
+   "days": 155,
+   "entries_per_day": 4.174193548387096,
+   "grams_per_day": 106.19354838709677
+  },
+  {
+   "user": "90398368",
+   "tz": "Europe/Berlin",
+   "n": 665,
+   "days": 85,
+   "entries_per_day": 7.823529411764706,
+   "grams_per_day": 169.94117647058823
+  },
+  {
+   "user": "91161972",
+   "tz": "Europe/Helsinki",
+   "n": 797,
+   "days": 420,
+   "entries_per_day": 1.8976190476190475,
+   "grams_per_day": 86.02142857142857
+  },
+  {
+   "user": "93606058",
+   "tz": "US/Central",
+   "n": 733,
+   "days": 188,
+   "entries_per_day": 3.898936170212766,
+   "grams_per_day": 172.88297872340425
+  },
+  {
+   "user": "93839818",
+   "tz": "Australia/Brisbane",
+   "n": 2581,
+   "days": 383,
+   "entries_per_day": 6.738903394255875,
+   "grams_per_day": 306.1148825065274
+  },
+  {
+   "user": "94098083",
+   "tz": "Europe/Berlin",
+   "n": 67,
+   "days": 4,
+   "entries_per_day": 16.75,
+   "grams_per_day": 109.0
+  },
+  {
+   "user": "94200862",
+   "tz": "Europe/Berlin",
+   "n": 271,
+   "days": 49,
+   "entries_per_day": 5.530612244897959,
+   "grams_per_day": 205.42857142857142
+  },
+  {
+   "user": "95614431",
+   "tz": "Europe/Madrid",
+   "n": 321,
+   "days": 59,
+   "entries_per_day": 5.440677966101695,
+   "grams_per_day": 125.20338983050847
+  },
+  {
+   "user": "95851255",
+   "tz": "US/Eastern",
+   "n": 5461,
+   "days": 522,
+   "entries_per_day": 10.46168582375479,
+   "grams_per_day": 213.56896551724137
+  },
+  {
+   "user": "96254963",
+   "tz": "Europe/Berlin",
+   "n": 1029,
+   "days": 173,
+   "entries_per_day": 5.9479768786127165,
+   "grams_per_day": 196.34682080924856
+  },
+  {
+   "user": "96484928",
+   "tz": "America/Vancouver",
+   "n": 1403,
+   "days": 192,
+   "entries_per_day": 7.307291666666667,
+   "grams_per_day": 154.36979166666666
+  },
+  {
+   "user": "96805916",
+   "tz": "US/Alaska",
+   "n": 2220,
+   "days": 403,
+   "entries_per_day": 5.508684863523573,
+   "grams_per_day": 107.0347394540943
+  },
+  {
+   "user": "97417885",
+   "tz": "US/Pacific",
+   "n": 831,
+   "days": 191,
+   "entries_per_day": 4.350785340314136,
+   "grams_per_day": 164.41623036649216
+  },
+  {
+   "user": "97872409",
+   "tz": "US/Eastern",
+   "n": 1335,
+   "days": 196,
+   "entries_per_day": 6.811224489795919,
+   "grams_per_day": 226.19387755102042
+  },
+  {
+   "user": "98340749",
+   "tz": "Australia/Melbourne",
+   "n": 3170,
+   "days": 414,
+   "entries_per_day": 7.657004830917875,
+   "grams_per_day": 187.5024154589372
+  },
+  {
+   "user": "98974339",
+   "tz": "US/Arizona",
+   "n": 1095,
+   "days": 220,
+   "entries_per_day": 4.9772727272727275,
+   "grams_per_day": 102.80454545454545
+  },
+  {
+   "user": "99712241",
+   "tz": "US/Eastern",
+   "n": 59,
+   "days": 31,
+   "entries_per_day": 1.903225806451613,
+   "grams_per_day": 51.516129032258064
+  },
+  {
+   "user": "99848889",
+   "tz": "US/Eastern",
+   "n": 3549,
+   "days": 700,
+   "entries_per_day": 5.07,
+   "grams_per_day": 164.59532857142855
+  },
+  {
+   "user": "99908129",
+   "tz": "America/New_York",
+   "n": 729,
+   "days": 281,
+   "entries_per_day": 2.5943060498220643,
+   "grams_per_day": 141.86832740213524
+  }
+ ]
+}
