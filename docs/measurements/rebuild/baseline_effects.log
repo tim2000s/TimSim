@@ -1,0 +1,13 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Traceback (most recent call last):
+  File "/Users/timstreet/StudioProjects/TimSim/examples/baseline_effects.py", line 178, in <module>
+    main()
+    ~~~~^^
+  File "/Users/timstreet/StudioProjects/TimSim/examples/baseline_effects.py", line 113, in main
+    d, idx = load(a.file)
+             ~~~~^^^^^^^^
+  File "/Users/timstreet/StudioProjects/TimSim/examples/baseline_effects.py", line 54, in load
+    d = json.load(open(path))
+                  ~~~~^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/timstreet/StudioProjects/TimSim/docs/measurements/baseline_trend.json'

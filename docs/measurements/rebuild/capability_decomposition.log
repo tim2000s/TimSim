@@ -23,24 +23,24 @@
   import pkg_resources
 
   signature            range    current   settings       gain     nosite
-  cv               29.5-34.3     38.28      37.96      37.09      34.17*
-  tail               3.7-6.6      4.22*      4.33*      4.20*      4.06*
-  acf30            0.78-0.87      0.92       0.91       0.91       0.89 
-  acf60             0.5-0.68      0.76       0.75       0.76       0.68*
-  outcome          26.5-33.5     25.50      25.81*     25.38      27.68*
-  diurnal          34.7-56.3     54.94*     55.99*     50.06*     44.28*
-  hypo_rec         50.0-59.0     65.00      70.00      70.00      67.50 
-  hypo_reb         23.2-28.4     39.62      36.84      36.36      38.59 
-  compress           1.9-5.3      4.29*      3.21*      3.21*      4.29*
-  noise              4.5-6.7      5.62*      5.63*      5.64*      5.63*
+  cv               29.5-34.3     31.89*     31.89*     31.95*     29.64*
+  tail               3.7-6.6      2.90       2.90       2.90       3.09 
+  acf30            0.78-0.87      0.91       0.91       0.90       0.86*
+  acf60             0.5-0.68      0.75       0.75       0.76       0.64*
+  outcome          26.5-33.5     22.75      22.78      22.52      23.72 
+  diurnal          34.7-56.3     37.03*     36.67*     35.69*     33.78*
+  hypo_rec         50.0-59.0     68.75      68.75      68.75      65.00 
+  hypo_reb         23.2-28.4     29.71      28.99      30.84      29.41 
+  compress           1.9-5.3      4.29*      4.29*      4.29*      4.29*
+  noise              4.5-6.7      5.16*      5.16*      5.20*      5.20*
 
-  inside range                        4          5          4          7
-  completed                 65/80     65/80     65/80     68/80     
+  inside range                        4          4          4          6
+  completed                 76/80     76/80     76/80     79/80     
 
   attribution, against the current configuration:
-    reverting settings  ->  5/10  (+1)
+    reverting settings  ->  4/10  (+0)
     reverting gain      ->  4/10  (+0)
-    reverting nosite    ->  7/10  (+3)
+    reverting nosite    ->  6/10  (+2)
 
   * marks a median inside the real range, with the 10 per cent padding applied
 

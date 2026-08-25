@@ -8,3 +8,19 @@ running settings ...
   excluded, no settings clear the hypoglycaemia floors: adult#026
 running site ...
   excluded, no settings clear the hypoglycaemia floors: adult#026
+
+Traceback (most recent call last):
+  File "/Users/timstreet/StudioProjects/TimSim/examples/hyperglycaemia_gap.py", line 293, in <module>
+    main()
+    ~~~~^^
+  File "/Users/timstreet/StudioProjects/TimSim/examples/hyperglycaemia_gap.py", line 289, in main
+    table()
+    ~~~~~^^
+  File "/Users/timstreet/StudioProjects/TimSim/examples/hyperglycaemia_gap.py", line 207, in table
+    provenance.check_compatible([d["provenance"] for d in data.values()], strict_dirty=False)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timstreet/StudioProjects/TimSim/timsim/provenance.py", line 137, in check_compatible
+    raise RuntimeError(
+    ...<2 lines>...
+        f"{other.get(key)!r} in {describe(other)}")
+RuntimeError: these results are not the same experiment and will not be combined: commit is 'f5b56f2c14f09414fd01000cfcbc6a82363f677e' in population 704cfac086df54ba, commit f5b56f2c, Tims-Mac-mini.local and '37128ec9d9a3e216348a29caae9070a5c693e163' in population 704cfac086df54ba, commit 37128ec9, Tims-Mac-mini.local

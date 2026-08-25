@@ -26,6 +26,8 @@ cohort: 40 subjects, DCLP3 closed loop, age matched
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
   adolescent#016: done (1/40)
   adolescent#023: done (2/40)
   adolescent#043: done (3/40)
@@ -67,26 +69,26 @@ cohort: 40 subjects, DCLP3 closed loop, age matched
   adult#288: done (39/40)
   adult#291: done (40/40)
 
-oref0 SMB on TimSim, 31/40 completed, 53.2 U/day
+oref0 SMB on TimSim, 31/40 completed, 54.5 U/day
 
                                     as the sensor read it        truth
-  mean_mgdl                                        128.33       127.66
-  time_in_range                                     83.58        85.11
-  below_70                                           5.48         4.68
-  below_54                                           1.91         1.53
-  above_180                                         10.95        10.21
-  above_250                                          1.99         1.89
-  tir_sd_between_subjects                            5.58         5.63
-  below_70_sd_between_subjects                       2.82         3.01
+  mean_mgdl                                        128.02       127.35
+  time_in_range                                     85.39        86.78
+  below_70                                           4.68         3.89
+  below_54                                           1.37         1.07
+  above_180                                          9.93         9.32
+  above_250                                          1.60         1.45
+  tir_sd_between_subjects                            6.32         6.26
+  below_70_sd_between_subjects                       3.52         3.35
 
 what the algorithm did
-  smb_pct                  35.614
-  smb_mean_u               0.528
-  dose_mean_u              0.192
-  zero_temp_pct            44.975
-  temp_issued_pct          80.559
-  eventual_bg_median       118.612
-  carbs_required_pct       2.182
+  smb_pct                  34.749
+  smb_mean_u               0.506
+  dose_mean_u              0.179
+  zero_temp_pct            43.407
+  temp_issued_pct          80.283
+  eventual_bg_median       117.188
+  carbs_required_pct       1.891
   autosens_median          1.000
   autosens_min             1.000
   autosens_max             1.000

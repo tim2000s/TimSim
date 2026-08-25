@@ -171,3 +171,50 @@
 20:49:11Z  START  layer_ladder
 20:55:36Z  FAILED layer_ladder (6 min) —   File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 396, in __get_result     raise self._exception RuntimeError: adult#026 has no titrated settings. The consensus hypoglycaemia floors were not met at any combination tried, so its settings are not the explanation for what it does and it should be excluded rather than run at the loosest available. 
 20:55:36Z  START  hyperglycaemia_gap
+00:16:55Z  FAILED hyperglycaemia_gap (201 min) —     ...<2 lines>...         f"{other.get(key)!r} in {describe(other)}") RuntimeError: these results are not the same experiment and will not be combined: commit is 'f5b56f2c14f09414fd01000cfcbc6a82363f677e' in population 704cfac086df54ba, commit f5b56f2c, Tims-Mac-mini.local and '37128ec9d9a3e216348a29caae9070a5c693e163' in population 704cfac086df54ba, commit 37128ec9, Tims-Mac-mini.local 
+00:16:55Z  START  production_low
+00:22:24Z  OK     production_low (5 min)
+00:22:24Z  START  two_benches
+03:13:06Z  OK     two_benches (170 min)
+03:13:06Z  START  fit_control_iq
+03:57:27Z  OK     fit_control_iq (44 min)
+03:57:27Z  START  meal_response
+04:21:24Z  OK     meal_response (23 min)
+04:21:24Z  START  autosens_on
+04:27:48Z  OK     autosens_on (6 min)
+04:27:48Z  START  autosens_off
+04:34:09Z  OK     autosens_off (6 min)
+04:34:09Z  START  arbiter
+09:33:53Z  OK     arbiter (299 min)
+09:33:53Z  START  arbiter_table
+09:33:54Z  OK     arbiter_table (0 min)
+09:33:54Z  START  baseline_effects
+09:33:55Z  FAILED baseline_effects (0 min) —     d = json.load(open(path))                   ~~~~^^^^^^ FileNotFoundError: [Errno 2] No such file or directory: '/Users/timstreet/StudioProjects/TimSim/docs/measurements/baseline_trend.json' 
+09:33:55Z  START  capability_decomposition
+10:36:54Z  OK     capability_decomposition (62 min)
+10:36:55Z  START  intake_clock
+10:37:20Z  OK     intake_clock (0 min)
+10:37:20Z  START  day_profile
+10:51:16Z  OK     day_profile (13 min)
+10:51:16Z  START  excursion_recovery
+11:03:34Z  OK     excursion_recovery (12 min)
+11:03:34Z  START  glucose_effectiveness
+11:03:52Z  OK     glucose_effectiveness (0 min)
+11:03:52Z  START  insulin_kinetics
+11:04:01Z  OK     insulin_kinetics (0 min)
+11:04:01Z  START  liver_delay_fit
+11:05:52Z  OK     liver_delay_fit (1 min)
+11:05:52Z  START  meal_with_bolus
+11:08:01Z  OK     meal_with_bolus (2 min)
+11:08:01Z  START  controller_crosscheck
+12:00:07Z  OK     controller_crosscheck (52 min)
+12:00:07Z  START  combined_arms
+14:30:56Z  OK     combined_arms (150 min)
+14:30:56Z  START  validation_table
+14:30:57Z  OK     validation_table (0 min)
+14:30:57Z  === finished ===
+14:31:01Z  3 stages FAILED in this run:
+14:31:01Z    20:55:36Z  FAILED layer_ladder (6 min) —   File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/fut
+14:31:01Z    00:16:55Z  FAILED hyperglycaemia_gap (201 min) —     ...<2 lines>...         f"{other.get(key)!r} in {describe(other)}") RuntimeError: these results are not the
+14:31:01Z    09:33:55Z  FAILED baseline_effects (0 min) —     d = json.load(open(path))                   ~~~~^^^^^^ FileNotFoundError: [Errno 2] No such file or directory:
+14:31:01Z    14:31:01Z  3 stages FAILED in this run:

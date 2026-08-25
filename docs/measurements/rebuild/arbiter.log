@@ -1,7 +1,51 @@
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
+panel: skipped 1 subject(s) with no titrated settings (adult#026), taking 34 of the first 35
 running bare ...
-  AUC 0.928 against a null p95 of 0.539
+  AUC 0.946 against a null p95 of 0.553
 running both ...
-  AUC 0.806 against a null p95 of 0.526
+  AUC 0.805 against a null p95 of 0.530
 running default ...
+  AUC 0.835 against a null p95 of 0.517
+running settings ...
+  AUC 0.824 against a null p95 of 0.525
+running site ...
+  AUC 0.770 against a null p95 of 0.511
+running visentin ...
+  AUC 0.828 against a null p95 of 0.523
+
+| Configuration | AUC | null p95 | excess | separated by | TIR % | above 180 % |
+|---|---|---|---|---|---|---|
+| site | 0.770 | 0.511 | +0.260 | acf60, pct_above_180 | 77.1 | 20.6 |
+| both | 0.805 | 0.530 | +0.275 | acf60, cv | 70.7 | 27.5 |
+| settings | 0.824 | 0.525 | +0.299 | acf60, sd | 78.7 | 19.5 |
+| visentin | 0.828 | 0.523 | +0.305 | pct_above_180, pct_below_70 | 73.0 | 21.8 |
+| default | 0.835 | 0.517 | +0.318 | pct_above_180, sd | 85.5 | 12.3 |
+| bare | 0.946 | 0.553 | +0.393 | jitter, pct_above_180 | 92.2 | 6.7 |
+
+Lower AUC is better: the configuration is harder to tell from real data.
+Excess is AUC minus the null's 95th percentile, so a value at or below zero means
+the classifier does no better than splitting the same people at random.
+
+Marginals for the closest configuration, site, medians per 24-hour window.
+| Feature | DCLP3 | simulated | difference |
+|---|---|---|---|
+| mean | 150.00 | 142.72 | -7.28 |
+| sd | 43.32 | 37.61 | -5.71 |
+| cv | 28.49 | 26.36 | -2.13 |
+| min | 71.00 | 67.84 | -3.16 |
+| max | 259.00 | 238.01 | -20.99 |
+| pct_below_70 | 0.00 | 0.35 | +0.35 |
+| pct_above_180 | 24.31 | 15.97 | -8.33 |
+| mean_abs_delta | 4.04 | 3.97 | -0.08 |
+| pct_delta_over_10 | 4.18 | 2.79 | -1.39 |
+| acf30 | 0.84 | 0.86 | +0.02 |
+| acf60 | 0.59 | 0.64 | +0.05 |
+| jitter | 4.39 | 5.09 | +0.70 |
+
+     site: 1835 windows from 34 subjects, 33 completed, against 3023 real windows from 67 participants
+     both: 1870 windows from 34 subjects, 34 completed, against 3023 real windows from 67 participants
+ settings: 1870 windows from 34 subjects, 34 completed, against 3023 real windows from 67 participants
+ visentin: 1453 windows from 34 subjects, 22 completed, against 3023 real windows from 67 participants
+  default: 1835 windows from 34 subjects, 33 completed, against 3023 real windows from 67 participants
+     bare: 1870 windows from 34 subjects, 34 completed, against 3023 real windows from 67 participants

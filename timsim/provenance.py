@@ -12,6 +12,7 @@ before it combines them. The rule is that the population and the code must match
 everything else is recorded for the reader rather than enforced.
 """
 import hashlib
+import json
 import os
 import platform
 import subprocess
@@ -67,13 +68,36 @@ def _population():
 
 
 def _settings_digest():
-    """A digest of the titrated settings, which are as much an input as the population."""
+    """A digest of the titrated settings, which are as much an input as the population.
+
+    Over the settings themselves rather than over the file. What binds a result is the dose each
+    subject was given: its adopted scales, and whether it cleared the floors at all, since a
+    subject that did not is excluded from every cohort. The rest of the file is provenance about
+    the titration, and hashing it made the record of a verification change the identity of the
+    thing verified.
+
+    That is not hypothetical. Re-stamping a store on 25 August 2026, to record that a code change
+    had been checked and found inert, moved this digest from 8000d3ede7314482 to 046e0da5bc380688
+    while leaving all 330 subjects and all 306 adopted settings identical. Every measurement taken
+    after it then declared itself a different experiment from the baseline it was meant to extend,
+    and `check_compatible` would have refused to combine two sets of figures that were computed on
+    the same doses.
+
+    Digesting the settings makes the fingerprint answer the question it is asked: were these
+    figures measured on the same settings. Fingerprints recorded before this change hash the whole
+    file and will not match one computed here, so a stored figure older than this compares by the
+    archived store rather than by the digest.
+    """
     path = os.path.join(REPO, "timsim", "population", "params", "titrated_settings.json")
     try:
-        with open(path, "rb") as fh:
-            return hashlib.sha256(fh.read()).hexdigest()[:16]
-    except OSError:
+        with open(path) as fh:
+            store = json.load(fh)
+    except (OSError, ValueError):
         return None
+    subjects = store.get("subjects", {})
+    payload = [(name, r.get("scale"), r.get("basal_scale"), bool(r.get("found")))
+               for name, r in sorted(subjects.items())]
+    return hashlib.sha256(repr(payload).encode()).hexdigest()[:16]
 
 
 def _simglucose_version():
