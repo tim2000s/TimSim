@@ -2,13 +2,13 @@
  "file": "validation.json",
  "provenance": {
   "population": "704cfac086df54ba",
-  "settings": "8000d3ede7314482",
-  "commit": "b7a3d87f255ff8a7d046564363c3dd777b36a3f8",
+  "settings": "046e0da5bc380688",
+  "commit": "37128ec9d9a3e216348a29caae9070a5c693e163",
   "dirty": false,
   "host": "Tims-Mac-mini.local",
   "python": "3.14.7",
   "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
-  "when": "2026-08-24T02:27:15+00:00",
+  "when": "2026-08-25T14:30:57+00:00",
   "simglucose": "0.2.11"
  },
  "verdict": "the real median falls outside the simulated 95% interval",

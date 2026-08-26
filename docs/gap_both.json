@@ -117,13 +117,13 @@
  },
  "provenance": {
   "population": "704cfac086df54ba",
-  "settings": "046e0da5bc380688",
-  "commit": "f5b56f2c14f09414fd01000cfcbc6a82363f677e",
+  "settings": "0df43fd250fadd47",
+  "commit": "db1ef87de2b7d55f042a85ce23a3c553e4a8ba46",
   "dirty": false,
   "host": "Tims-Mac-mini.local",
   "python": "3.14.7",
   "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
-  "when": "2026-08-24T21:45:40+00:00",
+  "when": "2026-08-25T20:37:30+00:00",
   "simglucose": "0.2.11"
  }
 }

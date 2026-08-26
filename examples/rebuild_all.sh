@@ -296,6 +296,9 @@ stage meal_with_bolus "$PY" examples/meal_with_bolus.py --subjects 40 --workers 
 stage controller_crosscheck "$PY" examples/controller_crosscheck.py --workers "$WORKERS"
 stage combined_arms env WORKERS="$WORKERS" "$PY" examples/bench_matrix.py --benches combined \
       --out docs/measurements/validation.json
+stage settings_sweep "$PY" examples/settings_sweep.py --cohort dclp3 --controller control-iq \
+      --scales 1.0 1.5 2.0 2.5 --workers "$WORKERS"
+stage engagement_arm "$PY" examples/engagement_arm.py --workers "$WORKERS"
 stage validation_table "$PY" examples/validation_table.py
 
 say "=== finished ==="

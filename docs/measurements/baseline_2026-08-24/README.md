@@ -10,9 +10,8 @@ commit reproduces the code that made these figures and not the settings they wer
 store is also destroyed by the next titration. The copy here is the only record of `8000d3ede7`.
 
     population    704cfac086df54ba
-    settings      8000d3ede7314482
+    settings      0df43fd250fadd47
     simglucose    0.2.11
-    commit        4f0b971
 
 Two fields are removed from the store copied here. The per-rung `isf` and `basal_u_per_day` are
 physiological quantities derived from the licensed parameter tables, which this repository does not
@@ -20,6 +19,29 @@ redistribute, so the committed copy carries what the ladder decided and the outc
 and not the parameters underneath. The unredacted store is on the private Drive mount under
 `TimSim stores/`. Two earlier archives, `archive_pre_review` and `archive_gain020`, were committed
 before this was noticed and still carry those fields.
+
+## Two corrections to this directory, made on 26 August 2026
+
+As first pinned, this directory held measurements from four different settings stores while the
+text above asserted one. Files were copied from disk without checking that their stamps agreed:
+`validation`, `day_profile` and `controller_crosscheck` were on 8000d3ede7314482,
+`excursion_recovery`, `intake_clock` and `engagement_arm` on 9252e3400f4c6249, and
+`settings_sweep` on a37df6ce355212c7. Three of those are simulated measurements, so three of the
+figures quoted from this directory described a different set of doses from the rest. Every file
+has been replaced with the version produced by the rebuild of 25 August, which ran on one store.
+
+The consequence for what was published: four excursion figures in `Research-Papers/TimSim/17` were
+quoted from the older store and have been corrected, and the correction-factor sweep behaves
+differently on the current meal template, moving time above 180 mg/dL by 3.6 percentage points
+where the earlier store gave 1.5. The refutation it supports is unchanged, because
+the threshold fixed in advance was 20.3 and the sweep reaches 17.3. `docs/BASELINE.md` is
+unaffected: its tables reproduce against the rebuilt arms row for row.
+
+Two digests appear in the stamps here, `046e0da5bc380688` and `0df43fd250fadd47`. They are the same
+settings under two methods. The fingerprint hashed the whole store file until 25 August, so
+recording that a store had been verified changed its identity; it now digests each subject's
+adopted scales and whether it cleared the floors. Files written before that change carry the file
+hash and files written after carry the settings digest, and `timsim/provenance.py` records why.
 
 ## What is here
 

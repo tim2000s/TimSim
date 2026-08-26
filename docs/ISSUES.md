@@ -780,3 +780,61 @@ scenario, which is a ladder question.
 
 **What it cost.** 436 of 1,308 runs, about 72 minutes of a 216-minute job. No result was wrong,
 and a third of the machine time bought nothing.
+
+## 39. A pinned baseline held four settings stores and claimed one
+
+Found 26 August 2026, in the pin made on the 24th.
+
+`docs/measurements/baseline_2026-08-24/` was created to fix a real problem: the titrated settings
+store is generated locally, excluded from git and destroyed by the next titration, so a checkout
+reproduces the code that made a figure and not the settings it was measured on. The directory
+copies every measurement behind `docs/BASELINE.md` together with the store, and its README states
+the population, settings and simglucose version the set was measured under.
+
+The files were copied from disk without checking that their stamps agreed. Three settings stores
+were represented, not one:
+
+    8000d3ede7314482   validation, day_profile, controller_crosscheck
+    9252e3400f4c6249   excursion_recovery, intake_clock, engagement_arm
+    a37df6ce355212c7   settings_sweep
+
+Of those, three are simulated measurements taken under doses different from the rest, and the
+README asserted a single store over all of them. The pin was made to prevent exactly this and
+introduced it.
+
+It surfaced because study 17 was verified against the measurements the rebuild produced rather
+than the ones it was written from. Four excursion figures disagreed, the disagreement was traced
+to a different subject panel, and the panel differed because that measurement predated a
+retitration the others were made after.
+
+Two things follow. The correction-factor sweep, remeasured on the current meal template, moves
+time above 180 mg/dL by 3.6 percentage points where the superseded version moved it by 1.5, so the
+paper's claim that the loop absorbed the lever almost entirely was too strong and has been
+rewritten. `docs/BASELINE.md` is unaffected, and its tables reproduce against the rebuilt arms row
+for row, which is also the evidence that the pipeline is deterministic.
+
+The check that would have caught it is comparing the binding stamps across a set before archiving
+it, which is what `provenance.check_compatible` already does for results that are combined. An
+archive is a set that will be combined by whoever reads it, and it was not being checked.
+
+## 40. Recording that a store was verified changed the identity of the store
+
+Found 25 August 2026.
+
+The settings fingerprint hashed the whole `titrated_settings.json`. Re-stamping a store, to record
+that a code change had been checked against it and found inert, rewrote the file's metadata and
+moved the digest from 8000d3ede7314482 to 046e0da5bc380688 while every one of the 330 subjects and
+all 306 adopted settings stayed identical.
+
+Every measurement taken after the re-stamp therefore declared itself a different experiment from
+the baseline it was meant to extend, and `check_compatible` would have refused to combine two sets
+of figures computed on the same doses. A note saying "this was checked" invalidated what it
+checked.
+
+`provenance._settings_digest` now digests the settings themselves: each subject's adopted scales
+and whether it cleared the floors, which is what binds a result, since a subject that cleared
+nothing is excluded from every cohort. The current store and the archived copy agree at
+0df43fd250fadd47.
+
+Fingerprints recorded before the change hash the whole file and will not match one computed after
+it. Measurements carrying 046e0da5bc380688 and 0df43fd250fadd47 were made on the same settings.

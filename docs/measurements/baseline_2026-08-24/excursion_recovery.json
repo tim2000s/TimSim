@@ -1,13 +1,13 @@
 {
  "provenance": {
   "population": "704cfac086df54ba",
-  "settings": "9252e3400f4c6249",
-  "commit": "c3f3dbf86dc9d17c7fee771cdca3efa53abaa23c",
-  "dirty": true,
+  "settings": "046e0da5bc380688",
+  "commit": "37128ec9d9a3e216348a29caae9070a5c693e163",
+  "dirty": false,
   "host": "Tims-Mac-mini.local",
   "python": "3.14.7",
   "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
-  "when": "2026-08-23T19:14:38+00:00",
+  "when": "2026-08-25T11:03:34+00:00",
   "simglucose": "0.2.11"
  },
  "days": 28,
@@ -21,35 +21,35 @@
  "summary": [
   {
    "arm": "closed",
-   "subjects": 33,
-   "n_excursions": 2496,
-   "per_day": 2.7012987012987013,
-   "median_dur": 45.0,
-   "p90_dur": 200.0,
-   "median_peak": 198.18257106685684,
-   "p90_peak": 276.77343580904096,
-   "median_rise_min": 20.0,
-   "median_fall_min": 20.0,
-   "median_fall_rate": 62.70570092096913,
-   "p10_fall_rate": 26.42477966513303,
-   "tar180": 15.066964285714285,
-   "insulin_per_day": 46.58391294164431
+   "subjects": 36,
+   "n_excursions": 2810,
+   "per_day": 2.7876984126984126,
+   "median_dur": 40.0,
+   "p90_dur": 175.0,
+   "median_peak": 194.60753167281223,
+   "p90_peak": 259.68813240053606,
+   "median_rise_min": 15.0,
+   "median_fall_min": 15.0,
+   "median_fall_rate": 60.843186437200245,
+   "p10_fall_rate": 25.988366164477146,
+   "tar180": 13.926091269841269,
+   "insulin_per_day": 46.85890562326202
   },
   {
    "arm": "open",
-   "subjects": 28,
-   "n_excursions": 2983,
-   "per_day": 3.80484693877551,
+   "subjects": 34,
+   "n_excursions": 3709,
+   "per_day": 3.8960084033613445,
    "median_dur": 30.0,
    "p90_dur": 545.0,
-   "median_peak": 190.32340105471533,
-   "p90_peak": 311.968306839517,
+   "median_peak": 190.28514459555464,
+   "p90_peak": 302.702735836752,
    "median_rise_min": 10.0,
    "median_fall_min": 10.0,
-   "median_fall_rate": 43.99441112938439,
-   "p10_fall_rate": 16.357671706257218,
-   "tar180": 79.6875,
-   "insulin_per_day": 23.399921802018206
+   "median_fall_rate": 43.403522297093545,
+   "p10_fall_rate": 14.637242321469957,
+   "tar180": 72.71205357142857,
+   "insulin_per_day": 23.399878263292905
   },
   {
    "arm": "DCLP3",
@@ -73,721 +73,721 @@
    "name": "adolescent#003",
    "arm": "closed",
    "completed": true,
-   "seconds": 114.74063730239868,
+   "seconds": 120.32756304740906,
    "days": 28.0,
-   "insulin_per_day": 43.237686433878714,
-   "tar180": 22.457837301587304
+   "insulin_per_day": 46.83775713108508,
+   "tar180": 19.270833333333336
   },
   {
    "name": "adolescent#004",
    "arm": "closed",
    "completed": false,
-   "seconds": 31.968037843704224,
-   "days": 8.128472222222221,
-   "insulin_per_day": 41.7252046814582,
-   "tar180": 25.288338316958566
+   "seconds": 26.48305892944336,
+   "days": 6.454861111111111,
+   "insulin_per_day": 43.429241487962585,
+   "tar180": 31.522323830016134
   },
   {
    "name": "adolescent#006",
    "arm": "closed",
    "completed": false,
-   "seconds": 49.4587779045105,
-   "days": 12.427083333333334,
-   "insulin_per_day": 36.7384246142764,
-   "tar180": 16.596814752724224
+   "seconds": 26.752933263778687,
+   "days": 6.743055555555555,
+   "insulin_per_day": 36.81152990983267,
+   "tar180": 12.564366632337794
   },
   {
    "name": "adolescent#010",
    "arm": "closed",
    "completed": true,
-   "seconds": 118.01651811599731,
+   "seconds": 127.95997190475464,
    "days": 28.0,
-   "insulin_per_day": 35.87505621462112,
-   "tar180": 5.357142857142857
+   "insulin_per_day": 36.94473081608543,
+   "tar180": 6.423611111111111
   },
   {
    "name": "adolescent#011",
    "arm": "closed",
    "completed": true,
-   "seconds": 115.89767408370972,
+   "seconds": 120.20277500152588,
    "days": 28.0,
-   "insulin_per_day": 87.500193065304,
-   "tar180": 25.02480158730159
+   "insulin_per_day": 89.55616779734744,
+   "tar180": 22.854662698412696
   },
   {
    "name": "adolescent#019",
    "arm": "closed",
-   "completed": false,
-   "seconds": 110.68689012527466,
-   "days": 26.822916666666668,
-   "insulin_per_day": 51.91078427540385,
-   "tar180": 29.631067961165048
+   "completed": true,
+   "seconds": 120.40149903297424,
+   "days": 28.0,
+   "insulin_per_day": 50.28221192300997,
+   "tar180": 24.590773809523807
   },
   {
    "name": "adolescent#021",
    "arm": "closed",
    "completed": true,
-   "seconds": 115.34849190711975,
+   "seconds": 118.82341122627258,
    "days": 28.0,
-   "insulin_per_day": 30.16904761904762,
-   "tar180": 5.753968253968254
+   "insulin_per_day": 31.05407858066346,
+   "tar180": 6.8328373015873005
+  },
+  {
+   "name": "adolescent#023",
+   "arm": "closed",
+   "completed": true,
+   "seconds": 119.5401599407196,
+   "days": 28.0,
+   "insulin_per_day": 35.253693629470256,
+   "tar180": 22.470238095238095
   },
   {
    "name": "adolescent#027",
    "arm": "closed",
    "completed": true,
-   "seconds": 115.44572472572327,
+   "seconds": 117.3193359375,
    "days": 28.0,
-   "insulin_per_day": 42.17871882001646,
-   "tar180": 24.28075396825397
+   "insulin_per_day": 37.20385487169044,
+   "tar180": 23.660714285714285
   },
   {
    "name": "adolescent#031",
    "arm": "closed",
    "completed": false,
-   "seconds": 41.67673897743225,
-   "days": 10.725694444444445,
-   "insulin_per_day": 45.58034875074431,
-   "tar180": 18.841048883133702
+   "seconds": 110.57557010650635,
+   "days": 26.038194444444443,
+   "insulin_per_day": 49.53126162381264,
+   "tar180": 23.00306707561008
   },
   {
    "name": "adolescent#036",
    "arm": "closed",
    "completed": true,
-   "seconds": 116.43472099304199,
+   "seconds": 120.95783519744873,
    "days": 28.0,
-   "insulin_per_day": 38.04734981119038,
-   "tar180": 12.958829365079366
+   "insulin_per_day": 38.80905540488315,
+   "tar180": 12.834821428571427
   },
   {
    "name": "adolescent#041",
    "arm": "closed",
    "completed": true,
-   "seconds": 116.1941909790039,
+   "seconds": 122.15520906448364,
    "days": 28.0,
-   "insulin_per_day": 41.1400667619288,
-   "tar180": 7.316468253968254
+   "insulin_per_day": 41.027253098024175,
+   "tar180": 6.324404761904762
   },
   {
    "name": "adolescent#045",
    "arm": "closed",
    "completed": true,
-   "seconds": 114.12142205238342,
+   "seconds": 118.59204196929932,
    "days": 28.0,
-   "insulin_per_day": 57.38759940637341,
-   "tar180": 3.39781746031746
+   "insulin_per_day": 55.93043320707011,
+   "tar180": 3.5218253968253967
   },
   {
    "name": "adolescent#050",
    "arm": "closed",
    "completed": true,
-   "seconds": 116.63033199310303,
+   "seconds": 122.29209089279175,
    "days": 28.0,
-   "insulin_per_day": 63.03248559753879,
-   "tar180": 10.193452380952381
+   "insulin_per_day": 62.0214656849353,
+   "tar180": 8.097718253968255
   },
   {
    "name": "adolescent#067",
    "arm": "closed",
-   "completed": false,
-   "seconds": 23.710826873779297,
-   "days": 5.909722222222222,
-   "insulin_per_day": 43.87790475005189,
-   "tar180": 5.581668625146886
+   "completed": true,
+   "seconds": 118.99964499473572,
+   "days": 28.0,
+   "insulin_per_day": 51.36937507331441,
+   "tar180": 18.77480158730159
   },
   {
    "name": "adolescent#079",
    "arm": "closed",
    "completed": true,
-   "seconds": 115.9980480670929,
+   "seconds": 121.242271900177,
    "days": 28.0,
-   "insulin_per_day": 54.09108861611968,
-   "tar180": 11.011904761904761
+   "insulin_per_day": 49.53229118914475,
+   "tar180": 10.577876984126984
   },
   {
    "name": "adolescent#080",
    "arm": "closed",
    "completed": true,
-   "seconds": 121.27838826179504,
+   "seconds": 122.53855204582214,
    "days": 28.0,
-   "insulin_per_day": 43.092080306218875,
-   "tar180": 15.376984126984128
+   "insulin_per_day": 43.61806167397949,
+   "tar180": 17.658730158730158
   },
   {
    "name": "adolescent#083",
    "arm": "closed",
    "completed": true,
-   "seconds": 116.8487389087677,
+   "seconds": 120.87930488586426,
    "days": 28.0,
-   "insulin_per_day": 63.44096444862849,
-   "tar180": 10.32986111111111
+   "insulin_per_day": 65.10789423458054,
+   "tar180": 11.061507936507937
   },
   {
    "name": "adolescent#088",
    "arm": "closed",
    "completed": true,
-   "seconds": 117.92708778381348,
+   "seconds": 121.88184404373169,
    "days": 28.0,
-   "insulin_per_day": 67.28615187344722,
-   "tar180": 18.018353174603174
+   "insulin_per_day": 67.99769858743971,
+   "tar180": 15.01736111111111
   },
   {
    "name": "adolescent#089",
    "arm": "closed",
    "completed": true,
-   "seconds": 117.9693489074707,
+   "seconds": 121.45034003257751,
    "days": 28.0,
-   "insulin_per_day": 46.58391294164431,
-   "tar180": 3.571428571428571
+   "insulin_per_day": 45.280774733657736,
+   "tar180": 2.666170634920635
   },
   {
    "name": "adolescent#102",
    "arm": "closed",
    "completed": true,
-   "seconds": 118.37952780723572,
+   "seconds": 123.52704286575317,
    "days": 28.0,
-   "insulin_per_day": 44.181316420275536,
-   "tar180": 14.905753968253968
+   "insulin_per_day": 39.50910159386883,
+   "tar180": 11.594742063492063
   },
   {
    "name": "adolescent#107",
    "arm": "closed",
    "completed": true,
-   "seconds": 120.86092209815979,
+   "seconds": 124.61534190177917,
    "days": 28.0,
-   "insulin_per_day": 82.08634619921732,
-   "tar180": 15.066964285714285
+   "insulin_per_day": 81.0352034564729,
+   "tar180": 12.003968253968255
   },
   {
    "name": "adolescent#117",
    "arm": "closed",
    "completed": true,
-   "seconds": 121.22563600540161,
+   "seconds": 122.41196417808533,
    "days": 28.0,
-   "insulin_per_day": 46.91135418753346,
-   "tar180": 19.890873015873016
+   "insulin_per_day": 49.175295778720006,
+   "tar180": 18.24156746031746
+  },
+  {
+   "name": "adolescent#125",
+   "arm": "closed",
+   "completed": false,
+   "seconds": 82.61824488639832,
+   "days": 18.708333333333332,
+   "insulin_per_day": 55.80133992172027,
+   "tar180": 35.26354862657758
   },
   {
    "name": "adolescent#130",
    "arm": "closed",
    "completed": true,
-   "seconds": 119.7748658657074,
+   "seconds": 122.96849632263184,
    "days": 28.0,
-   "insulin_per_day": 64.97988217370361,
-   "tar180": 18.824404761904763
+   "insulin_per_day": 67.89060526042793,
+   "tar180": 16.64186507936508
   },
   {
    "name": "adolescent#135",
    "arm": "closed",
    "completed": true,
-   "seconds": 118.8126871585846,
+   "seconds": 129.1642608642578,
    "days": 28.0,
-   "insulin_per_day": 36.22639268781548,
-   "tar180": 10.305059523809524
+   "insulin_per_day": 37.27310235217921,
+   "tar180": 9.660218253968255
   },
   {
    "name": "adolescent#139",
    "arm": "closed",
    "completed": true,
-   "seconds": 117.9624252319336,
+   "seconds": 120.12379693984985,
    "days": 28.0,
-   "insulin_per_day": 33.1773415588908,
-   "tar180": 7.750496031746032
+   "insulin_per_day": 33.17814106448624,
+   "tar180": 6.721230158730158
   },
   {
    "name": "adolescent#142",
    "arm": "closed",
-   "completed": false,
-   "seconds": 91.3873279094696,
-   "days": 21.819444444444443,
-   "insulin_per_day": 41.222236512099684,
-   "tar180": 11.218968809675365
+   "completed": true,
+   "seconds": 121.15393304824829,
+   "days": 28.0,
+   "insulin_per_day": 40.47756089380885,
+   "tar180": 10.143849206349206
   },
   {
    "name": "adolescent#147",
    "arm": "closed",
    "completed": true,
-   "seconds": 117.99551105499268,
+   "seconds": 123.34701299667358,
    "days": 28.0,
-   "insulin_per_day": 69.60335111060066,
-   "tar180": 28.73263888888889
+   "insulin_per_day": 73.00985982005314,
+   "tar180": 29.575892857142854
   },
   {
    "name": "adult#004",
    "arm": "closed",
    "completed": true,
-   "seconds": 119.48131203651428,
+   "seconds": 123.70650792121887,
    "days": 28.0,
-   "insulin_per_day": 62.3097171230227,
-   "tar180": 28.273809523809522
+   "insulin_per_day": 62.67256647825233,
+   "tar180": 22.532242063492063
   },
   {
    "name": "adult#005",
    "arm": "closed",
    "completed": true,
-   "seconds": 122.1409101486206,
+   "seconds": 122.24500298500061,
    "days": 28.0,
-   "insulin_per_day": 60.72491350931227,
-   "tar180": 19.903273809523807
+   "insulin_per_day": 63.89897097206493,
+   "tar180": 18.849206349206348
   },
   {
    "name": "adult#007",
    "arm": "closed",
    "completed": true,
-   "seconds": 117.6828670501709,
+   "seconds": 120.39545607566833,
    "days": 28.0,
-   "insulin_per_day": 43.90780469106854,
-   "tar180": 17.21230158730159
+   "insulin_per_day": 43.3446015300485,
+   "tar180": 15.054563492063492
   },
   {
    "name": "adult#008",
    "arm": "closed",
    "completed": true,
-   "seconds": 119.66682291030884,
+   "seconds": 123.55812501907349,
    "days": 28.0,
-   "insulin_per_day": 54.9452432513808,
-   "tar180": 22.71825396825397
+   "insulin_per_day": 54.089189160376016,
+   "tar180": 20.473710317460316
   },
   {
    "name": "adult#009",
    "arm": "closed",
    "completed": true,
-   "seconds": 120.0453429222107,
+   "seconds": 124.5877799987793,
    "days": 28.0,
-   "insulin_per_day": 46.00325217129067,
-   "tar180": 9.685019841269842
+   "insulin_per_day": 45.61874929645791,
+   "tar180": 7.8125
   },
   {
    "name": "adult#010",
    "arm": "closed",
    "completed": true,
-   "seconds": 117.70277881622314,
+   "seconds": 121.22740817070007,
    "days": 28.0,
-   "insulin_per_day": 45.216688467630604,
-   "tar180": 9.871031746031745
+   "insulin_per_day": 44.59099118295979,
+   "tar180": 6.349206349206349
   },
   {
    "name": "adult#011",
    "arm": "closed",
-   "completed": false,
-   "seconds": 77.25919890403748,
-   "days": 17.305555555555557,
-   "insulin_per_day": 46.53350924089711,
-   "tar180": 21.448635634028893
+   "completed": true,
+   "seconds": 131.6125271320343,
+   "days": 28.0,
+   "insulin_per_day": 46.88005411543895,
+   "tar180": 21.180555555555554
   },
   {
    "name": "adult#038",
    "arm": "closed",
    "completed": true,
-   "seconds": 121.08995604515076,
+   "seconds": 124.1678318977356,
    "days": 28.0,
-   "insulin_per_day": 66.2430910968033,
-   "tar180": 29.786706349206348
+   "insulin_per_day": 66.63463405836367,
+   "tar180": 23.685515873015873
   },
   {
    "name": "adult#041",
    "arm": "closed",
    "completed": true,
-   "seconds": 119.03659391403198,
+   "seconds": 123.01504802703857,
    "days": 28.0,
-   "insulin_per_day": 34.17205480517158,
-   "tar180": 10.863095238095239
+   "insulin_per_day": 33.54411197603403,
+   "tar180": 8.544146825396826
   },
   {
    "name": "adult#045",
    "arm": "closed",
    "completed": true,
-   "seconds": 119.24992322921753,
+   "seconds": 127.4252700805664,
    "days": 28.0,
-   "insulin_per_day": 37.5775427766934,
-   "tar180": 28.199404761904763
+   "insulin_per_day": 40.25003837896852,
+   "tar180": 23.549107142857142
   },
   {
    "name": "adult#046",
    "arm": "closed",
    "completed": true,
-   "seconds": 118.45747089385986,
+   "seconds": 121.29935431480408,
    "days": 28.0,
-   "insulin_per_day": 55.240706504819585,
-   "tar180": 16.096230158730158
-  },
-  {
-   "name": "adult#053",
-   "arm": "closed",
-   "completed": true,
-   "seconds": 121.20000505447388,
-   "days": 28.0,
-   "insulin_per_day": 79.96810154048687,
-   "tar180": 20.88293650793651
-  },
-  {
-   "name": "adult#058",
-   "arm": "closed",
-   "completed": true,
-   "seconds": 122.73986792564392,
-   "days": 28.0,
-   "insulin_per_day": 26.51057699374117,
-   "tar180": 13.740079365079366
+   "insulin_per_day": 57.822361755102484,
+   "tar180": 12.065972222222223
   },
   {
    "name": "adolescent#003",
    "arm": "open",
-   "completed": false,
-   "seconds": 16.22833275794983,
-   "days": 3.8854166666666665,
-   "insulin_per_day": 19.20001756986257,
-   "tar180": 91.33154602323503
+   "completed": true,
+   "seconds": 124.25070691108704,
+   "days": 28.0,
+   "insulin_per_day": 23.999714385351304,
+   "tar180": 86.87996031746032
   },
   {
    "name": "adolescent#004",
    "arm": "open",
    "completed": false,
-   "seconds": 14.978684902191162,
-   "days": 3.5243055555555554,
-   "insulin_per_day": 22.80000359333882,
-   "tar180": 92.21674876847291
+   "seconds": 52.70906186103821,
+   "days": 11.878472222222221,
+   "insulin_per_day": 22.800001156717492,
+   "tar180": 97.66150248465361
   },
   {
    "name": "adolescent#006",
    "arm": "open",
    "completed": true,
-   "seconds": 122.92773008346558,
+   "seconds": 123.22968292236328,
    "days": 28.0,
-   "insulin_per_day": 20.400044508814915,
-   "tar180": 90.15376984126983
+   "insulin_per_day": 21.599979500003233,
+   "tar180": 72.47023809523809
   },
   {
    "name": "adolescent#010",
    "arm": "open",
    "completed": true,
-   "seconds": 119.2738790512085,
+   "seconds": 123.25932312011719,
    "days": 28.0,
-   "insulin_per_day": 15.600182574282437,
-   "tar180": 31.75843253968254
+   "insulin_per_day": 15.599909725946075,
+   "tar180": 32.15525793650794
   },
   {
    "name": "adolescent#011",
    "arm": "open",
    "completed": true,
-   "seconds": 118.69408106803894,
+   "seconds": 121.14514994621277,
    "days": 28.0,
-   "insulin_per_day": 34.800050353942616,
-   "tar180": 82.71329365079364
+   "insulin_per_day": 34.8000300362277,
+   "tar180": 82.27926587301587
   },
   {
    "name": "adolescent#019",
    "arm": "open",
    "completed": false,
-   "seconds": 2.861406087875366,
-   "days": 0.7465277777777778,
-   "insulin_per_day": 19.196911576358943,
-   "tar180": 79.53488372093022
+   "seconds": 29.69631791114807,
+   "days": 6.881944444444445,
+   "insulin_per_day": 19.19977738574917,
+   "tar180": 98.6377396569122
   },
   {
    "name": "adolescent#021",
    "arm": "open",
    "completed": true,
-   "seconds": 118.54913210868835,
+   "seconds": 122.25670194625854,
    "days": 28.0,
-   "insulin_per_day": 14.399994468384193,
-   "tar180": 56.63442460317461
+   "insulin_per_day": 14.399982614921743,
+   "tar180": 57.514880952380956
+  },
+  {
+   "name": "adolescent#023",
+   "arm": "open",
+   "completed": false,
+   "seconds": 56.1947877407074,
+   "days": 12.927083333333334,
+   "insulin_per_day": 15.599936306990271,
+   "tar180": 95.48751007252217
   },
   {
    "name": "adolescent#027",
    "arm": "open",
-   "completed": false,
-   "seconds": 32.47395205497742,
-   "days": 7.791666666666667,
-   "insulin_per_day": 16.799844264603024,
-   "tar180": 93.27094474153299
+   "completed": true,
+   "seconds": 123.60370779037476,
+   "days": 28.0,
+   "insulin_per_day": 14.400050056848784,
+   "tar180": 99.64037698412699
   },
   {
    "name": "adolescent#031",
    "arm": "open",
    "completed": true,
-   "seconds": 118.72190594673157,
+   "seconds": 123.52296423912048,
    "days": 28.0,
-   "insulin_per_day": 17.999986810749725,
-   "tar180": 78.52182539682539
+   "insulin_per_day": 17.999953763508508,
+   "tar180": 83.44494047619048
   },
   {
    "name": "adolescent#036",
    "arm": "open",
    "completed": true,
-   "seconds": 117.38094592094421,
+   "seconds": 122.23368692398071,
    "days": 28.0,
-   "insulin_per_day": 10.799851448376696,
-   "tar180": 48.84672619047619
+   "insulin_per_day": 10.800336928523636,
+   "tar180": 45.535714285714285
   },
   {
    "name": "adolescent#041",
    "arm": "open",
    "completed": true,
-   "seconds": 119.34554600715637,
+   "seconds": 123.51762509346008,
    "days": 28.0,
-   "insulin_per_day": 24.000003276691892,
-   "tar180": 59.88343253968254
+   "insulin_per_day": 24.000100727514045,
+   "tar180": 58.37053571428571
   },
   {
    "name": "adolescent#045",
    "arm": "open",
    "completed": true,
-   "seconds": 118.38420104980469,
+   "seconds": 128.1498429775238,
    "days": 28.0,
-   "insulin_per_day": 28.799989492506466,
-   "tar180": 36.71875
+   "insulin_per_day": 28.799813391067367,
+   "tar180": 34.573412698412696
   },
   {
    "name": "adolescent#050",
    "arm": "open",
    "completed": true,
-   "seconds": 121.14607620239258,
+   "seconds": 123.31736516952515,
    "days": 28.0,
-   "insulin_per_day": 32.39999495674973,
-   "tar180": 41.269841269841265
+   "insulin_per_day": 32.400039674838574,
+   "tar180": 37.686011904761905
   },
   {
    "name": "adolescent#067",
    "arm": "open",
    "completed": true,
-   "seconds": 120.3257372379303,
+   "seconds": 122.6326048374176,
    "days": 28.0,
-   "insulin_per_day": 30.000040719618568,
-   "tar180": 91.17063492063492
+   "insulin_per_day": 30.00001759545599,
+   "tar180": 90.78621031746032
   },
   {
    "name": "adolescent#079",
    "arm": "open",
    "completed": true,
-   "seconds": 121.09132218360901,
+   "seconds": 123.73545289039612,
    "days": 28.0,
-   "insulin_per_day": 28.800022856269454,
-   "tar180": 81.56001984126983
+   "insulin_per_day": 22.800042141234506,
+   "tar180": 98.48710317460318
   },
   {
    "name": "adolescent#080",
    "arm": "open",
    "completed": true,
-   "seconds": 121.9298939704895,
+   "seconds": 125.06066513061523,
    "days": 28.0,
-   "insulin_per_day": 21.59998817328417,
-   "tar180": 96.91220238095238
+   "insulin_per_day": 21.599886584379938,
+   "tar180": 96.96180555555556
   },
   {
    "name": "adolescent#083",
    "arm": "open",
-   "completed": false,
-   "seconds": 70.2971420288086,
-   "days": 16.875,
-   "insulin_per_day": 28.79983177885394,
-   "tar180": 60.08230452674898
+   "completed": true,
+   "seconds": 125.65660500526428,
+   "days": 28.0,
+   "insulin_per_day": 28.79991544886381,
+   "tar180": 62.59920634920635
   },
   {
    "name": "adolescent#088",
    "arm": "open",
    "completed": true,
-   "seconds": 119.47152590751648,
+   "seconds": 125.61766386032104,
    "days": 28.0,
-   "insulin_per_day": 28.79989726144992,
-   "tar180": 86.73115079365078
+   "insulin_per_day": 28.8000520596459,
+   "tar180": 83.08531746031747
   },
   {
    "name": "adolescent#089",
    "arm": "open",
    "completed": true,
-   "seconds": 118.68636679649353,
+   "seconds": 123.44710493087769,
    "days": 28.0,
-   "insulin_per_day": 26.399772167717906,
-   "tar180": 29.005456349206348
+   "insulin_per_day": 26.39977167240504,
+   "tar180": 19.952876984126984
   },
   {
    "name": "adolescent#102",
    "arm": "open",
    "completed": true,
-   "seconds": 118.87140202522278,
+   "seconds": 124.56203579902649,
    "days": 28.0,
-   "insulin_per_day": 15.599895405564581,
-   "tar180": 57.341269841269835
+   "insulin_per_day": 15.599902278532639,
+   "tar180": 52.963789682539684
   },
   {
    "name": "adolescent#107",
    "arm": "open",
    "completed": true,
-   "seconds": 119.6810576915741,
+   "seconds": 127.93398714065552,
    "days": 28.0,
-   "insulin_per_day": 35.99963910989375,
-   "tar180": 46.92460317460318
+   "insulin_per_day": 35.99940957542083,
+   "tar180": 52.38095238095239
   },
   {
    "name": "adolescent#117",
    "arm": "open",
    "completed": true,
-   "seconds": 120.68627309799194,
+   "seconds": 130.94864797592163,
    "days": 28.0,
-   "insulin_per_day": 19.200014327871006,
-   "tar180": 80.85317460317461
+   "insulin_per_day": 21.600042364882544,
+   "tar180": 72.95386904761905
+  },
+  {
+   "name": "adolescent#125",
+   "arm": "open",
+   "completed": false,
+   "seconds": 5.7593560218811035,
+   "days": 1.2951388888888888,
+   "insulin_per_day": 22.799718950607105,
+   "tar180": 90.0804289544236
   },
   {
    "name": "adolescent#130",
    "arm": "open",
-   "completed": false,
-   "seconds": 44.222620248794556,
-   "days": 10.79513888888889,
-   "insulin_per_day": 26.399735128440845,
-   "tar180": 50.08041170794467
+   "completed": true,
+   "seconds": 127.5660400390625,
+   "days": 28.0,
+   "insulin_per_day": 26.400075706549064,
+   "tar180": 61.80555555555556
   },
   {
    "name": "adolescent#135",
    "arm": "open",
    "completed": true,
-   "seconds": 118.740807056427,
+   "seconds": 128.86711502075195,
    "days": 28.0,
-   "insulin_per_day": 11.999903454008559,
-   "tar180": 62.636408730158735
+   "insulin_per_day": 11.999954398812163,
+   "tar180": 65.30257936507937
   },
   {
    "name": "adolescent#139",
    "arm": "open",
-   "completed": false,
-   "seconds": 113.34945583343506,
-   "days": 26.63888888888889,
-   "insulin_per_day": 13.200292763043265,
-   "tar180": 58.720020855057356
+   "completed": true,
+   "seconds": 124.19554018974304,
+   "days": 28.0,
+   "insulin_per_day": 13.200239619732494,
+   "tar180": 61.235119047619044
   },
   {
    "name": "adolescent#142",
    "arm": "open",
    "completed": true,
-   "seconds": 118.50317788124084,
+   "seconds": 131.61481475830078,
    "days": 28.0,
    "insulin_per_day": 20.399999999999995,
-   "tar180": 63.72767857142857
+   "tar180": 58.457341269841265
   },
   {
    "name": "adolescent#147",
    "arm": "open",
-   "completed": false,
-   "seconds": 67.27015399932861,
-   "days": 15.847222222222221,
-   "insulin_per_day": 26.40023710607112,
-   "tar180": 64.43908851884312
+   "completed": true,
+   "seconds": 125.60480690002441,
+   "days": 28.0,
+   "insulin_per_day": 26.400195355916434,
+   "tar180": 69.77926587301587
   },
   {
    "name": "adult#004",
    "arm": "open",
-   "completed": false,
-   "seconds": 64.30921578407288,
-   "days": 14.850694444444445,
-   "insulin_per_day": 23.999911924719264,
-   "tar180": 81.739537058686
+   "completed": true,
+   "seconds": 127.66794490814209,
+   "days": 28.0,
+   "insulin_per_day": 23.999904761848295,
+   "tar180": 85.60267857142857
   },
   {
    "name": "adult#005",
    "arm": "open",
    "completed": true,
-   "seconds": 120.64141297340393,
+   "seconds": 122.35733580589294,
    "days": 28.0,
-   "insulin_per_day": 25.20011408764086,
-   "tar180": 76.83531746031747
+   "insulin_per_day": 25.199913726767058,
+   "tar180": 79.81150793650794
   },
   {
    "name": "adult#007",
    "arm": "open",
-   "completed": true,
-   "seconds": 119.76878190040588,
-   "days": 28.0,
-   "insulin_per_day": 16.79995572805997,
-   "tar180": 98.93353174603175
+   "completed": false,
+   "seconds": 99.11859393119812,
+   "days": 24.868055555555557,
+   "insulin_per_day": 18.00007468331795,
+   "tar180": 98.1709019826864
   },
   {
    "name": "adult#008",
    "arm": "open",
-   "completed": false,
-   "seconds": 67.95910310745239,
-   "days": 15.840277777777779,
-   "insulin_per_day": 22.800133134841836,
-   "tar180": 94.62954844366506
+   "completed": true,
+   "seconds": 109.131765127182,
+   "days": 28.0,
+   "insulin_per_day": 22.799962604099637,
+   "tar180": 95.26289682539682
   },
   {
    "name": "adult#009",
    "arm": "open",
    "completed": true,
-   "seconds": 108.19864416122437,
+   "seconds": 111.28108310699463,
    "days": 28.0,
-   "insulin_per_day": 26.400151311182608,
-   "tar180": 87.15277777777779
+   "insulin_per_day": 26.39996756578304,
+   "tar180": 90.17857142857143
   },
   {
    "name": "adult#010",
    "arm": "open",
    "completed": true,
-   "seconds": 108.0743670463562,
+   "seconds": 108.18410515785217,
    "days": 28.0,
-   "insulin_per_day": 22.79999409757504,
-   "tar180": 97.73065476190477
+   "insulin_per_day": 21.600050551072716,
+   "tar180": 98.87152777777779
   },
   {
    "name": "adult#011",
    "arm": "open",
    "completed": false,
-   "seconds": 45.444401264190674,
-   "days": 9.909722222222221,
-   "insulin_per_day": 21.59993373125414,
-   "tar180": 95.65522074281711
+   "seconds": 58.137057065963745,
+   "days": 13.958333333333334,
+   "insulin_per_day": 21.599952655462,
+   "tar180": 96.74129353233832
   },
   {
    "name": "adult#038",
    "arm": "open",
    "completed": true,
-   "seconds": 105.39775586128235,
+   "seconds": 105.5085027217865,
    "days": 28.0,
-   "insulin_per_day": 23.999849506461373,
-   "tar180": 90.35218253968253
+   "insulin_per_day": 23.999843890834352,
+   "tar180": 93.45238095238095
   },
   {
    "name": "adult#041",
    "arm": "open",
    "completed": true,
-   "seconds": 106.17879009246826,
+   "seconds": 103.91015195846558,
    "days": 28.0,
-   "insulin_per_day": 19.200023635369337,
-   "tar180": 98.61111111111111
+   "insulin_per_day": 19.19997907063334,
+   "tar180": 97.50744047619048
   },
   {
    "name": "adult#045",
    "arm": "open",
-   "completed": false,
-   "seconds": 2.845532178878784,
-   "days": 0.8402777777777778,
-   "insulin_per_day": 16.8,
-   "tar180": 84.29752066115702
+   "completed": true,
+   "seconds": 103.1872239112854,
+   "days": 28.0,
+   "insulin_per_day": 16.80008082262615,
+   "tar180": 99.66517857142857
   },
   {
    "name": "adult#046",
    "arm": "open",
    "completed": true,
-   "seconds": 101.72761917114258,
+   "seconds": 100.36653184890747,
    "days": 28.0,
-   "insulin_per_day": 24.000306939024323,
-   "tar180": 64.14930555555556
-  },
-  {
-   "name": "adult#053",
-   "arm": "open",
-   "completed": true,
-   "seconds": 103.78125476837158,
-   "days": 28.0,
-   "insulin_per_day": 38.40004923927433,
-   "tar180": 94.58085317460318
-  },
-  {
-   "name": "adult#058",
-   "arm": "open",
-   "completed": true,
-   "seconds": 96.60622096061707,
-   "days": 28.0,
-   "insulin_per_day": 11.99998727918441,
-   "tar180": 96.34176587301587
+   "insulin_per_day": 24.000239020170447,
+   "tar180": 65.36458333333334
   }
  ]
 }
