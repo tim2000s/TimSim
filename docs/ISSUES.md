@@ -838,3 +838,34 @@ nothing is excluded from every cohort. The current store and the archived copy a
 
 Fingerprints recorded before the change hash the whole file and will not match one computed after
 it. Measurements carrying 046e0da5bc380688 and 0df43fd250fadd47 were made on the same settings.
+
+## 41. A mechanism was refused on a sweep whose parameter never reached the simulation
+
+Found 27 August 2026, while rebuilding study 07.
+
+`07 Meal peak timing` refused three explanations for an apparent 45-minute discrepancy in when a
+simulated meal peaks. The first was absorption, recorded as "slowing gastric emptying and
+intestinal absorption together by a factor of three moves the modelled peak by ten minutes and
+then saturates". That measurement had no producer. It existed only as a comment in
+`person/behaviour.py`, so nothing could reproduce it or rerun it on a later configuration.
+
+Writing the producer reproduced the shape of the defect before reproducing the finding. The first
+version swept `meal_absorption_scale` from 0.33 to 2.0 and returned an identical time to peak at
+every scale, because that argument is applied inside the physiology block in `simulation/run.py`
+and the meal-response measurement runs with no layers enabled. A run without that layer accepts the
+argument and ignores it.
+
+With the layer enabled and its other variation switched off, a threefold slowing moves the peak
+from 252 to 362 minutes and a doubling moves it to 148, monotonically and without saturating. The
+mechanism that was refused is the dominant control on the quantity it was refused for.
+
+Whether the original measurement had this exact defect cannot be established, since it left no
+artefact. What can be said is that a parameter applied only inside a layer is inert in a
+measurement that enables no layers, that the meal-response measurement is one such, and that "moves
+ten minutes and saturates" across a sixfold range is what an inert parameter looks like when the
+residual is noise.
+
+Two things follow beyond the one study. A refutation with no producer cannot be checked and should
+not be relied on, which is the same finding as issue 36 reaching a different document. And an
+argument that a run accepts and silently ignores is a defect in `simulate` rather than in the
+caller: `meal_absorption_scale` passed without the physiology layer should raise rather than pass.

@@ -1,0 +1,1303 @@
+{
+ "provenance": {
+  "population": "704cfac086df54ba",
+  "settings": "0df43fd250fadd47",
+  "commit": "a3d261687eafaa188239af36584606a2841f98c1",
+  "dirty": true,
+  "host": "Tims-Mac-mini.local",
+  "python": "3.14.7",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "when": "2026-08-27T06:58:39+00:00",
+  "simglucose": "0.2.11"
+ },
+ "grams": 50.0,
+ "n_subjects": 40,
+ "absorption_scales": [
+  0.33,
+  0.5,
+  1.0,
+  2.0
+ ],
+ "rows": [
+  {
+   "name": "adult#001",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 595.0,
+   "rise": 60.01173124772123,
+   "rise_per_10g": 12.002346249544246
+  },
+  {
+   "name": "adult#002",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 545.0,
+   "rise": 77.56839608562103,
+   "rise_per_10g": 15.513679217124206
+  },
+  {
+   "name": "adult#003",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 360.0,
+   "rise": 66.24112584641674,
+   "rise_per_10g": 13.248225169283348
+  },
+  {
+   "name": "adult#004",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 175.0,
+   "rise": 64.44350207277918,
+   "rise_per_10g": 12.888700414555837
+  },
+  {
+   "name": "adult#005",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 645.0,
+   "rise": 44.833309569081536,
+   "rise_per_10g": 8.966661913816306
+  },
+  {
+   "name": "adult#006",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 365.0,
+   "rise": 86.44532616736811,
+   "rise_per_10g": 17.28906523347362
+  },
+  {
+   "name": "adult#007",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 415.0,
+   "rise": 44.55629891510728,
+   "rise_per_10g": 8.911259783021455
+  },
+  {
+   "name": "adult#008",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 265.0,
+   "rise": 88.34217761061586,
+   "rise_per_10g": 17.668435522123172
+  },
+  {
+   "name": "adult#009",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 350.0,
+   "rise": 65.38921231287003,
+   "rise_per_10g": 13.077842462574006
+  },
+  {
+   "name": "adult#010",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 465.0,
+   "rise": 32.21214242677348,
+   "rise_per_10g": 6.4424284853546965
+  },
+  {
+   "name": "adult#011",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 425.0,
+   "rise": 71.99272906837524,
+   "rise_per_10g": 14.398545813675048
+  },
+  {
+   "name": "adult#012",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 485.0,
+   "rise": 30.93620726600622,
+   "rise_per_10g": 6.187241453201244
+  },
+  {
+   "name": "adult#013",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 460.0,
+   "rise": 38.71047695452508,
+   "rise_per_10g": 7.742095390905016
+  },
+  {
+   "name": "adult#014",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 370.0,
+   "rise": 125.7811686845979,
+   "rise_per_10g": 25.15623373691958
+  },
+  {
+   "name": "adult#015",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 170.0,
+   "rise": 41.51145763591768,
+   "rise_per_10g": 8.302291527183536
+  },
+  {
+   "name": "adult#016",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 715.0,
+   "rise": 45.215092318088296,
+   "rise_per_10g": 9.04301846361766
+  },
+  {
+   "name": "adult#017",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 380.0,
+   "rise": 55.905842300841044,
+   "rise_per_10g": 11.181168460168209
+  },
+  {
+   "name": "adult#018",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 170.0,
+   "rise": 43.35875747580525,
+   "rise_per_10g": 8.67175149516105
+  },
+  {
+   "name": "adult#019",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 200.0,
+   "rise": 69.11057315163089,
+   "rise_per_10g": 13.822114630326178
+  },
+  {
+   "name": "adult#020",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 190.0,
+   "rise": 51.499134274355015,
+   "rise_per_10g": 10.299826854871004
+  },
+  {
+   "name": "adult#021",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 580.0,
+   "rise": 57.44994164653585,
+   "rise_per_10g": 11.48998832930717
+  },
+  {
+   "name": "adult#022",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 410.0,
+   "rise": 29.001351253845314,
+   "rise_per_10g": 5.800270250769063
+  },
+  {
+   "name": "adult#023",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 330.0,
+   "rise": 54.74579636242984,
+   "rise_per_10g": 10.949159272485968
+  },
+  {
+   "name": "adult#024",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 200.0,
+   "rise": 42.26871761961792,
+   "rise_per_10g": 8.453743523923583
+  },
+  {
+   "name": "adult#025",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 200.0,
+   "rise": 43.44412237668095,
+   "rise_per_10g": 8.68882447533619
+  },
+  {
+   "name": "adult#027",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 280.0,
+   "rise": 51.38927329140358,
+   "rise_per_10g": 10.277854658280717
+  },
+  {
+   "name": "adult#028",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 190.0,
+   "rise": 61.41483111252407,
+   "rise_per_10g": 12.282966222504815
+  },
+  {
+   "name": "adult#029",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 390.0,
+   "rise": 51.89211164567567,
+   "rise_per_10g": 10.378422329135134
+  },
+  {
+   "name": "adult#030",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 335.0,
+   "rise": 48.71802513006793,
+   "rise_per_10g": 9.743605026013586
+  },
+  {
+   "name": "adult#031",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 385.0,
+   "rise": 78.38682483107925,
+   "rise_per_10g": 15.677364966215851
+  },
+  {
+   "name": "adult#032",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 175.0,
+   "rise": 54.96933252972562,
+   "rise_per_10g": 10.993866505945125
+  },
+  {
+   "name": "adult#033",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 345.0,
+   "rise": 46.27941922997461,
+   "rise_per_10g": 9.255883845994921
+  },
+  {
+   "name": "adult#034",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 615.0,
+   "rise": 90.14419381502643,
+   "rise_per_10g": 18.028838763005286
+  },
+  {
+   "name": "adult#035",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 415.0,
+   "rise": 46.464387462388686,
+   "rise_per_10g": 9.292877492477738
+  },
+  {
+   "name": "adult#036",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 565.0,
+   "rise": 55.36947672355083,
+   "rise_per_10g": 11.073895344710166
+  },
+  {
+   "name": "adult#037",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 400.0,
+   "rise": 24.749837103707733,
+   "rise_per_10g": 4.9499674207415465
+  },
+  {
+   "name": "adult#038",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 150.0,
+   "rise": 40.25404046149757,
+   "rise_per_10g": 8.050808092299514
+  },
+  {
+   "name": "adult#039",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 180.0,
+   "rise": 51.72997508977434,
+   "rise_per_10g": 10.345995017954868
+  },
+  {
+   "name": "adult#040",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 300.0,
+   "rise": 46.36366975082399,
+   "rise_per_10g": 9.272733950164797
+  },
+  {
+   "name": "adult#041",
+   "absorption": 0.33,
+   "bias": 1.0,
+   "time_to_peak_min": 305.0,
+   "rise": 42.60040919635205,
+   "rise_per_10g": 8.520081839270409
+  },
+  {
+   "name": "adult#001",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 435.0,
+   "rise": 73.62600618449372,
+   "rise_per_10g": 14.725201236898744
+  },
+  {
+   "name": "adult#002",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 405.0,
+   "rise": 95.43434014692824,
+   "rise_per_10g": 19.08686802938565
+  },
+  {
+   "name": "adult#003",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 295.0,
+   "rise": 81.96560480496498,
+   "rise_per_10g": 16.393120960992995
+  },
+  {
+   "name": "adult#004",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 150.0,
+   "rise": 75.71748566637498,
+   "rise_per_10g": 15.143497133274996
+  },
+  {
+   "name": "adult#005",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 460.0,
+   "rise": 58.85415331591605,
+   "rise_per_10g": 11.77083066318321
+  },
+  {
+   "name": "adult#006",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 295.0,
+   "rise": 103.77532689850798,
+   "rise_per_10g": 20.7550653797016
+  },
+  {
+   "name": "adult#007",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 350.0,
+   "rise": 55.96179926101462,
+   "rise_per_10g": 11.192359852202923
+  },
+  {
+   "name": "adult#008",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 220.0,
+   "rise": 102.97560183877698,
+   "rise_per_10g": 20.595120367755396
+  },
+  {
+   "name": "adult#009",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 290.0,
+   "rise": 78.29053017013021,
+   "rise_per_10g": 15.658106034026043
+  },
+  {
+   "name": "adult#010",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 715.0,
+   "rise": 45.8057078986036,
+   "rise_per_10g": 9.16114157972072
+  },
+  {
+   "name": "adult#011",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 345.0,
+   "rise": 87.7713595209471,
+   "rise_per_10g": 17.55427190418942
+  },
+  {
+   "name": "adult#012",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 405.0,
+   "rise": 40.13961556835139,
+   "rise_per_10g": 8.027923113670278
+  },
+  {
+   "name": "adult#013",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 380.0,
+   "rise": 48.297324775616175,
+   "rise_per_10g": 9.659464955123235
+  },
+  {
+   "name": "adult#014",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 280.0,
+   "rise": 146.53231045977086,
+   "rise_per_10g": 29.30646209195417
+  },
+  {
+   "name": "adult#015",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 715.0,
+   "rise": 49.9584563803885,
+   "rise_per_10g": 9.991691276077699
+  },
+  {
+   "name": "adult#016",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 585.0,
+   "rise": 62.790189921958785,
+   "rise_per_10g": 12.558037984391756
+  },
+  {
+   "name": "adult#017",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 585.0,
+   "rise": 81.17668031519167,
+   "rise_per_10g": 16.235336063038336
+  },
+  {
+   "name": "adult#018",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 650.0,
+   "rise": 51.661882198618514,
+   "rise_per_10g": 10.332376439723703
+  },
+  {
+   "name": "adult#019",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 165.0,
+   "rise": 79.70494014987867,
+   "rise_per_10g": 15.940988029975733
+  },
+  {
+   "name": "adult#020",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 445.0,
+   "rise": 60.606011906400624,
+   "rise_per_10g": 12.121202381280124
+  },
+  {
+   "name": "adult#021",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 430.0,
+   "rise": 73.44792902363753,
+   "rise_per_10g": 14.689585804727505
+  },
+  {
+   "name": "adult#022",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 335.0,
+   "rise": 37.82217558428627,
+   "rise_per_10g": 7.564435116857254
+  },
+  {
+   "name": "adult#023",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 270.0,
+   "rise": 67.104188561223,
+   "rise_per_10g": 13.4208377122446
+  },
+  {
+   "name": "adult#024",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 230.0,
+   "rise": 50.26809873503865,
+   "rise_per_10g": 10.05361974700773
+  },
+  {
+   "name": "adult#025",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 255.0,
+   "rise": 55.2785819416132,
+   "rise_per_10g": 11.05571638832264
+  },
+  {
+   "name": "adult#027",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 235.0,
+   "rise": 64.67585437545813,
+   "rise_per_10g": 12.935170875091625
+  },
+  {
+   "name": "adult#028",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 485.0,
+   "rise": 70.08958291279916,
+   "rise_per_10g": 14.017916582559831
+  },
+  {
+   "name": "adult#029",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 325.0,
+   "rise": 64.53853375583688,
+   "rise_per_10g": 12.907706751167376
+  },
+  {
+   "name": "adult#030",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 265.0,
+   "rise": 58.91066160438734,
+   "rise_per_10g": 11.78213232087747
+  },
+  {
+   "name": "adult#031",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 340.0,
+   "rise": 94.54470998503788,
+   "rise_per_10g": 18.908941997007577
+  },
+  {
+   "name": "adult#032",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 140.0,
+   "rise": 64.125235315809,
+   "rise_per_10g": 12.825047063161799
+  },
+  {
+   "name": "adult#033",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 310.0,
+   "rise": 55.52760891998781,
+   "rise_per_10g": 11.105521783997563
+  },
+  {
+   "name": "adult#034",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 455.0,
+   "rise": 105.30432301223044,
+   "rise_per_10g": 21.060864602446088
+  },
+  {
+   "name": "adult#035",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 620.0,
+   "rise": 62.10430743281245,
+   "rise_per_10g": 12.42086148656249
+  },
+  {
+   "name": "adult#036",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 405.0,
+   "rise": 73.16175946585648,
+   "rise_per_10g": 14.632351893171295
+  },
+  {
+   "name": "adult#037",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 600.0,
+   "rise": 32.43614642212805,
+   "rise_per_10g": 6.487229284425609
+  },
+  {
+   "name": "adult#038",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 125.0,
+   "rise": 46.43732296541157,
+   "rise_per_10g": 9.287464593082314
+  },
+  {
+   "name": "adult#039",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 560.0,
+   "rise": 62.674435450707705,
+   "rise_per_10g": 12.534887090141542
+  },
+  {
+   "name": "adult#040",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 250.0,
+   "rise": 56.88690369155316,
+   "rise_per_10g": 11.377380738310631
+  },
+  {
+   "name": "adult#041",
+   "absorption": 0.5,
+   "bias": 1.0,
+   "time_to_peak_min": 320.0,
+   "rise": 50.89146547559912,
+   "rise_per_10g": 10.178293095119823
+  },
+  {
+   "name": "adult#001",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 240.0,
+   "rise": 97.60088122502248,
+   "rise_per_10g": 19.520176245004496
+  },
+  {
+   "name": "adult#002",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 225.0,
+   "rise": 125.74240864857546,
+   "rise_per_10g": 25.148481729715094
+  },
+  {
+   "name": "adult#003",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 270.0,
+   "rise": 125.76150463412009,
+   "rise_per_10g": 25.15230092682402
+  },
+  {
+   "name": "adult#004",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 240.0,
+   "rise": 104.57923079884392,
+   "rise_per_10g": 20.915846159768783
+  },
+  {
+   "name": "adult#005",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 245.0,
+   "rise": 91.64301526129549,
+   "rise_per_10g": 18.328603052259098
+  },
+  {
+   "name": "adult#006",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 220.0,
+   "rise": 138.32229472934307,
+   "rise_per_10g": 27.664458945868613
+  },
+  {
+   "name": "adult#007",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 310.0,
+   "rise": 91.05525388952057,
+   "rise_per_10g": 18.211050777904113
+  },
+  {
+   "name": "adult#008",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 215.0,
+   "rise": 140.74222059376268,
+   "rise_per_10g": 28.148444118752536
+  },
+  {
+   "name": "adult#009",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 215.0,
+   "rise": 108.36802447248576,
+   "rise_per_10g": 21.673604894497153
+  },
+  {
+   "name": "adult#010",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 390.0,
+   "rise": 65.29390012741536,
+   "rise_per_10g": 13.05878002548307
+  },
+  {
+   "name": "adult#011",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 290.0,
+   "rise": 126.89645661682167,
+   "rise_per_10g": 25.379291323364335
+  },
+  {
+   "name": "adult#012",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 435.0,
+   "rise": 68.86540111423264,
+   "rise_per_10g": 13.773080222846527
+  },
+  {
+   "name": "adult#013",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 260.0,
+   "rise": 67.98858857402786,
+   "rise_per_10g": 13.597717714805572
+  },
+  {
+   "name": "adult#014",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 165.0,
+   "rise": 178.79833690053277,
+   "rise_per_10g": 35.759667380106556
+  },
+  {
+   "name": "adult#015",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 385.0,
+   "rise": 87.60912021905051,
+   "rise_per_10g": 17.521824043810103
+  },
+  {
+   "name": "adult#016",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 315.0,
+   "rise": 92.55535904240406,
+   "rise_per_10g": 18.511071808480814
+  },
+  {
+   "name": "adult#017",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 310.0,
+   "rise": 122.77329776060617,
+   "rise_per_10g": 24.554659552121233
+  },
+  {
+   "name": "adult#018",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 340.0,
+   "rise": 87.86625208902515,
+   "rise_per_10g": 17.57325041780503
+  },
+  {
+   "name": "adult#019",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 155.0,
+   "rise": 111.03939336183814,
+   "rise_per_10g": 22.207878672367627
+  },
+  {
+   "name": "adult#020",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 240.0,
+   "rise": 97.79210861340155,
+   "rise_per_10g": 19.55842172268031
+  },
+  {
+   "name": "adult#021",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 245.0,
+   "rise": 104.13847079082711,
+   "rise_per_10g": 20.82769415816542
+  },
+  {
+   "name": "adult#022",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 335.0,
+   "rise": 60.59548872962296,
+   "rise_per_10g": 12.119097745924591
+  },
+  {
+   "name": "adult#023",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 225.0,
+   "rise": 92.96276091028207,
+   "rise_per_10g": 18.592552182056416
+  },
+  {
+   "name": "adult#024",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 425.0,
+   "rise": 78.8724068338608,
+   "rise_per_10g": 15.774481366772159
+  },
+  {
+   "name": "adult#025",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 355.0,
+   "rise": 92.70243039397411,
+   "rise_per_10g": 18.54048607879482
+  },
+  {
+   "name": "adult#027",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 165.0,
+   "rise": 93.30977556225815,
+   "rise_per_10g": 18.66195511245163
+  },
+  {
+   "name": "adult#028",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 260.0,
+   "rise": 112.07019708297545,
+   "rise_per_10g": 22.41403941659509
+  },
+  {
+   "name": "adult#029",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 230.0,
+   "rise": 91.66332807532524,
+   "rise_per_10g": 18.332665615065046
+  },
+  {
+   "name": "adult#030",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 195.0,
+   "rise": 80.27955633206696,
+   "rise_per_10g": 16.055911266413393
+  },
+  {
+   "name": "adult#031",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 195.0,
+   "rise": 123.24567443170585,
+   "rise_per_10g": 24.64913488634117
+  },
+  {
+   "name": "adult#032",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 100.0,
+   "rise": 81.94171512894559,
+   "rise_per_10g": 16.38834302578912
+  },
+  {
+   "name": "adult#033",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 305.0,
+   "rise": 83.38743774966488,
+   "rise_per_10g": 16.677487549932977
+  },
+  {
+   "name": "adult#034",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 250.0,
+   "rise": 129.27950431856965,
+   "rise_per_10g": 25.85590086371393
+  },
+  {
+   "name": "adult#035",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 325.0,
+   "rise": 110.4145941165105,
+   "rise_per_10g": 22.0829188233021
+  },
+  {
+   "name": "adult#036",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 220.0,
+   "rise": 112.47669571251137,
+   "rise_per_10g": 22.495339142502274
+  },
+  {
+   "name": "adult#037",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 310.0,
+   "rise": 50.80557103024728,
+   "rise_per_10g": 10.161114206049456
+  },
+  {
+   "name": "adult#038",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 255.0,
+   "rise": 73.70900640392102,
+   "rise_per_10g": 14.741801280784205
+  },
+  {
+   "name": "adult#039",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 295.0,
+   "rise": 98.73024105987358,
+   "rise_per_10g": 19.746048211974717
+  },
+  {
+   "name": "adult#040",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 180.0,
+   "rise": 80.01560328442491,
+   "rise_per_10g": 16.00312065688498
+  },
+  {
+   "name": "adult#041",
+   "absorption": 1.0,
+   "bias": 1.0,
+   "time_to_peak_min": 425.0,
+   "rise": 87.48769325735074,
+   "rise_per_10g": 17.497538651470148
+  },
+  {
+   "name": "adult#001",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 140.0,
+   "rise": 115.44318922999423,
+   "rise_per_10g": 23.088637845998846
+  },
+  {
+   "name": "adult#002",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 130.0,
+   "rise": 147.49972827262133,
+   "rise_per_10g": 29.499945654524264
+  },
+  {
+   "name": "adult#003",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 150.0,
+   "rise": 167.00456313349798,
+   "rise_per_10g": 33.40091262669959
+  },
+  {
+   "name": "adult#004",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 135.0,
+   "rise": 157.9671790717821,
+   "rise_per_10g": 31.593435814356422
+  },
+  {
+   "name": "adult#005",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 140.0,
+   "rise": 122.57362011165617,
+   "rise_per_10g": 24.514724022331233
+  },
+  {
+   "name": "adult#006",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 130.0,
+   "rise": 171.1026328006579,
+   "rise_per_10g": 34.220526560131574
+  },
+  {
+   "name": "adult#007",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 180.0,
+   "rise": 126.07811875366681,
+   "rise_per_10g": 25.215623750733364
+  },
+  {
+   "name": "adult#008",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 125.0,
+   "rise": 176.9102549707321,
+   "rise_per_10g": 35.38205099414642
+  },
+  {
+   "name": "adult#009",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 125.0,
+   "rise": 130.0370209334382,
+   "rise_per_10g": 26.007404186687644
+  },
+  {
+   "name": "adult#010",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 210.0,
+   "rise": 79.47101678167266,
+   "rise_per_10g": 15.894203356334533
+  },
+  {
+   "name": "adult#011",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 160.0,
+   "rise": 162.3865266173324,
+   "rise_per_10g": 32.47730532346648
+  },
+  {
+   "name": "adult#012",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 230.0,
+   "rise": 101.02243802648758,
+   "rise_per_10g": 20.204487605297516
+  },
+  {
+   "name": "adult#013",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 200.0,
+   "rise": 91.69738009094982,
+   "rise_per_10g": 18.339476018189963
+  },
+  {
+   "name": "adult#014",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 100.0,
+   "rise": 198.49764451803412,
+   "rise_per_10g": 39.699528903606826
+  },
+  {
+   "name": "adult#015",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 210.0,
+   "rise": 123.2444053643581,
+   "rise_per_10g": 24.64888107287162
+  },
+  {
+   "name": "adult#016",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 175.0,
+   "rise": 118.07736185085275,
+   "rise_per_10g": 23.61547237017055
+  },
+  {
+   "name": "adult#017",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 175.0,
+   "rise": 155.16524816134176,
+   "rise_per_10g": 31.03304963226835
+  },
+  {
+   "name": "adult#018",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 180.0,
+   "rise": 132.91106633157915,
+   "rise_per_10g": 26.58221326631583
+  },
+  {
+   "name": "adult#019",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 90.0,
+   "rise": 136.19540417077093,
+   "rise_per_10g": 27.239080834154187
+  },
+  {
+   "name": "adult#020",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 135.0,
+   "rise": 130.40354342695642,
+   "rise_per_10g": 26.080708685391283
+  },
+  {
+   "name": "adult#021",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 145.0,
+   "rise": 128.756143972015,
+   "rise_per_10g": 25.751228794402998
+  },
+  {
+   "name": "adult#022",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 185.0,
+   "rise": 94.628827744884,
+   "rise_per_10g": 18.925765548976802
+  },
+  {
+   "name": "adult#023",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 130.0,
+   "rise": 120.82159900004672,
+   "rise_per_10g": 24.164319800009345
+  },
+  {
+   "name": "adult#024",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 225.0,
+   "rise": 125.56048272138389,
+   "rise_per_10g": 25.112096544276778
+  },
+  {
+   "name": "adult#025",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 190.0,
+   "rise": 145.94407154436908,
+   "rise_per_10g": 29.188814308873816
+  },
+  {
+   "name": "adult#027",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 125.0,
+   "rise": 128.32248596717068,
+   "rise_per_10g": 25.664497193434137
+  },
+  {
+   "name": "adult#028",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 145.0,
+   "rise": 150.98429066310138,
+   "rise_per_10g": 30.196858132620275
+  },
+  {
+   "name": "adult#029",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 180.0,
+   "rise": 127.23469246450207,
+   "rise_per_10g": 25.446938492900415
+  },
+  {
+   "name": "adult#030",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 115.0,
+   "rise": 100.41730304172523,
+   "rise_per_10g": 20.083460608345046
+  },
+  {
+   "name": "adult#031",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 115.0,
+   "rise": 144.23809849821885,
+   "rise_per_10g": 28.84761969964377
+  },
+  {
+   "name": "adult#032",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 75.0,
+   "rise": 100.20614803758554,
+   "rise_per_10g": 20.041229607517106
+  },
+  {
+   "name": "adult#033",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 170.0,
+   "rise": 108.81258844565346,
+   "rise_per_10g": 21.762517689130693
+  },
+  {
+   "name": "adult#034",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 140.0,
+   "rise": 146.43663540830954,
+   "rise_per_10g": 29.287327081661907
+  },
+  {
+   "name": "adult#035",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 180.0,
+   "rise": 166.04681902567708,
+   "rise_per_10g": 33.20936380513542
+  },
+  {
+   "name": "adult#036",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 125.0,
+   "rise": 147.21144051376433,
+   "rise_per_10g": 29.442288102752865
+  },
+  {
+   "name": "adult#037",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 165.0,
+   "rise": 65.87037272712993,
+   "rise_per_10g": 13.174074545425986
+  },
+  {
+   "name": "adult#038",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 140.0,
+   "rise": 109.71086202597604,
+   "rise_per_10g": 21.94217240519521
+  },
+  {
+   "name": "adult#039",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 165.0,
+   "rise": 131.12583318571063,
+   "rise_per_10g": 26.225166637142127
+  },
+  {
+   "name": "adult#040",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 200.0,
+   "rise": 114.19928443714889,
+   "rise_per_10g": 22.83985688742978
+  },
+  {
+   "name": "adult#041",
+   "absorption": 2.0,
+   "bias": 1.0,
+   "time_to_peak_min": 225.0,
+   "rise": 115.78560968992574,
+   "rise_per_10g": 23.157121937985146
+  }
+ ]
+}
