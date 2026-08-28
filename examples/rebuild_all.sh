@@ -309,6 +309,10 @@ stage settings_sweep_oref "$PY" examples/settings_sweep.py --cohort dclp3 --cont
 # to rest on a figure from a population that no longer exists, and it refuted that figure.
 stage titration_reference "$PY" examples/titration_reference.py --cohort dclp3 \
       --workers "$WORKERS"
+# Whether the drift signature responds to the mechanism it claims to measure, and whether the
+# statistic proposed to replace it does. Three arms differing only in the sensitivity terms,
+# under all four drivers, so the answer is not a property of one of them.
+stage drift_ablation "$PY" examples/drift_ablation.py --subjects 40 --workers "$WORKERS"
 stage engagement_arm "$PY" examples/engagement_arm.py --workers "$WORKERS"
 stage validation_table "$PY" examples/validation_table.py
 

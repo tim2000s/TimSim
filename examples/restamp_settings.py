@@ -69,12 +69,78 @@ def git(*args):
     return subprocess.run(["git", *args], cwd=REPO, capture_output=True, text=True)
 
 
+def _ast_signature(source, path):
+    """A digest of what a file does, ignoring comments, docstrings and line numbers.
+
+    Comments never enter the AST. Docstrings do, as the first statement of a module, class or
+    function, so they are removed. `include_attributes=False` drops line and column numbers,
+    which otherwise move whenever a docstring above them gains a line. What remains is the
+    executable content, so two files with the same signature run identically.
+    """
+    import ast
+    tree = ast.parse(source, filename=path)
+    for node in ast.walk(tree):
+        if isinstance(node, (ast.Module, ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+            body = node.body
+            if (body and isinstance(body[0], ast.Expr)
+                    and isinstance(body[0].value, ast.Constant)
+                    and isinstance(body[0].value.value, str)):
+                node.body = body[1:] or [ast.Pass()]
+    import hashlib
+    return hashlib.sha256(ast.dump(tree, include_attributes=False).encode()).hexdigest()[:16]
+
+
+def prose_only_against(ref):
+    """Whether every fingerprinted file differs from `ref` in prose alone.
+
+    This is the exact form of the question the probe answers by sampling. A change confined to
+    comments and docstrings cannot alter a run, so no number of subjects is needed to establish
+    it, and unlike the probe it works on a change that has already been committed.
+
+    Returns (verdict, per-file findings). A file that cannot be read at `ref`, or that does not
+    parse, counts against the verdict rather than for it.
+    """
+    from timsim.therapy import titrate
+    findings, ok = [], True
+    for rel in titrate._CODE:
+        disk_path = os.path.join(REPO, "timsim", rel)
+        show = git("show", f"{ref}:timsim/{rel}")
+        try:
+            with open(disk_path) as fh:
+                now = _ast_signature(fh.read(), rel)
+        except (OSError, SyntaxError) as exc:
+            findings.append((rel, "unreadable on disk", str(exc)[:80]))
+            ok = False
+            continue
+        if show.returncode != 0:
+            findings.append((rel, "absent at the reference", ""))
+            ok = False
+            continue
+        try:
+            was = _ast_signature(show.stdout, rel)
+        except SyntaxError as exc:
+            findings.append((rel, "does not parse at the reference", str(exc)[:80]))
+            ok = False
+            continue
+        same = was == now
+        findings.append((rel, "prose only" if same else "code changed",
+                         "" if same else f"{was} to {now}"))
+        ok = ok and same
+    return ok, findings
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--subjects", type=int, default=3,
                     help="how many subjects to verify. More is slower and stronger.")
     ap.add_argument("--check", action="store_true", help="report and change nothing")
     ap.add_argument("--note", default="", help="what changed, recorded in the store")
+    ap.add_argument("--against", metavar="REF",
+                    help="a git ref the store's fingerprint was produced at. Every "
+                         "fingerprinted file is compared with that ref by abstract syntax "
+                         "tree, and a difference confined to comments and docstrings is "
+                         "proved inert rather than sampled. Use this when the change is "
+                         "already committed, which the probe cannot handle since it stashes.")
     a = ap.parse_args()
 
     from timsim.therapy import titrate
@@ -86,6 +152,33 @@ def main():
         print(f"The store already matches the code on disk at {now}. Nothing to do.")
         return
     print(f"store fingerprint {was}\ncode on disk      {now}\n")
+
+    if a.against:
+        ok, findings = prose_only_against(a.against)
+        width = max(len(f[0]) for f in findings)
+        for rel, verdict, detail in findings:
+            print(f"  {rel:<{width}}  {verdict}{'  ' + detail if detail else ''}")
+        if not ok:
+            raise SystemExit(f"\nAgainst {a.against} the change reaches executable code, so it "
+                             f"may reach the ladder. The store is unchanged. Retitrate.")
+        print(f"\nEvery fingerprinted file differs from {a.against} in comments and docstrings "
+              f"alone,\nso the change cannot alter a run and no probe is needed.")
+        if a.check:
+            print("--check given, so the store is unchanged.")
+            return
+        store["meta"].setdefault("restamped", []).append(
+            {"from": was, "to": now, "method": "ast", "reference": a.against,
+             "files_compared": list(__import__("timsim.therapy.titrate", fromlist=["x"])._CODE),
+             "note": a.note or f"prose-only against {a.against}, proved by syntax tree"})
+        store["meta"]["code"] = now
+        tmp_out = titrate.STORE + ".partial"
+        with open(tmp_out, "w") as fh:
+            json.dump(store, fh, indent=1, default=str)
+            fh.flush()
+            os.fsync(fh.fileno())
+        os.replace(tmp_out, titrate.STORE)
+        print(f"re-stamped {titrate.STORE} from {was} to {now}")
+        return
 
     if not git("stash", "list").stdout.strip() == "":
         raise SystemExit("There is already a stash. Clear it first, since this uses one.")
