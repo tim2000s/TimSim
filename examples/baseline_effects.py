@@ -51,10 +51,20 @@ AGE_BANDS = [("under 18", lambda a: a < 18), ("18 and over", lambda a: a >= 18)]
 
 
 def load(path):
+    """Index the runs by pairing, meaning cohort and controller together.
+
+    Keying on the cohort alone silently discarded a controller. The baseline set runs the DCLP3
+    cohort under both the Control-IQ stand-in and oref0 SMB, with the same subject names and the
+    same bench labels in both, so the second written replaced the first and the report described
+    one controller while naming two. The layer effect on that cohort is -12.0 points of time in
+    range under the stand-in and -7.6 under oref0 SMB, so the collapse was worth nearly a factor
+    of two on the paper's headline. Found 28 August 2026 and recorded as issue 43.
+    """
     d = json.load(open(path))
     idx = {}
     for r in d["runs"]:
-        idx.setdefault(r["cohort"], {}).setdefault(r["bench"], {})[r["name"]] = r
+        key = (r["cohort"], r["controller"])
+        idx.setdefault(key, {}).setdefault(r["bench"], {})[r["name"]] = r
     return d, idx
 
 
@@ -125,10 +135,11 @@ def main():
     report = {"file": os.path.basename(a.file), "controller": sorted(controllers),
               "provenance": provenance.stamp(), "cohorts": {}}
 
-    for name in sorted(idx):
-        arms = idx[name]
+    for key in sorted(idx):
+        name, controller = key
+        arms = idx[key]
         subjects = sorted({n for arm in arms.values() for n in arm})
-        print(f"\n{'=' * 78}\n{name}, {len(subjects)} subjects\n")
+        print(f"\n{'=' * 78}\n{name} under {controller}, {len(subjects)} subjects\n")
         completion(arms)
         rec = {"n": len(subjects), "layer_effect": {}, "announcement_effect": {}}
         # One bare arm serves all three comparisons, because announcement is gated on the
@@ -161,14 +172,15 @@ def main():
                     print(f"    below {MIN_GROUP}, so not compared. A subgroup this size carries "
                           f"a wider floor than the cohort and would read as a finding.")
                     continue
-                r = effect(arms, "bare_some", "layered_some", grp,
+                r = effect(arms, bare, "layered_some", grp,
                            f"layers at announcement some, {band}", rng)
                 if r:
                     rec.setdefault("by_age", {})[band] = r
             if not reals:
                 print("\n  the DCLP3 release is not on this machine, so only the simulated side "
                       "is split. Set DCLP3_DIR to split the real side as well.")
-        report["cohorts"][name] = rec
+        rec["controller"] = controller
+        report["cohorts"][f"{name}|{controller}"] = rec
 
     json.dump(report, open(a.out, "w"), indent=1)
     print(f"\nwrote {a.out}")

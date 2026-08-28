@@ -904,3 +904,41 @@ population change, because nothing recomputes it and nothing flags it as stale. 
 instances found so far were also wrong, and in both the replacement argument reached the same
 conclusion by a different route, which is why neither was caught by anything downstream
 behaving oddly.
+
+## 43. Two controllers were indexed under one key, and one of them was silently discarded
+
+Found 28 August 2026, while rebuilding study 14 from `baseline_effects.json`.
+
+`baseline_effects.py` indexed every run as `idx[cohort][bench][name]`. The baseline bench set runs
+the DCLP3 cohort under both the Control-IQ stand-in and oref0 SMB, with the same 86 subject names
+and the same four bench labels in both, so each Control-IQ run was overwritten by the oref0 SMB
+run with the same key. Three hundred and forty-four of the 1,260 runs reached no comparison.
+
+Nothing looked wrong in the output. The header prints the controllers from the file's `pairings`
+block rather than from the runs it indexed, so it read "controller control-iq, oref" above a
+report describing oref alone. The completion table showed 85/86 rather than 172, which is the
+count a single controller produces and is what a reader would expect to see.
+
+The discarded arm was not a duplicate of the one that survived. Under the Control-IQ stand-in the
+DCLP3 cohort holds 95.59 per cent of readings in range on the bare model and 83.26 layered, a
+layer effect of -12.33 points; under oref0 SMB the same cohort gives 93.49 and 85.90, an effect of
+-7.59. The paper's headline was therefore wrong by nearly a factor of two, and in the direction
+that understates what the layers do.
+
+The announcement result inverted rather than shifted. On the surviving oref0 SMB arms, withdrawing
+every meal announcement costs 0.08 to 0.84 percentage points of time in range with every interval
+spanning zero, which reads as a bench that cannot detect meal announcement at all. With the
+Control-IQ arm restored it costs that controller 4.84 points with an interval of -7.22 to -3.58,
+which is the separation the two designs predict: the stand-in has no meal detection and oref0 SMB
+microboluses on deviation from prediction.
+
+A second defect in the same function was hidden behind the first. The age split called
+`effect(arms, "bare_some", ...)`, an arm name this file does not carry, where the code four lines
+above had already resolved the bare arm's name into a local. It reported "0 subjects complete both
+arms" for every age band, which is the signature of a stage that skipped its work rather than one
+that found nothing.
+
+Both are the same failure as issue 38 in a different place: an arm distinguished by a field the
+analysis does not key on. The rule that follows is that an index over experimental runs keys on
+every field the bench varies, and a report prints the controllers it indexed rather than the ones
+the file says it ran.
