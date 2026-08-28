@@ -113,22 +113,30 @@ interpretable. Read it before adding an arm.
 Settings are titrated before anything is benchmarked. A subject's correction factor and
 carbohydrate ratio in the population table are measured from its own physiology, which is a
 quantity no real person has: real settings come from titration and end up conservative. The
-median physiological correction factor here is 15.1 mg/dL per unit against the 35 DCLP3
-participants ran, and handing oref0 SMB the physiological value doubles its time below 70 mg/dL
-against handing it the real one, so an untitrated benchmark measures the settings as much as
-the algorithm. `examples/titrate_cohort.py` weakens each subject's settings until its own record
-clears the consensus hypoglycaemia floors (Battelino et al. 2019, below 54 mg/dL under 1 per
-cent and below 70 under 4) and no further, writes the result beside the population, and
-`timsim.therapy.titrate.profile_for` raises rather than falling back when a subject has not been
-through it.
+median physiological correction factor here is 18.6 mg/dL per unit against the 40.0 the 112
+DCLP3 closed-loop participants ran, and handing oref0 SMB the physiological value gives it 3.66
+per cent of time below 70 mg/dL against 1.40 at two and a half times it, so an untitrated
+benchmark measures the settings as much as the algorithm. That lever is much weaker under the
+Control-IQ stand-in, at 2.29 against 1.91 per cent, because oref0 SMB sizes its super micro
+boluses from the correction factor and the stand-in reads it only for discrete corrections.
+`examples/titrate_cohort.py` weakens each subject's settings until its own record clears the
+consensus hypoglycaemia floors (Battelino et al. 2019, below 54 mg/dL under 1 per cent and
+below 70 under 4) and no further, writes the result beside the population, and
+`timsim.therapy.titrate.profile_for` raises rather than falling back when a subject has not
+been through it.
 
 Titration runs under the built-in correction loop, never under the algorithm being benchmarked.
 Tuning settings with the controller under test in the loop lets a controller that provokes
-hypoglycaemia earn weaker settings from the bench judging it. It also cannot run under the
-open-loop arm, which spends 0.25 per cent of time below 70 mg/dL and so never exercises the
-settings at all. Settings adequate under the reference loop may not be adequate under a more
-aggressive algorithm, and that difference is the algorithm's, which is what the benchmark is
-for.
+hypoglycaemia earn weaker settings from the bench judging it. It also does not run under the
+open-loop arm, and the reason recorded here until 28 August 2026 was wrong: that arm was held
+to spend 0.25 per cent of time below 70 mg/dL and never exercise the settings, where
+`examples/titration_reference.py` measures 2.39 per cent on the current population against the
+correction loop's 1.92 on the same rung. What it does instead is exclude, refusing to dose 15
+of 90 subjects against the correction loop's 4, eleven of them subjects the loop dosed safely.
+Since exclusion propagates to every cohort, the arm would shrink each one by a sixth for a
+reason belonging to the regimen. Settings adequate under the reference loop may not be adequate
+under a more aggressive algorithm, and that difference is the algorithm's, which is what the
+benchmark is for.
 
 The bar for adding a mechanism is in `CONTRIBUTING.md`. The short version is that a new
 layer comes with the statistic it is meant to move, the same statistic with the layer off,

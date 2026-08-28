@@ -298,6 +298,17 @@ stage combined_arms env WORKERS="$WORKERS" "$PY" examples/bench_matrix.py --benc
       --out docs/measurements/validation.json
 stage settings_sweep "$PY" examples/settings_sweep.py --cohort dclp3 --controller control-iq \
       --scales 1.0 1.5 2.0 2.5 --workers "$WORKERS"
+# The same sweep under oref0 SMB. Both are needed rather than either, because the correction
+# factor is worth five times as much time below 70 mg/dL to oref0 SMB as to the Control-IQ
+# stand-in and a single arm would report one of those as the lever's value.
+stage settings_sweep_oref "$PY" examples/settings_sweep.py --cohort dclp3 --controller oref \
+      --scales 1.0 1.5 2.0 2.5 --workers "$WORKERS" \
+      --out docs/measurements/settings_sweep_oref.json
+# The titration ladder rerun under the regimen it does not use, which is the only producer for
+# why it does not. Written 28 August 2026 after the argument in `therapy/titrate.py` was found
+# to rest on a figure from a population that no longer exists, and it refuted that figure.
+stage titration_reference "$PY" examples/titration_reference.py --cohort dclp3 \
+      --workers "$WORKERS"
 stage engagement_arm "$PY" examples/engagement_arm.py --workers "$WORKERS"
 stage validation_table "$PY" examples/validation_table.py
 

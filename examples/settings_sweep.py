@@ -1,9 +1,9 @@
 """How much of the simulator's excess time in range is the correction factor it is dosed from.
 
 The titration ladder in `therapy/titrate.py` searches basal first and reaches the correction
-factor only for subjects that basal alone cannot make safe. Across the store that is 42 of 295
-subjects, so 253 keep the correction factor their own physiology implies. That value has a median
-near 19 mg/dL per unit against the 40.0 the DCLP3 participants ran, so most benchmarked subjects
+factor only for subjects that basal alone cannot make safe. Across the store that is 34 of 330
+subjects, so 272 keep the correction factor their own physiology implies. That value has a median
+of 18.6 mg/dL per unit against the 40.0 the DCLP3 participants ran, so most benchmarked subjects
 correct a high with roughly twice the insulin a real person's settings would ask for.
 
 This runs one cohort under one algorithm at a series of multipliers applied on top of whatever

@@ -55,10 +55,10 @@ The rule applied to this population reproduces the trial's recorded median to wi
 unit. What the benchmark hands the algorithm is roughly half of it.
 
 The titration ladder does not correct this, because it searches basal first and reaches the
-correction factor only for subjects that basal alone cannot make safe. Across the store 253 of 295
-subjects clear on the basal lever and keep the physiological correction factor untouched, and 204
-run at basal scale 1.00 as well, so for two thirds of the population titration changes nothing at
-all.
+correction factor only for subjects that basal alone cannot make safe. Across the store 272 of 330
+subjects clear on the basal lever and keep the physiological correction factor untouched, and 229
+run at basal scale 1.00 as well, so for seven tenths of the population titration changes nothing
+at all.
 
 ## A. Clinically derived settings
 

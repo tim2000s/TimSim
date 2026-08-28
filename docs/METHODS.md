@@ -54,9 +54,14 @@ Three rules the procedure follows, each of which cost something to learn:
 
 Titration runs under the built-in `trend` loop. Under the algorithm being benchmarked it is
 circular, since a controller that provokes hypoglycaemia would be answered by the bench weakening
-its subjects' settings. Under the open-loop arm it returns its own starting point, because that
-arm spends 0.25 per cent of time below 70 mg/dL against a real 4.07 and never exercises the
-settings; 13 of 15 subjects clear both limits at the physiological value there.
+its subjects' settings. Under the open-loop arm it excludes: `examples/titration_reference.py`
+reruns the ladder there and clears no combination for 15 of 90 subjects against the reference
+loop's 4, eleven of them subjects the loop dosed safely. Since an untitrated subject is dropped
+from every cohort, that arm would shrink each one by a sixth for a reason belonging to the
+regimen. An earlier version of this rule said the open-loop arm returns its own starting point
+because it spends 0.25 per cent of time below 70 mg/dL and never exercises the settings. On the
+current population it spends 2.39 per cent, more than the reference loop's 1.92, and moves 19
+of 90 subjects.
 
 Only hypoglycaemia gates. Time in range, time above 250 mg/dL and variability are computed and
 reported, because a subject can miss any of them for reasons no settings change reaches.

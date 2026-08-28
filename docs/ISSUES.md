@@ -869,3 +869,38 @@ Two things follow beyond the one study. A refutation with no producer cannot be 
 not be relied on, which is the same finding as issue 36 reaching a different document. And an
 argument that a run accepts and silently ignores is a defect in `simulate` rather than in the
 caller: `meal_absorption_scale` passed without the physiology layer should raise rather than pass.
+
+## 42. A design argument survived four months as a figure with no producer, and was wrong
+
+Found 28 August 2026, while rebuilding study 12.
+
+Titration runs under the built-in correction loop, and two reasons were recorded for not running
+it under the open-loop arm. One is circularity and needs no measurement. The other was exposure,
+recorded in `therapy/titrate.py`, `docs/METHODS.md` and `CLAUDE.md` as "that regimen spends 0.25
+per cent of time below 70 mg/dL against a real 4.07 and so never exercises the settings at all",
+with "13 of 15 completing subjects clear both floors at the physiological settings and the
+procedure returns its own starting point".
+
+No script produced any of those numbers. They came from a run on a population that has since been
+reseeded and a ladder that has since acquired a second lever, and nothing in the repository could
+regenerate them.
+
+`examples/titration_reference.py` reruns the rejected design: the same ladder, the same floors,
+the same 90 subjects, driven by the open-loop regimen. It spends 2.39 per cent of time below 70
+mg/dL at the physiological rung, which is more than the 1.92 the correction loop produces on the
+same rung, and it moves the settings of 19 of 90 subjects. The stated reason is refuted in both
+of its parts. The arm exercises the settings, and the ladder does not return its own starting
+point.
+
+The design choice survives on a different measurement. The open-loop ladder clears no combination
+for 15 of 90 subjects against the correction loop's 4, and 11 of those 15 are subjects the loop
+dosed safely, 4 of them without touching their settings. Since an untitrated subject is dropped
+from every cohort, titrating there would shrink each cohort by a sixth for a reason belonging to
+the regimen rather than to the subject.
+
+This is issue 36 and issue 41 in a third place, and the pattern is now specific enough to state
+as a rule. A claim carried in a docstring rather than in a measurement file does not survive a
+population change, because nothing recomputes it and nothing flags it as stale. Two of the three
+instances found so far were also wrong, and in both the replacement argument reached the same
+conclusion by a different route, which is why neither was caught by anything downstream
+behaving oddly.

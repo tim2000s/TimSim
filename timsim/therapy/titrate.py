@@ -4,8 +4,9 @@ A controller cannot be judged on a bench whose settings it was never given a fai
 This package's subjects carry a correction factor and a carbohydrate ratio measured from their
 own physiology, which is a quantity no real person has access to: real settings are arrived at
 by titration against the person's own record, and they end up conservative relative to what the
-body would take. Measured across these subjects the physiological correction factor has a
-median of 15.1 mg/dL per unit. The real figure it is set against is 40.0 mg/dL per unit, the
+body would take. Measured across the 306 subjects this store titrates, the physiological
+correction factor has a median of 18.6 mg/dL per unit with an interquartile range of 12.9 to
+27.6. The real figure it is set against is 40.0 mg/dL per unit, the
 median of the recorded pump settings of the 112 closed-loop participants of DCLP3 with an
 inter-quartile range of 30.0 to 50.0, read from `InsulinPumpSettings_a.txt` and summarised per
 participant before the cohort median is taken. So an algorithm handed the physiological value
@@ -46,13 +47,21 @@ provokes hypoglycaemia be rewarded with weaker settings, which is the bench flat
 thing it is meant to judge. A person arrives at their settings and then chooses an algorithm,
 so the bench does the same.
 
-The regimen has to be one that produces hypoglycaemia, which rules out the open-loop arm. Run
-there, 13 of 15 completing subjects clear both floors at the physiological settings and the
-procedure returns its own starting point, because that regimen spends 0.25 per cent of time
-below 70 mg/dL against a real 4.07 and so never exercises the settings at all. Every subject
-misses time in range and time above 250 mg/dL there instead. The built-in correction loop
-produces lows at a realistic rate and is not among the systems being ranked, so it is what
-titration runs under.
+The open-loop arm is not that regimen, and the reason recorded here until 28 August 2026 was
+refuted by `examples/titration_reference.py`. It said the arm spends 0.25 per cent of time
+below 70 mg/dL and so never exercises the settings, returning its own starting point for 13 of
+15 subjects. Rerun on the current population it spends 2.39 per cent, which is more than the
+1.92 the correction loop produces on the same rung, and it moves 19 of 90 subjects.
+
+What it does instead is exclude. The open-loop ladder clears no combination for 15 of 90
+subjects against the correction loop's 4, and 11 of those 15 are subjects the loop dosed
+safely, 4 of them without touching their settings. An open-loop regimen cannot withdraw
+background insulin as glucose falls, so a subject the loop would have caught goes low and a
+basal reduction bounded at a fifth does not recover it. Exclusion propagates, since every
+downstream cohort drops an untitrated subject, so titrating there would shrink each cohort by
+a sixth for a reason belonging to the regimen rather than to the subject. The arm also misses
+the hyperglycaemia targets wholesale, at 69 of 90 subjects below the time in range target and
+68 of 90 above the time above 250 mg/dL limit.
 
 The ladder searches upwards from the physiological settings and never below them. Settings
 stronger than the body's own response ask for more insulin than the physiology can absorb, so
@@ -85,9 +94,9 @@ CV_LIMIT = 36.0          # per cent
 BASAL_SCALES = (1.0, 0.95, 0.90, 0.85, 0.80)
 
 # The correction factor, used only when basal alone cannot clear the floors. It starts at the
-# physiological value and ends at 2.5 times it, which reaches the measured DCLP3 median of 40.0
-# mg/dL per unit from a physiological median of 15.1, so the search covers real practice without
-# extrapolating far past it.
+# physiological value and ends at 2.5 times it, which carries a physiological median of 18.6
+# mg/dL per unit to 45.5 and so covers the measured DCLP3 median of 40.0 without extrapolating
+# far past it.
 SCALES = (1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5)
 
 # Titration runs under this regimen whatever is benchmarked afterwards.
