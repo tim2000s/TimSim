@@ -1,0 +1,86 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+4 pairings, 4 benches, 1260 runs
+  dclp3     control-iq  86 titrated subjects
+  dclp3     oref        86 titrated subjects
+  commons   oref        70 titrated subjects
+  close_it  oref        73 titrated subjects
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+  20/1260 done, 5.0 min
+  40/1260 done, 9.8 min
+  60/1260 done, 14.6 min
+  80/1260 done, 19.4 min
+  100/1260 done, 23.5 min
+  120/1260 done, 27.8 min
+  140/1260 done, 32.6 min
+  160/1260 done, 36.6 min
+  180/1260 done, 40.6 min
+  200/1260 done, 45.2 min
+  220/1260 done, 49.9 min
+  240/1260 done, 53.9 min
+  260/1260 done, 58.4 min
+  280/1260 done, 62.5 min
+  300/1260 done, 66.9 min
+  320/1260 done, 71.5 min
+  340/1260 done, 75.8 min
+  360/1260 done, 81.0 min
+  380/1260 done, 85.3 min
+  400/1260 done, 90.6 min
+  420/1260 done, 95.8 min
+  440/1260 done, 100.4 min
+  460/1260 done, 104.9 min
+  480/1260 done, 110.3 min
+  500/1260 done, 115.5 min
+  520/1260 done, 121.0 min
+  540/1260 done, 125.2 min
+  560/1260 done, 130.7 min
+  580/1260 done, 135.7 min
+  600/1260 done, 140.7 min
+  620/1260 done, 145.3 min
+  640/1260 done, 150.7 min
+  660/1260 done, 155.8 min
+  680/1260 done, 160.6 min
+  700/1260 done, 165.6 min
+  720/1260 done, 170.9 min
+  740/1260 done, 176.3 min
+  760/1260 done, 182.0 min
+  780/1260 done, 186.3 min
+  800/1260 done, 190.6 min
+  820/1260 done, 195.9 min
+  840/1260 done, 201.1 min
+  860/1260 done, 205.6 min
+  880/1260 done, 210.8 min
+  900/1260 done, 216.0 min
+  920/1260 done, 220.9 min
+  940/1260 done, 225.6 min
+  960/1260 done, 230.8 min
+  980/1260 done, 235.4 min
+  1000/1260 done, 240.9 min
+  1020/1260 done, 245.8 min
+  1040/1260 done, 251.1 min
+  1060/1260 done, 255.9 min
+  1080/1260 done, 260.3 min
+  1100/1260 done, 265.6 min
+  1120/1260 done, 270.8 min
+  1140/1260 done, 275.8 min
+  1160/1260 done, 280.3 min
+  1180/1260 done, 285.5 min
+  1200/1260 done, 290.4 min
+  1220/1260 done, 295.8 min
+  1240/1260 done, 299.8 min
+  1260/1260 done, 304.8 min
+
+wrote docs/measurements/baseline_trend.json after 304.8 min
