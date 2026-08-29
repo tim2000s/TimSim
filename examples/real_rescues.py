@@ -87,6 +87,33 @@ def carb_entries(path):
     return np.array(out, float).reshape(-1, 2)
 
 
+def merge_episodes(entries, gap_min):
+    """Runs of entries closer together than `gap_min` collapsed into one treatment episode.
+
+    A person who eats 15 g, waits, and eats another 15 g has treated one low twice, not two lows
+    once. Each entry is measured against the previous entry rather than against the start of the
+    episode, so a slow sequence of re-treatments stays one episode however long it runs. The gap
+    is a strict inequality, so an entry exactly `gap_min` after the last one starts a new episode.
+
+    The episode keeps the reading of its first entry, which is the reading the person was acting
+    on when they decided to treat. Later entries in the same episode are re-treatment decisions
+    made from a reading that already reflects the first helping.
+
+    `entries` must be sorted by time. Returns a list of dicts carrying the summed grams, that
+    first reading, the time of the last entry, and how many helpings went into it.
+    """
+    episodes = []
+    for e in entries:
+        if episodes and (e["t"] - episodes[-1]["end"]) / 60000.0 < gap_min:
+            episodes[-1]["grams"] += e["grams"]
+            episodes[-1]["end"] = e["t"]
+            episodes[-1]["helpings"] += 1
+        else:
+            episodes.append({"grams": e["grams"], "reading": e["reading"],
+                             "end": e["t"], "helpings": 1})
+    return episodes
+
+
 def one(job):
     """One user. `whole` reads the entire record rather than the 28-day window.
 
@@ -140,15 +167,7 @@ def one(job):
                for i in np.flatnonzero(low)]
 
     # Episodes, so re-treatment is one event rather than one large dose.
-    episodes = []
-    for e in entries:
-        if episodes and (e["t"] - episodes[-1]["end"]) / 60000.0 < EPISODE_GAP_MIN:
-            episodes[-1]["grams"] += e["grams"]
-            episodes[-1]["end"] = e["t"]
-            episodes[-1]["helpings"] += 1
-        else:
-            episodes.append({"grams": e["grams"], "reading": e["reading"],
-                             "end": e["t"], "helpings": 1})
+    episodes = merge_episodes(entries, EPISODE_GAP_MIN)
 
     # The response to one isolated helping, in mg/dL per gram.
     ct = carbs[:, 0]
