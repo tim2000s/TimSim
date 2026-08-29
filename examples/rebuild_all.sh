@@ -313,6 +313,14 @@ stage titration_reference "$PY" examples/titration_reference.py --cohort dclp3 \
 # statistic proposed to replace it does. Three arms differing only in the sensitivity terms,
 # under all four drivers, so the answer is not a property of one of them.
 stage drift_ablation "$PY" examples/drift_ablation.py --subjects 40 --workers "$WORKERS"
+# The rescue calibration's real side, which lived only in comments in `person/behaviour.py`.
+# Both spans are produced because the choice moves the sample by an order of magnitude: the
+# 28-day window keeps every Commons figure on one basis, the whole record is the larger sample.
+stage real_rescues "$PY" examples/real_rescues.py --workers 2
+stage real_rescues_whole "$PY" examples/real_rescues.py --workers 2 --whole-record \
+      --out docs/measurements/real_rescues_whole.json
+# The far end of the hypoglycaemia distribution, simulated and real, with completion beside it.
+stage extreme_tail "$PY" examples/extreme_tail.py --workers "$WORKERS"
 stage engagement_arm "$PY" examples/engagement_arm.py --workers "$WORKERS"
 stage validation_table "$PY" examples/validation_table.py
 

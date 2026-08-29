@@ -1,0 +1,39 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+240 user directories, 2 workers
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+  40/240
+  80/240
+  120/240
+  160/240
+  200/240
+  240/240
+
+27 users with carbohydrate entries below 75 mg/dL, skipped {'no_carbs': 66, 'no_cgm': 109, 'no_carbs_in_window': 9, 'sparse_window': 19, 'short_record': 9}
+
+596 entries from 27 users
+
+  grams per entry                    median   16.00 g  mean   22.29  p25  10.00  p75  32.00  p90  45.00  n=596
+  reading when eaten                 median   67.00 mg/dL  mean   65.20  p25  61.00  p75  72.00  p90  74.00  n=596
+
+  by the reading the person could see
+  band, mg/dL           n   median g   mean g   p90 g
+  65 to 75            325       15.0     22.5    47.2
+  55 to 65            142       15.0     21.0    45.0
+  45 to 55             51       16.0     22.0    40.0
+  0 to 45              27       25.0     26.0    40.0
+
+  dose against reading: -0.003 g per mg/dL, r = -0.002, spread about the line 16.9 g
+
+  per episode, entries within 45 min merged
+  grams per episode                  median   23.00 g  mean   31.70  p25  12.00  p75  40.00  p90  60.00  n=419
+  helpings per episode               median    1.00  mean    1.42  p25   1.00  p75   2.00  p90   2.00  n=419
+  episodes per day                   median    0.43  mean    0.55  p25   0.25  p75   0.77  p90   1.10  n=27
+
+  1243 crossings below 70 mg/dL, 383 treated within 30 min (30.8%)
+  treated share per user             median   24.69 %  mean   32.69  p25  16.50  p75  48.05  p90  64.84  n=27
+
+wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/real_rescues.json
