@@ -33,7 +33,16 @@
   helpings per episode               median    1.00  mean    1.43  p25   1.00  p75   2.00  p90   2.00  n=7138
   episodes per day                   median    0.27  mean    0.42  p25   0.12  p75   0.67  p90   0.99  n=43
 
-  35137 crossings below 70 mg/dL, 5084 treated within 30 min (14.5%)
-  treated share per user             median   15.58 %  mean   20.38  p25   9.52  p75  25.05  p90  44.94  n=43
+  the response to one isolated helping, 2308 rescues with no further carbohydrate inside 180 min
+  rise per gram, mg/dL per g         median    3.30  mean    6.14  p25   1.60  p75   6.70  p90  12.44  n=2308
+  grams of those helpings            median   22.00 g  mean   27.95  p25  10.00  p75  40.00  p90  58.00  n=2308
+
+  recovery and rebound by stratum, 35099 excursions
+  stratum             n    recovery to 100, min    rebound above 180, %
+  untreated       28731                    75.0                    24.6
+  treated          6368                    54.6                    24.6
+
+  35137 crossings below 70 mg/dL, 6369 treated within 30 min (18.1%)
+  treated share per user             median   19.48 %  mean   25.56  p25  12.83  p75  30.02  p90  53.92  n=43
 
 wrote docs/measurements/real_rescues_whole.json

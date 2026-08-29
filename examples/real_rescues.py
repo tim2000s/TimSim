@@ -50,6 +50,17 @@ TREAT_WINDOW_MIN = 30.0    # after a crossing below 70, how long counts as treat
 CROSS = 70.0
 BANDS = ((65.0, 75.0), (55.0, 65.0), (45.0, 55.0), (0.0, 45.0))
 
+# The response to one helping. An entry is isolated when no further carbohydrate falls inside
+# the window, since a rise following two helpings cannot be attributed to either.
+RESPONSE_WINDOW_MIN = 180.0
+# A recovery runs from the crossing to the first reading at or above this, and a rebound is any
+# reading above 180 mg/dL in the two hours after that. Treated means carbohydrate from fifteen
+# minutes before the crossing to thirty after, which is the rule the strata are cut on.
+RECOVER_TO = 100.0
+REBOUND_ABOVE = 180.0
+REBOUND_WINDOW_MIN = 120.0
+TREAT_BEFORE_MIN = 15.0
+
 _CARB = re.compile(rb'"(carbs|date)"\s*:\s*(-?\d+(?:\.\d+)?)')
 
 
@@ -139,16 +150,45 @@ def one(job):
             episodes.append({"grams": e["grams"], "reading": e["reading"],
                              "end": e["t"], "helpings": 1})
 
-    # Excursions, to say how many go untreated. A crossing is a reading below 70 whose
-    # predecessor was not, so a single long low counts once.
+    # The response to one isolated helping, in mg/dL per gram.
+    ct = carbs[:, 0]
+    response = []
+    for e in entries:
+        t = e["t"]
+        later = ct[(ct > t) & (ct <= t + RESPONSE_WINDOW_MIN * 60000.0)]
+        if len(later):
+            continue                                   # not isolated, the rise is shared
+        w = gs[(ts >= t) & (ts <= t + RESPONSE_WINDOW_MIN * 60000.0)]
+        if len(w) < 6 or e["grams"] <= 0:
+            continue
+        response.append({"grams": e["grams"], "reading": e["reading"],
+                         "peak": float(np.max(w)),
+                         "per_gram": float((np.max(w) - e["reading"]) / e["grams"])})
+
+    # Excursions, to say how many go untreated and how each stratum recovers. A crossing is a
+    # reading below 70 whose predecessor was not, so a single long low counts once.
     below = gs < CROSS
     crossings = np.flatnonzero(below[1:] & ~below[:-1]) + 1
     treated = 0
-    ct = carbs[:, 0]
+    strata = []
     for i in crossings:
-        t = ts[i]
-        if np.any((ct >= t) & (ct <= t + TREAT_WINDOW_MIN * 60000.0)):
-            treated += 1
+        tc = ts[i]
+        is_treated = bool(np.any((ct >= tc - TREAT_BEFORE_MIN * 60000.0)
+                                 & (ct <= tc + TREAT_WINDOW_MIN * 60000.0)))
+        treated += is_treated
+        # Recovery: the first reading at or above RECOVER_TO after the crossing.
+        after = np.flatnonzero((ts > tc) & (gs >= RECOVER_TO))
+        if not len(after):
+            continue
+        j = after[0]
+        rec_min = float((ts[j] - tc) / 60000.0)
+        if rec_min > 24 * 60:                          # a gap in the record, not a recovery
+            continue
+        w = gs[(ts >= ts[j]) & (ts <= ts[j] + REBOUND_WINDOW_MIN * 60000.0)]
+        if not len(w):
+            continue
+        strata.append({"treated": is_treated, "recovery_min": rec_min,
+                       "rebound": bool(np.max(w) > REBOUND_ABOVE)})
 
     days = (t1 - t0) / 86400_000.0
     return {"user": name, "coverage": float(cov), "days": float(days),
@@ -158,6 +198,7 @@ def one(job):
             "episode_reading": [e["reading"] for e in episodes],
             "episode_helpings": [e["helpings"] for e in episodes],
             "crossings": int(len(crossings)), "crossings_treated": int(treated),
+            "response": response, "strata": strata,
             "episodes_per_day": len(episodes) / days if days > 0 else float("nan")}
 
 
@@ -231,6 +272,27 @@ def main():
     print(q(helps, "helpings per episode"))
     print(q([r_["episodes_per_day"] for r_ in good], "episodes per day"))
 
+    resp = [x for r_ in good for x in r_.get("response", [])]
+    if resp:
+        pg = np.array([x["per_gram"] for x in resp], float)
+        pg = pg[np.isfinite(pg)]
+        print(f"\n  the response to one isolated helping, {len(pg)} rescues with no further "
+              f"carbohydrate inside {RESPONSE_WINDOW_MIN:.0f} min")
+        print(q(pg, "rise per gram, mg/dL per g"))
+        print(q([x["grams"] for x in resp], "grams of those helpings", " g"))
+
+    strata = [s for r_ in good for s in r_.get("strata", [])]
+    if strata:
+        print(f"\n  recovery and rebound by stratum, {len(strata)} excursions")
+        print(f"  {'stratum':14}{'n':>7}{'recovery to 100, min':>24}{'rebound above 180, %':>24}")
+        for lab, want in (("untreated", False), ("treated", True)):
+            s = [x for x in strata if x["treated"] is want]
+            if not s:
+                continue
+            rec = np.array([x["recovery_min"] for x in s], float)
+            reb = 100.0 * np.mean([x["rebound"] for x in s])
+            print(f"  {lab:14}{len(s):>7}{np.median(rec):>24.1f}{reb:>24.1f}")
+
     cr = sum(r_["crossings"] for r_ in good)
     tr = sum(r_["crossings_treated"] for r_ in good)
     per_user = [100.0 * r_["crossings_treated"] / r_["crossings"]
@@ -252,6 +314,23 @@ def main():
                            "by_band": band_rows,
                            "slope_g_per_mgdl": float(slope), "r": r,
                            "residual_sd_g": resid},
+               "response": ({"n": int(len([x for x in resp if np.isfinite(x["per_gram"])])),
+                             "per_gram_median": float(np.median(
+                                 [x["per_gram"] for x in resp if np.isfinite(x["per_gram"])])),
+                             "per_gram_iqr": [float(np.percentile(
+                                 [x["per_gram"] for x in resp if np.isfinite(x["per_gram"])], 25)),
+                                 float(np.percentile(
+                                 [x["per_gram"] for x in resp if np.isfinite(x["per_gram"])], 75))],
+                             "median_grams": float(np.median([x["grams"] for x in resp]))}
+                            if resp else {}),
+               "strata": {lab: {"n": len([x for x in strata if x["treated"] is want]),
+                                "recovery_min_median": float(np.median(
+                                    [x["recovery_min"] for x in strata
+                                     if x["treated"] is want])),
+                                "rebound_pct": float(100.0 * np.mean(
+                                    [x["rebound"] for x in strata if x["treated"] is want]))}
+                          for lab, want in (("untreated", False), ("treated", True))
+                          if any(x["treated"] is want for x in strata)},
                "episodes": {"n": len(eps), "median_g": float(np.median(eps)),
                             "mean_g": float(np.mean(eps)),
                             "median_helpings": float(np.median(helps)),

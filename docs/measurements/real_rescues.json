@@ -2,14 +2,15 @@
  "provenance": {
   "population": "704cfac086df54ba",
   "settings": "0df43fd250fadd47",
-  "commit": "45519ccc18e340eb20bb377e0be33b8c8a963a0c",
+  "commit": "c73d52ef195150f4eae1afd16058e93e3be93a63",
   "dirty": true,
   "host": "Tims-Mac-mini.local",
   "python": "3.14.7",
   "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
-  "when": "2026-08-29T08:46:10+00:00",
+  "when": "2026-08-29T08:52:52+00:00",
   "simglucose": "0.2.11"
  },
+ "span": "window_28d",
  "definitions": {
   "low_mgdl": 75.0,
   "match_min": 10.0,
@@ -60,6 +61,27 @@
   "r": -0.001754731127919912,
   "residual_sd_g": 16.896815453066633
  },
+ "response": {
+  "n": 139,
+  "per_gram_median": 3.9125,
+  "per_gram_iqr": [
+   2.36,
+   7.366666666666667
+  ],
+  "median_grams": 20.0
+ },
+ "strata": {
+  "untreated": {
+   "n": 770,
+   "recovery_min_median": 68.82425833333333,
+   "rebound_pct": 30.649350649350648
+  },
+  "treated": {
+   "n": 472,
+   "recovery_min_median": 45.00098333333334,
+   "rebound_pct": 28.60169491525424
+  }
+ },
  "episodes": {
   "n": 419,
   "median_g": 23.0,
@@ -69,9 +91,9 @@
  },
  "crossings": {
   "n": 1243,
-  "treated": 383,
-  "treated_pct": 30.81255028157683,
-  "treated_pct_per_user_median": 24.691358024691358
+  "treated": 472,
+  "treated_pct": 37.97264682220435,
+  "treated_pct_per_user_median": 33.333333333333336
  },
  "users": [
   {
@@ -192,7 +214,224 @@
     1
    ],
    "crossings": 33,
-   "crossings_treated": 23,
+   "crossings_treated": 28,
+   "response": [
+    {
+     "grams": 12.0,
+     "reading": 52.0,
+     "peak": 181.0,
+     "per_gram": 10.75
+    },
+    {
+     "grams": 20.0,
+     "reading": 69.0,
+     "peak": 197.0,
+     "per_gram": 6.4
+    },
+    {
+     "grams": 15.0,
+     "reading": 66.0,
+     "peak": 172.0,
+     "per_gram": 7.066666666666666
+    },
+    {
+     "grams": 10.0,
+     "reading": 69.0,
+     "peak": 231.0,
+     "per_gram": 16.2
+    },
+    {
+     "grams": 8.0,
+     "reading": 67.0,
+     "peak": 107.0,
+     "per_gram": 5.0
+    },
+    {
+     "grams": 14.0,
+     "reading": 39.0,
+     "peak": 261.0,
+     "per_gram": 15.857142857142858
+    },
+    {
+     "grams": 35.0,
+     "reading": 57.0,
+     "peak": 173.0,
+     "per_gram": 3.3142857142857145
+    },
+    {
+     "grams": 8.0,
+     "reading": 73.0,
+     "peak": 118.0,
+     "per_gram": 5.625
+    }
+   ],
+   "strata": [
+    {
+     "treated": true,
+     "recovery_min": 34.99661666666667,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 19.965316666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 50.03061666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 45.008433333333336,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 24.9438,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 29.985383333333335,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 40.00203333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 19.998083333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 35.00535,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 24.995216666666668,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 39.977833333333336,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 15.0497,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 49.996316666666665,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 30.01895,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 24.980416666666667,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 145.00808333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 35.0,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 50.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 55.0,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 195.08333333333334,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 50.0,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 44.96666666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 40.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 65.0,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 45.0,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 40.016666666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 75.06666666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 39.983333333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 44.983333333333334,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 40.0,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 24.983333333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 25.016666666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 30.0,
+     "rebound": false
+    }
+   ],
    "episodes_per_day": 1.2503502086631482
   },
   {
@@ -265,7 +504,122 @@
     1
    ],
    "crossings": 21,
-   "crossings_treated": 13,
+   "crossings_treated": 17,
+   "response": [
+    {
+     "grams": 27.0,
+     "reading": 70.0,
+     "peak": 178.0,
+     "per_gram": 4.0
+    }
+   ],
+   "strata": [
+    {
+     "treated": true,
+     "recovery_min": 20.001033333333332,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 20.001883333333332,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 50.024566666666665,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 49.99616666666667,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 135.00128333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 45.003883333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 35.017466666666664,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 30.00636666666667,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 24.994783333333334,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 34.99883333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 30.016633333333335,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 29.992333333333335,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 109.99438333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 89.99811666666666,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 39.9844,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 105.0072,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 84.98333333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 45.0002,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 5.00835,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 40.00365,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 59.99551666666667,
+     "rebound": false
+    }
+   ],
    "episodes_per_day": 0.6786697902443762
   },
   {
@@ -347,7 +701,644 @@
     1
    ],
    "crossings": 117,
-   "crossings_treated": 17,
+   "crossings_treated": 19,
+   "response": [
+    {
+     "grams": 23.0,
+     "reading": 69.0,
+     "peak": 109.0,
+     "per_gram": 1.7391304347826086
+    },
+    {
+     "grams": 3.0,
+     "reading": 61.0,
+     "peak": 154.0,
+     "per_gram": 31.0
+    },
+    {
+     "grams": 4.0,
+     "reading": 70.0,
+     "peak": 102.0,
+     "per_gram": 8.0
+    },
+    {
+     "grams": 29.0,
+     "reading": 64.0,
+     "peak": 139.0,
+     "per_gram": 2.586206896551724
+    },
+    {
+     "grams": 60.0,
+     "reading": 60.0,
+     "peak": 211.0,
+     "per_gram": 2.5166666666666666
+    },
+    {
+     "grams": 25.0,
+     "reading": 70.0,
+     "peak": 143.0,
+     "per_gram": 2.92
+    },
+    {
+     "grams": 13.0,
+     "reading": 72.0,
+     "peak": 107.0,
+     "per_gram": 2.6923076923076925
+    },
+    {
+     "grams": 13.0,
+     "reading": 67.0,
+     "peak": 151.0,
+     "per_gram": 6.461538461538462
+    }
+   ],
+   "strata": [
+    {
+     "treated": false,
+     "recovery_min": 38.6094,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 106.87265,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 75.00816666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 89.31981666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 115.2054,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 64.98376666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 70.13893333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 20.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 195.18575,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 104.96633333333334,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 46.0879,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 34.989666666666665,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 54.9844,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 302.0848,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 237.98173333333332,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 224.38326666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 169.38316666666665,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 154.38855,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 49.39983333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 39.3984,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 9.9867,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 49.84425,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 39.85641666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 29.861066666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 75.46101666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 82.08321666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 23.618083333333335,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 14.996766666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 92.49665,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 77.50166666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 32.50175,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 95.4434,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 87.72045,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 87.92676666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 34.998416666666664,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 25.000016666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 47.5524,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 88.07,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 82.36265,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 99.98731666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 31.559566666666665,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 34.99675,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 57.570033333333335,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 37.3112,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 40.018683333333335,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 25.0084,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 40.00155,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 19.9983,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 59.999966666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 34.99981666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 49.13431666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 39.99263333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 82.44848333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 78.68813333333334,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 289.9651333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 194.98,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 159.98333333333332,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 119.98331666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 79.98346666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 65.00001666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 39.99831666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 19.99835,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 5.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 47.2994,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 29.984383333333334,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 109.45911666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 29.2628,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 102.69333333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 78.80933333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 38.599183333333336,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 50.96675,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 299.1062,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 44.956966666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 124.9834,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 109.98333333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 40.0085,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 149.18471666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 55.59721666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 133.51156666666665,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 59.984116666666665,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 139.98313333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 89.99133333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 104.94083333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 54.92961666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 96.3063,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 51.311683333333335,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 24.466366666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 34.99415,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 142.54415,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 24.998416666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 54.98673333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 69.97861666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 69.20946666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 40.00816666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 54.99635,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 308.2786,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 186.83971666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 102.65996666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 43.56146666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 82.77416666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 164.96915,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 154.96733333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 94.97178333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 80.87983333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 49.158483333333336,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 65.00718333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 32.86965,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 65.02421666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 49.29051666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 56.01348333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 29.993466666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 29.99128333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 49.99158333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 58.5513,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 15.000383333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 47.71515,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 59.99016666666667,
+     "rebound": false
+    }
+   ],
    "episodes_per_day": 0.7858342699908273
   },
   {
@@ -367,6 +1358,41 @@
    ],
    "crossings": 5,
    "crossings_treated": 1,
+   "response": [
+    {
+     "grams": 36.0,
+     "reading": 70.0,
+     "peak": 235.0,
+     "per_gram": 4.583333333333333
+    }
+   ],
+   "strata": [
+    {
+     "treated": false,
+     "recovery_min": 30.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 19.983333333333334,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 10.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 19.983333333333334,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 25.0,
+     "rebound": true
+    }
+   ],
    "episodes_per_day": 0.03571847885581806
   },
   {
@@ -448,7 +1474,198 @@
     1
    ],
    "crossings": 29,
-   "crossings_treated": 15,
+   "crossings_treated": 16,
+   "response": [
+    {
+     "grams": 20.0,
+     "reading": 59.0,
+     "peak": 191.0,
+     "per_gram": 6.6
+    },
+    {
+     "grams": 40.0,
+     "reading": 53.0,
+     "peak": 149.0,
+     "per_gram": 2.4
+    },
+    {
+     "grams": 40.0,
+     "reading": 74.0,
+     "peak": 156.0,
+     "per_gram": 2.05
+    },
+    {
+     "grams": 50.0,
+     "reading": 74.0,
+     "peak": 167.0,
+     "per_gram": 1.86
+    },
+    {
+     "grams": 30.0,
+     "reading": 72.0,
+     "peak": 211.0,
+     "per_gram": 4.633333333333334
+    },
+    {
+     "grams": 30.0,
+     "reading": 66.0,
+     "peak": 112.0,
+     "per_gram": 1.5333333333333334
+    },
+    {
+     "grams": 35.0,
+     "reading": 65.0,
+     "peak": 116.0,
+     "per_gram": 1.457142857142857
+    }
+   ],
+   "strata": [
+    {
+     "treated": false,
+     "recovery_min": 58.12988333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 48.86691666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 86.94931666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 56.89683333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 99.01236666666667,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 59.46978333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 45.014116666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 29.995983333333335,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 41.403216666666665,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 29.9933,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 87.66948333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 44.99308333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 39.96511666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 137.38845,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 79.29818333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 30.150683333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 86.21143333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 66.21158333333334,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 38.093383333333335,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 91.44753333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 58.1768,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 56.7698,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 49.99876666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 42.4564,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 49.99855,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 131.27463333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 56.21145,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 44.99225,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 57.703133333333334,
+     "rebound": true
+    }
+   ],
    "episodes_per_day": 0.7858244996142918
   },
   {
@@ -486,6 +1703,99 @@
    ],
    "crossings": 13,
    "crossings_treated": 9,
+   "response": [
+    {
+     "grams": 18.0,
+     "reading": 75.0,
+     "peak": 105.0,
+     "per_gram": 1.6666666666666667
+    },
+    {
+     "grams": 8.0,
+     "reading": 72.0,
+     "peak": 135.0,
+     "per_gram": 7.875
+    },
+    {
+     "grams": 12.0,
+     "reading": 73.0,
+     "peak": 136.0,
+     "per_gram": 5.25
+    },
+    {
+     "grams": 30.0,
+     "reading": 75.0,
+     "peak": 175.0,
+     "per_gram": 3.3333333333333335
+    }
+   ],
+   "strata": [
+    {
+     "treated": true,
+     "recovery_min": 25.002483333333334,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 169.99045,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 114.9931,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 144.99603333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 144.996,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 49.99616666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 125.00123333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 69.96366666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 49.999266666666664,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 404.98918333333336,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 359.9929333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 24.9992,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 214.9903,
+     "rebound": false
+    }
+   ],
    "episodes_per_day": 0.2500361023729908
   },
   {
@@ -522,7 +1832,218 @@
     1
    ],
    "crossings": 39,
-   "crossings_treated": 5,
+   "crossings_treated": 7,
+   "response": [
+    {
+     "grams": 30.0,
+     "reading": 75.0,
+     "peak": 171.0,
+     "per_gram": 3.2
+    },
+    {
+     "grams": 32.0,
+     "reading": 75.0,
+     "peak": 148.0,
+     "per_gram": 2.28125
+    }
+   ],
+   "strata": [
+    {
+     "treated": false,
+     "recovery_min": 40.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 105.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 34.983333333333334,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 150.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 79.98333333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 225.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 150.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 60.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 75.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 64.98333333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 15.0,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 35.0,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 25.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 30.0,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 120.0,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 29.983333333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 209.98333333333332,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 169.98333333333332,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 55.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 79.98333333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 135.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 40.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 70.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 30.016666666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 40.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 45.016666666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 290.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 244.98333333333332,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 180.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 90.01666666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 40.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 185.25,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 44.983333333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 29.983333333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 119.98333333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 155.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 80.01666666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 40.0,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 40.0,
+     "rebound": false
+    }
+   ],
    "episodes_per_day": 0.25003607084520707
   },
   {
@@ -548,6 +2069,187 @@
    ],
    "crossings": 33,
    "crossings_treated": 5,
+   "response": [
+    {
+     "grams": 30.0,
+     "reading": 75.0,
+     "peak": 154.0,
+     "per_gram": 2.6333333333333333
+    },
+    {
+     "grams": 50.0,
+     "reading": 71.0,
+     "peak": 187.0,
+     "per_gram": 2.32
+    }
+   ],
+   "strata": [
+    {
+     "treated": false,
+     "recovery_min": 95.0,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 35.00098333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 109.99838333333334,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 34.98891666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 79.99608333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 34.998133333333335,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 99.90041666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 109.97456666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 79.9968,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 89.99843333333334,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 59.997683333333335,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 44.99795,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 45.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 164.99261666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 44.99845,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 54.996233333333336,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 79.99598333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 54.9964,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 404.9838833333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 39.97481666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 84.99126666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 125.02778333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 44.99605,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 44.99855,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 25.0006,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 29.9975,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 39.9948,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 49.998466666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 35.00771666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 44.9195,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 74.91025,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 30.011033333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 49.941066666666664,
+     "rebound": true
+    }
+   ],
    "episodes_per_day": 0.10715940209032422
   },
   {
@@ -567,6 +2269,306 @@
    ],
    "crossings": 59,
    "crossings_treated": 1,
+   "response": [
+    {
+     "grams": 45.0,
+     "reading": 66.0,
+     "peak": 149.0,
+     "per_gram": 1.8444444444444446
+    }
+   ],
+   "strata": [
+    {
+     "treated": false,
+     "recovery_min": 29.983333333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 35.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 20.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 45.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 115.01666666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 25.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 60.016666666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 34.983333333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 40.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 29.983333333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 25.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 35.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 25.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 45.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 50.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 30.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 40.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 45.016666666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 79.98333333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 44.983333333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 45.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 65.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 35.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 29.983333333333334,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 165.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 65.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 25.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 90.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 35.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 90.01666666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 30.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 25.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 30.016666666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 50.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 50.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 150.01666666666668,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 19.983333333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 30.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 35.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 25.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 25.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 20.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 25.016666666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 35.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 30.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 75.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 45.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 60.016666666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 35.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 20.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 24.983333333333334,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 30.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 24.983333333333334,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 80.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 30.016666666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 14.983333333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 39.983333333333334,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 75.0,
+     "rebound": false
+    }
+   ],
    "episodes_per_day": 0.035794020327192144
   },
   {
@@ -627,7 +2629,188 @@
     2
    ],
    "crossings": 33,
-   "crossings_treated": 17,
+   "crossings_treated": 19,
+   "response": [
+    {
+     "grams": 16.0,
+     "reading": 51.0,
+     "peak": 128.0,
+     "per_gram": 4.8125
+    },
+    {
+     "grams": 70.0,
+     "reading": 73.0,
+     "peak": 137.0,
+     "per_gram": 0.9142857142857143
+    }
+   ],
+   "strata": [
+    {
+     "treated": true,
+     "recovery_min": 39.99536666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 204.98941666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 134.9963,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 69.99853333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 39.9955,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 144.98506666666665,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 129.99505,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 34.99995,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 19.999883333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 25.00285,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 55.00065,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 210.01975,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 25.002816666666668,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 189.99713333333332,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 69.95538333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 24.971066666666665,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 49.99935,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 54.99511666666667,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 29.969733333333334,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 54.98983333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 15.004133333333334,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 20.0014,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 159.998,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 60.10006666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 24.999566666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 29.997933333333332,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 70.00245,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 239.99428333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 44.99231666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 105.00795,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 144.99696666666668,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 99.99811666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 24.9983,
+     "rebound": false
+    }
+   ],
    "episodes_per_day": 0.5357925567856765
   },
   {
@@ -671,6 +2854,202 @@
    ],
    "crossings": 36,
    "crossings_treated": 10,
+   "response": [
+    {
+     "grams": 10.0,
+     "reading": 75.0,
+     "peak": 152.0,
+     "per_gram": 7.7
+    },
+    {
+     "grams": 10.0,
+     "reading": 74.0,
+     "peak": 117.0,
+     "per_gram": 4.3
+    }
+   ],
+   "strata": [
+    {
+     "treated": false,
+     "recovery_min": 64.97563333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 408.05668333333335,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 59.98943333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 69.98368333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 79.99528333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 39.98435,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 24.981133333333332,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 59.9866,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 34.99418333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 20.001683333333332,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 15.011816666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 74.98771666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 54.98875,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 19.53215,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 47.1303,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 253.96825,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 44.99486666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 39.98041666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 55.23511666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 80.01638333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 44.99693333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 29.996366666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 84.98648333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 79.97935,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 54.95185,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 2.0328333333333335,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 59.9924,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 74.97093333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 189.96555,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 149.96365,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 114.97588333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 69.99115,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 39.99478333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 199.97541666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 149.98193333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 89.98988333333334,
+     "rebound": false
+    }
+   ],
    "episodes_per_day": 0.3214768243132181
   },
   {
@@ -692,7 +3071,93 @@
     1
    ],
    "crossings": 14,
-   "crossings_treated": 1,
+   "crossings_treated": 2,
+   "response": [
+    {
+     "grams": 18.0,
+     "reading": 71.0,
+     "peak": 188.0,
+     "per_gram": 6.5
+    },
+    {
+     "grams": 12.0,
+     "reading": 71.0,
+     "peak": 156.0,
+     "per_gram": 7.083333333333333
+    }
+   ],
+   "strata": [
+    {
+     "treated": false,
+     "recovery_min": 50.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 54.96666666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 35.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 249.98333333333332,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 105.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 35.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 50.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 95.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 20.016666666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 24.983333333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 55.016666666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 55.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 149.98333333333332,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 25.016666666666666,
+     "rebound": false
+    }
+   ],
    "episodes_per_day": 0.07143078592466284
   },
   {
@@ -771,7 +3236,476 @@
     2
    ],
    "crossings": 81,
-   "crossings_treated": 20,
+   "crossings_treated": 25,
+   "response": [
+    {
+     "grams": 10.0,
+     "reading": 65.0,
+     "peak": 112.0,
+     "per_gram": 4.7
+    },
+    {
+     "grams": 20.0,
+     "reading": 59.0,
+     "peak": 115.0,
+     "per_gram": 2.8
+    },
+    {
+     "grams": 30.0,
+     "reading": 71.0,
+     "peak": 188.0,
+     "per_gram": 3.9
+    },
+    {
+     "grams": 10.0,
+     "reading": 47.0,
+     "peak": 151.0,
+     "per_gram": 10.4
+    },
+    {
+     "grams": 50.0,
+     "reading": 68.0,
+     "peak": 98.0,
+     "per_gram": 0.6
+    },
+    {
+     "grams": 10.0,
+     "reading": 66.0,
+     "peak": 143.0,
+     "per_gram": 7.7
+    },
+    {
+     "grams": 30.0,
+     "reading": 64.0,
+     "peak": 124.0,
+     "per_gram": 2.0
+    },
+    {
+     "grams": 5.0,
+     "reading": 55.0,
+     "peak": 86.0,
+     "per_gram": 6.2
+    },
+    {
+     "grams": 40.0,
+     "reading": 75.0,
+     "peak": 198.0,
+     "per_gram": 3.075
+    },
+    {
+     "grams": 50.0,
+     "reading": 68.0,
+     "peak": 120.0,
+     "per_gram": 1.04
+    }
+   ],
+   "strata": [
+    {
+     "treated": true,
+     "recovery_min": 90.00136666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 205.00485,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 70.00028333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 169.99993333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 59.99635,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 124.99826666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 54.99085,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 159.9854,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 105.00103333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 179.98221666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 85.0025,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 84.99963333333334,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 69.99161666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 54.99995,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 120.0012,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 80.16158333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 45.16158333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 35.16158333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 140.00373333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 75.00701666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 60.00326666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 45.00546666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 45.00176666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 190.00128333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 74.99895,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 155.00041666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 115.00066666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 54.99686666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 29.994666666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 164.9969,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 39.99986666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 44.999433333333336,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 139.8967,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 35.00406666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 49.9815,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 34.98146666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 224.98765,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 140.00365,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 55.0037,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 29.998483333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 70.0066,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 44.99705,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 34.99263333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 65.00931666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 240.0013,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 50.00463333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 14.989466666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 30.00315,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 60.002183333333335,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 125.00318333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 65.17603333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 35.0018,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 35.0011,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 39.99948333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 60.00298333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 45.002316666666665,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 189.9993,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 79.9981,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 29.997966666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 45.00391666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 60.00301666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 59.996316666666665,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 260.0038,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 210.00195,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 29.99855,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 55.00501666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 305.12015,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 50.00286666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 100.0015,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 35.00031666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 115.0025,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 50.000416666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 79.99666666666667,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 30.000066666666665,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 40.00143333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 95.00306666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 45.00288333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 40.002,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 34.9976,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 19.999566666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 94.9997,
+     "rebound": false
+    }
+   ],
    "episodes_per_day": 0.750177457032629
   },
   {
@@ -824,6 +3758,126 @@
    ],
    "crossings": 10,
    "crossings_treated": 4,
+   "response": [
+    {
+     "grams": 38.0,
+     "reading": 75.0,
+     "peak": 139.0,
+     "per_gram": 1.6842105263157894
+    },
+    {
+     "grams": 38.0,
+     "reading": 75.0,
+     "peak": 139.0,
+     "per_gram": 1.6842105263157894
+    },
+    {
+     "grams": 5.0,
+     "reading": 75.0,
+     "peak": 104.0,
+     "per_gram": 5.8
+    },
+    {
+     "grams": 41.0,
+     "reading": 74.0,
+     "peak": 128.0,
+     "per_gram": 1.3170731707317074
+    },
+    {
+     "grams": 41.0,
+     "reading": 74.0,
+     "peak": 128.0,
+     "per_gram": 1.3170731707317074
+    },
+    {
+     "grams": 41.0,
+     "reading": 74.0,
+     "peak": 128.0,
+     "per_gram": 1.3170731707317074
+    },
+    {
+     "grams": 8.0,
+     "reading": 73.0,
+     "peak": 95.0,
+     "per_gram": 2.75
+    },
+    {
+     "grams": 5.0,
+     "reading": 74.0,
+     "peak": 90.0,
+     "per_gram": 3.2
+    },
+    {
+     "grams": 10.0,
+     "reading": 74.0,
+     "peak": 110.0,
+     "per_gram": 3.6
+    },
+    {
+     "grams": 6.0,
+     "reading": 70.0,
+     "peak": 92.0,
+     "per_gram": 3.6666666666666665
+    },
+    {
+     "grams": 57.0,
+     "reading": 75.0,
+     "peak": 138.0,
+     "per_gram": 1.105263157894737
+    }
+   ],
+   "strata": [
+    {
+     "treated": false,
+     "recovery_min": 35.061366666666665,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 131.85376666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 15.074933333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 240.99325,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 195.79831666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 50.21145,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 160.67566666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 264.02998333333335,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 388.5443666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 23.08053333333333,
+     "rebound": false
+    }
+   ],
    "episodes_per_day": 0.42863628036182955
   },
   {
@@ -923,7 +3977,315 @@
     2
    ],
    "crossings": 44,
-   "crossings_treated": 18,
+   "crossings_treated": 25,
+   "response": [
+    {
+     "grams": 35.0,
+     "reading": 75.0,
+     "peak": 178.0,
+     "per_gram": 2.942857142857143
+    },
+    {
+     "grams": 3.0,
+     "reading": 66.0,
+     "peak": 117.0,
+     "per_gram": 17.0
+    },
+    {
+     "grams": 14.0,
+     "reading": 68.0,
+     "peak": 122.0,
+     "per_gram": 3.857142857142857
+    },
+    {
+     "grams": 5.0,
+     "reading": 62.0,
+     "peak": 126.0,
+     "per_gram": 12.8
+    },
+    {
+     "grams": 15.0,
+     "reading": 67.0,
+     "peak": 116.0,
+     "per_gram": 3.2666666666666666
+    },
+    {
+     "grams": 5.0,
+     "reading": 64.0,
+     "peak": 131.0,
+     "per_gram": 13.4
+    },
+    {
+     "grams": 80.0,
+     "reading": 66.0,
+     "peak": 379.0,
+     "per_gram": 3.9125
+    },
+    {
+     "grams": 40.0,
+     "reading": 67.0,
+     "peak": 176.0,
+     "per_gram": 2.725
+    },
+    {
+     "grams": 30.0,
+     "reading": 74.0,
+     "peak": 220.0,
+     "per_gram": 4.866666666666666
+    },
+    {
+     "grams": 30.0,
+     "reading": 67.0,
+     "peak": 165.0,
+     "per_gram": 3.2666666666666666
+    },
+    {
+     "grams": 68.0,
+     "reading": 50.0,
+     "peak": 134.0,
+     "per_gram": 1.2352941176470589
+    },
+    {
+     "grams": 15.0,
+     "reading": 66.0,
+     "peak": 125.0,
+     "per_gram": 3.933333333333333
+    },
+    {
+     "grams": 45.0,
+     "reading": 39.0,
+     "peak": 195.0,
+     "per_gram": 3.466666666666667
+    },
+    {
+     "grams": 10.0,
+     "reading": 63.0,
+     "peak": 172.0,
+     "per_gram": 10.9
+    }
+   ],
+   "strata": [
+    {
+     "treated": true,
+     "recovery_min": 29.113183333333332,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 217.68456666666665,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 55.191833333333335,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 74.17275,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 57.108866666666664,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 47.14423333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 115.28198333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 97.27116666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 58.2258,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 48.194766666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 30.114766666666668,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 127.19805,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 61.11671666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 63.23373333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 79.23731666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 76.2188,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 98.23401666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 406.24025,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 45.243433333333336,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 31.15335,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 100.6667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 104.52483333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 30.150316666666665,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 63.27825,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 41.18585,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 65.318,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 131.62081666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 45.232816666666665,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 25.1349,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 101.4226,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 50.21861666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 170.55376666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 99.61476666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 84.54123333333334,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 69.45943333333334,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 48.350966666666665,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 35.214816666666664,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 59.34945,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 193.15161666666665,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 183.0825,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 35.205733333333335,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 30.1677,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 25.1689,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 20.235666666666667,
+     "rebound": true
+    }
+   ],
    "episodes_per_day": 1.000208799375115
   },
   {
@@ -981,7 +4343,681 @@
     1
    ],
    "crossings": 128,
-   "crossings_treated": 59,
+   "crossings_treated": 72,
+   "response": [
+    {
+     "grams": 15.0,
+     "reading": 73.0,
+     "peak": 186.0,
+     "per_gram": 7.533333333333333
+    },
+    {
+     "grams": 5.0,
+     "reading": 73.0,
+     "peak": 186.0,
+     "per_gram": 22.6
+    },
+    {
+     "grams": 9.0,
+     "reading": 70.0,
+     "peak": 147.0,
+     "per_gram": 8.555555555555555
+    },
+    {
+     "grams": 45.0,
+     "reading": 67.0,
+     "peak": 200.0,
+     "per_gram": 2.9555555555555557
+    },
+    {
+     "grams": 45.0,
+     "reading": 67.0,
+     "peak": 200.0,
+     "per_gram": 2.9555555555555557
+    }
+   ],
+   "strata": [
+    {
+     "treated": true,
+     "recovery_min": 40.0043,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 64.9941,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 3.3653166666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 11.615166666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 6.615166666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 1.6151666666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 1.6097,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 1.6082,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 1.6080166666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 1.6110166666666668,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 51.6064,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 46.6064,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 41.6064,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 36.6064,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 3.38385,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 3.3856,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 3.3851666666666667,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 3.3871166666666666,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 3.386083333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 200.02358333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 80.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 75.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 70.0,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 55.0,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 50.0,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 20.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 138.71845,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 133.71845,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 128.71845,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 123.71845,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 118.71845,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 113.71845,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 73.73511666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 68.73511666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 63.73511666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 45.00131666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 40.000416666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 33.73511666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 23.735116666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 18.735116666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 13.735116666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 8.735116666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 3.735116666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 3.73335,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 3.7335833333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 3.7363833333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 3.7321333333333335,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 153.68516666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 148.68516666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 53.6685,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 48.6685,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 43.6685,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 38.6685,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 33.6685,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 28.685166666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 23.685166666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 18.685166666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 13.685166666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 8.685166666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 23.68091666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 18.68091666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 3.6809166666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 3.6809666666666665,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 3.6803,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 3.6764666666666668,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 3.6773833333333332,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 3.6816,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 128.60028333333332,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 123.60028333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 118.60028333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 113.60028333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 108.60028333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 103.60028333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 98.60028333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 93.60028333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 88.60028333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 63.60028333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 58.61695,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 53.61695,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 48.61695,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 43.61695,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 38.61695,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 33.61695,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 3.6133,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 3.6133333333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 3.6127166666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 3.6136,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 3.607683333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 3.607066666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 43.599333333333334,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 38.599333333333334,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 33.599333333333334,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 28.599333333333334,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 8.582666666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 3.6311,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 73.64855,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 68.64855,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 58.64855,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 53.64855,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 48.64855,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 43.64855,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 38.64855,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 33.631883333333334,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 28.631883333333334,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 23.631883333333334,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 18.631883333333334,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 13.631883333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 3.61895,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 58.6203,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 53.6203,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 48.6203,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 43.6203,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 33.6203,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 28.6203,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 23.6203,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 13.6203,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 8.6203,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 3.6203,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 3.630716666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 144.9796,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 75.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 130.01666666666668,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 250.03333333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 50.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 40.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 65.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 150.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 85.0,
+     "rebound": false
+    }
+   ],
    "episodes_per_day": 0.500070743928295
   },
   {
@@ -1120,7 +5156,345 @@
     2
    ],
    "crossings": 67,
-   "crossings_treated": 47,
+   "crossings_treated": 55,
+   "response": [],
+   "strata": [
+    {
+     "treated": true,
+     "recovery_min": 20.000933333333332,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 49.93201666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 30.006883333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 29.992416666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 29.89685,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 45.00351666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 115.00133333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 80.00005,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 29.9994,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 59.99706666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 35.001333333333335,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 15.00025,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 85.00821666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 50.00835,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 64.99956666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 70.00205,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 34.96828333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 74.99963333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 44.96938333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 30.0029,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 25.0091,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 20.000233333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 59.99796666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 20.002366666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 20.0,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 359.98238333333336,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 40.08055,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 24.99801666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 39.997,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 39.998083333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 64.99298333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 49.99865,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 39.98515,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 89.99831666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 114.99795,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 79.99975,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 44.9957,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 44.99345,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 74.99855,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 40.00775,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 35.00901666666667,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 40.0036,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 39.99961666666667,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 109.95651666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 49.997,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 35.0026,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 49.97496666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 30.083616666666668,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 24.91721666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 25.013933333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 79.99591666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 39.9949,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 64.99796666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 49.975366666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 29.996083333333335,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 30.0,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 39.91336666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 25.001733333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 14.977833333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 24.998516666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 9.998783333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 34.9968,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 39.9977,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 59.99818333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 79.99813333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 19.99985,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 59.9958,
+     "rebound": false
+    }
+   ],
    "episodes_per_day": 1.4643755779884082
   },
   {
@@ -1175,7 +5549,217 @@
     1
    ],
    "crossings": 34,
-   "crossings_treated": 8,
+   "crossings_treated": 11,
+   "response": [
+    {
+     "grams": 50.0,
+     "reading": 63.0,
+     "peak": 141.0,
+     "per_gram": 1.56
+    },
+    {
+     "grams": 30.0,
+     "reading": 67.0,
+     "peak": 237.0,
+     "per_gram": 5.666666666666667
+    },
+    {
+     "grams": 40.0,
+     "reading": 75.0,
+     "peak": 194.0,
+     "per_gram": 2.975
+    },
+    {
+     "grams": 10.0,
+     "reading": 73.0,
+     "peak": 139.0,
+     "per_gram": 6.6
+    },
+    {
+     "grams": 30.0,
+     "reading": 64.0,
+     "peak": 175.0,
+     "per_gram": 3.7
+    },
+    {
+     "grams": 35.0,
+     "reading": 50.0,
+     "peak": 191.0,
+     "per_gram": 4.0285714285714285
+    }
+   ],
+   "strata": [
+    {
+     "treated": false,
+     "recovery_min": 35.1974,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 60.318983333333335,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 55.3127,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 40.2233,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 40.17845,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 110.55176666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 35.034683333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 51.07031666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 40.05895,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 124.09723333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 155.17533333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 49.9243,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 48.0475,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 44.02826666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 31.010283333333334,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 56.04356666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 35.027816666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 30.02295,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 40.007333333333335,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 75.53618333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 95.66063333333334,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 55.38576666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 30.21875,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 70.45263333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 68.46443333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 53.36496666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 81.5181,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 20.130083333333335,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 40.24796666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 42.28415,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 23.13785,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 65.40233333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 20.150183333333334,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 75.49386666666666,
+     "rebound": true
+    }
+   ],
    "episodes_per_day": 0.4643501096571755
   },
   {
@@ -1212,7 +5796,67 @@
     1
    ],
    "crossings": 10,
-   "crossings_treated": 4,
+   "crossings_treated": 5,
+   "response": [
+    {
+     "grams": 38.0,
+     "reading": 49.0,
+     "peak": 39.0,
+     "per_gram": -0.2631578947368421
+    }
+   ],
+   "strata": [
+    {
+     "treated": false,
+     "recovery_min": 14.96735,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 69.85318333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 29.939166666666665,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 369.23405,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 119.75193333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 59.8758,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 244.49393333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 24.94915,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 44.9076,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 79.83206666666666,
+     "rebound": true
+    }
+   ],
    "episodes_per_day": 0.2500393625954896
   },
   {
@@ -1264,7 +5908,286 @@
     1
    ],
    "crossings": 49,
-   "crossings_treated": 8,
+   "crossings_treated": 14,
+   "response": [
+    {
+     "grams": 10.0,
+     "reading": 72.0,
+     "peak": 110.0,
+     "per_gram": 3.8
+    },
+    {
+     "grams": 20.0,
+     "reading": 73.0,
+     "peak": 113.0,
+     "per_gram": 2.0
+    },
+    {
+     "grams": 31.0,
+     "reading": 71.0,
+     "peak": 134.0,
+     "per_gram": 2.032258064516129
+    },
+    {
+     "grams": 38.0,
+     "reading": 46.0,
+     "peak": 215.0,
+     "per_gram": 4.447368421052632
+    },
+    {
+     "grams": 15.0,
+     "reading": 50.0,
+     "peak": 188.0,
+     "per_gram": 9.2
+    }
+   ],
+   "strata": [
+    {
+     "treated": true,
+     "recovery_min": 144.98596666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 104.9367,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 95.0644,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 55.06066666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 25.008983333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 24.944916666666668,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 144.99438333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 95.00286666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 60.01388333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 99.99381666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 69.9975,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 79.97601666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 60.004333333333335,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 140.01706666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 15.012633333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 114.93263333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 30.00135,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 0.8642,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 15.008433333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 5.854016666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 374.27555,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 362.33613333333335,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 282.3274666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 124.94988333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 109.96968333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 44.98701666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 234.98363333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 209.99125,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 154.8534,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 14.989683333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 24.965666666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 210.01333333333332,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 59.99435,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 35.01643333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 44.8605,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 54.99315,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 334.97253333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 65.01861666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 100.00055,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 44.9981,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 84.88118333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 29.99395,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 114.97628333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 25.0107,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 85.02041666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 65.01913333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 94.99898333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 140.00315,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 55.0253,
+     "rebound": false
+    }
+   ],
    "episodes_per_day": 0.4285998658323679
   },
   {
@@ -1302,6 +6225,312 @@
    ],
    "crossings": 58,
    "crossings_treated": 6,
+   "response": [
+    {
+     "grams": 25.0,
+     "reading": 68.0,
+     "peak": 199.0,
+     "per_gram": 5.24
+    },
+    {
+     "grams": 20.0,
+     "reading": 69.0,
+     "peak": 140.0,
+     "per_gram": 3.55
+    }
+   ],
+   "strata": [
+    {
+     "treated": true,
+     "recovery_min": 33.702466666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 53.893966666666664,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 29.88425,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 110.9996,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 61.99948333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 184.83626666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 60.80713333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 50.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 139.00035,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 98.98361666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 88.96693333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 25.74755,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 624.9935166666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 212.74763333333334,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 123.89555,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 72.48598333333334,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 127.00025,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 360.13128333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 98.81675,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 146.83095,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 4.9999666666666664,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 69.22101666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 63.503366666666665,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 73.01671666666667,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 39.00011666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 87.02346666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 92.22345,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 89.00028333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 28.983516666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 5.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 452.2941,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 285.7303333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 30.000016666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 67.52088333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 30.00005,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 197.49586666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 168.0008,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 53.04995,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 120.75666666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 12.364166666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 68.99996666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 482.44378333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 90.56663333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 75.98913333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 44.254466666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 131.00068333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 87.00038333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 415.47311666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 89.51746666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 50.00006666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 63.014916666666664,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 71.34676666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 126.00008333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 416.38548333333335,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 208.9227,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 42.58345,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 50.999916666666664,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 81.0876,
+     "rebound": false
+    }
+   ],
    "episodes_per_day": 0.250799757423887
   },
   {
@@ -1335,7 +6564,137 @@
     1
    ],
    "crossings": 24,
-   "crossings_treated": 5,
+   "crossings_treated": 6,
+   "response": [
+    {
+     "grams": 80.0,
+     "reading": 69.0,
+     "peak": 253.0,
+     "per_gram": 2.3
+    }
+   ],
+   "strata": [
+    {
+     "treated": false,
+     "recovery_min": 10.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 35.0,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 50.0,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 20.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 49.999583333333334,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 29.999466666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 314.9972333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 199.9959,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 174.99485,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 100.00003333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 89.9991,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 175.00098333333332,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 84.99756666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 139.99685,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 59.99803333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 70.00076666666666,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 5.000216666666667,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 70.0032,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 100.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 50.0242,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 189.99276666666665,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 169.99838333333332,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 154.9814,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 129.99548333333334,
+     "rebound": false
+    }
+   ],
    "episodes_per_day": 0.2143147024930822
   },
   {
@@ -1384,7 +6743,145 @@
     1
    ],
    "crossings": 16,
-   "crossings_treated": 8,
+   "crossings_treated": 9,
+   "response": [
+    {
+     "grams": 5.0,
+     "reading": 66.0,
+     "peak": 130.0,
+     "per_gram": 12.8
+    },
+    {
+     "grams": 5.0,
+     "reading": 67.0,
+     "peak": 96.0,
+     "per_gram": 5.8
+    },
+    {
+     "grams": 45.0,
+     "reading": 66.0,
+     "peak": 101.0,
+     "per_gram": 0.7777777777777778
+    },
+    {
+     "grams": 43.0,
+     "reading": 65.0,
+     "peak": 111.0,
+     "per_gram": 1.069767441860465
+    },
+    {
+     "grams": 50.0,
+     "reading": 72.0,
+     "peak": 116.0,
+     "per_gram": 0.88
+    },
+    {
+     "grams": 43.0,
+     "reading": 68.0,
+     "peak": 98.0,
+     "per_gram": 0.6976744186046512
+    },
+    {
+     "grams": 36.0,
+     "reading": 53.0,
+     "peak": 160.0,
+     "per_gram": 2.9722222222222223
+    },
+    {
+     "grams": 7.0,
+     "reading": 74.0,
+     "peak": 129.0,
+     "per_gram": 7.857142857142857
+    },
+    {
+     "grams": 38.0,
+     "reading": 69.0,
+     "peak": 90.0,
+     "per_gram": 0.5526315789473685
+    }
+   ],
+   "strata": [
+    {
+     "treated": true,
+     "recovery_min": 159.94785,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 400.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 160.0,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 685.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 375.0,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 175.0,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 154.98333333333332,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 90.01666666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 180.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 66.01666666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 149.98333333333332,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 79.8,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 40.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 25.016666666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 414.96666666666664,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 355.0,
+     "rebound": false
+    }
+   ],
    "episodes_per_day": 0.3928756604030992
   },
   {
@@ -1430,7 +6927,221 @@
     2
    ],
    "crossings": 30,
-   "crossings_treated": 5,
+   "crossings_treated": 10,
+   "response": [
+    {
+     "grams": 10.0,
+     "reading": 62.0,
+     "peak": 148.0,
+     "per_gram": 8.6
+    },
+    {
+     "grams": 10.0,
+     "reading": 62.0,
+     "peak": 148.0,
+     "per_gram": 8.6
+    },
+    {
+     "grams": 10.0,
+     "reading": 56.0,
+     "peak": 206.0,
+     "per_gram": 15.0
+    },
+    {
+     "grams": 10.0,
+     "reading": 56.0,
+     "peak": 206.0,
+     "per_gram": 15.0
+    },
+    {
+     "grams": 8.0,
+     "reading": 75.0,
+     "peak": 205.0,
+     "per_gram": 16.25
+    },
+    {
+     "grams": 8.0,
+     "reading": 75.0,
+     "peak": 205.0,
+     "per_gram": 16.25
+    },
+    {
+     "grams": 10.0,
+     "reading": 61.0,
+     "peak": 161.0,
+     "per_gram": 10.0
+    },
+    {
+     "grams": 10.0,
+     "reading": 61.0,
+     "peak": 161.0,
+     "per_gram": 10.0
+    },
+    {
+     "grams": 10.0,
+     "reading": 73.0,
+     "peak": 147.0,
+     "per_gram": 7.4
+    },
+    {
+     "grams": 10.0,
+     "reading": 73.0,
+     "peak": 147.0,
+     "per_gram": 7.4
+    }
+   ],
+   "strata": [
+    {
+     "treated": false,
+     "recovery_min": 93.40356666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 29.98845,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 44.976483333333334,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 118.84173333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 29.993966666666665,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 40.006083333333336,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 178.48466666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 15.037566666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 45.00731666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 84.97953333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 34.997816666666665,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 224.42851666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 34.997,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 34.96138333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 28.09975,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 85.26461666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 35.11078333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 33.09145,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 25.062366666666666,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 25.0748,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 136.43563333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 55.171816666666665,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 32.087916666666665,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 35.1254,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 20.0725,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 38.12226666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 52.14795,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 45.112033333333336,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 130.37465,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 27.089816666666668,
+     "rebound": false
+    }
+   ],
    "episodes_per_day": 0.3571795547140468
   },
   {
@@ -1494,7 +7205,284 @@
     1
    ],
    "crossings": 45,
-   "crossings_treated": 9,
+   "crossings_treated": 16,
+   "response": [
+    {
+     "grams": 40.0,
+     "reading": 65.0,
+     "peak": 178.0,
+     "per_gram": 2.825
+    },
+    {
+     "grams": 30.0,
+     "reading": 45.0,
+     "peak": 220.0,
+     "per_gram": 5.833333333333333
+    },
+    {
+     "grams": 35.0,
+     "reading": 72.0,
+     "peak": 185.0,
+     "per_gram": 3.2285714285714286
+    },
+    {
+     "grams": 6.0,
+     "reading": 49.0,
+     "peak": 111.0,
+     "per_gram": 10.333333333333334
+    },
+    {
+     "grams": 5.0,
+     "reading": 39.0,
+     "peak": 103.0,
+     "per_gram": 12.8
+    },
+    {
+     "grams": 5.0,
+     "reading": 69.0,
+     "peak": 122.0,
+     "per_gram": 10.6
+    },
+    {
+     "grams": 70.0,
+     "reading": 66.0,
+     "peak": 159.0,
+     "per_gram": 1.3285714285714285
+    },
+    {
+     "grams": 4.0,
+     "reading": 68.0,
+     "peak": 126.0,
+     "per_gram": 14.5
+    }
+   ],
+   "strata": [
+    {
+     "treated": true,
+     "recovery_min": 35.0011,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 327.94196666666664,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 84.98815,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 926.57425,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 94.99135,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 59.99365,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 228.8028,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 153.81786666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 143.8192,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 39.99803333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 289.9646833333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 69.99233333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 104.98075,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 29.996116666666666,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 14.9989,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 106.39716666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 59.9988,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 44.98513333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 59.98233333333334,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 59.992333333333335,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 79.98925,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 49.99348333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 246.47158333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 198.5698,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 178.57246666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 108.59413333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 77.32356666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 254.96436666666668,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 249.96721666666667,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 147.20906666666667,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 82.21818333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 199.97116666666668,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 74.98768333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 113.5739,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 49.9936,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 58.90885,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 89.98673333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 84.98991666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 64.99248333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 229.97173333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 124.9828,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 263.71503333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 184.97721666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 64.97463333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 120.19798333333334,
+     "rebound": false
+    }
+   ],
    "episodes_per_day": 0.5715166294502498
   },
   {
@@ -1669,7 +7657,645 @@
     2
    ],
    "crossings": 110,
-   "crossings_treated": 47,
+   "crossings_treated": 59,
+   "response": [
+    {
+     "grams": 10.0,
+     "reading": 61.0,
+     "peak": 209.0,
+     "per_gram": 14.8
+    },
+    {
+     "grams": 18.0,
+     "reading": 55.0,
+     "peak": 151.0,
+     "per_gram": 5.333333333333333
+    },
+    {
+     "grams": 12.0,
+     "reading": 42.0,
+     "peak": 285.0,
+     "per_gram": 20.25
+    },
+    {
+     "grams": 18.0,
+     "reading": 65.0,
+     "peak": 139.0,
+     "per_gram": 4.111111111111111
+    },
+    {
+     "grams": 12.0,
+     "reading": 64.0,
+     "peak": 100.0,
+     "per_gram": 3.0
+    },
+    {
+     "grams": 25.0,
+     "reading": 67.0,
+     "peak": 166.0,
+     "per_gram": 3.96
+    },
+    {
+     "grams": 12.0,
+     "reading": 67.0,
+     "peak": 155.0,
+     "per_gram": 7.333333333333333
+    },
+    {
+     "grams": 12.0,
+     "reading": 67.0,
+     "peak": 143.0,
+     "per_gram": 6.333333333333333
+    },
+    {
+     "grams": 12.0,
+     "reading": 70.0,
+     "peak": 156.0,
+     "per_gram": 7.166666666666667
+    },
+    {
+     "grams": 18.0,
+     "reading": 66.0,
+     "peak": 110.0,
+     "per_gram": 2.4444444444444446
+    },
+    {
+     "grams": 30.0,
+     "reading": 50.0,
+     "peak": 199.0,
+     "per_gram": 4.966666666666667
+    },
+    {
+     "grams": 12.0,
+     "reading": 66.0,
+     "peak": 120.0,
+     "per_gram": 4.5
+    },
+    {
+     "grams": 49.0,
+     "reading": 67.0,
+     "peak": 126.0,
+     "per_gram": 1.2040816326530612
+    },
+    {
+     "grams": 10.0,
+     "reading": 75.0,
+     "peak": 107.0,
+     "per_gram": 3.2
+    }
+   ],
+   "strata": [
+    {
+     "treated": false,
+     "recovery_min": 50.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 85.03333333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 45.03333333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 178.73333333333332,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 113.66666666666667,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 73.53333333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 55.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 40.03333333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 20.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 55.03333333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 15.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 125.16666666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 95.16666666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 30.033333333333335,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 45.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 30.0,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 50.03333333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 30.033333333333335,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 20.0,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 10.0,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 90.06666666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 60.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 45.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 60.03333333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 35.0,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 35.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 40.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 50.03333333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 50.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 90.06666666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 15.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 125.1,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 35.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 20.0,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 45.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 15.0,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 50.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 75.06666666666666,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 70.06666666666666,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 50.03333333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 165.13333333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 140.1,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 40.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 30.033333333333335,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 65.06666666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 35.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 90.06666666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 80.06666666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 15.0,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 40.0,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 45.0,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 30.0,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 45.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 45.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 20.0,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 65.03333333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 20.033333333333335,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 35.03333333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 185.1,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 155.1,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 100.06666666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 65.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 15.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 60.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 45.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 125.06666666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 110.06666666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 140.1,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 55.06666666666667,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 35.03333333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 100.06666666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 80.06666666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 45.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 75.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 65.06666666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 90.06666666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 70.06666666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 65.03333333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 45.03333333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 160.13333333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 50.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 135.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 35.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 55.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 55.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 108.33333333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 140.1,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 80.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 70.03333333333333,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 95.06666666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 130.0,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 105.06666666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 65.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 40.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 55.13333333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 40.13333333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 190.13333333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 175.13333333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 160.1,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 304.76666666666665,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 79.6,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 35.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 90.06666666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 55.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 25.033333333333335,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 20.0,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 30.033333333333335,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 100.06666666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 75.03333333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 65.03333333333333,
+     "rebound": false
+    }
+   ],
    "episodes_per_day": 1.8931075539092472
   },
   {
@@ -1760,7 +8386,554 @@
     1
    ],
    "crossings": 105,
-   "crossings_treated": 18,
+   "crossings_treated": 21,
+   "response": [
+    {
+     "grams": 55.0,
+     "reading": 58.0,
+     "peak": 73.0,
+     "per_gram": 0.2727272727272727
+    },
+    {
+     "grams": 35.0,
+     "reading": 58.0,
+     "peak": 73.0,
+     "per_gram": 0.42857142857142855
+    },
+    {
+     "grams": 25.0,
+     "reading": 72.0,
+     "peak": 83.0,
+     "per_gram": 0.44
+    }
+   ],
+   "strata": [
+    {
+     "treated": false,
+     "recovery_min": 49.99875,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 355.0061,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 280.0115333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 115.01591666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 50.01575,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 39.99751666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 445.00446666666664,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 415.01115,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 295.0106333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 210.01276666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 160.01438333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 199.99778333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 164.9993,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 144.99803333333332,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 94.99856666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 25.004033333333332,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 69.99706666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 334.98401666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 309.98443333333336,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 94.98183333333333,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 124.99935,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 14.99815,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 30.0031,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 9.999116666666668,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 104.99436666666666,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 129.99628333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 630.0399333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 609.9852666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 464.98148333333336,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 344.96888333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 239.99035,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 764.9924833333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 549.9925833333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 499.99258333333336,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 454.99795,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 295.00868333333335,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 190.0051,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 95.00168333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 120.00286666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 360.06488333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 110.06021666666666,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 744.97585,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 679.9671333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 539.9312833333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 484.9884166666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 464.9996,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 309.9841,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 209.93776666666668,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 139.93153333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 50.11216666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 30.004716666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 220.00523333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 124.84841666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 130.002,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 120.00985,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 64.99788333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 30.005683333333334,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 30.003233333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 15.0,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 44.9981,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 5.002633333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 94.97566666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 64.99416666666667,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 40.0001,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 1099.9466333333332,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 924.9738666666667,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 799.9691333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 769.97495,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 729.9693833333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 639.9830333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 564.9790333333333,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 474.97045,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 434.98198333333335,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 404.98828333333336,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 59.99775,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 170.0039,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 125.00423333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 4.99995,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 5.001933333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 90.0006,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 14.982116666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 100.01795,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 139.9987,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 15.000383333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 60.0046,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 50.00525,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 124.97663333333334,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 25.004033333333332,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 169.99456666666666,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 59.99615,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 29.998616666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 9.997933333333334,
+     "rebound": true
+    },
+    {
+     "treated": true,
+     "recovery_min": 4.99525,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 374.9966333333333,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 255.00096666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 5.011666666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 14.998833333333334,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 160.0024,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 54.98336666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 15.00225,
+     "rebound": false
+    },
+    {
+     "treated": false,
+     "recovery_min": 4.9924,
+     "rebound": false
+    },
+    {
+     "treated": true,
+     "recovery_min": 150.0123,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 24.984633333333335,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 15.030766666666667,
+     "rebound": true
+    },
+    {
+     "treated": false,
+     "recovery_min": 70.00548333333333,
+     "rebound": true
+    }
+   ],
    "episodes_per_day": 0.8929867610371769
   }
  ]

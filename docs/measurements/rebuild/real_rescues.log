@@ -1,6 +1,6 @@
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
-240 user directories, 2 workers
+240 user directories, 2 workers, 28-day window
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
@@ -33,7 +33,16 @@
   helpings per episode               median    1.00  mean    1.42  p25   1.00  p75   2.00  p90   2.00  n=419
   episodes per day                   median    0.43  mean    0.55  p25   0.25  p75   0.77  p90   1.10  n=27
 
-  1243 crossings below 70 mg/dL, 383 treated within 30 min (30.8%)
-  treated share per user             median   24.69 %  mean   32.69  p25  16.50  p75  48.05  p90  64.84  n=27
+  the response to one isolated helping, 139 rescues with no further carbohydrate inside 180 min
+  rise per gram, mg/dL per g         median    3.91  mean    5.59  p25   2.36  p75   7.37  p90  12.80  n=139
+  grams of those helpings            median   20.00 g  mean   24.82  p25  10.00  p75  38.00  p90  49.20  n=139
 
-wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/real_rescues.json
+  recovery and rebound by stratum, 1242 excursions
+  stratum             n    recovery to 100, min    rebound above 180, %
+  untreated         770                    68.8                    30.6
+  treated           472                    45.0                    28.6
+
+  1243 crossings below 70 mg/dL, 472 treated within 30 min (38.0%)
+  treated share per user             median   33.33 %  mean   39.70  p25  20.00  p75  56.25  p90  73.92  n=27
+
+wrote docs/measurements/real_rescues.json
