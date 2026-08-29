@@ -211,13 +211,26 @@ def insulin_weekly_cv(insulin_per_step, step_minutes=5.0):
     failed to absorb, which is also what a real pump log records. Comparing absorbed insulin
     against a pump log would not be the same quantity.
 
-    One limitation, stated because it affects how the number should be read. The level of
-    this statistic depends on the driving algorithm as well as on the person: the same
-    subjects read 3.3% under the built-in loop and 5.9% under oref, because how much a loop
-    varies delivery from week to week is partly a property of the loop. What is tested here
-    is its response to the person, which is the right sign under every closed loop, rather
-    than its level. A cohort value should be compared with the real range only alongside the
-    driver it was produced under.
+    Two limitations, both affecting how the number should be read.
+
+    The level depends on the driving algorithm as well as on the person: the same subjects read
+    4.9% under the built-in loop and 5.8% under oref, because how much a loop varies delivery
+    from week to week is partly a property of the loop. A cohort value should be compared with
+    the real range only alongside the driver it was produced under.
+
+    The response is weaker than this once claimed. `examples/drift_ablation.py` removes the
+    sensitivity terms and finds a paired difference whose interval excludes zero under Boost
+    alone, at -1.78 [-2.91, -0.38], with the built-in loop at -0.36 [-1.53, +0.30] and oref at
+    -0.06 [-1.00, +1.32]. Removing the day-to-day term while leaving the multi-day one moves
+    nothing under any driver.
+
+    The arithmetic says why, and it is a property of the weekly form rather than of the
+    population. Seven independent daily draws average into a week, dividing the day-to-day term
+    by roughly the square root of seven, so at the coefficients this model uses that term
+    contributes 6.4% of week-to-week variation against the multi-day term's 7.4% at a smaller
+    coefficient. A weekly statistic therefore tests the multi-day term almost alone, on four
+    points per subject. Comparing consecutive days rather than consecutive weeks would keep what
+    this discards, and is available on real pump records; nothing here measures it yet.
     """
     v = np.asarray(insulin_per_step, float)
     if v.size < 2:

@@ -89,6 +89,7 @@ decimal.
 | autosens is pinned at 1.0, so any oref hypoglycaemia figure is an upper bound | OSAID | autosens is implemented and runs by default. Both arms are measured at 4.85 and 5.48 per cent below 70 mg/dL, so the caveat qualifying every oref figure no longer applies |
 | the classifier separates at 0.709, and the axis is hyperglycaemia | EVIDENCE, FIDELITY | 0.784, and the heaviest feature is the sixty-minute autocorrelation |
 | the ladder carries nine of 47 movements | STUDIES_AUDIT, SIMULATOR | six of 47, and the site layer now carries none |
+| the insulin week-to-week CV responds to the sensitivity mechanism under every closed loop | `analysis/signatures.py`, study 03 | under one driver of four. Boost gives -1.78 [-2.91, -0.38]; the built-in loop and oref0 SMB span zero. Removing the day-to-day term alone moves nothing anywhere, since a weekly average divides it by roughly the square root of seven |
 | the outcome spread after a stuck high is inside the real range at 27.0 | FIDELITY, GUIDE, OSAID, VALIDATION, EVIDENCE | 24.58, below the range. The verdict reverses |
 | the population is not reproducible from its seed | METHODS | repaired on 15 August in `d388796`. The paragraph tells a reader the opposite of the truth about the property the provenance argument rests on |
 | Commons reference 79.60 across 71 users | METHODS | 80.05 across 77 users |
