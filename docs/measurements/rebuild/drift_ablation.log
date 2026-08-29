@@ -16,3 +16,55 @@ panel: skipped 1 subject(s) with no titrated settings (adult#026), taking 40 of 
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
+  30/480
+  60/480
+  90/480
+  120/480
+  150/480
+  180/480
+  210/480
+  240/480
+  270/480
+  300/480
+  330/480
+  360/480
+  390/480
+  420/480
+  450/480
+  480/480
+
+==============================================================================
+drift, from the controller's learned factor
+
+  driver       arm             median    n       paired against varies
+  basal-bolus  varies           16.23   35
+  basal-bolus  no_interday      15.78   38         +0.00 [-0.39,+0.00]
+  basal-bolus  flat             15.87   38         +0.00 [-0.56,+0.05]
+  trend        varies            9.24   40
+  trend        no_interday       8.91   40         +0.12 [-0.44,+0.76]
+  trend        flat              7.63   40         -0.63 [-1.10,+0.25]
+  boost        varies               -    0
+  boost        no_interday          -    0            0 pairs, too few
+  boost        flat                 -    0            0 pairs, too few
+  oref         varies               -    0
+  oref         no_interday          -    0            0 pairs, too few
+  oref         flat                 -    0            0 pairs, too few
+
+==============================================================================
+insulin week-to-week %CV
+
+  driver       arm             median    n       paired against varies
+  basal-bolus  varies            4.06   35
+  basal-bolus  no_interday       4.48   38         +0.07 [-0.37,+0.54]
+  basal-bolus  flat              4.50   38         +0.77 [-0.19,+1.29]
+  trend        varies            4.91   40
+  trend        no_interday       4.34   40         -0.43 [-1.40,+0.50]
+  trend        flat              3.81   40         -0.36 [-1.53,+0.30]
+  boost        varies            5.35   40
+  boost        no_interday       5.29   40         -0.10 [-1.41,+0.40]
+  boost        flat              3.46   39         -1.78 [-2.91,-0.38]  responds
+  oref         varies            5.75   38
+  oref         no_interday       5.84   40         -0.05 [-0.76,+1.10]
+  oref         flat              5.47   40         -0.06 [-1.00,+1.32]
+
+wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/drift_ablation.json
