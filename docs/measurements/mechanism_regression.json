@@ -1,0 +1,6600 @@
+{
+ "provenance": {
+  "population": "704cfac086df54ba",
+  "settings": "0df43fd250fadd47",
+  "commit": "a5c26924e475f18b71d95c4f0be7654913a70428",
+  "dirty": false,
+  "host": "Tims-Mac-mini.local",
+  "python": "3.14.7",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "when": "2026-08-29T15:56:55+00:00",
+  "simglucose": "0.2.11"
+ },
+ "days": 28,
+ "seed": 101,
+ "driver": "trend",
+ "base_layers": [
+  "physiology",
+  "behaviour",
+  "sensor",
+  "site"
+ ],
+ "arms": [
+  {
+   "name": "shipped",
+   "meal_absorption_cv": null,
+   "si_slow_cv": null,
+   "activity": false
+  },
+  {
+   "name": "no_absorption",
+   "meal_absorption_cv": 0.0,
+   "si_slow_cv": null,
+   "activity": false
+  },
+  {
+   "name": "no_slow",
+   "meal_absorption_cv": null,
+   "si_slow_cv": 0.0,
+   "activity": false
+  },
+  {
+   "name": "slow_030",
+   "meal_absorption_cv": null,
+   "si_slow_cv": 0.3,
+   "activity": false
+  },
+  {
+   "name": "activity",
+   "meal_absorption_cv": null,
+   "si_slow_cv": null,
+   "activity": true
+  },
+  {
+   "name": "neither",
+   "meal_absorption_cv": 0.0,
+   "si_slow_cv": 0.0,
+   "activity": false
+  }
+ ],
+ "subjects": [
+  "adult#001",
+  "adult#002",
+  "adult#003",
+  "adult#004",
+  "adult#005",
+  "adult#006",
+  "adult#007",
+  "adult#008",
+  "adult#009",
+  "adult#010",
+  "adult#011",
+  "adult#012",
+  "adult#013",
+  "adult#014",
+  "adult#015",
+  "adult#016",
+  "adult#017",
+  "adult#018",
+  "adult#019",
+  "adult#020",
+  "adult#021",
+  "adult#022",
+  "adult#023",
+  "adult#024",
+  "adult#025",
+  "adult#027",
+  "adult#028",
+  "adult#029",
+  "adult#030",
+  "adult#031",
+  "adult#032",
+  "adult#033",
+  "adult#034",
+  "adult#035",
+  "adult#036",
+  "adult#037",
+  "adult#038",
+  "adult#039",
+  "adult#040",
+  "adult#041"
+ ],
+ "table": {
+  "cv": {
+   "label": "Glucose variability (CV%)",
+   "real_range": [
+    29.5,
+    34.3
+   ],
+   "arms": {
+    "shipped": {
+     "median": 30.339364679269053,
+     "n": 40,
+     "inside": true
+    },
+    "no_absorption": {
+     "median": 27.361549692040906,
+     "n": 40,
+     "inside": false
+    },
+    "no_slow": {
+     "median": 30.90428168868828,
+     "n": 40,
+     "inside": true
+    },
+    "slow_030": {
+     "median": 30.65191210968866,
+     "n": 39,
+     "inside": true
+    },
+    "activity": {
+     "median": 30.9687747582347,
+     "n": 40,
+     "inside": true
+    },
+    "neither": {
+     "median": 27.5401039593755,
+     "n": 40,
+     "inside": false
+    }
+   }
+  },
+  "tail": {
+   "label": "Rise tail P(\u0394>10 mg/dL / 5min) %",
+   "real_range": [
+    3.7,
+    6.6
+   ],
+   "arms": {
+    "shipped": {
+     "median": 2.9207491008309563,
+     "n": 40,
+     "inside": false
+    },
+    "no_absorption": {
+     "median": 2.0215800570507256,
+     "n": 40,
+     "inside": false
+    },
+    "no_slow": {
+     "median": 3.2122038943321343,
+     "n": 40,
+     "inside": false
+    },
+    "slow_030": {
+     "median": 3.038571251395262,
+     "n": 39,
+     "inside": false
+    },
+    "activity": {
+     "median": 2.9145479350117824,
+     "n": 40,
+     "inside": false
+    },
+    "neither": {
+     "median": 2.139402207615032,
+     "n": 40,
+     "inside": false
+    }
+   }
+  },
+  "acf30": {
+   "label": "Autocorrelation @30 min",
+   "real_range": [
+    0.78,
+    0.87
+   ],
+   "arms": {
+    "shipped": {
+     "median": 0.9057604026195286,
+     "n": 40,
+     "inside": false
+    },
+    "no_absorption": {
+     "median": 0.9014864905741129,
+     "n": 40,
+     "inside": false
+    },
+    "no_slow": {
+     "median": 0.9043935055762962,
+     "n": 40,
+     "inside": false
+    },
+    "slow_030": {
+     "median": 0.9123406269618389,
+     "n": 39,
+     "inside": false
+    },
+    "activity": {
+     "median": 0.899716137060381,
+     "n": 40,
+     "inside": false
+    },
+    "neither": {
+     "median": 0.9017483259571437,
+     "n": 40,
+     "inside": false
+    }
+   }
+  },
+  "acf60": {
+   "label": "Autocorrelation @60 min",
+   "real_range": [
+    0.5,
+    0.68
+   ],
+   "arms": {
+    "shipped": {
+     "median": 0.7521776935009623,
+     "n": 40,
+     "inside": false
+    },
+    "no_absorption": {
+     "median": 0.7741226728597036,
+     "n": 40,
+     "inside": false
+    },
+    "no_slow": {
+     "median": 0.7602361319268585,
+     "n": 40,
+     "inside": false
+    },
+    "slow_030": {
+     "median": 0.777585798304376,
+     "n": 39,
+     "inside": false
+    },
+    "activity": {
+     "median": 0.7414858124454284,
+     "n": 40,
+     "inside": false
+    },
+    "neither": {
+     "median": 0.7696208526637558,
+     "n": 40,
+     "inside": false
+    }
+   }
+  },
+  "outcome": {
+   "label": "Outcome SD @stuck-high +30min (mg/dL)",
+   "real_range": [
+    26.5,
+    33.5
+   ],
+   "arms": {
+    "shipped": {
+     "median": 22.897706964894155,
+     "n": 40,
+     "inside": false
+    },
+    "no_absorption": {
+     "median": 18.893016685930334,
+     "n": 40,
+     "inside": false
+    },
+    "no_slow": {
+     "median": 22.23693069304735,
+     "n": 40,
+     "inside": false
+    },
+    "slow_030": {
+     "median": 21.834491278434804,
+     "n": 39,
+     "inside": false
+    },
+    "activity": {
+     "median": 22.931375567402412,
+     "n": 40,
+     "inside": false
+    },
+    "neither": {
+     "median": 19.005095842231903,
+     "n": 40,
+     "inside": false
+    }
+   }
+  },
+  "diurnal": {
+   "label": "Diurnal amplitude (mg/dL)",
+   "real_range": [
+    34.7,
+    56.3
+   ],
+   "arms": {
+    "shipped": {
+     "median": 32.505865983231644,
+     "n": 40,
+     "inside": false
+    },
+    "no_absorption": {
+     "median": 31.010278079385415,
+     "n": 40,
+     "inside": false
+    },
+    "no_slow": {
+     "median": 30.06679692457122,
+     "n": 40,
+     "inside": false
+    },
+    "slow_030": {
+     "median": 34.0124390264765,
+     "n": 39,
+     "inside": false
+    },
+    "activity": {
+     "median": 32.53178258923478,
+     "n": 40,
+     "inside": false
+    },
+    "neither": {
+     "median": 32.30904381736903,
+     "n": 40,
+     "inside": false
+    }
+   }
+  },
+  "hypo_rec": {
+   "label": "Hypo recovery to 100 (min)",
+   "real_range": [
+    50.0,
+    59.0
+   ],
+   "arms": {
+    "shipped": {
+     "median": 63.75,
+     "n": 40,
+     "inside": false
+    },
+    "no_absorption": {
+     "median": 55.0,
+     "n": 40,
+     "inside": true
+    },
+    "no_slow": {
+     "median": 63.75,
+     "n": 40,
+     "inside": false
+    },
+    "slow_030": {
+     "median": 62.5,
+     "n": 39,
+     "inside": false
+    },
+    "activity": {
+     "median": 66.25,
+     "n": 40,
+     "inside": false
+    },
+    "neither": {
+     "median": 55.0,
+     "n": 40,
+     "inside": true
+    }
+   }
+  },
+  "hypo_reb": {
+   "label": "Hypo rebound >180 %",
+   "real_range": [
+    23.2,
+    28.4
+   ],
+   "arms": {
+    "shipped": {
+     "median": 28.45117845117845,
+     "n": 40,
+     "inside": false
+    },
+    "no_absorption": {
+     "median": 31.666666666666664,
+     "n": 40,
+     "inside": false
+    },
+    "no_slow": {
+     "median": 42.04545454545455,
+     "n": 40,
+     "inside": false
+    },
+    "slow_030": {
+     "median": 34.883720930232556,
+     "n": 39,
+     "inside": false
+    },
+    "activity": {
+     "median": 37.22943722943723,
+     "n": 40,
+     "inside": false
+    },
+    "neither": {
+     "median": 32.666666666666664,
+     "n": 40,
+     "inside": false
+    }
+   }
+  },
+  "compress": {
+   "label": "Compression lows / 30d",
+   "real_range": [
+    1.9,
+    5.3
+   ],
+   "arms": {
+    "shipped": {
+     "median": 4.286245814213072,
+     "n": 40,
+     "inside": true
+    },
+    "no_absorption": {
+     "median": 4.286245814213072,
+     "n": 40,
+     "inside": true
+    },
+    "no_slow": {
+     "median": 4.286245814213072,
+     "n": 40,
+     "inside": true
+    },
+    "slow_030": {
+     "median": 3.214684360659804,
+     "n": 39,
+     "inside": true
+    },
+    "activity": {
+     "median": 4.286245814213072,
+     "n": 40,
+     "inside": true
+    },
+    "neither": {
+     "median": 4.286245814213072,
+     "n": 40,
+     "inside": true
+    }
+   }
+  },
+  "noise": {
+   "label": "Sensor jitter (2nd-diff SD)",
+   "real_range": [
+    4.5,
+    6.7
+   ],
+   "arms": {
+    "shipped": {
+     "median": 5.253234190736634,
+     "n": 40,
+     "inside": true
+    },
+    "no_absorption": {
+     "median": 5.239767489889561,
+     "n": 40,
+     "inside": true
+    },
+    "no_slow": {
+     "median": 5.246408770269232,
+     "n": 40,
+     "inside": true
+    },
+    "slow_030": {
+     "median": 5.202008496278669,
+     "n": 39,
+     "inside": true
+    },
+    "activity": {
+     "median": 5.248995541056836,
+     "n": 40,
+     "inside": true
+    },
+    "neither": {
+     "median": 5.196638315543643,
+     "n": 40,
+     "inside": true
+    }
+   }
+  },
+  "insulin_cv": {
+   "label": "Insulin week-to-week (%CV)",
+   "real_range": [
+    4.5,
+    11.1
+   ],
+   "arms": {
+    "shipped": {
+     "median": 4.906035805407891,
+     "n": 40,
+     "inside": true
+    },
+    "no_absorption": {
+     "median": 4.948890948239736,
+     "n": 40,
+     "inside": true
+    },
+    "no_slow": {
+     "median": 4.08970483840417,
+     "n": 40,
+     "inside": false
+    },
+    "slow_030": {
+     "median": 5.7528220492658875,
+     "n": 39,
+     "inside": true
+    },
+    "activity": {
+     "median": 4.953976561729557,
+     "n": 40,
+     "inside": true
+    },
+    "neither": {
+     "median": 4.3134802129802114,
+     "n": 40,
+     "inside": false
+    }
+   }
+  }
+ },
+ "counts": {
+  "shipped": 4,
+  "no_absorption": 4,
+  "no_slow": 3,
+  "slow_030": 4,
+  "activity": 4,
+  "neither": 3
+ },
+ "paired": {
+  "no_absorption": {
+   "n": 40,
+   "cv": {
+    "difference": -4.023845744953672,
+    "interval": [
+     -4.831417959499282,
+     -3.470042120631522
+    ],
+    "excludes_zero": true
+   },
+   "tail": {
+    "difference": -0.6821282401091407,
+    "interval": [
+     -0.7689445615775766,
+     -0.4836909338955724
+    ],
+    "excludes_zero": true
+   },
+   "acf30": {
+    "difference": -0.0006807150782214832,
+    "interval": [
+     -0.003465629150856908,
+     0.0033716071545641935
+    ],
+    "excludes_zero": false
+   },
+   "acf60": {
+    "difference": 0.020161545339532516,
+    "interval": [
+     0.015744464743029707,
+     0.02665947304317845
+    ],
+    "excludes_zero": true
+   },
+   "outcome": {
+    "difference": -3.2728995139765438,
+    "interval": [
+     -3.6604387783174817,
+     -2.880159578799745
+    ],
+    "excludes_zero": true
+   },
+   "diurnal": {
+    "difference": 3.327379818218347,
+    "interval": [
+     -0.2623363595260457,
+     5.516508797189587
+    ],
+    "excludes_zero": false
+   },
+   "hypo_rec": {
+    "difference": -10.0,
+    "interval": [
+     -15.0,
+     -5.0
+    ],
+    "excludes_zero": true
+   },
+   "hypo_reb": {
+    "difference": 5.709560062134411,
+    "interval": [
+     -5.089355089355093,
+     8.242276887871853
+    ],
+    "excludes_zero": false
+   },
+   "compress": {
+    "difference": 0.0,
+    "interval": [
+     0.0,
+     0.5357807267766339
+    ],
+    "excludes_zero": false
+   },
+   "noise": {
+    "difference": -0.025890623720882466,
+    "interval": [
+     -0.03602860502629257,
+     -0.0004578585349102049
+    ],
+    "excludes_zero": true
+   },
+   "insulin_cv": {
+    "difference": 0.10550821220206608,
+    "interval": [
+     -0.41656293174871095,
+     0.9906603517536436
+    ],
+    "excludes_zero": false
+   },
+   "tir_cgm": {
+    "difference": 3.0815972222222285,
+    "interval": [
+     1.450892857142854,
+     4.005456349206348
+    ],
+    "excludes_zero": true
+   },
+   "tbr70_cgm": {
+    "difference": -0.8060515873015873,
+    "interval": [
+     -1.0602678571428572,
+     -0.5208333333333334
+    ],
+    "excludes_zero": true
+   }
+  },
+  "no_slow": {
+   "n": 40,
+   "cv": {
+    "difference": 0.34275428156881205,
+    "interval": [
+     -0.5947110954973738,
+     0.9396654649546701
+    ],
+    "excludes_zero": false
+   },
+   "tail": {
+    "difference": 0.012402331638347919,
+    "interval": [
+     -0.0806151556492618,
+     0.17363264293687286
+    ],
+    "excludes_zero": false
+   },
+   "acf30": {
+    "difference": -0.0008558671902560988,
+    "interval": [
+     -0.0022853475620026042,
+     0.0034545046219588427
+    ],
+    "excludes_zero": false
+   },
+   "acf60": {
+    "difference": -0.0011793588195037064,
+    "interval": [
+     -0.00618394858834409,
+     0.006757079809934063
+    ],
+    "excludes_zero": false
+   },
+   "outcome": {
+    "difference": 0.2906834102678326,
+    "interval": [
+     -0.7705357340276429,
+     0.5756324333318315
+    ],
+    "excludes_zero": false
+   },
+   "diurnal": {
+    "difference": 1.9579068422707593,
+    "interval": [
+     0.07481108145335469,
+     4.65333919032723
+    ],
+    "excludes_zero": true
+   },
+   "hypo_rec": {
+    "difference": 5.0,
+    "interval": [
+     -1.25,
+     7.5
+    ],
+    "excludes_zero": false
+   },
+   "hypo_reb": {
+    "difference": 7.378673957621327,
+    "interval": [
+     1.869593338184174,
+     12.768817204301078
+    ],
+    "excludes_zero": true
+   },
+   "compress": {
+    "difference": 0.0,
+    "interval": [
+     -1.0715614535532678,
+     0.0
+    ],
+    "excludes_zero": false
+   },
+   "noise": {
+    "difference": -0.00964421465337617,
+    "interval": [
+     -0.031318456588953936,
+     0.011080631068915991
+    ],
+    "excludes_zero": false
+   },
+   "insulin_cv": {
+    "difference": -0.32554132150948445,
+    "interval": [
+     -1.1737875092144816,
+     0.025383447851259122
+    ],
+    "excludes_zero": false
+   },
+   "tir_cgm": {
+    "difference": 0.5456349206349245,
+    "interval": [
+     -0.17981150793650613,
+     1.7423115079365061
+    ],
+    "excludes_zero": false
+   },
+   "tbr70_cgm": {
+    "difference": 0.0620039682539682,
+    "interval": [
+     -0.15500992063492064,
+     0.39682539682539697
+    ],
+    "excludes_zero": false
+   }
+  },
+  "slow_030": {
+   "n": 39,
+   "cv": {
+    "difference": -0.1475504969499397,
+    "interval": [
+     -0.9119003799848642,
+     0.7668612353604018
+    ],
+    "excludes_zero": false
+   },
+   "tail": {
+    "difference": 0.037206994915043534,
+    "interval": [
+     -0.06201165819174026,
+     0.12402331638348008
+    ],
+    "excludes_zero": false
+   },
+   "acf30": {
+    "difference": 0.0022185920322028707,
+    "interval": [
+     -0.0027198417668857777,
+     0.005361918747048722
+    ],
+    "excludes_zero": false
+   },
+   "acf60": {
+    "difference": 0.0028515315689500165,
+    "interval": [
+     -0.01045539377320348,
+     0.016092128657040905
+    ],
+    "excludes_zero": false
+   },
+   "outcome": {
+    "difference": -0.0760059308330856,
+    "interval": [
+     -0.600130530417939,
+     0.2127931543283097
+    ],
+    "excludes_zero": false
+   },
+   "diurnal": {
+    "difference": 1.970223066151675,
+    "interval": [
+     -1.4989600203106477,
+     8.194200232175717
+    ],
+    "excludes_zero": false
+   },
+   "hypo_rec": {
+    "difference": 2.5,
+    "interval": [
+     -7.5,
+     7.5
+    ],
+    "excludes_zero": false
+   },
+   "hypo_reb": {
+    "difference": 1.1123470522803132,
+    "interval": [
+     -3.1578947368421098,
+     5.714285714285715
+    ],
+    "excludes_zero": false
+   },
+   "compress": {
+    "difference": 0.0,
+    "interval": [
+     -1.0715614535532678,
+     0.0
+    ],
+    "excludes_zero": false
+   },
+   "noise": {
+    "difference": -0.011683851591925531,
+    "interval": [
+     -0.02077915401901631,
+     0.009883724724489618
+    ],
+    "excludes_zero": false
+   },
+   "insulin_cv": {
+    "difference": 1.0423890941204534,
+    "interval": [
+     0.05675485637839417,
+     2.215556942133852
+    ],
+    "excludes_zero": true
+   },
+   "tir_cgm": {
+    "difference": -1.364087301587304,
+    "interval": [
+     -2.256944444444443,
+     -0.16121031746033054
+    ],
+    "excludes_zero": true
+   },
+   "tbr70_cgm": {
+    "difference": 0.04960317460317443,
+    "interval": [
+     -0.28521825396825395,
+     0.2480158730158729
+    ],
+    "excludes_zero": false
+   }
+  },
+  "activity": {
+   "n": 40,
+   "cv": {
+    "difference": 0.24268540481248912,
+    "interval": [
+     -0.16079976008473634,
+     0.9272868223851347
+    ],
+    "excludes_zero": false
+   },
+   "tail": {
+    "difference": 0.05581049237256619,
+    "interval": [
+     0.01240233163834814,
+     0.19223614039439418
+    ],
+    "excludes_zero": true
+   },
+   "acf30": {
+    "difference": -0.00023887588937171467,
+    "interval": [
+     -0.004225905279570508,
+     0.0007224826770106385
+    ],
+    "excludes_zero": false
+   },
+   "acf60": {
+    "difference": -0.0037394132958742388,
+    "interval": [
+     -0.012102157732064356,
+     -0.0004464411027932935
+    ],
+    "excludes_zero": true
+   },
+   "outcome": {
+    "difference": 0.22887157804791336,
+    "interval": [
+     0.0016384438660494993,
+     0.6870490712595062
+    ],
+    "excludes_zero": true
+   },
+   "diurnal": {
+    "difference": 1.0836923253320236,
+    "interval": [
+     -0.47658867584184605,
+     5.317965489539361
+    ],
+    "excludes_zero": false
+   },
+   "hypo_rec": {
+    "difference": 2.5,
+    "interval": [
+     0.0,
+     10.0
+    ],
+    "excludes_zero": false
+   },
+   "hypo_reb": {
+    "difference": 4.644991610263757,
+    "interval": [
+     0.0,
+     9.606263301915476
+    ],
+    "excludes_zero": false
+   },
+   "compress": {
+    "difference": 0.0,
+    "interval": [
+     0.0,
+     0.0
+    ],
+    "excludes_zero": false
+   },
+   "noise": {
+    "difference": -0.0069032638372776844,
+    "interval": [
+     -0.031648804636393635,
+     0.00291072093207001
+    ],
+    "excludes_zero": false
+   },
+   "insulin_cv": {
+    "difference": -0.19496768940121,
+    "interval": [
+     -0.7273951965036356,
+     0.26619646823400656
+    ],
+    "excludes_zero": false
+   },
+   "tir_cgm": {
+    "difference": -0.40302579365079083,
+    "interval": [
+     -1.1408730158730194,
+     0.5084325396825378
+    ],
+    "excludes_zero": false
+   },
+   "tbr70_cgm": {
+    "difference": 0.27281746031746035,
+    "interval": [
+     0.14880952380952372,
+     0.5828373015873016
+    ],
+    "excludes_zero": true
+   }
+  },
+  "neither": {
+   "n": 40,
+   "cv": {
+    "difference": -3.256171496907843,
+    "interval": [
+     -4.242226893815415,
+     -2.8727050954090494
+    ],
+    "excludes_zero": true
+   },
+   "tail": {
+    "difference": -0.6263177477365746,
+    "interval": [
+     -0.7565422299392282,
+     -0.48989209971474645
+    ],
+    "excludes_zero": true
+   },
+   "acf30": {
+    "difference": -0.0016338117995697288,
+    "interval": [
+     -0.007626053674397115,
+     0.006141155229482387
+    ],
+    "excludes_zero": false
+   },
+   "acf60": {
+    "difference": 0.018768528949533736,
+    "interval": [
+     0.00015115847251429004,
+     0.027425325155757685
+    ],
+    "excludes_zero": true
+   },
+   "outcome": {
+    "difference": -2.967651501337089,
+    "interval": [
+     -3.5817425980728217,
+     -2.4842554541511035
+    ],
+    "excludes_zero": true
+   },
+   "diurnal": {
+    "difference": 2.719501311867596,
+    "interval": [
+     -0.9756883888071997,
+     5.135229394687784
+    ],
+    "excludes_zero": false
+   },
+   "hypo_rec": {
+    "difference": -6.25,
+    "interval": [
+     -10.0,
+     -1.25
+    ],
+    "excludes_zero": true
+   },
+   "hypo_reb": {
+    "difference": -1.6359447004608292,
+    "interval": [
+     -6.345755693581781,
+     5.567616463138851
+    ],
+    "excludes_zero": false
+   },
+   "compress": {
+    "difference": 0.0,
+    "interval": [
+     0.0,
+     0.0
+    ],
+    "excludes_zero": false
+   },
+   "noise": {
+    "difference": -0.027803586172701067,
+    "interval": [
+     -0.041227867609070934,
+     0.0029581568844174733
+    ],
+    "excludes_zero": false
+   },
+   "insulin_cv": {
+    "difference": -0.3554133064004793,
+    "interval": [
+     -0.809282638448813,
+     0.1278010504510212
+    ],
+    "excludes_zero": false
+   },
+   "tir_cgm": {
+    "difference": 4.619295634920633,
+    "interval": [
+     2.8955853174603092,
+     5.412946428571438
+    ],
+    "excludes_zero": true
+   },
+   "tbr70_cgm": {
+    "difference": -0.6510416666666667,
+    "interval": [
+     -1.1098710317460316,
+     -0.5208333333333333
+    ],
+    "excludes_zero": true
+   }
+  }
+ },
+ "runs": [
+  {
+   "arm": "shipped",
+   "name": "adult#001",
+   "completed": true,
+   "seconds": 117.19821691513062,
+   "values": {
+    "cv": 29.119451246767103,
+    "tail": 4.2539997519533665,
+    "acf30": 0.914338180761264,
+    "acf60": 0.8061888611029997,
+    "outcome": 18.560827827257384,
+    "diurnal": 33.83651129657375,
+    "hypo_rec": 52.5,
+    "hypo_reb": 22.22222222222222,
+    "compress": 4.286245814213072,
+    "noise": 7.615298334473435,
+    "insulin_cv": 9.135761364265866
+   },
+   "tir_cgm": 80.39434523809523,
+   "tbr70_cgm": 1.0168650793650793,
+   "tbr54_cgm": 0.18601190476190474,
+   "insulin_per_day": 58.17358252355236
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#002",
+   "completed": true,
+   "seconds": 121.22194814682007,
+   "values": {
+    "cv": 30.25142492847782,
+    "tail": 1.8231427508371576,
+    "acf30": 0.9055518013317536,
+    "acf60": 0.7470240909169904,
+    "outcome": 24.254361374575847,
+    "diurnal": 23.519232181557072,
+    "hypo_rec": 75.0,
+    "hypo_reb": 21.052631578947366,
+    "compress": 3.214684360659804,
+    "noise": 4.367275190398094,
+    "insulin_cv": 4.806052864768367
+   },
+   "tir_cgm": 82.08085317460318,
+   "tbr70_cgm": 1.314484126984127,
+   "tbr54_cgm": 0.248015873015873,
+   "insulin_per_day": 53.75902670683432
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#003",
+   "completed": true,
+   "seconds": 122.61144495010376,
+   "values": {
+    "cv": 34.95561396235418,
+    "tail": 5.9903261813220885,
+    "acf30": 0.9232779640110426,
+    "acf60": 0.7928859443024078,
+    "outcome": 23.68635797327997,
+    "diurnal": 40.8300896454472,
+    "hypo_rec": 40.0,
+    "hypo_reb": 52.63157894736842,
+    "compress": 4.286245814213072,
+    "noise": 7.864618875536941,
+    "insulin_cv": 5.675696969417812
+   },
+   "tir_cgm": 69.46924603174604,
+   "tbr70_cgm": 0.78125,
+   "tbr54_cgm": 0.1736111111111111,
+   "insulin_per_day": 69.41413486496853
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#004",
+   "completed": true,
+   "seconds": 120.20849108695984,
+   "values": {
+    "cv": 32.85136072023513,
+    "tail": 3.7455041547810985,
+    "acf30": 0.9085353655376031,
+    "acf60": 0.7583133520295864,
+    "outcome": 23.329982880441012,
+    "diurnal": 45.77728856515125,
+    "hypo_rec": 75.0,
+    "hypo_reb": 23.52941176470588,
+    "compress": 1.071561453553268,
+    "noise": 5.793409084969493,
+    "insulin_cv": 8.366998217816535
+   },
+   "tir_cgm": 69.59325396825396,
+   "tbr70_cgm": 1.0788690476190477,
+   "tbr54_cgm": 0.21081349206349206,
+   "insulin_per_day": 58.741688596941785
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#005",
+   "completed": true,
+   "seconds": 118.83206081390381,
+   "values": {
+    "cv": 29.26285030342749,
+    "tail": 2.443259332754558,
+    "acf30": 0.9059690039073036,
+    "acf60": 0.7819281296770026,
+    "outcome": 21.626445581293677,
+    "diurnal": 33.438927528211565,
+    "hypo_rec": 67.5,
+    "hypo_reb": 18.75,
+    "compress": 4.286245814213072,
+    "noise": 5.271148930157893,
+    "insulin_cv": 5.863830870394968
+   },
+   "tir_cgm": 78.02579365079364,
+   "tbr70_cgm": 1.1656746031746033,
+   "tbr54_cgm": 0.3100198412698413,
+   "insulin_per_day": 60.08351862763324
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#006",
+   "completed": true,
+   "seconds": 119.77945876121521,
+   "values": {
+    "cv": 37.8066781188467,
+    "tail": 5.829095870023564,
+    "acf30": 0.921480051635868,
+    "acf60": 0.774734266735426,
+    "outcome": 25.33613887709327,
+    "diurnal": 34.708624792766415,
+    "hypo_rec": 77.5,
+    "hypo_reb": 63.1578947368421,
+    "compress": 4.286245814213072,
+    "noise": 8.102337856158965,
+    "insulin_cv": 8.948667892983119
+   },
+   "tir_cgm": 66.18303571428571,
+   "tbr70_cgm": 2.839781746031746,
+   "tbr54_cgm": 0.7688492063492063,
+   "insulin_per_day": 75.31381359140683
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#007",
+   "completed": true,
+   "seconds": 118.16164422035217,
+   "values": {
+    "cv": 26.99668470241388,
+    "tail": 2.2076150316259455,
+    "acf30": 0.9050163999470106,
+    "acf60": 0.7720863668667047,
+    "outcome": 20.390509019072404,
+    "diurnal": 15.813690539523265,
+    "hypo_rec": 65.0,
+    "hypo_reb": 4.761904761904762,
+    "compress": 5.35780726776634,
+    "noise": 4.968775452794516,
+    "insulin_cv": 5.263722815791516
+   },
+   "tir_cgm": 77.20734126984127,
+   "tbr70_cgm": 1.0540674603174605,
+   "tbr54_cgm": 0.23561507936507936,
+   "insulin_per_day": 41.33497486919521
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#008",
+   "completed": true,
+   "seconds": 119.02627611160278,
+   "values": {
+    "cv": 34.21003224087281,
+    "tail": 3.1501922361403945,
+    "acf30": 0.9091079068401829,
+    "acf60": 0.7503809975055271,
+    "outcome": 28.559640437610646,
+    "diurnal": 48.24981726689364,
+    "hypo_rec": 62.5,
+    "hypo_reb": 43.75,
+    "compress": 4.286245814213072,
+    "noise": 4.408153336785239,
+    "insulin_cv": 7.482332621561303
+   },
+   "tir_cgm": 77.00892857142857,
+   "tbr70_cgm": 0.9796626984126984,
+   "tbr54_cgm": 0.11160714285714285,
+   "insulin_per_day": 50.8064211159148
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#009",
+   "completed": true,
+   "seconds": 119.50445079803467,
+   "values": {
+    "cv": 27.584848329002234,
+    "tail": 1.2898424903881929,
+    "acf30": 0.8882346836501946,
+    "acf60": 0.710577874168192,
+    "outcome": 25.362383948960073,
+    "diurnal": 34.737276780980636,
+    "hypo_rec": 62.5,
+    "hypo_reb": 50.0,
+    "compress": 3.214684360659804,
+    "noise": 4.144487799292464,
+    "insulin_cv": 2.697233365120655
+   },
+   "tir_cgm": 88.39285714285714,
+   "tbr70_cgm": 1.2896825396825395,
+   "tbr54_cgm": 0.33482142857142855,
+   "insulin_per_day": 42.92535414772607
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#010",
+   "completed": true,
+   "seconds": 116.91276288032532,
+   "values": {
+    "cv": 26.833542759108308,
+    "tail": 1.5626937864318493,
+    "acf30": 0.9068207413158569,
+    "acf60": 0.7913552307466944,
+    "outcome": 15.715386846975866,
+    "diurnal": 34.0020753792805,
+    "hypo_rec": 60.0,
+    "hypo_reb": 14.285714285714285,
+    "compress": 4.286245814213072,
+    "noise": 4.638440623915641,
+    "insulin_cv": 5.006018746047413
+   },
+   "tir_cgm": 84.64781746031747,
+   "tbr70_cgm": 3.335813492063492,
+   "tbr54_cgm": 1.5873015873015872,
+   "insulin_per_day": 42.66779896331708
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#011",
+   "completed": true,
+   "seconds": 124.25764083862305,
+   "values": {
+    "cv": 35.76713153104458,
+    "tail": 2.480466327669602,
+    "acf30": 0.9289132510815463,
+    "acf60": 0.805587486374551,
+    "outcome": 23.145266500640066,
+    "diurnal": 38.205961240162736,
+    "hypo_rec": 75.0,
+    "hypo_reb": 40.0,
+    "compress": 3.214684360659804,
+    "noise": 4.330330851397939,
+    "insulin_cv": 5.121733285000261
+   },
+   "tir_cgm": 76.33928571428571,
+   "tbr70_cgm": 1.9345238095238095,
+   "tbr54_cgm": 0.8060515873015874,
+   "insulin_per_day": 42.46160554943929
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#012",
+   "completed": true,
+   "seconds": 120.35770297050476,
+   "values": {
+    "cv": 25.773454934487155,
+    "tail": 2.505270990946298,
+    "acf30": 0.8943954273427689,
+    "acf60": 0.749553092989699,
+    "outcome": 19.044738766741347,
+    "diurnal": 21.36825429267833,
+    "hypo_rec": 50.0,
+    "hypo_reb": 24.0,
+    "compress": 3.214684360659804,
+    "noise": 5.562513446042593,
+    "insulin_cv": 9.992047213515175
+   },
+   "tir_cgm": 81.88244047619048,
+   "tbr70_cgm": 1.1160714285714286,
+   "tbr54_cgm": 0.0744047619047619,
+   "insulin_per_day": 52.01015240889785
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#013",
+   "completed": true,
+   "seconds": 118.72545266151428,
+   "values": {
+    "cv": 28.542107385200236,
+    "tail": 2.1332010417958576,
+    "acf30": 0.9207015054267801,
+    "acf60": 0.8280151524585426,
+    "outcome": 16.539367036713884,
+    "diurnal": 22.177842037636168,
+    "hypo_rec": 55.0,
+    "hypo_reb": 38.46153846153847,
+    "compress": 4.286245814213072,
+    "noise": 5.160691081493866,
+    "insulin_cv": 3.7928632200501524
+   },
+   "tir_cgm": 77.24454365079364,
+   "tbr70_cgm": 0.8308531746031746,
+   "tbr54_cgm": 0.0744047619047619,
+   "insulin_per_day": 70.8378741318116
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#014",
+   "completed": true,
+   "seconds": 118.58239793777466,
+   "values": {
+    "cv": 32.75326682580157,
+    "tail": 4.303609078506759,
+    "acf30": 0.8860817983236837,
+    "acf60": 0.6832547787210598,
+    "outcome": 25.68257606381558,
+    "diurnal": 31.572804438251723,
+    "hypo_rec": 50.0,
+    "hypo_reb": 56.52173913043478,
+    "compress": 4.286245814213072,
+    "noise": 6.3516341159674425,
+    "insulin_cv": 3.4885170317935184
+   },
+   "tir_cgm": 75.89285714285714,
+   "tbr70_cgm": 2.0461309523809526,
+   "tbr54_cgm": 1.0168650793650793,
+   "insulin_per_day": 40.225809247431734
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#015",
+   "completed": true,
+   "seconds": 108.77909111976624,
+   "values": {
+    "cv": 27.604658432039248,
+    "tail": 3.646285501674315,
+    "acf30": 0.847171263798574,
+    "acf60": 0.6085669653542327,
+    "outcome": 22.724492581192784,
+    "diurnal": 21.778767133837107,
+    "hypo_rec": 45.0,
+    "hypo_reb": 54.83870967741935,
+    "compress": 6.429368721319608,
+    "noise": 5.319475712968474,
+    "insulin_cv": 2.8489634447860026
+   },
+   "tir_cgm": 77.21974206349206,
+   "tbr70_cgm": 2.170138888888889,
+   "tbr54_cgm": 0.5952380952380952,
+   "insulin_per_day": 42.2486948854933
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#016",
+   "completed": true,
+   "seconds": 102.50698924064636,
+   "values": {
+    "cv": 32.11827901567412,
+    "tail": 1.9595683988589856,
+    "acf30": 0.9294406185271848,
+    "acf60": 0.8164237186291805,
+    "outcome": 18.66815496998708,
+    "diurnal": 18.565107553330506,
+    "hypo_rec": 80.0,
+    "hypo_reb": 20.0,
+    "compress": 5.35780726776634,
+    "noise": 5.164588296544069,
+    "insulin_cv": 5.086720134611869
+   },
+   "tir_cgm": 79.77430555555556,
+   "tbr70_cgm": 1.1532738095238095,
+   "tbr54_cgm": 0.0992063492063492,
+   "insulin_per_day": 58.46701012864479
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#017",
+   "completed": true,
+   "seconds": 104.62111020088196,
+   "values": {
+    "cv": 33.90373356682163,
+    "tail": 1.9223614039439414,
+    "acf30": 0.9219337701291315,
+    "acf60": 0.8075762303202022,
+    "outcome": 23.47938407279828,
+    "diurnal": 23.75626801085022,
+    "hypo_rec": 82.5,
+    "hypo_reb": 14.285714285714285,
+    "compress": 4.286245814213072,
+    "noise": 4.498613806960305,
+    "insulin_cv": 5.571751242448423
+   },
+   "tir_cgm": 82.67609126984127,
+   "tbr70_cgm": 2.604166666666667,
+   "tbr54_cgm": 1.0912698412698412,
+   "insulin_per_day": 70.54636725480313
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#018",
+   "completed": true,
+   "seconds": 101.80927586555481,
+   "values": {
+    "cv": 31.884056376009568,
+    "tail": 2.9765595932035223,
+    "acf30": 0.9155007785434368,
+    "acf60": 0.7994826151273141,
+    "outcome": 19.071829463901572,
+    "diurnal": 31.346944682230657,
+    "hypo_rec": 55.0,
+    "hypo_reb": 33.33333333333333,
+    "compress": 4.286245814213072,
+    "noise": 5.010459765985782,
+    "insulin_cv": 5.3289713700667
+   },
+   "tir_cgm": 73.52430555555556,
+   "tbr70_cgm": 0.855654761904762,
+   "tbr54_cgm": 0.0992063492063492,
+   "insulin_per_day": 84.96928232090694
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#019",
+   "completed": true,
+   "seconds": 99.39979791641235,
+   "values": {
+    "cv": 29.404104378480273,
+    "tail": 4.204390425399975,
+    "acf30": 0.8508303752592191,
+    "acf60": 0.6192225036601025,
+    "outcome": 27.170200155380787,
+    "diurnal": 37.50314628379111,
+    "hypo_rec": 45.0,
+    "hypo_reb": 42.10526315789473,
+    "compress": 3.214684360659804,
+    "noise": 6.424497950044911,
+    "insulin_cv": 3.420543480548317
+   },
+   "tir_cgm": 86.99156746031747,
+   "tbr70_cgm": 0.8804563492063492,
+   "tbr54_cgm": 0.0992063492063492,
+   "insulin_per_day": 52.138391856753664
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#020",
+   "completed": true,
+   "seconds": 99.56906819343567,
+   "values": {
+    "cv": 32.317382267923975,
+    "tail": 4.6508743643805035,
+    "acf30": 0.8585323219956892,
+    "acf60": 0.6298715871379524,
+    "outcome": 25.269553142137887,
+    "diurnal": 39.638754337113355,
+    "hypo_rec": 80.0,
+    "hypo_reb": 35.59322033898305,
+    "compress": 3.214684360659804,
+    "noise": 6.406609016986597,
+    "insulin_cv": 6.266470032228496
+   },
+   "tir_cgm": 82.84970238095238,
+   "tbr70_cgm": 4.489087301587301,
+   "tbr54_cgm": 1.1904761904761905,
+   "insulin_per_day": 55.90972764482529
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#021",
+   "completed": true,
+   "seconds": 98.87700486183167,
+   "values": {
+    "cv": 37.78108322128904,
+    "tail": 2.232419694902642,
+    "acf30": 0.9376257466130814,
+    "acf60": 0.8302434254884118,
+    "outcome": 24.450068966225114,
+    "diurnal": 33.75288115110371,
+    "hypo_rec": 70.0,
+    "hypo_reb": 21.73913043478261,
+    "compress": 4.286245814213072,
+    "noise": 4.15056485200446,
+    "insulin_cv": 2.3502362656166476
+   },
+   "tir_cgm": 77.44295634920636,
+   "tbr70_cgm": 3.373015873015873,
+   "tbr54_cgm": 1.8353174603174605,
+   "insulin_per_day": 50.44804850226389
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#022",
+   "completed": true,
+   "seconds": 96.51523685455322,
+   "values": {
+    "cv": 28.244511751305534,
+    "tail": 2.331638348009426,
+    "acf30": 0.9176903551158984,
+    "acf60": 0.8187606831591535,
+    "outcome": 18.451393937083733,
+    "diurnal": 20.332317589152012,
+    "hypo_rec": 80.0,
+    "hypo_reb": 14.285714285714285,
+    "compress": 4.286245814213072,
+    "noise": 5.967554976637003,
+    "insulin_cv": 3.5539931281906205
+   },
+   "tir_cgm": 82.62648809523809,
+   "tbr70_cgm": 1.4384920634920635,
+   "tbr54_cgm": 0.2232142857142857,
+   "insulin_per_day": 55.87958768214454
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#023",
+   "completed": true,
+   "seconds": 97.60105323791504,
+   "values": {
+    "cv": 28.335490565990842,
+    "tail": 2.530075654222994,
+    "acf30": 0.845998750723247,
+    "acf60": 0.5705932387186966,
+    "outcome": 23.070921348595526,
+    "diurnal": 28.53814053597077,
+    "hypo_rec": 90.0,
+    "hypo_reb": 51.28205128205128,
+    "compress": 3.214684360659804,
+    "noise": 4.6398129877912355,
+    "insulin_cv": 1.785436451592475
+   },
+   "tir_cgm": 85.06944444444444,
+   "tbr70_cgm": 3.8938492063492065,
+   "tbr54_cgm": 1.2028769841269842,
+   "insulin_per_day": 35.95178571428571
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#024",
+   "completed": true,
+   "seconds": 95.48302888870239,
+   "values": {
+    "cv": 26.807238499408292,
+    "tail": 2.2572243581793376,
+    "acf30": 0.8932847923289505,
+    "acf60": 0.7299422854571145,
+    "outcome": 20.50552047377179,
+    "diurnal": 19.73026406608699,
+    "hypo_rec": 55.0,
+    "hypo_reb": 30.0,
+    "compress": 3.214684360659804,
+    "noise": 3.9354020862487693,
+    "insulin_cv": 4.5353499067130825
+   },
+   "tir_cgm": 75.64484126984127,
+   "tbr70_cgm": 0.5828373015873016,
+   "tbr54_cgm": 0.08680555555555555,
+   "insulin_per_day": 66.7939762293841
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#025",
+   "completed": true,
+   "seconds": 96.11488008499146,
+   "values": {
+    "cv": 28.32869374705994,
+    "tail": 2.728512960436562,
+    "acf30": 0.8804890480492179,
+    "acf60": 0.7082516548606987,
+    "outcome": 24.411845808951387,
+    "diurnal": 28.93903267967727,
+    "hypo_rec": 42.5,
+    "hypo_reb": 21.428571428571427,
+    "compress": 4.286245814213072,
+    "noise": 4.322169053542511,
+    "insulin_cv": 5.56567577025896
+   },
+   "tir_cgm": 84.48660714285714,
+   "tbr70_cgm": 0.8928571428571428,
+   "tbr54_cgm": 0.2728174603174603,
+   "insulin_per_day": 67.20636457265928
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#027",
+   "completed": true,
+   "seconds": 98.68562412261963,
+   "values": {
+    "cv": 32.90591633639146,
+    "tail": 5.680267890363389,
+    "acf30": 0.9009240098583947,
+    "acf60": 0.7361033237406432,
+    "outcome": 22.40202432172505,
+    "diurnal": 30.351030823215524,
+    "hypo_rec": 75.0,
+    "hypo_reb": 40.476190476190474,
+    "compress": 3.214684360659804,
+    "noise": 8.182931517096328,
+    "insulin_cv": 9.246745684721368
+   },
+   "tir_cgm": 74.59077380952381,
+   "tbr70_cgm": 3.2242063492063497,
+   "tbr54_cgm": 0.6572420634920635,
+   "insulin_per_day": 65.35937075363168
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#028",
+   "completed": true,
+   "seconds": 95.79375219345093,
+   "values": {
+    "cv": 29.748260152134947,
+    "tail": 3.509859853652487,
+    "acf30": 0.8910521075329806,
+    "acf60": 0.7318333419803528,
+    "outcome": 22.184371993501426,
+    "diurnal": 44.47386949732481,
+    "hypo_rec": 65.0,
+    "hypo_reb": 17.391304347826086,
+    "compress": 4.286245814213072,
+    "noise": 5.499597341273142,
+    "insulin_cv": 4.156522033776586
+   },
+   "tir_cgm": 75.5828373015873,
+   "tbr70_cgm": 1.2276785714285714,
+   "tbr54_cgm": 0.0744047619047619,
+   "insulin_per_day": 62.28590275123981
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#029",
+   "completed": true,
+   "seconds": 99.75495505332947,
+   "values": {
+    "cv": 27.560395733443116,
+    "tail": 2.691305965521518,
+    "acf30": 0.8816235200817274,
+    "acf60": 0.6954865178369181,
+    "outcome": 22.107355431873117,
+    "diurnal": 25.26652111812743,
+    "hypo_rec": 42.5,
+    "hypo_reb": 27.27272727272727,
+    "compress": 5.35780726776634,
+    "noise": 5.235319451315374,
+    "insulin_cv": 4.71504724491812
+   },
+   "tir_cgm": 84.52380952380952,
+   "tbr70_cgm": 1.3764880952380951,
+   "tbr54_cgm": 0.1736111111111111,
+   "insulin_per_day": 38.30252065180581
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#030",
+   "completed": true,
+   "seconds": 97.94174695014954,
+   "values": {
+    "cv": 29.067377078906116,
+    "tail": 2.2572243581793376,
+    "acf30": 0.8967525968702699,
+    "acf60": 0.7300709537550714,
+    "outcome": 20.763978692587834,
+    "diurnal": 24.827673092809633,
+    "hypo_rec": 70.0,
+    "hypo_reb": 29.629629629629626,
+    "compress": 1.071561453553268,
+    "noise": 5.073953761556519,
+    "insulin_cv": 1.4317803993369111
+   },
+   "tir_cgm": 84.07738095238095,
+   "tbr70_cgm": 2.058531746031746,
+   "tbr54_cgm": 0.496031746031746,
+   "insulin_per_day": 56.56861819836733
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#031",
+   "completed": true,
+   "seconds": 96.89311194419861,
+   "values": {
+    "cv": 38.4002971482289,
+    "tail": 3.1005829095870023,
+    "acf30": 0.9315998759027095,
+    "acf60": 0.8051633189195002,
+    "outcome": 25.588464202657892,
+    "diurnal": 39.95614499626174,
+    "hypo_rec": 60.0,
+    "hypo_reb": 60.0,
+    "compress": 4.286245814213072,
+    "noise": 5.2136923478705945,
+    "insulin_cv": 5.388064689802355
+   },
+   "tir_cgm": 69.44444444444444,
+   "tbr70_cgm": 1.5004960317460319,
+   "tbr54_cgm": 0.533234126984127,
+   "insulin_per_day": 42.01819305345415
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#032",
+   "completed": true,
+   "seconds": 95.15826296806335,
+   "values": {
+    "cv": 34.4941781585988,
+    "tail": 3.7827111496961425,
+    "acf30": 0.879356343714126,
+    "acf60": 0.6883951799463867,
+    "outcome": 26.4007498090627,
+    "diurnal": 49.072941368149856,
+    "hypo_rec": 65.0,
+    "hypo_reb": 33.33333333333333,
+    "compress": 4.286245814213072,
+    "noise": 4.154710830172286,
+    "insulin_cv": 7.111965920215047
+   },
+   "tir_cgm": 80.38194444444444,
+   "tbr70_cgm": 3.125,
+   "tbr54_cgm": 0.744047619047619,
+   "insulin_per_day": 56.68627897983405
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#033",
+   "completed": true,
+   "seconds": 95.23895978927612,
+   "values": {
+    "cv": 31.469607361079696,
+    "tail": 3.6090785067592708,
+    "acf30": 0.8966554777731937,
+    "acf60": 0.7136882839862434,
+    "outcome": 23.253610295846364,
+    "diurnal": 38.822058981165355,
+    "hypo_rec": 65.0,
+    "hypo_reb": 74.07407407407408,
+    "compress": 3.214684360659804,
+    "noise": 6.302589531372806,
+    "insulin_cv": 2.2972643578148433
+   },
+   "tir_cgm": 74.16914682539682,
+   "tbr70_cgm": 2.294146825396825,
+   "tbr54_cgm": 1.029265873015873,
+   "insulin_per_day": 35.98050271182843
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#034",
+   "completed": true,
+   "seconds": 97.44174313545227,
+   "values": {
+    "cv": 36.45417393739146,
+    "tail": 3.7579064864194467,
+    "acf30": 0.9154657189357815,
+    "acf60": 0.7539743894963976,
+    "outcome": 26.663455576612133,
+    "diurnal": 35.31523058520392,
+    "hypo_rec": 75.0,
+    "hypo_reb": 60.526315789473685,
+    "compress": 3.214684360659804,
+    "noise": 5.735295048239933,
+    "insulin_cv": 4.360778603299177
+   },
+   "tir_cgm": 70.12648809523809,
+   "tbr70_cgm": 3.6830357142857144,
+   "tbr54_cgm": 1.2524801587301588,
+   "insulin_per_day": 48.38795696260623
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#035",
+   "completed": true,
+   "seconds": 98.32004714012146,
+   "values": {
+    "cv": 30.91984856931099,
+    "tail": 2.0215800570507256,
+    "acf30": 0.9253521750174486,
+    "acf60": 0.8061225980949277,
+    "outcome": 20.74977632138776,
+    "diurnal": 28.071472439209487,
+    "hypo_rec": 35.0,
+    "hypo_reb": 60.0,
+    "compress": 3.214684360659804,
+    "noise": 4.010576458065144,
+    "insulin_cv": 6.738328187601078
+   },
+   "tir_cgm": 75.91765873015873,
+   "tbr70_cgm": 0.5580357142857143,
+   "tbr54_cgm": 0.0496031746031746,
+   "insulin_per_day": 78.99815400377369
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#036",
+   "completed": true,
+   "seconds": 96.58787679672241,
+   "values": {
+    "cv": 35.54065759431563,
+    "tail": 3.3734342056306583,
+    "acf30": 0.93502811309768,
+    "acf60": 0.8290490457037357,
+    "outcome": 22.71591351021311,
+    "diurnal": 40.37659888245878,
+    "hypo_rec": 42.5,
+    "hypo_reb": 22.22222222222222,
+    "compress": 3.214684360659804,
+    "noise": 5.303487759682342,
+    "insulin_cv": 3.7428765839245575
+   },
+   "tir_cgm": 70.37450396825396,
+   "tbr70_cgm": 1.2400793650793651,
+   "tbr54_cgm": 0.0992063492063492,
+   "insulin_per_day": 108.99985092307143
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#037",
+   "completed": true,
+   "seconds": 97.18608903884888,
+   "values": {
+    "cv": 31.75925648873932,
+    "tail": 2.8649386084583903,
+    "acf30": 0.9377765194370001,
+    "acf60": 0.8506579358679004,
+    "outcome": 15.542585685509575,
+    "diurnal": 31.256776110012268,
+    "hypo_rec": 70.0,
+    "hypo_reb": 21.73913043478261,
+    "compress": 4.286245814213072,
+    "noise": 6.66389745723132,
+    "insulin_cv": 6.344616600637603
+   },
+   "tir_cgm": 75.38442460317461,
+   "tbr70_cgm": 1.2028769841269842,
+   "tbr54_cgm": 0.06200396825396825,
+   "insulin_per_day": 68.97005830950931
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#038",
+   "completed": true,
+   "seconds": 97.28237509727478,
+   "values": {
+    "cv": 29.705624854977593,
+    "tail": 3.7206994915044027,
+    "acf30": 0.9168470036053676,
+    "acf60": 0.8054377527259857,
+    "outcome": 21.08380572596119,
+    "diurnal": 40.81550699010319,
+    "hypo_rec": 52.5,
+    "hypo_reb": 21.428571428571427,
+    "compress": 4.286245814213072,
+    "noise": 6.321321088080764,
+    "insulin_cv": 2.0298633727280153
+   },
+   "tir_cgm": 69.84126984126983,
+   "tbr70_cgm": 0.5456349206349206,
+   "tbr54_cgm": 0.08680555555555555,
+   "insulin_per_day": 66.00333213434638
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#039",
+   "completed": true,
+   "seconds": 94.46841216087341,
+   "values": {
+    "cv": 29.471324707761205,
+    "tail": 3.5222621852908342,
+    "acf30": 0.8386168390714568,
+    "acf60": 0.598618552615855,
+    "outcome": 24.291760284046305,
+    "diurnal": 17.29232395941611,
+    "hypo_rec": 65.0,
+    "hypo_reb": 14.925373134328357,
+    "compress": 4.286245814213072,
+    "noise": 5.2798408790409,
+    "insulin_cv": 4.686531750136512
+   },
+   "tir_cgm": 88.52926587301587,
+   "tbr70_cgm": 4.749503968253968,
+   "tbr54_cgm": 1.2028769841269842,
+   "insulin_per_day": 35.24761904761905
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#040",
+   "completed": true,
+   "seconds": 94.00606060028076,
+   "values": {
+    "cv": 30.427304430060282,
+    "tail": 3.1998015626937866,
+    "acf30": 0.8863215249231498,
+    "acf60": 0.6986683650144517,
+    "outcome": 24.262117976045268,
+    "diurnal": 35.34415419302647,
+    "hypo_rec": 60.0,
+    "hypo_reb": 16.129032258064516,
+    "compress": 4.286245814213072,
+    "noise": 6.102609246596619,
+    "insulin_cv": 2.0216919478967106
+   },
+   "tir_cgm": 87.42559523809523,
+   "tbr70_cgm": 1.6493055555555556,
+   "tbr54_cgm": 0.1736111111111111,
+   "insulin_per_day": 48.30477030812153
+  },
+  {
+   "arm": "shipped",
+   "name": "adult#041",
+   "completed": true,
+   "seconds": 96.0836501121521,
+   "values": {
+    "cv": 23.289632001773796,
+    "tail": 1.8355450824755055,
+    "acf30": 0.8748872484917298,
+    "acf60": 0.7212828000366803,
+    "outcome": 17.413128115300918,
+    "diurnal": 13.77354912747478,
+    "hypo_rec": 50.0,
+    "hypo_reb": 15.384615384615385,
+    "compress": 2.143122907106536,
+    "noise": 4.432319398095166,
+    "insulin_cv": 3.35949402144094
+   },
+   "tir_cgm": 87.3015873015873,
+   "tbr70_cgm": 0.5952380952380952,
+   "tbr54_cgm": 0.0248015873015873,
+   "insulin_per_day": 30.227877302227423
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#001",
+   "completed": true,
+   "seconds": 95.51305413246155,
+   "values": {
+    "cv": 28.163862446417465,
+    "tail": 3.8943321344412754,
+    "acf30": 0.9269430983762718,
+    "acf60": 0.8460921432117232,
+    "outcome": 17.321182714416135,
+    "diurnal": 36.849090417819866,
+    "hypo_rec": 95.0,
+    "hypo_reb": 0.0,
+    "compress": 1.071561453553268,
+    "noise": 7.5670714085044395,
+    "insulin_cv": 7.217024920057521
+   },
+   "tir_cgm": 78.47222222222221,
+   "tbr70_cgm": 0.6820436507936508,
+   "tbr54_cgm": 0.1488095238095238,
+   "insulin_per_day": 56.71640030862316
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#002",
+   "completed": true,
+   "seconds": 97.42743611335754,
+   "values": {
+    "cv": 24.281510710718052,
+    "tail": 1.0914051841746248,
+    "acf30": 0.9003252715788389,
+    "acf60": 0.7724408979787465,
+    "outcome": 17.384563567847575,
+    "diurnal": 27.613882248003733,
+    "hypo_rec": 52.5,
+    "hypo_reb": 37.5,
+    "compress": 4.286245814213072,
+    "noise": 4.366812997575771,
+    "insulin_cv": 6.593567869229569
+   },
+   "tir_cgm": 87.11557539682539,
+   "tbr70_cgm": 0.4588293650793651,
+   "tbr54_cgm": 0.0992063492063492,
+   "insulin_per_day": 52.528561893116475
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#003",
+   "completed": true,
+   "seconds": 101.1566550731659,
+   "values": {
+    "cv": 28.39176427697066,
+    "tail": 4.316011410145108,
+    "acf30": 0.9321123914736771,
+    "acf60": 0.8451343343761054,
+    "outcome": 19.0643923554232,
+    "diurnal": 50.62022324368678,
+    "hypo_rec": 22.5,
+    "hypo_reb": 0.0,
+    "compress": 4.286245814213072,
+    "noise": 7.832020106830146,
+    "insulin_cv": 5.244631473401245
+   },
+   "tir_cgm": 71.01934523809523,
+   "tbr70_cgm": 0.13640873015873015,
+   "tbr54_cgm": 0.06200396825396825,
+   "insulin_per_day": 70.85493392368903
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#004",
+   "completed": true,
+   "seconds": 95.40388989448547,
+   "values": {
+    "cv": 27.47002499292991,
+    "tail": 3.5222621852908342,
+    "acf30": 0.8838375486769305,
+    "acf60": 0.7163005713691881,
+    "outcome": 20.122489402422904,
+    "diurnal": 44.9963854715302,
+    "hypo_rec": 40.0,
+    "hypo_reb": 27.27272727272727,
+    "compress": 2.143122907106536,
+    "noise": 5.7402321233842395,
+    "insulin_cv": 2.322692416634598
+   },
+   "tir_cgm": 74.04513888888889,
+   "tbr70_cgm": 0.6944444444444444,
+   "tbr54_cgm": 0.21081349206349206,
+   "insulin_per_day": 57.44994536663073
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#005",
+   "completed": true,
+   "seconds": 96.44421887397766,
+   "values": {
+    "cv": 25.29601297067004,
+    "tail": 1.9347637355822895,
+    "acf30": 0.8958540549703645,
+    "acf60": 0.7758044477406607,
+    "outcome": 18.721641016437463,
+    "diurnal": 39.53577374150797,
+    "hypo_rec": 37.5,
+    "hypo_reb": 0.0,
+    "compress": 4.286245814213072,
+    "noise": 5.247472792313232,
+    "insulin_cv": 7.38988312010685
+   },
+   "tir_cgm": 80.22073412698413,
+   "tbr70_cgm": 0.496031746031746,
+   "tbr54_cgm": 0.0248015873015873,
+   "insulin_per_day": 60.64728206200885
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#006",
+   "completed": true,
+   "seconds": 96.5790810585022,
+   "values": {
+    "cv": 33.725823961696804,
+    "tail": 4.489644053081979,
+    "acf30": 0.9377038563983985,
+    "acf60": 0.833111081514304,
+    "outcome": 19.466596509057517,
+    "diurnal": 50.86772624422812,
+    "hypo_rec": 55.0,
+    "hypo_reb": 50.0,
+    "compress": 2.143122907106536,
+    "noise": 8.026845468441607,
+    "insulin_cv": 8.59142764673954
+   },
+   "tir_cgm": 74.9751984126984,
+   "tbr70_cgm": 0.5952380952380952,
+   "tbr54_cgm": 0.1240079365079365,
+   "insulin_per_day": 71.38005213116305
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#007",
+   "completed": true,
+   "seconds": 94.59364819526672,
+   "values": {
+    "cv": 27.426791553102753,
+    "tail": 1.5874984497085451,
+    "acf30": 0.9237180838657111,
+    "acf60": 0.8328870139861022,
+    "outcome": 17.985883842573077,
+    "diurnal": 22.454106323221993,
+    "hypo_rec": 60.0,
+    "hypo_reb": 12.5,
+    "compress": 5.35780726776634,
+    "noise": 4.942399799591036,
+    "insulin_cv": 8.59902006197149
+   },
+   "tir_cgm": 81.60962301587301,
+   "tbr70_cgm": 0.607638888888889,
+   "tbr54_cgm": 0.08680555555555555,
+   "insulin_per_day": 40.24624913348381
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#008",
+   "completed": true,
+   "seconds": 95.50366377830505,
+   "values": {
+    "cv": 30.48412833140236,
+    "tail": 2.9021456033734343,
+    "acf30": 0.897840023596644,
+    "acf60": 0.7301328542484994,
+    "outcome": 24.204525186078875,
+    "diurnal": 49.49247013625005,
+    "hypo_rec": 52.5,
+    "hypo_reb": 37.5,
+    "compress": 2.143122907106536,
+    "noise": 4.343031956889642,
+    "insulin_cv": 5.192797510763516
+   },
+   "tir_cgm": 77.82738095238095,
+   "tbr70_cgm": 0.533234126984127,
+   "tbr54_cgm": 0.0744047619047619,
+   "insulin_per_day": 49.430632130351285
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#009",
+   "completed": true,
+   "seconds": 97.20835709571838,
+   "values": {
+    "cv": 25.089209472018222,
+    "tail": 1.215428500558105,
+    "acf30": 0.8804395386332157,
+    "acf60": 0.7074927323695288,
+    "outcome": 21.706545938080517,
+    "diurnal": 17.420544730716983,
+    "hypo_rec": 52.5,
+    "hypo_reb": 41.66666666666667,
+    "compress": 4.286245814213072,
+    "noise": 4.1142011383924695,
+    "insulin_cv": 4.139611239730212
+   },
+   "tir_cgm": 89.40972222222221,
+   "tbr70_cgm": 0.4464285714285714,
+   "tbr54_cgm": 0.06200396825396825,
+   "insulin_per_day": 42.54848813637363
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#010",
+   "completed": true,
+   "seconds": 93.35494875907898,
+   "values": {
+    "cv": 19.72227935293819,
+    "tail": 1.203026168919757,
+    "acf30": 0.8528838927934825,
+    "acf60": 0.7082804355557129,
+    "outcome": 14.1867134830739,
+    "diurnal": 26.286822455051336,
+    "hypo_rec": 62.5,
+    "hypo_reb": 22.22222222222222,
+    "compress": 5.35780726776634,
+    "noise": 4.707674353853137,
+    "insulin_cv": 4.952126900690501
+   },
+   "tir_cgm": 93.06795634920636,
+   "tbr70_cgm": 1.2524801587301588,
+   "tbr54_cgm": 0.0992063492063492,
+   "insulin_per_day": 42.26463340395782
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#011",
+   "completed": true,
+   "seconds": 100.61729788780212,
+   "values": {
+    "cv": 25.713122164132905,
+    "tail": 1.463475133325065,
+    "acf30": 0.9136803842113919,
+    "acf60": 0.8046077618681954,
+    "outcome": 17.173507832365363,
+    "diurnal": 20.107746594059194,
+    "hypo_rec": 20.0,
+    "hypo_reb": 50.0,
+    "compress": 3.214684360659804,
+    "noise": 4.366473707718413,
+    "insulin_cv": 7.732092128177002
+   },
+   "tir_cgm": 80.23313492063492,
+   "tbr70_cgm": 0.16121031746031744,
+   "tbr54_cgm": 0.03720238095238095,
+   "insulin_per_day": 41.38472533564244
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#012",
+   "completed": true,
+   "seconds": 97.43488097190857,
+   "values": {
+    "cv": 21.96913874748287,
+    "tail": 1.7611310926454171,
+    "acf30": 0.8927749437701127,
+    "acf60": 0.7845732465010596,
+    "outcome": 15.815484251395462,
+    "diurnal": 21.00561532592161,
+    "hypo_rec": 85.0,
+    "hypo_reb": 20.0,
+    "compress": 4.286245814213072,
+    "noise": 5.586729822953655,
+    "insulin_cv": 4.602518045820984
+   },
+   "tir_cgm": 84.20138888888889,
+   "tbr70_cgm": 0.38442460317460314,
+   "tbr54_cgm": 0.01240079365079365,
+   "insulin_per_day": 54.38249196716755
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#013",
+   "completed": true,
+   "seconds": 95.37471628189087,
+   "values": {
+    "cv": 27.25666445747058,
+    "tail": 1.6495101079002852,
+    "acf30": 0.9269062267332788,
+    "acf60": 0.8554123406178992,
+    "outcome": 15.974427865779138,
+    "diurnal": 31.979724019384776,
+    "hypo_rec": 20.0,
+    "hypo_reb": 33.33333333333333,
+    "compress": 4.286245814213072,
+    "noise": 5.20549861601298,
+    "insulin_cv": 8.081128600466464
+   },
+   "tir_cgm": 78.45982142857143,
+   "tbr70_cgm": 0.2232142857142857,
+   "tbr54_cgm": 0.0744047619047619,
+   "insulin_per_day": 73.1302018628524
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#014",
+   "completed": true,
+   "seconds": 98.1068856716156,
+   "values": {
+    "cv": 36.41477473701099,
+    "tail": 4.998139650254248,
+    "acf30": 0.895161268320447,
+    "acf60": 0.6842606362589971,
+    "outcome": 26.52656924238632,
+    "diurnal": 36.508975819334495,
+    "hypo_rec": 80.0,
+    "hypo_reb": 79.48717948717949,
+    "compress": 5.35780726776634,
+    "noise": 6.255655776141839,
+    "insulin_cv": 4.303179145083627
+   },
+   "tir_cgm": 70.57291666666666,
+   "tbr70_cgm": 3.869047619047619,
+   "tbr54_cgm": 1.314484126984127,
+   "insulin_per_day": 40.76616054747558
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#015",
+   "completed": true,
+   "seconds": 103.89023208618164,
+   "values": {
+    "cv": 24.146332791327634,
+    "tail": 3.3362272107156143,
+    "acf30": 0.8352300269049435,
+    "acf60": 0.5986826361013462,
+    "outcome": 19.78662319534618,
+    "diurnal": 24.28860718306862,
+    "hypo_rec": 47.5,
+    "hypo_reb": 50.0,
+    "compress": 3.214684360659804,
+    "noise": 5.295545107553104,
+    "insulin_cv": 2.6965999633827393
+   },
+   "tir_cgm": 81.20039682539682,
+   "tbr70_cgm": 0.7192460317460317,
+   "tbr54_cgm": 0.0496031746031746,
+   "insulin_per_day": 41.559407922025635
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#016",
+   "completed": true,
+   "seconds": 95.38444495201111,
+   "values": {
+    "cv": 27.29630783097906,
+    "tail": 1.4758774649634132,
+    "acf30": 0.9276408933234306,
+    "acf60": 0.8356231498293766,
+    "outcome": 16.27634045721028,
+    "diurnal": 28.856106231804347,
+    "hypo_rec": 65.0,
+    "hypo_reb": 37.5,
+    "compress": 3.214684360659804,
+    "noise": 5.120192836468948,
+    "insulin_cv": 3.1785284283859543
+   },
+   "tir_cgm": 83.29613095238095,
+   "tbr70_cgm": 0.28521825396825395,
+   "tbr54_cgm": 0.0496031746031746,
+   "insulin_per_day": 56.87253984612753
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#017",
+   "completed": true,
+   "seconds": 98.31538033485413,
+   "values": {
+    "cv": 29.053618817548347,
+    "tail": 1.240233163834801,
+    "acf30": 0.9210516167849047,
+    "acf60": 0.8331584289518981,
+    "outcome": 17.35352227617961,
+    "diurnal": 28.617170285070827,
+    "hypo_rec": 60.0,
+    "hypo_reb": 23.809523809523807,
+    "compress": 4.286245814213072,
+    "noise": 4.5283027843166055,
+    "insulin_cv": 2.346579916937042
+   },
+   "tir_cgm": 82.58928571428571,
+   "tbr70_cgm": 1.5128968253968254,
+   "tbr54_cgm": 0.26041666666666663,
+   "insulin_per_day": 73.21726469442333
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#018",
+   "completed": true,
+   "seconds": 97.50267386436462,
+   "values": {
+    "cv": 26.23810328551781,
+    "tail": 2.2200173632642937,
+    "acf30": 0.9151491433542707,
+    "acf60": 0.8165516967867197,
+    "outcome": 15.850182010895152,
+    "diurnal": 32.1731534662176,
+    "hypo_rec": 40.0,
+    "hypo_reb": 16.666666666666664,
+    "compress": 4.286245814213072,
+    "noise": 4.913443727810575,
+    "insulin_cv": 5.944455484046578
+   },
+   "tir_cgm": 64.73214285714286,
+   "tbr70_cgm": 0.496031746031746,
+   "tbr54_cgm": 0.08680555555555555,
+   "insulin_per_day": 90.11561761142181
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#019",
+   "completed": true,
+   "seconds": 95.20489287376404,
+   "values": {
+    "cv": 29.658266560672885,
+    "tail": 4.42763239489024,
+    "acf30": 0.8598200570548706,
+    "acf60": 0.6385798751563959,
+    "outcome": 24.31468556263751,
+    "diurnal": 39.72931528005678,
+    "hypo_rec": 60.0,
+    "hypo_reb": 52.0,
+    "compress": 3.214684360659804,
+    "noise": 6.3910484482830965,
+    "insulin_cv": 2.775737532101845
+   },
+   "tir_cgm": 84.11458333333334,
+   "tbr70_cgm": 1.2028769841269842,
+   "tbr54_cgm": 0.0496031746031746,
+   "insulin_per_day": 51.634388182695126
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#020",
+   "completed": true,
+   "seconds": 94.93343305587769,
+   "values": {
+    "cv": 23.962868927847598,
+    "tail": 3.5842738434825745,
+    "acf30": 0.8198409812151025,
+    "acf60": 0.5890611073609004,
+    "outcome": 20.557429873029534,
+    "diurnal": 21.458731338311196,
+    "hypo_rec": 60.0,
+    "hypo_reb": 24.137931034482758,
+    "compress": 5.35780726776634,
+    "noise": 6.458512452201872,
+    "insulin_cv": 4.844180471928009
+   },
+   "tir_cgm": 91.65426587301587,
+   "tbr70_cgm": 1.8105158730158732,
+   "tbr54_cgm": 0.26041666666666663,
+   "insulin_per_day": 53.55479400130431
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#021",
+   "completed": true,
+   "seconds": 94.97033190727234,
+   "values": {
+    "cv": 30.373634570921162,
+    "tail": 1.0914051841746248,
+    "acf30": 0.9346358423022599,
+    "acf60": 0.8475693021054733,
+    "outcome": 16.373399792700845,
+    "diurnal": 25.114259922230303,
+    "hypo_rec": 67.5,
+    "hypo_reb": 30.0,
+    "compress": 5.35780726776634,
+    "noise": 4.203227701461763,
+    "insulin_cv": 5.3940646170489215
+   },
+   "tir_cgm": 81.4608134920635,
+   "tbr70_cgm": 1.3888888888888888,
+   "tbr54_cgm": 0.03720238095238095,
+   "insulin_per_day": 48.88760035239629
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#022",
+   "completed": true,
+   "seconds": 95.09943699836731,
+   "values": {
+    "cv": 23.78584891234907,
+    "tail": 1.8603497457522014,
+    "acf30": 0.9162076912415389,
+    "acf60": 0.8446824410861539,
+    "outcome": 14.786354391328326,
+    "diurnal": 14.49436738539967,
+    "hypo_rec": 75.0,
+    "hypo_reb": 23.076923076923077,
+    "compress": 4.286245814213072,
+    "noise": 5.916014600312474,
+    "insulin_cv": 2.7528197966718424
+   },
+   "tir_cgm": 87.37599206349206,
+   "tbr70_cgm": 0.6572420634920635,
+   "tbr54_cgm": 0.0496031746031746,
+   "insulin_per_day": 55.58591981076353
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#023",
+   "completed": true,
+   "seconds": 96.80391192436218,
+   "values": {
+    "cv": 23.811322440241305,
+    "tail": 1.6743147711769812,
+    "acf30": 0.8455194739110309,
+    "acf60": 0.6144111330150465,
+    "outcome": 19.72188077137954,
+    "diurnal": 28.376106783675397,
+    "hypo_rec": 75.0,
+    "hypo_reb": 59.25925925925925,
+    "compress": 3.214684360659804,
+    "noise": 4.662756560566753,
+    "insulin_cv": 1.515504142478029
+   },
+   "tir_cgm": 91.41865079365078,
+   "tbr70_cgm": 1.6245039682539684,
+   "tbr54_cgm": 0.2976190476190476,
+   "insulin_per_day": 35.325
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#024",
+   "completed": true,
+   "seconds": 95.2483959197998,
+   "values": {
+    "cv": 24.049636972580057,
+    "tail": 1.6123031129852412,
+    "acf30": 0.8904103979306972,
+    "acf60": 0.7463254068151802,
+    "outcome": 18.323741596608677,
+    "diurnal": 28.92618449165758,
+    "hypo_rec": 30.0,
+    "hypo_reb": 12.5,
+    "compress": 4.286245814213072,
+    "noise": 3.979419362659475,
+    "insulin_cv": 4.745602815230715
+   },
+   "tir_cgm": 79.36507936507937,
+   "tbr70_cgm": 0.28521825396825395,
+   "tbr54_cgm": 0.06200396825396825,
+   "insulin_per_day": 66.72431909063644
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#025",
+   "completed": true,
+   "seconds": 95.27470827102661,
+   "values": {
+    "cv": 24.090275386135964,
+    "tail": 1.8851544090288976,
+    "acf30": 0.8765476940583256,
+    "acf60": 0.7262074841360724,
+    "outcome": 19.85184563902547,
+    "diurnal": 25.922392393636983,
+    "hypo_rec": 42.5,
+    "hypo_reb": 50.0,
+    "compress": 5.35780726776634,
+    "noise": 4.263930515516686,
+    "insulin_cv": 7.944845213994431
+   },
+   "tir_cgm": 84.82142857142857,
+   "tbr70_cgm": 0.4712301587301587,
+   "tbr54_cgm": 0.08680555555555555,
+   "insulin_per_day": 70.31398918624664
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#027",
+   "completed": true,
+   "seconds": 96.75108408927917,
+   "values": {
+    "cv": 29.10182933987017,
+    "tail": 4.998139650254248,
+    "acf30": 0.9026477095693868,
+    "acf60": 0.7607672445606593,
+    "outcome": 19.099317539910796,
+    "diurnal": 33.9932113384061,
+    "hypo_rec": 65.0,
+    "hypo_reb": 40.0,
+    "compress": 5.35780726776634,
+    "noise": 8.123131596051337,
+    "insulin_cv": 8.032644229593007
+   },
+   "tir_cgm": 81.54761904761905,
+   "tbr70_cgm": 1.2028769841269842,
+   "tbr54_cgm": 0.21081349206349206,
+   "insulin_per_day": 65.13543406737195
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#028",
+   "completed": true,
+   "seconds": 95.37840676307678,
+   "values": {
+    "cv": 28.291595491730845,
+    "tail": 3.5842738434825745,
+    "acf30": 0.892591445433082,
+    "acf60": 0.7469391501083464,
+    "outcome": 20.175919563611508,
+    "diurnal": 65.60727360187778,
+    "hypo_rec": 52.5,
+    "hypo_reb": 43.75,
+    "compress": 4.286245814213072,
+    "noise": 5.460499464975353,
+    "insulin_cv": 4.945654995788971
+   },
+   "tir_cgm": 73.25148809523809,
+   "tbr70_cgm": 0.6324404761904762,
+   "tbr54_cgm": 0.0496031746031746,
+   "insulin_per_day": 63.15209454844684
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#029",
+   "completed": true,
+   "seconds": 98.86399817466736,
+   "values": {
+    "cv": 24.078637132891686,
+    "tail": 1.7115217660920254,
+    "acf30": 0.8942827870446893,
+    "acf60": 0.7680030133888849,
+    "outcome": 17.27095974561065,
+    "diurnal": 21.46044778420051,
+    "hypo_rec": 35.0,
+    "hypo_reb": 22.22222222222222,
+    "compress": 3.214684360659804,
+    "noise": 5.225649998333889,
+    "insulin_cv": 6.120577162944066
+   },
+   "tir_cgm": 86.34672619047619,
+   "tbr70_cgm": 0.35962301587301587,
+   "tbr54_cgm": 0.03720238095238095,
+   "insulin_per_day": 38.328061159107584
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#030",
+   "completed": true,
+   "seconds": 96.41370892524719,
+   "values": {
+    "cv": 27.895367359552008,
+    "tail": 1.6743147711769812,
+    "acf30": 0.9045530789338349,
+    "acf60": 0.7661933275060854,
+    "outcome": 21.380397988788204,
+    "diurnal": 51.24068522873779,
+    "hypo_rec": 62.5,
+    "hypo_reb": 22.22222222222222,
+    "compress": 4.286245814213072,
+    "noise": 5.082707497468183,
+    "insulin_cv": 3.6740141786594975
+   },
+   "tir_cgm": 89.74454365079364,
+   "tbr70_cgm": 1.2276785714285714,
+   "tbr54_cgm": 0.23561507936507936,
+   "insulin_per_day": 54.03699458087525
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#031",
+   "completed": true,
+   "seconds": 98.50477886199951,
+   "values": {
+    "cv": 32.97834081108059,
+    "tail": 1.9223614039439414,
+    "acf30": 0.9366193905008459,
+    "acf60": 0.8363618538724226,
+    "outcome": 22.078338517075878,
+    "diurnal": 49.720214428739496,
+    "hypo_rec": 20.0,
+    "hypo_reb": 16.666666666666664,
+    "compress": 4.286245814213072,
+    "noise": 5.232062187465891,
+    "insulin_cv": 4.186391462591128
+   },
+   "tir_cgm": 77.30654761904762,
+   "tbr70_cgm": 0.1488095238095238,
+   "tbr54_cgm": 0.0744047619047619,
+   "insulin_per_day": 41.20962648042558
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#032",
+   "completed": true,
+   "seconds": 93.75041508674622,
+   "values": {
+    "cv": 29.081227788273992,
+    "tail": 3.05097358303361,
+    "acf30": 0.8678213165037311,
+    "acf60": 0.6700946574694973,
+    "outcome": 20.581620199857824,
+    "diurnal": 34.22166466933584,
+    "hypo_rec": 50.0,
+    "hypo_reb": 51.85185185185185,
+    "compress": 4.286245814213072,
+    "noise": 4.069384677003669,
+    "insulin_cv": 5.584386072483025
+   },
+   "tir_cgm": 83.17212301587301,
+   "tbr70_cgm": 1.5376984126984126,
+   "tbr54_cgm": 0.21081349206349206,
+   "insulin_per_day": 55.39353405248081
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#033",
+   "completed": true,
+   "seconds": 94.76023292541504,
+   "values": {
+    "cv": 30.65343783008392,
+    "tail": 2.67890363388317,
+    "acf30": 0.9206595083006267,
+    "acf60": 0.7965525852846453,
+    "outcome": 21.843526985361652,
+    "diurnal": 30.514943686008763,
+    "hypo_rec": 80.0,
+    "hypo_reb": 63.63636363636363,
+    "compress": 3.214684360659804,
+    "noise": 6.266302697675691,
+    "insulin_cv": 3.419342185180105
+   },
+   "tir_cgm": 84.41220238095238,
+   "tbr70_cgm": 0.9300595238095238,
+   "tbr54_cgm": 0.3968253968253968,
+   "insulin_per_day": 34.82909496002107
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#034",
+   "completed": true,
+   "seconds": 97.21222591400146,
+   "values": {
+    "cv": 33.75888871945385,
+    "tail": 2.1332010417958576,
+    "acf30": 0.9436685847356735,
+    "acf60": 0.8523334726988636,
+    "outcome": 21.10003323206831,
+    "diurnal": 31.505612472762067,
+    "hypo_rec": 105.0,
+    "hypo_reb": 68.75,
+    "compress": 2.143122907106536,
+    "noise": 5.677348773385595,
+    "insulin_cv": 3.9587182358183215
+   },
+   "tir_cgm": 73.07787698412699,
+   "tbr70_cgm": 1.029265873015873,
+   "tbr54_cgm": 0.21081349206349206,
+   "insulin_per_day": 48.529740214865306
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#035",
+   "completed": true,
+   "seconds": 98.53694915771484,
+   "values": {
+    "cv": 25.283342485302924,
+    "tail": 1.240233163834801,
+    "acf30": 0.9153977859515865,
+    "acf60": 0.809307867011431,
+    "outcome": 17.506684075248927,
+    "diurnal": 40.11679726462114,
+    "hypo_rec": 20.0,
+    "hypo_reb": 71.42857142857143,
+    "compress": 4.286245814213072,
+    "noise": 4.065213624822297,
+    "insulin_cv": 7.6779389177023045
+   },
+   "tir_cgm": 76.98412698412699,
+   "tbr70_cgm": 0.3720238095238095,
+   "tbr54_cgm": 0.0744047619047619,
+   "insulin_per_day": 80.33940740359695
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#036",
+   "completed": true,
+   "seconds": 97.5017077922821,
+   "values": {
+    "cv": 30.295816971342575,
+    "tail": 2.1083963785191617,
+    "acf30": 0.9354204602281077,
+    "acf60": 0.8546558062737047,
+    "outcome": 18.391347619917866,
+    "diurnal": 44.599699345493065,
+    "hypo_rec": 75.0,
+    "hypo_reb": 29.411764705882355,
+    "compress": 2.143122907106536,
+    "noise": 5.278082165444057,
+    "insulin_cv": 2.6144412846068823
+   },
+   "tir_cgm": 73.58630952380952,
+   "tbr70_cgm": 0.9424603174603174,
+   "tbr54_cgm": 0.0248015873015873,
+   "insulin_per_day": 111.0711744741379
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#037",
+   "completed": true,
+   "seconds": 98.05162620544434,
+   "values": {
+    "cv": 31.62986647117255,
+    "tail": 2.67890363388317,
+    "acf30": 0.9454424373435755,
+    "acf60": 0.871623655050672,
+    "outcome": 15.040026750997303,
+    "diurnal": 18.20465516215694,
+    "hypo_rec": 75.0,
+    "hypo_reb": 28.57142857142857,
+    "compress": 4.286245814213072,
+    "noise": 6.695374037679103,
+    "insulin_cv": 6.8943033413534085
+   },
+   "tir_cgm": 71.97420634920636,
+   "tbr70_cgm": 0.7688492063492063,
+   "tbr54_cgm": 0.1488095238095238,
+   "insulin_per_day": 73.21310181379863
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#038",
+   "completed": true,
+   "seconds": 97.52837896347046,
+   "values": {
+    "cv": 30.591998380262016,
+    "tail": 3.571871511844227,
+    "acf30": 0.9349496666994201,
+    "acf60": 0.8562464499206313,
+    "outcome": 18.53098962535057,
+    "diurnal": 53.63890073788136,
+    "hypo_rec": 40.0,
+    "hypo_reb": 35.714285714285715,
+    "compress": 3.214684360659804,
+    "noise": 6.345911566730616,
+    "insulin_cv": 3.071573346134076
+   },
+   "tir_cgm": 66.65426587301587,
+   "tbr70_cgm": 0.4712301587301587,
+   "tbr54_cgm": 0.0496031746031746,
+   "insulin_per_day": 63.658344559836266
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#039",
+   "completed": true,
+   "seconds": 93.3519549369812,
+   "values": {
+    "cv": 24.719912597565838,
+    "tail": 2.80292695026665,
+    "acf30": 0.8113186409823716,
+    "acf60": 0.5673774723424914,
+    "outcome": 20.722938664142198,
+    "diurnal": 28.50203345924814,
+    "hypo_rec": 55.0,
+    "hypo_reb": 19.51219512195122,
+    "compress": 4.286245814213072,
+    "noise": 5.257247022374694,
+    "insulin_cv": 6.311020670554543
+   },
+   "tir_cgm": 92.52232142857143,
+   "tbr70_cgm": 2.0709325396825395,
+   "tbr54_cgm": 0.18601190476190474,
+   "insulin_per_day": 33.80595238095238
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#040",
+   "completed": true,
+   "seconds": 94.20522689819336,
+   "values": {
+    "cv": 25.586439695756777,
+    "tail": 2.269626689817686,
+    "acf30": 0.8870173292058477,
+    "acf60": 0.7299004164234992,
+    "outcome": 20.84423379899032,
+    "diurnal": 38.99230237624559,
+    "hypo_rec": 77.5,
+    "hypo_reb": 0.0,
+    "compress": 4.286245814213072,
+    "noise": 6.066838870241149,
+    "insulin_cv": 6.110155490430481
+   },
+   "tir_cgm": 88.77728174603175,
+   "tbr70_cgm": 0.6200396825396826,
+   "tbr54_cgm": 0.0496031746031746,
+   "insulin_per_day": 49.6074122424496
+  },
+  {
+   "arm": "no_absorption",
+   "name": "adult#041",
+   "completed": true,
+   "seconds": 96.02299094200134,
+   "values": {
+    "cv": 19.693856515018165,
+    "tail": 1.5006821282401093,
+    "acf30": 0.8442248198952151,
+    "acf60": 0.677124921844336,
+    "outcome": 16.61631693744579,
+    "diurnal": 20.58694791473775,
+    "hypo_rec": 32.5,
+    "hypo_reb": 50.0,
+    "compress": 3.214684360659804,
+    "noise": 4.3981422737555125,
+    "insulin_cv": 3.3602575373274397
+   },
+   "tir_cgm": 91.39384920634922,
+   "tbr70_cgm": 0.1984126984126984,
+   "tbr54_cgm": 0.01240079365079365,
+   "insulin_per_day": 30.321317074814797
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#001",
+   "completed": true,
+   "seconds": 95.0115020275116,
+   "values": {
+    "cv": 29.44325479985696,
+    "tail": 4.24159742031502,
+    "acf30": 0.9118906831252095,
+    "acf60": 0.8011459393907551,
+    "outcome": 19.30207822031207,
+    "diurnal": 24.7779329485156,
+    "hypo_rec": 57.5,
+    "hypo_reb": 8.333333333333332,
+    "compress": 3.214684360659804,
+    "noise": 7.61276715731286,
+    "insulin_cv": 8.866314666909597
+   },
+   "tir_cgm": 81.87003968253968,
+   "tbr70_cgm": 2.083333333333333,
+   "tbr54_cgm": 0.6944444444444444,
+   "insulin_per_day": 55.56343140529264
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#002",
+   "completed": true,
+   "seconds": 97.96175408363342,
+   "values": {
+    "cv": 28.97627546523285,
+    "tail": 1.8107404191988092,
+    "acf30": 0.9040201075309409,
+    "acf60": 0.7502615964391776,
+    "outcome": 23.322210140036717,
+    "diurnal": 25.549664275513862,
+    "hypo_rec": 95.0,
+    "hypo_reb": 10.526315789473683,
+    "compress": 3.214684360659804,
+    "noise": 4.387056930532401,
+    "insulin_cv": 4.587754510110275
+   },
+   "tir_cgm": 83.96577380952381,
+   "tbr70_cgm": 1.066468253968254,
+   "tbr54_cgm": 0.0496031746031746,
+   "insulin_per_day": 54.101764672146196
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#003",
+   "completed": true,
+   "seconds": 99.59860706329346,
+   "values": {
+    "cv": 31.227373733025743,
+    "tail": 4.936127992062508,
+    "acf30": 0.9236073342944862,
+    "acf60": 0.810653711763077,
+    "outcome": 21.913357331190177,
+    "diurnal": 45.05278944521427,
+    "hypo_rec": 45.0,
+    "hypo_reb": 55.55555555555556,
+    "compress": 4.286245814213072,
+    "noise": 7.939015839964818,
+    "insulin_cv": 4.077768658137886
+   },
+   "tir_cgm": 71.78819444444444,
+   "tbr70_cgm": 0.33482142857142855,
+   "tbr54_cgm": 0.11160714285714285,
+   "insulin_per_day": 70.26647015065618
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#004",
+   "completed": true,
+   "seconds": 96.69112992286682,
+   "values": {
+    "cv": 33.303148911252364,
+    "tail": 4.005953119186407,
+    "acf30": 0.8923936391910544,
+    "acf60": 0.7111699172537045,
+    "outcome": 25.425344964615974,
+    "diurnal": 46.25445994047598,
+    "hypo_rec": 60.0,
+    "hypo_reb": 23.52941176470588,
+    "compress": 2.143122907106536,
+    "noise": 5.628652188626623,
+    "insulin_cv": 5.056863116426196
+   },
+   "tir_cgm": 76.69890873015873,
+   "tbr70_cgm": 1.6121031746031749,
+   "tbr54_cgm": 0.4712301587301587,
+   "insulin_per_day": 55.269770316315494
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#005",
+   "completed": true,
+   "seconds": 94.65695214271545,
+   "values": {
+    "cv": 29.735051040956648,
+    "tail": 2.592087312414734,
+    "acf30": 0.9042719107375986,
+    "acf60": 0.7756149684408584,
+    "outcome": 20.905510954209163,
+    "diurnal": 35.56642422426424,
+    "hypo_rec": 65.0,
+    "hypo_reb": 9.523809523809524,
+    "compress": 3.214684360659804,
+    "noise": 5.247642433167439,
+    "insulin_cv": 3.5440178643494122
+   },
+   "tir_cgm": 78.74503968253968,
+   "tbr70_cgm": 1.1656746031746033,
+   "tbr54_cgm": 0.2728174603174603,
+   "insulin_per_day": 59.93241711276911
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#006",
+   "completed": true,
+   "seconds": 96.7778549194336,
+   "values": {
+    "cv": 37.07002296945776,
+    "tail": 6.002728512960437,
+    "acf30": 0.9264626836418,
+    "acf60": 0.7881322611672765,
+    "outcome": 24.516002036122497,
+    "diurnal": 35.435597271989025,
+    "hypo_rec": 85.0,
+    "hypo_reb": 64.51612903225806,
+    "compress": 3.214684360659804,
+    "noise": 8.054144871398169,
+    "insulin_cv": 9.53960694503438
+   },
+   "tir_cgm": 68.01835317460318,
+   "tbr70_cgm": 2.083333333333333,
+   "tbr54_cgm": 0.42162698412698413,
+   "insulin_per_day": 70.94054412919682
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#007",
+   "completed": true,
+   "seconds": 95.34912705421448,
+   "values": {
+    "cv": 25.570138974886486,
+    "tail": 2.046384720327422,
+    "acf30": 0.8906291837311949,
+    "acf60": 0.7470640890856127,
+    "outcome": 21.297981354634448,
+    "diurnal": 17.699072130107993,
+    "hypo_rec": 50.0,
+    "hypo_reb": 36.36363636363637,
+    "compress": 4.286245814213072,
+    "noise": 4.896717509380533,
+    "insulin_cv": 5.02008282168858
+   },
+   "tir_cgm": 86.07390873015873,
+   "tbr70_cgm": 0.5456349206349206,
+   "tbr54_cgm": 0.1488095238095238,
+   "insulin_per_day": 36.768686324120274
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#008",
+   "completed": true,
+   "seconds": 96.57449507713318,
+   "values": {
+    "cv": 36.19661172693105,
+    "tail": 3.4602505270990944,
+    "acf30": 0.9171322360547484,
+    "acf60": 0.7726602851084368,
+    "outcome": 27.08888703703028,
+    "diurnal": 45.1380653176858,
+    "hypo_rec": 62.5,
+    "hypo_reb": 75.0,
+    "compress": 2.143122907106536,
+    "noise": 4.430729967627775,
+    "insulin_cv": 7.802830541033541
+   },
+   "tir_cgm": 72.40823412698413,
+   "tbr70_cgm": 1.599702380952381,
+   "tbr54_cgm": 0.3224206349206349,
+   "insulin_per_day": 51.73330727366046
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#009",
+   "completed": true,
+   "seconds": 96.86456513404846,
+   "values": {
+    "cv": 27.100133897973578,
+    "tail": 1.413865806771673,
+    "acf30": 0.8865321746415418,
+    "acf60": 0.7093611158710186,
+    "outcome": 23.585845110815026,
+    "diurnal": 21.427118009272988,
+    "hypo_rec": 90.0,
+    "hypo_reb": 52.38095238095239,
+    "compress": 4.286245814213072,
+    "noise": 4.109396731202309,
+    "insulin_cv": 1.3742437903932074
+   },
+   "tir_cgm": 87.25198412698413,
+   "tbr70_cgm": 1.7237103174603177,
+   "tbr54_cgm": 0.3720238095238095,
+   "insulin_per_day": 42.8102890182217
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#010",
+   "completed": true,
+   "seconds": 95.12865900993347,
+   "values": {
+    "cv": 27.885010947477483,
+    "tail": 1.6495101079002852,
+    "acf30": 0.9062584252680856,
+    "acf60": 0.7902132714048604,
+    "outcome": 17.119685231865486,
+    "diurnal": 37.996738820911645,
+    "hypo_rec": 70.0,
+    "hypo_reb": 24.137931034482758,
+    "compress": 3.214684360659804,
+    "noise": 4.747725965575318,
+    "insulin_cv": 5.069300784783637
+   },
+   "tir_cgm": 86.29712301587301,
+   "tbr70_cgm": 2.604166666666667,
+   "tbr54_cgm": 0.5704365079365079,
+   "insulin_per_day": 40.0038556777331
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#011",
+   "completed": true,
+   "seconds": 101.31481194496155,
+   "values": {
+    "cv": 39.05282063782653,
+    "tail": 3.4354458638223986,
+    "acf30": 0.9202863511956826,
+    "acf60": 0.7676655725515884,
+    "outcome": 28.191963505920103,
+    "diurnal": 37.311798222691266,
+    "hypo_rec": 85.0,
+    "hypo_reb": 54.285714285714285,
+    "compress": 5.35780726776634,
+    "noise": 4.316057563007792,
+    "insulin_cv": 4.40381504827948
+   },
+   "tir_cgm": 77.18253968253968,
+   "tbr70_cgm": 3.7946428571428568,
+   "tbr54_cgm": 0.9300595238095238,
+   "insulin_per_day": 41.06992394179036
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#012",
+   "completed": true,
+   "seconds": 96.49312925338745,
+   "values": {
+    "cv": 25.629100426345964,
+    "tail": 2.232419694902642,
+    "acf30": 0.8976933167644611,
+    "acf60": 0.75555195783904,
+    "outcome": 19.475561674486695,
+    "diurnal": 20.722809092996386,
+    "hypo_rec": 60.0,
+    "hypo_reb": 13.333333333333334,
+    "compress": 1.071561453553268,
+    "noise": 5.526145574284341,
+    "insulin_cv": 5.727745930177308
+   },
+   "tir_cgm": 81.4608134920635,
+   "tbr70_cgm": 1.066468253968254,
+   "tbr54_cgm": 0.11160714285714285,
+   "insulin_per_day": 53.558489733969964
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#013",
+   "completed": true,
+   "seconds": 96.72441291809082,
+   "values": {
+    "cv": 34.083613412418224,
+    "tail": 2.046384720327422,
+    "acf30": 0.9448342163379571,
+    "acf60": 0.8746002533822234,
+    "outcome": 18.12674050055192,
+    "diurnal": 35.052651700411616,
+    "hypo_rec": 50.0,
+    "hypo_reb": 13.333333333333334,
+    "compress": 4.286245814213072,
+    "noise": 5.143920941903446,
+    "insulin_cv": 2.619075710835671
+   },
+   "tir_cgm": 75.01240079365078,
+   "tbr70_cgm": 0.5084325396825397,
+   "tbr54_cgm": 0.01240079365079365,
+   "insulin_per_day": 71.57945124512895
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#014",
+   "completed": true,
+   "seconds": 97.49098706245422,
+   "values": {
+    "cv": 31.715873122973143,
+    "tail": 4.191988093761627,
+    "acf30": 0.8905213866373097,
+    "acf60": 0.6927990195609693,
+    "outcome": 25.850544407249828,
+    "diurnal": 18.63748479169365,
+    "hypo_rec": 65.0,
+    "hypo_reb": 68.96551724137932,
+    "compress": 2.143122907106536,
+    "noise": 6.257142089700637,
+    "insulin_cv": 5.067894585477682
+   },
+   "tir_cgm": 71.71378968253968,
+   "tbr70_cgm": 2.4057539682539684,
+   "tbr54_cgm": 0.607638888888889,
+   "insulin_per_day": 40.35228018515041
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#015",
+   "completed": true,
+   "seconds": 103.94906687736511,
+   "values": {
+    "cv": 27.690146231995367,
+    "tail": 3.844722807887883,
+    "acf30": 0.8511777291739191,
+    "acf60": 0.6130761671781453,
+    "outcome": 22.87378503902337,
+    "diurnal": 26.862745714724497,
+    "hypo_rec": 45.0,
+    "hypo_reb": 70.0,
+    "compress": 6.429368721319608,
+    "noise": 5.326028563033077,
+    "insulin_cv": 2.836448301752297
+   },
+   "tir_cgm": 80.62996031746032,
+   "tbr70_cgm": 1.3764880952380951,
+   "tbr54_cgm": 0.4464285714285714,
+   "insulin_per_day": 40.475929817763294
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#016",
+   "completed": true,
+   "seconds": 96.13484215736389,
+   "values": {
+    "cv": 33.203815248801845,
+    "tail": 2.1704080367109015,
+    "acf30": 0.9285882259595107,
+    "acf60": 0.8101894076334585,
+    "outcome": 19.576233066600853,
+    "diurnal": 25.811112345756186,
+    "hypo_rec": 67.5,
+    "hypo_reb": 26.31578947368421,
+    "compress": 5.35780726776634,
+    "noise": 5.207908808325146,
+    "insulin_cv": 6.399689801554464
+   },
+   "tir_cgm": 75.62003968253968,
+   "tbr70_cgm": 2.5297619047619047,
+   "tbr54_cgm": 0.5084325396825397,
+   "insulin_per_day": 59.53230810825029
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#017",
+   "completed": true,
+   "seconds": 100.28966999053955,
+   "values": {
+    "cv": 35.08209167268325,
+    "tail": 2.443259332754558,
+    "acf30": 0.919469718673437,
+    "acf60": 0.7882703199589965,
+    "outcome": 20.958142080059222,
+    "diurnal": 32.20489140387454,
+    "hypo_rec": 65.0,
+    "hypo_reb": 42.42424242424242,
+    "compress": 4.286245814213072,
+    "noise": 4.454366781383885,
+    "insulin_cv": 6.004891744450756
+   },
+   "tir_cgm": 75.39682539682539,
+   "tbr70_cgm": 3.732638888888889,
+   "tbr54_cgm": 1.1408730158730158,
+   "insulin_per_day": 73.52675882644517
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#018",
+   "completed": true,
+   "seconds": 97.90322422981262,
+   "values": {
+    "cv": 29.243690230341787,
+    "tail": 2.852536276820042,
+    "acf30": 0.9117322238395762,
+    "acf60": 0.7883797779547221,
+    "outcome": 19.599582845523006,
+    "diurnal": 26.911167848010393,
+    "hypo_rec": 55.0,
+    "hypo_reb": 25.0,
+    "compress": 4.286245814213072,
+    "noise": 4.972326027966335,
+    "insulin_cv": 3.0010267865517615
+   },
+   "tir_cgm": 69.25843253968253,
+   "tbr70_cgm": 1.0912698412698412,
+   "tbr54_cgm": 0.23561507936507936,
+   "insulin_per_day": 85.67916666915711
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#019",
+   "completed": true,
+   "seconds": 94.34008812904358,
+   "values": {
+    "cv": 30.075007494690404,
+    "tail": 4.005953119186407,
+    "acf30": 0.8496503327736946,
+    "acf60": 0.6130889174791363,
+    "outcome": 25.895586655930735,
+    "diurnal": 37.49033117893086,
+    "hypo_rec": 55.0,
+    "hypo_reb": 47.368421052631575,
+    "compress": 4.286245814213072,
+    "noise": 6.444324591330687,
+    "insulin_cv": 4.101641018670455
+   },
+   "tir_cgm": 86.06150793650794,
+   "tbr70_cgm": 0.9548611111111112,
+   "tbr54_cgm": 0.0496031746031746,
+   "insulin_per_day": 52.446690689399944
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#020",
+   "completed": true,
+   "seconds": 95.48846292495728,
+   "values": {
+    "cv": 30.51522545849857,
+    "tail": 4.7252883542105915,
+    "acf30": 0.8428557285126653,
+    "acf60": 0.5855061239891306,
+    "outcome": 26.557747927574706,
+    "diurnal": 41.92181584172755,
+    "hypo_rec": 65.0,
+    "hypo_reb": 44.06779661016949,
+    "compress": 4.286245814213072,
+    "noise": 6.382132084657757,
+    "insulin_cv": 4.430532380448688
+   },
+   "tir_cgm": 84.48660714285714,
+   "tbr70_cgm": 4.352678571428571,
+   "tbr54_cgm": 0.8804563492063492,
+   "insulin_per_day": 55.695902394672125
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#021",
+   "completed": true,
+   "seconds": 95.55842685699463,
+   "values": {
+    "cv": 35.386703863718964,
+    "tail": 2.0959940468808136,
+    "acf30": 0.9355025491251308,
+    "acf60": 0.8279561954877318,
+    "outcome": 20.263809771895538,
+    "diurnal": 20.539408642962712,
+    "hypo_rec": 85.0,
+    "hypo_reb": 21.73913043478261,
+    "compress": 4.286245814213072,
+    "noise": 4.0903060833266425,
+    "insulin_cv": 3.8241547372797386
+   },
+   "tir_cgm": 72.12301587301587,
+   "tbr70_cgm": 3.831845238095238,
+   "tbr54_cgm": 1.5376984126984126,
+   "insulin_per_day": 50.129776770934406
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#022",
+   "completed": true,
+   "seconds": 95.93948698043823,
+   "values": {
+    "cv": 26.858690439474184,
+    "tail": 2.3440406796477737,
+    "acf30": 0.9060527828575842,
+    "acf60": 0.783279058354953,
+    "outcome": 18.984428574659663,
+    "diurnal": 28.678627118920247,
+    "hypo_rec": 60.0,
+    "hypo_reb": 18.75,
+    "compress": 4.286245814213072,
+    "noise": 5.971347746162967,
+    "insulin_cv": 3.2023163329945503
+   },
+   "tir_cgm": 82.77529761904762,
+   "tbr70_cgm": 1.314484126984127,
+   "tbr54_cgm": 0.21081349206349206,
+   "insulin_per_day": 55.38287745950258
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#023",
+   "completed": true,
+   "seconds": 97.09213781356812,
+   "values": {
+    "cv": 25.753576683330934,
+    "tail": 2.3068336847327298,
+    "acf30": 0.8349896749793143,
+    "acf60": 0.566539390699732,
+    "outcome": 23.067311052658923,
+    "diurnal": 21.76753891162754,
+    "hypo_rec": 65.0,
+    "hypo_reb": 44.44444444444444,
+    "compress": 4.286245814213072,
+    "noise": 4.675524328097185,
+    "insulin_cv": 2.0168913217838513
+   },
+   "tir_cgm": 89.44692460317461,
+   "tbr70_cgm": 2.318948412698413,
+   "tbr54_cgm": 0.42162698412698413,
+   "insulin_per_day": 36.39241071428572
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#024",
+   "completed": true,
+   "seconds": 95.35333108901978,
+   "values": {
+    "cv": 28.92930440673568,
+    "tail": 2.641696638968126,
+    "acf30": 0.8924254505161124,
+    "acf60": 0.7219776774585993,
+    "outcome": 21.80138698563073,
+    "diurnal": 31.454966730222196,
+    "hypo_rec": 67.5,
+    "hypo_reb": 41.66666666666667,
+    "compress": 4.286245814213072,
+    "noise": 4.099571873859548,
+    "insulin_cv": 2.5874330329809863
+   },
+   "tir_cgm": 80.4439484126984,
+   "tbr70_cgm": 1.4384920634920635,
+   "tbr54_cgm": 0.2728174603174603,
+   "insulin_per_day": 62.73057064225919
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#025",
+   "completed": true,
+   "seconds": 95.73017501831055,
+   "values": {
+    "cv": 28.536501484296416,
+    "tail": 2.7409152920749102,
+    "acf30": 0.8810050445371926,
+    "acf60": 0.7157669496312259,
+    "outcome": 21.51920995820033,
+    "diurnal": 25.592137907119138,
+    "hypo_rec": 35.0,
+    "hypo_reb": 47.05882352941176,
+    "compress": 4.286245814213072,
+    "noise": 4.310819252448676,
+    "insulin_cv": 0.6327392748819449
+   },
+   "tir_cgm": 84.04017857142857,
+   "tbr70_cgm": 0.7192460317460317,
+   "tbr54_cgm": 0.1984126984126984,
+   "insulin_per_day": 66.32759151972141
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#027",
+   "completed": true,
+   "seconds": 96.4145929813385,
+   "values": {
+    "cv": 35.11354993534146,
+    "tail": 6.399603125387573,
+    "acf30": 0.898364244832397,
+    "acf60": 0.7140640490528615,
+    "outcome": 24.49774259630658,
+    "diurnal": 37.78870986455928,
+    "hypo_rec": 70.0,
+    "hypo_reb": 62.16216216216216,
+    "compress": 6.429368721319608,
+    "noise": 8.114399543211224,
+    "insulin_cv": 4.271353697389517
+   },
+   "tir_cgm": 77.72817460317461,
+   "tbr70_cgm": 2.6165674603174605,
+   "tbr54_cgm": 0.7564484126984127,
+   "insulin_per_day": 66.95406483997625
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#028",
+   "completed": true,
+   "seconds": 94.74388718605042,
+   "values": {
+    "cv": 36.17426915840272,
+    "tail": 3.733101823142751,
+    "acf30": 0.9166038294689308,
+    "acf60": 0.7914644509696765,
+    "outcome": 22.78212351877053,
+    "diurnal": 45.025293419882374,
+    "hypo_rec": 70.0,
+    "hypo_reb": 32.35294117647059,
+    "compress": 3.214684360659804,
+    "noise": 5.5291759708331005,
+    "insulin_cv": 1.0852745461395141
+   },
+   "tir_cgm": 79.57589285714286,
+   "tbr70_cgm": 1.773313492063492,
+   "tbr54_cgm": 0.0744047619047619,
+   "insulin_per_day": 58.6787546725469
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#029",
+   "completed": true,
+   "seconds": 99.81215810775757,
+   "values": {
+    "cv": 26.855687973477025,
+    "tail": 2.3192360163710775,
+    "acf30": 0.8859996919900436,
+    "acf60": 0.7118890664993885,
+    "outcome": 19.538399360127745,
+    "diurnal": 25.42895838589439,
+    "hypo_rec": 57.5,
+    "hypo_reb": 35.714285714285715,
+    "compress": 4.286245814213072,
+    "noise": 5.250927863388603,
+    "insulin_cv": 3.973694078928488
+   },
+   "tir_cgm": 84.26339285714286,
+   "tbr70_cgm": 0.8432539682539683,
+   "tbr54_cgm": 0.1488095238095238,
+   "insulin_per_day": 38.096244619076735
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#030",
+   "completed": true,
+   "seconds": 97.53730010986328,
+   "values": {
+    "cv": 30.149041082840622,
+    "tail": 2.1828103683492497,
+    "acf30": 0.9041288588942157,
+    "acf60": 0.7446686873040654,
+    "outcome": 20.200005814032266,
+    "diurnal": 27.93537470952444,
+    "hypo_rec": 70.0,
+    "hypo_reb": 44.827586206896555,
+    "compress": 5.35780726776634,
+    "noise": 5.0727880736939746,
+    "insulin_cv": 2.445359126906593
+   },
+   "tir_cgm": 79.4766865079365,
+   "tbr70_cgm": 2.368551587301587,
+   "tbr54_cgm": 0.6200396825396826,
+   "insulin_per_day": 58.15109562995779
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#031",
+   "completed": true,
+   "seconds": 98.777419090271,
+   "values": {
+    "cv": 36.8006780075509,
+    "tail": 3.423043532184051,
+    "acf30": 0.9177340773532205,
+    "acf60": 0.764920306014677,
+    "outcome": 26.14197754405245,
+    "diurnal": 55.82346747125939,
+    "hypo_rec": 85.0,
+    "hypo_reb": 63.33333333333333,
+    "compress": 3.214684360659804,
+    "noise": 5.216910898516771,
+    "insulin_cv": 5.3472850411989725
+   },
+   "tir_cgm": 74.09474206349206,
+   "tbr70_cgm": 2.380952380952381,
+   "tbr54_cgm": 0.7068452380952381,
+   "insulin_per_day": 39.98562354585509
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#032",
+   "completed": true,
+   "seconds": 94.96606302261353,
+   "values": {
+    "cv": 31.417169818238275,
+    "tail": 3.3486295423539625,
+    "acf30": 0.8734247004434764,
+    "acf60": 0.6847361412480985,
+    "outcome": 21.068540644683296,
+    "diurnal": 27.298471660149644,
+    "hypo_rec": 67.5,
+    "hypo_reb": 20.454545454545457,
+    "compress": 2.143122907106536,
+    "noise": 4.021367256790308,
+    "insulin_cv": 5.679447991614348
+   },
+   "tir_cgm": 83.74255952380952,
+   "tbr70_cgm": 2.864583333333333,
+   "tbr54_cgm": 0.5952380952380952,
+   "insulin_per_day": 55.62004618826844
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#033",
+   "completed": true,
+   "seconds": 95.68437385559082,
+   "values": {
+    "cv": 32.29747010261986,
+    "tail": 4.1423787672082355,
+    "acf30": 0.8795231271827089,
+    "acf60": 0.6500514273858385,
+    "outcome": 30.24762319190504,
+    "diurnal": 24.15922992417768,
+    "hypo_rec": 50.0,
+    "hypo_reb": 92.5925925925926,
+    "compress": 2.143122907106536,
+    "noise": 6.2384842549282595,
+    "insulin_cv": 3.4647754853840316
+   },
+   "tir_cgm": 80.84077380952381,
+   "tbr70_cgm": 2.455357142857143,
+   "tbr54_cgm": 0.6696428571428571,
+   "insulin_per_day": 33.16858437642268
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#034",
+   "completed": true,
+   "seconds": 96.49891304969788,
+   "values": {
+    "cv": 39.66668569553174,
+    "tail": 3.733101823142751,
+    "acf30": 0.9312640704221611,
+    "acf60": 0.8002669605046127,
+    "outcome": 28.45327490495246,
+    "diurnal": 49.545652209874646,
+    "hypo_rec": 57.5,
+    "hypo_reb": 52.94117647058824,
+    "compress": 5.35780726776634,
+    "noise": 5.70774920315218,
+    "insulin_cv": 3.857274049748689
+   },
+   "tir_cgm": 70.49851190476191,
+   "tbr70_cgm": 3.732638888888889,
+   "tbr54_cgm": 1.922123015873016,
+   "insulin_per_day": 48.72990367785691
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#035",
+   "completed": true,
+   "seconds": 98.11303806304932,
+   "values": {
+    "cv": 31.01955393726851,
+    "tail": 1.7983380875604613,
+    "acf30": 0.9152429293850655,
+    "acf60": 0.7733645860825722,
+    "outcome": 19.777910631074736,
+    "diurnal": 33.72620535258102,
+    "hypo_rec": 60.0,
+    "hypo_reb": 56.52173913043478,
+    "compress": 3.214684360659804,
+    "noise": 3.9107612874025057,
+    "insulin_cv": 2.6947520069332223
+   },
+   "tir_cgm": 75.95486111111111,
+   "tbr70_cgm": 1.9593253968253967,
+   "tbr54_cgm": 0.4340277777777778,
+   "insulin_per_day": 77.00056229306902
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#036",
+   "completed": true,
+   "seconds": 96.5155680179596,
+   "values": {
+    "cv": 37.89916952335894,
+    "tail": 3.2494108892471782,
+    "acf30": 0.9386392329199055,
+    "acf60": 0.8350150654093188,
+    "outcome": 22.645505244617322,
+    "diurnal": 47.77004525297707,
+    "hypo_rec": 57.5,
+    "hypo_reb": 22.727272727272727,
+    "compress": 1.071561453553268,
+    "noise": 5.2451751073710255,
+    "insulin_cv": 2.981336746747836
+   },
+   "tir_cgm": 70.70932539682539,
+   "tbr70_cgm": 1.488095238095238,
+   "tbr54_cgm": 0.21081349206349206,
+   "insulin_per_day": 104.59529572651435
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#037",
+   "completed": true,
+   "seconds": 97.68840408325195,
+   "values": {
+    "cv": 33.83700177546889,
+    "tail": 3.1749968994170903,
+    "acf30": 0.9435442576839368,
+    "acf60": 0.8624463120103664,
+    "outcome": 15.955984162610994,
+    "diurnal": 25.214518021331372,
+    "hypo_rec": 75.0,
+    "hypo_reb": 44.827586206896555,
+    "compress": 4.286245814213072,
+    "noise": 6.734545002500107,
+    "insulin_cv": 5.01018929916294
+   },
+   "tir_cgm": 76.10367063492063,
+   "tbr70_cgm": 1.8849206349206349,
+   "tbr54_cgm": 0.26041666666666663,
+   "insulin_per_day": 71.33200942840513
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#038",
+   "completed": true,
+   "seconds": 96.05748295783997,
+   "values": {
+    "cv": 33.56892095978638,
+    "tail": 3.8943321344412754,
+    "acf30": 0.9269312889474532,
+    "acf60": 0.8255248226537526,
+    "outcome": 22.560504054904516,
+    "diurnal": 48.43864476681773,
+    "hypo_rec": 60.0,
+    "hypo_reb": 50.0,
+    "compress": 3.214684360659804,
+    "noise": 6.37110108525001,
+    "insulin_cv": 3.8766617261667338
+   },
+   "tir_cgm": 72.34623015873017,
+   "tbr70_cgm": 1.2028769841269842,
+   "tbr54_cgm": 0.28521825396825395,
+   "insulin_per_day": 61.86248095279575
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#039",
+   "completed": true,
+   "seconds": 95.67607307434082,
+   "values": {
+    "cv": 27.49521252052802,
+    "tail": 3.3238248790772666,
+    "acf30": 0.8457079431742481,
+    "acf60": 0.626861627042445,
+    "outcome": 23.091207163372278,
+    "diurnal": 23.761225134899988,
+    "hypo_rec": 72.5,
+    "hypo_reb": 25.0,
+    "compress": 3.214684360659804,
+    "noise": 5.271902250827982,
+    "insulin_cv": 6.252457992580753
+   },
+   "tir_cgm": 88.78968253968253,
+   "tbr70_cgm": 1.8601190476190477,
+   "tbr54_cgm": 0.38442460317460314,
+   "insulin_per_day": 36.980654761904766
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#040",
+   "completed": true,
+   "seconds": 95.05848288536072,
+   "values": {
+    "cv": 30.78900944010805,
+    "tail": 3.571871511844227,
+    "acf30": 0.9045151004149938,
+    "acf60": 0.7535325427651902,
+    "outcome": 22.991912823146873,
+    "diurnal": 53.64849765741863,
+    "hypo_rec": 45.0,
+    "hypo_reb": 30.0,
+    "compress": 4.286245814213072,
+    "noise": 6.136131572279111,
+    "insulin_cv": 4.146770603263237
+   },
+   "tir_cgm": 82.0064484126984,
+   "tbr70_cgm": 0.6324404761904762,
+   "tbr54_cgm": 0.0248015873015873,
+   "insulin_per_day": 53.6756183870731
+  },
+  {
+   "arm": "no_slow",
+   "name": "adult#041",
+   "completed": true,
+   "seconds": 95.43137311935425,
+   "values": {
+    "cv": 23.703404504015808,
+    "tail": 1.7983380875604613,
+    "acf30": 0.8750015357287046,
+    "acf60": 0.7238002990485798,
+    "outcome": 17.878920309450148,
+    "diurnal": 15.597959986534107,
+    "hypo_rec": 55.0,
+    "hypo_reb": 38.46153846153847,
+    "compress": 4.286245814213072,
+    "noise": 4.487619464943939,
+    "insulin_cv": 3.060088173618041
+   },
+   "tir_cgm": 87.20238095238095,
+   "tbr70_cgm": 0.6200396825396826,
+   "tbr54_cgm": 0.03720238095238095,
+   "insulin_per_day": 29.74753287213133
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#001",
+   "completed": true,
+   "seconds": 95.37412095069885,
+   "values": {
+    "cv": 30.698324310325958,
+    "tail": 4.229195088676671,
+    "acf30": 0.9258740918141739,
+    "acf60": 0.829271466324493,
+    "outcome": 19.57646183018963,
+    "diurnal": 38.597403766637456,
+    "hypo_rec": 50.0,
+    "hypo_reb": 0.0,
+    "compress": 5.35780726776634,
+    "noise": 7.5627977629796135,
+    "insulin_cv": 11.597669840743908
+   },
+   "tir_cgm": 79.17906746031747,
+   "tbr70_cgm": 0.7192460317460317,
+   "tbr54_cgm": 0.06200396825396825,
+   "insulin_per_day": 58.04819177777402
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#002",
+   "completed": true,
+   "seconds": 98.0902590751648,
+   "values": {
+    "cv": 28.163734782285925,
+    "tail": 1.6247054446235891,
+    "acf30": 0.8935661648981915,
+    "acf60": 0.7236166126551106,
+    "outcome": 23.770036884135912,
+    "diurnal": 20.780296319347343,
+    "hypo_rec": 77.5,
+    "hypo_reb": 44.44444444444444,
+    "compress": 4.286245814213072,
+    "noise": 4.363062402566225,
+    "insulin_cv": 4.457141107004568
+   },
+   "tir_cgm": 85.65228174603175,
+   "tbr70_cgm": 1.3888888888888888,
+   "tbr54_cgm": 0.2728174603174603,
+   "insulin_per_day": 52.89284725519217
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#003",
+   "completed": true,
+   "seconds": 101.28798913955688,
+   "values": {
+    "cv": 31.403108041399033,
+    "tail": 5.022944313530943,
+    "acf30": 0.9228202865947616,
+    "acf60": 0.8041718496674501,
+    "outcome": 22.009990710668973,
+    "diurnal": 37.76020986601563,
+    "hypo_rec": 25.0,
+    "hypo_reb": 50.0,
+    "compress": 4.286245814213072,
+    "noise": 7.895546169430842,
+    "insulin_cv": 5.669717531853313
+   },
+   "tir_cgm": 68.29117063492063,
+   "tbr70_cgm": 0.2728174603174603,
+   "tbr54_cgm": 0.0496031746031746,
+   "insulin_per_day": 71.28269284615882
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#004",
+   "completed": true,
+   "seconds": 97.54400110244751,
+   "values": {
+    "cv": 32.38508105099377,
+    "tail": 4.1423787672082355,
+    "acf30": 0.9123406269618389,
+    "acf60": 0.7655729406652743,
+    "outcome": 23.31929707985533,
+    "diurnal": 71.47227707079188,
+    "hypo_rec": 37.5,
+    "hypo_reb": 64.28571428571429,
+    "compress": 3.214684360659804,
+    "noise": 5.7055767908199035,
+    "insulin_cv": 5.73404097730987
+   },
+   "tir_cgm": 63.120039682539684,
+   "tbr70_cgm": 1.128472222222222,
+   "tbr54_cgm": 0.1240079365079365,
+   "insulin_per_day": 62.60297887428812
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#005",
+   "completed": true,
+   "seconds": 97.51994609832764,
+   "values": {
+    "cv": 30.65191210968866,
+    "tail": 2.852536276820042,
+    "acf30": 0.9096044146217597,
+    "acf60": 0.7823830774017152,
+    "outcome": 21.834491278434804,
+    "diurnal": 49.962800479993064,
+    "hypo_rec": 50.0,
+    "hypo_reb": 50.0,
+    "compress": 3.214684360659804,
+    "noise": 5.284860009797461,
+    "insulin_cv": 4.428959745792503
+   },
+   "tir_cgm": 78.16220238095238,
+   "tbr70_cgm": 1.277281746031746,
+   "tbr54_cgm": 0.35962301587301587,
+   "insulin_per_day": 59.31050928392244
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#006",
+   "completed": true,
+   "seconds": 97.99491786956787,
+   "values": {
+    "cv": 36.83568859984712,
+    "tail": 6.015130844598785,
+    "acf30": 0.9236986436680709,
+    "acf60": 0.777585798304376,
+    "outcome": 27.570507263229928,
+    "diurnal": 36.86175731249625,
+    "hypo_rec": 60.0,
+    "hypo_reb": 61.29032258064516,
+    "compress": 3.214684360659804,
+    "noise": 8.018597033939033,
+    "insulin_cv": 9.96752372258298
+   },
+   "tir_cgm": 68.83680555555556,
+   "tbr70_cgm": 1.847718253968254,
+   "tbr54_cgm": 0.5580357142857143,
+   "insulin_per_day": 72.62818234028533
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#007",
+   "completed": true,
+   "seconds": 94.59814405441284,
+   "values": {
+    "cv": 26.252474860591224,
+    "tail": 2.12079871015751,
+    "acf30": 0.9020577602064623,
+    "acf60": 0.7674170753685788,
+    "outcome": 19.891812030710582,
+    "diurnal": 17.78391360567494,
+    "hypo_rec": 52.5,
+    "hypo_reb": 7.142857142857142,
+    "compress": 4.286245814213072,
+    "noise": 4.884540782076182,
+    "insulin_cv": 9.177059661588958
+   },
+   "tir_cgm": 80.81597222222221,
+   "tbr70_cgm": 0.6696428571428571,
+   "tbr54_cgm": 0.0992063492063492,
+   "insulin_per_day": 39.66385155864055
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#008",
+   "completed": true,
+   "seconds": 96.30580186843872,
+   "values": {
+    "cv": 34.06248174392287,
+    "tail": 3.5966761751209226,
+    "acf30": 0.9004164353294174,
+    "acf60": 0.720077419764582,
+    "outcome": 28.17636528292595,
+    "diurnal": 46.028214653045154,
+    "hypo_rec": 80.0,
+    "hypo_reb": 36.0,
+    "compress": 3.214684360659804,
+    "noise": 4.3945639084303,
+    "insulin_cv": 5.877607602907788
+   },
+   "tir_cgm": 75.32242063492063,
+   "tbr70_cgm": 2.0461309523809526,
+   "tbr54_cgm": 0.3100198412698413,
+   "insulin_per_day": 50.20572048327426
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#009",
+   "completed": true,
+   "seconds": 97.64607405662537,
+   "values": {
+    "cv": 28.31899443146224,
+    "tail": 1.314647153664889,
+    "acf30": 0.8945625897348379,
+    "acf60": 0.7286029796969603,
+    "outcome": 25.58336640470775,
+    "diurnal": 30.972882167091242,
+    "hypo_rec": 65.0,
+    "hypo_reb": 30.76923076923077,
+    "compress": 3.214684360659804,
+    "noise": 4.130364176940838,
+    "insulin_cv": 5.01432077859615
+   },
+   "tir_cgm": 87.45039682539682,
+   "tbr70_cgm": 0.7936507936507936,
+   "tbr54_cgm": 0.1240079365079365,
+   "insulin_per_day": 43.43651182930961
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#010",
+   "completed": true,
+   "seconds": 96.31173300743103,
+   "values": {
+    "cv": 25.941069208632488,
+    "tail": 1.5006821282401093,
+    "acf30": 0.9121826600629056,
+    "acf60": 0.8145896226746375,
+    "outcome": 15.63938091614278,
+    "diurnal": 19.678837858053384,
+    "hypo_rec": 95.0,
+    "hypo_reb": 8.695652173913043,
+    "compress": 4.286245814213072,
+    "noise": 4.706025825210285,
+    "insulin_cv": 6.657088192109357
+   },
+   "tir_cgm": 83.81696428571429,
+   "tbr70_cgm": 2.4677579365079363,
+   "tbr54_cgm": 0.855654761904762,
+   "insulin_per_day": 46.40123539705839
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#011",
+   "completed": true,
+   "seconds": 102.31695914268494,
+   "values": {
+    "cv": 33.26056405216861,
+    "tail": 2.9517549299268264,
+    "acf30": 0.9194950091135474,
+    "acf60": 0.7780973831489659,
+    "outcome": 24.39173486759737,
+    "diurnal": 35.779375732183865,
+    "hypo_rec": 100.0,
+    "hypo_reb": 36.84210526315789,
+    "compress": 3.214684360659804,
+    "noise": 4.357260672484937,
+    "insulin_cv": 3.0686022378627436
+   },
+   "tir_cgm": 76.33928571428571,
+   "tbr70_cgm": 1.4632936507936507,
+   "tbr54_cgm": 0.06200396825396825,
+   "insulin_per_day": 43.17860018344489
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#012",
+   "completed": true,
+   "seconds": 98.40117383003235,
+   "values": {
+    "cv": 28.940457926404683,
+    "tail": 2.567282649138038,
+    "acf30": 0.9189002546992675,
+    "acf60": 0.802196727847428,
+    "outcome": 18.24724663629033,
+    "diurnal": 29.518955817789077,
+    "hypo_rec": 75.0,
+    "hypo_reb": 22.22222222222222,
+    "compress": 1.071561453553268,
+    "noise": 5.582260047478125,
+    "insulin_cv": 13.335605744584216
+   },
+   "tir_cgm": 75.24801587301587,
+   "tbr70_cgm": 1.351686507936508,
+   "tbr54_cgm": 0.1240079365079365,
+   "insulin_per_day": 53.730208749101685
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#013",
+   "completed": true,
+   "seconds": 96.95982480049133,
+   "values": {
+    "cv": 26.969256279878504,
+    "tail": 1.9595683988589856,
+    "acf30": 0.9149108556681413,
+    "acf60": 0.8146883018267672,
+    "outcome": 17.045666616863656,
+    "diurnal": 30.73443075775492,
+    "hypo_rec": 42.5,
+    "hypo_reb": 0.0,
+    "compress": 5.35780726776634,
+    "noise": 5.164317548587592,
+    "insulin_cv": 8.058566944667792
+   },
+   "tir_cgm": 75.79365079365078,
+   "tbr70_cgm": 0.5084325396825397,
+   "tbr54_cgm": 0.18601190476190474,
+   "insulin_per_day": 74.02178430067427
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#014",
+   "completed": true,
+   "seconds": 96.38381290435791,
+   "values": {
+    "cv": 34.266218186301444,
+    "tail": 4.936127992062508,
+    "acf30": 0.8707899772569058,
+    "acf60": 0.6304701996042351,
+    "outcome": 28.97968819447482,
+    "diurnal": 45.755840342029984,
+    "hypo_rec": 55.0,
+    "hypo_reb": 74.07407407407408,
+    "compress": 5.35780726776634,
+    "noise": 6.347141731261344,
+    "insulin_cv": 3.1588627849147435
+   },
+   "tir_cgm": 73.6359126984127,
+   "tbr70_cgm": 3.050595238095238,
+   "tbr54_cgm": 1.4260912698412698,
+   "insulin_per_day": 40.69017784006537
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#015",
+   "completed": false,
+   "seconds": 98.82812905311584,
+   "values": {
+    "cv": 27.61110420893053,
+    "tail": 3.7262259024453357,
+    "acf30": 0.8587610079766367,
+    "acf60": 0.6401796240399541,
+    "outcome": 22.849415703703908,
+    "diurnal": 25.19515632917077,
+    "hypo_rec": 47.5,
+    "hypo_reb": 68.18181818181817,
+    "compress": 3.3536033122008018,
+    "noise": 5.204970569557237,
+    "insulin_cv": 2.969857740357085
+   },
+   "tir_cgm": 76.40362225097024,
+   "tbr70_cgm": 1.5912031047865458,
+   "tbr54_cgm": 0.5045278137128072,
+   "insulin_per_day": 43.97546210723818
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#016",
+   "completed": true,
+   "seconds": 96.17211389541626,
+   "values": {
+    "cv": 33.09403831111187,
+    "tail": 2.282029021456034,
+    "acf30": 0.9309372474939046,
+    "acf60": 0.8193558763121075,
+    "outcome": 19.27820302873748,
+    "diurnal": 19.358454812195163,
+    "hypo_rec": 85.0,
+    "hypo_reb": 41.37931034482759,
+    "compress": 3.214684360659804,
+    "noise": 5.178659472920273,
+    "insulin_cv": 6.672895260312816
+   },
+   "tir_cgm": 78.41021825396825,
+   "tbr70_cgm": 2.9265873015873014,
+   "tbr54_cgm": 0.6572420634920635,
+   "insulin_per_day": 58.486652132253084
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#017",
+   "completed": true,
+   "seconds": 99.318932056427,
+   "values": {
+    "cv": 36.14519557610268,
+    "tail": 1.9967753937740296,
+    "acf30": 0.9389106586332278,
+    "acf60": 0.8516877363427484,
+    "outcome": 21.274374099941422,
+    "diurnal": 21.25276062296686,
+    "hypo_rec": 75.0,
+    "hypo_reb": 17.24137931034483,
+    "compress": 4.286245814213072,
+    "noise": 4.4795202125022575,
+    "insulin_cv": 7.389519240841263
+   },
+   "tir_cgm": 78.05059523809523,
+   "tbr70_cgm": 2.418154761904762,
+   "tbr54_cgm": 0.5952380952380952,
+   "insulin_per_day": 75.73785749919986
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#018",
+   "completed": true,
+   "seconds": 97.85406112670898,
+   "values": {
+    "cv": 32.32074389000633,
+    "tail": 3.1005829095870023,
+    "acf30": 0.922045459721208,
+    "acf60": 0.815574743784355,
+    "outcome": 18.96306418996036,
+    "diurnal": 31.243270603276443,
+    "hypo_rec": 55.0,
+    "hypo_reb": 34.78260869565217,
+    "compress": 3.214684360659804,
+    "noise": 4.9601887680504,
+    "insulin_cv": 8.510075879119812
+   },
+   "tir_cgm": 69.02281746031747,
+   "tbr70_cgm": 1.1036706349206349,
+   "tbr54_cgm": 0.0496031746031746,
+   "insulin_per_day": 86.18823872916775
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#019",
+   "completed": true,
+   "seconds": 95.12512493133545,
+   "values": {
+    "cv": 29.338295712050794,
+    "tail": 4.378023068336848,
+    "acf30": 0.8495033343600736,
+    "acf60": 0.6118894338177764,
+    "outcome": 26.96106827390829,
+    "diurnal": 39.01135825319933,
+    "hypo_rec": 55.0,
+    "hypo_reb": 35.294117647058826,
+    "compress": 3.214684360659804,
+    "noise": 6.39870844903544,
+    "insulin_cv": 3.477298336926711
+   },
+   "tir_cgm": 86.83035714285714,
+   "tbr70_cgm": 0.8060515873015874,
+   "tbr54_cgm": 0.0496031746031746,
+   "insulin_per_day": 52.61570592831286
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#020",
+   "completed": true,
+   "seconds": 95.83879017829895,
+   "values": {
+    "cv": 30.881484494660164,
+    "tail": 4.378023068336848,
+    "acf30": 0.840064400385992,
+    "acf60": 0.5680838416888496,
+    "outcome": 28.307647703858315,
+    "diurnal": 29.16271353615663,
+    "hypo_rec": 65.0,
+    "hypo_reb": 34.883720930232556,
+    "compress": 2.143122907106536,
+    "noise": 6.38582986296758,
+    "insulin_cv": 5.312185581591478
+   },
+   "tir_cgm": 85.11904761904762,
+   "tbr70_cgm": 5.146329365079365,
+   "tbr54_cgm": 1.9097222222222223,
+   "insulin_per_day": 53.76159372482708
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#021",
+   "completed": true,
+   "seconds": 93.66603517532349,
+   "values": {
+    "cv": 33.415782124416076,
+    "tail": 2.158005705072554,
+    "acf30": 0.9171165971298949,
+    "acf60": 0.7819302685971788,
+    "outcome": 20.406644836530138,
+    "diurnal": 28.44459706715392,
+    "hypo_rec": 80.0,
+    "hypo_reb": 43.58974358974359,
+    "compress": 5.35780726776634,
+    "noise": 4.208052422560832,
+    "insulin_cv": 5.458792541450021
+   },
+   "tir_cgm": 78.13740079365078,
+   "tbr70_cgm": 4.613095238095238,
+   "tbr54_cgm": 1.4632936507936507,
+   "insulin_per_day": 49.11272123113541
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#022",
+   "completed": true,
+   "seconds": 95.88849997520447,
+   "values": {
+    "cv": 30.17473771068514,
+    "tail": 2.3688453429244696,
+    "acf30": 0.9291817457232706,
+    "acf60": 0.8296921527423359,
+    "outcome": 18.424700694405324,
+    "diurnal": 33.93895384691854,
+    "hypo_rec": 72.5,
+    "hypo_reb": 20.0,
+    "compress": 4.286245814213072,
+    "noise": 5.894840127711131,
+    "insulin_cv": 2.623762554352029
+   },
+   "tir_cgm": 80.40674603174604,
+   "tbr70_cgm": 1.2648809523809523,
+   "tbr54_cgm": 0.1736111111111111,
+   "insulin_per_day": 55.82304545112878
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#023",
+   "completed": true,
+   "seconds": 97.15951299667358,
+   "values": {
+    "cv": 28.80721085561891,
+    "tail": 2.5796849807763857,
+    "acf30": 0.8432789089563613,
+    "acf60": 0.5601378449454931,
+    "outcome": 28.613138167722123,
+    "diurnal": 36.732340768146486,
+    "hypo_rec": 100.0,
+    "hypo_reb": 23.076923076923077,
+    "compress": 3.214684360659804,
+    "noise": 4.719325299658833,
+    "insulin_cv": 2.8278255457129284
+   },
+   "tir_cgm": 87.12797619047619,
+   "tbr70_cgm": 4.278273809523809,
+   "tbr54_cgm": 1.5128968253968254,
+   "insulin_per_day": 35.46473214285714
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#024",
+   "completed": true,
+   "seconds": 96.40639901161194,
+   "values": {
+    "cv": 28.027344952001215,
+    "tail": 2.269626689817686,
+    "acf30": 0.913656767480948,
+    "acf60": 0.7810672049024465,
+    "outcome": 19.42900543867723,
+    "diurnal": 30.425474479583585,
+    "hypo_rec": 47.5,
+    "hypo_reb": 20.0,
+    "compress": 4.286245814213072,
+    "noise": 3.9334187746588816,
+    "insulin_cv": 6.086799456281063
+   },
+   "tir_cgm": 68.58878968253968,
+   "tbr70_cgm": 0.38442460317460314,
+   "tbr54_cgm": 0.06200396825396825,
+   "insulin_per_day": 70.76670735268307
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#025",
+   "completed": true,
+   "seconds": 97.32527375221252,
+   "values": {
+    "cv": 29.095554982420342,
+    "tail": 2.7905246186283024,
+    "acf30": 0.897308390364881,
+    "acf60": 0.7578427445747332,
+    "outcome": 21.875232081050978,
+    "diurnal": 39.295973641579025,
+    "hypo_rec": 50.0,
+    "hypo_reb": 14.285714285714285,
+    "compress": 4.286245814213072,
+    "noise": 4.336670919019928,
+    "insulin_cv": 5.024198800529921
+   },
+   "tir_cgm": 79.40228174603175,
+   "tbr70_cgm": 1.029265873015873,
+   "tbr54_cgm": 0.28521825396825395,
+   "insulin_per_day": 68.54461150169907
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#027",
+   "completed": true,
+   "seconds": 96.8475272655487,
+   "values": {
+    "cv": 29.68983924855357,
+    "tail": 5.283393277936252,
+    "acf30": 0.8888990570437623,
+    "acf60": 0.7100306775858655,
+    "outcome": 22.61481747605336,
+    "diurnal": 31.017314323896642,
+    "hypo_rec": 62.5,
+    "hypo_reb": 28.57142857142857,
+    "compress": 3.214684360659804,
+    "noise": 8.107562163557716,
+    "insulin_cv": 9.059869105293554
+   },
+   "tir_cgm": 78.49702380952381,
+   "tbr70_cgm": 3.757440476190476,
+   "tbr54_cgm": 1.5873015873015872,
+   "insulin_per_day": 65.6069483176339
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#028",
+   "completed": true,
+   "seconds": 96.23894190788269,
+   "values": {
+    "cv": 31.239074054163837,
+    "tail": 3.8075158129728384,
+    "acf30": 0.9234305488225376,
+    "acf60": 0.8131689738681581,
+    "outcome": 19.045892311720284,
+    "diurnal": 42.974909477014165,
+    "hypo_rec": 80.0,
+    "hypo_reb": 21.428571428571427,
+    "compress": 3.214684360659804,
+    "noise": 5.48711902412974,
+    "insulin_cv": 6.608280263721334
+   },
+   "tir_cgm": 62.10317460317461,
+   "tbr70_cgm": 1.4508928571428572,
+   "tbr54_cgm": 0.28521825396825395,
+   "insulin_per_day": 67.94887580825666
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#029",
+   "completed": true,
+   "seconds": 98.74700617790222,
+   "values": {
+    "cv": 26.64849535345825,
+    "tail": 2.443259332754558,
+    "acf30": 0.8801845099531713,
+    "acf60": 0.6912227212481237,
+    "outcome": 21.507224901455178,
+    "diurnal": 34.0124390264765,
+    "hypo_rec": 60.0,
+    "hypo_reb": 55.55555555555556,
+    "compress": 4.286245814213072,
+    "noise": 5.26072197303992,
+    "insulin_cv": 5.3559828581376925
+   },
+   "tir_cgm": 82.98611111111111,
+   "tbr70_cgm": 1.0912698412698412,
+   "tbr54_cgm": 0.16121031746031744,
+   "insulin_per_day": 38.937216707543406
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#030",
+   "completed": true,
+   "seconds": 97.87104201316833,
+   "values": {
+    "cv": 33.338569005582464,
+    "tail": 2.517673322584646,
+    "acf30": 0.8992653303971476,
+    "acf60": 0.7168386163707394,
+    "outcome": 24.20764626958233,
+    "diurnal": 64.03366166015475,
+    "hypo_rec": 80.0,
+    "hypo_reb": 34.04255319148936,
+    "compress": 3.214684360659804,
+    "noise": 5.118543185264688,
+    "insulin_cv": 5.7528220492658875
+   },
+   "tir_cgm": 78.39781746031747,
+   "tbr70_cgm": 3.7202380952380953,
+   "tbr54_cgm": 1.128472222222222,
+   "insulin_per_day": 56.605942498270466
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#031",
+   "completed": true,
+   "seconds": 98.6989860534668,
+   "values": {
+    "cv": 33.449025732734604,
+    "tail": 3.038571251395262,
+    "acf30": 0.9201127885451985,
+    "acf60": 0.7769280227061257,
+    "outcome": 24.246568287300143,
+    "diurnal": 33.1194953150349,
+    "hypo_rec": 32.5,
+    "hypo_reb": 83.33333333333334,
+    "compress": 4.286245814213072,
+    "noise": 5.202008496278669,
+    "insulin_cv": 4.7757599006842675
+   },
+   "tir_cgm": 69.44444444444444,
+   "tbr70_cgm": 1.3640873015873016,
+   "tbr54_cgm": 0.3224206349206349,
+   "insulin_per_day": 43.7222414471682
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#032",
+   "completed": true,
+   "seconds": 94.82698202133179,
+   "values": {
+    "cv": 28.96792084309487,
+    "tail": 3.1501922361403945,
+    "acf30": 0.8644920891641134,
+    "acf60": 0.6663926474621354,
+    "outcome": 22.87278914286793,
+    "diurnal": 30.794447714436615,
+    "hypo_rec": 80.0,
+    "hypo_reb": 25.806451612903224,
+    "compress": 3.214684360659804,
+    "noise": 4.05384824051294,
+    "insulin_cv": 3.92435673089001
+   },
+   "tir_cgm": 81.8328373015873,
+   "tbr70_cgm": 2.4677579365079363,
+   "tbr54_cgm": 0.3472222222222222,
+   "insulin_per_day": 57.46252584904911
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#033",
+   "completed": true,
+   "seconds": 96.22565126419067,
+   "values": {
+    "cv": 28.112107199902727,
+    "tail": 3.05097358303361,
+    "acf30": 0.9002722352012847,
+    "acf60": 0.7428009844447855,
+    "outcome": 19.441482207353943,
+    "diurnal": 21.71190993604722,
+    "hypo_rec": 62.5,
+    "hypo_reb": 64.28571428571429,
+    "compress": 3.214684360659804,
+    "noise": 6.312473256097296,
+    "insulin_cv": 3.7660242472451784
+   },
+   "tir_cgm": 75.84325396825396,
+   "tbr70_cgm": 1.4508928571428572,
+   "tbr54_cgm": 0.6696428571428571,
+   "insulin_per_day": 36.86852667124424
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#034",
+   "completed": true,
+   "seconds": 98.03999066352844,
+   "values": {
+    "cv": 39.27923554239317,
+    "tail": 3.819918144611187,
+    "acf30": 0.927543966981222,
+    "acf60": 0.7863215045071819,
+    "outcome": 26.623393777633314,
+    "diurnal": 34.5037568369045,
+    "hypo_rec": 75.0,
+    "hypo_reb": 57.89473684210527,
+    "compress": 5.35780726776634,
+    "noise": 5.68912323200825,
+    "insulin_cv": 10.145892050212858
+   },
+   "tir_cgm": 66.00942460317461,
+   "tbr70_cgm": 4.365079365079365,
+   "tbr54_cgm": 1.4756944444444444,
+   "insulin_per_day": 49.92172365022845
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#035",
+   "completed": true,
+   "seconds": 98.84224820137024,
+   "values": {
+    "cv": 29.16673312791987,
+    "tail": 1.7115217660920254,
+    "acf30": 0.9342661695282772,
+    "acf60": 0.8346524071922157,
+    "outcome": 19.58362182473891,
+    "diurnal": 50.85806828769867,
+    "hypo_rec": 20.0,
+    "hypo_reb": 40.0,
+    "compress": 1.071561453553268,
+    "noise": 4.054147467892013,
+    "insulin_cv": 7.035994480624821
+   },
+   "tir_cgm": 72.33382936507937,
+   "tbr70_cgm": 0.21081349206349206,
+   "tbr54_cgm": 0.0496031746031746,
+   "insulin_per_day": 83.14629909717311
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#036",
+   "completed": true,
+   "seconds": 96.77022194862366,
+   "values": {
+    "cv": 33.7763255339568,
+    "tail": 3.038571251395262,
+    "acf30": 0.9383798699003181,
+    "acf60": 0.8378876109772755,
+    "outcome": 21.295032342848835,
+    "diurnal": 54.7705942445254,
+    "hypo_rec": 60.0,
+    "hypo_reb": 40.0,
+    "compress": 3.214684360659804,
+    "noise": 5.187740140305232,
+    "insulin_cv": 5.95843352605841
+   },
+   "tir_cgm": 64.71974206349206,
+   "tbr70_cgm": 0.5456349206349206,
+   "tbr54_cgm": 0.03720238095238095,
+   "insulin_per_day": 113.16615169851954
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#037",
+   "completed": true,
+   "seconds": 97.65653610229492,
+   "values": {
+    "cv": 40.45474208732215,
+    "tail": 3.05097358303361,
+    "acf30": 0.9555879787275747,
+    "acf60": 0.8820906398272399,
+    "outcome": 17.224607140439257,
+    "diurnal": 41.4866306704414,
+    "hypo_rec": 115.0,
+    "hypo_reb": 34.54545454545455,
+    "compress": 0.0,
+    "noise": 6.610510039517473,
+    "insulin_cv": 6.6219164459195765
+   },
+   "tir_cgm": 73.67311507936508,
+   "tbr70_cgm": 4.129464285714286,
+   "tbr54_cgm": 0.7564484126984127,
+   "insulin_per_day": 70.96614806560102
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#038",
+   "completed": true,
+   "seconds": 97.83098483085632,
+   "values": {
+    "cv": 29.442875424459597,
+    "tail": 3.4726528587374426,
+    "acf30": 0.9313146512245759,
+    "acf60": 0.8456039696970074,
+    "outcome": 18.569534764215383,
+    "diurnal": 46.114851015900314,
+    "hypo_rec": 20.0,
+    "hypo_reb": 42.857142857142854,
+    "compress": 4.286245814213072,
+    "noise": 6.304127764610283,
+    "insulin_cv": 4.7678978771837714
+   },
+   "tir_cgm": 60.70188492063492,
+   "tbr70_cgm": 0.16121031746031744,
+   "tbr54_cgm": 0.0248015873015873,
+   "insulin_per_day": 67.48543111630651
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#039",
+   "completed": true,
+   "seconds": 95.61799383163452,
+   "values": {
+    "cv": 31.516140863904273,
+    "tail": 3.981148455909711,
+    "acf30": 0.827341525743262,
+    "acf60": 0.5627253743181987,
+    "outcome": 25.45684592461419,
+    "diurnal": 42.951920334020485,
+    "hypo_rec": 72.5,
+    "hypo_reb": 26.38888888888889,
+    "compress": 3.214684360659804,
+    "noise": 5.276650272607254,
+    "insulin_cv": 8.094197591768467
+   },
+   "tir_cgm": 86.22271825396825,
+   "tbr70_cgm": 6.7832341269841265,
+   "tbr54_cgm": 1.8973214285714284,
+   "insulin_per_day": 32.81160714285714
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#040",
+   "completed": true,
+   "seconds": 94.27335500717163,
+   "values": {
+    "cv": 30.563555074291088,
+    "tail": 3.3486295423539625,
+    "acf30": 0.884115403603165,
+    "acf60": 0.6956340236803821,
+    "outcome": 26.66249379943325,
+    "diurnal": 24.209685988780194,
+    "hypo_rec": 65.0,
+    "hypo_reb": 17.24137931034483,
+    "compress": 3.214684360659804,
+    "noise": 6.133382150570791,
+    "insulin_cv": 6.372073453167259
+   },
+   "tir_cgm": 88.55406746031747,
+   "tbr70_cgm": 1.984126984126984,
+   "tbr54_cgm": 0.1736111111111111,
+   "insulin_per_day": 46.920832699563626
+  },
+  {
+   "arm": "slow_030",
+   "name": "adult#041",
+   "completed": true,
+   "seconds": 96.20816111564636,
+   "values": {
+    "cv": 22.838495034175963,
+    "tail": 1.8355450824755055,
+    "acf30": 0.8667100021698549,
+    "acf60": 0.695906151990519,
+    "outcome": 17.61369860911917,
+    "diurnal": 19.294916029146663,
+    "hypo_rec": 40.0,
+    "hypo_reb": 42.857142857142854,
+    "compress": 3.214684360659804,
+    "noise": 4.403357537882239,
+    "insulin_cv": 3.9757690930340215
+   },
+   "tir_cgm": 86.04910714285714,
+   "tbr70_cgm": 0.8804563492063492,
+   "tbr54_cgm": 0.0496031746031746,
+   "insulin_per_day": 30.603438533514254
+  },
+  {
+   "arm": "activity",
+   "name": "adult#001",
+   "completed": true,
+   "seconds": 95.34581303596497,
+   "values": {
+    "cv": 31.938720031756937,
+    "tail": 4.452437058166935,
+    "acf30": 0.9210634844111297,
+    "acf60": 0.8171711281354609,
+    "outcome": 19.05393233992844,
+    "diurnal": 16.39539483873682,
+    "hypo_rec": 87.5,
+    "hypo_reb": 25.0,
+    "compress": 4.286245814213072,
+    "noise": 7.608377876048513,
+    "insulin_cv": 6.194611820679095
+   },
+   "tir_cgm": 78.57142857142857,
+   "tbr70_cgm": 2.2445436507936507,
+   "tbr54_cgm": 0.8060515873015874,
+   "insulin_per_day": 54.386091144464594
+  },
+  {
+   "arm": "activity",
+   "name": "adult#002",
+   "completed": true,
+   "seconds": 97.73456811904907,
+   "values": {
+    "cv": 30.97396420881724,
+    "tail": 1.8975567406672456,
+    "acf30": 0.8980498439350564,
+    "acf60": 0.7259464425104385,
+    "outcome": 25.391795971598984,
+    "diurnal": 25.293983138006126,
+    "hypo_rec": 85.0,
+    "hypo_reb": 33.33333333333333,
+    "compress": 4.286245814213072,
+    "noise": 4.481055880429821,
+    "insulin_cv": 4.37383276181442
+   },
+   "tir_cgm": 83.5689484126984,
+   "tbr70_cgm": 1.8601190476190477,
+   "tbr54_cgm": 0.35962301587301587,
+   "insulin_per_day": 52.26606935273907
+  },
+  {
+   "arm": "activity",
+   "name": "adult#003",
+   "completed": true,
+   "seconds": 100.8722140789032,
+   "values": {
+    "cv": 32.63705105116022,
+    "tail": 5.767084211831825,
+    "acf30": 0.9114004437271003,
+    "acf60": 0.7626259534408105,
+    "outcome": 25.01427321683452,
+    "diurnal": 34.08816794845282,
+    "hypo_rec": 50.0,
+    "hypo_reb": 68.42105263157895,
+    "compress": 3.214684360659804,
+    "noise": 7.859984096170766,
+    "insulin_cv": 4.832774457834251
+   },
+   "tir_cgm": 72.17261904761905,
+   "tbr70_cgm": 0.9672619047619048,
+   "tbr54_cgm": 0.1736111111111111,
+   "insulin_per_day": 68.06823196462535
+  },
+  {
+   "arm": "activity",
+   "name": "adult#004",
+   "completed": true,
+   "seconds": 98.00060963630676,
+   "values": {
+    "cv": 32.861209265025664,
+    "tail": 3.708297159866055,
+    "acf30": 0.9083359641509599,
+    "acf60": 0.757925491415912,
+    "outcome": 23.492621117479064,
+    "diurnal": 46.304163254232066,
+    "hypo_rec": 55.0,
+    "hypo_reb": 26.666666666666668,
+    "compress": 1.071561453553268,
+    "noise": 5.791711773431339,
+    "insulin_cv": 8.481191269849209
+   },
+   "tir_cgm": 69.96527777777779,
+   "tbr70_cgm": 1.0788690476190477,
+   "tbr54_cgm": 0.21081349206349206,
+   "insulin_per_day": 58.63394520158663
+  },
+  {
+   "arm": "activity",
+   "name": "adult#005",
+   "completed": true,
+   "seconds": 97.30364298820496,
+   "values": {
+    "cv": 29.33600834260715,
+    "tail": 2.7781222869899542,
+    "acf30": 0.9061191061658467,
+    "acf60": 0.776349361428775,
+    "outcome": 21.05042960203387,
+    "diurnal": 39.54091937489355,
+    "hypo_rec": 50.0,
+    "hypo_reb": 30.76923076923077,
+    "compress": 4.286245814213072,
+    "noise": 5.285223532838866,
+    "insulin_cv": 8.791328712036703
+   },
+   "tir_cgm": 75.76884920634922,
+   "tbr70_cgm": 0.8680555555555556,
+   "tbr54_cgm": 0.13640873015873015,
+   "insulin_per_day": 61.88203445447154
+  },
+  {
+   "arm": "activity",
+   "name": "adult#006",
+   "completed": true,
+   "seconds": 98.44620084762573,
+   "values": {
+    "cv": 43.41631043651684,
+    "tail": 6.2755798090040935,
+    "acf30": 0.9403463285178777,
+    "acf60": 0.8285997418817165,
+    "outcome": 28.456415110604087,
+    "diurnal": 40.42939780023042,
+    "hypo_rec": 60.0,
+    "hypo_reb": 42.857142857142854,
+    "compress": 4.286245814213072,
+    "noise": 8.04950479752059,
+    "insulin_cv": 7.32271599004513
+   },
+   "tir_cgm": 67.63392857142857,
+   "tbr70_cgm": 2.703373015873016,
+   "tbr54_cgm": 1.0788690476190477,
+   "insulin_per_day": 72.46420774381122
+  },
+  {
+   "arm": "activity",
+   "name": "adult#007",
+   "completed": true,
+   "seconds": 95.97744297981262,
+   "values": {
+    "cv": 27.260558219995467,
+    "tail": 2.1952126999875974,
+    "acf30": 0.8944016302531197,
+    "acf60": 0.736551148297772,
+    "outcome": 21.055563453639714,
+    "diurnal": 14.836704775729572,
+    "hypo_rec": 75.0,
+    "hypo_reb": 30.434782608695656,
+    "compress": 4.286245814213072,
+    "noise": 4.90681611364754,
+    "insulin_cv": 4.054365684242706
+   },
+   "tir_cgm": 78.55902777777779,
+   "tbr70_cgm": 1.922123015873016,
+   "tbr54_cgm": 0.35962301587301587,
+   "insulin_per_day": 39.63767564782719
+  },
+  {
+   "arm": "activity",
+   "name": "adult#008",
+   "completed": true,
+   "seconds": 96.6533591747284,
+   "values": {
+    "cv": 37.1534313316787,
+    "tail": 3.8819298028029268,
+    "acf30": 0.900364114304377,
+    "acf60": 0.7181554429680422,
+    "outcome": 30.09197468407305,
+    "diurnal": 35.32303780566707,
+    "hypo_rec": 55.0,
+    "hypo_reb": 62.06896551724138,
+    "compress": 4.286245814213072,
+    "noise": 4.379507233456893,
+    "insulin_cv": 5.579067806857887
+   },
+   "tir_cgm": 75.49603174603175,
+   "tbr70_cgm": 2.5297619047619047,
+   "tbr54_cgm": 0.818452380952381,
+   "insulin_per_day": 49.36631450184867
+  },
+  {
+   "arm": "activity",
+   "name": "adult#009",
+   "completed": true,
+   "seconds": 96.69347906112671,
+   "values": {
+    "cv": 26.847932836074904,
+    "tail": 1.6371077762619373,
+    "acf30": 0.8770252076312348,
+    "acf60": 0.6850036007939512,
+    "outcome": 23.912080744727167,
+    "diurnal": 33.88773015582218,
+    "hypo_rec": 77.5,
+    "hypo_reb": 45.83333333333333,
+    "compress": 3.214684360659804,
+    "noise": 4.123814750790517,
+    "insulin_cv": 2.016384972034233
+   },
+   "tir_cgm": 87.98363095238095,
+   "tbr70_cgm": 1.5625,
+   "tbr54_cgm": 0.5208333333333333,
+   "insulin_per_day": 42.730100225715546
+  },
+  {
+   "arm": "activity",
+   "name": "adult#010",
+   "completed": true,
+   "seconds": 95.55878782272339,
+   "values": {
+    "cv": 23.78897051388643,
+    "tail": 1.5999007813468933,
+    "acf30": 0.8818802177914022,
+    "acf60": 0.746420476593085,
+    "outcome": 15.30830933400377,
+    "diurnal": 32.181911581451516,
+    "hypo_rec": 45.0,
+    "hypo_reb": 6.666666666666667,
+    "compress": 4.286245814213072,
+    "noise": 4.728111886753896,
+    "insulin_cv": 5.514669431659636
+   },
+   "tir_cgm": 89.59573412698413,
+   "tbr70_cgm": 1.4632936507936507,
+   "tbr54_cgm": 0.4340277777777778,
+   "insulin_per_day": 41.06689790974057
+  },
+  {
+   "arm": "activity",
+   "name": "adult#011",
+   "completed": true,
+   "seconds": 101.89814901351929,
+   "values": {
+    "cv": 33.28602515663996,
+    "tail": 2.8649386084583903,
+    "acf30": 0.8995410801726975,
+    "acf60": 0.7190404984864751,
+    "outcome": 24.971907878189228,
+    "diurnal": 34.50997137855461,
+    "hypo_rec": 62.5,
+    "hypo_reb": 43.75,
+    "compress": 3.214684360659804,
+    "noise": 4.380570091218952,
+    "insulin_cv": 4.623244059319757
+   },
+   "tir_cgm": 78.11259920634922,
+   "tbr70_cgm": 2.876984126984127,
+   "tbr54_cgm": 0.9300595238095238,
+   "insulin_per_day": 40.538804759137015
+  },
+  {
+   "arm": "activity",
+   "name": "adult#012",
+   "completed": true,
+   "seconds": 98.54655480384827,
+   "values": {
+    "cv": 27.06880216365751,
+    "tail": 2.5424779858613418,
+    "acf30": 0.8934235198960548,
+    "acf60": 0.7350326861189136,
+    "outcome": 17.82583157883153,
+    "diurnal": 27.905162213282352,
+    "hypo_rec": 75.0,
+    "hypo_reb": 39.39393939393939,
+    "compress": 3.214684360659804,
+    "noise": 5.559104831707712,
+    "insulin_cv": 7.0260084171713215
+   },
+   "tir_cgm": 78.08779761904762,
+   "tbr70_cgm": 2.517361111111111,
+   "tbr54_cgm": 0.5580357142857143,
+   "insulin_per_day": 51.913918465079846
+  },
+  {
+   "arm": "activity",
+   "name": "adult#013",
+   "completed": true,
+   "seconds": 97.05494403839111,
+   "values": {
+    "cv": 30.963585307652167,
+    "tail": 2.3192360163710775,
+    "acf30": 0.9160867975541691,
+    "acf60": 0.8011402484490938,
+    "outcome": 19.289207853095924,
+    "diurnal": 24.688988500079375,
+    "hypo_rec": 112.5,
+    "hypo_reb": 13.636363636363635,
+    "compress": 5.35780726776634,
+    "noise": 5.1105195578672316,
+    "insulin_cv": 5.3627230644818695
+   },
+   "tir_cgm": 76.01686507936508,
+   "tbr70_cgm": 1.6617063492063493,
+   "tbr54_cgm": 0.5208333333333333,
+   "insulin_per_day": 71.6309032115752
+  },
+  {
+   "arm": "activity",
+   "name": "adult#014",
+   "completed": true,
+   "seconds": 98.59362483024597,
+   "values": {
+    "cv": 40.09074683860351,
+    "tail": 5.283393277936252,
+    "acf30": 0.9096196609325471,
+    "acf60": 0.7349920845158024,
+    "outcome": 29.74567927103603,
+    "diurnal": 34.20699962501536,
+    "hypo_rec": 85.0,
+    "hypo_reb": 67.27272727272727,
+    "compress": 5.35780726776634,
+    "noise": 6.303201724103612,
+    "insulin_cv": 2.170081804115216
+   },
+   "tir_cgm": 72.90426587301587,
+   "tbr70_cgm": 4.191468253968254,
+   "tbr54_cgm": 1.1036706349206349,
+   "insulin_per_day": 39.42454497363519
+  },
+  {
+   "arm": "activity",
+   "name": "adult#015",
+   "completed": true,
+   "seconds": 104.2783739566803,
+   "values": {
+    "cv": 26.077029798560517,
+    "tail": 3.646285501674315,
+    "acf30": 0.8479978492679945,
+    "acf60": 0.6143255125487374,
+    "outcome": 21.303792495063004,
+    "diurnal": 20.529251248699694,
+    "hypo_rec": 47.5,
+    "hypo_reb": 60.0,
+    "compress": 6.429368721319608,
+    "noise": 5.2611896618561,
+    "insulin_cv": 2.075021444865153
+   },
+   "tir_cgm": 78.90625,
+   "tbr70_cgm": 1.3392857142857142,
+   "tbr54_cgm": 0.3720238095238095,
+   "insulin_per_day": 41.61968605938224
+  },
+  {
+   "arm": "activity",
+   "name": "adult#016",
+   "completed": true,
+   "seconds": 96.42100715637207,
+   "values": {
+    "cv": 33.37549448572705,
+    "tail": 2.3068336847327298,
+    "acf30": 0.929887758573235,
+    "acf60": 0.810723404743861,
+    "outcome": 19.467636863820417,
+    "diurnal": 30.010748730452235,
+    "hypo_rec": 90.0,
+    "hypo_reb": 25.0,
+    "compress": 5.35780726776634,
+    "noise": 5.121801242373285,
+    "insulin_cv": 7.109161233497924
+   },
+   "tir_cgm": 76.73611111111111,
+   "tbr70_cgm": 2.194940476190476,
+   "tbr54_cgm": 0.5704365079365079,
+   "insulin_per_day": 58.057165366685865
+  },
+  {
+   "arm": "activity",
+   "name": "adult#017",
+   "completed": true,
+   "seconds": 101.44809889793396,
+   "values": {
+    "cv": 38.32400769839344,
+    "tail": 2.2200173632642937,
+    "acf30": 0.9329971720570632,
+    "acf60": 0.8256064691198045,
+    "outcome": 19.899281840056815,
+    "diurnal": 37.03862017476408,
+    "hypo_rec": 80.0,
+    "hypo_reb": 40.816326530612244,
+    "compress": 6.429368721319608,
+    "noise": 4.4001561304977965,
+    "insulin_cv": 5.762513184026297
+   },
+   "tir_cgm": 74.36755952380952,
+   "tbr70_cgm": 4.985119047619048,
+   "tbr54_cgm": 1.2524801587301588,
+   "insulin_per_day": 74.94936826258981
+  },
+  {
+   "arm": "activity",
+   "name": "adult#018",
+   "completed": true,
+   "seconds": 98.40020203590393,
+   "values": {
+    "cv": 29.417281391752688,
+    "tail": 3.0013642564802185,
+    "acf30": 0.9081832278793285,
+    "acf60": 0.7773379443382762,
+    "outcome": 19.08686068663901,
+    "diurnal": 31.419321815018122,
+    "hypo_rec": 55.0,
+    "hypo_reb": 38.095238095238095,
+    "compress": 4.286245814213072,
+    "noise": 5.020197840295334,
+    "insulin_cv": 3.509012495844715
+   },
+   "tir_cgm": 65.55059523809523,
+   "tbr70_cgm": 0.992063492063492,
+   "tbr54_cgm": 0.0992063492063492,
+   "insulin_per_day": 86.63211888843942
+  },
+  {
+   "arm": "activity",
+   "name": "adult#019",
+   "completed": true,
+   "seconds": 95.5041856765747,
+   "values": {
+    "cv": 29.70739499716122,
+    "tail": 4.1423787672082355,
+    "acf30": 0.8505447550008068,
+    "acf60": 0.6183821796092399,
+    "outcome": 27.34907000763856,
+    "diurnal": 32.881653597018044,
+    "hypo_rec": 67.5,
+    "hypo_reb": 35.0,
+    "compress": 3.214684360659804,
+    "noise": 6.43497764062395,
+    "insulin_cv": 3.215033510428841
+   },
+   "tir_cgm": 86.19791666666666,
+   "tbr70_cgm": 1.1036706349206349,
+   "tbr54_cgm": 0.0992063492063492,
+   "insulin_per_day": 51.738690851318765
+  },
+  {
+   "arm": "activity",
+   "name": "adult#020",
+   "completed": true,
+   "seconds": 96.80062794685364,
+   "values": {
+    "cv": 34.88179569185598,
+    "tail": 4.626069701103807,
+    "acf30": 0.8710419871817279,
+    "acf60": 0.6513170465210367,
+    "outcome": 28.467932311257854,
+    "diurnal": 17.176344823753112,
+    "hypo_rec": 72.5,
+    "hypo_reb": 40.32258064516129,
+    "compress": 1.071561453553268,
+    "noise": 6.412514887200882,
+    "insulin_cv": 4.912042248693243
+   },
+   "tir_cgm": 82.71329365079364,
+   "tbr70_cgm": 4.749503968253968,
+   "tbr54_cgm": 1.3392857142857142,
+   "insulin_per_day": 56.01682789753655
+  },
+  {
+   "arm": "activity",
+   "name": "adult#021",
+   "completed": true,
+   "seconds": 95.79564809799194,
+   "values": {
+    "cv": 38.05366948406554,
+    "tail": 2.6665013022448223,
+    "acf30": 0.9214601382521834,
+    "acf60": 0.7708770529533748,
+    "outcome": 26.572118635214878,
+    "diurnal": 34.22616584135312,
+    "hypo_rec": 70.0,
+    "hypo_reb": 51.724137931034484,
+    "compress": 5.35780726776634,
+    "noise": 4.1164497863961484,
+    "insulin_cv": 2.219255135724847
+   },
+   "tir_cgm": 78.02579365079364,
+   "tbr70_cgm": 4.129464285714286,
+   "tbr54_cgm": 1.773313492063492,
+   "insulin_per_day": 48.866090818969646
+  },
+  {
+   "arm": "activity",
+   "name": "adult#022",
+   "completed": true,
+   "seconds": 96.66070818901062,
+   "values": {
+    "cv": 28.087467687496254,
+    "tail": 2.331638348009426,
+    "acf30": 0.918380992087655,
+    "acf60": 0.8150147865241162,
+    "outcome": 18.326538373873888,
+    "diurnal": 27.33298056781092,
+    "hypo_rec": 42.5,
+    "hypo_reb": 16.666666666666664,
+    "compress": 4.286245814213072,
+    "noise": 5.922271693895841,
+    "insulin_cv": 4.1401936107033945
+   },
+   "tir_cgm": 82.2296626984127,
+   "tbr70_cgm": 1.0168650793650793,
+   "tbr54_cgm": 0.1984126984126984,
+   "insulin_per_day": 54.96715047790188
+  },
+  {
+   "arm": "activity",
+   "name": "adult#023",
+   "completed": true,
+   "seconds": 97.36943173408508,
+   "values": {
+    "cv": 31.325603218585027,
+    "tail": 2.8401339451816945,
+    "acf30": 0.8600998789015948,
+    "acf60": 0.5984001044833922,
+    "outcome": 26.135980382802583,
+    "diurnal": 47.03996486972737,
+    "hypo_rec": 95.0,
+    "hypo_reb": 45.65217391304348,
+    "compress": 2.143122907106536,
+    "noise": 4.658850868715045,
+    "insulin_cv": 1.2546250012837588
+   },
+   "tir_cgm": 83.71775793650794,
+   "tbr70_cgm": 4.377480158730158,
+   "tbr54_cgm": 1.066468253968254,
+   "insulin_per_day": 36.07052232142857
+  },
+  {
+   "arm": "activity",
+   "name": "adult#024",
+   "completed": true,
+   "seconds": 97.01488208770752,
+   "values": {
+    "cv": 28.62259910111528,
+    "tail": 2.43085700111621,
+    "acf30": 0.8998911939480644,
+    "acf60": 0.7492102200680762,
+    "outcome": 20.617761210852468,
+    "diurnal": 26.8330686475922,
+    "hypo_rec": 65.0,
+    "hypo_reb": 38.46153846153847,
+    "compress": 4.286245814213072,
+    "noise": 3.980438350433417,
+    "insulin_cv": 2.5998244366447074
+   },
+   "tir_cgm": 76.5625,
+   "tbr70_cgm": 1.0044642857142858,
+   "tbr54_cgm": 0.21081349206349206,
+   "insulin_per_day": 66.88593683612802
+  },
+  {
+   "arm": "activity",
+   "name": "adult#025",
+   "completed": true,
+   "seconds": 96.1872410774231,
+   "values": {
+    "cv": 28.434862438616783,
+    "tail": 2.7781222869899542,
+    "acf30": 0.8788649182145017,
+    "acf60": 0.7045187249039876,
+    "outcome": 24.638999280040412,
+    "diurnal": 28.938023976820517,
+    "hypo_rec": 40.0,
+    "hypo_reb": 21.428571428571427,
+    "compress": 4.286245814213072,
+    "noise": 4.333300930779824,
+    "insulin_cv": 5.39031409861344
+   },
+   "tir_cgm": 84.93303571428571,
+   "tbr70_cgm": 0.8680555555555556,
+   "tbr54_cgm": 0.2728174603174603,
+   "insulin_per_day": 66.7294474841214
+  },
+  {
+   "arm": "activity",
+   "name": "adult#027",
+   "completed": true,
+   "seconds": 98.47135591506958,
+   "values": {
+    "cv": 32.12509649075697,
+    "tail": 5.5190375790648645,
+    "acf30": 0.8978820770928142,
+    "acf60": 0.7275409572365608,
+    "outcome": 23.765049308614362,
+    "diurnal": 26.478679102053178,
+    "hypo_rec": 77.5,
+    "hypo_reb": 17.647058823529413,
+    "compress": 4.286245814213072,
+    "noise": 8.135757275029036,
+    "insulin_cv": 4.995910874765871
+   },
+   "tir_cgm": 78.53422619047619,
+   "tbr70_cgm": 3.125,
+   "tbr54_cgm": 0.9176587301587302,
+   "insulin_per_day": 63.7708022883845
+  },
+  {
+   "arm": "activity",
+   "name": "adult#028",
+   "completed": true,
+   "seconds": 96.47546887397766,
+   "values": {
+    "cv": 30.793998198509133,
+    "tail": 3.571871511844227,
+    "acf30": 0.8982219438959154,
+    "acf60": 0.7505594277743157,
+    "outcome": 21.652913476099304,
+    "diurnal": 49.53691181846071,
+    "hypo_rec": 60.0,
+    "hypo_reb": 13.636363636363635,
+    "compress": 4.286245814213072,
+    "noise": 5.493967117087262,
+    "insulin_cv": 5.561205119911286
+   },
+   "tir_cgm": 73.87152777777779,
+   "tbr70_cgm": 1.847718253968254,
+   "tbr54_cgm": 0.3472222222222222,
+   "insulin_per_day": 62.81125503918629
+  },
+  {
+   "arm": "activity",
+   "name": "adult#029",
+   "completed": true,
+   "seconds": 100.4753270149231,
+   "values": {
+    "cv": 28.3692313318392,
+    "tail": 2.67890363388317,
+    "acf30": 0.8830751988769078,
+    "acf60": 0.6949814962450058,
+    "outcome": 22.681896844108273,
+    "diurnal": 27.013655122877054,
+    "hypo_rec": 50.0,
+    "hypo_reb": 41.66666666666667,
+    "compress": 3.214684360659804,
+    "noise": 5.302259069505785,
+    "insulin_cv": 4.895253394431002
+   },
+   "tir_cgm": 84.05257936507937,
+   "tbr70_cgm": 1.5376984126984126,
+   "tbr54_cgm": 0.4464285714285714,
+   "insulin_per_day": 38.33018252195734
+  },
+  {
+   "arm": "activity",
+   "name": "adult#030",
+   "completed": true,
+   "seconds": 98.33006191253662,
+   "values": {
+    "cv": 31.18513366792226,
+    "tail": 2.3688453429244696,
+    "acf30": 0.8974710486837472,
+    "acf60": 0.7240125625323777,
+    "outcome": 23.08440036523092,
+    "diurnal": 31.856906066922875,
+    "hypo_rec": 80.0,
+    "hypo_reb": 35.294117647058826,
+    "compress": 4.286245814213072,
+    "noise": 5.029180277571245,
+    "insulin_cv": 2.777232962403814
+   },
+   "tir_cgm": 83.64335317460318,
+   "tbr70_cgm": 2.7901785714285716,
+   "tbr54_cgm": 0.8928571428571428,
+   "insulin_per_day": 54.99935074030923
+  },
+  {
+   "arm": "activity",
+   "name": "adult#031",
+   "completed": true,
+   "seconds": 98.64139008522034,
+   "values": {
+    "cv": 31.905445825209906,
+    "tail": 2.9517549299268264,
+    "acf30": 0.9079807469111895,
+    "acf60": 0.7464424939001991,
+    "outcome": 22.844070493556035,
+    "diurnal": 29.3919734938342,
+    "hypo_rec": 52.5,
+    "hypo_reb": 56.666666666666664,
+    "compress": 4.286245814213072,
+    "noise": 5.2304045727120245,
+    "insulin_cv": 3.328265338956576
+   },
+   "tir_cgm": 70.01488095238095,
+   "tbr70_cgm": 1.6617063492063493,
+   "tbr54_cgm": 0.3472222222222222,
+   "insulin_per_day": 42.39601728229999
+  },
+  {
+   "arm": "activity",
+   "name": "adult#032",
+   "completed": true,
+   "seconds": 95.91010594367981,
+   "values": {
+    "cv": 32.36046091081696,
+    "tail": 2.92695026665013,
+    "acf30": 0.8918173136226444,
+    "acf60": 0.7292140321786674,
+    "outcome": 22.510320411660544,
+    "diurnal": 34.37944528870051,
+    "hypo_rec": 70.0,
+    "hypo_reb": 20.0,
+    "compress": 3.214684360659804,
+    "noise": 4.007888721482912,
+    "insulin_cv": 6.694063308151634
+   },
+   "tir_cgm": 81.98164682539682,
+   "tbr70_cgm": 2.604166666666667,
+   "tbr54_cgm": 0.5580357142857143,
+   "insulin_per_day": 55.74723305356566
+  },
+  {
+   "arm": "activity",
+   "name": "adult#033",
+   "completed": true,
+   "seconds": 95.64764904975891,
+   "values": {
+    "cv": 30.11267598313841,
+    "tail": 3.3362272107156143,
+    "acf30": 0.8901090898965598,
+    "acf60": 0.701586126254179,
+    "outcome": 23.241855960841026,
+    "diurnal": 38.718428254640116,
+    "hypo_rec": 67.5,
+    "hypo_reb": 73.07692307692307,
+    "compress": 4.286245814213072,
+    "noise": 6.292350139291786,
+    "insulin_cv": 1.4723338325772715
+   },
+   "tir_cgm": 78.29861111111111,
+   "tbr70_cgm": 2.058531746031746,
+   "tbr54_cgm": 0.818452380952381,
+   "insulin_per_day": 34.962219250013625
+  },
+  {
+   "arm": "activity",
+   "name": "adult#034",
+   "completed": true,
+   "seconds": 99.1133120059967,
+   "values": {
+    "cv": 38.72925794508033,
+    "tail": 3.993550787548059,
+    "acf30": 0.9227103427651474,
+    "acf60": 0.7692577032414537,
+    "outcome": 27.030892275576928,
+    "diurnal": 40.88811924314675,
+    "hypo_rec": 67.5,
+    "hypo_reb": 76.31578947368422,
+    "compress": 1.071561453553268,
+    "noise": 5.7197815432054355,
+    "insulin_cv": 5.4276717666622805
+   },
+   "tir_cgm": 67.55952380952381,
+   "tbr70_cgm": 4.079861111111112,
+   "tbr54_cgm": 1.69890873015873,
+   "insulin_per_day": 48.86575057584022
+  },
+  {
+   "arm": "activity",
+   "name": "adult#035",
+   "completed": true,
+   "seconds": 99.72936677932739,
+   "values": {
+    "cv": 30.266391252622576,
+    "tail": 1.9595683988589856,
+    "acf30": 0.9301941343170402,
+    "acf60": 0.8220124308836632,
+    "outcome": 17.787139241893957,
+    "diurnal": 36.2801914498956,
+    "hypo_rec": 47.5,
+    "hypo_reb": 80.0,
+    "compress": 3.214684360659804,
+    "noise": 4.032796976320989,
+    "insulin_cv": 7.345239941128494
+   },
+   "tir_cgm": 67.68353174603175,
+   "tbr70_cgm": 0.9672619047619048,
+   "tbr54_cgm": 0.26041666666666663,
+   "insulin_per_day": 80.54928048679633
+  },
+  {
+   "arm": "activity",
+   "name": "adult#036",
+   "completed": true,
+   "seconds": 97.51239705085754,
+   "values": {
+    "cv": 35.71954298312429,
+    "tail": 3.1998015626937866,
+    "acf30": 0.9347497627055797,
+    "acf60": 0.8278090865711545,
+    "outcome": 23.018680641248785,
+    "diurnal": 53.22994474195713,
+    "hypo_rec": 60.0,
+    "hypo_reb": 21.428571428571427,
+    "compress": 3.214684360659804,
+    "noise": 5.269776269461125,
+    "insulin_cv": 3.5584511752416135
+   },
+   "tir_cgm": 73.53670634920636,
+   "tbr70_cgm": 1.215277777777778,
+   "tbr54_cgm": 0.21081349206349206,
+   "insulin_per_day": 107.29467472622066
+  },
+  {
+   "arm": "activity",
+   "name": "adult#037",
+   "completed": true,
+   "seconds": 98.51144003868103,
+   "values": {
+    "cv": 31.427673196299782,
+    "tail": 2.9021456033734343,
+    "acf30": 0.9385030329775441,
+    "acf60": 0.8507388338575589,
+    "outcome": 15.559979023191788,
+    "diurnal": 25.85408309235899,
+    "hypo_rec": 72.5,
+    "hypo_reb": 17.857142857142858,
+    "compress": 3.214684360659804,
+    "noise": 6.63431133817975,
+    "insulin_cv": 8.4621816681031
+   },
+   "tir_cgm": 74.67757936507937,
+   "tbr70_cgm": 1.4756944444444444,
+   "tbr54_cgm": 0.08680555555555555,
+   "insulin_per_day": 69.0048110094205
+  },
+  {
+   "arm": "activity",
+   "name": "adult#038",
+   "completed": true,
+   "seconds": 97.40739417076111,
+   "values": {
+    "cv": 29.927122147020984,
+    "tail": 3.7703088180577953,
+    "acf30": 0.9167715585945864,
+    "acf60": 0.8044589484672654,
+    "outcome": 21.314395410967993,
+    "diurnal": 41.327680228845395,
+    "hypo_rec": 52.5,
+    "hypo_reb": 21.428571428571427,
+    "compress": 4.286245814213072,
+    "noise": 6.321236659730618,
+    "insulin_cv": 2.371494367618155
+   },
+   "tir_cgm": 69.90327380952381,
+   "tbr70_cgm": 0.5456349206349206,
+   "tbr54_cgm": 0.08680555555555555,
+   "insulin_per_day": 65.85328288531535
+  },
+  {
+   "arm": "activity",
+   "name": "adult#039",
+   "completed": true,
+   "seconds": 95.94183683395386,
+   "values": {
+    "cv": 29.306772718772283,
+    "tail": 3.6214808383976185,
+    "acf30": 0.8347797363849268,
+    "acf60": 0.5961560522042895,
+    "outcome": 24.078786902944607,
+    "diurnal": 18.932833920999343,
+    "hypo_rec": 65.0,
+    "hypo_reb": 36.36363636363637,
+    "compress": 2.143122907106536,
+    "noise": 5.236801420257572,
+    "insulin_cv": 7.5123014381275866
+   },
+   "tir_cgm": 88.67807539682539,
+   "tbr70_cgm": 4.489087301587301,
+   "tbr54_cgm": 1.0788690476190477,
+   "insulin_per_day": 34.00714285714286
+  },
+  {
+   "arm": "activity",
+   "name": "adult#040",
+   "completed": true,
+   "seconds": 95.28000068664551,
+   "values": {
+    "cv": 29.911885785038837,
+    "tail": 3.4478481954607467,
+    "acf30": 0.8816013729239853,
+    "acf60": 0.6854145060612927,
+    "outcome": 23.212752920000497,
+    "diurnal": 42.547362448937776,
+    "hypo_rec": 70.0,
+    "hypo_reb": 20.689655172413794,
+    "compress": 3.214684360659804,
+    "noise": 6.0957231773469855,
+    "insulin_cv": 6.329799873115527
+   },
+   "tir_cgm": 82.97371031746032,
+   "tbr70_cgm": 2.703373015873016,
+   "tbr54_cgm": 0.42162698412698413,
+   "insulin_per_day": 50.23288057381433
+  },
+  {
+   "arm": "activity",
+   "name": "adult#041",
+   "completed": true,
+   "seconds": 97.94868087768555,
+   "values": {
+    "cv": 23.869304042506137,
+    "tail": 2.1456033734342057,
+    "acf30": 0.8561916075541662,
+    "acf60": 0.663731091575181,
+    "outcome": 18.10163649734552,
+    "diurnal": 23.777871723374773,
+    "hypo_rec": 50.0,
+    "hypo_reb": 44.44444444444444,
+    "compress": 2.143122907106536,
+    "noise": 4.453747642580681,
+    "insulin_cv": 5.0130759208567355
+   },
+   "tir_cgm": 86.24751984126983,
+   "tbr70_cgm": 1.2276785714285714,
+   "tbr54_cgm": 0.3720238095238095,
+   "insulin_per_day": 29.873036440610317
+  },
+  {
+   "arm": "neither",
+   "name": "adult#001",
+   "completed": true,
+   "seconds": 95.33906602859497,
+   "values": {
+    "cv": 29.02557298155579,
+    "tail": 3.733101823142751,
+    "acf30": 0.9258471117563917,
+    "acf60": 0.8439583867782671,
+    "outcome": 17.306091197819217,
+    "diurnal": 25.539798288905672,
+    "hypo_rec": 57.5,
+    "hypo_reb": 7.142857142857142,
+    "compress": 2.143122907106536,
+    "noise": 7.550047438709117,
+    "insulin_cv": 5.860368401601785
+   },
+   "tir_cgm": 80.38194444444444,
+   "tbr70_cgm": 0.818452380952381,
+   "tbr54_cgm": 0.23561507936507936,
+   "insulin_per_day": 55.571630291601025
+  },
+  {
+   "arm": "neither",
+   "name": "adult#002",
+   "completed": true,
+   "seconds": 98.60811305046082,
+   "values": {
+    "cv": 24.542971487931844,
+    "tail": 1.215428500558105,
+    "acf30": 0.9026226138711276,
+    "acf60": 0.7735160443473527,
+    "outcome": 17.58602666922926,
+    "diurnal": 31.899722388858706,
+    "hypo_rec": 35.0,
+    "hypo_reb": 42.857142857142854,
+    "compress": 4.286245814213072,
+    "noise": 4.34695920169247,
+    "insulin_cv": 4.153049510609061
+   },
+   "tir_cgm": 86.86755952380952,
+   "tbr70_cgm": 0.35962301587301587,
+   "tbr54_cgm": 0.1736111111111111,
+   "insulin_per_day": 53.5767688466886
+  },
+  {
+   "arm": "neither",
+   "name": "adult#003",
+   "completed": true,
+   "seconds": 101.83844685554504,
+   "values": {
+    "cv": 28.257085906837645,
+    "tail": 4.365620736698499,
+    "acf30": 0.9300568774424834,
+    "acf60": 0.8390183458657687,
+    "outcome": 18.719623196147506,
+    "diurnal": 49.94748542572074,
+    "hypo_rec": 35.0,
+    "hypo_reb": 11.11111111111111,
+    "compress": 4.286245814213072,
+    "noise": 7.837180374224584,
+    "insulin_cv": 4.797303628962388
+   },
+   "tir_cgm": 70.18849206349206,
+   "tbr70_cgm": 0.1736111111111111,
+   "tbr54_cgm": 0.06200396825396825,
+   "insulin_per_day": 71.52898284678722
+  },
+  {
+   "arm": "neither",
+   "name": "adult#004",
+   "completed": true,
+   "seconds": 95.71367692947388,
+   "values": {
+    "cv": 28.200745301663122,
+    "tail": 3.423043532184051,
+    "acf30": 0.8869178352033311,
+    "acf60": 0.7233508453596299,
+    "outcome": 21.477714570617202,
+    "diurnal": 40.09085019105706,
+    "hypo_rec": 45.0,
+    "hypo_reb": 33.33333333333333,
+    "compress": 2.143122907106536,
+    "noise": 5.628491101970468,
+    "insulin_cv": 4.098820091724423
+   },
+   "tir_cgm": 77.30654761904762,
+   "tbr70_cgm": 0.5828373015873016,
+   "tbr54_cgm": 0.11160714285714285,
+   "insulin_per_day": 55.95826235215582
+  },
+  {
+   "arm": "neither",
+   "name": "adult#005",
+   "completed": true,
+   "seconds": 96.88501906394958,
+   "values": {
+    "cv": 25.00986437086314,
+    "tail": 1.9719707304973335,
+    "acf30": 0.8905416324744774,
+    "acf60": 0.7657256609801588,
+    "outcome": 18.817881912363795,
+    "diurnal": 39.6897031640258,
+    "hypo_rec": 72.5,
+    "hypo_reb": 10.0,
+    "compress": 4.286245814213072,
+    "noise": 5.267883543875738,
+    "insulin_cv": 5.192653634361831
+   },
+   "tir_cgm": 81.20039682539682,
+   "tbr70_cgm": 0.533234126984127,
+   "tbr54_cgm": 0.01240079365079365,
+   "insulin_per_day": 60.27332553758158
+  },
+  {
+   "arm": "neither",
+   "name": "adult#006",
+   "completed": true,
+   "seconds": 97.42608213424683,
+   "values": {
+    "cv": 38.81994024236284,
+    "tail": 5.060151308445988,
+    "acf30": 0.9421025743561021,
+    "acf60": 0.8353688096509652,
+    "outcome": 22.851883422942166,
+    "diurnal": 48.0008102244562,
+    "hypo_rec": 55.0,
+    "hypo_reb": 54.285714285714285,
+    "compress": 4.286245814213072,
+    "noise": 8.062408257760282,
+    "insulin_cv": 8.208495956540917
+   },
+   "tir_cgm": 74.45436507936508,
+   "tbr70_cgm": 1.5625,
+   "tbr54_cgm": 0.08680555555555555,
+   "insulin_per_day": 68.91097448871054
+  },
+  {
+   "arm": "neither",
+   "name": "adult#007",
+   "completed": true,
+   "seconds": 95.33611702919006,
+   "values": {
+    "cv": 25.831531545885777,
+    "tail": 1.463475133325065,
+    "acf30": 0.9120015212515992,
+    "acf60": 0.8074047922602401,
+    "outcome": 19.607935548285223,
+    "diurnal": 19.088340734572625,
+    "hypo_rec": 57.5,
+    "hypo_reb": 25.0,
+    "compress": 3.214684360659804,
+    "noise": 4.9254658929097,
+    "insulin_cv": 6.940242529409017
+   },
+   "tir_cgm": 86.28472222222221,
+   "tbr70_cgm": 0.38442460317460314,
+   "tbr54_cgm": 0.03720238095238095,
+   "insulin_per_day": 37.78695948697489
+  },
+  {
+   "arm": "neither",
+   "name": "adult#008",
+   "completed": true,
+   "seconds": 97.04677724838257,
+   "values": {
+    "cv": 31.627344423952234,
+    "tail": 3.0633759146719584,
+    "acf30": 0.9066317612502011,
+    "acf60": 0.7526237223551357,
+    "outcome": 23.25455292426502,
+    "diurnal": 50.92641143815088,
+    "hypo_rec": 45.0,
+    "hypo_reb": 50.0,
+    "compress": 3.214684360659804,
+    "noise": 4.488572547795712,
+    "insulin_cv": 5.988828986034121
+   },
+   "tir_cgm": 75.68204365079364,
+   "tbr70_cgm": 0.6696428571428571,
+   "tbr54_cgm": 0.13640873015873015,
+   "insulin_per_day": 50.1998431252058
+  },
+  {
+   "arm": "neither",
+   "name": "adult#009",
+   "completed": true,
+   "seconds": 97.49084997177124,
+   "values": {
+    "cv": 25.421430653558318,
+    "tail": 1.302244822026541,
+    "acf30": 0.8841822292569104,
+    "acf60": 0.7195811536405139,
+    "outcome": 19.805250977053177,
+    "diurnal": 14.362117548906383,
+    "hypo_rec": 55.0,
+    "hypo_reb": 38.46153846153847,
+    "compress": 4.286245814213072,
+    "noise": 4.157911890851696,
+    "insulin_cv": 2.1347621287658143
+   },
+   "tir_cgm": 89.98015873015873,
+   "tbr70_cgm": 0.744047619047619,
+   "tbr54_cgm": 0.1240079365079365,
+   "insulin_per_day": 42.526515634588236
+  },
+  {
+   "arm": "neither",
+   "name": "adult#010",
+   "completed": true,
+   "seconds": 95.37843990325928,
+   "values": {
+    "cv": 21.223226555690747,
+    "tail": 1.252635495473149,
+    "acf30": 0.8616877905733145,
+    "acf60": 0.7225329775192069,
+    "outcome": 14.072876291470182,
+    "diurnal": 30.901511728700854,
+    "hypo_rec": 97.5,
+    "hypo_reb": 8.333333333333332,
+    "compress": 5.35780726776634,
+    "noise": 4.752194988961965,
+    "insulin_cv": 5.03237763076949
+   },
+   "tir_cgm": 92.72073412698413,
+   "tbr70_cgm": 1.4012896825396826,
+   "tbr54_cgm": 0.0992063492063492,
+   "insulin_per_day": 39.59677305401153
+  },
+  {
+   "arm": "neither",
+   "name": "adult#011",
+   "completed": true,
+   "seconds": 100.23954105377197,
+   "values": {
+    "cv": 27.272413074983675,
+    "tail": 1.463475133325065,
+    "acf30": 0.9142740378886551,
+    "acf60": 0.8007050036558739,
+    "outcome": 19.287584209693186,
+    "diurnal": 27.265309036711443,
+    "hypo_rec": 65.0,
+    "hypo_reb": 26.666666666666668,
+    "compress": 4.286245814213072,
+    "noise": 4.421807670334985,
+    "insulin_cv": 7.415076500792616
+   },
+   "tir_cgm": 84.52380952380952,
+   "tbr70_cgm": 0.607638888888889,
+   "tbr54_cgm": 0.0248015873015873,
+   "insulin_per_day": 39.28116183903986
+  },
+  {
+   "arm": "neither",
+   "name": "adult#012",
+   "completed": true,
+   "seconds": 97.88297891616821,
+   "values": {
+    "cv": 23.565546147958678,
+    "tail": 1.8603497457522014,
+    "acf30": 0.9008740380431598,
+    "acf60": 0.7934605862853783,
+    "outcome": 15.831725742623446,
+    "diurnal": 24.93045569868812,
+    "hypo_rec": 42.5,
+    "hypo_reb": 16.666666666666664,
+    "compress": 4.286245814213072,
+    "noise": 5.534344775009548,
+    "insulin_cv": 3.702924413935883
+   },
+   "tir_cgm": 84.97023809523809,
+   "tbr70_cgm": 0.5456349206349206,
+   "tbr54_cgm": 0.0496031746031746,
+   "insulin_per_day": 54.14132341351997
+  },
+  {
+   "arm": "neither",
+   "name": "adult#013",
+   "completed": true,
+   "seconds": 96.56757307052612,
+   "values": {
+    "cv": 26.92006859368844,
+    "tail": 1.5999007813468933,
+    "acf30": 0.9226846578648554,
+    "acf60": 0.8485692060974098,
+    "outcome": 17.801879886032633,
+    "diurnal": 25.834319963160794,
+    "hypo_rec": 65.0,
+    "hypo_reb": 40.0,
+    "compress": 4.286245814213072,
+    "noise": 5.17391997873995,
+    "insulin_cv": 6.352193903772843
+   },
+   "tir_cgm": 82.47767857142857,
+   "tbr70_cgm": 0.23561507936507936,
+   "tbr54_cgm": 0.0496031746031746,
+   "insulin_per_day": 71.26893261822214
+  },
+  {
+   "arm": "neither",
+   "name": "adult#014",
+   "completed": true,
+   "seconds": 97.26529693603516,
+   "values": {
+    "cv": 36.075023049202045,
+    "tail": 4.6136673694654595,
+    "acf30": 0.9076578191867685,
+    "acf60": 0.7332775342098391,
+    "outcome": 27.35473534238607,
+    "diurnal": 31.847600670820583,
+    "hypo_rec": 65.0,
+    "hypo_reb": 70.37037037037037,
+    "compress": 2.143122907106536,
+    "noise": 6.309107979147983,
+    "insulin_cv": 1.9146422431457748
+   },
+   "tir_cgm": 75.68204365079364,
+   "tbr70_cgm": 2.393353174603175,
+   "tbr54_cgm": 0.7936507936507936,
+   "insulin_per_day": 38.56652359735796
+  },
+  {
+   "arm": "neither",
+   "name": "adult#015",
+   "completed": true,
+   "seconds": 104.56077694892883,
+   "values": {
+    "cv": 24.503145462811805,
+    "tail": 3.4478481954607467,
+    "acf30": 0.8323862566206124,
+    "acf60": 0.5762435524379123,
+    "outcome": 21.82182782722943,
+    "diurnal": 34.036337066959675,
+    "hypo_rec": 45.0,
+    "hypo_reb": 61.53846153846154,
+    "compress": 3.214684360659804,
+    "noise": 5.194942968177309,
+    "insulin_cv": 3.3978206520076486
+   },
+   "tir_cgm": 83.34573412698413,
+   "tbr70_cgm": 0.5704365079365079,
+   "tbr54_cgm": 0.06200396825396825,
+   "insulin_per_day": 39.93266233176501
+  },
+  {
+   "arm": "neither",
+   "name": "adult#016",
+   "completed": true,
+   "seconds": 97.34753894805908,
+   "values": {
+    "cv": 28.393613047821795,
+    "tail": 1.6867171028153292,
+    "acf30": 0.9286491405180273,
+    "acf60": 0.834552144847439,
+    "outcome": 16.103693412272047,
+    "diurnal": 32.866198773909616,
+    "hypo_rec": 100.0,
+    "hypo_reb": 4.761904761904762,
+    "compress": 3.214684360659804,
+    "noise": 5.179358991812625,
+    "insulin_cv": 4.473910915351363
+   },
+   "tir_cgm": 81.01438492063492,
+   "tbr70_cgm": 0.9796626984126984,
+   "tbr54_cgm": 0.16121031746031744,
+   "insulin_per_day": 57.96796708788403
+  },
+  {
+   "arm": "neither",
+   "name": "adult#017",
+   "completed": true,
+   "seconds": 99.32775616645813,
+   "values": {
+    "cv": 30.788235679627398,
+    "tail": 1.314647153664889,
+    "acf30": 0.9250026338419696,
+    "acf60": 0.8359349272013553,
+    "outcome": 18.232963876116635,
+    "diurnal": 28.043464470919872,
+    "hypo_rec": 45.0,
+    "hypo_reb": 47.05882352941176,
+    "compress": 4.286245814213072,
+    "noise": 4.466996412425956,
+    "insulin_cv": 2.5158866595352203
+   },
+   "tir_cgm": 81.60962301587301,
+   "tbr70_cgm": 0.992063492063492,
+   "tbr54_cgm": 0.0992063492063492,
+   "insulin_per_day": 70.54955072278098
+  },
+  {
+   "arm": "neither",
+   "name": "adult#018",
+   "completed": true,
+   "seconds": 97.00790095329285,
+   "values": {
+    "cv": 24.82361864645236,
+    "tail": 2.282029021456034,
+    "acf30": 0.8988696872192149,
+    "acf60": 0.7831756494351114,
+    "outcome": 15.625023873139657,
+    "diurnal": 27.08528173575496,
+    "hypo_rec": 45.0,
+    "hypo_reb": 31.25,
+    "compress": 4.286245814213072,
+    "noise": 4.952526550819817,
+    "insulin_cv": 4.951470318900141
+   },
+   "tir_cgm": 67.83234126984127,
+   "tbr70_cgm": 0.855654761904762,
+   "tbr54_cgm": 0.13640873015873015,
+   "insulin_per_day": 88.71489652589328
+  },
+  {
+   "arm": "neither",
+   "name": "adult#019",
+   "completed": true,
+   "seconds": 95.54195928573608,
+   "values": {
+    "cv": 29.748251333981827,
+    "tail": 4.626069701103807,
+    "acf30": 0.8617554255854698,
+    "acf60": 0.6435757175249918,
+    "outcome": 24.094174169634716,
+    "diurnal": 47.670112126638344,
+    "hypo_rec": 55.0,
+    "hypo_reb": 58.333333333333336,
+    "compress": 4.286245814213072,
+    "noise": 6.394304669149534,
+    "insulin_cv": 3.554957392430317
+   },
+   "tir_cgm": 83.97817460317461,
+   "tbr70_cgm": 1.066468253968254,
+   "tbr54_cgm": 0.06200396825396825,
+   "insulin_per_day": 52.36943992108898
+  },
+  {
+   "arm": "neither",
+   "name": "adult#020",
+   "completed": true,
+   "seconds": 94.9091420173645,
+   "values": {
+    "cv": 24.398082783345252,
+    "tail": 3.423043532184051,
+    "acf30": 0.8251724732835434,
+    "acf60": 0.5982940197459597,
+    "outcome": 22.12657702826571,
+    "diurnal": 20.473746233799176,
+    "hypo_rec": 60.0,
+    "hypo_reb": 32.0,
+    "compress": 4.286245814213072,
+    "noise": 6.418581233867611,
+    "insulin_cv": 4.567190987298833
+   },
+   "tir_cgm": 92.03869047619048,
+   "tbr70_cgm": 1.351686507936508,
+   "tbr54_cgm": 0.1488095238095238,
+   "insulin_per_day": 53.61377451208887
+  },
+  {
+   "arm": "neither",
+   "name": "adult#021",
+   "completed": true,
+   "seconds": 94.74938488006592,
+   "values": {
+    "cv": 32.014297776665934,
+    "tail": 1.165819174004713,
+    "acf30": 0.9435002551684649,
+    "acf60": 0.8713812901476846,
+    "outcome": 15.896242834893387,
+    "diurnal": 32.296700314101855,
+    "hypo_rec": 77.5,
+    "hypo_reb": 15.0,
+    "compress": 4.286245814213072,
+    "noise": 4.126025862043503,
+    "insulin_cv": 5.319404580244742
+   },
+   "tir_cgm": 82.27926587301587,
+   "tbr70_cgm": 1.1656746031746033,
+   "tbr54_cgm": 0.0496031746031746,
+   "insulin_per_day": 48.35852158265972
+  },
+  {
+   "arm": "neither",
+   "name": "adult#022",
+   "completed": true,
+   "seconds": 96.46521401405334,
+   "values": {
+    "cv": 22.779387195843643,
+    "tail": 1.8231427508371576,
+    "acf30": 0.9085743745685146,
+    "acf60": 0.833154753100727,
+    "outcome": 14.737095039201701,
+    "diurnal": 13.960842499429589,
+    "hypo_rec": 75.0,
+    "hypo_reb": 30.76923076923077,
+    "compress": 4.286245814213072,
+    "noise": 5.940746387316952,
+    "insulin_cv": 3.793513525251785
+   },
+   "tir_cgm": 88.21924603174604,
+   "tbr70_cgm": 0.5952380952380952,
+   "tbr54_cgm": 0.06200396825396825,
+   "insulin_per_day": 55.95112140422793
+  },
+  {
+   "arm": "neither",
+   "name": "adult#023",
+   "completed": true,
+   "seconds": 98.34321093559265,
+   "values": {
+    "cv": 24.10402271092436,
+    "tail": 1.6371077762619373,
+    "acf30": 0.861004240870944,
+    "acf60": 0.6532532082066627,
+    "outcome": 17.84441705335625,
+    "diurnal": 26.162426434345207,
+    "hypo_rec": 62.5,
+    "hypo_reb": 33.33333333333333,
+    "compress": 3.214684360659804,
+    "noise": 4.568108378208719,
+    "insulin_cv": 2.0350985040195972
+   },
+   "tir_cgm": 92.08829365079364,
+   "tbr70_cgm": 1.029265873015873,
+   "tbr54_cgm": 0.0992063492063492,
+   "insulin_per_day": 36.099851190476194
+  },
+  {
+   "arm": "neither",
+   "name": "adult#024",
+   "completed": true,
+   "seconds": 96.89834690093994,
+   "values": {
+    "cv": 23.98625591815678,
+    "tail": 1.5378891231551532,
+    "acf30": 0.8782777458026662,
+    "acf60": 0.7144708390731388,
+    "outcome": 19.192309772100007,
+    "diurnal": 27.50389734777184,
+    "hypo_rec": 30.0,
+    "hypo_reb": 25.0,
+    "compress": 4.286245814213072,
+    "noise": 3.9717217939422484,
+    "insulin_cv": 3.4172895647302304
+   },
+   "tir_cgm": 84.3501984126984,
+   "tbr70_cgm": 0.3100198412698413,
+   "tbr54_cgm": 0.0496031746031746,
+   "insulin_per_day": 62.30038602625962
+  },
+  {
+   "arm": "neither",
+   "name": "adult#025",
+   "completed": true,
+   "seconds": 95.40889811515808,
+   "values": {
+    "cv": 25.2720828232761,
+    "tail": 1.8355450824755055,
+    "acf30": 0.8891118701599222,
+    "acf60": 0.7566228013254239,
+    "outcome": 21.657025226836357,
+    "diurnal": 32.40107026976736,
+    "hypo_rec": 27.5,
+    "hypo_reb": 25.0,
+    "compress": 4.286245814213072,
+    "noise": 4.25072018470144,
+    "insulin_cv": 5.685079956648046
+   },
+   "tir_cgm": 85.62748015873017,
+   "tbr70_cgm": 0.28521825396825395,
+   "tbr54_cgm": 0.06200396825396825,
+   "insulin_per_day": 68.67230325069839
+  },
+  {
+   "arm": "neither",
+   "name": "adult#027",
+   "completed": true,
+   "seconds": 97.0625958442688,
+   "values": {
+    "cv": 27.108112466335708,
+    "tail": 4.6136673694654595,
+    "acf30": 0.8935802232375613,
+    "acf60": 0.751330312899936,
+    "outcome": 19.89437031500798,
+    "diurnal": 32.321387320636205,
+    "hypo_rec": 70.0,
+    "hypo_reb": 16.0,
+    "compress": 6.429368721319608,
+    "noise": 8.135387854913647,
+    "insulin_cv": 1.1496281060118518
+   },
+   "tir_cgm": 84.69742063492063,
+   "tbr70_cgm": 1.1036706349206349,
+   "tbr54_cgm": 0.1984126984126984,
+   "insulin_per_day": 64.59565469604482
+  },
+  {
+   "arm": "neither",
+   "name": "adult#028",
+   "completed": true,
+   "seconds": 95.16711091995239,
+   "values": {
+    "cv": 29.478531220054965,
+    "tail": 3.385836537269007,
+    "acf30": 0.8846446226046132,
+    "acf60": 0.7280782775499306,
+    "outcome": 20.91394228768797,
+    "diurnal": 62.30418759900087,
+    "hypo_rec": 52.5,
+    "hypo_reb": 40.0,
+    "compress": 4.286245814213072,
+    "noise": 5.437029227858365,
+    "insulin_cv": 3.1311472756427454
+   },
+   "tir_cgm": 79.98511904761905,
+   "tbr70_cgm": 1.4384920634920635,
+   "tbr54_cgm": 0.26041666666666663,
+   "insulin_per_day": 58.19671684772597
+  },
+  {
+   "arm": "neither",
+   "name": "adult#029",
+   "completed": true,
+   "seconds": 98.98255801200867,
+   "values": {
+    "cv": 24.162089541570158,
+    "tail": 1.6495101079002852,
+    "acf30": 0.8919619662642829,
+    "acf60": 0.7552034650740095,
+    "outcome": 17.787888653777657,
+    "diurnal": 24.771325177514882,
+    "hypo_rec": 45.0,
+    "hypo_reb": 33.33333333333333,
+    "compress": 3.214684360659804,
+    "noise": 5.171846630916661,
+    "insulin_cv": 5.1604006990784335
+   },
+   "tir_cgm": 87.22718253968253,
+   "tbr70_cgm": 0.38442460317460314,
+   "tbr54_cgm": 0.01240079365079365,
+   "insulin_per_day": 37.697716618325494
+  },
+  {
+   "arm": "neither",
+   "name": "adult#030",
+   "completed": true,
+   "seconds": 98.14583015441895,
+   "values": {
+    "cv": 29.781311233059554,
+    "tail": 1.7859357559221134,
+    "acf30": 0.9241161983919772,
+    "acf60": 0.8124652214818239,
+    "outcome": 17.879070674602477,
+    "diurnal": 32.80714402002437,
+    "hypo_rec": 85.0,
+    "hypo_reb": 50.0,
+    "compress": 2.143122907106536,
+    "noise": 5.044963842333227,
+    "insulin_cv": 3.8736588065472004
+   },
+   "tir_cgm": 80.31994047619048,
+   "tbr70_cgm": 1.0912698412698412,
+   "tbr54_cgm": 0.2976190476190476,
+   "insulin_per_day": 59.0334446357735
+  },
+  {
+   "arm": "neither",
+   "name": "adult#031",
+   "completed": true,
+   "seconds": 98.76564311981201,
+   "values": {
+    "cv": 34.318601400234556,
+    "tail": 1.9967753937740296,
+    "acf30": 0.9363122516180207,
+    "acf60": 0.8309575522431277,
+    "outcome": 22.53806921796907,
+    "diurnal": 32.601063155151934,
+    "hypo_rec": 50.0,
+    "hypo_reb": 33.33333333333333,
+    "compress": 4.286245814213072,
+    "noise": 5.234190825982646,
+    "insulin_cv": 5.7783341722501005
+   },
+   "tir_cgm": 77.86458333333334,
+   "tbr70_cgm": 0.3472222222222222,
+   "tbr54_cgm": 0.08680555555555555,
+   "insulin_per_day": 39.76906044255926
+  },
+  {
+   "arm": "neither",
+   "name": "adult#032",
+   "completed": true,
+   "seconds": 95.39175415039062,
+   "values": {
+    "cv": 29.18920379371682,
+    "tail": 3.2246062259704824,
+    "acf30": 0.8650802040611493,
+    "acf60": 0.6654723476305068,
+    "outcome": 20.464765584138394,
+    "diurnal": 33.54448510616936,
+    "hypo_rec": 57.5,
+    "hypo_reb": 28.125,
+    "compress": 4.286245814213072,
+    "noise": 4.064789705434143,
+    "insulin_cv": 7.233154109235089
+   },
+   "tir_cgm": 84.28819444444444,
+   "tbr70_cgm": 1.8601190476190477,
+   "tbr54_cgm": 0.4464285714285714,
+   "insulin_per_day": 55.32607200924068
+  },
+  {
+   "arm": "neither",
+   "name": "adult#033",
+   "completed": true,
+   "seconds": 94.33208990097046,
+   "values": {
+    "cv": 28.46493875008914,
+    "tail": 2.9021456033734343,
+    "acf30": 0.8864985001627862,
+    "acf60": 0.6967760708325298,
+    "outcome": 23.685893184366346,
+    "diurnal": 33.75451114121299,
+    "hypo_rec": 62.5,
+    "hypo_reb": 60.0,
+    "compress": 3.214684360659804,
+    "noise": 6.282903602755032,
+    "insulin_cv": 1.9639387961804433
+   },
+   "tir_cgm": 85.9623015873016,
+   "tbr70_cgm": 1.2276785714285714,
+   "tbr54_cgm": 0.33482142857142855,
+   "insulin_per_day": 32.79239674951943
+  },
+  {
+   "arm": "neither",
+   "name": "adult#034",
+   "completed": true,
+   "seconds": 98.91769981384277,
+   "values": {
+    "cv": 33.057328830770004,
+    "tail": 2.393650006201166,
+    "acf30": 0.9466977324904465,
+    "acf60": 0.8610949659103241,
+    "outcome": 18.137400655574034,
+    "diurnal": 36.24621175397547,
+    "hypo_rec": 95.0,
+    "hypo_reb": 50.0,
+    "compress": 3.214684360659804,
+    "noise": 5.679442083048867,
+    "insulin_cv": 5.542282725852994
+   },
+   "tir_cgm": 61.02430555555556,
+   "tbr70_cgm": 1.7361111111111112,
+   "tbr54_cgm": 0.4340277777777778,
+   "insulin_per_day": 51.765749325328166
+  },
+  {
+   "arm": "neither",
+   "name": "adult#035",
+   "completed": true,
+   "seconds": 98.3591799736023,
+   "values": {
+    "cv": 27.938362016901753,
+    "tail": 1.376658811856629,
+    "acf30": 0.9174438542894878,
+    "acf60": 0.8041821901903476,
+    "outcome": 18.259070572960244,
+    "diurnal": 34.0547347685154,
+    "hypo_rec": 32.5,
+    "hypo_reb": 60.0,
+    "compress": 4.286245814213072,
+    "noise": 4.035545093830241,
+    "insulin_cv": 5.341285452924463
+   },
+   "tir_cgm": 80.53075396825396,
+   "tbr70_cgm": 0.7688492063492063,
+   "tbr54_cgm": 0.2728174603174603,
+   "insulin_per_day": 76.15215934417267
+  },
+  {
+   "arm": "neither",
+   "name": "adult#036",
+   "completed": true,
+   "seconds": 96.53574705123901,
+   "values": {
+    "cv": 32.61622998474905,
+    "tail": 2.393650006201166,
+    "acf30": 0.9354089365867592,
+    "acf60": 0.8484576773845447,
+    "outcome": 18.63715260954703,
+    "diurnal": 40.993227758736225,
+    "hypo_rec": 52.5,
+    "hypo_reb": 33.33333333333333,
+    "compress": 3.214684360659804,
+    "noise": 5.312669459733333,
+    "insulin_cv": 3.7876638505672027
+   },
+   "tir_cgm": 76.71130952380952,
+   "tbr70_cgm": 1.2400793650793651,
+   "tbr54_cgm": 0.16121031746031744,
+   "insulin_per_day": 104.76042387218912
+  },
+  {
+   "arm": "neither",
+   "name": "adult#037",
+   "completed": true,
+   "seconds": 98.48003363609314,
+   "values": {
+    "cv": 31.5083960163528,
+    "tail": 2.716110628798214,
+    "acf30": 0.9446000280390253,
+    "acf60": 0.8721587435063296,
+    "outcome": 15.310102857750975,
+    "diurnal": 19.53429334063071,
+    "hypo_rec": 70.0,
+    "hypo_reb": 23.809523809523807,
+    "compress": 4.286245814213072,
+    "noise": 6.688953238155049,
+    "insulin_cv": 3.4859984130556976
+   },
+   "tir_cgm": 78.79464285714286,
+   "tbr70_cgm": 1.128472222222222,
+   "tbr54_cgm": 0.1984126984126984,
+   "insulin_per_day": 70.92561416235118
+  },
+  {
+   "arm": "neither",
+   "name": "adult#038",
+   "completed": true,
+   "seconds": 97.65921092033386,
+   "values": {
+    "cv": 27.807794843767326,
+    "tail": 3.2990202158005704,
+    "acf30": 0.9123844266456438,
+    "acf60": 0.8110221821623329,
+    "outcome": 20.085769198602804,
+    "diurnal": 43.577915442581144,
+    "hypo_rec": 47.5,
+    "hypo_reb": 20.0,
+    "compress": 4.286245814213072,
+    "noise": 6.338672262503114,
+    "insulin_cv": 5.247082911158159
+   },
+   "tir_cgm": 74.46676587301587,
+   "tbr70_cgm": 0.28521825396825395,
+   "tbr54_cgm": 0.0496031746031746,
+   "insulin_per_day": 60.92350673998934
+  },
+  {
+   "arm": "neither",
+   "name": "adult#039",
+   "completed": true,
+   "seconds": 95.5812599658966,
+   "values": {
+    "cv": 22.323030517008974,
+    "tail": 2.505270990946298,
+    "acf30": 0.8109444887952557,
+    "acf60": 0.5712910960804913,
+    "outcome": 20.551179412298282,
+    "diurnal": 24.532542151687835,
+    "hypo_rec": 50.0,
+    "hypo_reb": 20.0,
+    "compress": 4.286245814213072,
+    "noise": 5.198333662909977,
+    "insulin_cv": 3.774491454625186
+   },
+   "tir_cgm": 93.19196428571429,
+   "tbr70_cgm": 0.6200396825396826,
+   "tbr54_cgm": 0.0248015873015873,
+   "insulin_per_day": 36.35
+  },
+  {
+   "arm": "neither",
+   "name": "adult#040",
+   "completed": true,
+   "seconds": 91.27461194992065,
+   "values": {
+    "cv": 25.47889841438038,
+    "tail": 2.4184546694778617,
+    "acf30": 0.892729326826731,
+    "acf60": 0.7433385334691741,
+    "outcome": 20.812931677781656,
+    "diurnal": 41.5286017503733,
+    "hypo_rec": 45.0,
+    "hypo_reb": 14.285714285714285,
+    "compress": 3.214684360659804,
+    "noise": 6.118431895986523,
+    "insulin_cv": 2.369830029778725
+   },
+   "tir_cgm": 87.09077380952381,
+   "tbr70_cgm": 0.26041666666666663,
+   "tbr54_cgm": 0.0248015873015873,
+   "insulin_per_day": 51.298867883821366
+  },
+  {
+   "arm": "neither",
+   "name": "adult#041",
+   "completed": true,
+   "seconds": 92.49079585075378,
+   "values": {
+    "cv": 19.48580874291436,
+    "tail": 1.5378891231551532,
+    "acf30": 0.8428407009524336,
+    "acf60": 0.6762334754194517,
+    "outcome": 16.345271951929064,
+    "diurnal": 21.392978162475487,
+    "hypo_rec": 35.0,
+    "hypo_reb": 60.0,
+    "compress": 2.143122907106536,
+    "noise": 4.395511188900771,
+    "insulin_cv": 3.1133180166666663
+   },
+   "tir_cgm": 91.9890873015873,
+   "tbr70_cgm": 0.11160714285714285,
+   "tbr54_cgm": 0.01240079365079365,
+   "insulin_per_day": 29.89394185216221
+  }
+ ]
+}

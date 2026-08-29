@@ -16,3 +16,64 @@ panel: skipped 1 subject(s) with no titrated settings (adult#026), taking 40 of 
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
+  30/240
+  60/240
+  90/240
+  120/240
+  150/240
+  180/240
+  210/240
+  240/240
+  shipped        40/40 completed
+  no_absorption  40/40 completed
+  no_slow        40/40 completed
+  slow_030       39/40 completed
+  activity       40/40 completed
+  neither        40/40 completed
+
+Signature                          reference       shipped no_absorption       no_slow      slow_030      activity       neither
+Glucose variability (CV%)       29.5 to 34.3       30.34*        27.36         30.90*        30.65*        30.97*        27.54  
+Rise tail P(Δ>10 mg/dL / 5min) %    3.7 to 6.6        2.92          2.02          3.21          3.04          2.91          2.14  
+Autocorrelation @30 min         0.78 to 0.87        0.91          0.90          0.90          0.91          0.90          0.90  
+Autocorrelation @60 min          0.5 to 0.68        0.75          0.77          0.76          0.78          0.74          0.77  
+Outcome SD @stuck-high +30min (mg/dL)  26.5 to 33.5       22.90         18.89         22.24         21.83         22.93         19.01  
+Diurnal amplitude (mg/dL)       34.7 to 56.3       32.51         31.01         30.07         34.01         32.53         32.31  
+Hypo recovery to 100 (min)          50 to 59       63.75         55.00*        63.75         62.50         66.25         55.00* 
+Hypo rebound >180 %             23.2 to 28.4       28.45         31.67         42.05         34.88         37.23         32.67  
+Compression lows / 30d            1.9 to 5.3        4.29*         4.29*         4.29*         3.21*         4.29*         4.29* 
+Sensor jitter (2nd-diff SD)       4.5 to 6.7        5.25*         5.24*         5.25*         5.20*         5.25*         5.20* 
+Insulin week-to-week (%CV)       4.5 to 11.1        4.91*         4.95*         4.09          5.75*         4.95*         4.31  
+signatures inside the range                             4             4             3             4             4             3 
+  a star marks a median inside the real range
+
+paired against the shipped configuration
+  no_absorption, n=40
+    Glucose variability (CV%)        -4.024 [-4.831,-3.470]
+    Rise tail P(Δ>10 mg/dL / 5min) %   -0.682 [-0.769,-0.484]
+    Autocorrelation @60 min          +0.020 [+0.016,+0.027]
+    Outcome SD @stuck-high +30min (mg/dL)   -3.273 [-3.660,-2.880]
+    Hypo recovery to 100 (min)      -10.000 [-15.000,-5.000]
+    Sensor jitter (2nd-diff SD)      -0.026 [-0.036,-0.000]
+    tir_cgm                          +3.082 [+1.451,+4.005]
+    tbr70_cgm                        -0.806 [-1.060,-0.521]
+  no_slow, n=40
+    Diurnal amplitude (mg/dL)        +1.958 [+0.075,+4.653]
+    Hypo rebound >180 %              +7.379 [+1.870,+12.769]
+  slow_030, n=39
+    Insulin week-to-week (%CV)       +1.042 [+0.057,+2.216]
+    tir_cgm                          -1.364 [-2.257,-0.161]
+  activity, n=40
+    Rise tail P(Δ>10 mg/dL / 5min) %   +0.056 [+0.012,+0.192]
+    Autocorrelation @60 min          -0.004 [-0.012,-0.000]
+    Outcome SD @stuck-high +30min (mg/dL)   +0.229 [+0.002,+0.687]
+    tbr70_cgm                        +0.273 [+0.149,+0.583]
+  neither, n=40
+    Glucose variability (CV%)        -3.256 [-4.242,-2.873]
+    Rise tail P(Δ>10 mg/dL / 5min) %   -0.626 [-0.757,-0.490]
+    Autocorrelation @60 min          +0.019 [+0.000,+0.027]
+    Outcome SD @stuck-high +30min (mg/dL)   -2.968 [-3.582,-2.484]
+    Hypo recovery to 100 (min)       -6.250 [-10.000,-1.250]
+    tir_cgm                          +4.619 [+2.896,+5.413]
+    tbr70_cgm                        -0.651 [-1.110,-0.521]
+
+wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/mechanism_regression.json

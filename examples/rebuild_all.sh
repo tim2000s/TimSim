@@ -321,6 +321,11 @@ stage real_rescues_whole "$PY" examples/real_rescues.py --workers 2 --whole-reco
       --out docs/measurements/real_rescues_whole.json
 # The far end of the hypoglycaemia distribution, simulated and real, with completion beside it.
 stage extreme_tail "$PY" examples/extreme_tail.py --workers "$WORKERS"
+# Each mechanism ablated from the shipped configuration and regressed against every signature.
+# Ablated outward rather than added inward, because a benchmark runs the shipped configuration
+# and the two directions differ once mechanisms interact, which the `neither` arm shows they do.
+stage mechanism_regression "$PY" examples/mechanism_regression.py --subjects 40 \
+      --workers "$WORKERS"
 stage engagement_arm "$PY" examples/engagement_arm.py --workers "$WORKERS"
 stage validation_table "$PY" examples/validation_table.py
 
