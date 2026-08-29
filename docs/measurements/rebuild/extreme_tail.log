@@ -24,3 +24,76 @@ reading the Commons export
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
+  30/344
+  60/344
+  90/344
+  120/344
+  150/344
+  180/344
+  210/344
+  240/344
+  270/344
+  300/344
+  330/344
+
+==============================================================================
+completion, and the direction of every early stop
+
+  controller   bench        completed  ended low  ended high
+  control-iq   bare           86/86            0           0
+  control-iq   layered        79/86            6           1
+  oref         bare           85/86            1           0
+  oref         layered        77/86            8           1
+
+==============================================================================
+the tail, over completed runs
+
+  control-iq, bare, sensor reading, 86 people
+    deepest reading, mg/dL             median   46.65   p10 to p90   39.00 to   64.15
+    readings at or below 40, %         median    0.00   p10 to p90    0.00 to    0.20
+    readings at or below 54, %         median    0.09   p10 to p90    0.00 to    1.32
+    readings below 70, %               median    0.97   p10 to p90    0.07 to    5.46
+
+  control-iq, bare, underlying glucose, nothing real to compare, 86 people
+    deepest reading, mg/dL             median   64.84   p10 to p90   45.29 to   81.29
+    readings at or below 40, %         median    0.00   p10 to p90    0.00 to    0.00
+    readings at or below 54, %         median    0.00   p10 to p90    0.00 to    0.61
+    readings below 70, %               median    0.33   p10 to p90    0.00 to    4.69
+
+  control-iq, layered, sensor reading, 79 people
+    deepest reading, mg/dL             median   39.00   p10 to p90   39.00 to   42.94
+    readings at or below 40, %         median    0.11   p10 to p90    0.00 to    0.66
+    readings at or below 54, %         median    0.55   p10 to p90    0.08 to    2.34
+    readings below 70, %               median    2.29   p10 to p90    0.90 to    5.97
+
+  control-iq, layered, underlying glucose, nothing real to compare, 79 people
+    deepest reading, mg/dL             median   40.01   p10 to p90   18.77 to   61.70
+    readings at or below 40, %         median    0.00   p10 to p90    0.00 to    0.73
+    readings at or below 54, %         median    0.41   p10 to p90    0.00 to    2.04
+    readings below 70, %               median    1.76   p10 to p90    0.37 to    5.36
+
+  oref, bare, sensor reading, 85 people
+    deepest reading, mg/dL             median   39.31   p10 to p90   39.00 to   58.42
+    readings at or below 40, %         median    0.01   p10 to p90    0.00 to    0.66
+    readings at or below 54, %         median    0.32   p10 to p90    0.00 to    2.22
+    readings below 70, %               median    2.72   p10 to p90    0.24 to    8.19
+
+  oref, bare, underlying glucose, nothing real to compare, 85 people
+    deepest reading, mg/dL             median   55.15   p10 to p90   27.43 to   74.85
+    readings at or below 40, %         median    0.00   p10 to p90    0.00 to    0.32
+    readings at or below 54, %         median    0.00   p10 to p90    0.00 to    1.87
+    readings below 70, %               median    1.48   p10 to p90    0.00 to    6.43
+
+  oref, layered, sensor reading, 77 people
+    deepest reading, mg/dL             median   39.00   p10 to p90   39.00 to   41.43
+    readings at or below 40, %         median    0.19   p10 to p90    0.00 to    0.62
+    readings at or below 54, %         median    1.00   p10 to p90    0.21 to    2.60
+    readings below 70, %               median    3.66   p10 to p90    1.43 to    7.02
+
+  oref, layered, underlying glucose, nothing real to compare, 77 people
+    deepest reading, mg/dL             median   35.66   p10 to p90   17.87 to   54.24
+    readings at or below 40, %         median    0.11   p10 to p90    0.00 to    0.75
+    readings at or below 54, %         median    0.64   p10 to p90    0.02 to    2.15
+    readings below 70, %               median    2.88   p10 to p90    0.97 to    6.15
+
+wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/extreme_tail.json
