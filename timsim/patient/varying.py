@@ -692,6 +692,18 @@ class VaryingPatient(T1DPatient):
         if self._liver_fast_fraction > 0.0:
             self._install_liver_states()
 
+    def reset(self):
+        """Reset the subject, and put the fast delay states back afterwards.
+
+        The parent rebuilds the solver around the published model, which drops the two extra
+        states and leaves `step` passing arguments the published model does not take. That
+        surfaced as a TypeError from deep inside the integrator rather than as anything about the
+        liver, so the reinstallation is done here rather than left to callers.
+        """
+        super().reset()
+        if getattr(self, "_liver_fast_fraction", 0.0) > 0.0:
+            self._install_liver_states()
+
     def _install_liver_states(self):
         """Extend the solver's state by the fast delay pair and swap in the extended model.
 
@@ -849,9 +861,11 @@ class VaryingPatient(T1DPatient):
         # arguments have to be appended after it. Stepping the parent first and re-issuing the
         # parameters would integrate one step with the defaults, so the wrapper below patches the
         # solver's setter for the duration of the call instead.
-        if getattr(self, "_liver_fast_fraction", 0.0) > 0.0:
+        solver = self._odesolver
+        wants_extra = (getattr(self, "_liver_fast_fraction", 0.0) > 0.0
+                       and getattr(solver, "f", None) is self._model_two_timescale)
+        if wants_extra:
             extra = (self._liver_fast_fraction, self._liver_fast_ki)
-            solver = self._odesolver
             original = solver.set_f_params
 
             def with_extra(*args):
