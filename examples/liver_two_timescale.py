@@ -153,28 +153,57 @@ def main():
 
     print(f"{len(subs)} subjects. The fast rate is fitted on the clamp and the fraction is swept "
           f"against both gates.\n")
-    print(f"{'ki x':>6}{'frac':>6}" + "".join(f"{m:>7}" for m in MARKS)
-          + f"{'gate 1':>9}{'meal':>8}{'gate 2':>9}{'both':>7}{'drop':>6}")
 
+    # Every rung is measured first and judged afterwards, because the meal statistic is degenerate
+    # for a different set of subjects at each one. Dropping them rung by rung took the median over
+    # 31 subjects at a fraction of zero and 27 at a fraction of one, so the sweep compared five
+    # panels that differed by six people, which is issue 44 one level down and inside the commit
+    # that fixed it. The medians below are taken over the subjects that give a meal rise at every
+    # rung, so a movement across the sweep is the fraction and not the membership.
+    cells = []
     for ks in a.ki_scales:
         for fr in a.fractions:
             sup = [suppression(n, fr, ks) for n in subs]
-            med = {m: float(np.median([c[m] for c in sup])) for m in MARKS}
-            meal = [m for m in (meal_shape(n, fr, ks) for n in subs) if m]
-            dropped = len(subs) - len(meal)
-            ttp = float(np.median([x["trough_to_peak_min"] for x in meal]))
-            per10 = float(np.median([x["rise_per_10g"] for x in meal]))
-            g1 = (GATE_30[0] <= med[30] <= GATE_30[1]) and med[60] >= GATE_60_MIN
-            g2 = abs(ttp - REAL_MEAL_TROUGH_TO_PEAK) <= MEAL_TOLERANCE_MIN
-            rec["rows"].append({"ki_scale": ks, "fraction": fr, "suppression": med,
-                                "meal_n": len(meal), "meal_dropped_degenerate": dropped,
-                                "meal_trough_to_peak": ttp, "meal_rise_per_10g": per10,
-                                "gate_1_clamp": bool(g1), "gate_2_meal": bool(g2),
-                                "both": bool(g1 and g2)})
-            print(f"{ks:>6.1f}{fr:>6.2f}" + "".join(f"{med[m]:>7.1f}" for m in MARKS)
-                  + f"{'pass' if g1 else 'fail':>9}{ttp:>8.0f}"
-                  + f"{'pass' if g2 else 'fail':>9}{'YES' if g1 and g2 else '':>7}"
-                  + f"{dropped:>6}")
+            meal = {n: m for n, m in ((n, meal_shape(n, fr, ks)) for n in subs) if m}
+            cells.append({"ki_scale": ks, "fraction": fr,
+                          "suppression": {m: float(np.median([c[m] for c in sup]))
+                                          for m in MARKS},
+                          "meal": meal})
+            print(f"  measured ki x {ks:.1f}, fraction {fr:.2f}: {len(meal)} of {len(subs)} "
+                  f"subjects give a meal rise", file=sys.stderr, flush=True)
+
+    common = sorted(set.intersection(*[set(c["meal"]) for c in cells])) if cells else []
+    rec["meal_panel"] = common
+    rec["meal_panel_n"] = len(common)
+    rec["panel"] = list(subs)
+    if not common:
+        raise SystemExit("no subject gives a meal rise at every rung, so no rung is comparable "
+                         "with any other and the sweep cannot be read.")
+    print(f"\nmeal panel: {len(common)} of {len(subs)} subjects give a measurable meal rise at "
+          f"every rung. The clamp is read on all {len(subs)}.\n")
+    print(f"{'ki x':>6}{'frac':>6}" + "".join(f"{m:>7}" for m in MARKS)
+          + f"{'gate 1':>9}{'meal':>8}{'gate 2':>9}{'both':>7}{'own n':>7}")
+
+    for c in cells:
+        med = c["suppression"]
+        ttp = float(np.median([c["meal"][n]["trough_to_peak_min"] for n in common]))
+        per10 = float(np.median([c["meal"][n]["rise_per_10g"] for n in common]))
+        g1 = (GATE_30[0] <= med[30] <= GATE_30[1]) and med[60] >= GATE_60_MIN
+        g2 = abs(ttp - REAL_MEAL_TROUGH_TO_PEAK) <= MEAL_TOLERANCE_MIN
+        # `meal_n_own` is what this rung alone would have supported, kept so the difference
+        # between the two ways of counting stays visible rather than being quietly resolved.
+        rec["rows"].append({"ki_scale": c["ki_scale"], "fraction": c["fraction"],
+                            "suppression": med,
+                            "meal_n": len(common), "meal_n_own": len(c["meal"]),
+                            "meal_dropped_degenerate": len(subs) - len(c["meal"]),
+                            "meal_trough_to_peak": ttp, "meal_rise_per_10g": per10,
+                            "gate_1_clamp": bool(g1), "gate_2_meal": bool(g2),
+                            "both": bool(g1 and g2)})
+        print(f"{c['ki_scale']:>6.1f}{c['fraction']:>6.2f}"
+              + "".join(f"{med[m]:>7.1f}" for m in MARKS)
+              + f"{'pass' if g1 else 'fail':>9}{ttp:>8.0f}"
+              + f"{'pass' if g2 else 'fail':>9}{'YES' if g1 and g2 else '':>7}"
+              + f"{len(c['meal']):>7}")
 
     both = [r for r in rec["rows"] if r["both"]]
     print(f"\ngate 1: suppression at 30 min in {GATE_30[0]:.0f} to {GATE_30[1]:.0f} per cent "
