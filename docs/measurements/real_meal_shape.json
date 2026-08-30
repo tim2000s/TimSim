@@ -2,12 +2,12 @@
  "provenance": {
   "population": "704cfac086df54ba",
   "settings": "0df43fd250fadd47",
-  "commit": "ae7e11033d8c160e1da1185b11080db0f8802fba",
+  "commit": "05de21e4b9b4ae70927463a06b113e80281c0c55",
   "dirty": false,
   "host": "Tims-Mac-mini.local",
   "python": "3.14.7",
   "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
-  "when": "2026-08-30T12:40:26+00:00",
+  "when": "2026-08-30T14:51:38+00:00",
   "simglucose": "0.2.11"
  },
  "source": "TimescaleDB studies schema",
@@ -18,12 +18,19 @@
  "clear_before_min": 120,
  "min_meals_per_subject": 20,
  "coverage": 0.8,
+ "subsample_meals": 40,
  "rows": [
   {
    "study": "Loop",
    "window_min": 180,
    "subjects": 785,
    "meals": 193696,
+   "subsample_meals": 40,
+   "within_person_iqr_subsampled": [
+    46.235,
+    70.0,
+    93.73166666666665
+   ],
    "pooled_quartiles": [
     35.0,
     69.98333333333333,
@@ -51,6 +58,12 @@
    "window_min": 240,
    "subjects": 767,
    "meals": 150678,
+   "subsample_meals": 40,
+   "within_person_iqr_subsampled": [
+    59.01333333333334,
+    87.49583333333334,
+    116.37583333333333
+   ],
    "pooled_quartiles": [
     40.0,
     80.0,
@@ -78,6 +91,12 @@
    "window_min": 300,
    "subjects": 742,
    "meals": 115854,
+   "subsample_meals": 40,
+   "within_person_iqr_subsampled": [
+    72.48416666666667,
+    103.75416666666666,
+    140.01125
+   ],
    "pooled_quartiles": [
     45.0,
     90.01666666666667,
@@ -105,6 +124,12 @@
    "window_min": 360,
    "subjects": 720,
    "meals": 92146,
+   "subsample_meals": 40,
+   "within_person_iqr_subsampled": [
+    82.36125,
+    116.25625,
+    158.88666666666668
+   ],
    "pooled_quartiles": [
     45.016666666666666,
     100.01666666666667,
@@ -132,6 +157,12 @@
    "window_min": 480,
    "subjects": 677,
    "meals": 68556,
+   "subsample_meals": 40,
+   "within_person_iqr_subsampled": [
+    93.46416666666666,
+    139.9875,
+    191.2266666666667
+   ],
    "pooled_quartiles": [
     50.0,
     115.0,
@@ -159,6 +190,12 @@
    "window_min": 720,
    "subjects": 595,
    "meals": 44354,
+   "subsample_meals": 40,
+   "within_person_iqr_subsampled": [
+    106.24333333333333,
+    154.975,
+    222.49583333333334
+   ],
    "pooled_quartiles": [
     55.016666666666666,
     134.98333333333332,
@@ -186,6 +223,12 @@
    "window_min": 180,
    "subjects": 179,
    "meals": 47064,
+   "subsample_meals": 40,
+   "within_person_iqr_subsampled": [
+    46.25,
+    76.2375,
+    103.73916666666666
+   ],
    "pooled_quartiles": [
     30.0,
     65.0,
@@ -213,6 +256,12 @@
    "window_min": 240,
    "subjects": 178,
    "meals": 39896,
+   "subsample_meals": 40,
+   "within_person_iqr_subsampled": [
+    62.121249999999996,
+    91.25,
+    125.37125
+   ],
    "pooled_quartiles": [
     35.0,
     80.0,
@@ -240,6 +289,12 @@
    "window_min": 300,
    "subjects": 178,
    "meals": 33010,
+   "subsample_meals": 40,
+   "within_person_iqr_subsampled": [
+    73.375,
+    117.50416666666666,
+    155.37291666666667
+   ],
    "pooled_quartiles": [
     40.0,
     95.0,
@@ -267,6 +322,12 @@
    "window_min": 360,
    "subjects": 178,
    "meals": 26814,
+   "subsample_meals": 40,
+   "within_person_iqr_subsampled": [
+    85.86625,
+    137.49166666666667,
+    179.9920833333333
+   ],
    "pooled_quartiles": [
     45.0,
     114.96666666666667,
@@ -294,6 +355,12 @@
    "window_min": 480,
    "subjects": 174,
    "meals": 19289,
+   "subsample_meals": 40,
+   "within_person_iqr_subsampled": [
+    113.60958333333332,
+    168.74791666666667,
+    226.23333333333335
+   ],
    "pooled_quartiles": [
     55.0,
     140.03333333333333,
@@ -321,6 +388,12 @@
    "window_min": 720,
    "subjects": 160,
    "meals": 12368,
+   "subsample_meals": 40,
+   "within_person_iqr_subsampled": [
+    129.87250000000003,
+    209.36666666666667,
+    276.98874999999987
+   ],
    "pooled_quartiles": [
     74.98333333333333,
     174.98333333333332,
