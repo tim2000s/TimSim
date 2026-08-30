@@ -942,3 +942,39 @@ Both are the same failure as issue 38 in a different place: an arm distinguished
 analysis does not key on. The rule that follows is that an index over experimental runs keys on
 every field the bench varies, and a report prints the controllers it indexed rather than the ones
 the file says it ran.
+
+## 44. Two gates of one pre-registered argument were measured on different populations
+
+Found 30 August 2026, while implementing the two-timescale liver `docs/PADOVA_AUDIT.md` entry 3
+recommended.
+
+The entry concludes that no value of `ki` reproduces both the human suppression curve and the meal
+response the parameter was identified on, that "the two requirements do not overlap", and that the
+divergence is therefore structural. Two gates carry that conclusion and each has its own producer.
+
+`liver_delay_fit.py` selects `names()[:20]`, which is `adult#001` upward.
+`meal_with_bolus.py` selects `sorted(titrate.titrated_subjects())[:40]`, which sorts
+alphabetically and returns `adolescent#001` upward.
+
+So gate 1 was measured on twenty adults and gate 2 on forty adolescents, and the sentence saying
+they do not overlap compares them directly.
+
+Rerun on one adult panel, the meal reads 92.5 minutes at eleven times the published rate against
+the stored 67.5 on adolescents. The gate allows 20 minutes either side of the real 112, so the
+same configuration fails on one panel by 44.5 minutes and passes on the other by 19.5. The stock
+arm reads 102.5 on both, which is why the disagreement was not visible from the headline figures.
+
+A second defect sits underneath it. The statistic is degenerate for a fifth of subjects: the
+stored file carries a tenth percentile of 0 minutes in both arms, and a trough to peak of zero
+means the peak sits at the meal moment and glucose only falls afterwards, so the bolus dominated
+and no meal rise was measured. Those runs enter the median that a 20-minute criterion is read off.
+They are now dropped and counted.
+
+Neither defect says the two-timescale liver works. Both say the gates cannot currently decide it,
+and that a negative result was recorded with more confidence than its measurement supported.
+
+This is the fourth instance in one week of two numbers disagreeing because they were taken over
+different people, after issue 43, the rescue treated-share window, and the panel that broke the
+layer ladder. The provenance stamp binds population, settings and code, and does not bind
+membership. Every one of these would have been caught by a stamp that recorded the subject list
+and an analysis that refused to compare two measurements whose lists differ.

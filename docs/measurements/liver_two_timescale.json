@@ -1,0 +1,144 @@
+{
+ "provenance": {
+  "population": "704cfac086df54ba",
+  "settings": "0df43fd250fadd47",
+  "commit": "21c861221f2430e0b352b05c431dad40ec598a6e",
+  "dirty": false,
+  "host": "Tims-Mac-mini.local",
+  "python": "3.14.7",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "when": "2026-08-30T00:48:18+00:00",
+  "simglucose": "0.2.11"
+ },
+ "n": 20,
+ "gate": {
+  "at_30": [
+   65.0,
+   85.0
+  ],
+  "at_60_min": 90.0,
+  "meal_trough_to_peak": 112.0,
+  "meal_tolerance_min": 20.0
+ },
+ "rows": [
+  {
+   "ki_scale": 10.5,
+   "fraction": 0.0,
+   "suppression": {
+    "15": -0.07044036480406968,
+    "30": 1.0596603659834392,
+    "60": 9.56436314530168,
+    "90": 16.32045867723373,
+    "120": 27.496161201884433,
+    "180": 43.02563389903388
+   },
+   "meal_trough_to_peak": 102.5,
+   "meal_rise_per_10g": 14.617207662658544,
+   "gate_1_clamp": false,
+   "gate_2_meal": true,
+   "both": false
+  },
+  {
+   "ki_scale": 10.5,
+   "fraction": 0.25,
+   "suppression": {
+    "15": 5.6642632938528665,
+    "30": 16.357876708711473,
+    "60": 35.023871745227794,
+    "90": 42.41222433221369,
+    "120": 51.61817398908241,
+    "180": 66.6616520971036
+   },
+   "meal_trough_to_peak": 107.5,
+   "meal_rise_per_10g": 14.567385202082857,
+   "gate_1_clamp": false,
+   "gate_2_meal": true,
+   "both": false
+  },
+  {
+   "ki_scale": 10.5,
+   "fraction": 0.5,
+   "suppression": {
+    "15": 11.483630548448058,
+    "30": 32.68760926486957,
+    "60": 59.76447333827141,
+    "90": 65.64031965504577,
+    "120": 72.48183463656154,
+    "180": 82.22053385490484
+   },
+   "meal_trough_to_peak": 112.5,
+   "meal_rise_per_10g": 14.394693310214915,
+   "gate_1_clamp": false,
+   "gate_2_meal": true,
+   "both": false
+  },
+  {
+   "ki_scale": 10.5,
+   "fraction": 0.7,
+   "suppression": {
+    "15": 16.147406980407233,
+    "30": 45.75139857663183,
+    "60": 79.55693222956903,
+    "90": 84.22280845657609,
+    "120": 89.172741659237,
+    "180": 94.6676398480999
+   },
+   "meal_trough_to_peak": 102.5,
+   "meal_rise_per_10g": 14.228363502710096,
+   "gate_1_clamp": false,
+   "gate_2_meal": true,
+   "both": false
+  },
+  {
+   "ki_scale": 10.5,
+   "fraction": 0.85,
+   "suppression": {
+    "15": 19.6599995860687,
+    "30": 55.54924246957961,
+    "60": 94.40126327434827,
+    "90": 97.23840381348064,
+    "120": 99.67729320383,
+    "180": 100.0
+   },
+   "meal_trough_to_peak": 95.0,
+   "meal_rise_per_10g": 14.231758132194404,
+   "gate_1_clamp": false,
+   "gate_2_meal": true,
+   "both": false
+  },
+  {
+   "ki_scale": 10.5,
+   "fraction": 1.0,
+   "suppression": {
+    "15": 23.172592204402797,
+    "30": 65.34708800140736,
+    "60": 100.0,
+    "90": 100.0,
+    "120": 100.0,
+    "180": 100.0
+   },
+   "meal_trough_to_peak": 100.0,
+   "meal_rise_per_10g": 14.386630941317282,
+   "gate_1_clamp": true,
+   "gate_2_meal": true,
+   "both": true
+  }
+ ],
+ "adopted": {
+  "ki_scale": 10.5,
+  "fraction": 1.0,
+  "suppression": {
+   "15": 23.172592204402797,
+   "30": 65.34708800140736,
+   "60": 100.0,
+   "90": 100.0,
+   "120": 100.0,
+   "180": 100.0
+  },
+  "meal_trough_to_peak": 100.0,
+  "meal_rise_per_10g": 14.386630941317282,
+  "gate_1_clamp": true,
+  "gate_2_meal": true,
+  "both": true
+ }
+}

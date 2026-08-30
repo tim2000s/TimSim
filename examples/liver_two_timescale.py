@@ -36,7 +36,6 @@ MEASUREMENTS = os.path.join(REPO, "docs", "measurements")
 
 from timsim import provenance
 from timsim.patient import varying as V
-from timsim.population import names
 
 OUT = os.path.join(MEASUREMENTS, "liver_two_timescale.json")
 
@@ -105,7 +104,7 @@ def suppression(name, fraction, ki_scale, marks=MARKS):
     return out
 
 
-def meal_shape(name, fraction, ki_scale):
+def meal_shape(name, fraction, ki_scale, liver_delay=None):
     """Trough to peak for a covered meal, on the protocol the audit's gate was set against.
 
     Delegated to `meal_with_bolus.one` rather than reimplemented. A hand-rolled version of this
@@ -115,9 +114,16 @@ def meal_shape(name, fraction, ki_scale):
     against one protocol says nothing about a number produced by another.
     """
     from examples.meal_with_bolus import one as meal_one
-    r = meal_one(name, fast=(fraction if fraction > 0 else None),
-                 fast_scale=ki_scale)
+    r = meal_one(name, liver_delay=liver_delay,
+                 fast=(fraction if fraction > 0 else None), fast_scale=ki_scale)
     if not r:
+        return None
+    # A trough to peak of zero means the peak sits at the meal moment and glucose only falls
+    # afterwards, so the bolus dominated and the run is not measuring a meal rise at all. The
+    # stored measurement carries a tenth percentile of zero in both arms, which is a fifth of the
+    # sample entering a median that a 20-minute gate is then read off. They are dropped and
+    # counted rather than averaged in.
+    if r["trough_to_peak_min"] <= 0.0:
         return None
     return {"trough_to_peak_min": r["trough_to_peak_min"],
             "rise_per_10g": r["rise_per_10g"]}
@@ -132,7 +138,13 @@ def main():
     ap.add_argument("--out", default=OUT)
     a = ap.parse_args()
 
-    subs = names()[:a.subjects]
+    # Both gates on one panel. They were measured on different ones: the clamp took `names()[:20]`,
+    # which is adults, and the meal took `sorted(titrated_subjects())[:40]`, which is adolescents.
+    # The audit's conclusion that no value satisfies both compared a clamp on adults against a
+    # meal on adolescents, and on one adult panel the meal reads 92.5 min at eleven times the
+    # published rate against a stored 67.5. Recorded as issue 44.
+    from examples.panel import dosable
+    subs = dosable(a.subjects)
     rec = {"provenance": provenance.stamp(), "n": len(subs),
            "gate": {"at_30": list(GATE_30), "at_60_min": GATE_60_MIN,
                     "meal_trough_to_peak": REAL_MEAL_TROUGH_TO_PEAK,
@@ -142,24 +154,27 @@ def main():
     print(f"{len(subs)} subjects. The fast rate is fitted on the clamp and the fraction is swept "
           f"against both gates.\n")
     print(f"{'ki x':>6}{'frac':>6}" + "".join(f"{m:>7}" for m in MARKS)
-          + f"{'gate 1':>9}{'meal':>8}{'gate 2':>9}{'both':>7}")
+          + f"{'gate 1':>9}{'meal':>8}{'gate 2':>9}{'both':>7}{'drop':>6}")
 
     for ks in a.ki_scales:
         for fr in a.fractions:
             sup = [suppression(n, fr, ks) for n in subs]
             med = {m: float(np.median([c[m] for c in sup])) for m in MARKS}
             meal = [m for m in (meal_shape(n, fr, ks) for n in subs) if m]
+            dropped = len(subs) - len(meal)
             ttp = float(np.median([x["trough_to_peak_min"] for x in meal]))
             per10 = float(np.median([x["rise_per_10g"] for x in meal]))
             g1 = (GATE_30[0] <= med[30] <= GATE_30[1]) and med[60] >= GATE_60_MIN
             g2 = abs(ttp - REAL_MEAL_TROUGH_TO_PEAK) <= MEAL_TOLERANCE_MIN
             rec["rows"].append({"ki_scale": ks, "fraction": fr, "suppression": med,
+                                "meal_n": len(meal), "meal_dropped_degenerate": dropped,
                                 "meal_trough_to_peak": ttp, "meal_rise_per_10g": per10,
                                 "gate_1_clamp": bool(g1), "gate_2_meal": bool(g2),
                                 "both": bool(g1 and g2)})
             print(f"{ks:>6.1f}{fr:>6.2f}" + "".join(f"{med[m]:>7.1f}" for m in MARKS)
                   + f"{'pass' if g1 else 'fail':>9}{ttp:>8.0f}"
-                  + f"{'pass' if g2 else 'fail':>9}{'YES' if g1 and g2 else '':>7}")
+                  + f"{'pass' if g2 else 'fail':>9}{'YES' if g1 and g2 else '':>7}"
+                  + f"{dropped:>6}")
 
     both = [r for r in rec["rows"] if r["both"]]
     print(f"\ngate 1: suppression at 30 min in {GATE_30[0]:.0f} to {GATE_30[1]:.0f} per cent "
