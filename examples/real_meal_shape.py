@@ -78,7 +78,7 @@ tp as (
     where g.subject_id = pk.subject_id and g.ts_local >= pk.ts_local and g.ts_local <= pk.pk_ts
     order by cgm_mgdl asc, ts_local asc limit 1) t
   where pk.n >= %(min_readings)s)
-select subject_id, ttp, extract(hour from ts_local) hour from tp
+select subject_id, ttp, extract(hour from ts_local) meal_hour from tp
 """
 
 
