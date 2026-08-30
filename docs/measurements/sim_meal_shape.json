@@ -2,12 +2,12 @@
  "provenance": {
   "population": "704cfac086df54ba",
   "settings": "0df43fd250fadd47",
-  "commit": "7bddaec038971f1abb7fc350d199b08da771e93e",
+  "commit": "b83c180db09d1ea8761fbb3166cfa8f02d061591",
   "dirty": false,
   "host": "Tims-Mac-mini.local",
   "python": "3.14.7",
   "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
-  "when": "2026-08-30T21:02:05+00:00",
+  "when": "2026-08-30T21:36:58+00:00",
   "simglucose": "0.2.11"
  },
  "subjects": [
@@ -99,6 +99,13 @@
     9.605050259735581,
     11.974659420654977
    ],
+   "grams_median": 47.5,
+   "rise_per_10g_size_matched": [
+    6.553743320848552,
+    9.067451748911541,
+    13.336385294431336
+   ],
+   "size_matched_subjects": 39,
    "arm": "stock",
    "window_min": 180,
    "own_subjects": 40,
@@ -123,6 +130,13 @@
     10.948899123604296,
     12.826012832942844
    ],
+   "grams_median": 47.5,
+   "rise_per_10g_size_matched": [
+    7.671080580662182,
+    10.493216189147951,
+    14.842742623542089
+   ],
+   "size_matched_subjects": 37,
    "arm": "stock",
    "window_min": 240,
    "own_subjects": 39,
@@ -147,6 +161,13 @@
     11.66469524135125,
     13.533547529419808
    ],
+   "grams_median": 46.0,
+   "rise_per_10g_size_matched": [
+    7.805281044354839,
+    11.446979737706124,
+    16.482068166581833
+   ],
+   "size_matched_subjects": 27,
    "arm": "stock",
    "window_min": 300,
    "own_subjects": 37,
@@ -171,6 +192,13 @@
     13.814245864284825,
     15.553320496727327
    ],
+   "grams_median": 43.0,
+   "rise_per_10g_size_matched": [
+    6.166381729758639,
+    13.591745596558518,
+    17.834162608679108
+   ],
+   "size_matched_subjects": 8,
    "arm": "stock",
    "window_min": 360,
    "own_subjects": 12,
@@ -207,6 +235,13 @@
     9.567581833174586,
     11.963814072271655
    ],
+   "grams_median": 47.0,
+   "rise_per_10g_size_matched": [
+    5.9352588007499145,
+    9.949855545187518,
+    13.665615218768718
+   ],
+   "size_matched_subjects": 39,
    "arm": "fast",
    "window_min": 180,
    "own_subjects": 39,
@@ -231,6 +266,13 @@
     10.593784285934783,
     13.679872362412105
    ],
+   "grams_median": 47.0,
+   "rise_per_10g_size_matched": [
+    7.544344791170434,
+    11.150430441128453,
+    14.784906829101164
+   ],
+   "size_matched_subjects": 36,
    "arm": "fast",
    "window_min": 240,
    "own_subjects": 37,
@@ -255,6 +297,13 @@
     11.543259061435771,
     15.536315588440443
    ],
+   "grams_median": 46.0,
+   "rise_per_10g_size_matched": [
+    8.465873903061386,
+    12.129611666233853,
+    15.286956623810182
+   ],
+   "size_matched_subjects": 27,
    "arm": "fast",
    "window_min": 300,
    "own_subjects": 28,
@@ -279,6 +328,13 @@
     14.46031526129273,
     18.451270215791027
    ],
+   "grams_median": 44.0,
+   "rise_per_10g_size_matched": [
+    8.005704251367824,
+    15.018407891274004,
+    19.1713122305766
+   ],
+   "size_matched_subjects": 8,
    "arm": "fast",
    "window_min": 360,
    "own_subjects": 11,
@@ -305,6 +361,9 @@
    "iqr": 62.5,
    "rise_median": 9.881251067271238,
    "rise_iqr": 9.674962058938839,
+   "grams_median": 44.0,
+   "rise_median_band": 12.194755374300286,
+   "band_meals": 25,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#001"
@@ -315,6 +374,9 @@
    "iqr": 87.5,
    "rise_median": 9.067013422991607,
    "rise_iqr": 13.174514453819077,
+   "grams_median": 48.0,
+   "rise_median_band": 11.337091455714607,
+   "band_meals": 20,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#002"
@@ -325,6 +387,9 @@
    "iqr": 91.25,
    "rise_median": 8.240257379033586,
    "rise_iqr": 14.334558991683526,
+   "grams_median": 47.5,
+   "rise_median_band": 7.879584104726136,
+   "band_meals": 23,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#003"
@@ -335,6 +400,9 @@
    "iqr": 45.0,
    "rise_median": 16.643809789516652,
    "rise_iqr": 11.816240287715306,
+   "grams_median": 46.0,
+   "rise_median_band": 18.020413775750843,
+   "band_meals": 21,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#004"
@@ -345,6 +413,9 @@
    "iqr": 75.0,
    "rise_median": 8.95906373346258,
    "rise_iqr": 7.186272587941591,
+   "grams_median": 52.0,
+   "rise_median_band": 9.766975469818298,
+   "band_meals": 16,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#005"
@@ -355,6 +426,9 @@
    "iqr": 105.0,
    "rise_median": 9.710176032375978,
    "rise_iqr": 15.37742398319042,
+   "grams_median": 49.0,
+   "rise_median_band": 8.653581988447206,
+   "band_meals": 24,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#006"
@@ -365,6 +439,9 @@
    "iqr": 95.0,
    "rise_median": 8.363384690032618,
    "rise_iqr": 10.693243348395647,
+   "grams_median": 47.5,
+   "rise_median_band": 2.2819305592277104,
+   "band_meals": 24,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#007"
@@ -375,6 +452,9 @@
    "iqr": 47.5,
    "rise_median": 12.947157563014805,
    "rise_iqr": 13.53692377655206,
+   "grams_median": 50.0,
+   "rise_median_band": 16.1785070036762,
+   "band_meals": 24,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#008"
@@ -385,6 +465,9 @@
    "iqr": 100.0,
    "rise_median": 7.994576443212747,
    "rise_iqr": 10.714071657284798,
+   "grams_median": 44.5,
+   "rise_median_band": 8.71007817145112,
+   "band_meals": 29,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#009"
@@ -395,6 +478,9 @@
    "iqr": 67.5,
    "rise_median": 7.981320337891669,
    "rise_iqr": 5.388842328594593,
+   "grams_median": 49.0,
+   "rise_median_band": 8.02379729412832,
+   "band_meals": 22,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#010"
@@ -405,6 +491,9 @@
    "iqr": 83.75,
    "rise_median": 9.546958482628632,
    "rise_iqr": 14.51361912609217,
+   "grams_median": 52.5,
+   "rise_median_band": 8.436829653289877,
+   "band_meals": 18,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#011"
@@ -415,6 +504,9 @@
    "iqr": 80.0,
    "rise_median": 7.429946868375822,
    "rise_iqr": 7.342751580014615,
+   "grams_median": 45.0,
+   "rise_median_band": 7.138652576264522,
+   "band_meals": 22,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#012"
@@ -425,6 +517,9 @@
    "iqr": 75.0,
    "rise_median": 8.914661250597106,
    "rise_iqr": 7.964070472443844,
+   "grams_median": 46.0,
+   "rise_median_band": 9.983066195123453,
+   "band_meals": 26,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#013"
@@ -435,6 +530,9 @@
    "iqr": 45.0,
    "rise_median": 13.053683983207952,
    "rise_iqr": 21.774329860884905,
+   "grams_median": 36.5,
+   "rise_median_band": 11.487912014483975,
+   "band_meals": 15,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#014"
@@ -445,6 +543,9 @@
    "iqr": 47.5,
    "rise_median": 10.59068505679202,
    "rise_iqr": 6.969241246447807,
+   "grams_median": 50.5,
+   "rise_median_band": 13.43231577697638,
+   "band_meals": 29,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#015"
@@ -455,6 +556,9 @@
    "iqr": 130.0,
    "rise_median": 6.753703461704632,
    "rise_iqr": 9.844481673537427,
+   "grams_median": 47.0,
+   "rise_median_band": 4.294498681711403,
+   "band_meals": 22,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#016"
@@ -465,6 +569,9 @@
    "iqr": 92.5,
    "rise_median": 10.557461688157344,
    "rise_iqr": 12.441378351760342,
+   "grams_median": 46.0,
+   "rise_median_band": 8.973831520023051,
+   "band_meals": 20,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#017"
@@ -475,6 +582,9 @@
    "iqr": 46.25,
    "rise_median": 10.813596103140156,
    "rise_iqr": 8.925168015276313,
+   "grams_median": 46.0,
+   "rise_median_band": 10.372032205689298,
+   "band_meals": 29,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#018"
@@ -485,6 +595,9 @@
    "iqr": 62.5,
    "rise_median": 11.667119739214176,
    "rise_iqr": 11.649401111360362,
+   "grams_median": 46.0,
+   "rise_median_band": 11.502089853492825,
+   "band_meals": 28,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#019"
@@ -495,6 +608,9 @@
    "iqr": 52.5,
    "rise_median": 10.493216189147951,
    "rise_iqr": 10.511535198141921,
+   "grams_median": 47.0,
+   "rise_median_band": 10.580509458787823,
+   "band_meals": 18,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#020"
@@ -505,6 +621,9 @@
    "iqr": 82.5,
    "rise_median": 11.38407864818075,
    "rise_iqr": 11.770890154064332,
+   "grams_median": 45.0,
+   "rise_median_band": 7.302001415539515,
+   "band_meals": 13,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#021"
@@ -515,6 +634,9 @@
    "iqr": 100.0,
    "rise_median": 6.778109067174933,
    "rise_iqr": 8.728977907349403,
+   "grams_median": 47.0,
+   "rise_median_band": 6.603541957695649,
+   "band_meals": 22,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#022"
@@ -525,6 +647,9 @@
    "iqr": 92.5,
    "rise_median": 9.947538339901435,
    "rise_iqr": 11.802636977997974,
+   "grams_median": 45.5,
+   "rise_median_band": 9.067451748911541,
+   "band_meals": 20,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#023"
@@ -535,6 +660,9 @@
    "iqr": 70.0,
    "rise_median": 8.874654208258068,
    "rise_iqr": 12.328756081278293,
+   "grams_median": 50.0,
+   "rise_median_band": 8.243515588774319,
+   "band_meals": 25,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#024"
@@ -545,6 +673,9 @@
    "iqr": 45.0,
    "rise_median": 11.357312778973437,
    "rise_iqr": 8.400167996910165,
+   "grams_median": 46.0,
+   "rise_median_band": 8.31993261951282,
+   "band_meals": 24,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#025"
@@ -555,6 +686,9 @@
    "iqr": 75.0,
    "rise_median": 10.82336085514499,
    "rise_iqr": 8.9881538775253,
+   "grams_median": 50.0,
+   "rise_median_band": 7.822467306318191,
+   "band_meals": 21,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#027"
@@ -565,6 +699,9 @@
    "iqr": 50.0,
    "rise_median": 12.506314969806123,
    "rise_iqr": 11.599744828884148,
+   "grams_median": 52.0,
+   "rise_median_band": 13.312402673795075,
+   "band_meals": 26,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#028"
@@ -575,6 +712,9 @@
    "iqr": 77.5,
    "rise_median": 9.277043208764919,
    "rise_iqr": 10.131193844844743,
+   "grams_median": 47.5,
+   "rise_median_band": 10.260358801368128,
+   "band_meals": 30,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#029"
@@ -585,6 +725,9 @@
    "iqr": 72.5,
    "rise_median": 9.454601026601837,
    "rise_iqr": 8.186738310098516,
+   "grams_median": 49.5,
+   "rise_median_band": 6.3545487734601664,
+   "band_meals": 23,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#030"
@@ -595,6 +738,9 @@
    "iqr": 107.5,
    "rise_median": 7.787829423453025,
    "rise_iqr": 14.962297419183429,
+   "grams_median": 49.0,
+   "rise_median_band": 6.788534465239041,
+   "band_meals": 26,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#031"
@@ -605,6 +751,9 @@
    "iqr": 43.75,
    "rise_median": 11.459272080290592,
    "rise_iqr": 10.274696903712874,
+   "grams_median": 51.0,
+   "rise_median_band": 13.6553862590174,
+   "band_meals": 22,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#032"
@@ -615,6 +764,9 @@
    "iqr": 70.0,
    "rise_median": 6.626455980828265,
    "rise_iqr": 8.80850560623734,
+   "grams_median": 49.0,
+   "rise_median_band": 9.886555920838285,
+   "band_meals": 25,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#033"
@@ -625,6 +777,9 @@
    "iqr": 102.5,
    "rise_median": 7.662441225941613,
    "rise_iqr": 11.24958024425914,
+   "grams_median": 47.5,
+   "rise_median_band": 7.662441225941613,
+   "band_meals": 24,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#034"
@@ -635,6 +790,9 @@
    "iqr": 120.0,
    "rise_median": 8.571279033926796,
    "rise_iqr": 15.982480423355101,
+   "grams_median": 45.0,
+   "rise_median_band": 4.103345789516173,
+   "band_meals": 27,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#035"
@@ -645,6 +803,9 @@
    "iqr": 70.0,
    "rise_median": 9.550906067572651,
    "rise_iqr": 9.61626134046277,
+   "grams_median": 48.5,
+   "rise_median_band": 10.02722335043427,
+   "band_meals": 20,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#036"
@@ -655,6 +816,9 @@
    "iqr": 97.5,
    "rise_median": 7.088164973983684,
    "rise_iqr": 9.447912073820273,
+   "grams_median": 51.5,
+   "rise_median_band": 8.943533166860995,
+   "band_meals": 23,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#037"
@@ -665,6 +829,9 @@
    "iqr": 45.0,
    "rise_median": 10.475750558176806,
    "rise_iqr": 5.798983014736663,
+   "grams_median": 48.5,
+   "rise_median_band": 10.858782174051182,
+   "band_meals": 32,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#038"
@@ -675,6 +842,9 @@
    "iqr": 40.0,
    "rise_median": 9.605050259735581,
    "rise_iqr": 6.283606540346294,
+   "grams_median": 47.0,
+   "rise_median_band": 10.613548449289175,
+   "band_meals": 19,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#039"
@@ -685,6 +855,9 @@
    "iqr": 60.0,
    "rise_median": 11.841745533367188,
    "rise_iqr": 8.644879875256638,
+   "grams_median": 49.5,
+   "rise_median_band": 11.826343527243594,
+   "band_meals": 18,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#040"
@@ -695,6 +868,9 @@
    "iqr": 60.0,
    "rise_median": 10.208295456826853,
    "rise_iqr": 10.321975248898099,
+   "grams_median": 48.0,
+   "rise_median_band": 12.398551047666743,
+   "band_meals": 19,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#041"
@@ -705,6 +881,9 @@
    "iqr": 65.0,
    "rise_median": 12.649122573220662,
    "rise_iqr": 8.221049078598524,
+   "grams_median": 44.0,
+   "rise_median_band": 12.649122573220662,
+   "band_meals": 17,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#001"
@@ -715,6 +894,9 @@
    "iqr": 87.5,
    "rise_median": 9.96173915488039,
    "rise_iqr": 12.23575329382677,
+   "grams_median": 43.5,
+   "rise_median_band": 9.331280501995936,
+   "band_meals": 14,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#002"
@@ -725,6 +907,9 @@
    "iqr": 87.5,
    "rise_median": 9.039892415386582,
    "rise_iqr": 13.397919702343788,
+   "grams_median": 47.5,
+   "rise_median_band": 10.756906574562837,
+   "band_meals": 18,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#003"
@@ -735,6 +920,9 @@
    "iqr": 47.5,
    "rise_median": 17.09054657643712,
    "rise_iqr": 10.467314921600984,
+   "grams_median": 46.0,
+   "rise_median_band": 17.25658208376,
+   "band_meals": 17,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#004"
@@ -745,6 +933,9 @@
    "iqr": 65.0,
    "rise_median": 9.425017189310106,
    "rise_iqr": 8.706593158237629,
+   "grams_median": 55.0,
+   "rise_median_band": 9.766975469818298,
+   "band_meals": 14,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#005"
@@ -755,6 +946,9 @@
    "iqr": 105.0,
    "rise_median": 10.948899123604296,
    "rise_iqr": 16.947840628936,
+   "grams_median": 46.0,
+   "rise_median_band": 10.399628142965005,
+   "band_meals": 14,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#006"
@@ -765,6 +959,9 @@
    "iqr": 88.75,
    "rise_median": 8.939251534266749,
    "rise_iqr": 8.941664345938984,
+   "grams_median": 49.0,
+   "rise_median_band": 7.562661716484904,
+   "band_meals": 17,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#007"
@@ -775,6 +972,9 @@
    "iqr": 70.0,
    "rise_median": 14.11785069295823,
    "rise_iqr": 14.834002098335244,
+   "grams_median": 50.0,
+   "rise_median_band": 16.35417218163656,
+   "band_meals": 21,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#008"
@@ -785,6 +985,9 @@
    "iqr": 87.5,
    "rise_median": 10.176898864874126,
    "rise_iqr": 10.818829290117495,
+   "grams_median": 44.0,
+   "rise_median_band": 11.404596948757156,
+   "band_meals": 19,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#009"
@@ -795,6 +998,9 @@
    "iqr": 65.0,
    "rise_median": 8.82489118312583,
    "rise_iqr": 4.9647764042084175,
+   "grams_median": 49.0,
+   "rise_median_band": 8.601526066401512,
+   "band_meals": 14,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#010"
@@ -805,6 +1011,9 @@
    "iqr": 90.0,
    "rise_median": 11.99102888221368,
    "rise_iqr": 14.766788823319763,
+   "grams_median": 52.0,
+   "rise_median_band": 7.918338561181017,
+   "band_meals": 11,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#011"
@@ -815,6 +1024,9 @@
    "iqr": 83.75,
    "rise_median": 8.972321712236889,
    "rise_iqr": 10.20502630026187,
+   "grams_median": 45.5,
+   "rise_median_band": 6.6362266736848,
+   "band_meals": 18,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#012"
@@ -825,6 +1037,9 @@
    "iqr": 75.0,
    "rise_median": 11.036673689246465,
    "rise_iqr": 9.022562145767463,
+   "grams_median": 44.0,
+   "rise_median_band": 11.070897337607903,
+   "band_meals": 18,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#013"
@@ -835,6 +1050,9 @@
    "iqr": 51.25,
    "rise_median": 11.4041430485795,
    "rise_iqr": 6.569678582897622,
+   "grams_median": 50.5,
+   "rise_median_band": 13.428651718102738,
+   "band_meals": 18,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#015"
@@ -845,6 +1063,9 @@
    "iqr": 127.5,
    "rise_median": 8.193508886341908,
    "rise_iqr": 12.952325956966433,
+   "grams_median": 43.0,
+   "rise_median_band": 4.2138022893999665,
+   "band_meals": 17,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#016"
@@ -855,6 +1076,9 @@
    "iqr": 103.75,
    "rise_median": 11.068233974619769,
    "rise_iqr": 12.493891623498804,
+   "grams_median": 46.5,
+   "rise_median_band": 15.908778547605865,
+   "band_meals": 13,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#017"
@@ -865,6 +1089,9 @@
    "iqr": 70.0,
    "rise_median": 11.95665330671696,
    "rise_iqr": 6.978678599175362,
+   "grams_median": 49.0,
+   "rise_median_band": 10.813596103140156,
+   "band_meals": 20,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#018"
@@ -875,6 +1102,9 @@
    "iqr": 65.0,
    "rise_median": 13.320132643822703,
    "rise_iqr": 11.309827160823964,
+   "grams_median": 45.0,
+   "rise_median_band": 13.816074872288246,
+   "band_meals": 21,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#019"
@@ -885,6 +1115,9 @@
    "iqr": 55.0,
    "rise_median": 11.463533272234837,
    "rise_iqr": 8.513838773559922,
+   "grams_median": 50.0,
+   "rise_median_band": 10.493216189147951,
+   "band_meals": 15,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#020"
@@ -895,6 +1128,9 @@
    "iqr": 67.5,
    "rise_median": 10.330587441239174,
    "rise_iqr": 11.272749438609782,
+   "grams_median": 47.0,
+   "rise_median_band": 6.531754064758604,
+   "band_meals": 10,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#021"
@@ -905,6 +1141,9 @@
    "iqr": 102.5,
    "rise_median": 7.946154503130446,
    "rise_iqr": 12.871090388926945,
+   "grams_median": 45.0,
+   "rise_median_band": 9.474847513591012,
+   "band_meals": 10,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#022"
@@ -915,6 +1154,9 @@
    "iqr": 136.25,
    "rise_median": 9.067451748911541,
    "rise_iqr": 12.776232184320788,
+   "grams_median": 45.0,
+   "rise_median_band": 7.743359823447035,
+   "band_meals": 14,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#023"
@@ -925,6 +1167,9 @@
    "iqr": 65.0,
    "rise_median": 10.689617801140924,
    "rise_iqr": 11.863545538093124,
+   "grams_median": 49.0,
+   "rise_median_band": 10.893117042249681,
+   "band_meals": 20,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#024"
@@ -935,6 +1180,9 @@
    "iqr": 53.75,
    "rise_median": 11.502555020943015,
    "rise_iqr": 7.527927720743001,
+   "grams_median": 45.0,
+   "rise_median_band": 7.791725982153584,
+   "band_meals": 17,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#025"
@@ -945,6 +1193,9 @@
    "iqr": 75.0,
    "rise_median": 11.132921255397832,
    "rise_iqr": 11.152432277592975,
+   "grams_median": 50.0,
+   "rise_median_band": 9.29100592866573,
+   "band_meals": 10,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#027"
@@ -955,6 +1206,9 @@
    "iqr": 45.0,
    "rise_median": 12.506314969806123,
    "rise_iqr": 11.599744828884148,
+   "grams_median": 52.0,
+   "rise_median_band": 14.315201941220366,
+   "band_meals": 19,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#028"
@@ -965,6 +1219,9 @@
    "iqr": 71.25,
    "rise_median": 10.254293968822632,
    "rise_iqr": 10.928432160323771,
+   "grams_median": 46.0,
+   "rise_median_band": 10.437451921399944,
+   "band_meals": 19,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#029"
@@ -975,6 +1232,9 @@
    "iqr": 85.0,
    "rise_median": 11.128422831407091,
    "rise_iqr": 8.173490924461,
+   "grams_median": 46.0,
+   "rise_median_band": 8.154093705330759,
+   "band_meals": 19,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#030"
@@ -985,6 +1245,9 @@
    "iqr": 117.5,
    "rise_median": 8.333502427142067,
    "rise_iqr": 13.748531440718944,
+   "grams_median": 50.0,
+   "rise_median_band": 7.787829423453025,
+   "band_meals": 21,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#031"
@@ -995,6 +1258,9 @@
    "iqr": 50.0,
    "rise_median": 12.12102503383656,
    "rise_iqr": 9.709577647543648,
+   "grams_median": 51.0,
+   "rise_median_band": 15.634053647024679,
+   "band_meals": 15,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#032"
@@ -1005,6 +1271,9 @@
    "iqr": 86.25,
    "rise_median": 9.808554916984566,
    "rise_iqr": 9.076682192578986,
+   "grams_median": 47.5,
+   "rise_median_band": 9.073654417647159,
+   "band_meals": 18,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#033"
@@ -1015,6 +1284,9 @@
    "iqr": 106.25,
    "rise_median": 10.034620967157153,
    "rise_iqr": 16.49452523221138,
+   "grams_median": 48.0,
+   "rise_median_band": 11.562308232767046,
+   "band_meals": 20,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#034"
@@ -1025,6 +1297,9 @@
    "iqr": 135.0,
    "rise_median": 11.12971517395456,
    "rise_iqr": 15.059956766076041,
+   "grams_median": 45.0,
+   "rise_median_band": 6.679276015022539,
+   "band_meals": 21,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#035"
@@ -1035,6 +1310,9 @@
    "iqr": 95.0,
    "rise_median": 9.919720004786834,
    "rise_iqr": 11.095143083839671,
+   "grams_median": 47.0,
+   "rise_median_band": 9.986641321387117,
+   "band_meals": 15,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#036"
@@ -1045,6 +1323,9 @@
    "iqr": 81.25,
    "rise_median": 8.161489654968525,
    "rise_iqr": 5.81483361716484,
+   "grams_median": 50.5,
+   "rise_median_band": 11.991274505796833,
+   "band_meals": 13,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#037"
@@ -1055,6 +1336,9 @@
    "iqr": 50.0,
    "rise_median": 9.990095453101624,
    "rise_iqr": 5.032698475018492,
+   "grams_median": 48.0,
+   "rise_median_band": 11.791103433254083,
+   "band_meals": 23,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#038"
@@ -1065,6 +1349,9 @@
    "iqr": 37.5,
    "rise_median": 9.820607287076538,
    "rise_iqr": 5.889425778607214,
+   "grams_median": 47.0,
+   "rise_median_band": 8.682611837659895,
+   "band_meals": 14,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#039"
@@ -1075,6 +1362,9 @@
    "iqr": 75.0,
    "rise_median": 13.091348222526118,
    "rise_iqr": 7.276305287325373,
+   "grams_median": 49.0,
+   "rise_median_band": 13.186331828282633,
+   "band_meals": 14,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#040"
@@ -1085,6 +1375,9 @@
    "iqr": 70.0,
    "rise_median": 11.838983521731208,
    "rise_iqr": 11.342490925335866,
+   "grams_median": 48.0,
+   "rise_median_band": 13.51188104649279,
+   "band_meals": 14,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#041"
@@ -1095,6 +1388,9 @@
    "iqr": 80.0,
    "rise_median": 13.4498766914777,
    "rise_iqr": 8.9530912289064,
+   "grams_median": 44.0,
+   "rise_median_band": 14.221732818322018,
+   "band_meals": 14,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#001"
@@ -1105,6 +1401,9 @@
    "iqr": 30.0,
    "rise_median": 9.811728949983612,
    "rise_iqr": 6.2323596040356595,
+   "grams_median": 44.0,
+   "rise_median_band": 10.148724608099267,
+   "band_meals": 9,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#002"
@@ -1115,6 +1414,9 @@
    "iqr": 85.0,
    "rise_median": 13.054651838291715,
    "rise_iqr": 11.045391526844801,
+   "grams_median": 45.0,
+   "rise_median_band": 13.716751123532468,
+   "band_meals": 12,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#003"
@@ -1125,6 +1427,9 @@
    "iqr": 47.5,
    "rise_median": 17.4510135250813,
    "rise_iqr": 11.627973573236783,
+   "grams_median": 45.5,
+   "rise_median_band": 16.952779965066185,
+   "band_meals": 14,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#004"
@@ -1135,6 +1440,9 @@
    "iqr": 115.0,
    "rise_median": 9.425017189310106,
    "rise_iqr": 9.586916189317467,
+   "grams_median": 51.0,
+   "rise_median_band": 11.446979737706124,
+   "band_meals": 8,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#005"
@@ -1145,6 +1453,9 @@
    "iqr": 112.5,
    "rise_median": 11.061105470692382,
    "rise_iqr": 14.055669806527424,
+   "grams_median": 46.5,
+   "rise_median_band": 11.061105470692382,
+   "band_meals": 12,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#006"
@@ -1155,6 +1466,9 @@
    "iqr": 152.5,
    "rise_median": 9.390540684688128,
    "rise_iqr": 12.739440878959034,
+   "grams_median": 45.0,
+   "rise_median_band": 7.562661716484904,
+   "band_meals": 11,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#007"
@@ -1165,6 +1479,9 @@
    "iqr": 105.0,
    "rise_median": 12.957761982204232,
    "rise_iqr": 15.59131696410406,
+   "grams_median": 50.0,
+   "rise_median_band": 19.804766910131292,
+   "band_meals": 13,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#008"
@@ -1175,6 +1492,9 @@
    "iqr": 78.75,
    "rise_median": 11.415901890364573,
    "rise_iqr": 10.39710325311183,
+   "grams_median": 44.0,
+   "rise_median_band": 11.415901890364573,
+   "band_meals": 12,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#009"
@@ -1185,6 +1505,9 @@
    "iqr": 95.0,
    "rise_median": 9.256073012453692,
    "rise_iqr": 5.69106944846806,
+   "grams_median": 51.0,
+   "rise_median_band": 9.327272767088228,
+   "band_meals": 10,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#010"
@@ -1195,6 +1518,9 @@
    "iqr": 108.75,
    "rise_median": 12.798970832247052,
    "rise_iqr": 16.25378346189161,
+   "grams_median": 49.5,
+   "rise_median_band": null,
+   "band_meals": 6,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#011"
@@ -1205,6 +1531,9 @@
    "iqr": 120.0,
    "rise_median": 9.19520749271453,
    "rise_iqr": 9.931491734170603,
+   "grams_median": 47.0,
+   "rise_median_band": 6.6362266736848,
+   "band_meals": 14,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#012"
@@ -1215,6 +1544,9 @@
    "iqr": 97.5,
    "rise_median": 11.439770641458264,
    "rise_iqr": 8.645825653607627,
+   "grams_median": 45.5,
+   "rise_median_band": 11.439770641458264,
+   "band_meals": 14,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#013"
@@ -1225,6 +1557,9 @@
    "iqr": 42.5,
    "rise_median": 12.804019169525084,
    "rise_iqr": 8.603546261725228,
+   "grams_median": 54.5,
+   "rise_median_band": 14.704495652903178,
+   "band_meals": 11,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#015"
@@ -1235,6 +1570,9 @@
    "iqr": 148.75,
    "rise_median": 9.895827376369033,
    "rise_iqr": 10.437462259422809,
+   "grams_median": 41.5,
+   "rise_median_band": 4.546613403200366,
+   "band_meals": 11,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#016"
@@ -1245,6 +1583,9 @@
    "iqr": 110.0,
    "rise_median": 10.672306457284508,
    "rise_iqr": 12.392985735499657,
+   "grams_median": 48.0,
+   "rise_median_band": 9.96930075014877,
+   "band_meals": 10,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#017"
@@ -1255,6 +1596,9 @@
    "iqr": 72.5,
    "rise_median": 12.67123558348597,
    "rise_iqr": 9.348454933923048,
+   "grams_median": 46.5,
+   "rise_median_band": 11.254168129488814,
+   "band_meals": 12,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#018"
@@ -1265,6 +1609,9 @@
    "iqr": 61.25,
    "rise_median": 14.530099140004868,
    "rise_iqr": 11.63574246904361,
+   "grams_median": 45.0,
+   "rise_median_band": 16.586347833489775,
+   "band_meals": 16,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#019"
@@ -1275,6 +1622,9 @@
    "iqr": 58.75,
    "rise_median": 10.441867027218102,
    "rise_iqr": 8.808800148062385,
+   "grams_median": 46.0,
+   "rise_median_band": 10.493216189147951,
+   "band_meals": 11,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#020"
@@ -1285,6 +1635,9 @@
    "iqr": 106.25,
    "rise_median": 8.752386689289256,
    "rise_iqr": 13.807069223039822,
+   "grams_median": 47.0,
+   "rise_median_band": null,
+   "band_meals": 6,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#021"
@@ -1295,6 +1648,9 @@
    "iqr": 107.5,
    "rise_median": 10.423810593147017,
    "rise_iqr": 14.884288859620938,
+   "grams_median": 41.0,
+   "rise_median_band": null,
+   "band_meals": 6,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#022"
@@ -1305,6 +1661,9 @@
    "iqr": 55.0,
    "rise_median": 10.689617801140924,
    "rise_iqr": 10.570606349281011,
+   "grams_median": 46.0,
+   "rise_median_band": 10.893117042249681,
+   "band_meals": 16,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#024"
@@ -1315,6 +1674,9 @@
    "iqr": 97.5,
    "rise_median": 11.290453131218884,
    "rise_iqr": 6.507484453955135,
+   "grams_median": 49.0,
+   "rise_median_band": 7.422203722940779,
+   "band_meals": 9,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#025"
@@ -1325,6 +1687,9 @@
    "iqr": 45.0,
    "rise_median": 12.86446286398229,
    "rise_iqr": 6.481377309067113,
+   "grams_median": 49.5,
+   "rise_median_band": 13.862704518321522,
+   "band_meals": 14,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#028"
@@ -1335,6 +1700,9 @@
    "iqr": 95.0,
    "rise_median": 9.779387903354204,
    "rise_iqr": 9.797856644772306,
+   "grams_median": 50.5,
+   "rise_median_band": 10.437451921399944,
+   "band_meals": 15,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#029"
@@ -1345,6 +1713,9 @@
    "iqr": 81.25,
    "rise_median": 13.10645398202621,
    "rise_iqr": 10.668301742283703,
+   "grams_median": 50.0,
+   "rise_median_band": 12.289671149552696,
+   "band_meals": 14,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#030"
@@ -1355,6 +1726,9 @@
    "iqr": 123.75,
    "rise_median": 9.214071000937711,
    "rise_iqr": 12.927876304435447,
+   "grams_median": 46.0,
+   "rise_median_band": 8.060665925297545,
+   "band_meals": 18,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#031"
@@ -1365,6 +1739,9 @@
    "iqr": 55.0,
    "rise_median": 15.74717306872857,
    "rise_iqr": 8.376771402003627,
+   "grams_median": 50.5,
+   "rise_median_band": 15.634053647024679,
+   "band_meals": 9,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#032"
@@ -1375,6 +1752,9 @@
    "iqr": 101.25,
    "rise_median": 11.753358059846828,
    "rise_iqr": 10.590453544452455,
+   "grams_median": 47.0,
+   "rise_median_band": 9.886555920838285,
+   "band_meals": 13,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#033"
@@ -1385,6 +1765,9 @@
    "iqr": 130.0,
    "rise_median": 11.483504611727705,
    "rise_iqr": 16.830191063180823,
+   "grams_median": 46.0,
+   "rise_median_band": 11.774436738465223,
+   "band_meals": 18,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#034"
@@ -1395,6 +1778,9 @@
    "iqr": 122.5,
    "rise_median": 12.975854404031278,
    "rise_iqr": 13.79820255534034,
+   "grams_median": 46.0,
+   "rise_median_band": 12.977121046088692,
+   "band_meals": 15,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#035"
@@ -1405,6 +1791,9 @@
    "iqr": 152.5,
    "rise_median": 11.845885870974797,
    "rise_iqr": 13.025742438071294,
+   "grams_median": 43.0,
+   "rise_median_band": 12.121514924602131,
+   "band_meals": 8,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#036"
@@ -1415,6 +1804,9 @@
    "iqr": 95.0,
    "rise_median": 7.893376113337633,
    "rise_iqr": 6.424107559457401,
+   "grams_median": 48.5,
+   "rise_median_band": 16.412548388643206,
+   "band_meals": 8,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#037"
@@ -1425,6 +1817,9 @@
    "iqr": 67.5,
    "rise_median": 11.925890960627882,
    "rise_iqr": 4.689947915719312,
+   "grams_median": 45.0,
+   "rise_median_band": 11.202522085068043,
+   "band_meals": 12,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#038"
@@ -1435,6 +1830,9 @@
    "iqr": 41.25,
    "rise_median": 10.425713890979038,
    "rise_iqr": 6.018902129783656,
+   "grams_median": 45.5,
+   "rise_median_band": 8.890623922791995,
+   "band_meals": 11,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#039"
@@ -1445,6 +1843,9 @@
    "iqr": 108.75,
    "rise_median": 15.343985254126924,
    "rise_iqr": 7.124410517537539,
+   "grams_median": 46.0,
+   "rise_median_band": 14.508726258495566,
+   "band_meals": 11,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#040"
@@ -1455,6 +1856,9 @@
    "iqr": 77.5,
    "rise_median": 12.469044768628851,
    "rise_iqr": 12.678226865612505,
+   "grams_median": 46.0,
+   "rise_median_band": 13.386792187001106,
+   "band_meals": 11,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#041"
@@ -1465,6 +1869,9 @@
    "iqr": 90.0,
    "rise_median": 13.814245864284825,
    "rise_iqr": 9.63700695659766,
+   "grams_median": 45.5,
+   "rise_median_band": null,
+   "band_meals": 7,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#003"
@@ -1475,6 +1882,9 @@
    "iqr": 56.25,
    "rise_median": 18.211599543957732,
    "rise_iqr": 13.176777795679612,
+   "grams_median": 41.0,
+   "rise_median_band": 21.038951249059124,
+   "band_meals": 8,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#004"
@@ -1485,6 +1895,9 @@
    "iqr": 136.25,
    "rise_median": 8.486681928622836,
    "rise_iqr": 11.460464756754353,
+   "grams_median": 42.0,
+   "rise_median_band": 6.17139536125743,
+   "band_meals": 10,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#012"
@@ -1495,6 +1908,9 @@
    "iqr": 98.75,
    "rise_median": 12.02508948482107,
    "rise_iqr": 8.186371797865934,
+   "grams_median": 42.5,
+   "rise_median_band": 12.232295892332793,
+   "band_meals": 10,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#013"
@@ -1505,6 +1921,9 @@
    "iqr": 75.0,
    "rise_median": 13.43231577697638,
    "rise_iqr": 7.554512011021808,
+   "grams_median": 55.0,
+   "rise_median_band": 15.269247418365648,
+   "band_meals": 8,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#015"
@@ -1515,6 +1934,9 @@
    "iqr": 156.25,
    "rise_median": 10.488586077111894,
    "rise_iqr": 9.697143923248138,
+   "grams_median": 40.5,
+   "rise_median_band": 6.154683256261459,
+   "band_meals": 9,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#016"
@@ -1525,6 +1947,9 @@
    "iqr": 90.0,
    "rise_median": 14.888750734919725,
    "rise_iqr": 12.097922956852535,
+   "grams_median": 43.0,
+   "rise_median_band": 11.914243774751387,
+   "band_meals": 8,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#018"
@@ -1535,6 +1960,9 @@
    "iqr": 47.5,
    "rise_median": 14.806483560851468,
    "rise_iqr": 11.707546510840789,
+   "grams_median": 44.0,
+   "rise_median_band": 16.46068176280196,
+   "band_meals": 10,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#019"
@@ -1545,6 +1973,9 @@
    "iqr": 92.5,
    "rise_median": 10.007163010581088,
    "rise_iqr": 10.518874761795818,
+   "grams_median": 45.5,
+   "rise_median_band": 10.120002812075107,
+   "band_meals": 8,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#020"
@@ -1555,6 +1986,9 @@
    "iqr": 92.5,
    "rise_median": 11.254861641080328,
    "rise_iqr": 9.889830828492995,
+   "grams_median": 44.0,
+   "rise_median_band": 11.254861641080328,
+   "band_meals": 13,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#024"
@@ -1565,6 +1999,9 @@
    "iqr": 123.75,
    "rise_median": 9.083586985933351,
    "rise_iqr": 14.758236942295692,
+   "grams_median": 44.5,
+   "rise_median_band": 10.379344548413679,
+   "band_meals": 17,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#031"
@@ -1575,6 +2012,9 @@
    "iqr": 145.0,
    "rise_median": 14.118010345424972,
    "rise_iqr": 7.6112881047681995,
+   "grams_median": 43.0,
+   "rise_median_band": 16.250385080419974,
+   "band_meals": 11,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#035"
@@ -1585,6 +2025,9 @@
    "iqr": 80.0,
    "rise_median": 12.987915242312315,
    "rise_iqr": 9.712983639617367,
+   "grams_median": 44.0,
+   "rise_median_band": 13.618717000387353,
+   "band_meals": 21,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#001"
@@ -1595,6 +2038,9 @@
    "iqr": 90.0,
    "rise_median": 7.731882788384139,
    "rise_iqr": 10.522168887122739,
+   "grams_median": 44.5,
+   "rise_median_band": 7.022745724256198,
+   "band_meals": 22,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#002"
@@ -1605,6 +2051,9 @@
    "iqr": 82.5,
    "rise_median": 11.022487132587994,
    "rise_iqr": 12.305870840981653,
+   "grams_median": 46.0,
+   "rise_median_band": 11.022487132587994,
+   "band_meals": 23,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#003"
@@ -1615,6 +2064,9 @@
    "iqr": 55.0,
    "rise_median": 13.55942519613834,
    "rise_iqr": 11.182793869940856,
+   "grams_median": 47.0,
+   "rise_median_band": 14.575406208909271,
+   "band_meals": 23,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#004"
@@ -1625,6 +2077,9 @@
    "iqr": 93.75,
    "rise_median": 8.229092003291605,
    "rise_iqr": 10.390800761173487,
+   "grams_median": 52.0,
+   "rise_median_band": 8.14579413038501,
+   "band_meals": 14,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#005"
@@ -1635,6 +2090,9 @@
    "iqr": 102.5,
    "rise_median": 11.895510130276822,
    "rise_iqr": 16.18569157019283,
+   "grams_median": 49.0,
+   "rise_median_band": 8.23264308501477,
+   "band_meals": 22,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#006"
@@ -1645,6 +2103,9 @@
    "iqr": 72.5,
    "rise_median": 8.485935257288332,
    "rise_iqr": 8.887707594781556,
+   "grams_median": 44.5,
+   "rise_median_band": 10.075854288028033,
+   "band_meals": 20,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#007"
@@ -1655,6 +2116,9 @@
    "iqr": 45.0,
    "rise_median": 14.91745697562659,
    "rise_iqr": 13.768150263715452,
+   "grams_median": 50.0,
+   "rise_median_band": 15.025054608256328,
+   "band_meals": 23,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#008"
@@ -1665,6 +2129,9 @@
    "iqr": 100.0,
    "rise_median": 7.109913454978401,
    "rise_iqr": 11.166503824892146,
+   "grams_median": 44.0,
+   "rise_median_band": 7.721203652790941,
+   "band_meals": 29,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#009"
@@ -1675,6 +2142,9 @@
    "iqr": 60.0,
    "rise_median": 6.620159936222091,
    "rise_iqr": 7.118747101791124,
+   "grams_median": 49.0,
+   "rise_median_band": 7.478491699340439,
+   "band_meals": 25,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#010"
@@ -1685,6 +2155,9 @@
    "iqr": 95.0,
    "rise_median": 9.567581833174586,
    "rise_iqr": 15.785399847141688,
+   "grams_median": 51.5,
+   "rise_median_band": 13.254417565247275,
+   "band_meals": 19,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#011"
@@ -1695,6 +2168,9 @@
    "iqr": 72.5,
    "rise_median": 5.961339956122895,
    "rise_iqr": 7.660738711157141,
+   "grams_median": 43.0,
+   "rise_median_band": 5.830548691692755,
+   "band_meals": 21,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#012"
@@ -1705,6 +2181,9 @@
    "iqr": 77.5,
    "rise_median": 7.494681272403361,
    "rise_iqr": 7.29642161735777,
+   "grams_median": 47.0,
+   "rise_median_band": 9.294631380391081,
+   "band_meals": 22,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#013"
@@ -1715,6 +2194,9 @@
    "iqr": 76.25,
    "rise_median": 9.161443920097117,
    "rise_iqr": 16.479430726715176,
+   "grams_median": 36.0,
+   "rise_median_band": 7.74890118516207,
+   "band_meals": 12,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#014"
@@ -1725,6 +2207,9 @@
    "iqr": 42.5,
    "rise_median": 10.739618694605806,
    "rise_iqr": 10.738482417820022,
+   "grams_median": 46.0,
+   "rise_median_band": 14.297791073828908,
+   "band_meals": 24,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#015"
@@ -1735,6 +2220,9 @@
    "iqr": 96.25,
    "rise_median": 5.881036841501681,
    "rise_iqr": 13.248169425436304,
+   "grams_median": 47.0,
+   "rise_median_band": 5.082499776208664,
+   "band_meals": 22,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#016"
@@ -1745,6 +2233,9 @@
    "iqr": 80.0,
    "rise_median": 9.230961887442653,
    "rise_iqr": 7.9955838172381855,
+   "grams_median": 46.0,
+   "rise_median_band": 8.083929743181308,
+   "band_meals": 12,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#017"
@@ -1755,6 +2246,9 @@
    "iqr": 65.0,
    "rise_median": 9.661056260415451,
    "rise_iqr": 10.644384033006187,
+   "grams_median": 47.0,
+   "rise_median_band": 12.361810354790563,
+   "band_meals": 32,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#018"
@@ -1765,6 +2259,9 @@
    "iqr": 51.25,
    "rise_median": 10.398142293604769,
    "rise_iqr": 10.85659568505789,
+   "grams_median": 46.0,
+   "rise_median_band": 11.778706307417234,
+   "band_meals": 26,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#019"
@@ -1775,6 +2272,9 @@
    "iqr": 65.0,
    "rise_median": 11.652557043368118,
    "rise_iqr": 12.573212828067069,
+   "grams_median": 46.0,
+   "rise_median_band": 10.137369385105396,
+   "band_meals": 11,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#020"
@@ -1785,6 +2285,9 @@
    "iqr": 107.5,
    "rise_median": 5.673660866684251,
    "rise_iqr": 8.093612336456209,
+   "grams_median": 46.0,
+   "rise_median_band": 10.980562519289695,
+   "band_meals": 8,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#021"
@@ -1795,6 +2298,9 @@
    "iqr": 91.25,
    "rise_median": 7.978618149698591,
    "rise_iqr": 10.335726665258647,
+   "grams_median": 47.0,
+   "rise_median_band": 8.989139384673974,
+   "band_meals": 17,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#022"
@@ -1805,6 +2311,9 @@
    "iqr": 55.0,
    "rise_median": 10.608477074537362,
    "rise_iqr": 10.349664415811574,
+   "grams_median": 48.0,
+   "rise_median_band": 10.608477074537362,
+   "band_meals": 17,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#023"
@@ -1815,6 +2324,9 @@
    "iqr": 43.75,
    "rise_median": 6.562207111718362,
    "rise_iqr": 9.386472607863853,
+   "grams_median": 50.0,
+   "rise_median_band": 9.310047547581915,
+   "band_meals": 22,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#024"
@@ -1825,6 +2337,9 @@
    "iqr": 35.0,
    "rise_median": 10.433531261071277,
    "rise_iqr": 10.110817852739732,
+   "grams_median": 46.0,
+   "rise_median_band": 9.176417568392917,
+   "band_meals": 22,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#025"
@@ -1835,6 +2350,9 @@
    "iqr": 60.0,
    "rise_median": 9.278670903365029,
    "rise_iqr": 9.371193624680284,
+   "grams_median": 53.0,
+   "rise_median_band": 10.120446513569531,
+   "band_meals": 23,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#027"
@@ -1845,6 +2363,9 @@
    "iqr": 50.0,
    "rise_median": 10.881472942757917,
    "rise_iqr": 7.617543306897731,
+   "grams_median": 53.0,
+   "rise_median_band": 10.572739239919711,
+   "band_meals": 24,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#028"
@@ -1855,6 +2376,9 @@
    "iqr": 50.0,
    "rise_median": 9.039628402451648,
    "rise_iqr": 9.11297341019565,
+   "grams_median": 47.0,
+   "rise_median_band": 8.00019467231907,
+   "band_meals": 28,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#029"
@@ -1865,6 +2389,9 @@
    "iqr": 85.0,
    "rise_median": 7.406453134107985,
    "rise_iqr": 11.291462038564498,
+   "grams_median": 49.0,
+   "rise_median_band": 6.645026623832335,
+   "band_meals": 24,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#030"
@@ -1875,6 +2402,9 @@
    "iqr": 77.5,
    "rise_median": 11.02885059036343,
    "rise_iqr": 9.109655278273548,
+   "grams_median": 46.5,
+   "rise_median_band": 12.146285808096177,
+   "band_meals": 30,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#031"
@@ -1885,6 +2415,9 @@
    "iqr": 35.0,
    "rise_median": 12.237029840250978,
    "rise_iqr": 9.815972779901077,
+   "grams_median": 47.0,
+   "rise_median_band": 10.955557393137834,
+   "band_meals": 23,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#032"
@@ -1895,6 +2428,9 @@
    "iqr": 78.75,
    "rise_median": 7.883047321249596,
    "rise_iqr": 13.973794313123182,
+   "grams_median": 47.5,
+   "rise_median_band": 5.001327476599292,
+   "band_meals": 20,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#034"
@@ -1905,6 +2441,9 @@
    "iqr": 106.25,
    "rise_median": 6.218258662116618,
    "rise_iqr": 9.515845862843237,
+   "grams_median": 47.0,
+   "rise_median_band": 5.961436328014204,
+   "band_meals": 27,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#035"
@@ -1915,6 +2454,9 @@
    "iqr": 70.0,
    "rise_median": 9.917412956953743,
    "rise_iqr": 14.293550926963029,
+   "grams_median": 47.0,
+   "rise_median_band": 13.60161379042568,
+   "band_meals": 19,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#036"
@@ -1925,6 +2467,9 @@
    "iqr": 127.5,
    "rise_median": 7.09538290417612,
    "rise_iqr": 9.842762566210073,
+   "grams_median": 51.0,
+   "rise_median_band": 4.939894522075583,
+   "band_meals": 24,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#037"
@@ -1935,6 +2480,9 @@
    "iqr": 45.0,
    "rise_median": 10.067806617598354,
    "rise_iqr": 9.167178533871946,
+   "grams_median": 48.5,
+   "rise_median_band": 10.291494799276846,
+   "band_meals": 32,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#038"
@@ -1945,6 +2493,9 @@
    "iqr": 36.25,
    "rise_median": 9.603316666011814,
    "rise_iqr": 8.839097250371164,
+   "grams_median": 51.5,
+   "rise_median_band": 9.949855545187518,
+   "band_meals": 21,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#039"
@@ -1955,6 +2506,9 @@
    "iqr": 70.0,
    "rise_median": 11.237456539995893,
    "rise_iqr": 11.652690737169777,
+   "grams_median": 52.0,
+   "rise_median_band": 13.853208092294173,
+   "band_meals": 17,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#040"
@@ -1965,6 +2519,9 @@
    "iqr": 62.5,
    "rise_median": 10.025124494490095,
    "rise_iqr": 8.971185015581183,
+   "grams_median": 48.0,
+   "rise_median_band": 9.664466755521198,
+   "band_meals": 20,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#041"
@@ -1975,6 +2532,9 @@
    "iqr": 102.5,
    "rise_median": 12.589581344201726,
    "rise_iqr": 8.504088846267512,
+   "grams_median": 44.0,
+   "rise_median_band": 14.12327176121936,
+   "band_meals": 14,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#001"
@@ -1985,6 +2545,9 @@
    "iqr": 96.25,
    "rise_median": 9.227384482286313,
    "rise_iqr": 9.526411691196792,
+   "grams_median": 43.0,
+   "rise_median_band": 8.142515010905875,
+   "band_meals": 16,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#002"
@@ -1995,6 +2558,9 @@
    "iqr": 125.0,
    "rise_median": 12.494513139404528,
    "rise_iqr": 9.05979897573543,
+   "grams_median": 47.0,
+   "rise_median_band": 15.071584358695342,
+   "band_meals": 17,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#003"
@@ -2005,6 +2571,9 @@
    "iqr": 60.0,
    "rise_median": 13.55942519613834,
    "rise_iqr": 10.56370437162616,
+   "grams_median": 47.0,
+   "rise_median_band": 14.03519918245208,
+   "band_meals": 17,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#004"
@@ -2015,6 +2584,9 @@
    "iqr": 115.0,
    "rise_median": 9.751531686311642,
    "rise_iqr": 7.935193327818436,
+   "grams_median": 55.0,
+   "rise_median_band": 10.269146073588512,
+   "band_meals": 12,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#005"
@@ -2025,6 +2597,9 @@
    "iqr": 80.0,
    "rise_median": 16.486081533656037,
    "rise_iqr": 16.64251263310797,
+   "grams_median": 46.0,
+   "rise_median_band": 11.00371017779421,
+   "band_meals": 11,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#006"
@@ -2035,6 +2610,9 @@
    "iqr": 85.0,
    "rise_median": 9.941253389779256,
    "rise_iqr": 9.344612653161203,
+   "grams_median": 44.0,
+   "rise_median_band": 9.941253389779256,
+   "band_meals": 15,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#007"
@@ -2045,6 +2623,9 @@
    "iqr": 57.5,
    "rise_median": 14.809859342996853,
    "rise_iqr": 12.037631242469121,
+   "grams_median": 50.0,
+   "rise_median_band": 14.537371203864371,
+   "band_meals": 20,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#008"
@@ -2055,6 +2636,9 @@
    "iqr": 125.0,
    "rise_median": 8.561874689408457,
    "rise_iqr": 15.44869137864454,
+   "grams_median": 43.0,
+   "rise_median_band": 10.817054745707136,
+   "band_meals": 20,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#009"
@@ -2065,6 +2649,9 @@
    "iqr": 42.5,
    "rise_median": 8.607099695309214,
    "rise_iqr": 5.947403865897019,
+   "grams_median": 49.0,
+   "rise_median_band": 9.079410285933402,
+   "band_meals": 15,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#010"
@@ -2075,6 +2662,9 @@
    "iqr": 95.0,
    "rise_median": 11.73661073379165,
    "rise_iqr": 20.256087767611874,
+   "grams_median": 51.0,
+   "rise_median_band": 9.736801106003021,
+   "band_meals": 13,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#011"
@@ -2085,6 +2675,9 @@
    "iqr": 81.25,
    "rise_median": 6.776562374719681,
    "rise_iqr": 9.82466733148723,
+   "grams_median": 43.0,
+   "rise_median_band": 6.1799726089619735,
+   "band_meals": 16,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#012"
@@ -2095,6 +2688,9 @@
    "iqr": 96.25,
    "rise_median": 8.375572526619813,
    "rise_iqr": 7.516972890875175,
+   "grams_median": 45.5,
+   "rise_median_band": 10.656737176657664,
+   "band_meals": 14,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#013"
@@ -2105,6 +2701,9 @@
    "iqr": 50.0,
    "rise_median": 10.764013224546762,
    "rise_iqr": 9.75602484941121,
+   "grams_median": 46.0,
+   "rise_median_band": 13.764043475898939,
+   "band_meals": 16,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#015"
@@ -2115,6 +2714,9 @@
    "iqr": 110.0,
    "rise_median": 6.589959459519065,
    "rise_iqr": 17.005939240657852,
+   "grams_median": 46.0,
+   "rise_median_band": 4.403775559210729,
+   "band_meals": 16,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#016"
@@ -2125,6 +2727,9 @@
    "iqr": 96.25,
    "rise_median": 9.800614318343921,
    "rise_iqr": 9.550914383723535,
+   "grams_median": 48.0,
+   "rise_median_band": null,
+   "band_meals": 7,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#017"
@@ -2135,6 +2740,9 @@
    "iqr": 110.0,
    "rise_median": 9.976890218308752,
    "rise_iqr": 13.556088012195431,
+   "grams_median": 50.0,
+   "rise_median_band": 11.811802095203758,
+   "band_meals": 21,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#018"
@@ -2145,6 +2753,9 @@
    "iqr": 62.5,
    "rise_median": 9.782647074789413,
    "rise_iqr": 11.580130393119429,
+   "grams_median": 45.5,
+   "rise_median_band": 16.48993063166053,
+   "band_meals": 20,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#019"
@@ -2155,6 +2766,9 @@
    "iqr": 60.0,
    "rise_median": 13.860543111822754,
    "rise_iqr": 13.625499830140127,
+   "grams_median": 46.0,
+   "rise_median_band": 12.850490686361063,
+   "band_meals": 10,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#020"
@@ -2165,6 +2779,9 @@
    "iqr": 107.5,
    "rise_median": 11.297150704462698,
    "rise_iqr": 10.596696614663582,
+   "grams_median": 45.5,
+   "rise_median_band": 11.297150704462698,
+   "band_meals": 10,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#022"
@@ -2175,6 +2792,9 @@
    "iqr": 50.0,
    "rise_median": 10.989128363804161,
    "rise_iqr": 10.62183901907731,
+   "grams_median": 45.0,
+   "rise_median_band": 9.205370536503526,
+   "band_meals": 12,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#023"
@@ -2185,6 +2805,9 @@
    "iqr": 55.0,
    "rise_median": 8.939362708590062,
    "rise_iqr": 10.002727758444633,
+   "grams_median": 49.0,
+   "rise_median_band": 13.881338158569417,
+   "band_meals": 16,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#024"
@@ -2195,6 +2818,9 @@
    "iqr": 38.75,
    "rise_median": 12.934267601628619,
    "rise_iqr": 9.379726761161841,
+   "grams_median": 46.0,
+   "rise_median_band": 11.47447334033586,
+   "band_meals": 16,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#025"
@@ -2205,6 +2831,9 @@
    "iqr": 70.0,
    "rise_median": 12.196214625665851,
    "rise_iqr": 10.361800030594177,
+   "grams_median": 54.0,
+   "rise_median_band": 12.796350833455943,
+   "band_meals": 10,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#027"
@@ -2215,6 +2844,9 @@
    "iqr": 53.75,
    "rise_median": 10.942481169041873,
    "rise_iqr": 7.758871973882993,
+   "grams_median": 54.0,
+   "rise_median_band": 11.980459710497675,
+   "band_meals": 17,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#028"
@@ -2225,6 +2857,9 @@
    "iqr": 80.0,
    "rise_median": 11.537179965899696,
    "rise_iqr": 12.663072009794242,
+   "grams_median": 46.0,
+   "rise_median_band": 8.854158824855276,
+   "band_meals": 19,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#029"
@@ -2235,6 +2870,9 @@
    "iqr": 111.25,
    "rise_median": 7.959903344222622,
    "rise_iqr": 13.583762394376013,
+   "grams_median": 45.5,
+   "rise_median_band": 7.326263580451908,
+   "band_meals": 17,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#030"
@@ -2245,6 +2883,9 @@
    "iqr": 81.25,
    "rise_median": 14.170540184198206,
    "rise_iqr": 10.09482797213888,
+   "grams_median": 47.0,
+   "rise_median_band": 14.205414059202095,
+   "band_meals": 23,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#031"
@@ -2255,6 +2896,9 @@
    "iqr": 51.25,
    "rise_median": 10.438558335740808,
    "rise_iqr": 9.55404354110234,
+   "grams_median": 50.5,
+   "rise_median_band": 12.256064643189971,
+   "band_meals": 10,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#032"
@@ -2265,6 +2909,9 @@
    "iqr": 92.5,
    "rise_median": 7.763335636158018,
    "rise_iqr": 14.293143779201598,
+   "grams_median": 50.0,
+   "rise_median_band": 5.775600448545756,
+   "band_meals": 14,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#034"
@@ -2275,6 +2922,9 @@
    "iqr": 125.0,
    "rise_median": 10.593784285934783,
    "rise_iqr": 9.977284360222928,
+   "grams_median": 47.0,
+   "rise_median_band": 13.003127197854049,
+   "band_meals": 21,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#035"
@@ -2285,6 +2935,9 @@
    "iqr": 70.0,
    "rise_median": 11.22436086591501,
    "rise_iqr": 15.241631813189397,
+   "grams_median": 48.5,
+   "rise_median_band": 15.032442454337955,
+   "band_meals": 14,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#036"
@@ -2295,6 +2948,9 @@
    "iqr": 130.0,
    "rise_median": 8.635011240683408,
    "rise_iqr": 7.953879996008446,
+   "grams_median": 50.0,
+   "rise_median_band": 7.76242600188896,
+   "band_meals": 13,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#037"
@@ -2305,6 +2961,9 @@
    "iqr": 87.5,
    "rise_median": 10.14403781646377,
    "rise_iqr": 7.640395401935766,
+   "grams_median": 47.0,
+   "rise_median_band": 10.92540062581712,
+   "band_meals": 24,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#038"
@@ -2315,6 +2974,9 @@
    "iqr": 30.0,
    "rise_median": 9.949855545187518,
    "rise_iqr": 8.814801990375429,
+   "grams_median": 52.0,
+   "rise_median_band": 9.949855545187518,
+   "band_meals": 15,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#039"
@@ -2325,6 +2987,9 @@
    "iqr": 47.5,
    "rise_median": 11.460618167486658,
    "rise_iqr": 14.450424945708003,
+   "grams_median": 53.0,
+   "rise_median_band": 15.556449923911648,
+   "band_meals": 12,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#040"
@@ -2335,6 +3000,9 @@
    "iqr": 48.75,
    "rise_median": 10.700152142564868,
    "rise_iqr": 10.80058459174242,
+   "grams_median": 48.0,
+   "rise_median_band": 10.206352393496834,
+   "band_meals": 14,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#041"
@@ -2345,6 +3013,9 @@
    "iqr": 86.25,
    "rise_median": 7.86697838069783,
    "rise_iqr": 6.0399515070884515,
+   "grams_median": 44.0,
+   "rise_median_band": 7.414664558398918,
+   "band_meals": 12,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#002"
@@ -2355,6 +3026,9 @@
    "iqr": 130.0,
    "rise_median": 12.494513139404528,
    "rise_iqr": 8.270624445501529,
+   "grams_median": 45.0,
+   "rise_median_band": 13.617649089679725,
+   "band_meals": 12,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#003"
@@ -2365,6 +3039,9 @@
    "iqr": 48.75,
    "rise_median": 13.863500740742467,
    "rise_iqr": 10.342420012426029,
+   "grams_median": 46.5,
+   "rise_median_band": 13.863500740742467,
+   "band_meals": 14,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#004"
@@ -2375,6 +3052,9 @@
    "iqr": 127.5,
    "rise_median": 9.964655321732671,
    "rise_iqr": 8.48536976163076,
+   "grams_median": 45.5,
+   "rise_median_band": null,
+   "band_meals": 7,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#005"
@@ -2385,6 +3065,9 @@
    "iqr": 90.0,
    "rise_median": 17.4047998657614,
    "rise_iqr": 16.834663289306373,
+   "grams_median": 46.0,
+   "rise_median_band": 11.00371017779421,
+   "band_meals": 9,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#006"
@@ -2395,6 +3078,9 @@
    "iqr": 96.25,
    "rise_median": 17.860848607192093,
    "rise_iqr": 11.588270696449312,
+   "grams_median": 49.0,
+   "rise_median_band": 13.750341529831658,
+   "band_meals": 12,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#008"
@@ -2405,6 +3091,9 @@
    "iqr": 136.25,
    "rise_median": 11.941513272594511,
    "rise_iqr": 18.08923197042633,
+   "grams_median": 42.5,
+   "rise_median_band": 14.176041628964715,
+   "band_meals": 13,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#009"
@@ -2415,6 +3104,9 @@
    "iqr": 46.25,
    "rise_median": 7.586658290893924,
    "rise_iqr": 5.164028017067743,
+   "grams_median": 50.5,
+   "rise_median_band": 9.463834196047209,
+   "band_meals": 12,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#010"
@@ -2425,6 +3117,9 @@
    "iqr": 113.75,
    "rise_median": 12.672053573244227,
    "rise_iqr": 18.19682098666811,
+   "grams_median": 45.5,
+   "rise_median_band": 9.166680132836365,
+   "band_meals": 9,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#011"
@@ -2435,6 +3130,9 @@
    "iqr": 102.5,
    "rise_median": 9.266885093263886,
    "rise_iqr": 15.026433522409077,
+   "grams_median": 44.0,
+   "rise_median_band": 6.1799726089619735,
+   "band_meals": 12,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#012"
@@ -2445,6 +3143,9 @@
    "iqr": 92.5,
    "rise_median": 9.00060065071176,
    "rise_iqr": 8.598263768492497,
+   "grams_median": 46.0,
+   "rise_median_band": 10.656737176657664,
+   "band_meals": 12,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#013"
@@ -2455,6 +3156,9 @@
    "iqr": 46.25,
    "rise_median": 10.915854462524118,
    "rise_iqr": 7.067290793881908,
+   "grams_median": 52.5,
+   "rise_median_band": 13.582310093605123,
+   "band_meals": 9,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#015"
@@ -2465,6 +3169,9 @@
    "iqr": 97.5,
    "rise_median": 7.866415329660379,
    "rise_iqr": 11.535188983836006,
+   "grams_median": 42.0,
+   "rise_median_band": 5.082499776208664,
+   "band_meals": 10,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#016"
@@ -2475,6 +3182,9 @@
    "iqr": 107.5,
    "rise_median": 11.168890996674637,
    "rise_iqr": 13.765618361774699,
+   "grams_median": 49.0,
+   "rise_median_band": 11.811802095203758,
+   "band_meals": 13,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#018"
@@ -2485,6 +3195,9 @@
    "iqr": 61.25,
    "rise_median": 13.628042258939711,
    "rise_iqr": 11.970548392147926,
+   "grams_median": 45.0,
+   "rise_median_band": 16.48993063166053,
+   "band_meals": 14,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#019"
@@ -2495,6 +3208,9 @@
    "iqr": 96.25,
    "rise_median": 9.234048675467328,
    "rise_iqr": 7.456300232254316,
+   "grams_median": 49.0,
+   "rise_median_band": 13.058471249322732,
+   "band_meals": 12,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#024"
@@ -2505,6 +3221,9 @@
    "iqr": 102.5,
    "rise_median": 16.624266655642327,
    "rise_iqr": 7.27242594471533,
+   "grams_median": 50.0,
+   "rise_median_band": 14.629797161329899,
+   "band_meals": 9,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#025"
@@ -2515,6 +3234,9 @@
    "iqr": 48.75,
    "rise_median": 9.287301421087337,
    "rise_iqr": 6.537561055996425,
+   "grams_median": 49.5,
+   "rise_median_band": 12.129611666233853,
+   "band_meals": 12,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#028"
@@ -2525,6 +3247,9 @@
    "iqr": 95.0,
    "rise_median": 11.537179965899696,
    "rise_iqr": 12.443773794534527,
+   "grams_median": 46.0,
+   "rise_median_band": 10.194294770049918,
+   "band_meals": 15,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#029"
@@ -2535,6 +3260,9 @@
    "iqr": 120.0,
    "rise_median": 9.785000570845334,
    "rise_iqr": 13.380278661099174,
+   "grams_median": 50.0,
+   "rise_median_band": 13.66091298539435,
+   "band_meals": 12,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#030"
@@ -2545,6 +3273,9 @@
    "iqr": 67.5,
    "rise_median": 15.07005084535392,
    "rise_iqr": 12.072679900381338,
+   "grams_median": 45.5,
+   "rise_median_band": 16.2726958175306,
+   "band_meals": 16,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#031"
@@ -2555,6 +3286,9 @@
    "iqr": 77.5,
    "rise_median": 11.549338156971846,
    "rise_iqr": 12.75872609637839,
+   "grams_median": 50.0,
+   "rise_median_band": 10.842661787246065,
+   "band_meals": 12,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#034"
@@ -2565,6 +3299,9 @@
    "iqr": 120.0,
    "rise_median": 13.86875641342452,
    "rise_iqr": 10.252807907942437,
+   "grams_median": 46.0,
+   "rise_median_band": 13.729121718063226,
+   "band_meals": 14,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#035"
@@ -2575,6 +3312,9 @@
    "iqr": 62.5,
    "rise_median": 12.480245559830816,
    "rise_iqr": 14.481880890005815,
+   "grams_median": 45.0,
+   "rise_median_band": 13.882003501194644,
+   "band_meals": 10,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#036"
@@ -2585,6 +3325,9 @@
    "iqr": 185.0,
    "rise_median": 9.925360746270169,
    "rise_iqr": 10.700005554556554,
+   "grams_median": 47.0,
+   "rise_median_band": 9.250578022462925,
+   "band_meals": 8,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#037"
@@ -2595,6 +3338,9 @@
    "iqr": 130.0,
    "rise_median": 11.397334845980197,
    "rise_iqr": 6.843636419352797,
+   "grams_median": 45.0,
+   "rise_median_band": 11.513795515902682,
+   "band_meals": 14,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#038"
@@ -2605,6 +3351,9 @@
    "iqr": 41.25,
    "rise_median": 14.979635374572847,
    "rise_iqr": 12.277939553559746,
+   "grams_median": 50.5,
+   "rise_median_band": 17.882826199041382,
+   "band_meals": 8,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#040"
@@ -2615,6 +3364,9 @@
    "iqr": 67.5,
    "rise_median": 12.224798555367684,
    "rise_iqr": 12.10160315398184,
+   "grams_median": 44.0,
+   "rise_median_band": 11.72272118123226,
+   "band_meals": 12,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#041"
@@ -2625,6 +3377,9 @@
    "iqr": 126.25,
    "rise_median": 12.804425043671367,
    "rise_iqr": 6.90169960548188,
+   "grams_median": 45.5,
+   "rise_median_band": null,
+   "band_meals": 7,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#003"
@@ -2635,6 +3390,9 @@
    "iqr": 60.0,
    "rise_median": 18.43699952613727,
    "rise_iqr": 10.569999739275989,
+   "grams_median": 44.0,
+   "rise_median_band": 19.1365133257744,
+   "band_meals": 8,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#004"
@@ -2645,6 +3403,9 @@
    "iqr": 130.0,
    "rise_median": 17.598840183808534,
    "rise_iqr": 16.415940767153664,
+   "grams_median": 41.5,
+   "rise_median_band": 13.846737308780888,
+   "band_meals": 10,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#009"
@@ -2655,6 +3416,9 @@
    "iqr": 132.5,
    "rise_median": 10.919425401248002,
    "rise_iqr": 12.558714919814637,
+   "grams_median": 42.0,
+   "rise_median_band": 8.612452019303007,
+   "band_meals": 8,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#012"
@@ -2665,6 +3429,9 @@
    "iqr": 50.0,
    "rise_median": 12.03132990682711,
    "rise_iqr": 7.048194718252342,
+   "grams_median": 55.0,
+   "rise_median_band": 13.764043475898939,
+   "band_meals": 8,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#015"
@@ -2675,6 +3442,9 @@
    "iqr": 128.75,
    "rise_median": 11.821829500998316,
    "rise_iqr": 15.487369881948446,
+   "grams_median": 41.5,
+   "rise_median_band": 6.589959459519065,
+   "band_meals": 9,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#016"
@@ -2685,6 +3455,9 @@
    "iqr": 110.0,
    "rise_median": 16.003293592774043,
    "rise_iqr": 13.114365875697606,
+   "grams_median": 44.0,
+   "rise_median_band": 19.25250967511507,
+   "band_meals": 9,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#018"
@@ -2695,6 +3468,9 @@
    "iqr": 97.5,
    "rise_median": 15.055144199327184,
    "rise_iqr": 10.394482131443903,
+   "grams_median": 45.0,
+   "rise_median_band": 16.168059369123487,
+   "band_meals": 9,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#019"
@@ -2705,6 +3481,9 @@
    "iqr": 70.0,
    "rise_median": 10.30645397713187,
    "rise_iqr": 5.664590730369346,
+   "grams_median": 49.5,
+   "rise_median_band": 12.129611666233853,
+   "band_meals": 8,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#028"
@@ -2715,6 +3494,9 @@
    "iqr": 65.0,
    "rise_median": 18.50835297440605,
    "rise_iqr": 10.805081822889145,
+   "grams_median": 44.0,
+   "rise_median_band": 17.175234728897568,
+   "band_meals": 15,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#031"
@@ -2725,6 +3507,9 @@
    "iqr": 100.0,
    "rise_median": 14.46031526129273,
    "rise_iqr": 10.727793506221396,
+   "grams_median": 43.0,
+   "rise_median_band": 13.86875641342452,
+   "band_meals": 10,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#035"
