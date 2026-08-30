@@ -978,3 +978,41 @@ different people, after issue 43, the rescue treated-share window, and the panel
 layer ladder. The provenance stamp binds population, settings and code, and does not bind
 membership. Every one of these would have been caught by a stamp that recorded the subject list
 and an analysis that refused to compare two measurements whose lists differ.
+
+## 45. A gate deciding a mechanism was read off a median the mechanism does not move
+
+Found 30 August 2026, rerunning the two-timescale liver sweep after issue 44 put both gates on
+one panel.
+
+Two defects, the second underneath the first.
+
+The sweep dropped degenerate meals rung by rung, so each fast fraction was medianed over the
+subjects that happened to give a meal rise at that fraction: 31 of 40 at a fraction of zero,
+falling monotonically to 27 at one. Five rungs, five panels, differing by six people. The stored
+meal read 125 min at one end and 105 in the middle and 115 at the other, and on one panel of the
+25 subjects usable at every rung it reads 115 at every rung but one, which reads 120. The entire
+apparent movement was the membership. This is issue 44 one level down and inside the commit that
+fixed issue 44, which is the fifth instance in a week.
+
+That flat 115 then looked like a second finding, that the liver leaves the meal alone. It is not.
+Paired on the same 25 subjects, stock against the whole gain on the fast delay, the mechanism
+moves 22 of them, ten by an hour or more, individual subjects running from -210 min to +100. The
+paired median is 0.0 min with a 95 per cent interval of -5.0 to 20.0. The movements cancel.
+
+So gate 2 passes at every rung including the one with the mechanism switched off, and the sweep
+is decided by gate 1 alone. Gate 1 selects a fast fraction of 1.0, at which the published slow
+pathway carries none of the gain, so what the sweep adopts is a single-timescale liver at 10.5
+times the published rate. The two-timescale mechanism is not what satisfied the gates.
+
+The audit's conclusion that the meal response is lost above twice the published rate was read off
+this same median, on a different panel again.
+
+The rule this adds is about what a gate is allowed to be. A statistic used to decide a mechanism
+is checked against that mechanism first, by switching it off and requiring the number to move, and
+paired per subject rather than compared between medians. `docs/CAPABILITY.md` already scores
+against the distribution of real individuals for this reason. A gate does not, yet: trough to peak
+runs 60 to 365 min across this panel against a criterion of 112 plus or minus 20, so a cohort
+median can sit inside the band with almost no subject in it.
+
+`examples/liver_meal_gate_paired.py` is the producer, and it belongs in front of any gate before
+the gate is used.
