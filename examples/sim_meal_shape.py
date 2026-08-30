@@ -79,6 +79,11 @@ def job(args):
                   # falling at the same rate, so they are shorter because they peak lower.
                   "rise_per_10g": [(x["peak_mgdl"] - x["trough_mgdl"]) / (x["grams"] / 10.0)
                                    for x in recs],
+                  # Kept per meal so a size-matched comparison is analysis on stored data rather
+                  # than another run. Simulated meals admitted to the 30 to 90 g band centre above
+                  # the real ones, whose quartiles are 35 / 41 / 55, and rise per gram is not
+                  # constant in size.
+                  "grams": [x["grams"] for x in recs],
                   "trough_at_index": int(sum(x["trough_at_index"] for x in recs)),
                   "rejected": rej}
     return name, arm, out, None
@@ -90,6 +95,10 @@ def main():
     ap.add_argument("--days", type=int, default=42)
     ap.add_argument("--windows", nargs="+", type=int, default=list(ms.WINDOWS))
     ap.add_argument("--min-meals", type=int, default=20)
+    ap.add_argument("--band", nargs=2, type=float, default=[40.0, 55.0],
+                    help="grams band for the size-matched rise, the real interquartile range")
+    ap.add_argument("--band-min", type=int, default=8,
+                    help="meals a subject needs inside the band to contribute to it")
     ap.add_argument("--workers", type=int, default=WORKERS)
     ap.add_argument("--out", default=OUT)
     a = ap.parse_args()
@@ -129,7 +138,14 @@ def main():
                 p = ms.per_person(cell[w]["ttp"], a.min_meals)
                 if p:
                     r_ = ms.per_person(cell[w]["rise_per_10g"], a.min_meals)
-                    p = dict(p, rise_median=r_["median"], rise_iqr=r_["iqr"])
+                    g_ = np.asarray(cell[w]["grams"], float)
+                    band = np.asarray(cell[w]["rise_per_10g"], float)[
+                        (g_ >= a.band[0]) & (g_ <= a.band[1])]
+                    p = dict(p, rise_median=r_["median"], rise_iqr=r_["iqr"],
+                             grams_median=float(np.median(g_)),
+                             rise_median_band=(float(np.median(band)) if band.size >= a.band_min
+                                               else None),
+                             band_meals=int(band.size))
                     cells[(arm, w, n)] = p
                     rec["per_subject"].append(dict(p, arm=arm, window_min=w, subject=n))
 
@@ -145,7 +161,8 @@ def main():
     for arm, _, _ in ARMS:
         print(f"\n{arm}")
         print(f"{'window':>7}{'common':>8}{'own':>5}{'meals':>7}{'per-person median':>20}"
-              f"{'within-person IQR':>20}{'rise per 10 g':>20}{'evening':>9}")
+              f"{'within-person IQR':>20}{'rise per 10 g':>20}"
+              f"{'same, 40-55 g only':>22}{'g':>7}{'evening':>9}")
         for w in a.windows:
             common = rec["common_panel"][w]
             per = [cells[(arm, w, n)] for n in common]
@@ -167,6 +184,12 @@ def main():
             evening = float(np.mean((h >= 16) & (h <= 21)))
             bp, wp = s_["between_person_median"], s_["within_person_iqr"]
             rr = s_["rise_per_10g_between_person"]
+            bandv = [x["rise_median_band"] for x in per if x["rise_median_band"] is not None]
+            s_["grams_median"] = float(np.median([x["grams_median"] for x in per]))
+            s_["rise_per_10g_size_matched"] = ([q(bandv, 10), q(bandv, 50), q(bandv, 90)]
+                                               if bandv else None)
+            s_["size_matched_subjects"] = len(bandv)
+            bs = s_["rise_per_10g_size_matched"] or [float("nan")] * 3
             rec["rows"].append(dict(s_, arm=arm, window_min=w, own_subjects=own,
                                     evening_share=evening,
                                     trough_at_index_share=(at_index / tot if tot else
@@ -175,7 +198,8 @@ def main():
                   f"{f'{bp[0]:.0f} / {bp[1]:.0f} / {bp[2]:.0f}':>20}"
                   f"{f'{wp[0]:.0f} / {wp[1]:.0f} / {wp[2]:.0f}':>20}"
                   f"{f'{rr[0]:.1f} / {rr[1]:.1f} / {rr[2]:.1f}':>20}"
-                  f"{evening:>9.2f}")
+                  f"{f'{bs[0]:.1f} / {bs[1]:.1f} / {bs[2]:.1f}':>22}"
+                  f"{s_['grams_median']:>7.0f}{evening:>9.2f}")
 
     # Paired, per subject, on the common panel, since the arms differ by one mechanism and the
     # subject is the strongest thing to hold fixed.

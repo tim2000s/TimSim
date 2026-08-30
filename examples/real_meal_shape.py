@@ -87,17 +87,22 @@ def pct(v, q):
     return float(np.percentile(np.asarray(v, float), q)) if len(v) else float("nan")
 
 
-def one(cur, study, win, a, a_subsample=40):
+def one(cur, study, win, a, a_subsample=40, a_band=(40.0, 55.0), a_band_min=8):
     cur.execute(SQL, {"study": study, "g_lo": a.grams[0], "g_hi": a.grams[1], "win": win,
                       "before": a.clear_before,
                       "min_readings": int((win / 5) * a.coverage)})
     rows = cur.fetchall()
-    by_subject, by_rise, hours = {}, {}, []
+    by_subject, by_rise, by_band, hours = {}, {}, {}, []
     for sid, ttp, hour, rise, grams in rows:
         by_subject.setdefault(sid, []).append(float(ttp))
         # Rise per 10 g as logged. Logged grams under-state true intake, which the real rescue
         # and meal producers already record, so this is an upper bound on the rise per true 10 g.
         by_rise.setdefault(sid, []).append(float(rise) / (float(grams) / 10.0))
+        # The same rise restricted to one narrow size band on both sides, because rise per gram
+        # is not constant in size and the two sides do not eat the same distribution inside the
+        # 30 to 90 g admission band.
+        if a_band[0] <= float(grams) <= a_band[1]:
+            by_band.setdefault(sid, []).append(float(rise) / (float(grams) / 10.0))
         hours.append(int(hour))
     kept = {s: v for s, v in by_subject.items() if len(v) >= a.min_meals}
     pooled = [x for v in kept.values() for x in v]
@@ -106,6 +111,8 @@ def one(cur, study, win, a, a_subsample=40):
     # The rise the excursion work points at. Simulated excursions above 180 mg/dL last 40 minutes
     # against the trial's 60 while falling at the same rate, so they are shorter because they
     # peak lower. Whether a meal rise is smaller is the same question with a per-person reference.
+    bmed = [float(np.median(by_band[s_])) for s_ in kept
+            if len(by_band.get(s_, ())) >= a_band_min]
     rmed = [float(np.median(by_rise[s_])) for s_ in kept]
     riqr = [float(np.percentile(by_rise[s_], 75) - np.percentile(by_rise[s_], 25))
             for s_ in kept]
@@ -131,6 +138,10 @@ def one(cur, study, win, a, a_subsample=40):
             "within_person_iqr": [pct(iqr, 10), pct(iqr, 50), pct(iqr, 90)],
             "rise_per_10g_between_person": [pct(rmed, 10), pct(rmed, 50), pct(rmed, 90)],
             "rise_per_10g_within_person_iqr": [pct(riqr, 10), pct(riqr, 50), pct(riqr, 90)],
+            "rise_per_10g_size_matched": [pct(bmed, 10), pct(bmed, 50), pct(bmed, 90)],
+            "size_matched_band": list(a_band), "size_matched_subjects": len(bmed),
+            "grams_median": float(np.median([g for v in by_band.values() for g in v]))
+                            if by_band else float("nan"),
             "hour_share": {"05-10": float(np.mean((hours >= 5) & (hours <= 10))),
                            "11-15": float(np.mean((hours >= 11) & (hours <= 15))),
                            "16-21": float(np.mean((hours >= 16) & (hours <= 21))),
@@ -146,6 +157,10 @@ def main():
     ap.add_argument("--clear-before", type=int, default=CLEAR_BEFORE_MIN)
     ap.add_argument("--min-meals", type=int, default=MIN_MEALS_PER_SUBJECT)
     ap.add_argument("--coverage", type=float, default=COVERAGE)
+    ap.add_argument("--band", nargs=2, type=float, default=[40.0, 55.0],
+                    help="grams band for the size-matched rise")
+    ap.add_argument("--band-min", type=int, default=8,
+                    help="meals a person needs inside the band to contribute to it")
     ap.add_argument("--subsample", type=int, default=40,
                     help="meals per person for the matched-length control")
     ap.add_argument("--out", default=OUT)
@@ -163,20 +178,23 @@ def main():
                   f"{'q3':>7}{'per-person median p10/50/90':>30}"
                   f"{'within-person IQR p10/50/90':>30}"
                   f"{'same, at 40 meals each':>26}"
-                  f"{'rise per 10 g p10/50/90':>26}{'evening':>9}")
+                  f"{'rise per 10 g p10/50/90':>26}"
+                  f"{'same, 40-55 g only':>22}{'evening':>9}")
             for win in a.windows:
-                r = one(cur, study, win, a, a.subsample)
+                r = one(cur, study, win, a, a.subsample, tuple(a.band), a.band_min)
                 rec["rows"].append(r)
                 q = r["pooled_quartiles"]
                 bp, wp = r["between_person_median"], r["within_person_iqr"]
                 sp = r["within_person_iqr_subsampled"]
                 rp = r["rise_per_10g_between_person"]
+                bd = r["rise_per_10g_size_matched"]
                 print(f"{win:>7}{r['subjects']:>7}{r['meals']:>8}{q[0]:>11.0f}{q[1]:>8.0f}"
                       f"{q[2]:>7.0f}"
                       f"{f'{bp[0]:.0f} / {bp[1]:.0f} / {bp[2]:.0f}':>30}"
                       f"{f'{wp[0]:.0f} / {wp[1]:.0f} / {wp[2]:.0f}':>30}"
                       f"{f'{sp[0]:.0f} / {sp[1]:.0f} / {sp[2]:.0f}':>26}"
                       f"{f'{rp[0]:.1f} / {rp[1]:.1f} / {rp[2]:.1f}':>26}"
+                      f"{f'{bd[0]:.1f} / {bd[1]:.1f} / {bd[2]:.1f}':>22}"
                       f"{r['hour_share']['16-21']:>9.2f}")
 
     json.dump(rec, open(a.out, "w"), indent=1)
