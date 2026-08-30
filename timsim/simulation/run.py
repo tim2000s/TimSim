@@ -80,7 +80,8 @@ from simglucose.simulation.scenario import CustomScenario
 
 from ..controller.loop import CorrectionLoop
 from ..patient.varying import (HYPO_DEFENCE_GAIN, HYPO_EGP_DEFENCE, HYPO_EGP_FLOOR,
-                               HYPO_RISK_GAIN, LIVER_DELAY_SCALE, MEAL_ABSORPTION_CV,
+                               HYPO_RISK_GAIN, LIVER_DELAY_SCALE, LIVER_FAST_FRACTION,
+                               LIVER_FAST_KI_SCALE, MEAL_ABSORPTION_CV,
                                MEAL_ABSORPTION_SCALE, VaryingPatient)
 from ..person import behaviour as behaviour_mod
 from ..person.behaviour import AdaptiveRatios, BehaviourScenario, Person
@@ -492,7 +493,8 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
              sessions_per_week=None, hypo_defence_gain=None,
              hypo_egp_defence=None, hypo_egp_floor=None, rescue_bioavailability=None,
              set_life_days=None, announcement="some", meal_delay_min=None,
-             engagement_cv=None, liver_delay=None):
+             engagement_cv=None, liver_delay=None, liver_fast_fraction=None,
+             liver_fast_ki_scale=None):
     """Run one subject. Returns a Result.
 
     `layers` is any subset of LAYERS. `controller`, if given, replaces the built-in
@@ -536,9 +538,18 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
     # The liver insulin delay, applied outside the layer blocks because it is a property of the
     # published model rather than of anything this package adds, so it holds for the stock arm
     # too. 1.0 is S2008 as published; `docs/PADOVA_AUDIT.md` entry 3 has the measurement.
+    # The two-timescale liver. Set after `set_liver_delay`, since it reads `ki` to derive the
+    # fast rate and the two are alternative treatments of the same divergence: the scale retunes
+    # the single pathway and this splits it. `docs/PADOVA_AUDIT.md` entry 3 shows the scale cannot
+    # satisfy the clamp and the meal response together, which is why the split exists.
+    fast = (LIVER_FAST_FRACTION if liver_fast_fraction is None else float(liver_fast_fraction))
+    fast_scale = (LIVER_FAST_KI_SCALE if liver_fast_ki_scale is None
+                  else float(liver_fast_ki_scale))
     delay = (LIVER_DELAY_SCALE if liver_delay is None else float(liver_delay))
     if delay != 1.0:
         patient.set_liver_delay(delay)
+    if fast > 0.0:
+        patient.set_liver_two_timescale(fast, fast_scale)
     # Meal-to-meal absorption variation belongs to the physiology layer: it is a property of
     # the gut rather than of anything the person decides or the sensor reports.
     if "physiology" in effective:

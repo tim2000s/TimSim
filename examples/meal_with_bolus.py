@@ -72,22 +72,24 @@ class BolusAtMeal:
         self.given = False
 
 
-def _trace(name, prof, meals, liver_delay, controller):
+def _trace(name, prof, meals, liver_delay, controller, fast=None, fast_scale=None):
     from timsim.simulation.run import simulate
     r = simulate(name, days=DAYS, seed=seeds.BENCH, layers=(), controller=controller,
-                 profile=prof, meals=meals, liver_delay=liver_delay)
+                 profile=prof, meals=meals, liver_delay=liver_delay,
+                 liver_fast_fraction=fast, liver_fast_ki_scale=fast_scale)
     return np.asarray(r.bg, float), np.asarray(r.minutes, float)
 
 
-def one(name, liver_delay=None, grams=GRAMS):
+def one(name, liver_delay=None, grams=GRAMS, fast=None, fast_scale=None):
     """The covered meal's own contribution, against the same subject eating nothing."""
     from timsim.therapy import titrate
     prof = titrate.profile_for(name)
     at = MEAL_HOUR * 60.0
     with_meal, minutes = _trace(name, prof, [(MEAL_HOUR, grams, False)], liver_delay,
-                                BolusAtMeal(prof, grams, at))
+                                BolusAtMeal(prof, grams, at), fast, fast_scale)
     # The counterfactual gets the same bolus, so the difference is the meal and not the insulin.
-    without, _ = _trace(name, prof, [], liver_delay, BolusAtMeal(prof, grams, at))
+    without, _ = _trace(name, prof, [], liver_delay, BolusAtMeal(prof, grams, at),
+                        fast, fast_scale)
     n = min(len(with_meal), len(without), len(minutes))
     i0 = int(np.searchsorted(minutes[:n], at))
     if i0 >= n:
@@ -100,6 +102,7 @@ def one(name, liver_delay=None, grams=GRAMS):
     seg = with_meal[i0:i1]
     trough_i = int(np.argmin(seg[:peak_i + 1])) if peak_i > 0 else 0
     return {"name": name, "liver_delay": liver_delay, "grams": grams,
+            "liver_fast_fraction": fast, "liver_fast_ki_scale": fast_scale,
             "rise": float(delta[peak_i]),
             "rise_per_10g": float(delta[peak_i] / (grams / 10.0)),
             "meal_to_peak_min": float(minutes[i0 + peak_i] - minutes[i0]),

@@ -270,6 +270,36 @@ HYPO_RISK_GAIN = 0.0
 # `docs/PADOVA_AUDIT.md` entry 3.
 LIVER_DELAY_SCALE = 1.0
 
+# The two-timescale liver.
+#
+# `set_liver_delay` cannot fix the shape above, and the reason is structural rather than a
+# mis-set number. One first-order pair carries plasma insulin to the liver and has to serve two
+# responses with different timescales: the acute suppression a clamp measures in tens of minutes,
+# and the slower behaviour the meal identification needed. Measured across six values of the scale,
+# no value satisfies both. Reproducing Edgerton's clamp needs about eleven times the published
+# rate, and the meal response the parameter was identified on is lost above twice it. The gates and
+# the six-point sweep are in `docs/PADOVA_AUDIT.md` entry 3.
+#
+# So this splits the pathway instead of retuning it. Insulin acts on production through two
+# delays rather than one, a fast one carrying `LIVER_FAST_FRACTION` of the gain at
+# `LIVER_FAST_KI_SCALE` times the published rate, and a slow one carrying the remainder at the
+# published rate. Suppression becomes
+#
+#     kp3 * (f * XLfast + (1 - f) * XLslow)   against S2008's   kp3 * XL
+#
+# Two properties make this safe to switch on. The total gain is unchanged, so at steady state
+# both signals equal plasma insulin and the expression returns `kp3 * I` exactly: fasting
+# equilibrium, the published closure and every steady-state relation are untouched, which matters
+# because `test_closure_reproduces_every_published_subject` is the load-bearing test here. And at
+# a fraction of zero the fast path carries nothing and the model is S2008 as published, so the
+# mechanism is inert until asked for.
+#
+# Both values are placeholders until the fit in `examples/liver_two_timescale.py` runs. The fast
+# rate is set from Edgerton's curve and the fraction is what the clamp and the meal response
+# jointly allow, which is the quantity the single-parameter version had no room for.
+LIVER_FAST_FRACTION = 0.0     # 0 restores stock S2008
+LIVER_FAST_KI_SCALE = 10.5    # from 75 per cent suppression at 30 min on a two-stage delay
+
 
 def hypo_risk(glucose_mgdl, basal_mgdl, threshold=HYPO_RISK_THRESHOLD):
     """The risk term of equation A12, which is the low half of Kovatchev's risk index."""
@@ -637,6 +667,72 @@ class VaryingPatient(T1DPatient):
         self._ki0 = float(self._params["ki"])
         self._params["ki"] = self._ki0 * float(scale)
 
+    def set_liver_two_timescale(self, fraction=LIVER_FAST_FRACTION,
+                                ki_scale=LIVER_FAST_KI_SCALE):
+        """Split insulin's action on production into a fast and a slow pathway.
+
+        `fraction` is how much of the existing gain moves to the fast path and `ki_scale` how much
+        faster that path is than the published `ki`. A fraction of zero is S2008 as published.
+
+        The fast delay is carried as two extra states on the model's own solver rather than
+        integrated alongside it. Alongside was tried first and is wrong, for a reason the model
+        itself shows: the input to the delay is plasma insulin, which decays appreciably inside a
+        step, so holding it at the step boundary overstates it. On a clamp at a one-minute step the
+        model's own first stage settles at 705.8 pmol/L against a boundary value of 795.1, and a
+        delay driven from the boundary reads 12 per cent high. The harness steps every five
+        minutes, where it is worse. Inside the solver the pair sees the same continuously varying
+        insulin every other state does.
+
+        The gain is redistributed rather than added to. At steady state both delays equal plasma
+        insulin, so the suppression term returns to exactly `kp3 * I` and the subject's
+        equilibrium, the published closure and every steady-state relation are untouched.
+        """
+        self._liver_fast_fraction = float(fraction)
+        self._liver_fast_ki = float(self._params["ki"]) * float(ki_scale)
+        if self._liver_fast_fraction > 0.0:
+            self._install_liver_states()
+
+    def _install_liver_states(self):
+        """Extend the solver's state by the fast delay pair and swap in the extended model.
+
+        The two states go on the end, so every index the published model and this package use
+        keeps its meaning. They start at the model's own delay states, which sit at plasma insulin
+        in a subject at equilibrium, so the split introduces no transient at t=0.
+        """
+        from scipy.integrate import ode
+        x = np.asarray(self._odesolver.y, dtype=float)
+        if x.size >= 15:
+            return
+        extended = np.concatenate([x, [x[7], x[8]]])
+        solver = ode(self._model_two_timescale).set_integrator("dopri5")
+        solver.set_initial_value(extended, self._odesolver.t)
+        self._odesolver = solver
+
+    @staticmethod
+    def _model_two_timescale(t, x, action, params, last_Qsto, last_foodtaken,
+                             fraction=0.0, ki_fast=0.0):
+        """The published model, plus a second insulin delay acting on production.
+
+        The base derivatives come from S2008 unchanged. Production is then corrected by the
+        difference between the two-pathway form and the published one,
+
+            kp3 * (f*XLfast + (1-f)*XLslow)   against   kp3 * XLslow
+
+        taken through the same `max(EGP, 0)` clamp the published model applies, so a subject whose
+        production is already floored stays floored rather than going negative.
+        """
+        base = T1DPatient.model(t, x[:13], action, params, last_Qsto, last_foodtaken)
+        dxdt = np.concatenate([np.asarray(base, dtype=float), [0.0, 0.0]])
+        if fraction > 0.0 and ki_fast > 0.0:
+            It = x[5] / params.Vi
+            dxdt[13] = -ki_fast * (x[13] - It)
+            dxdt[14] = -ki_fast * (x[14] - x[13])
+            common = params.kp1 - params.kp2 * x[3]
+            egp_pub = common - params.kp3 * x[8]
+            egp_two = common - params.kp3 * (fraction * x[14] + (1.0 - fraction) * x[8])
+            dxdt[3] += max(egp_two, 0.0) - max(egp_pub, 0.0)
+        return dxdt
+
     def set_hypo_risk(self, gain=HYPO_RISK_GAIN):
         """Switch on S2013's risk-modulated insulin action below basal glucose.
 
@@ -749,6 +845,23 @@ class VaryingPatient(T1DPatient):
         elif (getattr(self, "_varying", False) or getattr(self, "_activity", None)
               or defence != 1.0):
             self._params["Vmx"] = self._vmx0 * si_act * defence
+        # The parent rebuilds `set_f_params` each step, so the extended model's two extra
+        # arguments have to be appended after it. Stepping the parent first and re-issuing the
+        # parameters would integrate one step with the defaults, so the wrapper below patches the
+        # solver's setter for the duration of the call instead.
+        if getattr(self, "_liver_fast_fraction", 0.0) > 0.0:
+            extra = (self._liver_fast_fraction, self._liver_fast_ki)
+            solver = self._odesolver
+            original = solver.set_f_params
+
+            def with_extra(*args):
+                return original(*(tuple(args) + extra))
+
+            solver.set_f_params = with_extra
+            try:
+                return super().step(action)
+            finally:
+                solver.set_f_params = original
         return super().step(action)
 
 
