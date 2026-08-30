@@ -104,7 +104,7 @@ def suppression(name, fraction, ki_scale, marks=MARKS):
     return out
 
 
-def meal_shape(name, fraction, ki_scale, liver_delay=None):
+def meal_shape(name, fraction, ki_scale, liver_delay=None, window_min=None):
     """Trough to peak for a covered meal, on the protocol the audit's gate was set against.
 
     Delegated to `meal_with_bolus.one` rather than reimplemented. A hand-rolled version of this
@@ -115,7 +115,8 @@ def meal_shape(name, fraction, ki_scale, liver_delay=None):
     """
     from examples.meal_with_bolus import one as meal_one
     r = meal_one(name, liver_delay=liver_delay,
-                 fast=(fraction if fraction > 0 else None), fast_scale=ki_scale)
+                 fast=(fraction if fraction > 0 else None), fast_scale=ki_scale,
+                 **({} if window_min is None else {"window_min": window_min}))
     if not r:
         return None
     # A trough to peak of zero means the peak sits at the meal moment and glucose only falls

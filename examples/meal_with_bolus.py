@@ -80,8 +80,15 @@ def _trace(name, prof, meals, liver_delay, controller, fast=None, fast_scale=Non
     return np.asarray(r.bg, float), np.asarray(r.minutes, float)
 
 
-def one(name, liver_delay=None, grams=GRAMS, fast=None, fast_scale=None):
-    """The covered meal's own contribution, against the same subject eating nothing."""
+def one(name, liver_delay=None, grams=GRAMS, fast=None, fast_scale=None,
+        window_min=WINDOW_MIN):
+    """The covered meal's own contribution, against the same subject eating nothing.
+
+    `window_min` is the interval the peak is searched over and it decides the answer. At the
+    720 min default the highest reading in half a day can sit on a late correction rather than
+    on the meal, which makes the landmark unstable and the statistic noisy. The real reference
+    in `examples/real_meal_shape.py` is measured at several windows for the same reason.
+    """
     from timsim.therapy import titrate
     prof = titrate.profile_for(name)
     at = MEAL_HOUR * 60.0
@@ -94,7 +101,7 @@ def one(name, liver_delay=None, grams=GRAMS, fast=None, fast_scale=None):
     i0 = int(np.searchsorted(minutes[:n], at))
     if i0 >= n:
         return None
-    i1 = min(max(int(np.searchsorted(minutes[:n], at + WINDOW_MIN)), i0 + 1), n)
+    i1 = min(max(int(np.searchsorted(minutes[:n], at + window_min)), i0 + 1), n)
     delta = with_meal[i0:i1] - without[i0:i1]
     peak_i = int(np.argmax(delta))
     # Trough to peak, on the absolute trace rather than the difference, because that is what is
@@ -102,6 +109,7 @@ def one(name, liver_delay=None, grams=GRAMS, fast=None, fast_scale=None):
     seg = with_meal[i0:i1]
     trough_i = int(np.argmin(seg[:peak_i + 1])) if peak_i > 0 else 0
     return {"name": name, "liver_delay": liver_delay, "grams": grams,
+            "window_min": float(window_min),
             "liver_fast_fraction": fast, "liver_fast_ki_scale": fast_scale,
             "rise": float(delta[peak_i]),
             "rise_per_10g": float(delta[peak_i] / (grams / 10.0)),
