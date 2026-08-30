@@ -109,41 +109,88 @@ def main():
 
     rec = {"provenance": provenance.stamp(), "subjects": list(subs), "days": a.days,
            "seed": seeds.BENCH, "arms": [a_[0] for a_ in ARMS], "min_meals": a.min_meals,
-           "dropped": dropped, "rows": []}
+           "dropped": dropped, "rows": [], "per_subject": []}
 
+    # Per subject, per arm, per window, kept in the record. Summarising to medians and throwing
+    # the subjects away is what stopped `liver_two_timescale.py` being able to answer whether two
+    # rungs described the same people, which is issue 45.
+    cells = {}
     for arm, _, _ in ARMS:
-        print(f"\n{arm}")
-        print(f"{'window':>7}{'subj':>6}{'meals':>7}{'per-person median':>20}"
-              f"{'within-person IQR':>20}{'evening':>9}{'trough at index':>17}")
         for w in a.windows:
-            per, hours, at_index, tot = [], [], 0, 0
             for n in subs:
                 cell = got.get((n, arm))
                 if not cell:
                     continue
-                v = cell[w]["ttp"]
-                hours.extend(cell[w]["hours"])
-                at_index += cell[w]["trough_at_index"]
-                tot += len(v)
-                p = ms.per_person(v, a.min_meals)
+                p = ms.per_person(cell[w]["ttp"], a.min_meals)
                 if p:
-                    per.append(p)
+                    cells[(arm, w, n)] = p
+                    rec["per_subject"].append(dict(p, arm=arm, window_min=w, subject=n))
+
+    arms = [x[0] for x in ARMS]
+    for w in a.windows:
+        # The common panel: subjects reaching the threshold in every arm. The fast arm admits
+        # fewer meals, so an arm-by-arm panel is a different set of people in each column and a
+        # difference between columns is partly the membership.
+        common = sorted(set.intersection(*[{n for n in subs if (arm, w, n) in cells}
+                                           for arm in arms])) if arms else []
+        rec.setdefault("common_panel", {})[w] = common
+
+    for arm, _, _ in ARMS:
+        print(f"\n{arm}")
+        print(f"{'window':>7}{'common':>8}{'own':>5}{'meals':>7}{'per-person median':>20}"
+              f"{'within-person IQR':>20}{'evening':>9}{'trough at index':>17}")
+        for w in a.windows:
+            common = rec["common_panel"][w]
+            per = [cells[(arm, w, n)] for n in common]
+            own = len([n for n in subs if (arm, w, n) in cells])
+            hours, at_index, tot = [], 0, 0
+            for n in common:
+                c = got[(n, arm)][w]
+                hours.extend(c["hours"]); at_index += c["trough_at_index"]; tot += len(c["ttp"])
             if not per:
-                print(f"{w:>7}{0:>6}{tot:>7}   no subject reaches {a.min_meals} meals")
-                rec["rows"].append({"arm": arm, "window_min": w, "subjects": 0, "meals": tot})
+                print(f"{w:>7}{0:>8}{own:>5}{0:>7}   no subject reaches {a.min_meals} meals "
+                      f"in every arm")
+                rec["rows"].append({"arm": arm, "window_min": w, "subjects": 0, "own": own})
                 continue
-            s = ms.summarise(per)
+            s_ = ms.summarise(per)
             h = np.asarray(hours)
             evening = float(np.mean((h >= 16) & (h <= 21)))
-            bp, wp = s["between_person_median"], s["within_person_iqr"]
-            row = dict(s, arm=arm, window_min=w, evening_share=evening,
-                       trough_at_index_share=(at_index / tot if tot else float("nan")),
-                       real=real_by.get(("Loop", w), {}).get("within_person_iqr"))
-            rec["rows"].append(row)
-            print(f"{w:>7}{s['subjects']:>6}{s['meals']:>7}"
+            bp, wp = s_["between_person_median"], s_["within_person_iqr"]
+            rec["rows"].append(dict(s_, arm=arm, window_min=w, own_subjects=own,
+                                    evening_share=evening,
+                                    trough_at_index_share=(at_index / tot if tot else
+                                                           float("nan"))))
+            print(f"{w:>7}{s_['subjects']:>8}{own:>5}{s_['meals']:>7}"
                   f"{f'{bp[0]:.0f} / {bp[1]:.0f} / {bp[2]:.0f}':>20}"
                   f"{f'{wp[0]:.0f} / {wp[1]:.0f} / {wp[2]:.0f}':>20}"
-                  f"{evening:>9.2f}{row['trough_at_index_share']:>17.2f}")
+                  f"{evening:>9.2f}{rec['rows'][-1]['trough_at_index_share']:>17.2f}")
+
+    # Paired, per subject, on the common panel, since the arms differ by one mechanism and the
+    # subject is the strongest thing to hold fixed.
+    print(f"\npaired, fast minus stock, on the common panel")
+    print(f"{'window':>7}{'subj':>6}{'median diff':>14}{'95 per cent':>22}{'IQR diff':>12}"
+          f"{'95 per cent':>22}")
+    rng = np.random.default_rng(20260830)
+    for w in a.windows:
+        common = rec["common_panel"][w]
+        if not common:
+            continue
+        dm = np.array([cells[("fast", w, n)]["median"] - cells[("stock", w, n)]["median"]
+                       for n in common])
+        di = np.array([cells[("fast", w, n)]["iqr"] - cells[("stock", w, n)]["iqr"]
+                       for n in common])
+        def ci(d):
+            b = np.array([np.median(rng.choice(d, size=d.size, replace=True))
+                          for _ in range(10000)])
+            return float(np.percentile(b, 2.5)), float(np.percentile(b, 97.5))
+        cm, ciq = ci(dm), ci(di)
+        rec.setdefault("paired", []).append(
+            {"window_min": w, "subjects": len(common),
+             "median_diff": float(np.median(dm)), "median_ci95": list(cm),
+             "iqr_diff": float(np.median(di)), "iqr_ci95": list(ciq)})
+        print(f"{w:>7}{len(common):>6}{np.median(dm):>14.1f}"
+              f"{f'{cm[0]:.1f} to {cm[1]:.1f}':>22}{np.median(di):>12.1f}"
+              f"{f'{ciq[0]:.1f} to {ciq[1]:.1f}':>22}")
 
     if dropped:
         print(f"\n{len(dropped)} subject-arms terminated early and are excluded")

@@ -86,7 +86,7 @@ def pct(v, q):
     return float(np.percentile(np.asarray(v, float), q)) if len(v) else float("nan")
 
 
-def one(cur, study, win, a):
+def one(cur, study, win, a, a_subsample=40):
     cur.execute(SQL, {"study": study, "g_lo": a.grams[0], "g_hi": a.grams[1], "win": win,
                       "before": a.clear_before,
                       "min_readings": int((win / 5) * a.coverage)})
@@ -101,7 +101,22 @@ def one(cur, study, win, a):
     med = [float(np.median(v)) for v in kept.values()]
     iqr = [float(np.percentile(v, 75) - np.percentile(v, 25)) for v in kept.values()]
     hours = np.asarray(hours)
+    # A real participant contributes hundreds of meals and a simulated one a few dozen, and an
+    # interquartile range taken over more meals is not the same estimator as one taken over
+    # fewer. This recomputes the within-person spread on a random `subsample` meals per person,
+    # matched to what the simulated side supports, so the comparison can be shown not to be
+    # measuring the length of the record.
+    rng = np.random.default_rng(20260830)
+    sub_iqr = []
+    for v in kept.values():
+        w_ = np.asarray(v, float)
+        if w_.size > a_subsample:
+            w_ = rng.choice(w_, size=a_subsample, replace=False)
+        sub_iqr.append(float(np.percentile(w_, 75) - np.percentile(w_, 25)))
     return {"study": study, "window_min": win, "subjects": len(kept), "meals": len(pooled),
+            "subsample_meals": a_subsample,
+            "within_person_iqr_subsampled": [pct(sub_iqr, 10), pct(sub_iqr, 50),
+                                             pct(sub_iqr, 90)],
             "pooled_quartiles": [pct(pooled, 25), pct(pooled, 50), pct(pooled, 75)],
             "between_person_median": [pct(med, 10), pct(med, 50), pct(med, 90)],
             "within_person_iqr": [pct(iqr, 10), pct(iqr, 50), pct(iqr, 90)],
@@ -120,29 +135,35 @@ def main():
     ap.add_argument("--clear-before", type=int, default=CLEAR_BEFORE_MIN)
     ap.add_argument("--min-meals", type=int, default=MIN_MEALS_PER_SUBJECT)
     ap.add_argument("--coverage", type=float, default=COVERAGE)
+    ap.add_argument("--subsample", type=int, default=40,
+                    help="meals per person for the matched-length control")
     ap.add_argument("--out", default=OUT)
     a = ap.parse_args()
 
     rec = {"provenance": provenance.stamp(), "source": "TimescaleDB studies schema",
            "grams": list(a.grams), "clear_before_min": a.clear_before,
-           "min_meals_per_subject": a.min_meals, "coverage": a.coverage, "rows": []}
+           "min_meals_per_subject": a.min_meals, "coverage": a.coverage,
+           "subsample_meals": a.subsample, "rows": []}
 
     with psycopg2.connect(a.dsn) as conn, conn.cursor() as cur:
         for study in a.studies:
             print(f"\n{study}")
             print(f"{'window':>7}{'subj':>7}{'meals':>8}{'pooled q1':>11}{'median':>8}"
                   f"{'q3':>7}{'per-person median p10/50/90':>30}"
-                  f"{'within-person IQR p10/50/90':>30}{'evening share':>15}")
+                  f"{'within-person IQR p10/50/90':>30}"
+                  f"{'same, at 40 meals each':>26}{'evening':>9}")
             for win in a.windows:
-                r = one(cur, study, win, a)
+                r = one(cur, study, win, a, a.subsample)
                 rec["rows"].append(r)
                 q = r["pooled_quartiles"]
                 bp, wp = r["between_person_median"], r["within_person_iqr"]
+                sp = r["within_person_iqr_subsampled"]
                 print(f"{win:>7}{r['subjects']:>7}{r['meals']:>8}{q[0]:>11.0f}{q[1]:>8.0f}"
                       f"{q[2]:>7.0f}"
                       f"{f'{bp[0]:.0f} / {bp[1]:.0f} / {bp[2]:.0f}':>30}"
                       f"{f'{wp[0]:.0f} / {wp[1]:.0f} / {wp[2]:.0f}':>30}"
-                      f"{r['hour_share']['16-21']:>15.2f}")
+                      f"{f'{sp[0]:.0f} / {sp[1]:.0f} / {sp[2]:.0f}':>26}"
+                      f"{r['hour_share']['16-21']:>9.2f}")
 
     json.dump(rec, open(a.out, "w"), indent=1)
     print(f"\nwrote {a.out}")
