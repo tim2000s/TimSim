@@ -1016,3 +1016,43 @@ median can sit inside the band with almost no subject in it.
 
 `examples/liver_meal_gate_paired.py` is the producer, and it belongs in front of any gate before
 the gate is used.
+
+## 46. A meal protocol measuring one meal was used to judge a mechanism, and read 35 minutes off real
+
+Found 30 August 2026, building the per-person meal comparison the studies database made possible.
+
+`examples/meal_with_bolus.py` gives a subject one 60 g meal at midday, on a fixed seed with no
+layers, and searches for the peak over the following 720 minutes on `Result.bg`. Every gate about
+the meal response in `docs/PADOVA_AUDIT.md` was read off it.
+
+Four things were wrong with it as a comparison against real people, and the fourth is the one that
+mattered.
+
+It reads `bg`, where the real side can only be a sensor. Sensor error near 12 mg/dL moves where a
+minimum and a maximum fall on a slowly turning trace.
+
+It locates the peak by `argmax` of the difference against a counterfactual run of the same subject
+eating nothing. No real trace has a counterfactual, and the docstring already said the absolute
+trace was the right choice.
+
+A 720 minute window does not select a meal. Isolation is what admits one on the real side, and
+only the evening meal has nothing logged after it, so the share of admitted meals falling between
+16:00 and 21:00 runs 0.32 at a 180 minute window and 0.77 at 720 on 964 real people. The simulated
+meal is eaten at midday.
+
+And it measures one meal per subject, where the quantity being compared is a property of a person.
+Real participants contribute hundreds of meals each, and their within-person interquartile range
+is 90 minutes at a 240 minute window against a between-person spread of 50 across the tenth to
+ninetieth percentile of their medians. So the larger of the two components was absent from the
+simulated side by construction, and the whole simulated spread sat in the smaller one.
+
+The consequence is measurable in both directions. At a 240 minute window this producer reads 115
+minutes where the real reference reads 80 and a matched protocol reads 80, so the gap the liver
+work was trying to close belonged to the measurement. And pairing the liver arms on it gives six
+to ten subjects of twenty moving by an hour or more at every window, where the same pairing on a
+person's forty meals gives a difference of at most one 5 minute sampling step. One meal responds
+to the liver. A person's typical meal does not.
+
+The rule this adds sits beside issue 45. A statistic compared against real people is measured on
+the same unit as the real one. If the real quantity is a property of a person, one observation per
+simulated subject does not measure it, however carefully that observation is controlled.
