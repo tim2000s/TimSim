@@ -1,0 +1,187 @@
+{
+ "provenance": {
+  "population": "704cfac086df54ba",
+  "settings": "0df43fd250fadd47",
+  "commit": "27735e3cf20fac45865e9c7a760cab49393f2d02",
+  "dirty": false,
+  "host": "Tims-Mac-mini.local",
+  "python": "3.14.7",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "when": "2026-08-30T11:30:46+00:00",
+  "simglucose": "0.2.11"
+ },
+ "ki_scale": 10.5,
+ "n": 25,
+ "panel_from": "liver_two_timescale.json",
+ "unusable": [],
+ "per_subject": [
+  {
+   "name": "adult#001",
+   "stock_min": 60.0,
+   "fast_1.0_min": 40.0,
+   "diff_min": -20.0
+  },
+  {
+   "name": "adult#003",
+   "stock_min": 65.0,
+   "fast_1.0_min": 85.0,
+   "diff_min": 20.0
+  },
+  {
+   "name": "adult#004",
+   "stock_min": 105.0,
+   "fast_1.0_min": 105.0,
+   "diff_min": 0.0
+  },
+  {
+   "name": "adult#005",
+   "stock_min": 245.0,
+   "fast_1.0_min": 70.0,
+   "diff_min": -175.0
+  },
+  {
+   "name": "adult#006",
+   "stock_min": 125.0,
+   "fast_1.0_min": 120.0,
+   "diff_min": -5.0
+  },
+  {
+   "name": "adult#007",
+   "stock_min": 100.0,
+   "fast_1.0_min": 145.0,
+   "diff_min": 45.0
+  },
+  {
+   "name": "adult#008",
+   "stock_min": 115.0,
+   "fast_1.0_min": 115.0,
+   "diff_min": 0.0
+  },
+  {
+   "name": "adult#009",
+   "stock_min": 130.0,
+   "fast_1.0_min": 125.0,
+   "diff_min": -5.0
+  },
+  {
+   "name": "adult#010",
+   "stock_min": 65.0,
+   "fast_1.0_min": 110.0,
+   "diff_min": 45.0
+  },
+  {
+   "name": "adult#012",
+   "stock_min": 190.0,
+   "fast_1.0_min": 255.0,
+   "diff_min": 65.0
+  },
+  {
+   "name": "adult#014",
+   "stock_min": 95.0,
+   "fast_1.0_min": 95.0,
+   "diff_min": 0.0
+  },
+  {
+   "name": "adult#016",
+   "stock_min": 105.0,
+   "fast_1.0_min": 120.0,
+   "diff_min": 15.0
+  },
+  {
+   "name": "adult#018",
+   "stock_min": 85.0,
+   "fast_1.0_min": 170.0,
+   "diff_min": 85.0
+  },
+  {
+   "name": "adult#019",
+   "stock_min": 95.0,
+   "fast_1.0_min": 90.0,
+   "diff_min": -5.0
+  },
+  {
+   "name": "adult#022",
+   "stock_min": 340.0,
+   "fast_1.0_min": 155.0,
+   "diff_min": -185.0
+  },
+  {
+   "name": "adult#024",
+   "stock_min": 140.0,
+   "fast_1.0_min": 240.0,
+   "diff_min": 100.0
+  },
+  {
+   "name": "adult#025",
+   "stock_min": 365.0,
+   "fast_1.0_min": 165.0,
+   "diff_min": -200.0
+  },
+  {
+   "name": "adult#028",
+   "stock_min": 260.0,
+   "fast_1.0_min": 50.0,
+   "diff_min": -210.0
+  },
+  {
+   "name": "adult#032",
+   "stock_min": 90.0,
+   "fast_1.0_min": 110.0,
+   "diff_min": 20.0
+  },
+  {
+   "name": "adult#035",
+   "stock_min": 140.0,
+   "fast_1.0_min": 210.0,
+   "diff_min": 70.0
+  },
+  {
+   "name": "adult#036",
+   "stock_min": 215.0,
+   "fast_1.0_min": 50.0,
+   "diff_min": -165.0
+  },
+  {
+   "name": "adult#038",
+   "stock_min": 255.0,
+   "fast_1.0_min": 135.0,
+   "diff_min": -120.0
+  },
+  {
+   "name": "adult#039",
+   "stock_min": 70.0,
+   "fast_1.0_min": 95.0,
+   "diff_min": 25.0
+  },
+  {
+   "name": "adult#040",
+   "stock_min": 140.0,
+   "fast_1.0_min": 135.0,
+   "diff_min": -5.0
+  },
+  {
+   "name": "adult#041",
+   "stock_min": 110.0,
+   "fast_1.0_min": 105.0,
+   "diff_min": -5.0
+  }
+ ],
+ "median_stock_min": 115.0,
+ "median_fast_min": 115.0,
+ "paired_median_min": 0.0,
+ "paired_ci95_min": [
+  -5.0,
+  20.0
+ ],
+ "paired_mean_min": -24.4,
+ "subjects_moving": 22,
+ "subjects_moving_60min_or_more": 10,
+ "spread_stock_min": [
+  60.0,
+  365.0
+ ],
+ "spread_fast_min": [
+  40.0,
+  255.0
+ ]
+}

@@ -1,0 +1,51 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+25 subjects paired at 10.5 times the published rate, 0 unusable []
+
+     subject    stock  fast 1.0    diff
+   adult#001       60        40     -20
+   adult#003       65        85      20
+   adult#004      105       105       0
+   adult#005      245        70    -175
+   adult#006      125       120      -5
+   adult#007      100       145      45
+   adult#008      115       115       0
+   adult#009      130       125      -5
+   adult#010       65       110      45
+   adult#012      190       255      65
+   adult#014       95        95       0
+   adult#016      105       120      15
+   adult#018       85       170      85
+   adult#019       95        90      -5
+   adult#022      340       155    -185
+   adult#024      140       240     100
+   adult#025      365       165    -200
+   adult#028      260        50    -210
+   adult#032       90       110      20
+   adult#035      140       210      70
+   adult#036      215        50    -165
+   adult#038      255       135    -120
+   adult#039       70        95      25
+   adult#040      140       135      -5
+   adult#041      110       105      -5
+
+median trough to peak: stock 115.0 min, fast 1.0 115.0 min, against a real 112
+paired difference: median 0.0 min, 95 per cent interval -5.0 to 20.0, mean -24.4, range -210 to 100
+22 of 25 subjects move at all, at a 5 min sampling step; 10 move by an hour or more
+between-subject spread of the statistic itself: stock 60 to 365 min, fast 1.0 40 to 255
+
+wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/liver_meal_gate_paired.json
