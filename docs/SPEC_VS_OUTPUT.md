@@ -95,6 +95,10 @@ decimal.
 | Commons reference 79.60 across 71 users | METHODS | 80.05 across 77 users |
 | the site layer costs three signatures | GUIDE | it gains one, four of eleven without it against five with |
 | six graded levels of check | README, GUIDE | seven |
+| real meals rise for 112 minutes, quartiles 70 to 165, over 5,189 meals | PADOVA_AUDIT, PADOVA_LIMITS, STUDIES_AUDIT, `meal_with_bolus.py`, `patient/varying.py` | not reproducible as stated, because the analysis window was never recorded and the window sets the value. Measured on 964 people and 193,696 meals in `real_meal_shape.json`, the pooled median runs 70 min at a 180 minute window to 135 at 720, so 112 corresponds to something near 360 to 480. The simulated side used 720 |
+| no value of `ki` meets both the clamp and the meal, so the divergence is structural | PADOVA_AUDIT entry 3 and its summary table | withdrawn rather than replaced. The two gates were measured on different populations (issue 44), the meal gate returns the same verdict with the mechanism switched off (issue 45), and the protocol it was read off measures one meal where the real quantity is a property of a person (issue 46). Nothing has been shown either way |
+| the two-timescale liver satisfies both gates at a fast fraction of 1.0 | `liver_two_timescale.json` | at that fraction the published slow pathway carries none of the gain, so the configuration is a single-timescale liver at 10.5 times the published rate. The mechanism in `varying.py` contributed nothing at the point of adoption |
+| the simulated meal response is comparable to the real one | PADOVA_LIMITS, FIDELITY | at a matched 240 minute window the old protocol reads 115 min against a real 80. Measuring every meal a subject eats over 42 days with the person's layers on reads 80. The gap belonged to the protocol |
 
 ## The capability count depends on a convention no document states
 
