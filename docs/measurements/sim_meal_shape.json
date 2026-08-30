@@ -2,12 +2,12 @@
  "provenance": {
   "population": "704cfac086df54ba",
   "settings": "0df43fd250fadd47",
-  "commit": "79f970b29ae1b56a03f41df9817a887c7899bd71",
+  "commit": "7bddaec038971f1abb7fc350d199b08da771e93e",
   "dirty": false,
   "host": "Tims-Mac-mini.local",
   "python": "3.14.7",
   "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
-  "when": "2026-08-30T15:28:24+00:00",
+  "when": "2026-08-30T21:02:05+00:00",
   "simglucose": "0.2.11"
  },
  "subjects": [
@@ -94,6 +94,11 @@
     75.0,
     103.0
    ],
+   "rise_per_10g_between_person": [
+    7.615942354428455,
+    9.605050259735581,
+    11.974659420654977
+   ],
    "arm": "stock",
    "window_min": 180,
    "own_subjects": 40,
@@ -112,6 +117,11 @@
     50.0,
     75.0,
     110.74999999999999
+   ],
+   "rise_per_10g_between_person": [
+    8.628335680732325,
+    10.948899123604296,
+    12.826012832942844
    ],
    "arm": "stock",
    "window_min": 240,
@@ -132,6 +142,11 @@
     95.0,
     125.625
    ],
+   "rise_per_10g_between_person": [
+    9.243472408998898,
+    11.66469524135125,
+    13.533547529419808
+   ],
    "arm": "stock",
    "window_min": 300,
    "own_subjects": 37,
@@ -150,6 +165,11 @@
     54.5,
     90.0,
     147.25
+   ],
+   "rise_per_10g_between_person": [
+    8.964205974471248,
+    13.814245864284825,
+    15.553320496727327
    ],
    "arm": "stock",
    "window_min": 360,
@@ -182,6 +202,11 @@
     72.5,
     100.5
    ],
+   "rise_per_10g_between_person": [
+    6.4934174217980125,
+    9.567581833174586,
+    11.963814072271655
+   ],
    "arm": "fast",
    "window_min": 180,
    "own_subjects": 39,
@@ -200,6 +225,11 @@
     48.25,
     81.25,
     118.99999999999999
+   ],
+   "rise_per_10g_between_person": [
+    8.209304853660937,
+    10.593784285934783,
+    13.679872362412105
    ],
    "arm": "fast",
    "window_min": 240,
@@ -220,6 +250,11 @@
     95.625,
     130.0
    ],
+   "rise_per_10g_between_person": [
+    8.660513969707582,
+    11.543259061435771,
+    15.536315588440443
+   ],
    "arm": "fast",
    "window_min": 300,
    "own_subjects": 28,
@@ -238,6 +273,11 @@
     58.0,
     100.0,
     129.5
+   ],
+   "rise_per_10g_between_person": [
+    11.641348681048253,
+    14.46031526129273,
+    18.451270215791027
    ],
    "arm": "fast",
    "window_min": 360,
@@ -263,6 +303,8 @@
    "meals": 55,
    "median": 80.0,
    "iqr": 62.5,
+   "rise_median": 9.881251067271238,
+   "rise_iqr": 9.674962058938839,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#001"
@@ -271,6 +313,8 @@
    "meals": 67,
    "median": 95.0,
    "iqr": 87.5,
+   "rise_median": 9.067013422991607,
+   "rise_iqr": 13.174514453819077,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#002"
@@ -279,6 +323,8 @@
    "meals": 60,
    "median": 65.0,
    "iqr": 91.25,
+   "rise_median": 8.240257379033586,
+   "rise_iqr": 14.334558991683526,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#003"
@@ -287,6 +333,8 @@
    "meals": 59,
    "median": 75.0,
    "iqr": 45.0,
+   "rise_median": 16.643809789516652,
+   "rise_iqr": 11.816240287715306,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#004"
@@ -295,6 +343,8 @@
    "meals": 51,
    "median": 100.0,
    "iqr": 75.0,
+   "rise_median": 8.95906373346258,
+   "rise_iqr": 7.186272587941591,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#005"
@@ -303,6 +353,8 @@
    "meals": 57,
    "median": 65.0,
    "iqr": 105.0,
+   "rise_median": 9.710176032375978,
+   "rise_iqr": 15.37742398319042,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#006"
@@ -311,6 +363,8 @@
    "meals": 58,
    "median": 65.0,
    "iqr": 95.0,
+   "rise_median": 8.363384690032618,
+   "rise_iqr": 10.693243348395647,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#007"
@@ -319,6 +373,8 @@
    "meals": 59,
    "median": 90.0,
    "iqr": 47.5,
+   "rise_median": 12.947157563014805,
+   "rise_iqr": 13.53692377655206,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#008"
@@ -327,6 +383,8 @@
    "meals": 64,
    "median": 62.5,
    "iqr": 100.0,
+   "rise_median": 7.994576443212747,
+   "rise_iqr": 10.714071657284798,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#009"
@@ -335,6 +393,8 @@
    "meals": 58,
    "median": 77.5,
    "iqr": 67.5,
+   "rise_median": 7.981320337891669,
+   "rise_iqr": 5.388842328594593,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#010"
@@ -343,6 +403,8 @@
    "meals": 50,
    "median": 95.0,
    "iqr": 83.75,
+   "rise_median": 9.546958482628632,
+   "rise_iqr": 14.51361912609217,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#011"
@@ -351,6 +413,8 @@
    "meals": 58,
    "median": 65.0,
    "iqr": 80.0,
+   "rise_median": 7.429946868375822,
+   "rise_iqr": 7.342751580014615,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#012"
@@ -359,6 +423,8 @@
    "meals": 65,
    "median": 80.0,
    "iqr": 75.0,
+   "rise_median": 8.914661250597106,
+   "rise_iqr": 7.964070472443844,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#013"
@@ -367,6 +433,8 @@
    "meals": 38,
    "median": 75.0,
    "iqr": 45.0,
+   "rise_median": 13.053683983207952,
+   "rise_iqr": 21.774329860884905,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#014"
@@ -375,6 +443,8 @@
    "meals": 72,
    "median": 62.5,
    "iqr": 47.5,
+   "rise_median": 10.59068505679202,
+   "rise_iqr": 6.969241246447807,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#015"
@@ -383,6 +453,8 @@
    "meals": 69,
    "median": 55.0,
    "iqr": 130.0,
+   "rise_median": 6.753703461704632,
+   "rise_iqr": 9.844481673537427,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#016"
@@ -391,6 +463,8 @@
    "meals": 44,
    "median": 105.0,
    "iqr": 92.5,
+   "rise_median": 10.557461688157344,
+   "rise_iqr": 12.441378351760342,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#017"
@@ -399,6 +473,8 @@
    "meals": 68,
    "median": 70.0,
    "iqr": 46.25,
+   "rise_median": 10.813596103140156,
+   "rise_iqr": 8.925168015276313,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#018"
@@ -407,6 +483,8 @@
    "meals": 71,
    "median": 75.0,
    "iqr": 62.5,
+   "rise_median": 11.667119739214176,
+   "rise_iqr": 11.649401111360362,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#019"
@@ -415,6 +493,8 @@
    "meals": 55,
    "median": 65.0,
    "iqr": 52.5,
+   "rise_median": 10.493216189147951,
+   "rise_iqr": 10.511535198141921,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#020"
@@ -423,6 +503,8 @@
    "meals": 48,
    "median": 85.0,
    "iqr": 82.5,
+   "rise_median": 11.38407864818075,
+   "rise_iqr": 11.770890154064332,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#021"
@@ -431,6 +513,8 @@
    "meals": 57,
    "median": 75.0,
    "iqr": 100.0,
+   "rise_median": 6.778109067174933,
+   "rise_iqr": 8.728977907349403,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#022"
@@ -439,6 +523,8 @@
    "meals": 42,
    "median": 82.5,
    "iqr": 92.5,
+   "rise_median": 9.947538339901435,
+   "rise_iqr": 11.802636977997974,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#023"
@@ -447,6 +533,8 @@
    "meals": 57,
    "median": 65.0,
    "iqr": 70.0,
+   "rise_median": 8.874654208258068,
+   "rise_iqr": 12.328756081278293,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#024"
@@ -455,6 +543,8 @@
    "meals": 63,
    "median": 60.0,
    "iqr": 45.0,
+   "rise_median": 11.357312778973437,
+   "rise_iqr": 8.400167996910165,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#025"
@@ -463,6 +553,8 @@
    "meals": 48,
    "median": 77.5,
    "iqr": 75.0,
+   "rise_median": 10.82336085514499,
+   "rise_iqr": 8.9881538775253,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#027"
@@ -471,6 +563,8 @@
    "meals": 65,
    "median": 75.0,
    "iqr": 50.0,
+   "rise_median": 12.506314969806123,
+   "rise_iqr": 11.599744828884148,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#028"
@@ -479,6 +573,8 @@
    "meals": 72,
    "median": 70.0,
    "iqr": 77.5,
+   "rise_median": 9.277043208764919,
+   "rise_iqr": 10.131193844844743,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#029"
@@ -487,6 +583,8 @@
    "meals": 58,
    "median": 75.0,
    "iqr": 72.5,
+   "rise_median": 9.454601026601837,
+   "rise_iqr": 8.186738310098516,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#030"
@@ -495,6 +593,8 @@
    "meals": 59,
    "median": 70.0,
    "iqr": 107.5,
+   "rise_median": 7.787829423453025,
+   "rise_iqr": 14.962297419183429,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#031"
@@ -503,6 +603,8 @@
    "meals": 66,
    "median": 75.0,
    "iqr": 43.75,
+   "rise_median": 11.459272080290592,
+   "rise_iqr": 10.274696903712874,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#032"
@@ -511,6 +613,8 @@
    "meals": 59,
    "median": 70.0,
    "iqr": 70.0,
+   "rise_median": 6.626455980828265,
+   "rise_iqr": 8.80850560623734,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#033"
@@ -519,6 +623,8 @@
    "meals": 48,
    "median": 70.0,
    "iqr": 102.5,
+   "rise_median": 7.662441225941613,
+   "rise_iqr": 11.24958024425914,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#034"
@@ -527,6 +633,8 @@
    "meals": 65,
    "median": 70.0,
    "iqr": 120.0,
+   "rise_median": 8.571279033926796,
+   "rise_iqr": 15.982480423355101,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#035"
@@ -535,6 +643,8 @@
    "meals": 58,
    "median": 67.5,
    "iqr": 70.0,
+   "rise_median": 9.550906067572651,
+   "rise_iqr": 9.61626134046277,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#036"
@@ -543,6 +653,8 @@
    "meals": 64,
    "median": 67.5,
    "iqr": 97.5,
+   "rise_median": 7.088164973983684,
+   "rise_iqr": 9.447912073820273,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#037"
@@ -551,6 +663,8 @@
    "meals": 58,
    "median": 75.0,
    "iqr": 45.0,
+   "rise_median": 10.475750558176806,
+   "rise_iqr": 5.798983014736663,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#038"
@@ -559,6 +673,8 @@
    "meals": 45,
    "median": 65.0,
    "iqr": 40.0,
+   "rise_median": 9.605050259735581,
+   "rise_iqr": 6.283606540346294,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#039"
@@ -567,6 +683,8 @@
    "meals": 60,
    "median": 95.0,
    "iqr": 60.0,
+   "rise_median": 11.841745533367188,
+   "rise_iqr": 8.644879875256638,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#040"
@@ -575,6 +693,8 @@
    "meals": 59,
    "median": 75.0,
    "iqr": 60.0,
+   "rise_median": 10.208295456826853,
+   "rise_iqr": 10.321975248898099,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#041"
@@ -583,6 +703,8 @@
    "meals": 33,
    "median": 90.0,
    "iqr": 65.0,
+   "rise_median": 12.649122573220662,
+   "rise_iqr": 8.221049078598524,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#001"
@@ -591,6 +713,8 @@
    "meals": 42,
    "median": 97.5,
    "iqr": 87.5,
+   "rise_median": 9.96173915488039,
+   "rise_iqr": 12.23575329382677,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#002"
@@ -599,6 +723,8 @@
    "meals": 46,
    "median": 65.0,
    "iqr": 87.5,
+   "rise_median": 9.039892415386582,
+   "rise_iqr": 13.397919702343788,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#003"
@@ -607,6 +733,8 @@
    "meals": 39,
    "median": 80.0,
    "iqr": 47.5,
+   "rise_median": 17.09054657643712,
+   "rise_iqr": 10.467314921600984,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#004"
@@ -615,6 +743,8 @@
    "meals": 41,
    "median": 105.0,
    "iqr": 65.0,
+   "rise_median": 9.425017189310106,
+   "rise_iqr": 8.706593158237629,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#005"
@@ -623,6 +753,8 @@
    "meals": 33,
    "median": 65.0,
    "iqr": 105.0,
+   "rise_median": 10.948899123604296,
+   "rise_iqr": 16.947840628936,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#006"
@@ -631,6 +763,8 @@
    "meals": 42,
    "median": 85.0,
    "iqr": 88.75,
+   "rise_median": 8.939251534266749,
+   "rise_iqr": 8.941664345938984,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#007"
@@ -639,6 +773,8 @@
    "meals": 46,
    "median": 92.5,
    "iqr": 70.0,
+   "rise_median": 14.11785069295823,
+   "rise_iqr": 14.834002098335244,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#008"
@@ -647,6 +783,8 @@
    "meals": 43,
    "median": 70.0,
    "iqr": 87.5,
+   "rise_median": 10.176898864874126,
+   "rise_iqr": 10.818829290117495,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#009"
@@ -655,6 +793,8 @@
    "meals": 37,
    "median": 90.0,
    "iqr": 65.0,
+   "rise_median": 8.82489118312583,
+   "rise_iqr": 4.9647764042084175,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#010"
@@ -663,6 +803,8 @@
    "meals": 35,
    "median": 85.0,
    "iqr": 90.0,
+   "rise_median": 11.99102888221368,
+   "rise_iqr": 14.766788823319763,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#011"
@@ -671,6 +813,8 @@
    "meals": 42,
    "median": 67.5,
    "iqr": 83.75,
+   "rise_median": 8.972321712236889,
+   "rise_iqr": 10.20502630026187,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#012"
@@ -679,6 +823,8 @@
    "meals": 47,
    "median": 85.0,
    "iqr": 75.0,
+   "rise_median": 11.036673689246465,
+   "rise_iqr": 9.022562145767463,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#013"
@@ -687,6 +833,8 @@
    "meals": 40,
    "median": 60.0,
    "iqr": 51.25,
+   "rise_median": 11.4041430485795,
+   "rise_iqr": 6.569678582897622,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#015"
@@ -695,6 +843,8 @@
    "meals": 48,
    "median": 57.5,
    "iqr": 127.5,
+   "rise_median": 8.193508886341908,
+   "rise_iqr": 12.952325956966433,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#016"
@@ -703,6 +853,8 @@
    "meals": 28,
    "median": 125.0,
    "iqr": 103.75,
+   "rise_median": 11.068233974619769,
+   "rise_iqr": 12.493891623498804,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#017"
@@ -711,6 +863,8 @@
    "meals": 49,
    "median": 90.0,
    "iqr": 70.0,
+   "rise_median": 11.95665330671696,
+   "rise_iqr": 6.978678599175362,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#018"
@@ -719,6 +873,8 @@
    "meals": 52,
    "median": 85.0,
    "iqr": 65.0,
+   "rise_median": 13.320132643822703,
+   "rise_iqr": 11.309827160823964,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#019"
@@ -727,6 +883,8 @@
    "meals": 39,
    "median": 65.0,
    "iqr": 55.0,
+   "rise_median": 11.463533272234837,
+   "rise_iqr": 8.513838773559922,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#020"
@@ -735,6 +893,8 @@
    "meals": 32,
    "median": 92.5,
    "iqr": 67.5,
+   "rise_median": 10.330587441239174,
+   "rise_iqr": 11.272749438609782,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#021"
@@ -743,6 +903,8 @@
    "meals": 30,
    "median": 90.0,
    "iqr": 102.5,
+   "rise_median": 7.946154503130446,
+   "rise_iqr": 12.871090388926945,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#022"
@@ -751,6 +913,8 @@
    "meals": 26,
    "median": 107.5,
    "iqr": 136.25,
+   "rise_median": 9.067451748911541,
+   "rise_iqr": 12.776232184320788,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#023"
@@ -759,6 +923,8 @@
    "meals": 41,
    "median": 65.0,
    "iqr": 65.0,
+   "rise_median": 10.689617801140924,
+   "rise_iqr": 11.863545538093124,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#024"
@@ -767,6 +933,8 @@
    "meals": 42,
    "median": 65.0,
    "iqr": 53.75,
+   "rise_median": 11.502555020943015,
+   "rise_iqr": 7.527927720743001,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#025"
@@ -775,6 +943,8 @@
    "meals": 27,
    "median": 75.0,
    "iqr": 75.0,
+   "rise_median": 11.132921255397832,
+   "rise_iqr": 11.152432277592975,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#027"
@@ -783,6 +953,8 @@
    "meals": 45,
    "median": 80.0,
    "iqr": 45.0,
+   "rise_median": 12.506314969806123,
+   "rise_iqr": 11.599744828884148,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#028"
@@ -791,6 +963,8 @@
    "meals": 46,
    "median": 75.0,
    "iqr": 71.25,
+   "rise_median": 10.254293968822632,
+   "rise_iqr": 10.928432160323771,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#029"
@@ -799,6 +973,8 @@
    "meals": 41,
    "median": 80.0,
    "iqr": 85.0,
+   "rise_median": 11.128422831407091,
+   "rise_iqr": 8.173490924461,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#030"
@@ -807,6 +983,8 @@
    "meals": 43,
    "median": 60.0,
    "iqr": 117.5,
+   "rise_median": 8.333502427142067,
+   "rise_iqr": 13.748531440718944,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#031"
@@ -815,6 +993,8 @@
    "meals": 41,
    "median": 75.0,
    "iqr": 50.0,
+   "rise_median": 12.12102503383656,
+   "rise_iqr": 9.709577647543648,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#032"
@@ -823,6 +1003,8 @@
    "meals": 42,
    "median": 82.5,
    "iqr": 86.25,
+   "rise_median": 9.808554916984566,
+   "rise_iqr": 9.076682192578986,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#033"
@@ -831,6 +1013,8 @@
    "meals": 36,
    "median": 87.5,
    "iqr": 106.25,
+   "rise_median": 10.034620967157153,
+   "rise_iqr": 16.49452523221138,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#034"
@@ -839,6 +1023,8 @@
    "meals": 51,
    "median": 95.0,
    "iqr": 135.0,
+   "rise_median": 11.12971517395456,
+   "rise_iqr": 15.059956766076041,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#035"
@@ -847,6 +1033,8 @@
    "meals": 41,
    "median": 70.0,
    "iqr": 95.0,
+   "rise_median": 9.919720004786834,
+   "rise_iqr": 11.095143083839671,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#036"
@@ -855,6 +1043,8 @@
    "meals": 38,
    "median": 65.0,
    "iqr": 81.25,
+   "rise_median": 8.161489654968525,
+   "rise_iqr": 5.81483361716484,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#037"
@@ -863,6 +1053,8 @@
    "meals": 39,
    "median": 60.0,
    "iqr": 50.0,
+   "rise_median": 9.990095453101624,
+   "rise_iqr": 5.032698475018492,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#038"
@@ -871,6 +1063,8 @@
    "meals": 31,
    "median": 70.0,
    "iqr": 37.5,
+   "rise_median": 9.820607287076538,
+   "rise_iqr": 5.889425778607214,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#039"
@@ -879,6 +1073,8 @@
    "meals": 37,
    "median": 105.0,
    "iqr": 75.0,
+   "rise_median": 13.091348222526118,
+   "rise_iqr": 7.276305287325373,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#040"
@@ -887,6 +1083,8 @@
    "meals": 39,
    "median": 75.0,
    "iqr": 70.0,
+   "rise_median": 11.838983521731208,
+   "rise_iqr": 11.342490925335866,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#041"
@@ -895,6 +1093,8 @@
    "meals": 25,
    "median": 100.0,
    "iqr": 80.0,
+   "rise_median": 13.4498766914777,
+   "rise_iqr": 8.9530912289064,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#001"
@@ -903,6 +1103,8 @@
    "meals": 21,
    "median": 100.0,
    "iqr": 30.0,
+   "rise_median": 9.811728949983612,
+   "rise_iqr": 6.2323596040356595,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#002"
@@ -911,6 +1113,8 @@
    "meals": 29,
    "median": 80.0,
    "iqr": 85.0,
+   "rise_median": 13.054651838291715,
+   "rise_iqr": 11.045391526844801,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#003"
@@ -919,6 +1123,8 @@
    "meals": 32,
    "median": 75.0,
    "iqr": 47.5,
+   "rise_median": 17.4510135250813,
+   "rise_iqr": 11.627973573236783,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#004"
@@ -927,6 +1133,8 @@
    "meals": 25,
    "median": 110.0,
    "iqr": 115.0,
+   "rise_median": 9.425017189310106,
+   "rise_iqr": 9.586916189317467,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#005"
@@ -935,6 +1143,8 @@
    "meals": 24,
    "median": 65.0,
    "iqr": 112.5,
+   "rise_median": 11.061105470692382,
+   "rise_iqr": 14.055669806527424,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#006"
@@ -943,6 +1153,8 @@
    "meals": 27,
    "median": 90.0,
    "iqr": 152.5,
+   "rise_median": 9.390540684688128,
+   "rise_iqr": 12.739440878959034,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#007"
@@ -951,6 +1163,8 @@
    "meals": 27,
    "median": 90.0,
    "iqr": 105.0,
+   "rise_median": 12.957761982204232,
+   "rise_iqr": 15.59131696410406,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#008"
@@ -959,6 +1173,8 @@
    "meals": 30,
    "median": 85.0,
    "iqr": 78.75,
+   "rise_median": 11.415901890364573,
+   "rise_iqr": 10.39710325311183,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#009"
@@ -967,6 +1183,8 @@
    "meals": 29,
    "median": 100.0,
    "iqr": 95.0,
+   "rise_median": 9.256073012453692,
+   "rise_iqr": 5.69106944846806,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#010"
@@ -975,6 +1193,8 @@
    "meals": 20,
    "median": 90.0,
    "iqr": 108.75,
+   "rise_median": 12.798970832247052,
+   "rise_iqr": 16.25378346189161,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#011"
@@ -983,6 +1203,8 @@
    "meals": 33,
    "median": 110.0,
    "iqr": 120.0,
+   "rise_median": 9.19520749271453,
+   "rise_iqr": 9.931491734170603,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#012"
@@ -991,6 +1213,8 @@
    "meals": 32,
    "median": 90.0,
    "iqr": 97.5,
+   "rise_median": 11.439770641458264,
+   "rise_iqr": 8.645825653607627,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#013"
@@ -999,6 +1223,8 @@
    "meals": 28,
    "median": 60.0,
    "iqr": 42.5,
+   "rise_median": 12.804019169525084,
+   "rise_iqr": 8.603546261725228,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#015"
@@ -1007,6 +1233,8 @@
    "meals": 30,
    "median": 115.0,
    "iqr": 148.75,
+   "rise_median": 9.895827376369033,
+   "rise_iqr": 10.437462259422809,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#016"
@@ -1015,6 +1243,8 @@
    "meals": 21,
    "median": 130.0,
    "iqr": 110.0,
+   "rise_median": 10.672306457284508,
+   "rise_iqr": 12.392985735499657,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#017"
@@ -1023,6 +1253,8 @@
    "meals": 34,
    "median": 100.0,
    "iqr": 72.5,
+   "rise_median": 12.67123558348597,
+   "rise_iqr": 9.348454933923048,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#018"
@@ -1031,6 +1263,8 @@
    "meals": 36,
    "median": 100.0,
    "iqr": 61.25,
+   "rise_median": 14.530099140004868,
+   "rise_iqr": 11.63574246904361,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#019"
@@ -1039,6 +1273,8 @@
    "meals": 28,
    "median": 60.0,
    "iqr": 58.75,
+   "rise_median": 10.441867027218102,
+   "rise_iqr": 8.808800148062385,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#020"
@@ -1047,6 +1283,8 @@
    "meals": 20,
    "median": 92.5,
    "iqr": 106.25,
+   "rise_median": 8.752386689289256,
+   "rise_iqr": 13.807069223039822,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#021"
@@ -1055,6 +1293,8 @@
    "meals": 23,
    "median": 90.0,
    "iqr": 107.5,
+   "rise_median": 10.423810593147017,
+   "rise_iqr": 14.884288859620938,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#022"
@@ -1063,6 +1303,8 @@
    "meals": 31,
    "median": 70.0,
    "iqr": 55.0,
+   "rise_median": 10.689617801140924,
+   "rise_iqr": 10.570606349281011,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#024"
@@ -1071,6 +1313,8 @@
    "meals": 22,
    "median": 80.0,
    "iqr": 97.5,
+   "rise_median": 11.290453131218884,
+   "rise_iqr": 6.507484453955135,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#025"
@@ -1079,6 +1323,8 @@
    "meals": 30,
    "median": 77.5,
    "iqr": 45.0,
+   "rise_median": 12.86446286398229,
+   "rise_iqr": 6.481377309067113,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#028"
@@ -1087,6 +1333,8 @@
    "meals": 28,
    "median": 70.0,
    "iqr": 95.0,
+   "rise_median": 9.779387903354204,
+   "rise_iqr": 9.797856644772306,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#029"
@@ -1095,6 +1343,8 @@
    "meals": 30,
    "median": 117.5,
    "iqr": 81.25,
+   "rise_median": 13.10645398202621,
+   "rise_iqr": 10.668301742283703,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#030"
@@ -1103,6 +1353,8 @@
    "meals": 28,
    "median": 72.5,
    "iqr": 123.75,
+   "rise_median": 9.214071000937711,
+   "rise_iqr": 12.927876304435447,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#031"
@@ -1111,6 +1363,8 @@
    "meals": 22,
    "median": 77.5,
    "iqr": 55.0,
+   "rise_median": 15.74717306872857,
+   "rise_iqr": 8.376771402003627,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#032"
@@ -1119,6 +1373,8 @@
    "meals": 30,
    "median": 102.5,
    "iqr": 101.25,
+   "rise_median": 11.753358059846828,
+   "rise_iqr": 10.590453544452455,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#033"
@@ -1127,6 +1383,8 @@
    "meals": 31,
    "median": 90.0,
    "iqr": 130.0,
+   "rise_median": 11.483504611727705,
+   "rise_iqr": 16.830191063180823,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#034"
@@ -1135,6 +1393,8 @@
    "meals": 36,
    "median": 132.5,
    "iqr": 122.5,
+   "rise_median": 12.975854404031278,
+   "rise_iqr": 13.79820255534034,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#035"
@@ -1143,6 +1403,8 @@
    "meals": 22,
    "median": 87.5,
    "iqr": 152.5,
+   "rise_median": 11.845885870974797,
+   "rise_iqr": 13.025742438071294,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#036"
@@ -1151,6 +1413,8 @@
    "meals": 22,
    "median": 80.0,
    "iqr": 95.0,
+   "rise_median": 7.893376113337633,
+   "rise_iqr": 6.424107559457401,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#037"
@@ -1159,6 +1423,8 @@
    "meals": 23,
    "median": 75.0,
    "iqr": 67.5,
+   "rise_median": 11.925890960627882,
+   "rise_iqr": 4.689947915719312,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#038"
@@ -1167,6 +1433,8 @@
    "meals": 22,
    "median": 72.5,
    "iqr": 41.25,
+   "rise_median": 10.425713890979038,
+   "rise_iqr": 6.018902129783656,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#039"
@@ -1175,6 +1443,8 @@
    "meals": 26,
    "median": 97.5,
    "iqr": 108.75,
+   "rise_median": 15.343985254126924,
+   "rise_iqr": 7.124410517537539,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#040"
@@ -1183,6 +1453,8 @@
    "meals": 26,
    "median": 75.0,
    "iqr": 77.5,
+   "rise_median": 12.469044768628851,
+   "rise_iqr": 12.678226865612505,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#041"
@@ -1191,6 +1463,8 @@
    "meals": 20,
    "median": 85.0,
    "iqr": 90.0,
+   "rise_median": 13.814245864284825,
+   "rise_iqr": 9.63700695659766,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#003"
@@ -1199,6 +1473,8 @@
    "meals": 22,
    "median": 75.0,
    "iqr": 56.25,
+   "rise_median": 18.211599543957732,
+   "rise_iqr": 13.176777795679612,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#004"
@@ -1207,6 +1483,8 @@
    "meals": 22,
    "median": 112.5,
    "iqr": 136.25,
+   "rise_median": 8.486681928622836,
+   "rise_iqr": 11.460464756754353,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#012"
@@ -1215,6 +1493,8 @@
    "meals": 22,
    "median": 115.0,
    "iqr": 98.75,
+   "rise_median": 12.02508948482107,
+   "rise_iqr": 8.186371797865934,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#013"
@@ -1223,6 +1503,8 @@
    "meals": 23,
    "median": 70.0,
    "iqr": 75.0,
+   "rise_median": 13.43231577697638,
+   "rise_iqr": 7.554512011021808,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#015"
@@ -1231,6 +1513,8 @@
    "meals": 26,
    "median": 132.5,
    "iqr": 156.25,
+   "rise_median": 10.488586077111894,
+   "rise_iqr": 9.697143923248138,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#016"
@@ -1239,6 +1523,8 @@
    "meals": 25,
    "median": 90.0,
    "iqr": 90.0,
+   "rise_median": 14.888750734919725,
+   "rise_iqr": 12.097922956852535,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#018"
@@ -1247,6 +1533,8 @@
    "meals": 23,
    "median": 110.0,
    "iqr": 47.5,
+   "rise_median": 14.806483560851468,
+   "rise_iqr": 11.707546510840789,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#019"
@@ -1255,6 +1543,8 @@
    "meals": 22,
    "median": 77.5,
    "iqr": 92.5,
+   "rise_median": 10.007163010581088,
+   "rise_iqr": 10.518874761795818,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#020"
@@ -1263,6 +1553,8 @@
    "meals": 23,
    "median": 65.0,
    "iqr": 92.5,
+   "rise_median": 11.254861641080328,
+   "rise_iqr": 9.889830828492995,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#024"
@@ -1271,6 +1563,8 @@
    "meals": 24,
    "median": 72.5,
    "iqr": 123.75,
+   "rise_median": 9.083586985933351,
+   "rise_iqr": 14.758236942295692,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#031"
@@ -1279,6 +1573,8 @@
    "meals": 25,
    "median": 160.0,
    "iqr": 145.0,
+   "rise_median": 14.118010345424972,
+   "rise_iqr": 7.6112881047681995,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#035"
@@ -1287,6 +1583,8 @@
    "meals": 43,
    "median": 95.0,
    "iqr": 80.0,
+   "rise_median": 12.987915242312315,
+   "rise_iqr": 9.712983639617367,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#001"
@@ -1295,6 +1593,8 @@
    "meals": 64,
    "median": 77.5,
    "iqr": 90.0,
+   "rise_median": 7.731882788384139,
+   "rise_iqr": 10.522168887122739,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#002"
@@ -1303,6 +1603,8 @@
    "meals": 59,
    "median": 65.0,
    "iqr": 82.5,
+   "rise_median": 11.022487132587994,
+   "rise_iqr": 12.305870840981653,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#003"
@@ -1311,6 +1613,8 @@
    "meals": 63,
    "median": 80.0,
    "iqr": 55.0,
+   "rise_median": 13.55942519613834,
+   "rise_iqr": 11.182793869940856,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#004"
@@ -1319,6 +1623,8 @@
    "meals": 50,
    "median": 75.0,
    "iqr": 93.75,
+   "rise_median": 8.229092003291605,
+   "rise_iqr": 10.390800761173487,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#005"
@@ -1327,6 +1633,8 @@
    "meals": 59,
    "median": 90.0,
    "iqr": 102.5,
+   "rise_median": 11.895510130276822,
+   "rise_iqr": 16.18569157019283,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#006"
@@ -1335,6 +1643,8 @@
    "meals": 42,
    "median": 72.5,
    "iqr": 72.5,
+   "rise_median": 8.485935257288332,
+   "rise_iqr": 8.887707594781556,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#007"
@@ -1343,6 +1653,8 @@
    "meals": 60,
    "median": 95.0,
    "iqr": 45.0,
+   "rise_median": 14.91745697562659,
+   "rise_iqr": 13.768150263715452,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#008"
@@ -1351,6 +1663,8 @@
    "meals": 65,
    "median": 65.0,
    "iqr": 100.0,
+   "rise_median": 7.109913454978401,
+   "rise_iqr": 11.166503824892146,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#009"
@@ -1359,6 +1673,8 @@
    "meals": 57,
    "median": 65.0,
    "iqr": 60.0,
+   "rise_median": 6.620159936222091,
+   "rise_iqr": 7.118747101791124,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#010"
@@ -1367,6 +1683,8 @@
    "meals": 54,
    "median": 77.5,
    "iqr": 95.0,
+   "rise_median": 9.567581833174586,
+   "rise_iqr": 15.785399847141688,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#011"
@@ -1375,6 +1693,8 @@
    "meals": 56,
    "median": 50.0,
    "iqr": 72.5,
+   "rise_median": 5.961339956122895,
+   "rise_iqr": 7.660738711157141,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#012"
@@ -1383,6 +1703,8 @@
    "meals": 59,
    "median": 60.0,
    "iqr": 77.5,
+   "rise_median": 7.494681272403361,
+   "rise_iqr": 7.29642161735777,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#013"
@@ -1391,6 +1713,8 @@
    "meals": 34,
    "median": 67.5,
    "iqr": 76.25,
+   "rise_median": 9.161443920097117,
+   "rise_iqr": 16.479430726715176,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#014"
@@ -1399,6 +1723,8 @@
    "meals": 62,
    "median": 60.0,
    "iqr": 42.5,
+   "rise_median": 10.739618694605806,
+   "rise_iqr": 10.738482417820022,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#015"
@@ -1407,6 +1733,8 @@
    "meals": 68,
    "median": 45.0,
    "iqr": 96.25,
+   "rise_median": 5.881036841501681,
+   "rise_iqr": 13.248169425436304,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#016"
@@ -1415,6 +1743,8 @@
    "meals": 33,
    "median": 85.0,
    "iqr": 80.0,
+   "rise_median": 9.230961887442653,
+   "rise_iqr": 7.9955838172381855,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#017"
@@ -1423,6 +1753,8 @@
    "meals": 66,
    "median": 60.0,
    "iqr": 65.0,
+   "rise_median": 9.661056260415451,
+   "rise_iqr": 10.644384033006187,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#018"
@@ -1431,6 +1763,8 @@
    "meals": 68,
    "median": 70.0,
    "iqr": 51.25,
+   "rise_median": 10.398142293604769,
+   "rise_iqr": 10.85659568505789,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#019"
@@ -1439,6 +1773,8 @@
    "meals": 41,
    "median": 55.0,
    "iqr": 65.0,
+   "rise_median": 11.652557043368118,
+   "rise_iqr": 12.573212828067069,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#020"
@@ -1447,6 +1783,8 @@
    "meals": 30,
    "median": 50.0,
    "iqr": 107.5,
+   "rise_median": 5.673660866684251,
+   "rise_iqr": 8.093612336456209,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#021"
@@ -1455,6 +1793,8 @@
    "meals": 36,
    "median": 75.0,
    "iqr": 91.25,
+   "rise_median": 7.978618149698591,
+   "rise_iqr": 10.335726665258647,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#022"
@@ -1463,6 +1803,8 @@
    "meals": 33,
    "median": 85.0,
    "iqr": 55.0,
+   "rise_median": 10.608477074537362,
+   "rise_iqr": 10.349664415811574,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#023"
@@ -1471,6 +1813,8 @@
    "meals": 50,
    "median": 60.0,
    "iqr": 43.75,
+   "rise_median": 6.562207111718362,
+   "rise_iqr": 9.386472607863853,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#024"
@@ -1479,6 +1823,8 @@
    "meals": 59,
    "median": 60.0,
    "iqr": 35.0,
+   "rise_median": 10.433531261071277,
+   "rise_iqr": 10.110817852739732,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#025"
@@ -1487,6 +1833,8 @@
    "meals": 54,
    "median": 77.5,
    "iqr": 60.0,
+   "rise_median": 9.278670903365029,
+   "rise_iqr": 9.371193624680284,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#027"
@@ -1495,6 +1843,8 @@
    "meals": 69,
    "median": 65.0,
    "iqr": 50.0,
+   "rise_median": 10.881472942757917,
+   "rise_iqr": 7.617543306897731,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#028"
@@ -1503,6 +1853,8 @@
    "meals": 65,
    "median": 70.0,
    "iqr": 50.0,
+   "rise_median": 9.039628402451648,
+   "rise_iqr": 9.11297341019565,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#029"
@@ -1511,6 +1863,8 @@
    "meals": 49,
    "median": 75.0,
    "iqr": 85.0,
+   "rise_median": 7.406453134107985,
+   "rise_iqr": 11.291462038564498,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#030"
@@ -1519,6 +1873,8 @@
    "meals": 58,
    "median": 105.0,
    "iqr": 77.5,
+   "rise_median": 11.02885059036343,
+   "rise_iqr": 9.109655278273548,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#031"
@@ -1527,6 +1883,8 @@
    "meals": 57,
    "median": 60.0,
    "iqr": 35.0,
+   "rise_median": 12.237029840250978,
+   "rise_iqr": 9.815972779901077,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#032"
@@ -1535,6 +1893,8 @@
    "meals": 46,
    "median": 55.0,
    "iqr": 78.75,
+   "rise_median": 7.883047321249596,
+   "rise_iqr": 13.973794313123182,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#034"
@@ -1543,6 +1903,8 @@
    "meals": 64,
    "median": 60.0,
    "iqr": 106.25,
+   "rise_median": 6.218258662116618,
+   "rise_iqr": 9.515845862843237,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#035"
@@ -1551,6 +1913,8 @@
    "meals": 55,
    "median": 65.0,
    "iqr": 70.0,
+   "rise_median": 9.917412956953743,
+   "rise_iqr": 14.293550926963029,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#036"
@@ -1559,6 +1923,8 @@
    "meals": 67,
    "median": 65.0,
    "iqr": 127.5,
+   "rise_median": 7.09538290417612,
+   "rise_iqr": 9.842762566210073,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#037"
@@ -1567,6 +1933,8 @@
    "meals": 60,
    "median": 65.0,
    "iqr": 45.0,
+   "rise_median": 10.067806617598354,
+   "rise_iqr": 9.167178533871946,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#038"
@@ -1575,6 +1943,8 @@
    "meals": 44,
    "median": 67.5,
    "iqr": 36.25,
+   "rise_median": 9.603316666011814,
+   "rise_iqr": 8.839097250371164,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#039"
@@ -1583,6 +1953,8 @@
    "meals": 57,
    "median": 90.0,
    "iqr": 70.0,
+   "rise_median": 11.237456539995893,
+   "rise_iqr": 11.652690737169777,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#040"
@@ -1591,6 +1963,8 @@
    "meals": 59,
    "median": 75.0,
    "iqr": 62.5,
+   "rise_median": 10.025124494490095,
+   "rise_iqr": 8.971185015581183,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#041"
@@ -1599,6 +1973,8 @@
    "meals": 26,
    "median": 85.0,
    "iqr": 102.5,
+   "rise_median": 12.589581344201726,
+   "rise_iqr": 8.504088846267512,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#001"
@@ -1607,6 +1983,8 @@
    "meals": 42,
    "median": 77.5,
    "iqr": 96.25,
+   "rise_median": 9.227384482286313,
+   "rise_iqr": 9.526411691196792,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#002"
@@ -1615,6 +1993,8 @@
    "meals": 43,
    "median": 90.0,
    "iqr": 125.0,
+   "rise_median": 12.494513139404528,
+   "rise_iqr": 9.05979897573543,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#003"
@@ -1623,6 +2003,8 @@
    "meals": 41,
    "median": 75.0,
    "iqr": 60.0,
+   "rise_median": 13.55942519613834,
+   "rise_iqr": 10.56370437162616,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#004"
@@ -1631,6 +2013,8 @@
    "meals": 41,
    "median": 105.0,
    "iqr": 115.0,
+   "rise_median": 9.751531686311642,
+   "rise_iqr": 7.935193327818436,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#005"
@@ -1639,6 +2023,8 @@
    "meals": 33,
    "median": 110.0,
    "iqr": 80.0,
+   "rise_median": 16.486081533656037,
+   "rise_iqr": 16.64251263310797,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#006"
@@ -1647,6 +2033,8 @@
    "meals": 29,
    "median": 75.0,
    "iqr": 85.0,
+   "rise_median": 9.941253389779256,
+   "rise_iqr": 9.344612653161203,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#007"
@@ -1655,6 +2043,8 @@
    "meals": 47,
    "median": 105.0,
    "iqr": 57.5,
+   "rise_median": 14.809859342996853,
+   "rise_iqr": 12.037631242469121,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#008"
@@ -1663,6 +2053,8 @@
    "meals": 45,
    "median": 70.0,
    "iqr": 125.0,
+   "rise_median": 8.561874689408457,
+   "rise_iqr": 15.44869137864454,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#009"
@@ -1671,6 +2063,8 @@
    "meals": 31,
    "median": 75.0,
    "iqr": 42.5,
+   "rise_median": 8.607099695309214,
+   "rise_iqr": 5.947403865897019,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#010"
@@ -1679,6 +2073,8 @@
    "meals": 41,
    "median": 80.0,
    "iqr": 95.0,
+   "rise_median": 11.73661073379165,
+   "rise_iqr": 20.256087767611874,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#011"
@@ -1687,6 +2083,8 @@
    "meals": 40,
    "median": 60.0,
    "iqr": 81.25,
+   "rise_median": 6.776562374719681,
+   "rise_iqr": 9.82466733148723,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#012"
@@ -1695,6 +2093,8 @@
    "meals": 40,
    "median": 60.0,
    "iqr": 96.25,
+   "rise_median": 8.375572526619813,
+   "rise_iqr": 7.516972890875175,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#013"
@@ -1703,6 +2103,8 @@
    "meals": 35,
    "median": 60.0,
    "iqr": 50.0,
+   "rise_median": 10.764013224546762,
+   "rise_iqr": 9.75602484941121,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#015"
@@ -1711,6 +2113,8 @@
    "meals": 47,
    "median": 45.0,
    "iqr": 110.0,
+   "rise_median": 6.589959459519065,
+   "rise_iqr": 17.005939240657852,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#016"
@@ -1719,6 +2123,8 @@
    "meals": 20,
    "median": 100.0,
    "iqr": 96.25,
+   "rise_median": 9.800614318343921,
+   "rise_iqr": 9.550914383723535,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#017"
@@ -1727,6 +2133,8 @@
    "meals": 45,
    "median": 60.0,
    "iqr": 110.0,
+   "rise_median": 9.976890218308752,
+   "rise_iqr": 13.556088012195431,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#018"
@@ -1735,6 +2143,8 @@
    "meals": 46,
    "median": 80.0,
    "iqr": 62.5,
+   "rise_median": 9.782647074789413,
+   "rise_iqr": 11.580130393119429,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#019"
@@ -1743,6 +2153,8 @@
    "meals": 29,
    "median": 75.0,
    "iqr": 60.0,
+   "rise_median": 13.860543111822754,
+   "rise_iqr": 13.625499830140127,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#020"
@@ -1751,6 +2163,8 @@
    "meals": 22,
    "median": 102.5,
    "iqr": 107.5,
+   "rise_median": 11.297150704462698,
+   "rise_iqr": 10.596696614663582,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#022"
@@ -1759,6 +2173,8 @@
    "meals": 25,
    "median": 85.0,
    "iqr": 50.0,
+   "rise_median": 10.989128363804161,
+   "rise_iqr": 10.62183901907731,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#023"
@@ -1767,6 +2183,8 @@
    "meals": 35,
    "median": 60.0,
    "iqr": 55.0,
+   "rise_median": 8.939362708590062,
+   "rise_iqr": 10.002727758444633,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#024"
@@ -1775,6 +2193,8 @@
    "meals": 42,
    "median": 70.0,
    "iqr": 38.75,
+   "rise_median": 12.934267601628619,
+   "rise_iqr": 9.379726761161841,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#025"
@@ -1783,6 +2203,8 @@
    "meals": 29,
    "median": 95.0,
    "iqr": 70.0,
+   "rise_median": 12.196214625665851,
+   "rise_iqr": 10.361800030594177,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#027"
@@ -1791,6 +2213,8 @@
    "meals": 48,
    "median": 70.0,
    "iqr": 53.75,
+   "rise_median": 10.942481169041873,
+   "rise_iqr": 7.758871973882993,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#028"
@@ -1799,6 +2223,8 @@
    "meals": 43,
    "median": 80.0,
    "iqr": 80.0,
+   "rise_median": 11.537179965899696,
+   "rise_iqr": 12.663072009794242,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#029"
@@ -1807,6 +2233,8 @@
    "meals": 32,
    "median": 90.0,
    "iqr": 111.25,
+   "rise_median": 7.959903344222622,
+   "rise_iqr": 13.583762394376013,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#030"
@@ -1815,6 +2243,8 @@
    "meals": 40,
    "median": 125.0,
    "iqr": 81.25,
+   "rise_median": 14.170540184198206,
+   "rise_iqr": 10.09482797213888,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#031"
@@ -1823,6 +2253,8 @@
    "meals": 26,
    "median": 67.5,
    "iqr": 51.25,
+   "rise_median": 10.438558335740808,
+   "rise_iqr": 9.55404354110234,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#032"
@@ -1831,6 +2263,8 @@
    "meals": 31,
    "median": 55.0,
    "iqr": 92.5,
+   "rise_median": 7.763335636158018,
+   "rise_iqr": 14.293143779201598,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#034"
@@ -1839,6 +2273,8 @@
    "meals": 50,
    "median": 95.0,
    "iqr": 125.0,
+   "rise_median": 10.593784285934783,
+   "rise_iqr": 9.977284360222928,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#035"
@@ -1847,6 +2283,8 @@
    "meals": 40,
    "median": 70.0,
    "iqr": 70.0,
+   "rise_median": 11.22436086591501,
+   "rise_iqr": 15.241631813189397,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#036"
@@ -1855,6 +2293,8 @@
    "meals": 41,
    "median": 70.0,
    "iqr": 130.0,
+   "rise_median": 8.635011240683408,
+   "rise_iqr": 7.953879996008446,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#037"
@@ -1863,6 +2303,8 @@
    "meals": 42,
    "median": 77.5,
    "iqr": 87.5,
+   "rise_median": 10.14403781646377,
+   "rise_iqr": 7.640395401935766,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#038"
@@ -1871,6 +2313,8 @@
    "meals": 29,
    "median": 70.0,
    "iqr": 30.0,
+   "rise_median": 9.949855545187518,
+   "rise_iqr": 8.814801990375429,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#039"
@@ -1879,6 +2323,8 @@
    "meals": 34,
    "median": 95.0,
    "iqr": 47.5,
+   "rise_median": 11.460618167486658,
+   "rise_iqr": 14.450424945708003,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#040"
@@ -1887,6 +2333,8 @@
    "meals": 38,
    "median": 75.0,
    "iqr": 48.75,
+   "rise_median": 10.700152142564868,
+   "rise_iqr": 10.80058459174242,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#041"
@@ -1895,6 +2343,8 @@
    "meals": 24,
    "median": 70.0,
    "iqr": 86.25,
+   "rise_median": 7.86697838069783,
+   "rise_iqr": 6.0399515070884515,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#002"
@@ -1903,6 +2353,8 @@
    "meals": 29,
    "median": 100.0,
    "iqr": 130.0,
+   "rise_median": 12.494513139404528,
+   "rise_iqr": 8.270624445501529,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#003"
@@ -1911,6 +2363,8 @@
    "meals": 34,
    "median": 80.0,
    "iqr": 48.75,
+   "rise_median": 13.863500740742467,
+   "rise_iqr": 10.342420012426029,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#004"
@@ -1919,6 +2373,8 @@
    "meals": 26,
    "median": 125.0,
    "iqr": 127.5,
+   "rise_median": 9.964655321732671,
+   "rise_iqr": 8.48536976163076,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#005"
@@ -1927,6 +2383,8 @@
    "meals": 25,
    "median": 110.0,
    "iqr": 90.0,
+   "rise_median": 17.4047998657614,
+   "rise_iqr": 16.834663289306373,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#006"
@@ -1935,6 +2393,8 @@
    "meals": 28,
    "median": 105.0,
    "iqr": 96.25,
+   "rise_median": 17.860848607192093,
+   "rise_iqr": 11.588270696449312,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#008"
@@ -1943,6 +2403,8 @@
    "meals": 32,
    "median": 100.0,
    "iqr": 136.25,
+   "rise_median": 11.941513272594511,
+   "rise_iqr": 18.08923197042633,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#009"
@@ -1951,6 +2413,8 @@
    "meals": 24,
    "median": 85.0,
    "iqr": 46.25,
+   "rise_median": 7.586658290893924,
+   "rise_iqr": 5.164028017067743,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#010"
@@ -1959,6 +2423,8 @@
    "meals": 24,
    "median": 95.0,
    "iqr": 113.75,
+   "rise_median": 12.672053573244227,
+   "rise_iqr": 18.19682098666811,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#011"
@@ -1967,6 +2433,8 @@
    "meals": 31,
    "median": 85.0,
    "iqr": 102.5,
+   "rise_median": 9.266885093263886,
+   "rise_iqr": 15.026433522409077,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#012"
@@ -1975,6 +2443,8 @@
    "meals": 27,
    "median": 60.0,
    "iqr": 92.5,
+   "rise_median": 9.00060065071176,
+   "rise_iqr": 8.598263768492497,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#013"
@@ -1983,6 +2453,8 @@
    "meals": 24,
    "median": 65.0,
    "iqr": 46.25,
+   "rise_median": 10.915854462524118,
+   "rise_iqr": 7.067290793881908,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#015"
@@ -1991,6 +2463,8 @@
    "meals": 31,
    "median": 50.0,
    "iqr": 97.5,
+   "rise_median": 7.866415329660379,
+   "rise_iqr": 11.535188983836006,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#016"
@@ -1999,6 +2473,8 @@
    "meals": 34,
    "median": 67.5,
    "iqr": 107.5,
+   "rise_median": 11.168890996674637,
+   "rise_iqr": 13.765618361774699,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#018"
@@ -2007,6 +2483,8 @@
    "meals": 30,
    "median": 92.5,
    "iqr": 61.25,
+   "rise_median": 13.628042258939711,
+   "rise_iqr": 11.970548392147926,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#019"
@@ -2015,6 +2493,8 @@
    "meals": 26,
    "median": 75.0,
    "iqr": 96.25,
+   "rise_median": 9.234048675467328,
+   "rise_iqr": 7.456300232254316,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#024"
@@ -2023,6 +2503,8 @@
    "meals": 23,
    "median": 120.0,
    "iqr": 102.5,
+   "rise_median": 16.624266655642327,
+   "rise_iqr": 7.27242594471533,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#025"
@@ -2031,6 +2513,8 @@
    "meals": 28,
    "median": 67.5,
    "iqr": 48.75,
+   "rise_median": 9.287301421087337,
+   "rise_iqr": 6.537561055996425,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#028"
@@ -2039,6 +2523,8 @@
    "meals": 25,
    "median": 80.0,
    "iqr": 95.0,
+   "rise_median": 11.537179965899696,
+   "rise_iqr": 12.443773794534527,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#029"
@@ -2047,6 +2533,8 @@
    "meals": 25,
    "median": 95.0,
    "iqr": 120.0,
+   "rise_median": 9.785000570845334,
+   "rise_iqr": 13.380278661099174,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#030"
@@ -2055,6 +2543,8 @@
    "meals": 24,
    "median": 150.0,
    "iqr": 67.5,
+   "rise_median": 15.07005084535392,
+   "rise_iqr": 12.072679900381338,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#031"
@@ -2063,6 +2553,8 @@
    "meals": 28,
    "median": 97.5,
    "iqr": 77.5,
+   "rise_median": 11.549338156971846,
+   "rise_iqr": 12.75872609637839,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#034"
@@ -2071,6 +2563,8 @@
    "meals": 34,
    "median": 120.0,
    "iqr": 120.0,
+   "rise_median": 13.86875641342452,
+   "rise_iqr": 10.252807907942437,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#035"
@@ -2079,6 +2573,8 @@
    "meals": 24,
    "median": 65.0,
    "iqr": 62.5,
+   "rise_median": 12.480245559830816,
+   "rise_iqr": 14.481880890005815,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#036"
@@ -2087,6 +2583,8 @@
    "meals": 25,
    "median": 70.0,
    "iqr": 185.0,
+   "rise_median": 9.925360746270169,
+   "rise_iqr": 10.700005554556554,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#037"
@@ -2095,6 +2593,8 @@
    "meals": 25,
    "median": 75.0,
    "iqr": 130.0,
+   "rise_median": 11.397334845980197,
+   "rise_iqr": 6.843636419352797,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#038"
@@ -2103,6 +2603,8 @@
    "meals": 24,
    "median": 100.0,
    "iqr": 41.25,
+   "rise_median": 14.979635374572847,
+   "rise_iqr": 12.277939553559746,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#040"
@@ -2111,6 +2613,8 @@
    "meals": 27,
    "median": 65.0,
    "iqr": 67.5,
+   "rise_median": 12.224798555367684,
+   "rise_iqr": 12.10160315398184,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#041"
@@ -2119,6 +2623,8 @@
    "meals": 20,
    "median": 107.5,
    "iqr": 126.25,
+   "rise_median": 12.804425043671367,
+   "rise_iqr": 6.90169960548188,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#003"
@@ -2127,6 +2633,8 @@
    "meals": 25,
    "median": 80.0,
    "iqr": 60.0,
+   "rise_median": 18.43699952613727,
+   "rise_iqr": 10.569999739275989,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#004"
@@ -2135,6 +2643,8 @@
    "meals": 22,
    "median": 132.5,
    "iqr": 130.0,
+   "rise_median": 17.598840183808534,
+   "rise_iqr": 16.415940767153664,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#009"
@@ -2143,6 +2653,8 @@
    "meals": 22,
    "median": 107.5,
    "iqr": 132.5,
+   "rise_median": 10.919425401248002,
+   "rise_iqr": 12.558714919814637,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#012"
@@ -2151,6 +2663,8 @@
    "meals": 21,
    "median": 85.0,
    "iqr": 50.0,
+   "rise_median": 12.03132990682711,
+   "rise_iqr": 7.048194718252342,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#015"
@@ -2159,6 +2673,8 @@
    "meals": 24,
    "median": 72.5,
    "iqr": 128.75,
+   "rise_median": 11.821829500998316,
+   "rise_iqr": 15.487369881948446,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#016"
@@ -2167,6 +2683,8 @@
    "meals": 25,
    "median": 90.0,
    "iqr": 110.0,
+   "rise_median": 16.003293592774043,
+   "rise_iqr": 13.114365875697606,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#018"
@@ -2175,6 +2693,8 @@
    "meals": 22,
    "median": 102.5,
    "iqr": 97.5,
+   "rise_median": 15.055144199327184,
+   "rise_iqr": 10.394482131443903,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#019"
@@ -2183,6 +2703,8 @@
    "meals": 20,
    "median": 72.5,
    "iqr": 70.0,
+   "rise_median": 10.30645397713187,
+   "rise_iqr": 5.664590730369346,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#028"
@@ -2191,6 +2713,8 @@
    "meals": 20,
    "median": 175.0,
    "iqr": 65.0,
+   "rise_median": 18.50835297440605,
+   "rise_iqr": 10.805081822889145,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#031"
@@ -2199,6 +2723,8 @@
    "meals": 23,
    "median": 115.0,
    "iqr": 100.0,
+   "rise_median": 14.46031526129273,
+   "rise_iqr": 10.727793506221396,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#035"

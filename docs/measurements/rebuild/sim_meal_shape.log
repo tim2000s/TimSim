@@ -18,20 +18,20 @@ panel: skipped 1 subject(s) with no titrated settings (adult#026), taking 40 of 
   import pkg_resources
 
 stock
- window  common  own  meals   per-person median   within-person IQR  evening  trough at index
-    180      39   40   2270        64 / 75 / 95       45 / 75 / 103     0.25             0.36
-    240      37   39   1476       63 / 80 / 100       50 / 75 / 111     0.24             0.35
-    300      28   37    785       70 / 89 / 112       47 / 95 / 126     0.24             0.34
-    360       9   12    210       72 / 90 / 138       54 / 90 / 147     0.25             0.31
+ window  common  own  meals   per-person median   within-person IQR       rise per 10 g  evening
+    180      39   40   2270        64 / 75 / 95       45 / 75 / 103    7.6 / 9.6 / 12.0     0.25
+    240      37   39   1476       63 / 80 / 100       50 / 75 / 111   8.6 / 10.9 / 12.8     0.24
+    300      28   37    785       70 / 89 / 112       47 / 95 / 126   9.2 / 11.7 / 13.5     0.24
+    360       9   12    210       72 / 90 / 138       54 / 90 / 147   9.0 / 13.8 / 15.6     0.25
     480       0    0      0   no subject reaches 20 meals in every arm
     720       0    0      0   no subject reaches 20 meals in every arm
 
 fast
- window  common  own  meals   per-person median   within-person IQR  evening  trough at index
-    180      39   39   2115        55 / 68 / 90       44 / 72 / 100     0.25             0.40
-    240      37   37   1368       60 / 75 / 104       48 / 81 / 119     0.23             0.38
-    300      28   28    761       65 / 85 / 120       48 / 96 / 130     0.24             0.34
-    360       9   11    202      78 / 102 / 127      58 / 100 / 130     0.22             0.32
+ window  common  own  meals   per-person median   within-person IQR       rise per 10 g  evening
+    180      39   39   2115        55 / 68 / 90       44 / 72 / 100    6.5 / 9.6 / 12.0     0.25
+    240      37   37   1368       60 / 75 / 104       48 / 81 / 119   8.2 / 10.6 / 13.7     0.23
+    300      28   28    761       65 / 85 / 120       48 / 96 / 130   8.7 / 11.5 / 15.5     0.24
+    360       9   11    202      78 / 102 / 127      58 / 100 / 130  11.6 / 14.5 / 18.5     0.22
     480       0    0      0   no subject reaches 20 meals in every arm
     720       0    0      0   no subject reaches 20 meals in every arm
 
@@ -45,12 +45,12 @@ paired, fast minus stock, on the common panel
 1 subject-arms terminated early and are excluded
 
 real, Loop, for comparison
- window  subj  meals   per-person median   within-person IQR  evening
-    180   785 193696        50 / 70 / 90        51 / 70 / 90     0.32
-    240   767 150678       60 / 80 / 110       65 / 90 / 115     0.36
-    300   742 115854       65 / 90 / 125      80 / 107 / 135     0.44
-    360   720  92146      70 / 100 / 135      90 / 122 / 158     0.53
-    480   677  68556      77 / 115 / 158     105 / 141 / 186     0.68
-    720   595  44354      85 / 132 / 185     112 / 160 / 220     0.77
+ window  subj  meals   per-person median   within-person IQR       rise per 10 g  evening
+    180   785 193696        50 / 70 / 90        51 / 70 / 90   9.5 / 15.0 / 22.4     0.32
+    240   767 150678       60 / 80 / 110       65 / 90 / 115  11.2 / 17.0 / 25.1     0.36
+    300   742 115854       65 / 90 / 125      80 / 107 / 135  12.1 / 18.3 / 26.9     0.44
+    360   720  92146      70 / 100 / 135      90 / 122 / 158  12.6 / 19.2 / 27.6     0.53
+    480   677  68556      77 / 115 / 158     105 / 141 / 186  13.2 / 20.2 / 29.0     0.68
+    720   595  44354      85 / 132 / 185     112 / 160 / 220  14.0 / 21.1 / 31.0     0.77
 
-wrote /private/tmp/claude-501/-Users-timstreet-StudioProjects-TimSim/7d89b575-6207-4294-b227-dc7f837f0f3c/scratchpad/sim_meal_shape.json
+wrote /private/tmp/claude-501/-Users-timstreet-StudioProjects-TimSim/7d89b575-6207-4294-b227-dc7f837f0f3c/scratchpad/sim2.json
