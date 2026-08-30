@@ -1,3 +1,28 @@
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
 panel: skipped 1 subject(s) with no titrated settings (adult#026), taking 40 of the first 41
+  measured ki x 10.5, fraction 0.00: 31 of 40 subjects give a meal rise
+  measured ki x 10.5, fraction 0.25: 31 of 40 subjects give a meal rise
+  measured ki x 10.5, fraction 0.50: 30 of 40 subjects give a meal rise
+  measured ki x 10.5, fraction 0.70: 29 of 40 subjects give a meal rise
+  measured ki x 10.5, fraction 0.85: 28 of 40 subjects give a meal rise
+  measured ki x 10.5, fraction 1.00: 27 of 40 subjects give a meal rise
+40 subjects. The fast rate is fitted on the clamp and the fraction is swept against both gates.
+
+
+meal panel: 25 of 40 subjects give a measurable meal rise at every rung. The clamp is read on all 40.
+
+  ki x  frac     15     30     60     90    120    180   gate 1    meal   gate 2   both  own n
+  10.5  0.00   -0.1    0.7    7.9   16.2   26.1   43.3     fail     115     pass            31
+  10.5  0.25    5.4   16.5   37.5   47.8   55.0   72.0     fail     115     pass            31
+  10.5  0.50   11.0   32.9   63.7   75.0   82.4   94.8     fail     120     pass            30
+  10.5  0.70   15.5   46.1   86.2   95.5  100.0  100.0     fail     115     pass            29
+  10.5  0.85   18.9   56.0  100.0  100.0  100.0  100.0     fail     115     pass            28
+  10.5  1.00   22.2   66.0  100.0  100.0  100.0  100.0     pass     115     pass    YES     27
+
+gate 1: suppression at 30 min in 65 to 85 per cent and at 60 min above 90
+gate 2: meal trough to peak within 20 min of the real 112
+
+1 of 6 combinations satisfy both. Closest on the meal: fast fraction 1.0 at 10.5 times the published rate, suppressing 66 per cent at 30 minutes with a meal trough to peak of 115 min.
+
+wrote /private/tmp/claude-501/-Users-timstreet-StudioProjects-TimSim/7d89b575-6207-4294-b227-dc7f837f0f3c/scratchpad/liver_two_timescale.json
