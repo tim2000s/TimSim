@@ -5,7 +5,12 @@ two programmes are kept together because their limitations are opposite: Boost w
 records of real people and cannot produce a counterfactual, and this one can produce a
 counterfactual and cannot guarantee its people resemble real ones.
 
-The series was withdrawn in August 2026 and is being rebuilt. The hepatic defence gain was
+The series was withdrawn in August 2026 and has been rebuilt. Sixteen of the seventeen studies
+are written and fifteen are built to PDF. Study 10 is withdrawn permanently, since the rebuilt
+clamp inverted its premise, and study 01 is blocked on field records that live in the Boost
+repositories. `Research-Papers/TimSim/REBUILD_STATUS.md` is the authority on where each one
+stands, checked by opening each measurement file rather than by reading what a study says it
+used, and this table should be read against it rather than instead of it. The hepatic defence gain was
 refitted from 0.20 to 0.05 across a hundred and fifty adults, and it enters every simulated
 minute, so no figure measured under the old value can be quoted beside one measured under the
 new. `examples/rebuild_all.sh` produces the replacement set, retitrating the population first
