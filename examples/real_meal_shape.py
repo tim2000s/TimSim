@@ -56,7 +56,7 @@ COVERAGE = 0.8                # fraction of the window's 5 min slots that must c
 SQL = """
 with subs as (select subject_id from studies.subject where study_name = %(study)s),
 meals as (
-  select c.subject_id, c.ts_local
+  select c.subject_id, c.ts_local, c.carbs_g
   from studies.carbs c join subs using (subject_id)
   where c.carbs_g between %(g_lo)s and %(g_hi)s
     and not exists (select 1 from studies.carbs c2
@@ -64,21 +64,22 @@ meals as (
                       and c2.ts_local >  c.ts_local - %(before)s * interval '1 min'
                       and c2.ts_local <  c.ts_local + %(win)s * interval '1 min')),
 pk as (
-  select m.*, p.ts_local pk_ts, p.n
+  select m.*, p.ts_local pk_ts, p.cgm_mgdl pk_cgm, p.n
   from meals m cross join lateral (
-    select ts_local, count(*) over () n from studies.cgm g
+    select ts_local, cgm_mgdl, count(*) over () n from studies.cgm g
     where g.subject_id = m.subject_id and g.ts_local >= m.ts_local
       and g.ts_local <= m.ts_local + %(win)s * interval '1 min'
     order by cgm_mgdl desc, ts_local asc limit 1) p),
 tp as (
-  select pk.subject_id, pk.ts_local,
-         extract(epoch from (pk.pk_ts - t.ts_local)) / 60 ttp
+  select pk.subject_id, pk.ts_local, pk.carbs_g,
+         extract(epoch from (pk.pk_ts - t.ts_local)) / 60 ttp,
+         pk.pk_cgm - t.cgm_mgdl rise
   from pk cross join lateral (
-    select ts_local from studies.cgm g
+    select ts_local, cgm_mgdl from studies.cgm g
     where g.subject_id = pk.subject_id and g.ts_local >= pk.ts_local and g.ts_local <= pk.pk_ts
     order by cgm_mgdl asc, ts_local asc limit 1) t
   where pk.n >= %(min_readings)s)
-select subject_id, ttp, extract(hour from ts_local) meal_hour from tp
+select subject_id, ttp, extract(hour from ts_local) meal_hour, rise, carbs_g from tp
 """
 
 
@@ -91,15 +92,23 @@ def one(cur, study, win, a, a_subsample=40):
                       "before": a.clear_before,
                       "min_readings": int((win / 5) * a.coverage)})
     rows = cur.fetchall()
-    by_subject = {}
-    hours = []
-    for sid, ttp, hour in rows:
+    by_subject, by_rise, hours = {}, {}, []
+    for sid, ttp, hour, rise, grams in rows:
         by_subject.setdefault(sid, []).append(float(ttp))
+        # Rise per 10 g as logged. Logged grams under-state true intake, which the real rescue
+        # and meal producers already record, so this is an upper bound on the rise per true 10 g.
+        by_rise.setdefault(sid, []).append(float(rise) / (float(grams) / 10.0))
         hours.append(int(hour))
     kept = {s: v for s, v in by_subject.items() if len(v) >= a.min_meals}
     pooled = [x for v in kept.values() for x in v]
     med = [float(np.median(v)) for v in kept.values()]
     iqr = [float(np.percentile(v, 75) - np.percentile(v, 25)) for v in kept.values()]
+    # The rise the excursion work points at. Simulated excursions above 180 mg/dL last 40 minutes
+    # against the trial's 60 while falling at the same rate, so they are shorter because they
+    # peak lower. Whether a meal rise is smaller is the same question with a per-person reference.
+    rmed = [float(np.median(by_rise[s_])) for s_ in kept]
+    riqr = [float(np.percentile(by_rise[s_], 75) - np.percentile(by_rise[s_], 25))
+            for s_ in kept]
     hours = np.asarray(hours)
     # A real participant contributes hundreds of meals and a simulated one a few dozen, and an
     # interquartile range taken over more meals is not the same estimator as one taken over
@@ -120,6 +129,8 @@ def one(cur, study, win, a, a_subsample=40):
             "pooled_quartiles": [pct(pooled, 25), pct(pooled, 50), pct(pooled, 75)],
             "between_person_median": [pct(med, 10), pct(med, 50), pct(med, 90)],
             "within_person_iqr": [pct(iqr, 10), pct(iqr, 50), pct(iqr, 90)],
+            "rise_per_10g_between_person": [pct(rmed, 10), pct(rmed, 50), pct(rmed, 90)],
+            "rise_per_10g_within_person_iqr": [pct(riqr, 10), pct(riqr, 50), pct(riqr, 90)],
             "hour_share": {"05-10": float(np.mean((hours >= 5) & (hours <= 10))),
                            "11-15": float(np.mean((hours >= 11) & (hours <= 15))),
                            "16-21": float(np.mean((hours >= 16) & (hours <= 21))),
@@ -151,18 +162,21 @@ def main():
             print(f"{'window':>7}{'subj':>7}{'meals':>8}{'pooled q1':>11}{'median':>8}"
                   f"{'q3':>7}{'per-person median p10/50/90':>30}"
                   f"{'within-person IQR p10/50/90':>30}"
-                  f"{'same, at 40 meals each':>26}{'evening':>9}")
+                  f"{'same, at 40 meals each':>26}"
+                  f"{'rise per 10 g p10/50/90':>26}{'evening':>9}")
             for win in a.windows:
                 r = one(cur, study, win, a, a.subsample)
                 rec["rows"].append(r)
                 q = r["pooled_quartiles"]
                 bp, wp = r["between_person_median"], r["within_person_iqr"]
                 sp = r["within_person_iqr_subsampled"]
+                rp = r["rise_per_10g_between_person"]
                 print(f"{win:>7}{r['subjects']:>7}{r['meals']:>8}{q[0]:>11.0f}{q[1]:>8.0f}"
                       f"{q[2]:>7.0f}"
                       f"{f'{bp[0]:.0f} / {bp[1]:.0f} / {bp[2]:.0f}':>30}"
                       f"{f'{wp[0]:.0f} / {wp[1]:.0f} / {wp[2]:.0f}':>30}"
                       f"{f'{sp[0]:.0f} / {sp[1]:.0f} / {sp[2]:.0f}':>26}"
+                      f"{f'{rp[0]:.1f} / {rp[1]:.1f} / {rp[2]:.1f}':>26}"
                       f"{r['hour_share']['16-21']:>9.2f}")
 
     json.dump(rec, open(a.out, "w"), indent=1)

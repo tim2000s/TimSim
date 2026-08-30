@@ -130,7 +130,7 @@ def test_sql_and_python_agree_on_real_subjects(window):
         cur.execute(SQL, {"study": "Loop", "g_lo": ms.GRAMS[0], "g_hi": ms.GRAMS[1],
                           "win": window, "before": int(ms.CLEAR_BEFORE_MIN),
                           "min_readings": int((window / 5) * ms.COVERAGE)})
-        sql_rows = [(s, float(t)) for s, t, _ in cur.fetchall() if s in set(subs)]
+        sql_rows = [(s, float(t)) for s, t, _, _, _ in cur.fetchall() if s in set(subs)]
 
         python_rows = []
         for sid in subs:

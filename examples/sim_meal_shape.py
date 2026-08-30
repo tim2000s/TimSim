@@ -74,6 +74,11 @@ def job(args):
         recs, rej = ms.shapes(meals, carbs, minutes, cgm, window_min=w)
         out[w] = {"ttp": [x["trough_to_peak_min"] for x in recs],
                   "hours": [x["hour"] for x in recs],
+                  # Rise per 10 g, the quantity the excursion decomposition points at: simulated
+                  # excursions above 180 mg/dL end after 40 min against the trial's 60 while
+                  # falling at the same rate, so they are shorter because they peak lower.
+                  "rise_per_10g": [(x["peak_mgdl"] - x["trough_mgdl"]) / (x["grams"] / 10.0)
+                                   for x in recs],
                   "trough_at_index": int(sum(x["trough_at_index"] for x in recs)),
                   "rejected": rej}
     return name, arm, out, None
@@ -123,6 +128,8 @@ def main():
                     continue
                 p = ms.per_person(cell[w]["ttp"], a.min_meals)
                 if p:
+                    r_ = ms.per_person(cell[w]["rise_per_10g"], a.min_meals)
+                    p = dict(p, rise_median=r_["median"], rise_iqr=r_["iqr"])
                     cells[(arm, w, n)] = p
                     rec["per_subject"].append(dict(p, arm=arm, window_min=w, subject=n))
 
@@ -138,7 +145,7 @@ def main():
     for arm, _, _ in ARMS:
         print(f"\n{arm}")
         print(f"{'window':>7}{'common':>8}{'own':>5}{'meals':>7}{'per-person median':>20}"
-              f"{'within-person IQR':>20}{'evening':>9}{'trough at index':>17}")
+              f"{'within-person IQR':>20}{'rise per 10 g':>20}{'evening':>9}")
         for w in a.windows:
             common = rec["common_panel"][w]
             per = [cells[(arm, w, n)] for n in common]
@@ -153,9 +160,13 @@ def main():
                 rec["rows"].append({"arm": arm, "window_min": w, "subjects": 0, "own": own})
                 continue
             s_ = ms.summarise(per)
+            q = lambda v, pp: float(np.percentile(np.asarray(v, float), pp))
+            rm = [x["rise_median"] for x in per]
+            s_["rise_per_10g_between_person"] = [q(rm, 10), q(rm, 50), q(rm, 90)]
             h = np.asarray(hours)
             evening = float(np.mean((h >= 16) & (h <= 21)))
             bp, wp = s_["between_person_median"], s_["within_person_iqr"]
+            rr = s_["rise_per_10g_between_person"]
             rec["rows"].append(dict(s_, arm=arm, window_min=w, own_subjects=own,
                                     evening_share=evening,
                                     trough_at_index_share=(at_index / tot if tot else
@@ -163,7 +174,8 @@ def main():
             print(f"{w:>7}{s_['subjects']:>8}{own:>5}{s_['meals']:>7}"
                   f"{f'{bp[0]:.0f} / {bp[1]:.0f} / {bp[2]:.0f}':>20}"
                   f"{f'{wp[0]:.0f} / {wp[1]:.0f} / {wp[2]:.0f}':>20}"
-                  f"{evening:>9.2f}{rec['rows'][-1]['trough_at_index_share']:>17.2f}")
+                  f"{f'{rr[0]:.1f} / {rr[1]:.1f} / {rr[2]:.1f}':>20}"
+                  f"{evening:>9.2f}")
 
     # Paired, per subject, on the common panel, since the arms differ by one mechanism and the
     # subject is the strongest thing to hold fixed.
@@ -195,16 +207,18 @@ def main():
     if dropped:
         print(f"\n{len(dropped)} subject-arms terminated early and are excluded")
     print("\nreal, Loop, for comparison")
-    print(f"{'window':>7}{'subj':>6}{'meals':>7}{'per-person median':>20}{'within-person IQR':>20}"
-          f"{'evening':>9}")
+    print(f"{'window':>7}{'subj':>6}{'meals':>7}{'per-person median':>20}"
+          f"{'within-person IQR':>20}{'rise per 10 g':>20}{'evening':>9}")
     for w in a.windows:
         r = real_by.get(("Loop", w))
         if not r:
             continue
         bp, wp = r["between_person_median"], r["within_person_iqr"]
+        rr = r.get("rise_per_10g_between_person", [float("nan")] * 3)
         print(f"{w:>7}{r['subjects']:>6}{r['meals']:>7}"
               f"{f'{bp[0]:.0f} / {bp[1]:.0f} / {bp[2]:.0f}':>20}"
               f"{f'{wp[0]:.0f} / {wp[1]:.0f} / {wp[2]:.0f}':>20}"
+              f"{f'{rr[0]:.1f} / {rr[1]:.1f} / {rr[2]:.1f}':>20}"
               f"{r['hour_share']['16-21']:>9.2f}")
 
     json.dump(rec, open(a.out, "w"), indent=1)
