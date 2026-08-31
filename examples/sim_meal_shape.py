@@ -91,6 +91,10 @@ def job(args):
                   # constant in size.
                   "grams": [x["grams"] for x in recs],
                   "bolus_u": [x["bolus_u"] for x in recs],
+                  # The fall, where a short absorption tail would show without touching the peak.
+                  "fullness": [x["fullness"] for x in recs],
+                  "peak_to_return_min": [x["peak_to_return_min"] for x in recs],
+                  "returned": [x["returned"] for x in recs],
                   "trough_at_index": int(sum(x["trough_at_index"] for x in recs)),
                   "rejected": rej}
     return name, arm, out, None
@@ -163,7 +167,12 @@ def main():
                                            else None),
                              rise_uncovered=(float(np.median(unc)) if unc.size >= a.band_min
                                              else None),
-                             covered_meals=int(cov.size), uncovered_meals=int(unc.size))
+                             covered_meals=int(cov.size), uncovered_meals=int(unc.size),
+                             fullness=float(np.nanmedian(cell[w]["fullness"])),
+                             peak_to_return=float(np.nanmedian(cell[w]["peak_to_return_min"]))
+                             if np.any(np.isfinite(cell[w]["peak_to_return_min"]))
+                             else float("nan"),
+                             returned_share=float(np.mean(cell[w]["returned"])))
                     cells[(arm, w, n)] = p
                     rec["per_subject"].append(dict(p, arm=arm, window_min=w, subject=n))
 
@@ -181,7 +190,8 @@ def main():
         print(f"{'window':>7}{'common':>8}{'own':>5}{'meals':>7}{'per-person median':>20}"
               f"{'within-person IQR':>20}{'rise per 10 g':>20}"
               f"{'same, 40-55 g only':>22}"
-              f"{'covered rise':>20}{'uncovered rise':>20}{'unc n':>7}")
+              f"{'covered rise':>20}{'uncovered rise':>20}"
+              f"{'fullness':>20}{'peak to return':>20}{'ret':>6}")
         for w in a.windows:
             common = rec["common_panel"][w]
             per = [cells[(arm, w, n)] for n in common]
@@ -213,6 +223,11 @@ def main():
                 s_[f"rise_{label}"] = ([q(vv, 10), q(vv, 50), q(vv, 90)] if vv else None)
                 s_[f"{label}_subjects"] = len(vv)
                 s_[f"{label}_meals"] = int(sum(x[f"{label}_meals"] for x in per))
+            for key in ("fullness", "peak_to_return"):
+                vv = [x[key] for x in per if np.isfinite(x[key])]
+                s_[key] = [q(vv, 10), q(vv, 50), q(vv, 90)] if vv else [float("nan")] * 3
+            s_["returned_share"] = float(np.median([x["returned_share"] for x in per]))
+            fl, pr = s_["fullness"], s_["peak_to_return"]
             cv = s_["rise_covered"] or [float("nan")] * 3
             uc = s_["rise_uncovered"] or [float("nan")] * 3
             bs = s_["rise_per_10g_size_matched"] or [float("nan")] * 3
@@ -227,7 +242,9 @@ def main():
                   f"{f'{bs[0]:.1f} / {bs[1]:.1f} / {bs[2]:.1f}':>22}"
                   f"{f'{cv[0]:.1f} / {cv[1]:.1f} / {cv[2]:.1f}':>20}"
                   f"{f'{uc[0]:.1f} / {uc[1]:.1f} / {uc[2]:.1f}':>20}"
-                  f"{s_['uncovered_subjects']:>7}")
+                  f"{f'{fl[0]:.2f} / {fl[1]:.2f} / {fl[2]:.2f}':>20}"
+                  f"{f'{pr[0]:.0f} / {pr[1]:.0f} / {pr[2]:.0f}':>20}"
+                  f"{s_['returned_share']:>6.2f}")
 
     # Paired, per subject, on the common panel, since the arms differ by one mechanism and the
     # subject is the strongest thing to hold fixed.
@@ -261,7 +278,7 @@ def main():
     print("\nreal, Loop, for comparison")
     print(f"{'window':>7}{'subj':>6}{'meals':>7}{'per-person median':>20}"
           f"{'within-person IQR':>20}{'rise per 10 g':>20}"
-          f"{'covered':>20}{'uncovered':>20}")
+          f"{'covered':>20}{'uncovered':>20}{'fullness':>20}{'peak to return':>20}")
     for w in a.windows:
         r = real_by.get(("Loop", w))
         if not r:
@@ -271,12 +288,16 @@ def main():
         st = r.get("strata", {})
         rcv = st.get("covered", {}).get("rise_per_10g", [float("nan")] * 3)
         runc = st.get("uncovered", {}).get("rise_per_10g", [float("nan")] * 3)
+        rfl = r.get("fullness", [float("nan")] * 3)
+        rpr = r.get("peak_to_return_min", [float("nan")] * 3)
         print(f"{w:>7}{r['subjects']:>6}{r['meals']:>7}"
               f"{f'{bp[0]:.0f} / {bp[1]:.0f} / {bp[2]:.0f}':>20}"
               f"{f'{wp[0]:.0f} / {wp[1]:.0f} / {wp[2]:.0f}':>20}"
               f"{f'{rr[0]:.1f} / {rr[1]:.1f} / {rr[2]:.1f}':>20}"
               f"{f'{rcv[0]:.1f} / {rcv[1]:.1f} / {rcv[2]:.1f}':>20}"
-              f"{f'{runc[0]:.1f} / {runc[1]:.1f} / {runc[2]:.1f}':>20}")
+              f"{f'{runc[0]:.1f} / {runc[1]:.1f} / {runc[2]:.1f}':>20}"
+              f"{f'{rfl[0]:.2f} / {rfl[1]:.2f} / {rfl[2]:.2f}':>20}"
+              f"{f'{rpr[0]:.0f} / {rpr[1]:.0f} / {rpr[2]:.0f}':>20}")
 
     json.dump(rec, open(a.out, "w"), indent=1)
     print(f"\nwrote {a.out}")

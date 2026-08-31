@@ -77,6 +77,16 @@ tp as (
          pk.pk_cgm - t.cgm_mgdl rise,
          -- Insulin delivered around the carbohydrate event, recorded per meal rather than used
          -- to admit or reject it, so the threshold can be moved without reparsing.
+         -- The fall. Mean elevation above the trough from the trough to the end of the window,
+         -- and the first return to the trough after the peak. Mean rather than area because a
+         -- meal is admitted on 80 per cent coverage and an area would be short by the gaps.
+         (select avg(greatest(g2.cgm_mgdl - t.cgm_mgdl, 0)) from studies.cgm g2
+           where g2.subject_id = pk.subject_id and g2.ts_local >= t.ts_local
+             and g2.ts_local <= pk.ts_local + %(win)s * interval '1 min') mean_elev,
+         (select extract(epoch from (min(g3.ts_local) - pk.pk_ts)) / 60 from studies.cgm g3
+           where g3.subject_id = pk.subject_id and g3.ts_local > pk.pk_ts
+             and g3.ts_local <= pk.ts_local + %(win)s * interval '1 min'
+             and g3.cgm_mgdl <= t.cgm_mgdl) peak_to_return,
          coalesce((select sum(b.bolus_u) from studies.bolus b
                    where b.subject_id = pk.subject_id
                      and b.ts_local >= pk.ts_local - %(bwin)s * interval '1 min'
@@ -86,7 +96,7 @@ tp as (
     where g.subject_id = pk.subject_id and g.ts_local >= pk.ts_local and g.ts_local <= pk.pk_ts
     order by cgm_mgdl asc, ts_local asc limit 1) t
   where pk.n >= %(min_readings)s)
-select subject_id, ttp, extract(hour from ts_local) meal_hour, rise, carbs_g, bolus_u from tp
+select subject_id, ttp, extract(hour from ts_local) meal_hour, rise, carbs_g, bolus_u, mean_elev, peak_to_return from tp
 """
 
 
@@ -101,8 +111,13 @@ def one(cur, study, win, a, a_subsample=40, a_band=(40.0, 55.0), a_band_min=8,
                       "min_readings": int((win / 5) * a.coverage)})
     rows = cur.fetchall()
     by_subject, by_rise, by_band, hours = {}, {}, {}, []
+    by_full, by_ptr = {}, {}
     covered, uncovered = {}, {}
-    for sid, ttp, hour, rise, grams, bolus in rows:
+    for sid, ttp, hour, rise, grams, bolus, mean_elev, ptr in rows:
+        if rise and float(rise) > 0 and mean_elev is not None:
+            by_full.setdefault(sid, []).append(float(mean_elev) / float(rise))
+        if ptr is not None:
+            by_ptr.setdefault(sid, []).append(float(ptr))
         # The stratum. A correction can fall in the window without covering the meal, so the
         # floor is on the amount rather than on the presence of any delivery, and the same floor
         # runs on both sides.
@@ -134,6 +149,9 @@ def one(cur, study, win, a, a_subsample=40, a_band=(40.0, 55.0), a_band_min=8,
         strata[label] = {"subjects": len(med_),
                          "meals": int(sum(len(d.get(s_, ())) for s_ in kept)),
                          "rise_per_10g": [pct(med_, 10), pct(med_, 50), pct(med_, 90)]}
+    fmed = [float(np.median(by_full[s_])) for s_ in kept if len(by_full.get(s_, ())) >= a_band_min]
+    pmed = [float(np.median(by_ptr[s_])) for s_ in kept if len(by_ptr.get(s_, ())) >= a_band_min]
+    ret = [len(by_ptr.get(s_, ())) / len(by_subject[s_]) for s_ in kept]
     rmed = [float(np.median(by_rise[s_])) for s_ in kept]
     riqr = [float(np.percentile(by_rise[s_], 75) - np.percentile(by_rise[s_], 25))
             for s_ in kept]
@@ -162,6 +180,9 @@ def one(cur, study, win, a, a_subsample=40, a_band=(40.0, 55.0), a_band_min=8,
             "rise_per_10g_size_matched": [pct(bmed, 10), pct(bmed, 50), pct(bmed, 90)],
             "size_matched_band": list(a_band), "size_matched_subjects": len(bmed),
             "bolus_floor_u": a_bolus_floor, "strata": strata,
+            "fullness": [pct(fmed, 10), pct(fmed, 50), pct(fmed, 90)],
+            "peak_to_return_min": [pct(pmed, 10), pct(pmed, 50), pct(pmed, 90)],
+            "returned_share": [pct(ret, 10), pct(ret, 50), pct(ret, 90)],
             "grams_median": float(np.median([g for v in by_band.values() for g in v]))
                             if by_band else float("nan"),
             "hour_share": {"05-10": float(np.mean((hours >= 5) & (hours <= 10))),
@@ -204,7 +225,8 @@ def main():
                   f"{'same, at 40 meals each':>26}"
                   f"{'rise per 10 g p10/50/90':>26}"
                   f"{'same, 40-55 g only':>22}"
-                  f"{'covered rise':>20}{'uncovered rise':>20}{'unc n':>7}")
+                  f"{'covered rise':>20}{'uncovered rise':>20}"
+                  f"{'fullness':>20}{'peak to return':>20}{'ret':>6}")
             for win in a.windows:
                 r = one(cur, study, win, a, a.subsample, tuple(a.band), a.band_min,
                         a.bolus_floor)
@@ -216,6 +238,7 @@ def main():
                 bd = r["rise_per_10g_size_matched"]
                 cv = r["strata"]["covered"]["rise_per_10g"]
                 uc = r["strata"]["uncovered"]["rise_per_10g"]
+                fl, pr = r["fullness"], r["peak_to_return_min"]
                 print(f"{win:>7}{r['subjects']:>7}{r['meals']:>8}{q[0]:>11.0f}{q[1]:>8.0f}"
                       f"{q[2]:>7.0f}"
                       f"{f'{bp[0]:.0f} / {bp[1]:.0f} / {bp[2]:.0f}':>30}"
@@ -225,7 +248,9 @@ def main():
                       f"{f'{bd[0]:.1f} / {bd[1]:.1f} / {bd[2]:.1f}':>22}"
                       f"{f'{cv[0]:.1f} / {cv[1]:.1f} / {cv[2]:.1f}':>20}"
                       f"{f'{uc[0]:.1f} / {uc[1]:.1f} / {uc[2]:.1f}':>20}"
-                      f"{r['strata']['uncovered']['subjects']:>7}")
+                      f"{f'{fl[0]:.2f} / {fl[1]:.2f} / {fl[2]:.2f}':>20}"
+                      f"{f'{pr[0]:.0f} / {pr[1]:.0f} / {pr[2]:.0f}':>20}"
+                      f"{r['returned_share'][1]:>6.2f}")
 
     json.dump(rec, open(a.out, "w"), indent=1)
     print(f"\nwrote {a.out}")

@@ -84,12 +84,54 @@ def shapes(index_events, carb_minutes, minutes, glucose, window_min,
         if bm is not None and bu is not None:
             near_b = (bm >= t - bolus_window_min) & (bm <= t + bolus_window_min)
             bolus = float(bu[near_b].sum())
-        out.append({"minute": t, "grams": float(g), "bolus_u": bolus,
+        f = fall(wm, wg, trough_i, peak_i, step_min)
+        out.append({"minute": t, "grams": float(g), "bolus_u": bolus, **f,
                     "trough_to_peak_min": float(wm[peak_i] - wm[trough_i]),
                     "trough_at_index": bool(trough_i == 0),
                     "peak_mgdl": float(wg[peak_i]), "trough_mgdl": float(wg[trough_i]),
                     "hour": float((t / 60.0) % 24.0)})
     return out, rejected
+
+
+def fall(minutes, glucose, trough_i, peak_i, step_min=STEP_MIN):
+    """What the excursion does after its peak, which is where an absorption tail would show.
+
+    The rise says how high a meal climbs and nothing about how long it stays up. Carbohydrate
+    that appears late holds glucose above baseline without raising the peak, so a model whose
+    appearance finishes too early is short here and not necessarily short on the rise.
+
+    `effective_duration_min` is the area above the trough divided by the rise, which is the width
+    of a rectangle of the same area and the same height. It is reported because area alone
+    confounds the two: a taller excursion has more area at the same duration, and this package
+    already knows the simulated peaks are low.
+
+    Samples below the trough are clamped to zero rather than subtracted, so a subject who goes
+    hypoglycaemic after a meal does not report a smaller excursion than one who levels off.
+    """
+    minutes = np.asarray(minutes, float)
+    glucose = np.asarray(glucose, float)
+    base = float(glucose[trough_i])
+    rise = float(glucose[peak_i]) - base
+
+    after = glucose[peak_i:]
+    back = np.flatnonzero(after <= base)
+    returned = bool(back.size)
+    ptr = float(minutes[peak_i + int(back[0])] - minutes[peak_i]) if returned else float("nan")
+
+    above = np.clip(glucose[trough_i:] - base, 0.0, None)
+    area = float(above.sum() * step_min)
+    # Area assumes every sampling slot carries a reading, which the simulated side guarantees and
+    # the real side does not: a meal is admitted on 80 per cent coverage, so a real area can be a
+    # fifth short for a reason that has nothing to do with the excursion. The mean elevation is
+    # the same quantity without that dependence, and `fullness` divides it by the rise so the
+    # shape can be compared between sides whose peaks differ. A square excursion gives 1.0 and a
+    # spike that returns immediately gives nearly 0.
+    mean_elev = float(above.mean()) if above.size else float("nan")
+    return {"peak_to_return_min": ptr, "returned": returned,
+            "area_above_trough": area,
+            "effective_duration_min": (area / rise) if rise > 0 else float("nan"),
+            "mean_elevation": mean_elev,
+            "fullness": (mean_elev / rise) if rise > 0 else float("nan")}
 
 
 def per_person(values, min_meals=20):
