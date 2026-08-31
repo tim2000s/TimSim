@@ -2,12 +2,12 @@
  "provenance": {
   "population": "704cfac086df54ba",
   "settings": "0df43fd250fadd47",
-  "commit": "b1a591d5a156be43d5ff9a483791a064e432f6d7",
+  "commit": "a3f8150fc851ca83fabf37c2c0311f6cdafbb6b2",
   "dirty": false,
   "host": "Tims-Mac-mini.local",
   "python": "3.14.7",
   "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
-  "when": "2026-08-31T10:13:07+00:00",
+  "when": "2026-08-31T19:32:13+00:00",
   "simglucose": "0.2.11"
  },
  "subjects": [
@@ -120,6 +120,17 @@
    ],
    "uncovered_subjects": 35,
    "uncovered_meals": 505,
+   "fullness": [
+    0.4793234434441288,
+    0.5295197082230612,
+    0.5719338496437545
+   ],
+   "peak_to_return": [
+    10.0,
+    30.0,
+    51.000000000000014
+   ],
+   "returned_share": 0.40476190476190477,
    "arm": "stock",
    "window_min": 180,
    "own_subjects": 40,
@@ -165,6 +176,17 @@
    ],
    "uncovered_subjects": 26,
    "uncovered_meals": 343,
+   "fullness": [
+    0.41885488566758633,
+    0.4873263093674291,
+    0.540708406424897
+   ],
+   "peak_to_return": [
+    19.0,
+    55.0,
+    87.0
+   ],
+   "returned_share": 0.5238095238095238,
    "arm": "stock",
    "window_min": 240,
    "own_subjects": 39,
@@ -210,6 +232,17 @@
    ],
    "uncovered_subjects": 8,
    "uncovered_meals": 196,
+   "fullness": [
+    0.38117969957078046,
+    0.4567590415907789,
+    0.4997710573330462
+   ],
+   "peak_to_return": [
+    19.25,
+    66.25,
+    107.25
+   ],
+   "returned_share": 0.5469208211143695,
    "arm": "stock",
    "window_min": 300,
    "own_subjects": 37,
@@ -255,6 +288,17 @@
    ],
    "uncovered_subjects": 1,
    "uncovered_meals": 47,
+   "fullness": [
+    0.38588720914436025,
+    0.4362218052898488,
+    0.46899649024933926
+   ],
+   "peak_to_return": [
+    33.0,
+    92.5,
+    140.0
+   ],
+   "returned_share": 0.5652173913043478,
    "arm": "stock",
    "window_min": 360,
    "own_subjects": 12,
@@ -312,6 +356,17 @@
    ],
    "uncovered_subjects": 35,
    "uncovered_meals": 495,
+   "fullness": [
+    0.43991555802141746,
+    0.5062848006484515,
+    0.547668905423486
+   ],
+   "peak_to_return": [
+    15.0,
+    25.0,
+    52.00000000000003
+   ],
+   "returned_share": 0.4727272727272727,
    "arm": "fast",
    "window_min": 180,
    "own_subjects": 39,
@@ -357,6 +412,17 @@
    ],
    "uncovered_subjects": 25,
    "uncovered_meals": 333,
+   "fullness": [
+    0.3620667504704504,
+    0.46488739152007175,
+    0.5184179265106371
+   ],
+   "peak_to_return": [
+    21.5,
+    52.5,
+    80.0
+   ],
+   "returned_share": 0.5555555555555556,
    "arm": "fast",
    "window_min": 240,
    "own_subjects": 37,
@@ -402,6 +468,17 @@
    ],
    "uncovered_subjects": 8,
    "uncovered_meals": 181,
+   "fullness": [
+    0.3236721458000521,
+    0.4277120259451022,
+    0.5059919380681337
+   ],
+   "peak_to_return": [
+    30.25,
+    67.5,
+    95.0
+   ],
+   "returned_share": 0.5478571428571428,
    "arm": "fast",
    "window_min": 300,
    "own_subjects": 28,
@@ -447,6 +524,17 @@
    ],
    "uncovered_subjects": 2,
    "uncovered_meals": 54,
+   "fullness": [
+    0.30815258355533687,
+    0.39827303762445626,
+    0.4800201385211055
+   ],
+   "peak_to_return": [
+    42.0,
+    80.0,
+    118.0
+   ],
+   "returned_share": 0.6,
    "arm": "fast",
    "window_min": 360,
    "own_subjects": 11,
@@ -480,6 +568,9 @@
    "rise_uncovered": 12.358395811979614,
    "covered_meals": 38,
    "uncovered_meals": 17,
+   "fullness": 0.5314229153250687,
+   "peak_to_return": 50.0,
+   "returned_share": 0.3090909090909091,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#001"
@@ -497,6 +588,9 @@
    "rise_uncovered": 17.65510863129397,
    "covered_meals": 45,
    "uncovered_meals": 22,
+   "fullness": 0.5259640662565968,
+   "peak_to_return": 17.5,
+   "returned_share": 0.3880597014925373,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#002"
@@ -514,6 +608,9 @@
    "rise_uncovered": null,
    "covered_meals": 55,
    "uncovered_meals": 5,
+   "fullness": 0.49344022732445963,
+   "peak_to_return": 10.0,
+   "returned_share": 0.4666666666666667,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#003"
@@ -531,6 +628,9 @@
    "rise_uncovered": 17.25658208376,
    "covered_meals": 50,
    "uncovered_meals": 9,
+   "fullness": 0.6139649212789642,
+   "peak_to_return": 30.0,
+   "returned_share": 0.22033898305084745,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#004"
@@ -548,6 +648,9 @@
    "rise_uncovered": 10.548348825790463,
    "covered_meals": 38,
    "uncovered_meals": 13,
+   "fullness": 0.5745894802413223,
+   "peak_to_return": 40.0,
+   "returned_share": 0.3333333333333333,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#005"
@@ -565,6 +668,9 @@
    "rise_uncovered": null,
    "covered_meals": 50,
    "uncovered_meals": 7,
+   "fullness": 0.48818549754370755,
+   "peak_to_return": 15.0,
+   "returned_share": 0.5087719298245614,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#006"
@@ -582,6 +688,9 @@
    "rise_uncovered": 8.975460676914066,
    "covered_meals": 45,
    "uncovered_meals": 13,
+   "fullness": 0.5317808759002396,
+   "peak_to_return": 5.0,
+   "returned_share": 0.3793103448275862,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#007"
@@ -599,6 +708,9 @@
    "rise_uncovered": 21.574549038460226,
    "covered_meals": 47,
    "uncovered_meals": 12,
+   "fullness": 0.5416677334460444,
+   "peak_to_return": 35.0,
+   "returned_share": 0.2542372881355932,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#008"
@@ -616,6 +728,9 @@
    "rise_uncovered": 15.214841703493398,
    "covered_meals": 49,
    "uncovered_meals": 15,
+   "fullness": 0.5197631628033681,
+   "peak_to_return": 12.5,
+   "returned_share": 0.4375,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#009"
@@ -633,6 +748,9 @@
    "rise_uncovered": 8.82489118312583,
    "covered_meals": 43,
    "uncovered_meals": 15,
+   "fullness": 0.49944299112467183,
+   "peak_to_return": 30.0,
+   "returned_share": 0.39655172413793105,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#010"
@@ -650,6 +768,9 @@
    "rise_uncovered": 18.832559052088047,
    "covered_meals": 37,
    "uncovered_meals": 13,
+   "fullness": 0.5558424548040525,
+   "peak_to_return": 20.0,
+   "returned_share": 0.34,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#011"
@@ -667,6 +788,9 @@
    "rise_uncovered": 12.263351484754685,
    "covered_meals": 49,
    "uncovered_meals": 9,
+   "fullness": 0.44115068519210343,
+   "peak_to_return": 40.0,
+   "returned_share": 0.4482758620689655,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#012"
@@ -684,6 +808,9 @@
    "rise_uncovered": 13.589769453607397,
    "covered_meals": 51,
    "uncovered_meals": 14,
+   "fullness": 0.4801450198235069,
+   "peak_to_return": 20.0,
+   "returned_share": 0.4307692307692308,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#013"
@@ -701,6 +828,9 @@
    "rise_uncovered": 30.080007306676226,
    "covered_meals": 29,
    "uncovered_meals": 9,
+   "fullness": 0.5292579349771995,
+   "peak_to_return": 35.0,
+   "returned_share": 0.39473684210526316,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#014"
@@ -718,6 +848,9 @@
    "rise_uncovered": 11.134520501151968,
    "covered_meals": 52,
    "uncovered_meals": 20,
+   "fullness": 0.5202133809062721,
+   "peak_to_return": 40.0,
+   "returned_share": 0.4444444444444444,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#015"
@@ -735,6 +868,9 @@
    "rise_uncovered": 5.024549740352878,
    "covered_meals": 57,
    "uncovered_meals": 12,
+   "fullness": 0.4679893134093591,
+   "peak_to_return": 15.0,
+   "returned_share": 0.5507246376811594,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#016"
@@ -752,6 +888,9 @@
    "rise_uncovered": 22.09106202286378,
    "covered_meals": 31,
    "uncovered_meals": 13,
+   "fullness": 0.537228693945178,
+   "peak_to_return": 45.0,
+   "returned_share": 0.3409090909090909,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#017"
@@ -769,6 +908,9 @@
    "rise_uncovered": 10.715564632282614,
    "covered_meals": 58,
    "uncovered_meals": 10,
+   "fullness": 0.5610663235339659,
+   "peak_to_return": 40.0,
+   "returned_share": 0.35294117647058826,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#018"
@@ -786,6 +928,9 @@
    "rise_uncovered": 18.224028622969172,
    "covered_meals": 47,
    "uncovered_meals": 24,
+   "fullness": 0.5809986530883011,
+   "peak_to_return": 15.0,
+   "returned_share": 0.29577464788732394,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#019"
@@ -803,6 +948,9 @@
    "rise_uncovered": 12.790096406771022,
    "covered_meals": 41,
    "uncovered_meals": 14,
+   "fullness": 0.5712699419943625,
+   "peak_to_return": 25.0,
+   "returned_share": 0.41818181818181815,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#020"
@@ -820,6 +968,9 @@
    "rise_uncovered": 14.196530179325922,
    "covered_meals": 35,
    "uncovered_meals": 13,
+   "fullness": 0.5515620879697553,
+   "peak_to_return": 10.0,
+   "returned_share": 0.3125,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#021"
@@ -837,6 +988,9 @@
    "rise_uncovered": null,
    "covered_meals": 51,
    "uncovered_meals": 6,
+   "fullness": 0.48182595118986804,
+   "peak_to_return": 17.5,
+   "returned_share": 0.42105263157894735,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#022"
@@ -854,6 +1008,9 @@
    "rise_uncovered": 22.40226011984427,
    "covered_meals": 30,
    "uncovered_meals": 12,
+   "fullness": 0.4914863263012005,
+   "peak_to_return": 45.0,
+   "returned_share": 0.40476190476190477,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#023"
@@ -871,6 +1028,9 @@
    "rise_uncovered": 15.136910434235407,
    "covered_meals": 49,
    "uncovered_meals": 8,
+   "fullness": 0.5295197082230612,
+   "peak_to_return": 35.0,
+   "returned_share": 0.43859649122807015,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#024"
@@ -888,6 +1048,9 @@
    "rise_uncovered": 12.492128979024935,
    "covered_meals": 50,
    "uncovered_meals": 13,
+   "fullness": 0.5507027853327752,
+   "peak_to_return": 42.5,
+   "returned_share": 0.4126984126984127,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#025"
@@ -905,6 +1068,9 @@
    "rise_uncovered": 13.99994297398293,
    "covered_meals": 33,
    "uncovered_meals": 15,
+   "fullness": 0.5184687211554118,
+   "peak_to_return": 30.0,
+   "returned_share": 0.3958333333333333,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#027"
@@ -922,6 +1088,9 @@
    "rise_uncovered": 14.755027669477741,
    "covered_meals": 57,
    "uncovered_meals": 8,
+   "fullness": 0.5817602822186899,
+   "peak_to_return": 55.0,
+   "returned_share": 0.2153846153846154,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#028"
@@ -939,6 +1108,9 @@
    "rise_uncovered": 16.774132441846884,
    "covered_meals": 53,
    "uncovered_meals": 19,
+   "fullness": 0.4760371379266166,
+   "peak_to_return": 30.0,
+   "returned_share": 0.5,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#029"
@@ -956,6 +1128,9 @@
    "rise_uncovered": 13.408009925626024,
    "covered_meals": 42,
    "uncovered_meals": 16,
+   "fullness": 0.47011713962988844,
+   "peak_to_return": 57.5,
+   "returned_share": 0.4827586206896552,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#030"
@@ -973,6 +1148,9 @@
    "rise_uncovered": 16.93319135921412,
    "covered_meals": 45,
    "uncovered_meals": 14,
+   "fullness": 0.5177358424902445,
+   "peak_to_return": 15.0,
+   "returned_share": 0.423728813559322,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#031"
@@ -990,6 +1168,9 @@
    "rise_uncovered": 14.869581831039723,
    "covered_meals": 54,
    "uncovered_meals": 12,
+   "fullness": 0.5498215283729557,
+   "peak_to_return": 17.5,
+   "returned_share": 0.2727272727272727,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#032"
@@ -1007,6 +1188,9 @@
    "rise_uncovered": 12.167296369992485,
    "covered_meals": 37,
    "uncovered_meals": 22,
+   "fullness": 0.44512641098140926,
+   "peak_to_return": 25.0,
+   "returned_share": 0.5084745762711864,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#033"
@@ -1024,6 +1208,9 @@
    "rise_uncovered": 11.562308232767046,
    "covered_meals": 32,
    "uncovered_meals": 16,
+   "fullness": 0.5383052545410859,
+   "peak_to_return": 5.0,
+   "returned_share": 0.4583333333333333,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#034"
@@ -1041,6 +1228,9 @@
    "rise_uncovered": 15.146269403432102,
    "covered_meals": 57,
    "uncovered_meals": 8,
+   "fullness": 0.5184283014676375,
+   "peak_to_return": 10.0,
+   "returned_share": 0.47692307692307695,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#035"
@@ -1058,6 +1248,9 @@
    "rise_uncovered": null,
    "covered_meals": 51,
    "uncovered_meals": 7,
+   "fullness": 0.537665826483765,
+   "peak_to_return": 45.0,
+   "returned_share": 0.46551724137931033,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#036"
@@ -1075,6 +1268,9 @@
    "rise_uncovered": 13.687832258682114,
    "covered_meals": 50,
    "uncovered_meals": 14,
+   "fullness": 0.4822426574868137,
+   "peak_to_return": 15.0,
+   "returned_share": 0.515625,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#037"
@@ -1092,6 +1288,9 @@
    "rise_uncovered": 13.724286630584917,
    "covered_meals": 49,
    "uncovered_meals": 9,
+   "fullness": 0.5627884800069873,
+   "peak_to_return": 60.0,
+   "returned_share": 0.3275862068965517,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#038"
@@ -1109,6 +1308,9 @@
    "rise_uncovered": 10.811518587366141,
    "covered_meals": 33,
    "uncovered_meals": 12,
+   "fullness": 0.5158545144065572,
+   "peak_to_return": 75.0,
+   "returned_share": 0.4666666666666667,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#039"
@@ -1126,6 +1328,9 @@
    "rise_uncovered": 12.291309472505986,
    "covered_meals": 43,
    "uncovered_meals": 17,
+   "fullness": 0.5586144372898896,
+   "peak_to_return": 7.5,
+   "returned_share": 0.2,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#040"
@@ -1143,6 +1348,9 @@
    "rise_uncovered": 13.51188104649279,
    "covered_meals": 39,
    "uncovered_meals": 20,
+   "fullness": 0.5362408272500426,
+   "peak_to_return": 45.0,
+   "returned_share": 0.3898305084745763,
    "arm": "stock",
    "window_min": 180,
    "subject": "adult#041"
@@ -1160,6 +1368,9 @@
    "rise_uncovered": 17.69945001214422,
    "covered_meals": 23,
    "uncovered_meals": 10,
+   "fullness": 0.5014600081598204,
+   "peak_to_return": 67.5,
+   "returned_share": 0.42424242424242425,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#001"
@@ -1177,6 +1388,9 @@
    "rise_uncovered": 16.007952033581894,
    "covered_meals": 27,
    "uncovered_meals": 15,
+   "fullness": 0.5178499653492623,
+   "peak_to_return": 22.5,
+   "returned_share": 0.42857142857142855,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#002"
@@ -1194,6 +1408,9 @@
    "rise_uncovered": null,
    "covered_meals": 42,
    "uncovered_meals": 4,
+   "fullness": 0.41293657666581685,
+   "peak_to_return": 25.0,
+   "returned_share": 0.5869565217391305,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#003"
@@ -1211,6 +1428,9 @@
    "rise_uncovered": null,
    "covered_meals": 33,
    "uncovered_meals": 6,
+   "fullness": 0.5466060401481864,
+   "peak_to_return": 77.5,
+   "returned_share": 0.358974358974359,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#004"
@@ -1228,6 +1448,9 @@
    "rise_uncovered": 11.874745780380689,
    "covered_meals": 28,
    "uncovered_meals": 13,
+   "fullness": 0.5195024990467826,
+   "peak_to_return": 57.5,
+   "returned_share": 0.3902439024390244,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#005"
@@ -1245,6 +1468,9 @@
    "rise_uncovered": null,
    "covered_meals": 28,
    "uncovered_meals": 5,
+   "fullness": 0.419986862798399,
+   "peak_to_return": 20.0,
+   "returned_share": 0.696969696969697,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#006"
@@ -1262,6 +1488,9 @@
    "rise_uncovered": 14.290484203274186,
    "covered_meals": 34,
    "uncovered_meals": 8,
+   "fullness": 0.5207925070969928,
+   "peak_to_return": 20.0,
+   "returned_share": 0.38095238095238093,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#007"
@@ -1279,6 +1508,9 @@
    "rise_uncovered": 27.44183520287904,
    "covered_meals": 38,
    "uncovered_meals": 8,
+   "fullness": 0.5024508430734204,
+   "peak_to_return": 90.0,
+   "returned_share": 0.41304347826086957,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#008"
@@ -1296,6 +1528,9 @@
    "rise_uncovered": 16.448088351696384,
    "covered_meals": 33,
    "uncovered_meals": 10,
+   "fullness": 0.4873263093674291,
+   "peak_to_return": 35.0,
+   "returned_share": 0.5348837209302325,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#009"
@@ -1313,6 +1548,9 @@
    "rise_uncovered": 9.564611806297602,
    "covered_meals": 27,
    "uncovered_meals": 10,
+   "fullness": 0.4875033603543754,
+   "peak_to_return": 45.0,
+   "returned_share": 0.35135135135135137,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#010"
@@ -1330,6 +1568,9 @@
    "rise_uncovered": 21.180363788226256,
    "covered_meals": 27,
    "uncovered_meals": 8,
+   "fullness": 0.5294881490593274,
+   "peak_to_return": 72.5,
+   "returned_share": 0.5714285714285714,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#011"
@@ -1347,6 +1588,9 @@
    "rise_uncovered": null,
    "covered_meals": 38,
    "uncovered_meals": 4,
+   "fullness": 0.4195610268370459,
+   "peak_to_return": 45.0,
+   "returned_share": 0.5238095238095238,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#012"
@@ -1364,6 +1608,9 @@
    "rise_uncovered": 15.296160017878911,
    "covered_meals": 37,
    "uncovered_meals": 10,
+   "fullness": 0.4870611700361187,
+   "peak_to_return": 40.0,
+   "returned_share": 0.5319148936170213,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#013"
@@ -1381,6 +1628,9 @@
    "rise_uncovered": 12.813600057689712,
    "covered_meals": 29,
    "uncovered_meals": 11,
+   "fullness": 0.4110553929402045,
+   "peak_to_return": 60.0,
+   "returned_share": 0.575,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#015"
@@ -1398,6 +1648,9 @@
    "rise_uncovered": 6.262907123806726,
    "covered_meals": 38,
    "uncovered_meals": 10,
+   "fullness": 0.4086508185643448,
+   "peak_to_return": 17.5,
+   "returned_share": 0.5833333333333334,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#016"
@@ -1415,6 +1668,9 @@
    "rise_uncovered": 22.09106202286378,
    "covered_meals": 19,
    "uncovered_meals": 9,
+   "fullness": 0.5601934970826999,
+   "peak_to_return": 80.0,
+   "returned_share": 0.32142857142857145,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#017"
@@ -1432,6 +1688,9 @@
    "rise_uncovered": 11.567218575715312,
    "covered_meals": 40,
    "uncovered_meals": 9,
+   "fullness": 0.5383651220988751,
+   "peak_to_return": 65.0,
+   "returned_share": 0.3673469387755102,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#018"
@@ -1449,6 +1708,9 @@
    "rise_uncovered": 18.987263437969894,
    "covered_meals": 32,
    "uncovered_meals": 20,
+   "fullness": 0.5445742826970049,
+   "peak_to_return": 47.5,
+   "returned_share": 0.34615384615384615,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#019"
@@ -1466,6 +1728,9 @@
    "rise_uncovered": 13.248542233496542,
    "covered_meals": 27,
    "uncovered_meals": 12,
+   "fullness": 0.4805326225714538,
+   "peak_to_return": 72.5,
+   "returned_share": 0.5641025641025641,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#020"
@@ -1483,6 +1748,9 @@
    "rise_uncovered": 13.153249341801578,
    "covered_meals": 23,
    "uncovered_meals": 9,
+   "fullness": 0.5048878659868649,
+   "peak_to_return": 50.0,
+   "returned_share": 0.46875,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#021"
@@ -1500,6 +1768,9 @@
    "rise_uncovered": null,
    "covered_meals": 25,
    "uncovered_meals": 5,
+   "fullness": 0.521030103544018,
+   "peak_to_return": 65.0,
+   "returned_share": 0.5,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#022"
@@ -1517,6 +1788,9 @@
    "rise_uncovered": 22.40226011984427,
    "covered_meals": 16,
    "uncovered_meals": 10,
+   "fullness": 0.48792989116126095,
+   "peak_to_return": 47.5,
+   "returned_share": 0.5384615384615384,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#023"
@@ -1534,6 +1808,9 @@
    "rise_uncovered": null,
    "covered_meals": 34,
    "uncovered_meals": 7,
+   "fullness": 0.4779707121097606,
+   "peak_to_return": 65.0,
+   "returned_share": 0.5853658536585366,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#024"
@@ -1551,6 +1828,9 @@
    "rise_uncovered": 12.492128979024935,
    "covered_meals": 31,
    "uncovered_meals": 11,
+   "fullness": 0.4892080791645112,
+   "peak_to_return": 57.5,
+   "returned_share": 0.5714285714285714,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#025"
@@ -1568,6 +1848,9 @@
    "rise_uncovered": null,
    "covered_meals": 20,
    "uncovered_meals": 7,
+   "fullness": 0.4771313215256032,
+   "peak_to_return": 62.5,
+   "returned_share": 0.5185185185185185,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#027"
@@ -1585,6 +1868,9 @@
    "rise_uncovered": null,
    "covered_meals": 40,
    "uncovered_meals": 5,
+   "fullness": 0.4868558564182426,
+   "peak_to_return": 85.0,
+   "returned_share": 0.4222222222222222,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#028"
@@ -1602,6 +1888,9 @@
    "rise_uncovered": 16.924043777472466,
    "covered_meals": 32,
    "uncovered_meals": 14,
+   "fullness": 0.44623928194696844,
+   "peak_to_return": 50.0,
+   "returned_share": 0.5869565217391305,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#029"
@@ -1619,6 +1908,9 @@
    "rise_uncovered": 13.042425207599543,
    "covered_meals": 29,
    "uncovered_meals": 12,
+   "fullness": 0.41779567391339695,
+   "peak_to_return": 62.5,
+   "returned_share": 0.5365853658536586,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#030"
@@ -1636,6 +1928,9 @@
    "rise_uncovered": 16.11212339273556,
    "covered_meals": 34,
    "uncovered_meals": 9,
+   "fullness": 0.4584571474857089,
+   "peak_to_return": 15.0,
+   "returned_share": 0.5348837209302325,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#031"
@@ -1653,6 +1948,9 @@
    "rise_uncovered": 14.869581831039723,
    "covered_meals": 33,
    "uncovered_meals": 8,
+   "fullness": 0.5042229097896371,
+   "peak_to_return": 95.0,
+   "returned_share": 0.4146341463414634,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#032"
@@ -1670,6 +1968,9 @@
    "rise_uncovered": 12.579214683544448,
    "covered_meals": 25,
    "uncovered_meals": 17,
+   "fullness": 0.42873007545197905,
+   "peak_to_return": 45.0,
+   "returned_share": 0.5,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#033"
@@ -1687,6 +1988,9 @@
    "rise_uncovered": 16.480170344956733,
    "covered_meals": 24,
    "uncovered_meals": 12,
+   "fullness": 0.4662299693467396,
+   "peak_to_return": 10.0,
+   "returned_share": 0.5555555555555556,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#034"
@@ -1704,6 +2008,9 @@
    "rise_uncovered": null,
    "covered_meals": 45,
    "uncovered_meals": 6,
+   "fullness": 0.5298116394243997,
+   "peak_to_return": 10.0,
+   "returned_share": 0.4117647058823529,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#035"
@@ -1721,6 +2028,9 @@
    "rise_uncovered": null,
    "covered_meals": 34,
    "uncovered_meals": 7,
+   "fullness": 0.47835057402264536,
+   "peak_to_return": 35.0,
+   "returned_share": 0.5365853658536586,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#036"
@@ -1738,6 +2048,9 @@
    "rise_uncovered": 10.467403836328913,
    "covered_meals": 28,
    "uncovered_meals": 10,
+   "fullness": 0.45355541422647755,
+   "peak_to_return": 30.0,
+   "returned_share": 0.5789473684210527,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#037"
@@ -1755,6 +2068,9 @@
    "rise_uncovered": null,
    "covered_meals": 33,
    "uncovered_meals": 6,
+   "fullness": 0.5147877706684323,
+   "peak_to_return": 100.0,
+   "returned_share": 0.46153846153846156,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#038"
@@ -1772,6 +2088,9 @@
    "rise_uncovered": 10.811518587366141,
    "covered_meals": 23,
    "uncovered_meals": 8,
+   "fullness": 0.4278927883812182,
+   "peak_to_return": 90.0,
+   "returned_share": 0.6451612903225806,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#039"
@@ -1789,6 +2108,9 @@
    "rise_uncovered": 15.191816986173533,
    "covered_meals": 28,
    "uncovered_meals": 9,
+   "fullness": 0.5442233329139299,
+   "peak_to_return": 55.0,
+   "returned_share": 0.2972972972972973,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#040"
@@ -1806,6 +2128,9 @@
    "rise_uncovered": 14.518923746522974,
    "covered_meals": 24,
    "uncovered_meals": 15,
+   "fullness": 0.44499575448902573,
+   "peak_to_return": 45.0,
+   "returned_share": 0.5128205128205128,
    "arm": "stock",
    "window_min": 240,
    "subject": "adult#041"
@@ -1823,6 +2148,9 @@
    "rise_uncovered": 18.83434229617764,
    "covered_meals": 16,
    "uncovered_meals": 9,
+   "fullness": 0.46447062762562263,
+   "peak_to_return": 105.0,
+   "returned_share": 0.6,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#001"
@@ -1840,6 +2168,9 @@
    "rise_uncovered": null,
    "covered_meals": 14,
    "uncovered_meals": 7,
+   "fullness": 0.46320826858631836,
+   "peak_to_return": 72.5,
+   "returned_share": 0.47619047619047616,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#002"
@@ -1857,6 +2188,9 @@
    "rise_uncovered": null,
    "covered_meals": 27,
    "uncovered_meals": 2,
+   "fullness": 0.4017040474750055,
+   "peak_to_return": 70.0,
+   "returned_share": 0.5862068965517241,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#003"
@@ -1874,6 +2208,9 @@
    "rise_uncovered": null,
    "covered_meals": 27,
    "uncovered_meals": 5,
+   "fullness": 0.4618172215778016,
+   "peak_to_return": 140.0,
+   "returned_share": 0.5625,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#004"
@@ -1891,6 +2228,9 @@
    "rise_uncovered": 13.13154929182332,
    "covered_meals": 16,
    "uncovered_meals": 9,
+   "fullness": 0.45535954825837377,
+   "peak_to_return": 65.0,
+   "returned_share": 0.52,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#005"
@@ -1908,6 +2248,9 @@
    "rise_uncovered": null,
    "covered_meals": 21,
    "uncovered_meals": 3,
+   "fullness": 0.3319206400603992,
+   "peak_to_return": 20.0,
+   "returned_share": 0.625,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#006"
@@ -1925,6 +2268,9 @@
    "rise_uncovered": null,
    "covered_meals": 20,
    "uncovered_meals": 7,
+   "fullness": 0.5106690934516916,
+   "peak_to_return": 47.5,
+   "returned_share": 0.5185185185185185,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#007"
@@ -1942,6 +2288,9 @@
    "rise_uncovered": null,
    "covered_meals": 20,
    "uncovered_meals": 7,
+   "fullness": 0.4753113043745349,
+   "peak_to_return": 87.5,
+   "returned_share": 0.4444444444444444,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#008"
@@ -1959,6 +2308,9 @@
    "rise_uncovered": null,
    "covered_meals": 24,
    "uncovered_meals": 6,
+   "fullness": 0.45222522375381025,
+   "peak_to_return": 42.5,
+   "returned_share": 0.5333333333333333,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#009"
@@ -1976,6 +2328,9 @@
    "rise_uncovered": 10.304332429469376,
    "covered_meals": 20,
    "uncovered_meals": 9,
+   "fullness": 0.47152514873805274,
+   "peak_to_return": 85.0,
+   "returned_share": 0.5517241379310345,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#010"
@@ -1993,6 +2348,9 @@
    "rise_uncovered": null,
    "covered_meals": 13,
    "uncovered_meals": 7,
+   "fullness": 0.45815853492318404,
+   "peak_to_return": 55.0,
+   "returned_share": 0.6,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#011"
@@ -2010,6 +2368,9 @@
    "rise_uncovered": null,
    "covered_meals": 29,
    "uncovered_meals": 4,
+   "fullness": 0.443789113862245,
+   "peak_to_return": 55.0,
+   "returned_share": 0.5151515151515151,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#012"
@@ -2027,6 +2388,9 @@
    "rise_uncovered": null,
    "covered_meals": 25,
    "uncovered_meals": 7,
+   "fullness": 0.4120934239143846,
+   "peak_to_return": 87.5,
+   "returned_share": 0.625,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#013"
@@ -2044,6 +2408,9 @@
    "rise_uncovered": null,
    "covered_meals": 21,
    "uncovered_meals": 7,
+   "fullness": 0.3687027643825143,
+   "peak_to_return": 65.0,
+   "returned_share": 0.6071428571428571,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#015"
@@ -2061,6 +2428,9 @@
    "rise_uncovered": null,
    "covered_meals": 23,
    "uncovered_meals": 7,
+   "fullness": 0.3967012193472883,
+   "peak_to_return": 17.5,
+   "returned_share": 0.4666666666666667,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#016"
@@ -2078,6 +2448,9 @@
    "rise_uncovered": null,
    "covered_meals": 16,
    "uncovered_meals": 5,
+   "fullness": 0.4981573402762354,
+   "peak_to_return": 82.5,
+   "returned_share": 0.47619047619047616,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#017"
@@ -2095,6 +2468,9 @@
    "rise_uncovered": 10.915422215330032,
    "covered_meals": 26,
    "uncovered_meals": 8,
+   "fullness": 0.49299034733958835,
+   "peak_to_return": 100.0,
+   "returned_share": 0.5588235294117647,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#018"
@@ -2112,6 +2488,9 @@
    "rise_uncovered": 19.368443438384414,
    "covered_meals": 21,
    "uncovered_meals": 15,
+   "fullness": 0.5068376655586404,
+   "peak_to_return": 115.0,
+   "returned_share": 0.4722222222222222,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#019"
@@ -2129,6 +2508,9 @@
    "rise_uncovered": 13.603453368521365,
    "covered_meals": 20,
    "uncovered_meals": 8,
+   "fullness": 0.40676639220641586,
+   "peak_to_return": 87.5,
+   "returned_share": 0.7142857142857143,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#020"
@@ -2146,6 +2528,9 @@
    "rise_uncovered": 13.153249341801578,
    "covered_meals": 11,
    "uncovered_meals": 9,
+   "fullness": 0.4775311528404909,
+   "peak_to_return": 65.0,
+   "returned_share": 0.65,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#021"
@@ -2163,6 +2548,9 @@
    "rise_uncovered": null,
    "covered_meals": 20,
    "uncovered_meals": 3,
+   "fullness": 0.4355290035737047,
+   "peak_to_return": 75.0,
+   "returned_share": 0.6086956521739131,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#022"
@@ -2180,6 +2568,9 @@
    "rise_uncovered": null,
    "covered_meals": 26,
    "uncovered_meals": 5,
+   "fullness": 0.38652695750860877,
+   "peak_to_return": 67.5,
+   "returned_share": 0.6451612903225806,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#024"
@@ -2197,6 +2588,9 @@
    "rise_uncovered": null,
    "covered_meals": 15,
    "uncovered_meals": 7,
+   "fullness": 0.5016988538804185,
+   "peak_to_return": 45.0,
+   "returned_share": 0.5454545454545454,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#025"
@@ -2214,6 +2608,9 @@
    "rise_uncovered": null,
    "covered_meals": 28,
    "uncovered_meals": 2,
+   "fullness": 0.40399208704410905,
+   "peak_to_return": 112.5,
+   "returned_share": 0.7333333333333333,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#028"
@@ -2231,6 +2628,9 @@
    "rise_uncovered": 16.694786007759518,
    "covered_meals": 19,
    "uncovered_meals": 9,
+   "fullness": 0.3339486560300765,
+   "peak_to_return": 45.0,
+   "returned_share": 0.75,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#029"
@@ -2248,6 +2648,9 @@
    "rise_uncovered": 13.515669013959371,
    "covered_meals": 20,
    "uncovered_meals": 10,
+   "fullness": 0.4895091182112262,
+   "peak_to_return": 87.5,
+   "returned_share": 0.4,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#030"
@@ -2265,6 +2668,9 @@
    "rise_uncovered": null,
    "covered_meals": 21,
    "uncovered_meals": 7,
+   "fullness": 0.48729044825751777,
+   "peak_to_return": 17.5,
+   "returned_share": 0.5,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#031"
@@ -2282,6 +2688,9 @@
    "rise_uncovered": null,
    "covered_meals": 15,
    "uncovered_meals": 7,
+   "fullness": 0.47519135219339936,
+   "peak_to_return": 130.0,
+   "returned_share": 0.5,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#032"
@@ -2299,6 +2708,9 @@
    "rise_uncovered": 15.9620119458156,
    "covered_meals": 18,
    "uncovered_meals": 12,
+   "fullness": 0.4172529907485861,
+   "peak_to_return": 55.0,
+   "returned_share": 0.5333333333333333,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#033"
@@ -2316,6 +2728,9 @@
    "rise_uncovered": 17.72845545915908,
    "covered_meals": 19,
    "uncovered_meals": 12,
+   "fullness": 0.5092515908551443,
+   "peak_to_return": 5.0,
+   "returned_share": 0.5483870967741935,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#034"
@@ -2333,6 +2748,9 @@
    "rise_uncovered": null,
    "covered_meals": 31,
    "uncovered_meals": 5,
+   "fullness": 0.4989448588127438,
+   "peak_to_return": 35.0,
+   "returned_share": 0.4722222222222222,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#035"
@@ -2350,6 +2768,9 @@
    "rise_uncovered": null,
    "covered_meals": 17,
    "uncovered_meals": 5,
+   "fullness": 0.4858264013283499,
+   "peak_to_return": 45.0,
+   "returned_share": 0.5,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#036"
@@ -2367,6 +2788,9 @@
    "rise_uncovered": null,
    "covered_meals": 15,
    "uncovered_meals": 7,
+   "fullness": 0.43756953587693015,
+   "peak_to_return": 35.0,
+   "returned_share": 0.5,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#037"
@@ -2384,6 +2808,9 @@
    "rise_uncovered": null,
    "covered_meals": 18,
    "uncovered_meals": 5,
+   "fullness": 0.39823902543539286,
+   "peak_to_return": 105.0,
+   "returned_share": 0.782608695652174,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#038"
@@ -2401,6 +2828,9 @@
    "rise_uncovered": null,
    "covered_meals": 15,
    "uncovered_meals": 7,
+   "fullness": 0.3412395368417889,
+   "peak_to_return": 85.0,
+   "returned_share": 0.7727272727272727,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#039"
@@ -2418,6 +2848,9 @@
    "rise_uncovered": null,
    "covered_meals": 20,
    "uncovered_meals": 6,
+   "fullness": 0.4871025457914396,
+   "peak_to_return": 67.5,
+   "returned_share": 0.46153846153846156,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#040"
@@ -2435,6 +2868,9 @@
    "rise_uncovered": 15.154963104976694,
    "covered_meals": 13,
    "uncovered_meals": 13,
+   "fullness": 0.41113069954825304,
+   "peak_to_return": 80.0,
+   "returned_share": 0.7307692307692307,
    "arm": "stock",
    "window_min": 300,
    "subject": "adult#041"
@@ -2452,6 +2888,9 @@
    "rise_uncovered": null,
    "covered_meals": 18,
    "uncovered_meals": 2,
+   "fullness": 0.3928448851480534,
+   "peak_to_return": 110.0,
+   "returned_share": 0.6,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#003"
@@ -2469,6 +2908,9 @@
    "rise_uncovered": null,
    "covered_meals": 19,
    "uncovered_meals": 3,
+   "fullness": 0.39096374235104214,
+   "peak_to_return": 160.0,
+   "returned_share": 0.6818181818181818,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#004"
@@ -2486,6 +2928,9 @@
    "rise_uncovered": null,
    "covered_meals": 18,
    "uncovered_meals": 4,
+   "fullness": 0.46484342509862875,
+   "peak_to_return": 57.5,
+   "returned_share": 0.5454545454545454,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#012"
@@ -2503,6 +2948,9 @@
    "rise_uncovered": null,
    "covered_meals": 17,
    "uncovered_meals": 5,
+   "fullness": 0.4097958913058988,
+   "peak_to_return": 70.0,
+   "returned_share": 0.6818181818181818,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#013"
@@ -2520,6 +2968,9 @@
    "rise_uncovered": null,
    "covered_meals": 17,
    "uncovered_meals": 6,
+   "fullness": 0.4362218052898488,
+   "peak_to_return": 102.5,
+   "returned_share": 0.5217391304347826,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#015"
@@ -2537,6 +2988,9 @@
    "rise_uncovered": null,
    "covered_meals": 20,
    "uncovered_meals": 6,
+   "fullness": 0.40030821540077854,
+   "peak_to_return": 15.0,
+   "returned_share": 0.46153846153846156,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#016"
@@ -2554,6 +3008,9 @@
    "rise_uncovered": null,
    "covered_meals": 20,
    "uncovered_meals": 5,
+   "fullness": 0.46756172955241615,
+   "peak_to_return": 92.5,
+   "returned_share": 0.64,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#018"
@@ -2571,6 +3028,9 @@
    "rise_uncovered": 20.100784445360276,
    "covered_meals": 11,
    "uncovered_meals": 12,
+   "fullness": 0.44682940559784917,
+   "peak_to_return": 135.0,
+   "returned_share": 0.5652173913043478,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#019"
@@ -2588,6 +3048,9 @@
    "rise_uncovered": null,
    "covered_meals": 15,
    "uncovered_meals": 7,
+   "fullness": 0.37830031806130615,
+   "peak_to_return": 87.5,
+   "returned_share": 0.6363636363636364,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#020"
@@ -2605,6 +3068,9 @@
    "rise_uncovered": null,
    "covered_meals": 18,
    "uncovered_meals": 5,
+   "fullness": 0.34311428926021,
+   "peak_to_return": 90.0,
+   "returned_share": 0.6521739130434783,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#024"
@@ -2622,6 +3088,9 @@
    "rise_uncovered": null,
    "covered_meals": 18,
    "uncovered_meals": 6,
+   "fullness": 0.36558107631763265,
+   "peak_to_return": 37.5,
+   "returned_share": 0.5833333333333334,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#031"
@@ -2639,6 +3108,9 @@
    "rise_uncovered": null,
    "covered_meals": 22,
    "uncovered_meals": 3,
+   "fullness": 0.4747355330370318,
+   "peak_to_return": 55.0,
+   "returned_share": 0.44,
    "arm": "stock",
    "window_min": 360,
    "subject": "adult#035"
@@ -2656,6 +3128,9 @@
    "rise_uncovered": 16.29469244663897,
    "covered_meals": 29,
    "uncovered_meals": 14,
+   "fullness": 0.5085381065756482,
+   "peak_to_return": 20.0,
+   "returned_share": 0.3488372093023256,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#001"
@@ -2673,6 +3148,9 @@
    "rise_uncovered": 16.001820817466147,
    "covered_meals": 50,
    "uncovered_meals": 14,
+   "fullness": 0.517752385614312,
+   "peak_to_return": 20.0,
+   "returned_share": 0.421875,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#002"
@@ -2690,6 +3168,9 @@
    "rise_uncovered": 14.800448159466306,
    "covered_meals": 49,
    "uncovered_meals": 10,
+   "fullness": 0.5145719245856489,
+   "peak_to_return": 15.0,
+   "returned_share": 0.4067796610169492,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#003"
@@ -2707,6 +3188,9 @@
    "rise_uncovered": 19.190101211171914,
    "covered_meals": 52,
    "uncovered_meals": 11,
+   "fullness": 0.5634144747874053,
+   "peak_to_return": 25.0,
+   "returned_share": 0.2698412698412698,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#004"
@@ -2724,6 +3208,9 @@
    "rise_uncovered": 11.192239107840741,
    "covered_meals": 38,
    "uncovered_meals": 12,
+   "fullness": 0.5261464014366459,
+   "peak_to_return": 5.0,
+   "returned_share": 0.42,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#005"
@@ -2741,6 +3228,9 @@
    "rise_uncovered": 23.126673680567826,
    "covered_meals": 47,
    "uncovered_meals": 12,
+   "fullness": 0.519628659012998,
+   "peak_to_return": 10.0,
+   "returned_share": 0.3728813559322034,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#006"
@@ -2758,6 +3248,9 @@
    "rise_uncovered": 12.023907447835981,
    "covered_meals": 28,
    "uncovered_meals": 14,
+   "fullness": 0.48700716291355484,
+   "peak_to_return": 32.5,
+   "returned_share": 0.42857142857142855,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#007"
@@ -2775,6 +3268,9 @@
    "rise_uncovered": 22.308984573599844,
    "covered_meals": 48,
    "uncovered_meals": 12,
+   "fullness": 0.5472180078321662,
+   "peak_to_return": 20.0,
+   "returned_share": 0.21666666666666667,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#008"
@@ -2792,6 +3288,9 @@
    "rise_uncovered": 14.495711841028237,
    "covered_meals": 44,
    "uncovered_meals": 21,
+   "fullness": 0.4330760657297674,
+   "peak_to_return": 15.0,
+   "returned_share": 0.5230769230769231,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#009"
@@ -2809,6 +3308,9 @@
    "rise_uncovered": 10.221062456931769,
    "covered_meals": 40,
    "uncovered_meals": 17,
+   "fullness": 0.47748704699926126,
+   "peak_to_return": 40.0,
+   "returned_share": 0.5263157894736842,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#010"
@@ -2826,6 +3328,9 @@
    "rise_uncovered": 14.659069292028661,
    "covered_meals": 41,
    "uncovered_meals": 13,
+   "fullness": 0.53149685470448,
+   "peak_to_return": 0.0,
+   "returned_share": 0.4074074074074074,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#011"
@@ -2843,6 +3348,9 @@
    "rise_uncovered": 12.198789522244006,
    "covered_meals": 46,
    "uncovered_meals": 10,
+   "fullness": 0.38891416423154535,
+   "peak_to_return": 27.5,
+   "returned_share": 0.6071428571428571,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#012"
@@ -2860,6 +3368,9 @@
    "rise_uncovered": 11.130916322167586,
    "covered_meals": 49,
    "uncovered_meals": 10,
+   "fullness": 0.4866656528048892,
+   "peak_to_return": 35.0,
+   "returned_share": 0.5423728813559322,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#013"
@@ -2877,6 +3388,9 @@
    "rise_uncovered": 33.93185367394074,
    "covered_meals": 24,
    "uncovered_meals": 10,
+   "fullness": 0.4874988588651251,
+   "peak_to_return": 25.0,
+   "returned_share": 0.6176470588235294,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#014"
@@ -2894,6 +3408,9 @@
    "rise_uncovered": 11.146046414184864,
    "covered_meals": 47,
    "uncovered_meals": 15,
+   "fullness": 0.440498852122868,
+   "peak_to_return": 50.0,
+   "returned_share": 0.5806451612903226,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#015"
@@ -2911,6 +3428,9 @@
    "rise_uncovered": 17.330850793307704,
    "covered_meals": 51,
    "uncovered_meals": 17,
+   "fullness": 0.4274428652044422,
+   "peak_to_return": 20.0,
+   "returned_share": 0.6176470588235294,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#016"
@@ -2928,6 +3448,9 @@
    "rise_uncovered": null,
    "covered_meals": 26,
    "uncovered_meals": 7,
+   "fullness": 0.5443334754028092,
+   "peak_to_return": 42.5,
+   "returned_share": 0.42424242424242425,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#017"
@@ -2945,6 +3468,9 @@
    "rise_uncovered": 15.608644507867634,
    "covered_meals": 54,
    "uncovered_meals": 12,
+   "fullness": 0.4598266253763567,
+   "peak_to_return": 25.0,
+   "returned_share": 0.5454545454545454,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#018"
@@ -2962,6 +3488,9 @@
    "rise_uncovered": 17.93909320911009,
    "covered_meals": 49,
    "uncovered_meals": 19,
+   "fullness": 0.5154577670116688,
+   "peak_to_return": 62.5,
+   "returned_share": 0.5,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#019"
@@ -2979,6 +3508,9 @@
    "rise_uncovered": 17.644736771569793,
    "covered_meals": 27,
    "uncovered_meals": 14,
+   "fullness": 0.469900815052277,
+   "peak_to_return": 62.5,
+   "returned_share": 0.4878048780487805,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#020"
@@ -2996,6 +3528,9 @@
    "rise_uncovered": null,
    "covered_meals": 23,
    "uncovered_meals": 7,
+   "fullness": 0.44582106805419874,
+   "peak_to_return": 15.0,
+   "returned_share": 0.4666666666666667,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#021"
@@ -3013,6 +3548,9 @@
    "rise_uncovered": 13.393074046883363,
    "covered_meals": 27,
    "uncovered_meals": 9,
+   "fullness": 0.44649078502674183,
+   "peak_to_return": 30.0,
+   "returned_share": 0.4722222222222222,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#022"
@@ -3030,6 +3568,9 @@
    "rise_uncovered": 12.148145877780372,
    "covered_meals": 23,
    "uncovered_meals": 10,
+   "fullness": 0.4950190488631136,
+   "peak_to_return": 45.0,
+   "returned_share": 0.48484848484848486,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#023"
@@ -3047,6 +3588,9 @@
    "rise_uncovered": null,
    "covered_meals": 43,
    "uncovered_meals": 7,
+   "fullness": 0.4375823816156153,
+   "peak_to_return": 45.0,
+   "returned_share": 0.58,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#024"
@@ -3064,6 +3608,9 @@
    "rise_uncovered": 16.735491395158686,
    "covered_meals": 48,
    "uncovered_meals": 11,
+   "fullness": 0.51629526202161,
+   "peak_to_return": 50.0,
+   "returned_share": 0.4915254237288136,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#025"
@@ -3081,6 +3628,9 @@
    "rise_uncovered": 13.947743231776329,
    "covered_meals": 34,
    "uncovered_meals": 20,
+   "fullness": 0.5323010311874606,
+   "peak_to_return": 25.0,
+   "returned_share": 0.35185185185185186,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#027"
@@ -3098,6 +3648,9 @@
    "rise_uncovered": 12.331062888464102,
    "covered_meals": 58,
    "uncovered_meals": 11,
+   "fullness": 0.5828655079102438,
+   "peak_to_return": 40.0,
+   "returned_share": 0.3333333333333333,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#028"
@@ -3115,6 +3668,9 @@
    "rise_uncovered": 12.57962781082238,
    "covered_meals": 49,
    "uncovered_meals": 16,
+   "fullness": 0.4592353974343677,
+   "peak_to_return": 30.0,
+   "returned_share": 0.49230769230769234,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#029"
@@ -3132,6 +3688,9 @@
    "rise_uncovered": 17.63139203216055,
    "covered_meals": 38,
    "uncovered_meals": 11,
+   "fullness": 0.5081018874635518,
+   "peak_to_return": 15.0,
+   "returned_share": 0.4897959183673469,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#030"
@@ -3149,6 +3708,9 @@
    "rise_uncovered": 15.152334523993852,
    "covered_meals": 41,
    "uncovered_meals": 17,
+   "fullness": 0.5330343948965547,
+   "peak_to_return": 50.0,
+   "returned_share": 0.3275862068965517,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#031"
@@ -3166,6 +3728,9 @@
    "rise_uncovered": null,
    "covered_meals": 50,
    "uncovered_meals": 7,
+   "fullness": 0.4993437131573043,
+   "peak_to_return": 50.0,
+   "returned_share": 0.5087719298245614,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#032"
@@ -3183,6 +3748,9 @@
    "rise_uncovered": 16.906975920857008,
    "covered_meals": 38,
    "uncovered_meals": 8,
+   "fullness": 0.4983617401298673,
+   "peak_to_return": 20.0,
+   "returned_share": 0.5652173913043478,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#034"
@@ -3200,6 +3768,9 @@
    "rise_uncovered": 12.850695814448041,
    "covered_meals": 52,
    "uncovered_meals": 12,
+   "fullness": 0.4623099779372992,
+   "peak_to_return": 15.0,
+   "returned_share": 0.46875,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#035"
@@ -3217,6 +3788,9 @@
    "rise_uncovered": 21.30420135257899,
    "covered_meals": 41,
    "uncovered_meals": 14,
+   "fullness": 0.5271070704982069,
+   "peak_to_return": 22.5,
+   "returned_share": 0.4727272727272727,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#036"
@@ -3234,6 +3808,9 @@
    "rise_uncovered": 12.212677634951824,
    "covered_meals": 49,
    "uncovered_meals": 18,
+   "fullness": 0.5062848006484515,
+   "peak_to_return": 15.0,
+   "returned_share": 0.4925373134328358,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#037"
@@ -3251,6 +3828,9 @@
    "rise_uncovered": 15.800962162263355,
    "covered_meals": 51,
    "uncovered_meals": 9,
+   "fullness": 0.5243509577507277,
+   "peak_to_return": 50.0,
+   "returned_share": 0.3,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#038"
@@ -3268,6 +3848,9 @@
    "rise_uncovered": 14.919517375365732,
    "covered_meals": 30,
    "uncovered_meals": 14,
+   "fullness": 0.4664126667380937,
+   "peak_to_return": 60.0,
+   "returned_share": 0.4772727272727273,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#039"
@@ -3285,6 +3868,9 @@
    "rise_uncovered": 22.962863973995795,
    "covered_meals": 42,
    "uncovered_meals": 15,
+   "fullness": 0.5921198503577009,
+   "peak_to_return": 15.0,
+   "returned_share": 0.3508771929824561,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#040"
@@ -3302,6 +3888,9 @@
    "rise_uncovered": 15.52175420184585,
    "covered_meals": 44,
    "uncovered_meals": 15,
+   "fullness": 0.5494724957887649,
+   "peak_to_return": 60.0,
+   "returned_share": 0.4067796610169492,
    "arm": "fast",
    "window_min": 180,
    "subject": "adult#041"
@@ -3319,6 +3908,9 @@
    "rise_uncovered": null,
    "covered_meals": 20,
    "uncovered_meals": 6,
+   "fullness": 0.4550735265825873,
+   "peak_to_return": 80.0,
+   "returned_share": 0.4230769230769231,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#001"
@@ -3336,6 +3928,9 @@
    "rise_uncovered": 16.606493970740146,
    "covered_meals": 31,
    "uncovered_meals": 11,
+   "fullness": 0.3920038238351899,
+   "peak_to_return": 30.0,
+   "returned_share": 0.5476190476190477,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#002"
@@ -3353,6 +3948,9 @@
    "rise_uncovered": 15.450360491472006,
    "covered_meals": 34,
    "uncovered_meals": 9,
+   "fullness": 0.4621783599330811,
+   "peak_to_return": 37.5,
+   "returned_share": 0.4186046511627907,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#003"
@@ -3370,6 +3968,9 @@
    "rise_uncovered": null,
    "covered_meals": 34,
    "uncovered_meals": 7,
+   "fullness": 0.5088770289637978,
+   "peak_to_return": 80.0,
+   "returned_share": 0.4146341463414634,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#004"
@@ -3387,6 +3988,9 @@
    "rise_uncovered": 12.66849089202842,
    "covered_meals": 31,
    "uncovered_meals": 10,
+   "fullness": 0.5421477799292356,
+   "peak_to_return": 12.5,
+   "returned_share": 0.3902439024390244,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#005"
@@ -3404,6 +4008,9 @@
    "rise_uncovered": 20.3481144591504,
    "covered_meals": 25,
    "uncovered_meals": 8,
+   "fullness": 0.5247476602229707,
+   "peak_to_return": 30.0,
+   "returned_share": 0.3939393939393939,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#006"
@@ -3421,6 +4028,9 @@
    "rise_uncovered": 14.394050994962837,
    "covered_meals": 19,
    "uncovered_meals": 10,
+   "fullness": 0.45401973735543355,
+   "peak_to_return": 50.0,
+   "returned_share": 0.4827586206896552,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#007"
@@ -3438,6 +4048,9 @@
    "rise_uncovered": 22.308984573599844,
    "covered_meals": 37,
    "uncovered_meals": 10,
+   "fullness": 0.5276512554836209,
+   "peak_to_return": 60.0,
+   "returned_share": 0.3191489361702128,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#008"
@@ -3455,6 +4068,9 @@
    "rise_uncovered": 19.430617151105317,
    "covered_meals": 31,
    "uncovered_meals": 14,
+   "fullness": 0.43863579581392154,
+   "peak_to_return": 35.0,
+   "returned_share": 0.5555555555555556,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#009"
@@ -3472,6 +4088,9 @@
    "rise_uncovered": 9.463834196047209,
    "covered_meals": 19,
    "uncovered_meals": 12,
+   "fullness": 0.3859746670887866,
+   "peak_to_return": 75.0,
+   "returned_share": 0.5806451612903226,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#010"
@@ -3489,6 +4108,9 @@
    "rise_uncovered": 18.693993790530833,
    "covered_meals": 31,
    "uncovered_meals": 10,
+   "fullness": 0.4980054058203333,
+   "peak_to_return": 40.0,
+   "returned_share": 0.5853658536585366,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#011"
@@ -3506,6 +4128,9 @@
    "rise_uncovered": null,
    "covered_meals": 34,
    "uncovered_meals": 6,
+   "fullness": 0.3482035357554008,
+   "peak_to_return": 35.0,
+   "returned_share": 0.575,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#012"
@@ -3523,6 +4148,9 @@
    "rise_uncovered": 12.024246982133667,
    "covered_meals": 32,
    "uncovered_meals": 8,
+   "fullness": 0.48861442885006146,
+   "peak_to_return": 50.0,
+   "returned_share": 0.575,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#013"
@@ -3540,6 +4168,9 @@
    "rise_uncovered": null,
    "covered_meals": 29,
    "uncovered_meals": 6,
+   "fullness": 0.3359312534276,
+   "peak_to_return": 52.5,
+   "returned_share": 0.6857142857142857,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#015"
@@ -3557,6 +4188,9 @@
    "rise_uncovered": 20.238821047522304,
    "covered_meals": 36,
    "uncovered_meals": 11,
+   "fullness": 0.3261155240299555,
+   "peak_to_return": 20.0,
+   "returned_share": 0.6595744680851063,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#016"
@@ -3574,6 +4208,9 @@
    "rise_uncovered": null,
    "covered_meals": 15,
    "uncovered_meals": 5,
+   "fullness": 0.5141981040357481,
+   "peak_to_return": 70.0,
+   "returned_share": 0.4,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#017"
@@ -3591,6 +4228,9 @@
    "rise_uncovered": null,
    "covered_meals": 39,
    "uncovered_meals": 6,
+   "fullness": 0.37164418825386225,
+   "peak_to_return": 25.0,
+   "returned_share": 0.6222222222222222,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#018"
@@ -3608,6 +4248,9 @@
    "rise_uncovered": 18.85352640398436,
    "covered_meals": 32,
    "uncovered_meals": 14,
+   "fullness": 0.4255984163189386,
+   "peak_to_return": 72.5,
+   "returned_share": 0.6086956521739131,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#019"
@@ -3625,6 +4268,9 @@
    "rise_uncovered": 16.45739311668419,
    "covered_meals": 16,
    "uncovered_meals": 13,
+   "fullness": 0.4300142003872318,
+   "peak_to_return": 75.0,
+   "returned_share": 0.6551724137931034,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#020"
@@ -3642,6 +4288,9 @@
    "rise_uncovered": null,
    "covered_meals": 15,
    "uncovered_meals": 7,
+   "fullness": 0.5084172555454786,
+   "peak_to_return": 55.0,
+   "returned_share": 0.45454545454545453,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#022"
@@ -3659,6 +4308,9 @@
    "rise_uncovered": 15.506619352066945,
    "covered_meals": 15,
    "uncovered_meals": 10,
+   "fullness": 0.46488739152007175,
+   "peak_to_return": 80.0,
+   "returned_share": 0.6,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#023"
@@ -3676,6 +4328,9 @@
    "rise_uncovered": null,
    "covered_meals": 31,
    "uncovered_meals": 4,
+   "fullness": 0.3314095422264292,
+   "peak_to_return": 52.5,
+   "returned_share": 0.6285714285714286,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#024"
@@ -3693,6 +4348,9 @@
    "rise_uncovered": 15.90927747921561,
    "covered_meals": 34,
    "uncovered_meals": 8,
+   "fullness": 0.45832699278620204,
+   "peak_to_return": 60.0,
+   "returned_share": 0.47619047619047616,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#025"
@@ -3710,6 +4368,9 @@
    "rise_uncovered": 14.33292142835887,
    "covered_meals": 17,
    "uncovered_meals": 12,
+   "fullness": 0.5021950722394989,
+   "peak_to_return": 55.0,
+   "returned_share": 0.4827586206896552,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#027"
@@ -3727,6 +4388,9 @@
    "rise_uncovered": null,
    "covered_meals": 42,
    "uncovered_meals": 6,
+   "fullness": 0.5013619903434032,
+   "peak_to_return": 70.0,
+   "returned_share": 0.5625,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#028"
@@ -3744,6 +4408,9 @@
    "rise_uncovered": 16.830883488310732,
    "covered_meals": 31,
    "uncovered_meals": 12,
+   "fullness": 0.3789376275752058,
+   "peak_to_return": 50.0,
+   "returned_share": 0.5813953488372093,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#029"
@@ -3761,6 +4428,9 @@
    "rise_uncovered": null,
    "covered_meals": 26,
    "uncovered_meals": 6,
+   "fullness": 0.4195373769986349,
+   "peak_to_return": 30.0,
+   "returned_share": 0.59375,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#030"
@@ -3778,6 +4448,9 @@
    "rise_uncovered": 20.992790559436827,
    "covered_meals": 26,
    "uncovered_meals": 14,
+   "fullness": 0.4836843606822534,
+   "peak_to_return": 80.0,
+   "returned_share": 0.375,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#031"
@@ -3795,6 +4468,9 @@
    "rise_uncovered": null,
    "covered_meals": 24,
    "uncovered_meals": 2,
+   "fullness": 0.4101988736830068,
+   "peak_to_return": 87.5,
+   "returned_share": 0.6153846153846154,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#032"
@@ -3812,6 +4488,9 @@
    "rise_uncovered": null,
    "covered_meals": 26,
    "uncovered_meals": 5,
+   "fullness": 0.48233272976934227,
+   "peak_to_return": 20.0,
+   "returned_share": 0.5806451612903226,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#034"
@@ -3829,6 +4508,9 @@
    "rise_uncovered": 14.214164966593662,
    "covered_meals": 40,
    "uncovered_meals": 10,
+   "fullness": 0.5077172663018558,
+   "peak_to_return": 22.5,
+   "returned_share": 0.4,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#035"
@@ -3846,6 +4528,9 @@
    "rise_uncovered": 21.30420135257899,
    "covered_meals": 28,
    "uncovered_meals": 12,
+   "fullness": 0.47646240948768104,
+   "peak_to_return": 50.0,
+   "returned_share": 0.6,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#036"
@@ -3863,6 +4548,9 @@
    "rise_uncovered": 10.428219960907832,
    "covered_meals": 31,
    "uncovered_meals": 10,
+   "fullness": 0.4727109808553746,
+   "peak_to_return": 20.0,
+   "returned_share": 0.4878048780487805,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#037"
@@ -3880,6 +4568,9 @@
    "rise_uncovered": 15.800962162263355,
    "covered_meals": 33,
    "uncovered_meals": 9,
+   "fullness": 0.4804658876425722,
+   "peak_to_return": 85.0,
+   "returned_share": 0.4523809523809524,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#038"
@@ -3897,6 +4588,9 @@
    "rise_uncovered": 14.351756717650737,
    "covered_meals": 19,
    "uncovered_meals": 10,
+   "fullness": 0.3713088936138168,
+   "peak_to_return": 67.5,
+   "returned_share": 0.6206896551724138,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#039"
@@ -3914,6 +4608,9 @@
    "rise_uncovered": 23.879443416828817,
    "covered_meals": 24,
    "uncovered_meals": 10,
+   "fullness": 0.5813478821308201,
+   "peak_to_return": 60.0,
+   "returned_share": 0.4411764705882353,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#040"
@@ -3931,6 +4628,9 @@
    "rise_uncovered": 14.432266777097512,
    "covered_meals": 28,
    "uncovered_meals": 10,
+   "fullness": 0.4862443616690437,
+   "peak_to_return": 80.0,
+   "returned_share": 0.5,
    "arm": "fast",
    "window_min": 240,
    "subject": "adult#041"
@@ -3948,6 +4648,9 @@
    "rise_uncovered": null,
    "covered_meals": 20,
    "uncovered_meals": 4,
+   "fullness": 0.32865124308012816,
+   "peak_to_return": 32.5,
+   "returned_share": 0.6666666666666666,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#002"
@@ -3965,6 +4668,9 @@
    "rise_uncovered": null,
    "covered_meals": 24,
    "uncovered_meals": 5,
+   "fullness": 0.4487281504475892,
+   "peak_to_return": 45.0,
+   "returned_share": 0.4827586206896552,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#003"
@@ -3982,6 +4688,9 @@
    "rise_uncovered": null,
    "covered_meals": 28,
    "uncovered_meals": 6,
+   "fullness": 0.4305739836519442,
+   "peak_to_return": 85.0,
+   "returned_share": 0.5,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#004"
@@ -3999,6 +4708,9 @@
    "rise_uncovered": null,
    "covered_meals": 22,
    "uncovered_meals": 4,
+   "fullness": 0.5315627024123311,
+   "peak_to_return": 2.5,
+   "returned_share": 0.38461538461538464,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#005"
@@ -4016,6 +4728,9 @@
    "rise_uncovered": null,
    "covered_meals": 18,
    "uncovered_meals": 7,
+   "fullness": 0.4855387796096571,
+   "peak_to_return": 80.0,
+   "returned_share": 0.48,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#006"
@@ -4033,6 +4748,9 @@
    "rise_uncovered": null,
    "covered_meals": 22,
    "uncovered_meals": 6,
+   "fullness": 0.46029773023775905,
+   "peak_to_return": 95.0,
+   "returned_share": 0.5357142857142857,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#008"
@@ -4050,6 +4768,9 @@
    "rise_uncovered": 21.167914162984896,
    "covered_meals": 21,
    "uncovered_meals": 11,
+   "fullness": 0.46268850221742064,
+   "peak_to_return": 62.5,
+   "returned_share": 0.5625,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#009"
@@ -4067,6 +4788,9 @@
    "rise_uncovered": 8.706605935162651,
    "covered_meals": 13,
    "uncovered_meals": 11,
+   "fullness": 0.3120542521465412,
+   "peak_to_return": 90.0,
+   "returned_share": 0.75,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#010"
@@ -4084,6 +4808,9 @@
    "rise_uncovered": null,
    "covered_meals": 18,
    "uncovered_meals": 6,
+   "fullness": 0.39201666130539226,
+   "peak_to_return": 35.0,
+   "returned_share": 0.625,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#011"
@@ -4101,6 +4828,9 @@
    "rise_uncovered": null,
    "covered_meals": 26,
    "uncovered_meals": 5,
+   "fullness": 0.42519719114082616,
+   "peak_to_return": 40.0,
+   "returned_share": 0.5161290322580645,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#012"
@@ -4118,6 +4848,9 @@
    "rise_uncovered": null,
    "covered_meals": 20,
    "uncovered_meals": 7,
+   "fullness": 0.4484914385387609,
+   "peak_to_return": 45.0,
+   "returned_share": 0.5185185185185185,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#013"
@@ -4135,6 +4868,9 @@
    "rise_uncovered": null,
    "covered_meals": 19,
    "uncovered_meals": 5,
+   "fullness": 0.2789672390042606,
+   "peak_to_return": 75.0,
+   "returned_share": 0.7916666666666666,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#015"
@@ -4152,6 +4888,9 @@
    "rise_uncovered": null,
    "covered_meals": 24,
    "uncovered_meals": 7,
+   "fullness": 0.2907562025316427,
+   "peak_to_return": 40.0,
+   "returned_share": 0.6451612903225806,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#016"
@@ -4169,6 +4908,9 @@
    "rise_uncovered": null,
    "covered_meals": 29,
    "uncovered_meals": 5,
+   "fullness": 0.4260202433508549,
+   "peak_to_return": 40.0,
+   "returned_share": 0.5294117647058824,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#018"
@@ -4186,6 +4928,9 @@
    "rise_uncovered": 19.59393457580853,
    "covered_meals": 19,
    "uncovered_meals": 11,
+   "fullness": 0.45147611806884075,
+   "peak_to_return": 82.5,
+   "returned_share": 0.5333333333333333,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#019"
@@ -4203,6 +4948,9 @@
    "rise_uncovered": null,
    "covered_meals": 24,
    "uncovered_meals": 2,
+   "fullness": 0.3917795490399335,
+   "peak_to_return": 65.0,
+   "returned_share": 0.5769230769230769,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#024"
@@ -4220,6 +4968,9 @@
    "rise_uncovered": null,
    "covered_meals": 19,
    "uncovered_meals": 4,
+   "fullness": 0.5257282998291953,
+   "peak_to_return": 80.0,
+   "returned_share": 0.30434782608695654,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#025"
@@ -4237,6 +4988,9 @@
    "rise_uncovered": null,
    "covered_meals": 25,
    "uncovered_meals": 3,
+   "fullness": 0.39085014502644233,
+   "peak_to_return": 55.0,
+   "returned_share": 0.75,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#028"
@@ -4254,6 +5008,9 @@
    "rise_uncovered": null,
    "covered_meals": 19,
    "uncovered_meals": 6,
+   "fullness": 0.38399741277502786,
+   "peak_to_return": 45.0,
+   "returned_share": 0.56,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#029"
@@ -4271,6 +5028,9 @@
    "rise_uncovered": null,
    "covered_meals": 21,
    "uncovered_meals": 4,
+   "fullness": 0.42283876890605854,
+   "peak_to_return": 25.0,
+   "returned_share": 0.64,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#030"
@@ -4288,6 +5048,9 @@
    "rise_uncovered": 23.628947755607804,
    "covered_meals": 14,
    "uncovered_meals": 10,
+   "fullness": 0.497533497313393,
+   "peak_to_return": 97.5,
+   "returned_share": 0.25,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#031"
@@ -4305,6 +5068,9 @@
    "rise_uncovered": null,
    "covered_meals": 23,
    "uncovered_meals": 5,
+   "fullness": 0.4246877833324503,
+   "peak_to_return": 95.0,
+   "returned_share": 0.6071428571428571,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#034"
@@ -4322,6 +5088,9 @@
    "rise_uncovered": 14.46031526129273,
    "covered_meals": 25,
    "uncovered_meals": 9,
+   "fullness": 0.4935854238364494,
+   "peak_to_return": 75.0,
+   "returned_share": 0.4411764705882353,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#035"
@@ -4339,6 +5108,9 @@
    "rise_uncovered": 21.30420135257899,
    "covered_meals": 16,
    "uncovered_meals": 8,
+   "fullness": 0.4083715291569949,
+   "peak_to_return": 70.0,
+   "returned_share": 0.7083333333333334,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#036"
@@ -4356,6 +5128,9 @@
    "rise_uncovered": null,
    "covered_meals": 18,
    "uncovered_meals": 7,
+   "fullness": 0.444353106831622,
+   "peak_to_return": 20.0,
+   "returned_share": 0.52,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#037"
@@ -4373,6 +5148,9 @@
    "rise_uncovered": null,
    "covered_meals": 20,
    "uncovered_meals": 5,
+   "fullness": 0.4294038085393495,
+   "peak_to_return": 90.0,
+   "returned_share": 0.64,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#038"
@@ -4390,6 +5168,9 @@
    "rise_uncovered": 23.879443416828817,
    "covered_meals": 14,
    "uncovered_meals": 10,
+   "fullness": 0.5420028563913828,
+   "peak_to_return": 77.5,
+   "returned_share": 0.4166666666666667,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#040"
@@ -4407,6 +5188,9 @@
    "rise_uncovered": 14.408688614392487,
    "covered_meals": 19,
    "uncovered_meals": 8,
+   "fullness": 0.42164545384635105,
+   "peak_to_return": 115.0,
+   "returned_share": 0.7037037037037037,
    "arm": "fast",
    "window_min": 300,
    "subject": "adult#041"
@@ -4424,6 +5208,9 @@
    "rise_uncovered": null,
    "covered_meals": 16,
    "uncovered_meals": 4,
+   "fullness": 0.3948878310708331,
+   "peak_to_return": 75.0,
+   "returned_share": 0.65,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#003"
@@ -4441,6 +5228,9 @@
    "rise_uncovered": null,
    "covered_meals": 20,
    "uncovered_meals": 5,
+   "fullness": 0.37250006582260575,
+   "peak_to_return": 117.5,
+   "returned_share": 0.64,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#004"
@@ -4458,6 +5248,9 @@
    "rise_uncovered": 21.89642023488772,
    "covered_meals": 12,
    "uncovered_meals": 10,
+   "fullness": 0.4816423815750277,
+   "peak_to_return": 85.0,
+   "returned_share": 0.5,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#009"
@@ -4475,6 +5268,9 @@
    "rise_uncovered": null,
    "covered_meals": 17,
    "uncovered_meals": 5,
+   "fullness": 0.440115498328587,
+   "peak_to_return": 42.5,
+   "returned_share": 0.45454545454545453,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#012"
@@ -4492,6 +5288,9 @@
    "rise_uncovered": null,
    "covered_meals": 16,
    "uncovered_meals": 5,
+   "fullness": 0.31127215569221356,
+   "peak_to_return": 80.0,
+   "returned_share": 0.7142857142857143,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#015"
@@ -4509,6 +5308,9 @@
    "rise_uncovered": null,
    "covered_meals": 18,
    "uncovered_meals": 6,
+   "fullness": 0.29567429500783016,
+   "peak_to_return": 40.0,
+   "returned_share": 0.625,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#016"
@@ -4526,6 +5328,9 @@
    "rise_uncovered": null,
    "covered_meals": 20,
    "uncovered_meals": 5,
+   "fullness": 0.39827303762445626,
+   "peak_to_return": 70.0,
+   "returned_share": 0.6,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#018"
@@ -4543,6 +5348,9 @@
    "rise_uncovered": 18.957875195944155,
    "covered_meals": 14,
    "uncovered_meals": 8,
+   "fullness": 0.455772609728073,
+   "peak_to_return": 120.0,
+   "returned_share": 0.5454545454545454,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#019"
@@ -4560,6 +5368,9 @@
    "rise_uncovered": null,
    "covered_meals": 19,
    "uncovered_meals": 1,
+   "fullness": 0.35256816216971254,
+   "peak_to_return": 95.0,
+   "returned_share": 0.75,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#028"
@@ -4577,6 +5388,9 @@
    "rise_uncovered": 23.628947755607804,
    "covered_meals": 10,
    "uncovered_meals": 10,
+   "fullness": 0.49274454025028147,
+   "peak_to_return": 110.0,
+   "returned_share": 0.35,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#031"
@@ -4594,6 +5408,9 @@
    "rise_uncovered": null,
    "covered_meals": 17,
    "uncovered_meals": 6,
+   "fullness": 0.47683903808881145,
+   "peak_to_return": 85.0,
+   "returned_share": 0.4782608695652174,
    "arm": "fast",
    "window_min": 360,
    "subject": "adult#035"
