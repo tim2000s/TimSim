@@ -469,3 +469,81 @@ subcutaneous absorption data has not been measured here. Meal absorption against
 has been measured only through the meal-response comparison, which is an outcome rather than a
 flux. Whether the licensed successors S2013 and S2017 close any of these is a separate question
 and a smaller step than editing S2008.
+
+## 5. The liver can produce glucose and never take any up
+
+### What was measured
+
+Read from the model rather than simulated. simglucose's plasma glucose balance is
+
+    dxdt[3] = max(EGPt, 0) + Rat - Uiit - Et - k1*Gp + k2*Gt
+
+and there is no hepatic uptake term anywhere in it. Production is floored at zero, so the liver
+is a source or it is nothing. The only way it can respond to a meal is by producing less.
+
+`docs/measurements/meal_appearance.json` measures what that costs. Forty adults, one uncovered
+60 g meal, differenced against the same subject eating nothing: of 658.9 mg/kg appearing, 218.2
+is taken up by insulin-dependent uptake, 18.3 is excreted renally, and production falls by 242.8.
+The liver absorbs more of the meal than the tissues do, and it does it entirely by switching
+itself off.
+
+### The human comparison
+
+A real liver takes up a substantial share of an oral glucose load and stores it as glycogen, and
+that storage is measurable and impaired in type 1 diabetes. Hwang et al. (J Clin Invest 1995;
+95:783-787) measured net hepatic glycogen synthesis during mixed meal ingestion in
+insulin-dependent diabetic subjects by 13C nuclear magnetic resonance and found it impaired.
+Bischof et al. (Diabetes 2001; 50:392-398) measured what improving insulin treatment and glycaemia
+does to postprandial hepatic glycogen metabolism in the same population. Neither has been read
+here; both are cited through Jiang et al. (Mol Med Rep 2020; 22:603-611), and the figures they
+carry are what an entry on this should be built from.
+
+Expressed as suppression of the subject's own production, which is how the tracer literature
+reports it, the model suppresses 23.2 per cent plus or minus 8.8 over an eight-hour window. A
+triple-tracer mixed-meal study puts adults with type 1 diabetes at 44.4 plus or minus 16.9 and
+adults without at 59.8. The windows are not matched and the model figure is diluted by averaging
+over eight hours, so the two are not yet comparable and the gap should not be quoted until they
+are.
+
+### What follows
+
+Two absent mechanisms with opposite signs, which is why this is an entry rather than a defect.
+Missing hepatic uptake leaves glucose in the circulation that a real liver would have removed, so
+it makes simulated excursions larger. Under-suppression of production, if the tracer comparison
+survives window matching, does the same. Both point away from the shortfall actually measured,
+where the simulated meal rise is 0.61 of the real one covered and 0.79 uncovered with no loop
+acting.
+
+So the liver is not the explanation for the small rise, and what is left is peripheral uptake,
+which took 31 per cent of the meal here. That is the next thing to compare against a human figure.
+
+### Whether the design is defensible
+
+Partly, and the reference is worth recording because it cuts against the obvious criticism. S2008
+drives production from peripheral insulin through a delay, where a real pancreas secretes into the
+portal vein and exposes the liver to two to three times the peripheral concentration, a gradient
+that subcutaneous insulin reverses in type 1 diabetes (Geho et al., J Diabetes Sci Technol 2009;
+3:1451-1459). But Ader and Bergman (Am J Physiol 1990; 258:E1020-E1032) titled their paper
+"Peripheral effects of insulin dominate suppression of fasting hepatic glucose production", which
+is the model's assumption stated as a finding. The portal question is live rather than settled,
+and a single insulin compartment is a defensible reading of it for fasting production.
+
+### Recommendation
+
+No change, and read Hwang 1995 before revisiting. A hepatic uptake term is a structural addition
+to a published model, which this package has declined before on the grounds that it should stay
+close to what UVA/Padova does, and the two missing mechanisms point away from the gap that
+prompted the search. Recording it matters because the next person to find the liver absorbing 38
+per cent of a meal should know it is doing so through the only channel it has.
+
+### A shipping mechanism this bears on
+
+Kishore et al. (Diabetes 2006; 55:659-666) analysed hepatic glycogen breakdown during
+insulin-induced hypoglycaemia by 13C spectroscopy in 10 non-diabetic and 7 type 1 diabetic
+subjects at HbA1c 6.5 plus or minus 0.2 per cent, and concluded that in intensively treated type 1
+diabetes hypoglycaemia failed to stimulate hepatic glycogen decomposition or activate endogenous
+glucose production. `HYPO_EGP_DEFENCE` ships at 0.05 to make production respond to hypoglycaemia,
+calibrated against Rickels et al. 2015 on a stepped clamp. If Kishore's population is the one this
+package simulates, the stock model's failure to produce at depth may be the right behaviour for
+intensively treated type 1 diabetes rather than the defect the defence was built to correct. Read
+before the defence is next touched, again through Jiang rather than at first hand.
