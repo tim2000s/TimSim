@@ -65,13 +65,19 @@ def job(args):
     minutes = np.asarray(r.minutes, float)
     cgm = np.asarray(r.cgm, float)
     meals = [(float(m), float(g)) for m, g in r.meal_log]
+    # Bolus alone, from `bolus_series` rather than reconstructed by subtracting an assumed basal
+    # from the total. Corrections appear in it as they do in the real bolus table, so the same
+    # floor separates the strata on both sides.
+    bolus_u = np.asarray(r.bolus_series, float)
+    bolus_min = minutes[:len(bolus_u)]
     # Rescue carbohydrate breaks isolation and is never an index meal. `rescue_log` carries
     # (decided_at, eaten_at, grams, trigger) and the eaten minute is the one that reaches the gut.
     rescues = [float(x[1]) for x in r.rescue_log]
     carbs = [m for m, _ in meals] + rescues
     out = {}
     for w in windows:
-        recs, rej = ms.shapes(meals, carbs, minutes, cgm, window_min=w)
+        recs, rej = ms.shapes(meals, carbs, minutes, cgm, window_min=w,
+                              bolus_minutes=bolus_min, bolus_units=bolus_u)
         out[w] = {"ttp": [x["trough_to_peak_min"] for x in recs],
                   "hours": [x["hour"] for x in recs],
                   # Rise per 10 g, the quantity the excursion decomposition points at: simulated
@@ -84,6 +90,7 @@ def job(args):
                   # the real ones, whose quartiles are 35 / 41 / 55, and rise per gram is not
                   # constant in size.
                   "grams": [x["grams"] for x in recs],
+                  "bolus_u": [x["bolus_u"] for x in recs],
                   "trough_at_index": int(sum(x["trough_at_index"] for x in recs)),
                   "rejected": rej}
     return name, arm, out, None
@@ -97,6 +104,8 @@ def main():
     ap.add_argument("--min-meals", type=int, default=20)
     ap.add_argument("--band", nargs=2, type=float, default=[40.0, 55.0],
                     help="grams band for the size-matched rise, the real interquartile range")
+    ap.add_argument("--bolus-floor", type=float, default=1.0,
+                    help="units within 30 min of the meal for it to count as covered")
     ap.add_argument("--band-min", type=int, default=8,
                     help="meals a subject needs inside the band to contribute to it")
     ap.add_argument("--workers", type=int, default=WORKERS)
@@ -141,11 +150,20 @@ def main():
                     g_ = np.asarray(cell[w]["grams"], float)
                     band = np.asarray(cell[w]["rise_per_10g"], float)[
                         (g_ >= a.band[0]) & (g_ <= a.band[1])]
+                    bu_ = np.asarray(cell[w]["bolus_u"], float)
+                    rr_ = np.asarray(cell[w]["rise_per_10g"], float)
+                    cov = rr_[bu_ >= a.bolus_floor]
+                    unc = rr_[bu_ < a.bolus_floor]
                     p = dict(p, rise_median=r_["median"], rise_iqr=r_["iqr"],
                              grams_median=float(np.median(g_)),
                              rise_median_band=(float(np.median(band)) if band.size >= a.band_min
                                                else None),
-                             band_meals=int(band.size))
+                             band_meals=int(band.size),
+                             rise_covered=(float(np.median(cov)) if cov.size >= a.band_min
+                                           else None),
+                             rise_uncovered=(float(np.median(unc)) if unc.size >= a.band_min
+                                             else None),
+                             covered_meals=int(cov.size), uncovered_meals=int(unc.size))
                     cells[(arm, w, n)] = p
                     rec["per_subject"].append(dict(p, arm=arm, window_min=w, subject=n))
 
@@ -162,7 +180,8 @@ def main():
         print(f"\n{arm}")
         print(f"{'window':>7}{'common':>8}{'own':>5}{'meals':>7}{'per-person median':>20}"
               f"{'within-person IQR':>20}{'rise per 10 g':>20}"
-              f"{'same, 40-55 g only':>22}{'g':>7}{'evening':>9}")
+              f"{'same, 40-55 g only':>22}"
+              f"{'covered rise':>20}{'uncovered rise':>20}{'unc n':>7}")
         for w in a.windows:
             common = rec["common_panel"][w]
             per = [cells[(arm, w, n)] for n in common]
@@ -189,6 +208,13 @@ def main():
             s_["rise_per_10g_size_matched"] = ([q(bandv, 10), q(bandv, 50), q(bandv, 90)]
                                                if bandv else None)
             s_["size_matched_subjects"] = len(bandv)
+            for label in ("covered", "uncovered"):
+                vv = [x[f"rise_{label}"] for x in per if x[f"rise_{label}"] is not None]
+                s_[f"rise_{label}"] = ([q(vv, 10), q(vv, 50), q(vv, 90)] if vv else None)
+                s_[f"{label}_subjects"] = len(vv)
+                s_[f"{label}_meals"] = int(sum(x[f"{label}_meals"] for x in per))
+            cv = s_["rise_covered"] or [float("nan")] * 3
+            uc = s_["rise_uncovered"] or [float("nan")] * 3
             bs = s_["rise_per_10g_size_matched"] or [float("nan")] * 3
             rec["rows"].append(dict(s_, arm=arm, window_min=w, own_subjects=own,
                                     evening_share=evening,
@@ -199,7 +225,9 @@ def main():
                   f"{f'{wp[0]:.0f} / {wp[1]:.0f} / {wp[2]:.0f}':>20}"
                   f"{f'{rr[0]:.1f} / {rr[1]:.1f} / {rr[2]:.1f}':>20}"
                   f"{f'{bs[0]:.1f} / {bs[1]:.1f} / {bs[2]:.1f}':>22}"
-                  f"{s_['grams_median']:>7.0f}{evening:>9.2f}")
+                  f"{f'{cv[0]:.1f} / {cv[1]:.1f} / {cv[2]:.1f}':>20}"
+                  f"{f'{uc[0]:.1f} / {uc[1]:.1f} / {uc[2]:.1f}':>20}"
+                  f"{s_['uncovered_subjects']:>7}")
 
     # Paired, per subject, on the common panel, since the arms differ by one mechanism and the
     # subject is the strongest thing to hold fixed.
@@ -232,18 +260,23 @@ def main():
         print(f"\n{len(dropped)} subject-arms terminated early and are excluded")
     print("\nreal, Loop, for comparison")
     print(f"{'window':>7}{'subj':>6}{'meals':>7}{'per-person median':>20}"
-          f"{'within-person IQR':>20}{'rise per 10 g':>20}{'evening':>9}")
+          f"{'within-person IQR':>20}{'rise per 10 g':>20}"
+          f"{'covered':>20}{'uncovered':>20}")
     for w in a.windows:
         r = real_by.get(("Loop", w))
         if not r:
             continue
         bp, wp = r["between_person_median"], r["within_person_iqr"]
         rr = r.get("rise_per_10g_between_person", [float("nan")] * 3)
+        st = r.get("strata", {})
+        rcv = st.get("covered", {}).get("rise_per_10g", [float("nan")] * 3)
+        runc = st.get("uncovered", {}).get("rise_per_10g", [float("nan")] * 3)
         print(f"{w:>7}{r['subjects']:>6}{r['meals']:>7}"
               f"{f'{bp[0]:.0f} / {bp[1]:.0f} / {bp[2]:.0f}':>20}"
               f"{f'{wp[0]:.0f} / {wp[1]:.0f} / {wp[2]:.0f}':>20}"
               f"{f'{rr[0]:.1f} / {rr[1]:.1f} / {rr[2]:.1f}':>20}"
-              f"{r['hour_share']['16-21']:>9.2f}")
+              f"{f'{rcv[0]:.1f} / {rcv[1]:.1f} / {rcv[2]:.1f}':>20}"
+              f"{f'{runc[0]:.1f} / {runc[1]:.1f} / {runc[2]:.1f}':>20}")
 
     json.dump(rec, open(a.out, "w"), indent=1)
     print(f"\nwrote {a.out}")

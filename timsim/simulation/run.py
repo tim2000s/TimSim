@@ -209,6 +209,12 @@ class Result:
     completed: bool
     insulin_units: float
     insulin_series: np.ndarray = field(default_factory=lambda: np.zeros(0))
+    # Bolus alone, on the same clock as `insulin_series`, which carries basal as well. Telling a
+    # meal that was bolused from one that was not needs the two apart, and inferring a bolus from
+    # the total by subtracting an assumed basal is the kind of reconstruction this package has
+    # had to withdraw figures for. Units delivered in the step, before the site layer swallows
+    # any of it, so it is what the pump was asked for rather than what reached the depot.
+    bolus_series: np.ndarray = field(default_factory=lambda: np.zeros(0))
     rescue_events: int = 0
     rescue_grams: float = 0.0
     # (decided_at, eaten_at, grams, reading_that_triggered_it), minutes from the start
@@ -683,7 +689,7 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
     # parameters were closed at and leaves a slow ring through the first day or two.
     obs, reward, done, info = env.step(Action(basal=prof.basal_at(0), bolus=0))
 
-    cgm, bg, insulin = [], [], []
+    cgm, bg, insulin, boluses = [], [], [], []
     minute, previous, fall_rate, delivered_bolus = 0.0, None, 0.0, None
     delivered_basal = None
     last_seen, stale_minutes = float(obs.CGM), 0.0
@@ -760,6 +766,7 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
 
         delivered = float(env.insulin_hist[-1]) * step_minutes if env.insulin_hist else 0.0
         insulin.append(delivered + lost)
+        boluses.append(float(delivered_bolus))
         cgm.append(seen)
         bg.append(truth)
         minute += step_minutes
@@ -779,6 +786,7 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
     cgm = np.asarray([cgm[i] for i in keep], float)
     bg = np.asarray([bg[i] for i in keep], float)
     insulin = np.asarray([insulin[i] for i in keep], float)
+    boluses = np.asarray([boluses[i] for i in keep], float)
     # The run is primed with one step before the loop, so the first sample is read after the
     # model has already advanced by one interval and sample i belongs to minute (i+1)*step.
     # Numbering from zero put the glucose series one interval behind `meal_log` and
@@ -808,6 +816,7 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
         name=name, cgm=cgm, bg=bg, minutes=minutes, sample_time=step_minutes,
         days_requested=days, completed=completed,
         insulin_units=float(insulin.sum()), insulin_series=insulin,
+        bolus_series=boluses,
         rescue_events=person.rescue_events, rescue_grams=person.rescue_grams,
         rescue_log=tuple(person.rescue_log),
         # What the person was actually given, on the minutes it was given, so the log cannot

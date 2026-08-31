@@ -36,6 +36,7 @@ sys.path.insert(0, REPO)
 MEASUREMENTS = os.path.join(REPO, "docs", "measurements")
 
 from timsim import provenance
+from timsim.analysis import meal_shape as ms
 
 OUT = os.path.join(MEASUREMENTS, "real_meal_shape.json")
 DSN = "dbname=oref"
@@ -73,13 +74,19 @@ pk as (
 tp as (
   select pk.subject_id, pk.ts_local, pk.carbs_g,
          extract(epoch from (pk.pk_ts - t.ts_local)) / 60 ttp,
-         pk.pk_cgm - t.cgm_mgdl rise
+         pk.pk_cgm - t.cgm_mgdl rise,
+         -- Insulin delivered around the carbohydrate event, recorded per meal rather than used
+         -- to admit or reject it, so the threshold can be moved without reparsing.
+         coalesce((select sum(b.bolus_u) from studies.bolus b
+                   where b.subject_id = pk.subject_id
+                     and b.ts_local >= pk.ts_local - %(bwin)s * interval '1 min'
+                     and b.ts_local <= pk.ts_local + %(bwin)s * interval '1 min'), 0) bolus_u
   from pk cross join lateral (
     select ts_local, cgm_mgdl from studies.cgm g
     where g.subject_id = pk.subject_id and g.ts_local >= pk.ts_local and g.ts_local <= pk.pk_ts
     order by cgm_mgdl asc, ts_local asc limit 1) t
   where pk.n >= %(min_readings)s)
-select subject_id, ttp, extract(hour from ts_local) meal_hour, rise, carbs_g from tp
+select subject_id, ttp, extract(hour from ts_local) meal_hour, rise, carbs_g, bolus_u from tp
 """
 
 
@@ -87,13 +94,20 @@ def pct(v, q):
     return float(np.percentile(np.asarray(v, float), q)) if len(v) else float("nan")
 
 
-def one(cur, study, win, a, a_subsample=40, a_band=(40.0, 55.0), a_band_min=8):
+def one(cur, study, win, a, a_subsample=40, a_band=(40.0, 55.0), a_band_min=8,
+        a_bolus_floor=1.0):
     cur.execute(SQL, {"study": study, "g_lo": a.grams[0], "g_hi": a.grams[1], "win": win,
-                      "before": a.clear_before,
+                      "before": a.clear_before, "bwin": ms.BOLUS_WINDOW_MIN,
                       "min_readings": int((win / 5) * a.coverage)})
     rows = cur.fetchall()
     by_subject, by_rise, by_band, hours = {}, {}, {}, []
-    for sid, ttp, hour, rise, grams in rows:
+    covered, uncovered = {}, {}
+    for sid, ttp, hour, rise, grams, bolus in rows:
+        # The stratum. A correction can fall in the window without covering the meal, so the
+        # floor is on the amount rather than on the presence of any delivery, and the same floor
+        # runs on both sides.
+        (covered if float(bolus) >= a_bolus_floor else uncovered).setdefault(
+            sid, []).append(float(rise) / (float(grams) / 10.0))
         by_subject.setdefault(sid, []).append(float(ttp))
         # Rise per 10 g as logged. Logged grams under-state true intake, which the real rescue
         # and meal producers already record, so this is an upper bound on the rise per true 10 g.
@@ -113,6 +127,13 @@ def one(cur, study, win, a, a_subsample=40, a_band=(40.0, 55.0), a_band_min=8):
     # peak lower. Whether a meal rise is smaller is the same question with a per-person reference.
     bmed = [float(np.median(by_band[s_])) for s_ in kept
             if len(by_band.get(s_, ())) >= a_band_min]
+    strata = {}
+    for label, d in (("covered", covered), ("uncovered", uncovered)):
+        med_ = [float(np.median(v)) for s_ in kept for v in (d.get(s_, ()),)
+                if len(v) >= a_band_min]
+        strata[label] = {"subjects": len(med_),
+                         "meals": int(sum(len(d.get(s_, ())) for s_ in kept)),
+                         "rise_per_10g": [pct(med_, 10), pct(med_, 50), pct(med_, 90)]}
     rmed = [float(np.median(by_rise[s_])) for s_ in kept]
     riqr = [float(np.percentile(by_rise[s_], 75) - np.percentile(by_rise[s_], 25))
             for s_ in kept]
@@ -140,6 +161,7 @@ def one(cur, study, win, a, a_subsample=40, a_band=(40.0, 55.0), a_band_min=8):
             "rise_per_10g_within_person_iqr": [pct(riqr, 10), pct(riqr, 50), pct(riqr, 90)],
             "rise_per_10g_size_matched": [pct(bmed, 10), pct(bmed, 50), pct(bmed, 90)],
             "size_matched_band": list(a_band), "size_matched_subjects": len(bmed),
+            "bolus_floor_u": a_bolus_floor, "strata": strata,
             "grams_median": float(np.median([g for v in by_band.values() for g in v]))
                             if by_band else float("nan"),
             "hour_share": {"05-10": float(np.mean((hours >= 5) & (hours <= 10))),
@@ -157,6 +179,8 @@ def main():
     ap.add_argument("--clear-before", type=int, default=CLEAR_BEFORE_MIN)
     ap.add_argument("--min-meals", type=int, default=MIN_MEALS_PER_SUBJECT)
     ap.add_argument("--coverage", type=float, default=COVERAGE)
+    ap.add_argument("--bolus-floor", type=float, default=1.0,
+                    help="units within 30 min of the entry for a meal to count as covered")
     ap.add_argument("--band", nargs=2, type=float, default=[40.0, 55.0],
                     help="grams band for the size-matched rise")
     ap.add_argument("--band-min", type=int, default=8,
@@ -179,15 +203,19 @@ def main():
                   f"{'within-person IQR p10/50/90':>30}"
                   f"{'same, at 40 meals each':>26}"
                   f"{'rise per 10 g p10/50/90':>26}"
-                  f"{'same, 40-55 g only':>22}{'evening':>9}")
+                  f"{'same, 40-55 g only':>22}"
+                  f"{'covered rise':>20}{'uncovered rise':>20}{'unc n':>7}")
             for win in a.windows:
-                r = one(cur, study, win, a, a.subsample, tuple(a.band), a.band_min)
+                r = one(cur, study, win, a, a.subsample, tuple(a.band), a.band_min,
+                        a.bolus_floor)
                 rec["rows"].append(r)
                 q = r["pooled_quartiles"]
                 bp, wp = r["between_person_median"], r["within_person_iqr"]
                 sp = r["within_person_iqr_subsampled"]
                 rp = r["rise_per_10g_between_person"]
                 bd = r["rise_per_10g_size_matched"]
+                cv = r["strata"]["covered"]["rise_per_10g"]
+                uc = r["strata"]["uncovered"]["rise_per_10g"]
                 print(f"{win:>7}{r['subjects']:>7}{r['meals']:>8}{q[0]:>11.0f}{q[1]:>8.0f}"
                       f"{q[2]:>7.0f}"
                       f"{f'{bp[0]:.0f} / {bp[1]:.0f} / {bp[2]:.0f}':>30}"
@@ -195,7 +223,9 @@ def main():
                       f"{f'{sp[0]:.0f} / {sp[1]:.0f} / {sp[2]:.0f}':>26}"
                       f"{f'{rp[0]:.1f} / {rp[1]:.1f} / {rp[2]:.1f}':>26}"
                       f"{f'{bd[0]:.1f} / {bd[1]:.1f} / {bd[2]:.1f}':>22}"
-                      f"{r['hour_share']['16-21']:>9.2f}")
+                      f"{f'{cv[0]:.1f} / {cv[1]:.1f} / {cv[2]:.1f}':>20}"
+                      f"{f'{uc[0]:.1f} / {uc[1]:.1f} / {uc[2]:.1f}':>20}"
+                      f"{r['strata']['uncovered']['subjects']:>7}")
 
     json.dump(rec, open(a.out, "w"), indent=1)
     print(f"\nwrote {a.out}")

@@ -129,8 +129,12 @@ def test_sql_and_python_agree_on_real_subjects(window):
 
         cur.execute(SQL, {"study": "Loop", "g_lo": ms.GRAMS[0], "g_hi": ms.GRAMS[1],
                           "win": window, "before": int(ms.CLEAR_BEFORE_MIN),
+                          "bwin": ms.BOLUS_WINDOW_MIN,
                           "min_readings": int((window / 5) * ms.COVERAGE)})
-        sql_rows = [(s, float(t)) for s, t, _, _, _ in cur.fetchall() if s in set(subs)]
+        # Subject and duration are the first two columns. Taken by position rather than by
+        # unpacking the row, because the query grows columns as the measurement grows and a test
+        # that breaks on that is a test that has to be edited for no reason.
+        sql_rows = [(row[0], float(row[1])) for row in cur.fetchall() if row[0] in set(subs)]
 
         python_rows = []
         for sid in subs:
