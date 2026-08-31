@@ -54,11 +54,12 @@ json.dump(out, open(sys.argv[1], "w"), indent=1)
 '''
 
 
-def run_probe(n, out):
+def run_probe(n, out, cwd=None):
     """One probe run in a fresh interpreter, so the stashed and unstashed code both load clean."""
-    src = PROBE % (REPO, n)
-    r = subprocess.run([sys.executable, "-c", src, out], cwd=REPO,
-                       env={**os.environ, "PYTHONPATH": REPO},
+    root = cwd or REPO
+    src = PROBE % (root, n)
+    r = subprocess.run([sys.executable, "-c", src, out], cwd=root,
+                       env={**os.environ, "PYTHONPATH": root},
                        capture_output=True, text=True)
     if r.returncode != 0:
         raise SystemExit(f"probe failed:\n{r.stderr[-2000:]}")
@@ -129,12 +130,83 @@ def prose_only_against(ref):
     return ok, findings
 
 
+def _probe_against_worktree(a, titrate):
+    """Probe the same subjects in a separate checkout of `a.worktree`, rather than by stashing.
+
+    A committed change cannot be stashed, and stashing whatever else happens to be uncommitted
+    compares the working tree with itself. This checks out the reference commit somewhere else
+    and runs the same probe there.
+
+    The population and the settings store are not in git, so the checkout has neither. They are
+    symlinked from this one: both sides have to read the same subjects and the same settings or
+    the comparison measures the population rather than the change.
+    """
+    import shutil
+    import tempfile
+
+    wt = tempfile.mkdtemp(prefix="restamp-worktree-")
+    shutil.rmtree(wt)
+    r = git("worktree", "add", "-q", "--detach", wt, a.worktree)
+    if r.returncode != 0:
+        raise SystemExit(f"could not create a worktree at {a.worktree}:\n{r.stderr}")
+    try:
+        src = os.path.join(REPO, "timsim", "population", "params")
+        dst = os.path.join(wt, "timsim", "population", "params")
+        os.makedirs(dst, exist_ok=True)
+        for f in os.listdir(src):
+            link = os.path.join(dst, f)
+            if not os.path.exists(link):
+                os.symlink(os.path.join(src, f), link)
+
+        tmp = os.path.join(REPO, "docs", "measurements", "rebuild")
+        os.makedirs(tmp, exist_ok=True)
+        new_p = os.path.join(tmp, "_restamp_new.json")
+        old_p = os.path.join(tmp, "_restamp_old.json")
+        print(f"probing {a.subjects} subjects with the change in place")
+        new = run_probe(a.subjects, new_p)
+        print(f"probing {a.subjects} subjects at {a.worktree} in {wt}")
+        old = run_probe(a.subjects, old_p, cwd=wt)
+        return old, new
+    finally:
+        git("worktree", "remove", "--force", wt)
+
+
+def _report_and_stamp(a, titrate, store, was, now, old, new, how):
+    same = [k for k in old if old[k] == new[k]]
+    for k in sorted(old):
+        print(f"  {k}: {'identical' if old[k] == new[k] else f'{old[k]} vs {new[k]}'}")
+    if len(same) != len(old):
+        raise SystemExit("\nThe change alters runs, so it may alter what the ladder finds. "
+                         "The store is unchanged. Retitrate.")
+    print(f"\nAll {len(old)} subjects identical, so the change does not reach the titration.")
+    if a.check:
+        print("--check given, so the store is unchanged.")
+        return
+    store["meta"].setdefault("restamped", []).append(
+        {"from": was, "to": now, "subjects_verified": sorted(old), "how": how,
+         "note": a.note or "verified inert on the reference driver, no measure differed"})
+    store["meta"]["code"] = now
+    tmp_out = titrate.STORE + ".partial"
+    with open(tmp_out, "w") as fh:
+        json.dump(store, fh, indent=1, default=str)
+        fh.flush()
+        os.fsync(fh.fileno())
+    os.replace(tmp_out, titrate.STORE)
+    print(f"re-stamped {titrate.STORE} from {was} to {now}")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--subjects", type=int, default=3,
                     help="how many subjects to verify. More is slower and stronger.")
     ap.add_argument("--check", action="store_true", help="report and change nothing")
     ap.add_argument("--note", default="", help="what changed, recorded in the store")
+    ap.add_argument("--worktree", metavar="REF",
+                    help="a git ref to probe against in a separate checkout rather than by "
+                         "stashing. Use this when the change is already committed. The "
+                         "population and the settings store are shared with this checkout by "
+                         "symlink, since they are not in git and both sides must read the same "
+                         "ones for the comparison to mean anything.")
     ap.add_argument("--against", metavar="REF",
                     help="a git ref the store's fingerprint was produced at. Every "
                          "fingerprinted file is compared with that ref by abstract syntax "
@@ -180,12 +252,33 @@ def main():
         print(f"re-stamped {titrate.STORE} from {was} to {now}")
         return
 
+    if a.worktree:
+        old, new = _probe_against_worktree(a, titrate)
+        _report_and_stamp(a, titrate, store, was, now, old, new,
+                          how=f"probed against {a.worktree} in a separate checkout")
+        return
+
     if not git("stash", "list").stdout.strip() == "":
         raise SystemExit("There is already a stash. Clear it first, since this uses one.")
     dirty = git("status", "--porcelain").stdout.strip()
     if not dirty:
         raise SystemExit("The working tree is clean, so there is no change to stash and the "
                          "fingerprints differ for some other reason. Retitrate.")
+
+    # The stash has to contain the change being tested, and nothing checked that. With the change
+    # committed and only an output file uncommitted, this stashed the output, ran the same code
+    # twice, and reported three subjects identical having compared nothing. A check that passes
+    # when it has tested nothing is worse than no check, so it now refuses unless a fingerprinted
+    # file actually differs from HEAD. Recorded as issue 47.
+    touched = [f for f in titrate._CODE
+               if git("diff", "--quiet", "HEAD", "--", "timsim/" + f).returncode != 0]
+    if not touched:
+        raise SystemExit(
+            "None of the fingerprinted files differ from HEAD, so stashing would compare the "
+            "working tree with itself and prove nothing. The change is committed. Use "
+            "--worktree REF against the commit before it, which runs the probe in a separate "
+            "checkout instead of stashing.")
+    print(f"fingerprinted files changed in the working tree: {', '.join(touched)}")
 
     tmp = os.path.join(REPO, "docs", "measurements", "rebuild")
     os.makedirs(tmp, exist_ok=True)

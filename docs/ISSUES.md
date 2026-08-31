@@ -1056,3 +1056,36 @@ to the liver. A person's typical meal does not.
 The rule this adds sits beside issue 45. A statistic compared against real people is measured on
 the same unit as the real one. If the real quantity is a property of a person, one observation per
 simulated subject does not measure it, however carefully that observation is controlled.
+
+## 47. The tool that proves a change inert passed without testing anything
+
+Found 31 August 2026, adding `bolus_series` to `Result` so a meal that was bolused could be told
+from one that was not.
+
+The settings store carries a fingerprint over nine files and refuses a store produced by code that
+no longer matches, which is right: the failure it prevents is a settings ladder run against
+different physiology. `examples/restamp_settings.py` is the escape hatch. It runs a sample of
+subjects with the change in place, stashes the working tree, runs them again, and re-stamps only
+if every measure agrees.
+
+The stash is the whole mechanism and nothing checked that the change was in it. With the change
+committed and only a measurement file uncommitted, it stashed the measurement file, ran the same
+code twice and reported three subjects identical. It would have re-stamped the store on that.
+
+The signature is the one this log already names: two arms that agree to every decimal have usually
+been handed the same configuration. Here they were the same configuration, by construction, and
+the report read as the strongest possible pass.
+
+Fixed two ways. It now refuses unless one of the fingerprinted files actually differs from HEAD,
+and it takes `--worktree REF`, which checks the reference commit out separately and probes there
+instead of stashing. The population and the settings store are not in git, so the second checkout
+symlinks them from the first: both sides have to read the same subjects and the same settings or
+the comparison measures the population.
+
+The change itself was then verified properly, five subjects across three age classes at 28 days,
+every measure identical including the summed glucose traces, and the store re-stamped from
+578597f67d50c246 to d98cc5df0c709645.
+
+The rule this adds is narrow and worth stating anyway. A check that compares two arms states what
+made them differ, and refuses when nothing did. An escape hatch from a guard needs the same
+scrutiny as the guard, and this one had less.

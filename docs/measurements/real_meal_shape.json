@@ -2,12 +2,12 @@
  "provenance": {
   "population": "704cfac086df54ba",
   "settings": "0df43fd250fadd47",
-  "commit": "b83c180db09d1ea8761fbb3166cfa8f02d061591",
+  "commit": "d4fbd71178ad3678cc394f2fb9f3dc976e77c2d5",
   "dirty": false,
   "host": "Tims-Mac-mini.local",
   "python": "3.14.7",
   "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
-  "when": "2026-08-30T21:05:44+00:00",
+  "when": "2026-08-31T08:44:46+00:00",
   "simglucose": "0.2.11"
  },
  "source": "TimescaleDB studies schema",
@@ -66,6 +66,27 @@
     55.0
    ],
    "size_matched_subjects": 761,
+   "bolus_floor_u": 1.0,
+   "strata": {
+    "covered": {
+     "subjects": 784,
+     "meals": 173983,
+     "rise_per_10g": [
+      9.264178282954546,
+      14.356040499999999,
+      21.649454600000006
+     ]
+    },
+    "uncovered": {
+     "subjects": 539,
+     "meals": 19713,
+     "rise_per_10g": [
+      13.543198135042735,
+      22.447222222222223,
+      33.07511000696864
+     ]
+    }
+   },
    "grams_median": 14.44635111111111,
    "hour_share": {
     "05-10": 0.3215358381115765,
@@ -120,6 +141,27 @@
     55.0
    ],
    "size_matched_subjects": 741,
+   "bolus_floor_u": 1.0,
+   "strata": {
+    "covered": {
+     "subjects": 767,
+     "meals": 135027,
+     "rise_per_10g": [
+      10.707278541176471,
+      16.5021915,
+      24.003296142857142
+     ]
+    },
+    "uncovered": {
+     "subjects": 467,
+     "meals": 15651,
+     "rise_per_10g": [
+      14.001867874285715,
+      23.64597428571428,
+      34.740183083870974
+     ]
+    }
+   },
    "grams_median": 16.252145,
    "hour_share": {
     "05-10": 0.28585026638992084,
@@ -174,6 +216,27 @@
     55.0
    ],
    "size_matched_subjects": 710,
+   "bolus_floor_u": 1.0,
+   "strata": {
+    "covered": {
+     "subjects": 742,
+     "meals": 103121,
+     "rise_per_10g": [
+      11.630689499999999,
+      17.52869026556776,
+      25.82435607828283
+     ]
+    },
+    "uncovered": {
+     "subjects": 409,
+     "meals": 12733,
+     "rise_per_10g": [
+      14.78490553142857,
+      24.52490782608696,
+      36.36365702098921
+     ]
+    }
+   },
    "grams_median": 17.457017454545454,
    "hour_share": {
     "05-10": 0.2199701758595866,
@@ -228,6 +291,27 @@
     55.0
    ],
    "size_matched_subjects": 677,
+   "bolus_floor_u": 1.0,
+   "strata": {
+    "covered": {
+     "subjects": 720,
+     "meals": 81560,
+     "rise_per_10g": [
+      12.08534269379845,
+      18.430051086184754,
+      27.059354883239173
+     ]
+    },
+    "uncovered": {
+     "subjects": 363,
+     "meals": 10586,
+     "rise_per_10g": [
+      15.580646506294825,
+      24.603186,
+      37.42737682539683
+     ]
+    }
+   },
    "grams_median": 18.402468,
    "hour_share": {
     "05-10": 0.1680478327143133,
@@ -282,6 +366,27 @@
     55.0
    ],
    "size_matched_subjects": 626,
+   "bolus_floor_u": 1.0,
+   "strata": {
+    "covered": {
+     "subjects": 677,
+     "meals": 60261,
+     "rise_per_10g": [
+      12.339359687943261,
+      19.502711666666666,
+      28.556090066666666
+     ]
+    },
+    "uncovered": {
+     "subjects": 298,
+     "meals": 8295,
+     "rise_per_10g": [
+      15.409187342857143,
+      24.803852833333334,
+      37.07765423636364
+     ]
+    }
+   },
    "grams_median": 19.558176666666668,
    "hour_share": {
     "05-10": 0.11066375408689197,
@@ -336,6 +441,27 @@
     55.0
    ],
    "size_matched_subjects": 545,
+   "bolus_floor_u": 1.0,
+   "strata": {
+    "covered": {
+     "subjects": 595,
+     "meals": 39039,
+     "rise_per_10g": [
+      13.177464385714286,
+      20.681378428571428,
+      30.003986109090906
+     ]
+    },
+    "uncovered": {
+     "subjects": 201,
+     "meals": 5315,
+     "rise_per_10g": [
+      16.71276092105263,
+      25.541761538461536,
+      39.14804946428571
+     ]
+    }
+   },
    "grams_median": 21.0029975,
    "hour_share": {
     "05-10": 0.05741688529525612,
@@ -352,8 +478,8 @@
    "subsample_meals": 40,
    "within_person_iqr_subsampled": [
     48.24416666666667,
-    76.2375,
-    102.49249999999999
+    75.0,
+    102.7591666666667
    ],
    "pooled_quartiles": [
     30.0,
@@ -390,6 +516,27 @@
     55.0
    ],
    "size_matched_subjects": 175,
+   "bolus_floor_u": 1.0,
+   "strata": {
+    "covered": {
+     "subjects": 179,
+     "meals": 46963,
+     "rise_per_10g": [
+      7.3969696969696965,
+      11.775985663082437,
+      18.295238095238094
+     ]
+    },
+    "uncovered": {
+     "subjects": 3,
+     "meals": 101,
+     "rise_per_10g": [
+      10.533333333333333,
+      33.666666666666664,
+      44.333333333333336
+     ]
+    }
+   },
    "grams_median": 12.363636363636363,
    "hour_share": {
     "05-10": 0.2743659343455764,
@@ -405,8 +552,8 @@
    "meals": 39896,
    "subsample_meals": 40,
    "within_person_iqr_subsampled": [
-    59.99916666666666,
-    93.74166666666666,
+    62.5,
+    92.49791666666667,
     125.37125
    ],
    "pooled_quartiles": [
@@ -444,6 +591,27 @@
     55.0
    ],
    "size_matched_subjects": 172,
+   "bolus_floor_u": 1.0,
+   "strata": {
+    "covered": {
+     "subjects": 178,
+     "meals": 39815,
+     "rise_per_10g": [
+      8.902935686407602,
+      14.15,
+      21.007792207792207
+     ]
+    },
+    "uncovered": {
+     "subjects": 3,
+     "meals": 81,
+     "rise_per_10g": [
+      11.166666666666666,
+      40.33333333333333,
+      44.46666666666667
+     ]
+    }
+   },
    "grams_median": 14.8,
    "hour_share": {
     "05-10": 0.25223152894111767,
@@ -461,7 +629,7 @@
    "within_person_iqr_subsampled": [
     73.375,
     117.5,
-    154.98833333333332
+    155.00125
    ],
    "pooled_quartiles": [
     40.0,
@@ -498,6 +666,27 @@
     55.0
    ],
    "size_matched_subjects": 170,
+   "bolus_floor_u": 1.0,
+   "strata": {
+    "covered": {
+     "subjects": 178,
+     "meals": 32943,
+     "rise_per_10g": [
+      10.303252032520325,
+      15.727836879432624,
+      23.662954545454546
+     ]
+    },
+    "uncovered": {
+     "subjects": 3,
+     "meals": 67,
+     "rise_per_10g": [
+      11.166666666666666,
+      40.33333333333333,
+      44.33333333333333
+     ]
+    }
+   },
    "grams_median": 17.0,
    "hour_share": {
     "05-10": 0.2043078968038185,
@@ -513,9 +702,9 @@
    "meals": 26814,
    "subsample_meals": 40,
    "within_person_iqr_subsampled": [
-    91.24874999999999,
-    138.73541666666665,
-    180.38166666666666
+    87.49458333333334,
+    135.63541666666666,
+    182.86125
    ],
    "pooled_quartiles": [
     45.0,
@@ -552,6 +741,27 @@
     55.0
    ],
    "size_matched_subjects": 170,
+   "bolus_floor_u": 1.0,
+   "strata": {
+    "covered": {
+     "subjects": 178,
+     "meals": 26752,
+     "rise_per_10g": [
+      11.667124901806755,
+      17.528342245989307,
+      25.666666666666668
+     ]
+    },
+    "uncovered": {
+     "subjects": 1,
+     "meals": 62,
+     "rise_per_10g": [
+      40.33333333333333,
+      40.33333333333333,
+      40.33333333333333
+     ]
+    }
+   },
    "grams_median": 19.0,
    "hour_share": {
     "05-10": 0.1588357742918742,
@@ -567,9 +777,9 @@
    "meals": 19289,
    "subsample_meals": 40,
    "within_person_iqr_subsampled": [
-    126.63375,
-    176.25,
-    236.73833333333337
+    121.24833333333333,
+    171.22291666666666,
+    226.23333333333335
    ],
    "pooled_quartiles": [
     55.0,
@@ -606,6 +816,27 @@
     55.0
    ],
    "size_matched_subjects": 163,
+   "bolus_floor_u": 1.0,
+   "strata": {
+    "covered": {
+     "subjects": 174,
+     "meals": 19239,
+     "rise_per_10g": [
+      13.016824966078698,
+      19.677083333333336,
+      28.48333333333334
+     ]
+    },
+    "uncovered": {
+     "subjects": 1,
+     "meals": 50,
+     "rise_per_10g": [
+      42.33333333333333,
+      42.33333333333333,
+      42.33333333333333
+     ]
+    }
+   },
    "grams_median": 21.666666666666664,
    "hour_share": {
     "05-10": 0.10591018980505118,
@@ -621,9 +852,9 @@
    "meals": 12368,
    "subsample_meals": 40,
    "within_person_iqr_subsampled": [
-    136.0125,
-    208.10833333333335,
-    278.1083333333333
+    132.37458333333333,
+    209.35208333333333,
+    287.8575
    ],
    "pooled_quartiles": [
     74.98333333333333,
@@ -660,6 +891,27 @@
     55.0
    ],
    "size_matched_subjects": 138,
+   "bolus_floor_u": 1.0,
+   "strata": {
+    "covered": {
+     "subjects": 160,
+     "meals": 12345,
+     "rise_per_10g": [
+      14.569903172310491,
+      23.455882352941174,
+      33.623404255319144
+     ]
+    },
+    "uncovered": {
+     "subjects": 0,
+     "meals": 23,
+     "rise_per_10g": [
+      NaN,
+      NaN,
+      NaN
+     ]
+    }
+   },
    "grams_median": 25.100361300682458,
    "hour_share": {
     "05-10": 0.05738223205817262,
