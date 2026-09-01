@@ -489,14 +489,32 @@ itself off.
 
 ### The human comparison
 
-A real liver takes up a substantial share of an oral glucose load and stores it as glycogen, and
-that storage is measurable and impaired in type 1 diabetes. Hwang et al. (J Clin Invest 1995;
-95:783-787) measured net hepatic glycogen synthesis during mixed meal ingestion in
-insulin-dependent diabetic subjects by 13C nuclear magnetic resonance and found it impaired.
-Bischof et al. (Diabetes 2001; 50:392-398) measured what improving insulin treatment and glycaemia
-does to postprandial hepatic glycogen metabolism in the same population. Neither has been read
-here; both are cited through Jiang et al. (Mol Med Rep 2020; 22:603-611), and the figures they
-carry are what an entry on this should be built from.
+Hwang et al. (J Clin Invest 1995; 95:783-787) is the measurement, read here on 1 September 2026,
+and it is smaller than the first version of this entry assumed. Six subjects with
+insulin-dependent diabetes and nine weight-matched controls were followed by 13C nuclear magnetic
+resonance through a day of three isocaloric mixed meals on a 35 kcal/kg diet at 60 per cent
+carbohydrate. Fasting hepatic glycogen was similar in both groups. By 23:00 the diabetic subjects
+had synthesised 30 per cent of what the controls had: a net increment of 44 plus or minus 20 mM
+against 144 plus or minus 14.
+
+At a liver volume of 1.5 litres that is 11.9 g of glucose stored across a whole day against 38.9 g
+in the controls, on an intake near 368 g for a 70 kg adult. So net hepatic storage is about 3 per
+cent of carbohydrate eaten in type 1 diabetes and about 11 per cent without it. The first version
+of this entry called it a substantial share, which was wrong for this population by roughly an
+order of magnitude, and 3 per cent is the same size as the renal excretion already dismissed here
+as too small to matter.
+
+The omission is therefore real, quantified, and closer to right for type 1 diabetes than for
+anybody else. A model with no hepatic uptake is about 3 percentage points of intake away from
+Hwang's diabetic subjects and about 11 from his controls, which is one of the few places where
+S2008 inheriting a nondiabetic parameter distribution does not cost it anything.
+
+Hwang also found the gluconeogenic pathway contributing 59 plus or minus 4 per cent of glycogen
+synthesis in the diabetic subjects against 35 plus or minus 4 in controls, and concluded that the
+storage defect "may result in an impaired glycemic response to counterregulatory hormones".
+
+Bischof et al. (Diabetes 2001; 50:392-398) measured what improving insulin treatment does to the
+same quantity and is still unread, behind a paywall as of 1 September 2026.
 
 Expressed as suppression of the subject's own production, which is how the tracer literature
 reports it, the model suppresses 23.2 per cent plus or minus 8.8 over an eight-hour window. A
@@ -507,15 +525,28 @@ are.
 
 ### What follows
 
-Two absent mechanisms with opposite signs, which is why this is an entry rather than a defect.
-Missing hepatic uptake leaves glucose in the circulation that a real liver would have removed, so
-it makes simulated excursions larger. Under-suppression of production, if the tracer comparison
-survives window matching, does the same. Both point away from the shortfall actually measured,
-where the simulated meal rise is 0.61 of the real one covered and 0.79 uncovered with no loop
-acting.
+The missing uptake is too small to matter and the suppression is not missing at all, both of which
+were settled after this entry was first written.
 
-So the liver is not the explanation for the small rise, and what is left is peripheral uptake,
-which took 31 per cent of the meal here. That is the next thing to compare against a human figure.
+`docs/measurements/hinshaw_meal.json` reproduces Hinshaw's protocol at 10 kcal/kg over six hours
+and puts postprandial suppression of production at 43.3 per cent on basal insulin against a
+measured 43.5 to 52.3, so the model suppresses about as much as people do. The 23.2 per cent
+quoted earlier was the same quantity diluted over eight hours, which is what comes of comparing
+before matching a window.
+
+What that comparison did find is that the model suppresses for the wrong reason. Adding a meal
+bolus makes suppression fall to 28.3 per cent, because production here is held down by
+hyperglycaemia through `kp2` and insulin arriving through `kp3` peaks at five hours, so inside a
+six-hour window the bolus lowers glucose and releases the liver. Entry 3 predicts exactly that
+from Edgerton's clamp, and this is the same defect measured on a meal in the population the
+package simulates.
+
+So the liver is not the explanation for the small rise. Against Hinshaw, whole-body glucose
+disappearance is 6308 micromol/kg over six hours with no bolus and 10177 with a full titrated one,
+against a measured 8392 to 8535, so the two arms straddle the human value and the disposal side is
+not obviously wrong either. Fasting production at 13.5 micromol/kg/min against a measured 16.2 to
+19.5 says the whole glucose turnover runs about three-quarters of the human rate, which is the
+remaining candidate and is a statement about the population rather than about any one channel.
 
 ### Whether the design is defensible
 
