@@ -1,0 +1,32 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+panel: skipped 1 subject(s) with no titrated settings (adult#026), taking 40 of the first 41
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+40 subjects, 360 min window, meal 10 kcal/kg at 55% carbohydrate
+
+                                                        basal only              meal bolus         Hinshaw B / L / D
+           meal appearance AUC, umol/kg/6h      6154 / 6850 / 6869      6154 / 6850 / 6869        6150 / 6135 / 6412
+                production AUC, umol/kg/6h      1727 / 2767 / 4267      1479 / 3349 / 4483        2961 / 2889 / 2650
+          production baseline, umol/kg/min      12.1 / 13.5 / 16.2      12.1 / 13.5 / 16.2        16.2 / 19.5 / 17.4
+      production decrease from baseline, %      27.9 / 43.3 / 63.2      14.6 / 28.3 / 69.5        43.5 / 52.3 / 52.0
+     glucose disappearance AUC, umol/kg/6h      5050 / 6308 / 7855    8485 / 10177 / 12171        8392 / 8535 / 8502
+   disappearance increase from baseline, %      17.1 / 28.3 / 48.7    72.3 / 111.9 / 144.9        50.8 / 33.7 / 47.0
+
+carbohydrate given: median 112 g (94 to 128)
+bolus given: median 14.2 U from the titrated ratio
+renal excretion, not in Rd: median 9 umol/kg/6h
+
+wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/hinshaw_meal.json
