@@ -504,10 +504,27 @@ of this entry called it a substantial share, which was wrong for this population
 order of magnitude, and 3 per cent is the same size as the renal excretion already dismissed here
 as too small to matter.
 
-The omission is therefore real, quantified, and closer to right for type 1 diabetes than for
-anybody else. A model with no hepatic uptake is about 3 percentage points of intake away from
-Hwang's diabetic subjects and about 11 from his controls, which is one of the few places where
-S2008 inheriting a nondiabetic parameter distribution does not cost it anything.
+Hwang's subjects had a mean glycosylated haemoglobin of 10.2 plus or minus 0.3 per cent and the
+paper calls them poorly controlled throughout. This package titrates its population until each
+subject clears the consensus hypoglycaemia floors, so it simulates a well-controlled one, and the
+3 per cent belongs to a group it does not represent. A first version of this paragraph concluded
+that a model with no hepatic uptake is close to right for type 1 diabetes. That holds for Hwang's
+population and was written without checking whose population it was.
+
+What a well-controlled liver does is unresolved, and two reported sources disagree about it.
+Gursan and Prompers (Metabolites 2022) is reported to say that net glycogen synthesis and
+breakdown fall by about 74 and 47 per cent in poorly controlled type 1 diabetes, that short-term
+intensive insulin partially restores them, and that long-term basal-bolus therapy or pump therapy
+normalises them completely. Brunasso et al. (Diabetologia 2026) is reported to find postprandial
+hepatic glycogen accumulation absent in ten adults at a mean HbA1c of 6.7 per cent, with peak
+hepatic glucose higher than in controls at 4.7 plus or minus 2.0 against 3.0 plus or minus 0.8
+mmol/l, which reads as reduced extraction rather than restored handling.
+
+So the omission is somewhere between about 3 and about 11 per cent of carbohydrate intake for the
+population this package simulates, and which end depends on a disagreement neither paper has been
+read to settle. Both reached here through a literature review tool on 1 September 2026 whose own
+completion status was reported inconsistently, so they are recorded as claims to check rather than
+as measurements.
 
 Hwang also found the gluconeogenic pathway contributing 59 plus or minus 4 per cent of glycogen
 synthesis in the diabetic subjects against 35 plus or minus 4 in controls, and concluded that the
@@ -578,3 +595,29 @@ calibrated against Rickels et al. 2015 on a stepped clamp. If Kishore's populati
 package simulates, the stock model's failure to produce at depth may be the right behaviour for
 intensively treated type 1 diabetes rather than the defect the defence was built to correct. Read
 before the defence is next touched, again through Jiang rather than at first hand.
+
+### A reframing of entry 3, reported rather than read
+
+Entry 3 treats the five-hour peak of insulin's action on production as a timing defect. A
+literature review on 1 September 2026 returned a mechanism that would make it partly deliberate,
+and it is recorded here because it changes what a fix would have to do rather than because it is
+settled.
+
+Ader and Bergman's result is reported, through Petersen, Vatner and Shulman (Nat Rev Endocrinol
+2017), to work through adipose tissue: peripheral insulin suppresses lipolysis, which lowers
+non-esterified fatty acid delivery to the liver, which lowers hepatic acetyl-CoA, which
+deactivates pyruvate carboxylase and so suppresses gluconeogenesis. On that account the dominant
+route from peripheral insulin to production is indirect and runs through a tissue S2008 does not
+model at all, and a slow lumped delay is a defensible stand-in for it.
+
+The same review reports the INTIMET trial (Snaith et al., Nat Commun 2025), 40 adults with type 1
+diabetes against 20 controls, finding production 64 per cent higher during a low-dose clamp at
+5.9 plus or minus 2.2 against 3.6 plus or minus 1.7 micromol/kg fat-free mass per minute, with
+non-esterified fatty acids also higher at 0.08 plus or minus 0.01 against 0.02 plus or minus 0.02
+mmol/l. If that holds, the substrate route is measurably impaired in this population and the
+model has no term for the thing that is impaired.
+
+What it does not explain is Edgerton's clamp, where suppression reaches 75 per cent within 30
+minutes. An indirect route through lipolysis is not that fast. So the likeliest reading is that
+production responds to insulin on two timescales and S2008 carries only the slow one, which is
+what the two-timescale liver was built for and what the gates could not decide.
