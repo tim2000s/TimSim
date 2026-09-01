@@ -1089,3 +1089,39 @@ every measure identical including the summed glucose traces, and the store re-st
 The rule this adds is narrow and worth stating anyway. A check that compares two arms states what
 made them differ, and refuses when nothing did. An escape hatch from a guard needs the same
 scrutiny as the guard, and this one had less.
+
+## 48. A published protocol was matched to the wrong meal and the wrong denominator
+
+Found 1 September 2026, one day after the comparison it invalidates was committed.
+
+`examples/hinshaw_meal.py` reproduces Hinshaw et al. (Diabetes 2013;62:2223-2229) so the model's
+meal fluxes can be read against a human measurement. Two errors, and both were in the protocol
+rather than in the code.
+
+The meal was the wrong one. The paper's methods describe a 10 kcal/kg meal at 55 per cent
+carbohydrate and, separately, breakfast, lunch and dinner with about 50 g of carbohydrate each.
+The first is the standardisation meal eaten between 17:00 and 17:30 on the evening before the
+first study day. The producer used it, giving subjects a median 112 g where the study meals carry
+about 50.
+
+The denominator was the wrong one. The tracer is dosed per kilogram of fat-free mass and the
+companion paper states rates are expressed that way. This model reports per kilogram of body
+weight. Hinshaw's cohort ran 53.6 kg of fat-free mass against 74.7 kg of weight, so every
+reference number was 28 per cent too large as quoted.
+
+Both errors pushed the same way and one hid the other. Production suppression read 43.3 per cent
+against a reference of 43.5 to 52.3 and was reported as a match. Corrected, it reads 18.6 per cent
+against 43.5 to 52.3, and the model suppresses less than half as much as measured. Fasting
+production read 13.5 against 16.2 to 19.5 and was reported as three-quarters of the human rate;
+corrected, the reference is 11.6 to 14.0 and 13.5 sits inside it.
+
+A third thing surfaced that is not an error here. Hinshaw's measured appearance implies about 59 g
+of glucose entering the circulation from a meal the methods describe as about 50 g of
+carbohydrate, on the fat-free normalisation, and about 83 g on body weight. The lower reading is
+the more plausible of the two and is still 18 per cent above what the meal is said to contain, so
+the appearance comparison carries that uncertainty and cannot be resolved from the paper.
+
+The rule is one this log already has in another form. A reproduction of a published protocol
+states which meal, which window and which denominator, and checks the reference against something
+it must satisfy: a meal cannot deliver more glucose than it contains, and a flux quoted per
+kilogram has to say per kilogram of what.

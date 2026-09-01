@@ -15,18 +15,18 @@ panel: skipped 1 subject(s) with no titrated settings (adult#026), taking 40 of 
   import pkg_resources
 /Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
-40 subjects, 360 min window, meal 10 kcal/kg at 55% carbohydrate
+40 subjects, 360 min window, 50 g carbohydrate, reference converted to body weight at FFM/BW 0.718
 
                                                         basal only              meal bolus         Hinshaw B / L / D
-           meal appearance AUC, umol/kg/6h      6154 / 6850 / 6869      6154 / 6850 / 6869        6150 / 6135 / 6412
-                production AUC, umol/kg/6h      1727 / 2767 / 4267      1479 / 3349 / 4483        2961 / 2889 / 2650
-          production baseline, umol/kg/min      12.1 / 13.5 / 16.2      12.1 / 13.5 / 16.2        16.2 / 19.5 / 17.4
-      production decrease from baseline, %      27.9 / 43.3 / 63.2      14.6 / 28.3 / 69.5        43.5 / 52.3 / 52.0
-     glucose disappearance AUC, umol/kg/6h      5050 / 6308 / 7855    8485 / 10177 / 12171        8392 / 8535 / 8502
-   disappearance increase from baseline, %      17.1 / 28.3 / 48.7    72.3 / 111.9 / 144.9        50.8 / 33.7 / 47.0
+           meal appearance AUC, umol/kg/6h      2500 / 2929 / 3514      2500 / 2929 / 3514        4413 / 4402 / 4601
+                production AUC, umol/kg/6h      2959 / 3897 / 5104      3285 / 4143 / 5160        2125 / 2073 / 1902
+          production baseline, umol/kg/min      12.1 / 13.5 / 16.2      12.1 / 13.5 / 16.2        11.6 / 14.0 / 12.5
+      production decrease from baseline, %      10.3 / 18.6 / 29.1       6.2 / 12.8 / 28.8        43.5 / 52.3 / 52.0
+     glucose disappearance AUC, umol/kg/6h      4888 / 5679 / 6598      6413 / 7360 / 8664        6022 / 6124 / 6101
+   disappearance increase from baseline, %       8.1 / 15.4 / 22.7      30.9 / 51.8 / 71.1        50.8 / 33.7 / 47.0
 
-carbohydrate given: median 112 g (94 to 128)
-bolus given: median 14.2 U from the titrated ratio
-renal excretion, not in Rd: median 9 umol/kg/6h
+carbohydrate given: median 50 g (50 to 50)
+bolus given: median 6.6 U from the titrated ratio
+renal excretion, not in Rd: median 0 umol/kg/6h
 
 wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/hinshaw_meal.json

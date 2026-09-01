@@ -7,9 +7,19 @@ with type 1 diabetes, identical mixed meals at breakfast, lunch and dinner in a 
 triple tracer, six-hour windows. This package already cites it for the diurnal insulin sensitivity
 figures in `docs/FIDELITY.md` and had never used the rest of the table.
 
-The protocol is matched rather than approximated. The meal is 10 kcal/kg at 55 per cent
-carbohydrate, so 1.375 g of carbohydrate per kg of body weight rather than a fixed 60 g, and every
-quantity is integrated over six hours from the meal rather than eight. The subject is on basal
+The protocol is matched rather than approximated, at the second attempt. The first version used
+the paper's 10 kcal/kg meal at 55 per cent carbohydrate, which is the standardisation meal eaten
+between 17:00 and 17:30 on the evening before the first study day. The study meals are breakfast,
+lunch and dinner with about 50 g of carbohydrate each, and that is what is given here. Every
+quantity is integrated over six hours.
+
+Fluxes are converted to the paper's normalisation rather than compared across two of them. The
+tracer is dosed per kilogram of fat-free mass and Hinshaw's companion paper states the rates are
+expressed that way, so the reference figures are divided into per-kilogram-of-body-weight terms
+using the study's own mean, 53.6 kg of fat-free mass against 74.7 kg of weight. That ratio is a
+cohort mean applied to every subject, since S2008 has no body composition, and it carries the
+spread of a cohort whose fat-free mass ran 32.8 to 72.7 kg. It is the largest assumption in the
+comparison and it moves every reference number by 28 per cent. The subject is on basal
 insulin alone, as `meal_appearance.py` runs it, where Hinshaw's participants took their customary
 insulin to carbohydrate ratio. That difference is the main reason to read the comparison as
 directional, and it is stated with the result rather than buried.
@@ -43,9 +53,8 @@ from timsim.patient import varying as V
 OUT = os.path.join(MEASUREMENTS, "hinshaw_meal.json")
 SETTLE_MIN = 600
 WINDOW_MIN = 360               # the paper's six hours
-KCAL_PER_KG = 10.0
-CARB_FRACTION = 0.55
-KCAL_PER_G_CARB = 4.0
+GRAMS = 50.0                   # the study meals, not the 10 kcal/kg run-in
+FFM_OVER_BW = 53.6 / 74.7      # Hinshaw's cohort mean, to put the reference on body weight
 MW_GLUCOSE = 180.156           # mg per mmol, so mg/kg divided by this is mmol/kg
 WORKERS = 7
 
@@ -61,6 +70,10 @@ HINSHAW = {
     "rd_increase_from_baseline_pct": (50.8, 33.7, 47.0),
     "si_1e4_dl_kg_min_per_mu_ml": (5.1, 7.5, 7.2),
 }
+# The same table on body weight, which is what this model reports. Everything except the
+# percentages, which are ratios and do not carry the normalisation.
+HINSHAW_BW = {k: tuple(x * FFM_OVER_BW for x in v) if not k.endswith("pct") else v
+              for k, v in HINSHAW.items() if k != "si_1e4_dl_kg_min_per_mu_ml"}
 
 
 def _run(name, grams, settle, window, bolus_u=0.0):
@@ -92,8 +105,7 @@ def _run(name, grams, settle, window, bolus_u=0.0):
 
 def job(args):
     name, settle, window, covered = args
-    bw0, _ = _run(name, 0.0, settle, 1)          # body weight, to size the meal
-    grams = KCAL_PER_KG * bw0 * CARB_FRACTION / KCAL_PER_G_CARB
+    grams = GRAMS
     bolus = 0.0
     if covered:
         # The subject's own titrated ratio, which is the analogue of "customary". The
@@ -140,15 +152,17 @@ def main():
     band = lambda rows, k: [q([r[k] for r in rows], p) for p in (10, 50, 90)]
     rows = arms["meal bolus"]
     rec = {"provenance": provenance.stamp(), "n": len(rows), "window_min": a.window,
-           "protocol": {"kcal_per_kg": KCAL_PER_KG, "carb_fraction": CARB_FRACTION,
+           "protocol": {"grams": GRAMS,
                         "insulin": "basal only, where Hinshaw's participants took their "
                                    "customary insulin to carbohydrate ratio"},
            "reference": {"citation": "Hinshaw et al., Diabetes 2013;62:2223-2229, n=19 T1D",
-                         **{k: list(v) for k, v in HINSHAW.items()}},
+                         "ffm_over_bw": FFM_OVER_BW,
+                         "per_ffm": {k: list(v) for k, v in HINSHAW.items()},
+                         "per_bw": {k: list(v) for k, v in HINSHAW_BW.items()}},
            "arms": {k: v for k, v in arms.items()}}
 
-    print(f"{len(rows)} subjects, {a.window} min window, meal {KCAL_PER_KG:.0f} kcal/kg at "
-          f"{CARB_FRACTION:.0%} carbohydrate\n")
+    print(f"{len(rows)} subjects, {a.window} min window, {GRAMS:.0f} g carbohydrate, "
+          f"reference converted to body weight at FFM/BW {FFM_OVER_BW:.3f}\n")
     print(f"{'':>42}{'basal only':>24}{'meal bolus':>24}{'Hinshaw B / L / D':>26}")
     show = [("meal appearance AUC, umol/kg/6h", "mra_auc", "mra_auc_umol_kg_6h", 0),
             ("production AUC, umol/kg/6h", "egp_auc", "egp_auc_umol_kg_6h", 0),
@@ -160,7 +174,7 @@ def main():
             ("disappearance increase from baseline, %", "rd_increase_pct",
              "rd_increase_from_baseline_pct", 1)]
     for label, key, ref, dp in show:
-        r = HINSHAW[ref]
+        r = HINSHAW_BW[ref]
         cells = []
         for arm in ("basal only", "meal bolus"):
             v = band(arms[arm], key)
