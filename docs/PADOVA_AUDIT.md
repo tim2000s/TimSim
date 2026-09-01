@@ -511,20 +511,28 @@ subject clears the consensus hypoglycaemia floors, so it simulates a well-contro
 that a model with no hepatic uptake is close to right for type 1 diabetes. That holds for Hwang's
 population and was written without checking whose population it was.
 
-What a well-controlled liver does is unresolved, and two reported sources disagree about it.
-Gursan and Prompers (Metabolites 2022) is reported to say that net glycogen synthesis and
-breakdown fall by about 74 and 47 per cent in poorly controlled type 1 diabetes, that short-term
-intensive insulin partially restores them, and that long-term basal-bolus therapy or pump therapy
-normalises them completely. Brunasso et al. (Diabetologia 2026) is reported to find postprandial
-hepatic glycogen accumulation absent in ten adults at a mean HbA1c of 6.7 per cent, with peak
-hepatic glucose higher than in controls at 4.7 plus or minus 2.0 against 3.0 plus or minus 0.8
-mmol/l, which reads as reduced extraction rather than restored handling.
+What a well-controlled liver does was settled on 1 September 2026 by reading Brunasso et al.
+(Diabetologia 2026; 69:1301-1316), which has Dalla Man and Schiavon among its authors and is
+therefore the Padova group measuring the territory their own model covers. Ten adults with type 1
+diabetes at a mean HbA1c of 6.7 per cent, ten controls matched on age, BMI and sex, 60 g of
+labelled glucose, deuterium metabolic imaging and 13C spectroscopy at 7 T.
 
-So the omission is somewhere between about 3 and about 11 per cent of carbohydrate intake for the
-population this package simulates, and which end depends on a disagreement neither paper has been
-read to settle. Both reached here through a literature review tool on 1 September 2026 whose own
-completion status was reported inconsistently, so they are recorded as claims to check rather than
-as measurements.
+Baseline hepatic glycogen was preserved and if anything higher in diabetes, 289 plus or minus 87
+against 230 plus or minus 46 mmol/l (p=0.08). After the load, glycogen rose clearly in the
+controls (incremental AUC over 180 min of 2.4 mol/l x min) and did not rise at all in type 1
+diabetes. Hepatic glucose was higher in diabetes at a peak of 4.7 plus or minus 2.0 against 3.0
+plus or minus 0.8 mmol/l (p=0.02), which is glucose reaching the liver and not being extracted.
+
+So net postprandial hepatic storage in well-managed type 1 diabetes is not small, it is absent,
+and a model with no hepatic uptake term is right for this population rather than approximately
+right. The earlier reading through Hwang put it at 3 per cent of intake in poorly controlled
+diabetes and 11 per cent in controls; the well-managed figure is nearer zero than either. A
+reported claim that long-term intensive therapy normalises glycogen handling completely does not
+survive this paper, which found none at an HbA1c of 6.7 per cent.
+
+That is one omission this package can stop worrying about, and the reason is worth keeping:
+S2008's architecture happens to match the condition it is used for, not the people it was
+identified on.
 
 Hwang also found the gluconeogenic pathway contributing 59 plus or minus 4 per cent of glycogen
 synthesis in the diabetic subjects against 35 plus or minus 4 in controls, and concluded that the
@@ -621,3 +629,30 @@ What it does not explain is Edgerton's clamp, where suppression reaches 75 per c
 minutes. An indirect route through lipolysis is not that fast. So the likeliest reading is that
 production responds to insulin on two timescales and S2008 carries only the slow one, which is
 what the two-timescale liver was built for and what the gates could not decide.
+
+### What Brunasso says about entry 3, which is the opposite of the previous section
+
+The reframing recorded above, that insulin reaches production indirectly through lipolysis and
+that a slow delay is therefore defensible, is contested by the group that built this model.
+Brunasso et al. write that "hepatic glucose suppression is regulated chiefly by the direct action
+of insulin on the liver, and that increasing systemic insulin levels cannot compensate for reduced
+hepatic insulin exposure", and interpret their own finding in that light. Ader and Bergman's title
+says the reverse. Both are in the audit because the disagreement is real and neither has been
+resolved here.
+
+What Brunasso measured is more useful than either position. In controls, production fell 63 per
+cent over three hours, which they report as consistent with the double-tracer literature. In type
+1 diabetes it fell by about half that, at both 60 and 180 minutes (p=0.01 and p=0.001), with
+similar systemic insulin exposure and no difference in postprandial glucagon. Insulin sensitivity
+of production was nearly halved in diabetes and insulin sensitivity of disposal was comparable
+between the groups, so the defect they find is specific to the liver.
+
+That has a consequence for this package that is easy to miss. S2008 drives production from
+peripheral insulin through a delay and has no portal compartment, which is the type 1 condition
+rather than the healthy one. On Brunasso's reading the model's architecture is right for the
+population it is used on and wrong for the population its parameters came from, which is the
+opposite of the usual complaint and sits beside entry 4.
+
+They also found meal appearance and gastric emptying similar between the groups, so the appearance
+side of a meal is not where type 1 diabetes differs, which is consistent with this package's own
+appearance matching Hinshaw at `docs/measurements/hinshaw_meal.json`.
