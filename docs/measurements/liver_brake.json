@@ -1,0 +1,2503 @@
+{
+ "provenance": {
+  "population": "704cfac086df54ba",
+  "settings": "0df43fd250fadd47",
+  "commit": "d5fbac057f57e88fd1518972ee61af3d3f1a675d",
+  "dirty": false,
+  "host": "Tims-Mac-mini.local",
+  "python": "3.14.7",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "when": "2026-09-01T19:12:01+00:00",
+  "simglucose": "0.2.11"
+ },
+ "n": 40,
+ "grams": 50.0,
+ "window_min": 360,
+ "real_uncovered_rise_per_10g": [
+  14.0,
+  23.6,
+  34.7
+ ],
+ "rows": [
+  {
+   "name": "adult#001",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 97.05050779887756,
+   "rise_per_10g": 19.410101559775512,
+   "egp_auc": 498.1391018289651,
+   "baseline_mgdl": 149.148945712621
+  },
+  {
+   "name": "adult#001",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 7.552854471429535,
+   "rise_mgdl": 23.78902582528721,
+   "rise_per_10g": 4.757805165057443,
+   "egp_auc": 578.6753181201072,
+   "baseline_mgdl": 149.148945712621
+  },
+  {
+   "name": "adult#001",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 129.3899311264417,
+   "rise_per_10g": 25.87798622528834,
+   "egp_auc": 696.9775915425096,
+   "baseline_mgdl": 149.148945712621
+  },
+  {
+   "name": "adult#001",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 7.552854471429535,
+   "rise_mgdl": 25.584719227920885,
+   "rise_per_10g": 5.116943845584177,
+   "egp_auc": 578.9729231057772,
+   "baseline_mgdl": 149.148945712621
+  },
+  {
+   "name": "adult#001",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 97.05050779887756,
+   "rise_per_10g": 19.410101559775512,
+   "egp_auc": 498.1391018289651,
+   "baseline_mgdl": 149.148945712621
+  },
+  {
+   "name": "adult#001",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 7.552854471429535,
+   "rise_mgdl": 24.069731160633552,
+   "rise_per_10g": 4.81394623212671,
+   "egp_auc": 673.4980047983152,
+   "baseline_mgdl": 149.148945712621
+  },
+  {
+   "name": "adult#002",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 125.39488174054259,
+   "rise_per_10g": 25.07897634810852,
+   "egp_auc": 769.0956965946435,
+   "baseline_mgdl": 148.9811287510065
+  },
+  {
+   "name": "adult#002",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 7.28017423272711,
+   "rise_mgdl": 27.98190362021191,
+   "rise_per_10g": 5.5963807240423815,
+   "egp_auc": 842.0483413586022,
+   "baseline_mgdl": 148.9811287510065
+  },
+  {
+   "name": "adult#002",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 146.86843933168637,
+   "rise_per_10g": 29.373687866337274,
+   "egp_auc": 912.9813039659928,
+   "baseline_mgdl": 148.9811287510065
+  },
+  {
+   "name": "adult#002",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 7.28017423272711,
+   "rise_mgdl": 29.860355100480348,
+   "rise_per_10g": 5.972071020096069,
+   "egp_auc": 847.3722825458093,
+   "baseline_mgdl": 148.9811287510065
+  },
+  {
+   "name": "adult#002",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 125.39488174054259,
+   "rise_per_10g": 25.07897634810852,
+   "egp_auc": 769.0956965946435,
+   "baseline_mgdl": 148.9811287510065
+  },
+  {
+   "name": "adult#002",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 7.28017423272711,
+   "rise_mgdl": 28.637363806292427,
+   "rise_per_10g": 5.727472761258485,
+   "egp_auc": 900.1268612129967,
+   "baseline_mgdl": 148.9811287510065
+  },
+  {
+   "name": "adult#003",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 125.53779274072849,
+   "rise_per_10g": 25.107558548145697,
+   "egp_auc": 768.024678033998,
+   "baseline_mgdl": 150.5089712612879
+  },
+  {
+   "name": "adult#003",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 6.739377990319313,
+   "rise_mgdl": 13.564768467089152,
+   "rise_per_10g": 2.7129536934178304,
+   "egp_auc": 802.1976589472051,
+   "baseline_mgdl": 150.5089712612879
+  },
+  {
+   "name": "adult#003",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 150.15494751249793,
+   "rise_per_10g": 30.030989502499587,
+   "egp_auc": 885.6929918749717,
+   "baseline_mgdl": 150.5089712612879
+  },
+  {
+   "name": "adult#003",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 6.739377990319313,
+   "rise_mgdl": 14.144078703100945,
+   "rise_per_10g": 2.828815740620189,
+   "egp_auc": 807.5523310160024,
+   "baseline_mgdl": 150.5089712612879
+  },
+  {
+   "name": "adult#003",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 125.53779274072849,
+   "rise_per_10g": 25.107558548145697,
+   "egp_auc": 768.024678033998,
+   "baseline_mgdl": 150.5089712612879
+  },
+  {
+   "name": "adult#003",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 6.739377990319313,
+   "rise_mgdl": 24.21611931918801,
+   "rise_per_10g": 4.843223863837602,
+   "egp_auc": 870.849356509444,
+   "baseline_mgdl": 150.5089712612879
+  },
+  {
+   "name": "adult#004",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 104.65691567449457,
+   "rise_per_10g": 20.931383134898915,
+   "egp_auc": 490.2900635395815,
+   "baseline_mgdl": 151.36467329292313
+  },
+  {
+   "name": "adult#004",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 7.903528524561483,
+   "rise_mgdl": 67.5113376235351,
+   "rise_per_10g": 13.502267524707019,
+   "egp_auc": 421.86071774990694,
+   "baseline_mgdl": 151.36467329292313
+  },
+  {
+   "name": "adult#004",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 180.33368466265395,
+   "rise_per_10g": 36.06673693253079,
+   "egp_auc": 799.539671862729,
+   "baseline_mgdl": 151.36467329292313
+  },
+  {
+   "name": "adult#004",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 7.903528524561483,
+   "rise_mgdl": 78.59747294070294,
+   "rise_per_10g": 15.719494588140588,
+   "egp_auc": 459.7341234161394,
+   "baseline_mgdl": 151.36467329292313
+  },
+  {
+   "name": "adult#004",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 104.65691567449457,
+   "rise_per_10g": 20.931383134898915,
+   "egp_auc": 490.2900635395815,
+   "baseline_mgdl": 151.36467329292313
+  },
+  {
+   "name": "adult#004",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 7.903528524561483,
+   "rise_mgdl": 72.99909710441116,
+   "rise_per_10g": 14.599819420882232,
+   "egp_auc": 636.9717536702163,
+   "baseline_mgdl": 151.36467329292313
+  },
+  {
+   "name": "adult#005",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 91.83975943257605,
+   "rise_per_10g": 18.367951886515208,
+   "egp_auc": 729.7649749642432,
+   "baseline_mgdl": 136.48779539923632
+  },
+  {
+   "name": "adult#005",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 11.411291104303052,
+   "rise_mgdl": 36.11663957887228,
+   "rise_per_10g": 7.2233279157744565,
+   "egp_auc": 640.7623926166773,
+   "baseline_mgdl": 136.48779539923632
+  },
+  {
+   "name": "adult#005",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 122.04504431511927,
+   "rise_per_10g": 24.409008863023853,
+   "egp_auc": 894.8167932150864,
+   "baseline_mgdl": 136.48779539923632
+  },
+  {
+   "name": "adult#005",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 11.411291104303052,
+   "rise_mgdl": 38.808011728438345,
+   "rise_per_10g": 7.761602345687669,
+   "egp_auc": 641.7310694857791,
+   "baseline_mgdl": 136.48779539923632
+  },
+  {
+   "name": "adult#005",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 91.83975943257605,
+   "rise_per_10g": 18.367951886515208,
+   "egp_auc": 729.7649749642432,
+   "baseline_mgdl": 136.48779539923632
+  },
+  {
+   "name": "adult#005",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 11.411291104303052,
+   "rise_mgdl": 36.936906394225076,
+   "rise_per_10g": 7.387381278845015,
+   "egp_auc": 841.3871430401006,
+   "baseline_mgdl": 136.48779539923632
+  },
+  {
+   "name": "adult#006",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 137.88620950210384,
+   "rise_per_10g": 27.577241900420766,
+   "egp_auc": 688.3143732088956,
+   "baseline_mgdl": 146.00922483236002
+  },
+  {
+   "name": "adult#006",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 7.373995908000176,
+   "rise_mgdl": 44.48169238370781,
+   "rise_per_10g": 8.896338476741562,
+   "egp_auc": 713.2302694505194,
+   "baseline_mgdl": 146.00922483236002
+  },
+  {
+   "name": "adult#006",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 166.41887137936277,
+   "rise_per_10g": 33.28377427587255,
+   "egp_auc": 848.7111069339862,
+   "baseline_mgdl": 146.00922483236002
+  },
+  {
+   "name": "adult#006",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 7.373995908000176,
+   "rise_mgdl": 47.313170129405876,
+   "rise_per_10g": 9.462634025881176,
+   "egp_auc": 716.77050382722,
+   "baseline_mgdl": 146.00922483236002
+  },
+  {
+   "name": "adult#006",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 137.88620950210384,
+   "rise_per_10g": 27.577241900420766,
+   "egp_auc": 688.3143732088956,
+   "baseline_mgdl": 146.00922483236002
+  },
+  {
+   "name": "adult#006",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 7.373995908000176,
+   "rise_mgdl": 46.440309085578946,
+   "rise_per_10g": 9.28806181711579,
+   "egp_auc": 827.3437888259173,
+   "baseline_mgdl": 146.00922483236002
+  },
+  {
+   "name": "adult#007",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 83.16631088975512,
+   "rise_per_10g": 16.633262177951025,
+   "egp_auc": 1012.8875985190314,
+   "baseline_mgdl": 141.34429769631265
+  },
+  {
+   "name": "adult#007",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 3.451907034646667,
+   "rise_mgdl": 9.181169303518232,
+   "rise_per_10g": 1.8362338607036464,
+   "egp_auc": 1022.186913717162,
+   "baseline_mgdl": 141.34429769631265
+  },
+  {
+   "name": "adult#007",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 109.2372681974999,
+   "rise_per_10g": 21.84745363949998,
+   "egp_auc": 1130.2905219282168,
+   "baseline_mgdl": 141.34429769631265
+  },
+  {
+   "name": "adult#007",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 3.451907034646667,
+   "rise_mgdl": 9.700128640573894,
+   "rise_per_10g": 1.9400257281147788,
+   "egp_auc": 1020.8389947678997,
+   "baseline_mgdl": 141.34429769631265
+  },
+  {
+   "name": "adult#007",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 83.16631088975512,
+   "rise_per_10g": 16.633262177951025,
+   "egp_auc": 1012.8875985190314,
+   "baseline_mgdl": 141.34429769631265
+  },
+  {
+   "name": "adult#007",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 3.451907034646667,
+   "rise_mgdl": 24.75925577234503,
+   "rise_per_10g": 4.951851154469006,
+   "egp_auc": 1115.7144183331684,
+   "baseline_mgdl": 141.34429769631265
+  },
+  {
+   "name": "adult#008",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 140.29394810894217,
+   "rise_per_10g": 28.058789621788435,
+   "egp_auc": 547.7107606312953,
+   "baseline_mgdl": 149.84100492754175
+  },
+  {
+   "name": "adult#008",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 8.018913046565864,
+   "rise_mgdl": 58.74277028263654,
+   "rise_per_10g": 11.748554056527308,
+   "egp_auc": 625.2197197567805,
+   "baseline_mgdl": 149.84100492754175
+  },
+  {
+   "name": "adult#008",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 176.90325331630282,
+   "rise_per_10g": 35.38065066326057,
+   "egp_auc": 748.5428989368967,
+   "baseline_mgdl": 149.84100492754175
+  },
+  {
+   "name": "adult#008",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 8.018913046565864,
+   "rise_mgdl": 62.662977770528926,
+   "rise_per_10g": 12.532595554105786,
+   "egp_auc": 630.342375885248,
+   "baseline_mgdl": 149.84100492754175
+  },
+  {
+   "name": "adult#008",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 140.29394810894217,
+   "rise_per_10g": 28.058789621788435,
+   "egp_auc": 547.7107606312953,
+   "baseline_mgdl": 149.84100492754175
+  },
+  {
+   "name": "adult#008",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 8.018913046565864,
+   "rise_mgdl": 59.61353250811203,
+   "rise_per_10g": 11.922706501622406,
+   "egp_auc": 725.7691130995802,
+   "baseline_mgdl": 149.84100492754175
+  },
+  {
+   "name": "adult#009",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 108.92977358640906,
+   "rise_per_10g": 21.78595471728181,
+   "egp_auc": 692.5269698501522,
+   "baseline_mgdl": 140.38648718050672
+  },
+  {
+   "name": "adult#009",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 5.208440983426354,
+   "rise_mgdl": 29.855157199366147,
+   "rise_per_10g": 5.971031439873229,
+   "egp_auc": 863.4249181425384,
+   "baseline_mgdl": 140.38648718050672
+  },
+  {
+   "name": "adult#009",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 141.49033392090246,
+   "rise_per_10g": 28.29806678418049,
+   "egp_auc": 944.3378391789778,
+   "baseline_mgdl": 140.38648718050672
+  },
+  {
+   "name": "adult#009",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 5.208440983426354,
+   "rise_mgdl": 32.76088740968541,
+   "rise_per_10g": 6.552177481937082,
+   "egp_auc": 862.7878832909797,
+   "baseline_mgdl": 140.38648718050672
+  },
+  {
+   "name": "adult#009",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 108.92977358640906,
+   "rise_per_10g": 21.78595471728181,
+   "egp_auc": 692.5269698501522,
+   "baseline_mgdl": 140.38648718050672
+  },
+  {
+   "name": "adult#009",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 5.208440983426354,
+   "rise_mgdl": 30.641305854705024,
+   "rise_per_10g": 6.128261170941005,
+   "egp_auc": 927.6141017979625,
+   "baseline_mgdl": 140.38648718050672
+  },
+  {
+   "name": "adult#010",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 62.341000002626515,
+   "rise_per_10g": 12.468200000525304,
+   "egp_auc": 720.2701814433092,
+   "baseline_mgdl": 139.1831267214188
+  },
+  {
+   "name": "adult#010",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 3.4418579055331455,
+   "rise_mgdl": 26.023637498523755,
+   "rise_per_10g": 5.204727499704751,
+   "egp_auc": 667.0186599520828,
+   "baseline_mgdl": 139.1831267214188
+  },
+  {
+   "name": "adult#010",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 83.59044978718222,
+   "rise_per_10g": 16.718089957436444,
+   "egp_auc": 845.5138660336045,
+   "baseline_mgdl": 139.1831267214188
+  },
+  {
+   "name": "adult#010",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 3.4418579055331455,
+   "rise_mgdl": 28.042306856032184,
+   "rise_per_10g": 5.608461371206436,
+   "egp_auc": 695.0778021302682,
+   "baseline_mgdl": 139.1831267214188
+  },
+  {
+   "name": "adult#010",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 62.341000002626515,
+   "rise_per_10g": 12.468200000525304,
+   "egp_auc": 720.2701814433092,
+   "baseline_mgdl": 139.1831267214188
+  },
+  {
+   "name": "adult#010",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 3.4418579055331455,
+   "rise_mgdl": 26.46137310571345,
+   "rise_per_10g": 5.29227462114269,
+   "egp_auc": 792.9686739352285,
+   "baseline_mgdl": 139.1831267214188
+  },
+  {
+   "name": "adult#011",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 128.16772325795958,
+   "rise_per_10g": 25.633544651591915,
+   "egp_auc": 699.6665248321284,
+   "baseline_mgdl": 155.14646363586544
+  },
+  {
+   "name": "adult#011",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 4.63773734744921,
+   "rise_mgdl": 32.9487782279389,
+   "rise_per_10g": 6.589755645587781,
+   "egp_auc": 679.316425091472,
+   "baseline_mgdl": 155.14646363586544
+  },
+  {
+   "name": "adult#011",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 161.5233060087946,
+   "rise_per_10g": 32.30466120175892,
+   "egp_auc": 846.0805823836047,
+   "baseline_mgdl": 155.14646363586544
+  },
+  {
+   "name": "adult#011",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 4.63773734744921,
+   "rise_mgdl": 35.41820356319096,
+   "rise_per_10g": 7.083640712638191,
+   "egp_auc": 688.2761486866702,
+   "baseline_mgdl": 155.14646363586544
+  },
+  {
+   "name": "adult#011",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 128.16772325795958,
+   "rise_per_10g": 25.633544651591915,
+   "egp_auc": 699.6665248321284,
+   "baseline_mgdl": 155.14646363586544
+  },
+  {
+   "name": "adult#011",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 4.63773734744921,
+   "rise_mgdl": 35.73570757437872,
+   "rise_per_10g": 7.147141514875744,
+   "egp_auc": 814.6883507156764,
+   "baseline_mgdl": 155.14646363586544
+  },
+  {
+   "name": "adult#012",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 60.63762064577281,
+   "rise_per_10g": 12.127524129154562,
+   "egp_auc": 756.853182612674,
+   "baseline_mgdl": 147.36707462262095
+  },
+  {
+   "name": "adult#012",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 3.146884665072078,
+   "rise_mgdl": 14.948977984809972,
+   "rise_per_10g": 2.9897955969619945,
+   "egp_auc": 809.5720454725778,
+   "baseline_mgdl": 147.36707462262095
+  },
+  {
+   "name": "adult#012",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 95.22469352460351,
+   "rise_per_10g": 19.044938704920703,
+   "egp_auc": 893.5221807632723,
+   "baseline_mgdl": 147.36707462262095
+  },
+  {
+   "name": "adult#012",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 3.146884665072078,
+   "rise_mgdl": 16.04607205233296,
+   "rise_per_10g": 3.209214410466592,
+   "egp_auc": 815.8950134300904,
+   "baseline_mgdl": 147.36707462262095
+  },
+  {
+   "name": "adult#012",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 60.63762064577281,
+   "rise_per_10g": 12.127524129154562,
+   "egp_auc": 756.853182612674,
+   "baseline_mgdl": 147.36707462262095
+  },
+  {
+   "name": "adult#012",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 3.146884665072078,
+   "rise_mgdl": 16.521800044812608,
+   "rise_per_10g": 3.3043600089625214,
+   "egp_auc": 870.2060946741682,
+   "baseline_mgdl": 147.36707462262095
+  },
+  {
+   "name": "adult#013",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 68.1620452832639,
+   "rise_per_10g": 13.63240905665278,
+   "egp_auc": 683.9306965130329,
+   "baseline_mgdl": 137.56885765996572
+  },
+  {
+   "name": "adult#013",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 6.366765885299597,
+   "rise_mgdl": 23.555478458433413,
+   "rise_per_10g": 4.711095691686682,
+   "egp_auc": 793.0840544629983,
+   "baseline_mgdl": 137.56885765996572
+  },
+  {
+   "name": "adult#013",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 103.1219348337055,
+   "rise_per_10g": 20.6243869667411,
+   "egp_auc": 840.2894912205982,
+   "baseline_mgdl": 137.56885765996572
+  },
+  {
+   "name": "adult#013",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 6.366765885299597,
+   "rise_mgdl": 25.597387054264487,
+   "rise_per_10g": 5.119477410852897,
+   "egp_auc": 810.9451443297986,
+   "baseline_mgdl": 137.56885765996572
+  },
+  {
+   "name": "adult#013",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 68.1620452832639,
+   "rise_per_10g": 13.63240905665278,
+   "egp_auc": 683.9306965130329,
+   "baseline_mgdl": 137.56885765996572
+  },
+  {
+   "name": "adult#013",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 6.366765885299597,
+   "rise_mgdl": 23.626753254306692,
+   "rise_per_10g": 4.725350650861339,
+   "egp_auc": 817.4787675710899,
+   "baseline_mgdl": 137.56885765996572
+  },
+  {
+   "name": "adult#014",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 179.76661024076589,
+   "rise_per_10g": 35.953322048153176,
+   "egp_auc": 566.6940735606828,
+   "baseline_mgdl": 152.16237007938452
+  },
+  {
+   "name": "adult#014",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 3.975092037649304,
+   "rise_mgdl": 48.184480394910736,
+   "rise_per_10g": 9.636896078982147,
+   "egp_auc": 814.869902665915,
+   "baseline_mgdl": 152.16237007938452
+  },
+  {
+   "name": "adult#014",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 208.32559141768434,
+   "rise_per_10g": 41.66511828353687,
+   "egp_auc": 841.7262864933263,
+   "baseline_mgdl": 152.16237007938452
+  },
+  {
+   "name": "adult#014",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 3.975092037649304,
+   "rise_mgdl": 50.86753579178654,
+   "rise_per_10g": 10.173507158357307,
+   "egp_auc": 784.7684347778106,
+   "baseline_mgdl": 152.16237007938452
+  },
+  {
+   "name": "adult#014",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 179.76661024076589,
+   "rise_per_10g": 35.953322048153176,
+   "egp_auc": 566.6940735606828,
+   "baseline_mgdl": 152.16237007938452
+  },
+  {
+   "name": "adult#014",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 3.975092037649304,
+   "rise_mgdl": 48.80504262361987,
+   "rise_per_10g": 9.761008524723973,
+   "egp_auc": 864.2663552670126,
+   "baseline_mgdl": 152.16237007938452
+  },
+  {
+   "name": "adult#015",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 82.57973710023902,
+   "rise_per_10g": 16.5159474200478,
+   "egp_auc": 914.9573412930372,
+   "baseline_mgdl": 142.72783048880694
+  },
+  {
+   "name": "adult#015",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 1.768254012117721,
+   "rise_mgdl": 39.37387179972197,
+   "rise_per_10g": 7.874774359944394,
+   "egp_auc": 923.0191858564365,
+   "baseline_mgdl": 142.72783048880694
+  },
+  {
+   "name": "adult#015",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 107.93034226407661,
+   "rise_per_10g": 21.586068452815322,
+   "egp_auc": 1016.7502761585785,
+   "baseline_mgdl": 142.72783048880694
+  },
+  {
+   "name": "adult#015",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 1.768254012117721,
+   "rise_mgdl": 41.588171982238634,
+   "rise_per_10g": 8.317634396447726,
+   "egp_auc": 933.5750343873202,
+   "baseline_mgdl": 142.72783048880694
+  },
+  {
+   "name": "adult#015",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 82.57973710023902,
+   "rise_per_10g": 16.5159474200478,
+   "egp_auc": 914.9573412930372,
+   "baseline_mgdl": 142.72783048880694
+  },
+  {
+   "name": "adult#015",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 1.768254012117721,
+   "rise_mgdl": 39.62824968462121,
+   "rise_per_10g": 7.925649936924242,
+   "egp_auc": 993.6669053521645,
+   "baseline_mgdl": 142.72783048880694
+  },
+  {
+   "name": "adult#016",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 92.0787841024318,
+   "rise_per_10g": 18.415756820486358,
+   "egp_auc": 687.1804248012818,
+   "baseline_mgdl": 140.4918881894961
+  },
+  {
+   "name": "adult#016",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 4.629528554646901,
+   "rise_mgdl": 6.785361360210061,
+   "rise_per_10g": 1.357072272042012,
+   "egp_auc": 800.3165546863884,
+   "baseline_mgdl": 140.4918881894961
+  },
+  {
+   "name": "adult#016",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 126.11697150260372,
+   "rise_per_10g": 25.223394300520745,
+   "egp_auc": 835.9513306167727,
+   "baseline_mgdl": 140.4918881894961
+  },
+  {
+   "name": "adult#016",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 4.629528554646901,
+   "rise_mgdl": 7.147189192256604,
+   "rise_per_10g": 1.4294378384513209,
+   "egp_auc": 791.9733639334595,
+   "baseline_mgdl": 140.4918881894961
+  },
+  {
+   "name": "adult#016",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 92.0787841024318,
+   "rise_per_10g": 18.415756820486358,
+   "egp_auc": 687.1804248012818,
+   "baseline_mgdl": 140.4918881894961
+  },
+  {
+   "name": "adult#016",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 4.629528554646901,
+   "rise_mgdl": 13.495647782285516,
+   "rise_per_10g": 2.699129556457103,
+   "egp_auc": 836.959027790728,
+   "baseline_mgdl": 140.4918881894961
+  },
+  {
+   "name": "adult#017",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 122.83216107475576,
+   "rise_per_10g": 24.566432214951153,
+   "egp_auc": 767.2017525125153,
+   "baseline_mgdl": 134.02232512818605
+  },
+  {
+   "name": "adult#017",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 9.082564199757055,
+   "rise_mgdl": 26.149829165992116,
+   "rise_per_10g": 5.229965833198423,
+   "egp_auc": 705.8504673614991,
+   "baseline_mgdl": 134.02232512818605
+  },
+  {
+   "name": "adult#017",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 151.96691219921817,
+   "rise_per_10g": 30.393382439843634,
+   "egp_auc": 906.7168659447514,
+   "baseline_mgdl": 134.02232512818605
+  },
+  {
+   "name": "adult#017",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 9.082564199757055,
+   "rise_mgdl": 27.290545706270507,
+   "rise_per_10g": 5.458109141254101,
+   "egp_auc": 703.9411893843678,
+   "baseline_mgdl": 134.02232512818605
+  },
+  {
+   "name": "adult#017",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 122.83216107475576,
+   "rise_per_10g": 24.566432214951153,
+   "egp_auc": 767.2017525125153,
+   "baseline_mgdl": 134.02232512818605
+  },
+  {
+   "name": "adult#017",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 9.082564199757055,
+   "rise_mgdl": 28.378009057202178,
+   "rise_per_10g": 5.675601811440435,
+   "egp_auc": 883.6457455235942,
+   "baseline_mgdl": 134.02232512818605
+  },
+  {
+   "name": "adult#018",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 88.19068667366889,
+   "rise_per_10g": 17.638137334733777,
+   "egp_auc": 740.5677805544121,
+   "baseline_mgdl": 146.32262974031016
+  },
+  {
+   "name": "adult#018",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 9.829334548424331,
+   "rise_mgdl": 41.32694152714768,
+   "rise_per_10g": 8.265388305429536,
+   "egp_auc": 634.9642199799397,
+   "baseline_mgdl": 146.32262974031016
+  },
+  {
+   "name": "adult#018",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 136.26742750041137,
+   "rise_per_10g": 27.253485500082274,
+   "egp_auc": 935.1354062180502,
+   "baseline_mgdl": 146.32262974031016
+  },
+  {
+   "name": "adult#018",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 9.829334548424331,
+   "rise_mgdl": 45.532635957565276,
+   "rise_per_10g": 9.106527191513056,
+   "egp_auc": 659.1128495501946,
+   "baseline_mgdl": 146.32262974031016
+  },
+  {
+   "name": "adult#018",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 88.19068667366889,
+   "rise_per_10g": 17.638137334733777,
+   "egp_auc": 740.5677805544121,
+   "baseline_mgdl": 146.32262974031016
+  },
+  {
+   "name": "adult#018",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 9.829334548424331,
+   "rise_mgdl": 61.60869205396955,
+   "rise_per_10g": 12.321738410793909,
+   "egp_auc": 835.8031481012302,
+   "baseline_mgdl": 146.32262974031016
+  },
+  {
+   "name": "adult#019",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 110.6758744376836,
+   "rise_per_10g": 22.13517488753672,
+   "egp_auc": 664.5809749243715,
+   "baseline_mgdl": 146.11380026647066
+  },
+  {
+   "name": "adult#019",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 9.353985312612304,
+   "rise_mgdl": 58.59904687381865,
+   "rise_per_10g": 11.71980937476373,
+   "egp_auc": 807.0225373569149,
+   "baseline_mgdl": 146.11380026647066
+  },
+  {
+   "name": "adult#019",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 141.91509687484273,
+   "rise_per_10g": 28.383019374968548,
+   "egp_auc": 870.3866298465133,
+   "baseline_mgdl": 146.11380026647066
+  },
+  {
+   "name": "adult#019",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 9.353985312612304,
+   "rise_mgdl": 63.98587999613315,
+   "rise_per_10g": 12.79717599922663,
+   "egp_auc": 792.611280704438,
+   "baseline_mgdl": 146.11380026647066
+  },
+  {
+   "name": "adult#019",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 110.6758744376836,
+   "rise_per_10g": 22.13517488753672,
+   "egp_auc": 664.5809749243715,
+   "baseline_mgdl": 146.11380026647066
+  },
+  {
+   "name": "adult#019",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 9.353985312612304,
+   "rise_mgdl": 58.83822584441273,
+   "rise_per_10g": 11.767645168882547,
+   "egp_auc": 869.554788325925,
+   "baseline_mgdl": 146.11380026647066
+  },
+  {
+   "name": "adult#020",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 97.1195989527782,
+   "rise_per_10g": 19.42391979055564,
+   "egp_auc": 826.7990936313495,
+   "baseline_mgdl": 138.234886461252
+  },
+  {
+   "name": "adult#020",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 5.773139975664164,
+   "rise_mgdl": 37.07692507081393,
+   "rise_per_10g": 7.415385014162785,
+   "egp_auc": 870.9215854102505,
+   "baseline_mgdl": 138.234886461252
+  },
+  {
+   "name": "adult#020",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 126.50923977714459,
+   "rise_per_10g": 25.30184795542892,
+   "egp_auc": 995.5636371782275,
+   "baseline_mgdl": 138.234886461252
+  },
+  {
+   "name": "adult#020",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 5.773139975664164,
+   "rise_mgdl": 39.249046911075624,
+   "rise_per_10g": 7.849809382215125,
+   "egp_auc": 870.8207531493606,
+   "baseline_mgdl": 138.234886461252
+  },
+  {
+   "name": "adult#020",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 97.1195989527782,
+   "rise_per_10g": 19.42391979055564,
+   "egp_auc": 826.7990936313495,
+   "baseline_mgdl": 138.234886461252
+  },
+  {
+   "name": "adult#020",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 5.773139975664164,
+   "rise_mgdl": 37.320290514050185,
+   "rise_per_10g": 7.4640581028100375,
+   "egp_auc": 975.2884151013683,
+   "baseline_mgdl": 138.234886461252
+  },
+  {
+   "name": "adult#021",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 99.28618311593993,
+   "rise_per_10g": 19.857236623187987,
+   "egp_auc": 626.8741288518154,
+   "baseline_mgdl": 133.92982138840748
+  },
+  {
+   "name": "adult#021",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 7.034744621887531,
+   "rise_mgdl": 16.713305183594798,
+   "rise_per_10g": 3.3426610367189595,
+   "egp_auc": 713.5696846868944,
+   "baseline_mgdl": 133.92982138840748
+  },
+  {
+   "name": "adult#021",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 138.59778385573682,
+   "rise_per_10g": 27.719556771147364,
+   "egp_auc": 829.4543688445381,
+   "baseline_mgdl": 133.92982138840748
+  },
+  {
+   "name": "adult#021",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 7.034744621887531,
+   "rise_mgdl": 18.420362033420986,
+   "rise_per_10g": 3.684072406684197,
+   "egp_auc": 706.5646228661509,
+   "baseline_mgdl": 133.92982138840748
+  },
+  {
+   "name": "adult#021",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 99.28618311593993,
+   "rise_per_10g": 19.857236623187987,
+   "egp_auc": 626.8741288518154,
+   "baseline_mgdl": 133.92982138840748
+  },
+  {
+   "name": "adult#021",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 7.034744621887531,
+   "rise_mgdl": 17.268162797531375,
+   "rise_per_10g": 3.453632559506275,
+   "egp_auc": 811.4263712807142,
+   "baseline_mgdl": 133.92982138840748
+  },
+  {
+   "name": "adult#022",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 58.50608127777949,
+   "rise_per_10g": 11.701216255555897,
+   "egp_auc": 906.5722116888456,
+   "baseline_mgdl": 147.20715047003898
+  },
+  {
+   "name": "adult#022",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 7.8667047633213585,
+   "rise_mgdl": 11.418323087525266,
+   "rise_per_10g": 2.2836646175050532,
+   "egp_auc": 812.8566463360086,
+   "baseline_mgdl": 147.20715047003898
+  },
+  {
+   "name": "adult#022",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 83.75005487271017,
+   "rise_per_10g": 16.750010974542032,
+   "egp_auc": 1010.4159063689677,
+   "baseline_mgdl": 147.20715047003898
+  },
+  {
+   "name": "adult#022",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 7.8667047633213585,
+   "rise_mgdl": 12.749895510021247,
+   "rise_per_10g": 2.5499791020042495,
+   "egp_auc": 820.6033426116766,
+   "baseline_mgdl": 147.20715047003898
+  },
+  {
+   "name": "adult#022",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 58.50608127777949,
+   "rise_per_10g": 11.701216255555897,
+   "egp_auc": 906.5722116888456,
+   "baseline_mgdl": 147.20715047003898
+  },
+  {
+   "name": "adult#022",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 7.8667047633213585,
+   "rise_mgdl": 36.28868420134796,
+   "rise_per_10g": 7.257736840269592,
+   "egp_auc": 965.2120670882837,
+   "baseline_mgdl": 147.20715047003898
+  },
+  {
+   "name": "adult#023",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 92.94864571667881,
+   "rise_per_10g": 18.589729143335763,
+   "egp_auc": 961.3692745441591,
+   "baseline_mgdl": 130.31294609739385
+  },
+  {
+   "name": "adult#023",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 3.7660663179295755,
+   "rise_mgdl": 24.78118559591894,
+   "rise_per_10g": 4.956237119183788,
+   "egp_auc": 1004.5467354131414,
+   "baseline_mgdl": 130.31294609739385
+  },
+  {
+   "name": "adult#023",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 111.35794712355357,
+   "rise_per_10g": 22.271589424710715,
+   "egp_auc": 1070.9828647645604,
+   "baseline_mgdl": 130.31294609739385
+  },
+  {
+   "name": "adult#023",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 3.7660663179295755,
+   "rise_mgdl": 26.166204944518626,
+   "rise_per_10g": 5.2332409889037255,
+   "egp_auc": 998.4764655915709,
+   "baseline_mgdl": 130.31294609739385
+  },
+  {
+   "name": "adult#023",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 92.94864571667881,
+   "rise_per_10g": 18.589729143335763,
+   "egp_auc": 961.3692745441591,
+   "baseline_mgdl": 130.31294609739385
+  },
+  {
+   "name": "adult#023",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 3.7660663179295755,
+   "rise_mgdl": 25.03581772568208,
+   "rise_per_10g": 5.007163545136416,
+   "egp_auc": 1069.2624492945686,
+   "baseline_mgdl": 130.31294609739385
+  },
+  {
+   "name": "adult#024",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 75.7677189233047,
+   "rise_per_10g": 15.15354378466094,
+   "egp_auc": 714.7197311846282,
+   "baseline_mgdl": 148.84365155035144
+  },
+  {
+   "name": "adult#024",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 5.847868544939416,
+   "rise_mgdl": 36.10881405779509,
+   "rise_per_10g": 7.221762811559017,
+   "egp_auc": 705.6572720787465,
+   "baseline_mgdl": 148.84365155035144
+  },
+  {
+   "name": "adult#024",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 111.3523747870432,
+   "rise_per_10g": 22.27047495740864,
+   "egp_auc": 857.2859632519352,
+   "baseline_mgdl": 148.84365155035144
+  },
+  {
+   "name": "adult#024",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 5.847868544939416,
+   "rise_mgdl": 39.33022422508449,
+   "rise_per_10g": 7.866044845016899,
+   "egp_auc": 722.9268065897056,
+   "baseline_mgdl": 148.84365155035144
+  },
+  {
+   "name": "adult#024",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 75.7677189233047,
+   "rise_per_10g": 15.15354378466094,
+   "egp_auc": 714.7197311846282,
+   "baseline_mgdl": 148.84365155035144
+  },
+  {
+   "name": "adult#024",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 5.847868544939416,
+   "rise_mgdl": 36.904440758068375,
+   "rise_per_10g": 7.380888151613675,
+   "egp_auc": 811.026656800233,
+   "baseline_mgdl": 148.84365155035144
+  },
+  {
+   "name": "adult#025",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 92.10155141903508,
+   "rise_per_10g": 18.420310283807016,
+   "egp_auc": 593.1086458456269,
+   "baseline_mgdl": 141.85249144668194
+  },
+  {
+   "name": "adult#025",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 8.20622472546149,
+   "rise_mgdl": 31.93272032342324,
+   "rise_per_10g": 6.386544064684648,
+   "egp_auc": 724.0357088764033,
+   "baseline_mgdl": 141.85249144668194
+  },
+  {
+   "name": "adult#025",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 160.15336764775992,
+   "rise_per_10g": 32.03067352955198,
+   "egp_auc": 830.6130192471934,
+   "baseline_mgdl": 141.85249144668194
+  },
+  {
+   "name": "adult#025",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 8.20622472546149,
+   "rise_mgdl": 39.71233998134724,
+   "rise_per_10g": 7.942467996269448,
+   "egp_auc": 765.5923119511342,
+   "baseline_mgdl": 141.85249144668194
+  },
+  {
+   "name": "adult#025",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 92.10155141903508,
+   "rise_per_10g": 18.420310283807016,
+   "egp_auc": 593.1086458456269,
+   "baseline_mgdl": 141.85249144668194
+  },
+  {
+   "name": "adult#025",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 8.20622472546149,
+   "rise_mgdl": 45.022320975923236,
+   "rise_per_10g": 9.004464195184648,
+   "egp_auc": 773.1406194995963,
+   "baseline_mgdl": 141.85249144668194
+  },
+  {
+   "name": "adult#027",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 91.56033673688214,
+   "rise_per_10g": 18.312067347376427,
+   "egp_auc": 809.1791680279447,
+   "baseline_mgdl": 148.8923751870094
+  },
+  {
+   "name": "adult#027",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 7.4514571556404015,
+   "rise_mgdl": 45.969311548234685,
+   "rise_per_10g": 9.193862309646937,
+   "egp_auc": 593.3509849367477,
+   "baseline_mgdl": 148.8923751870094
+  },
+  {
+   "name": "adult#027",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 119.92004994491481,
+   "rise_per_10g": 23.98400998898296,
+   "egp_auc": 973.6957133739113,
+   "baseline_mgdl": 148.8923751870094
+  },
+  {
+   "name": "adult#027",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 7.4514571556404015,
+   "rise_mgdl": 51.76362202957213,
+   "rise_per_10g": 10.352724405914426,
+   "egp_auc": 603.3219459183492,
+   "baseline_mgdl": 148.8923751870094
+  },
+  {
+   "name": "adult#027",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 91.56033673688214,
+   "rise_per_10g": 18.312067347376427,
+   "egp_auc": 809.1791680279447,
+   "baseline_mgdl": 148.8923751870094
+  },
+  {
+   "name": "adult#027",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 7.4514571556404015,
+   "rise_mgdl": 57.40645205872403,
+   "rise_per_10g": 11.481290411744805,
+   "egp_auc": 876.4684203929605,
+   "baseline_mgdl": 148.8923751870094
+  },
+  {
+   "name": "adult#028",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 107.62918787245812,
+   "rise_per_10g": 21.525837574491625,
+   "egp_auc": 704.6358497499572,
+   "baseline_mgdl": 139.60730305994713
+  },
+  {
+   "name": "adult#028",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 13.71810580394731,
+   "rise_mgdl": 53.97696946383965,
+   "rise_per_10g": 10.79539389276793,
+   "egp_auc": 742.0777417224765,
+   "baseline_mgdl": 139.60730305994713
+  },
+  {
+   "name": "adult#028",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 140.60288495989835,
+   "rise_per_10g": 28.120576991979668,
+   "egp_auc": 856.6836918946958,
+   "baseline_mgdl": 139.60730305994713
+  },
+  {
+   "name": "adult#028",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 13.71810580394731,
+   "rise_mgdl": 57.669995612028856,
+   "rise_per_10g": 11.53399912240577,
+   "egp_auc": 756.4968934679457,
+   "baseline_mgdl": 139.60730305994713
+  },
+  {
+   "name": "adult#028",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 107.62918787245812,
+   "rise_per_10g": 21.525837574491625,
+   "egp_auc": 704.6358497499572,
+   "baseline_mgdl": 139.60730305994713
+  },
+  {
+   "name": "adult#028",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 13.71810580394731,
+   "rise_mgdl": 54.20980100201558,
+   "rise_per_10g": 10.841960200403117,
+   "egp_auc": 828.1204138228621,
+   "baseline_mgdl": 139.60730305994713
+  },
+  {
+   "name": "adult#029",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 91.71421903615825,
+   "rise_per_10g": 18.342843807231652,
+   "egp_auc": 619.696133112521,
+   "baseline_mgdl": 137.2532977095387
+  },
+  {
+   "name": "adult#029",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 3.455525493514807,
+   "rise_mgdl": 27.411043632403675,
+   "rise_per_10g": 5.482208726480735,
+   "egp_auc": 750.738515044531,
+   "baseline_mgdl": 137.2532977095387
+  },
+  {
+   "name": "adult#029",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 136.25186182946786,
+   "rise_per_10g": 27.250372365893572,
+   "egp_auc": 803.7199088387872,
+   "baseline_mgdl": 137.2532977095387
+  },
+  {
+   "name": "adult#029",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 3.455525493514807,
+   "rise_mgdl": 29.432603012847665,
+   "rise_per_10g": 5.886520602569533,
+   "egp_auc": 759.0246335572843,
+   "baseline_mgdl": 137.2532977095387
+  },
+  {
+   "name": "adult#029",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 91.71421903615825,
+   "rise_per_10g": 18.342843807231652,
+   "egp_auc": 619.696133112521,
+   "baseline_mgdl": 137.2532977095387
+  },
+  {
+   "name": "adult#029",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 3.455525493514807,
+   "rise_mgdl": 27.49497521454981,
+   "rise_per_10g": 5.4989950429099625,
+   "egp_auc": 787.8119836089093,
+   "baseline_mgdl": 137.2532977095387
+  },
+  {
+   "name": "adult#030",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 80.05159012495298,
+   "rise_per_10g": 16.010318024990596,
+   "egp_auc": 830.6949970357281,
+   "baseline_mgdl": 133.34630413230244
+  },
+  {
+   "name": "adult#030",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 4.183338949751538,
+   "rise_mgdl": 25.770723461671253,
+   "rise_per_10g": 5.154144692334251,
+   "egp_auc": 988.6641530883003,
+   "baseline_mgdl": 133.34630413230244
+  },
+  {
+   "name": "adult#030",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 109.86635760946763,
+   "rise_per_10g": 21.973271521893526,
+   "egp_auc": 1055.5313556595934,
+   "baseline_mgdl": 133.34630413230244
+  },
+  {
+   "name": "adult#030",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 4.183338949751538,
+   "rise_mgdl": 29.320035942265463,
+   "rise_per_10g": 5.864007188453092,
+   "egp_auc": 981.6930277443524,
+   "baseline_mgdl": 133.34630413230244
+  },
+  {
+   "name": "adult#030",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 80.05159012495298,
+   "rise_per_10g": 16.010318024990596,
+   "egp_auc": 830.6949970357281,
+   "baseline_mgdl": 133.34630413230244
+  },
+  {
+   "name": "adult#030",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 4.183338949751538,
+   "rise_mgdl": 26.275886768468865,
+   "rise_per_10g": 5.255177353693773,
+   "egp_auc": 1045.9046257227835,
+   "baseline_mgdl": 133.34630413230244
+  },
+  {
+   "name": "adult#031",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 122.17209811971489,
+   "rise_per_10g": 24.43441962394298,
+   "egp_auc": 690.9502252669715,
+   "baseline_mgdl": 136.4311575997137
+  },
+  {
+   "name": "adult#031",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 3.9851753298421873,
+   "rise_mgdl": 20.443686211311814,
+   "rise_per_10g": 4.088737242262363,
+   "egp_auc": 830.0914620266822,
+   "baseline_mgdl": 136.4311575997137
+  },
+  {
+   "name": "adult#031",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 150.86066501536905,
+   "rise_per_10g": 30.17213300307381,
+   "egp_auc": 889.6438667788611,
+   "baseline_mgdl": 136.4311575997137
+  },
+  {
+   "name": "adult#031",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 3.9851753298421873,
+   "rise_mgdl": 21.85543180158419,
+   "rise_per_10g": 4.371086360316838,
+   "egp_auc": 819.1369740372161,
+   "baseline_mgdl": 136.4311575997137
+  },
+  {
+   "name": "adult#031",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 122.17209811971489,
+   "rise_per_10g": 24.43441962394298,
+   "egp_auc": 690.9502252669715,
+   "baseline_mgdl": 136.4311575997137
+  },
+  {
+   "name": "adult#031",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 3.9851753298421873,
+   "rise_mgdl": 20.58580708430361,
+   "rise_per_10g": 4.117161416860722,
+   "egp_auc": 889.5155998715762,
+   "baseline_mgdl": 136.4311575997137
+  },
+  {
+   "name": "adult#032",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 81.97456850218819,
+   "rise_per_10g": 16.394913700437638,
+   "egp_auc": 536.0806855425266,
+   "baseline_mgdl": 150.72795445105976
+  },
+  {
+   "name": "adult#032",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 10.11909514255535,
+   "rise_mgdl": 62.01451240231313,
+   "rise_per_10g": 12.402902480462625,
+   "egp_auc": 612.6169979987036,
+   "baseline_mgdl": 150.72795445105976
+  },
+  {
+   "name": "adult#032",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 122.85595626242468,
+   "rise_per_10g": 24.571191252484937,
+   "egp_auc": 789.2596456183085,
+   "baseline_mgdl": 150.72795445105976
+  },
+  {
+   "name": "adult#032",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 10.11909514255535,
+   "rise_mgdl": 74.1775072478215,
+   "rise_per_10g": 14.8355014495643,
+   "egp_auc": 618.1228160236959,
+   "baseline_mgdl": 150.72795445105976
+  },
+  {
+   "name": "adult#032",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 81.97456850218819,
+   "rise_per_10g": 16.394913700437638,
+   "egp_auc": 536.0806855425266,
+   "baseline_mgdl": 150.72795445105976
+  },
+  {
+   "name": "adult#032",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 10.11909514255535,
+   "rise_mgdl": 62.57565228017074,
+   "rise_per_10g": 12.515130456034148,
+   "egp_auc": 729.7291721589683,
+   "baseline_mgdl": 150.72795445105976
+  },
+  {
+   "name": "adult#033",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 85.24204086344517,
+   "rise_per_10g": 17.048408172689033,
+   "egp_auc": 831.2924927151914,
+   "baseline_mgdl": 145.32627764063085
+  },
+  {
+   "name": "adult#033",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 1.6023588316535808,
+   "rise_mgdl": 9.385305409867698,
+   "rise_per_10g": 1.8770610819735396,
+   "egp_auc": 883.3043184891602,
+   "baseline_mgdl": 145.32627764063085
+  },
+  {
+   "name": "adult#033",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 113.88933665916522,
+   "rise_per_10g": 22.777867331833043,
+   "egp_auc": 966.071949933466,
+   "baseline_mgdl": 145.32627764063085
+  },
+  {
+   "name": "adult#033",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 1.6023588316535808,
+   "rise_mgdl": 9.83742468342328,
+   "rise_per_10g": 1.9674849366846558,
+   "egp_auc": 869.9870996733835,
+   "baseline_mgdl": 145.32627764063085
+  },
+  {
+   "name": "adult#033",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 85.24204086344517,
+   "rise_per_10g": 17.048408172689033,
+   "egp_auc": 831.2924927151914,
+   "baseline_mgdl": 145.32627764063085
+  },
+  {
+   "name": "adult#033",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 1.6023588316535808,
+   "rise_mgdl": 17.27314263436054,
+   "rise_per_10g": 3.4546285268721078,
+   "egp_auc": 961.7572072591959,
+   "baseline_mgdl": 145.32627764063085
+  },
+  {
+   "name": "adult#034",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 121.10612723636098,
+   "rise_per_10g": 24.221225447272197,
+   "egp_auc": 505.66941379216047,
+   "baseline_mgdl": 141.02638018726503
+  },
+  {
+   "name": "adult#034",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 3.662809628747572,
+   "rise_mgdl": 17.41373197101126,
+   "rise_per_10g": 3.482746394202252,
+   "egp_auc": 578.4536292918136,
+   "baseline_mgdl": 141.02638018726503
+  },
+  {
+   "name": "adult#034",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 148.39790684722317,
+   "rise_per_10g": 29.679581369444634,
+   "egp_auc": 648.4669054669713,
+   "baseline_mgdl": 141.02638018726503
+  },
+  {
+   "name": "adult#034",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 3.662809628747572,
+   "rise_mgdl": 18.231257615771057,
+   "rise_per_10g": 3.6462515231542114,
+   "egp_auc": 574.1773342509917,
+   "baseline_mgdl": 141.02638018726503
+  },
+  {
+   "name": "adult#034",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 121.10612723636098,
+   "rise_per_10g": 24.221225447272197,
+   "egp_auc": 505.66941379216047,
+   "baseline_mgdl": 141.02638018726503
+  },
+  {
+   "name": "adult#034",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 3.662809628747572,
+   "rise_mgdl": 17.630559218964947,
+   "rise_per_10g": 3.5261118437929895,
+   "egp_auc": 641.9750843466176,
+   "baseline_mgdl": 141.02638018726503
+  },
+  {
+   "name": "adult#035",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 110.66308213511672,
+   "rise_per_10g": 22.132616427023343,
+   "egp_auc": 968.6982720077679,
+   "baseline_mgdl": 150.2075292337853
+  },
+  {
+   "name": "adult#035",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 8.327908383497405,
+   "rise_mgdl": 37.663143990380235,
+   "rise_per_10g": 7.532628798076047,
+   "egp_auc": 792.6267330999857,
+   "baseline_mgdl": 150.2075292337853
+  },
+  {
+   "name": "adult#035",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 130.5958371763702,
+   "rise_per_10g": 26.11916743527404,
+   "egp_auc": 1053.0146138050566,
+   "baseline_mgdl": 150.2075292337853
+  },
+  {
+   "name": "adult#035",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 8.327908383497405,
+   "rise_mgdl": 39.98175978703719,
+   "rise_per_10g": 7.996351957407438,
+   "egp_auc": 798.9692395716369,
+   "baseline_mgdl": 150.2075292337853
+  },
+  {
+   "name": "adult#035",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 110.66308213511672,
+   "rise_per_10g": 22.132616427023343,
+   "egp_auc": 968.6982720077679,
+   "baseline_mgdl": 150.2075292337853
+  },
+  {
+   "name": "adult#035",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 8.327908383497405,
+   "rise_mgdl": 73.90772514873143,
+   "rise_per_10g": 14.781545029746287,
+   "egp_auc": 1013.700955793255,
+   "baseline_mgdl": 150.2075292337853
+  },
+  {
+   "name": "adult#036",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 112.4102547140495,
+   "rise_per_10g": 22.4820509428099,
+   "egp_auc": 730.6012646401641,
+   "baseline_mgdl": 144.03153835225456
+  },
+  {
+   "name": "adult#036",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 17.03816120994622,
+   "rise_mgdl": 38.11574456420874,
+   "rise_per_10g": 7.623148912841748,
+   "egp_auc": 641.032168422499,
+   "baseline_mgdl": 144.03153835225456
+  },
+  {
+   "name": "adult#036",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 142.2703626160667,
+   "rise_per_10g": 28.45407252321334,
+   "egp_auc": 886.1086062558342,
+   "baseline_mgdl": 144.03153835225456
+  },
+  {
+   "name": "adult#036",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 17.03816120994622,
+   "rise_mgdl": 41.15154646136472,
+   "rise_per_10g": 8.230309292272944,
+   "egp_auc": 640.6830442658987,
+   "baseline_mgdl": 144.03153835225456
+  },
+  {
+   "name": "adult#036",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 112.4102547140495,
+   "rise_per_10g": 22.4820509428099,
+   "egp_auc": 730.6012646401641,
+   "baseline_mgdl": 144.03153835225456
+  },
+  {
+   "name": "adult#036",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 17.03816120994622,
+   "rise_mgdl": 39.53922054367496,
+   "rise_per_10g": 7.9078441087349916,
+   "egp_auc": 840.9439953457914,
+   "baseline_mgdl": 144.03153835225456
+  },
+  {
+   "name": "adult#037",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 51.14223065582769,
+   "rise_per_10g": 10.228446131165537,
+   "egp_auc": 985.766506478863,
+   "baseline_mgdl": 135.01764071633812
+  },
+  {
+   "name": "adult#037",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 2.996397073079883,
+   "rise_mgdl": 14.436960119911134,
+   "rise_per_10g": 2.887392023982227,
+   "egp_auc": 1040.0899977581373,
+   "baseline_mgdl": 135.01764071633812
+  },
+  {
+   "name": "adult#037",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 67.0746846612054,
+   "rise_per_10g": 13.41493693224108,
+   "egp_auc": 1071.8337008691985,
+   "baseline_mgdl": 135.01764071633812
+  },
+  {
+   "name": "adult#037",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 2.996397073079883,
+   "rise_mgdl": 15.599763292514638,
+   "rise_per_10g": 3.1199526585029274,
+   "egp_auc": 1042.7864000430925,
+   "baseline_mgdl": 135.01764071633812
+  },
+  {
+   "name": "adult#037",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 51.14223065582769,
+   "rise_per_10g": 10.228446131165537,
+   "egp_auc": 985.766506478863,
+   "baseline_mgdl": 135.01764071633812
+  },
+  {
+   "name": "adult#037",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 2.996397073079883,
+   "rise_mgdl": 14.517923562551914,
+   "rise_per_10g": 2.9035847125103826,
+   "egp_auc": 1065.0429193513085,
+   "baseline_mgdl": 135.01764071633812
+  },
+  {
+   "name": "adult#038",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 73.68475924490588,
+   "rise_per_10g": 14.736951848981175,
+   "egp_auc": 322.55851369835364,
+   "baseline_mgdl": 153.99886985145312
+  },
+  {
+   "name": "adult#038",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 8.307341728907117,
+   "rise_mgdl": 48.34912892143606,
+   "rise_per_10g": 9.669825784287212,
+   "egp_auc": 291.49177458765314,
+   "baseline_mgdl": 153.99886985145312
+  },
+  {
+   "name": "adult#038",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 150.33040222552043,
+   "rise_per_10g": 30.066080445104085,
+   "egp_auc": 664.4102943186781,
+   "baseline_mgdl": 153.99886985145312
+  },
+  {
+   "name": "adult#038",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 8.307341728907117,
+   "rise_mgdl": 59.61044841285522,
+   "rise_per_10g": 11.922089682571045,
+   "egp_auc": 341.9002445314203,
+   "baseline_mgdl": 153.99886985145312
+  },
+  {
+   "name": "adult#038",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 73.68475924490588,
+   "rise_per_10g": 14.736951848981175,
+   "egp_auc": 322.55851369835364,
+   "baseline_mgdl": 153.99886985145312
+  },
+  {
+   "name": "adult#038",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 8.307341728907117,
+   "rise_mgdl": 49.58221438072417,
+   "rise_per_10g": 9.916442876144833,
+   "egp_auc": 475.1405359834548,
+   "baseline_mgdl": 153.99886985145312
+  },
+  {
+   "name": "adult#039",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 98.49703598785524,
+   "rise_per_10g": 19.69940719757105,
+   "egp_auc": 607.8398971730734,
+   "baseline_mgdl": 141.56905662464598
+  },
+  {
+   "name": "adult#039",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 5.666675708953401,
+   "rise_mgdl": 43.393680021498,
+   "rise_per_10g": 8.6787360042996,
+   "egp_auc": 709.0285466724158,
+   "baseline_mgdl": 141.56905662464598
+  },
+  {
+   "name": "adult#039",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 142.96133790193826,
+   "rise_per_10g": 28.592267580387652,
+   "egp_auc": 822.1409720285601,
+   "baseline_mgdl": 141.56905662464598
+  },
+  {
+   "name": "adult#039",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 5.666675708953401,
+   "rise_mgdl": 46.72781466634868,
+   "rise_per_10g": 9.345562933269736,
+   "egp_auc": 715.2634422329594,
+   "baseline_mgdl": 141.56905662464598
+  },
+  {
+   "name": "adult#039",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 98.49703598785524,
+   "rise_per_10g": 19.69940719757105,
+   "egp_auc": 607.8398971730734,
+   "baseline_mgdl": 141.56905662464598
+  },
+  {
+   "name": "adult#039",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 5.666675708953401,
+   "rise_mgdl": 43.5737167830643,
+   "rise_per_10g": 8.71474335661286,
+   "egp_auc": 795.7581726766549,
+   "baseline_mgdl": 141.56905662464598
+  },
+  {
+   "name": "adult#040",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 79.11203437280503,
+   "rise_per_10g": 15.822406874561006,
+   "egp_auc": 688.6537850854742,
+   "baseline_mgdl": 141.04682074137597
+  },
+  {
+   "name": "adult#040",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 7.656582428162245,
+   "rise_mgdl": 35.5664070172362,
+   "rise_per_10g": 7.113281403447241,
+   "egp_auc": 812.8307607436313,
+   "baseline_mgdl": 141.04682074137597
+  },
+  {
+   "name": "adult#040",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 123.42248133980351,
+   "rise_per_10g": 24.684496267960704,
+   "egp_auc": 884.0475436125647,
+   "baseline_mgdl": 141.04682074137597
+  },
+  {
+   "name": "adult#040",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 7.656582428162245,
+   "rise_mgdl": 40.98703018795564,
+   "rise_per_10g": 8.197406037591128,
+   "egp_auc": 833.3786502478331,
+   "baseline_mgdl": 141.04682074137597
+  },
+  {
+   "name": "adult#040",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 79.11203437280503,
+   "rise_per_10g": 15.822406874561006,
+   "egp_auc": 688.6537850854742,
+   "baseline_mgdl": 141.04682074137597
+  },
+  {
+   "name": "adult#040",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 7.656582428162245,
+   "rise_mgdl": 35.86152445405497,
+   "rise_per_10g": 7.172304890810994,
+   "egp_auc": 853.0433992178465,
+   "baseline_mgdl": 141.04682074137597
+  },
+  {
+   "name": "adult#041",
+   "arm": "stock",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 70.87409474241599,
+   "rise_per_10g": 14.174818948483198,
+   "egp_auc": 623.8896331569636,
+   "baseline_mgdl": 146.6005574232704
+  },
+  {
+   "name": "adult#041",
+   "arm": "stock",
+   "covered": true,
+   "bolus_u": 2.287378594129087,
+   "rise_mgdl": 37.141896874635705,
+   "rise_per_10g": 7.428379374927141,
+   "egp_auc": 713.126695151368,
+   "baseline_mgdl": 146.6005574232704
+  },
+  {
+   "name": "adult#041",
+   "arm": "no_brake",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 107.49957435645152,
+   "rise_per_10g": 21.499914871290304,
+   "egp_auc": 796.9591077491832,
+   "baseline_mgdl": 146.6005574232704
+  },
+  {
+   "name": "adult#041",
+   "arm": "no_brake",
+   "covered": true,
+   "bolus_u": 2.287378594129087,
+   "rise_mgdl": 40.208922779049146,
+   "rise_per_10g": 8.04178455580983,
+   "egp_auc": 741.4613537976397,
+   "baseline_mgdl": 146.6005574232704
+  },
+  {
+   "name": "adult#041",
+   "arm": "no_insulin",
+   "covered": false,
+   "bolus_u": 0.0,
+   "rise_mgdl": 70.87409474241599,
+   "rise_per_10g": 14.174818948483198,
+   "egp_auc": 623.8896331569636,
+   "baseline_mgdl": 146.6005574232704
+  },
+  {
+   "name": "adult#041",
+   "arm": "no_insulin",
+   "covered": true,
+   "bolus_u": 2.287378594129087,
+   "rise_mgdl": 37.30608529519975,
+   "rise_per_10g": 7.46121705903995,
+   "egp_auc": 758.4173253382044,
+   "baseline_mgdl": 146.6005574232704
+  }
+ ],
+ "arms": {
+  "stock|uncovered": {
+   "rise_per_10g": [
+    13.515988151040032,
+    18.50501971357139,
+    25.16015715849032
+   ],
+   "egp_auc": [
+    533.0395583674899,
+    702.1511872910428,
+    919.5985346181494
+   ],
+   "paired_vs_stock": 0.0
+  },
+  "no_brake|uncovered": {
+   "rise_per_10g": [
+    20.46644214055906,
+    26.684769900583806,
+    32.402572509170284
+   ],
+   "egp_auc": [
+    785.1879709501673,
+    877.217086729539,
+    1053.2662879905104
+   ],
+   "paired_vs_stock": 6.144450731970236
+  },
+  "no_insulin|uncovered": {
+   "rise_per_10g": [
+    13.515988151040032,
+    18.50501971357139,
+    25.16015715849032
+   ],
+   "egp_auc": [
+    533.0395583674899,
+    702.1511872910428,
+    919.5985346181494
+   ],
+   "paired_vs_stock": 0.0
+  },
+  "stock|covered": {
+   "rise_per_10g": [
+    2.670024785826553,
+    6.488149855136214,
+    10.88783544096751
+   ],
+   "egp_auc": [
+    591.8834182550837,
+    746.4081283835037,
+    929.583682579623
+   ],
+   "paired_vs_stock": 0.0
+  },
+  "no_brake|covered": {
+   "rise_per_10g": [
+    2.800932076758595,
+    7.42262152916293,
+    11.983140269724519
+   ],
+   "egp_auc": [
+    600.887043637092,
+    762.3084727542093,
+    938.3868337230235
+   ],
+   "paired_vs_stock": 0.4788041131909009
+  },
+  "no_insulin|covered": {
+   "rise_per_10g": [
+    3.4545289301355244,
+    7.215020865540293,
+    11.962609692539557
+   ],
+   "egp_auc": [
+    720.5420022694537,
+    841.165569192946,
+    1016.921322786208
+   ],
+   "paired_vs_stock": 0.1441608841419395
+  }
+ }
+}
