@@ -500,7 +500,7 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
              hypo_egp_defence=None, hypo_egp_floor=None, rescue_bioavailability=None,
              set_life_days=None, announcement="some", meal_delay_min=None,
              engagement_cv=None, liver_delay=None, liver_fast_fraction=None,
-             liver_fast_ki_scale=None):
+             liver_fast_ki_scale=None, liver_kp2_scale=1.0, liver_kp3_scale=1.0):
     """Run one subject. Returns a Result.
 
     `layers` is any subset of LAYERS. `controller`, if given, replaces the built-in
@@ -554,6 +554,9 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
     delay = (LIVER_DELAY_SCALE if liver_delay is None else float(liver_delay))
     if delay != 1.0:
         patient.set_liver_delay(delay)
+    # The two gains on production, before anything that captures `kp3`. Both at 1.0 is stock.
+    if float(liver_kp2_scale) != 1.0 or float(liver_kp3_scale) != 1.0:
+        patient.set_liver_gains(liver_kp2_scale, liver_kp3_scale)
     if fast > 0.0:
         patient.set_liver_two_timescale(fast, fast_scale)
     # Meal-to-meal absorption variation belongs to the physiology layer: it is a property of

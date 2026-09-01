@@ -745,6 +745,30 @@ class VaryingPatient(T1DPatient):
             dxdt[3] += max(egp_two, 0.0) - max(egp_pub, 0.0)
         return dxdt
 
+    def set_liver_gains(self, kp2_scale=1.0, kp3_scale=1.0):
+        """Scale the two gains that set production, holding the fasting steady state.
+
+        Production is `kp1 - kp2*Gp - kp3*Id`, so `kp2` is how strongly glucose suppresses it and
+        `kp3` how strongly insulin does. `docs/measurements/liver_brake.json` measures the split:
+        on an unbolused meal the glucose term carries all of the suppression, because insulin does
+        not move, and it carries most of it on a bolused one.
+
+        Changing either gain alone moves basal production and so moves the subject off the steady
+        state it was closed at, after which a run measures the drift rather than the change. `kp1`
+        absorbs the difference at the subject's own basal glucose and insulin, taken from the state
+        the closure left, so basal production is identical and only the response to a deviation
+        from basal moves.
+
+        Call before `set_hypo_defence` and `set_sensitivity`, which capture `kp3` and modulate it
+        from there. Both scales at 1.0 leave every parameter untouched.
+        """
+        q = self._params
+        kp2_0, kp3_0 = float(q["kp2"]), float(q["kp3"])
+        kp2, kp3 = kp2_0 * float(kp2_scale), kp3_0 * float(kp3_scale)
+        q["kp1"] = (float(q["kp1"]) + (kp2 - kp2_0) * float(self.state[3])
+                    + (kp3 - kp3_0) * float(self.state[8]))
+        q["kp2"], q["kp3"] = kp2, kp3
+
     def set_hypo_risk(self, gain=HYPO_RISK_GAIN):
         """Switch on S2013's risk-modulated insulin action below basal glucose.
 

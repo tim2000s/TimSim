@@ -45,7 +45,14 @@ REAL = os.path.join(MEASUREMENTS, "real_meal_shape.json")
 # Stock against the whole of the gain on the fast delay, which is the configuration the sweep in
 # `liver_two_timescale.py` adopted and which is a single-timescale liver at 10.5 times the
 # published rate rather than a two-timescale one.
-ARMS = (("stock", 0.0, 1.0), ("fast", 1.0, 10.5))
+# (label, fast fraction, fast ki scale, liver delay scale, kp2 scale, kp3 scale). The arms are
+# run through this pipeline rather than against the raw patient because the real reference is
+# measured on CGM through the shared definition at the same window, and a clean trace measured on
+# a different protocol is not comparable to it. `rise_sensor_inflation.json` puts that difference
+# at 4.0 mg/dL per 10 g, which is the size of the gap being argued about.
+ARMS = (("stock", 0.0, 1.0, None, 1.0, 1.0),
+        ("no_brake", 0.0, 1.0, None, 0.0, 1.0),
+        ("rebalanced", 0.0, 1.0, 8.0, 0.5, 1.75))
 WORKERS = 7
 
 
@@ -56,10 +63,11 @@ def job(args):
     reduction happens here rather than sending the trace back. macOS spawns, so this is at
     module level and everything it needs travels in the tuple.
     """
-    name, arm, fraction, ki_scale, days, windows = args
+    name, arm, fraction, ki_scale, delay, kp2, kp3, days, windows = args
     from timsim.simulation.run import simulate, DEFAULT_LAYERS
     r = simulate(name, days=days, seed=seeds.BENCH, layers=DEFAULT_LAYERS,
-                 liver_fast_fraction=fraction, liver_fast_ki_scale=ki_scale)
+                 liver_fast_fraction=fraction, liver_fast_ki_scale=ki_scale,
+                 liver_delay=delay, liver_kp2_scale=kp2, liver_kp3_scale=kp3)
     if r.termination:
         return name, arm, None, r.termination
     minutes = np.asarray(r.minutes, float)
@@ -119,7 +127,8 @@ def main():
     from examples.panel import dosable
     subs = dosable(a.subjects)
 
-    jobs = [(n, arm, fr, ks, a.days, tuple(a.windows)) for n in subs for arm, fr, ks in ARMS]
+    jobs = [(n, arm, fr, ks, dl, k2, k3, a.days, tuple(a.windows))
+            for n in subs for arm, fr, ks, dl, k2, k3 in ARMS]
     print(f"{len(subs)} subjects, {len(ARMS)} arms, {a.days} days each, on {a.workers} workers")
     with mp.Pool(a.workers) as pool:
         results = pool.map(job, jobs)
@@ -136,13 +145,14 @@ def main():
 
     rec = {"provenance": provenance.stamp(), "subjects": list(subs), "days": a.days,
            "seed": seeds.BENCH, "arms": [a_[0] for a_ in ARMS], "min_meals": a.min_meals,
-           "dropped": dropped, "rows": [], "per_subject": []}
+           "dropped": dropped, "arm_spec": [list(x) for x in ARMS],
+           "rows": [], "per_subject": []}
 
     # Per subject, per arm, per window, kept in the record. Summarising to medians and throwing
     # the subjects away is what stopped `liver_two_timescale.py` being able to answer whether two
     # rungs described the same people, which is issue 45.
     cells = {}
-    for arm, _, _ in ARMS:
+    for arm, *_ in ARMS:
         for w in a.windows:
             for n in subs:
                 cell = got.get((n, arm))
@@ -185,7 +195,7 @@ def main():
                                            for arm in arms])) if arms else []
         rec.setdefault("common_panel", {})[w] = common
 
-    for arm, _, _ in ARMS:
+    for arm, *_ in ARMS:
         print(f"\n{arm}")
         print(f"{'window':>7}{'common':>8}{'own':>5}{'meals':>7}{'per-person median':>20}"
               f"{'within-person IQR':>20}{'rise per 10 g':>20}"
@@ -248,18 +258,18 @@ def main():
 
     # Paired, per subject, on the common panel, since the arms differ by one mechanism and the
     # subject is the strongest thing to hold fixed.
-    print(f"\npaired, fast minus stock, on the common panel")
-    print(f"{'window':>7}{'subj':>6}{'median diff':>14}{'95 per cent':>22}{'IQR diff':>12}"
-          f"{'95 per cent':>22}")
+    print(f"\npaired on the common panel: duration, and rise per 10 g, against stock")
+    print(f"{'window':>7}{'subj':>6}{'duration diff':>16}{'95 per cent':>22}"
+          f"{'rise diff':>12}{'95 per cent':>22}")
     rng = np.random.default_rng(20260830)
     for w in a.windows:
         common = rec["common_panel"][w]
         if not common:
             continue
-        dm = np.array([cells[("fast", w, n)]["median"] - cells[("stock", w, n)]["median"]
+        dm = np.array([cells[("rebalanced", w, n)]["median"] - cells[("stock", w, n)]["median"]
                        for n in common])
-        di = np.array([cells[("fast", w, n)]["iqr"] - cells[("stock", w, n)]["iqr"]
-                       for n in common])
+        di = np.array([cells[("rebalanced", w, n)]["rise_median"]
+                       - cells[("stock", w, n)]["rise_median"] for n in common])
         def ci(d):
             b = np.array([np.median(rng.choice(d, size=d.size, replace=True))
                           for _ in range(10000)])
