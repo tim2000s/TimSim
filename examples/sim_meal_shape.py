@@ -52,9 +52,13 @@ REAL = os.path.join(MEASUREMENTS, "real_meal_shape.json")
 # measured on CGM through the shared definition at the same window, and a clean trace measured on
 # a different protocol is not comparable to it. `rise_sensor_inflation.json` puts that difference
 # at 4.0 mg/dL per 10 g, which is the size of the gap being argued about.
-ARMS = (("stock", 0.0, 1.0, None, 1.0, 1.0),
-        ("no_brake", 0.0, 1.0, None, 0.0, 1.0),
-        ("rebalanced", 0.0, 1.0, 8.0, 0.5, 1.75))
+# The symmetric arms are gone. Every one of the 54 terminations they produced was hypoglycaemic,
+# because `kp2` is the stock model's only defence against a fall as well as its brake on a rise,
+# and scaling it scales both. `asym` weakens it above the glucose the subject was closed at and
+# leaves it published below, so a meal is damped less and a low is defended as before.
+ARMS = (("stock", 0.0, 1.0, None, 1.0, 1.0, False),
+        ("asym_half", 0.0, 1.0, None, 0.5, 1.0, True),
+        ("asym_zero", 0.0, 1.0, None, 0.0, 1.0, True))
 WORKERS = 7
 
 
@@ -65,7 +69,7 @@ def job(args):
     reduction happens here rather than sending the trace back. macOS spawns, so this is at
     module level and everything it needs travels in the tuple.
     """
-    name, arm, fraction, ki_scale, delay, kp2, kp3, days, windows, controller = args
+    name, arm, fraction, ki_scale, delay, kp2, kp3, asym, days, windows, controller = args
     from timsim.simulation.run import simulate, DEFAULT_LAYERS
     # `oref` is the shipped algorithm behind a node bridge and is built inside the worker,
     # since the controller object holds pump state and cannot be pickled across a spawn.
@@ -76,7 +80,8 @@ def job(args):
     r = simulate(name, days=days, seed=seeds.BENCH, layers=DEFAULT_LAYERS,
                  controller=ctrl,
                  liver_fast_fraction=fraction, liver_fast_ki_scale=ki_scale,
-                 liver_delay=delay, liver_kp2_scale=kp2, liver_kp3_scale=kp3)
+                 liver_delay=delay, liver_kp2_scale=kp2, liver_kp3_scale=kp3,
+                 liver_kp2_above_basal_only=asym)
     if r.termination:
         return name, arm, None, r.termination
     minutes = np.asarray(r.minutes, float)
@@ -144,8 +149,8 @@ def main():
     from examples.panel import dosable
     subs = dosable(a.subjects)
 
-    jobs = [(n, arm, fr, ks, dl, k2, k3, a.days, tuple(a.windows), a.controller)
-            for n in subs for arm, fr, ks, dl, k2, k3 in ARMS]
+    jobs = [(n, arm, fr, ks, dl, k2, k3, asym, a.days, tuple(a.windows), a.controller)
+            for n in subs for arm, fr, ks, dl, k2, k3, asym in ARMS]
     print(f"{len(subs)} subjects, {len(ARMS)} arms, {a.days} days each, "
           f"controller {a.controller}, on {a.workers} workers")
     with mp.Pool(a.workers) as pool:

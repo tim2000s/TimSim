@@ -745,7 +745,7 @@ class VaryingPatient(T1DPatient):
             dxdt[3] += max(egp_two, 0.0) - max(egp_pub, 0.0)
         return dxdt
 
-    def set_liver_gains(self, kp2_scale=1.0, kp3_scale=1.0):
+    def set_liver_gains(self, kp2_scale=1.0, kp3_scale=1.0, above_basal_only=False):
         """Scale the two gains that set production, holding the fasting steady state.
 
         Production is `kp1 - kp2*Gp - kp3*Id`, so `kp2` is how strongly glucose suppresses it and
@@ -759,6 +759,10 @@ class VaryingPatient(T1DPatient):
         the closure left, so basal production is identical and only the response to a deviation
         from basal moves.
 
+        `above_basal_only` applies the `kp2` scale only when glucose is above the value the
+        subject was closed at, so a meal is damped less while a fall is defended as published.
+        Without it the scale is symmetric, which halves the defence and kills subjects.
+
         Call before `set_hypo_defence` and `set_sensitivity`, which capture `kp3` and modulate it
         from there. Both scales at 1.0 leave every parameter untouched.
         """
@@ -768,6 +772,23 @@ class VaryingPatient(T1DPatient):
         q["kp1"] = (float(q["kp1"]) + (kp2 - kp2_0) * float(self.state[3])
                     + (kp3 - kp3_0) * float(self.state[8]))
         q["kp2"], q["kp3"] = kp2, kp3
+        if above_basal_only:
+            # Scaling `kp2` scales the response to glucose in both directions, and the downward
+            # one is the stock model's only defence against a low: a fall in glucose shrinks
+            # `kp2*Gp` and production rises. Weakening it symmetrically took early terminations
+            # from 3 of 40 to 22 under oref0 SMB, every one hypoglycaemic, and it works against
+            # `HYPO_EGP_DEFENCE`, which exists to strengthen that same response.
+            #
+            # Held here instead: the weakened slope applies above the glucose the subject was
+            # closed at, where it damps a meal, and the published slope applies below it, where it
+            # defends. `_liver_asymmetric` is read each step by `step`.
+            self._liver_kp2_weak = kp2
+            self._liver_kp2_full = kp2_0
+            self._liver_gp_basal = float(self.state[3])
+            self._liver_kp1_weak = float(q["kp1"])
+            # `kp1` for the lower branch, so production is continuous at basal on both slopes.
+            self._liver_kp1_full = float(q["kp1"]) + (kp2_0 - kp2) * self._liver_gp_basal
+            self._liver_asymmetric = True
 
     def set_hypo_risk(self, gain=HYPO_RISK_GAIN):
         """Switch on S2013's risk-modulated insulin action below basal glucose.
@@ -838,6 +859,14 @@ class VaryingPatient(T1DPatient):
 
     def step(self, action):
         self._meal_absorption(action)
+        # The asymmetric glucose response, set before anything that reads `kp1` or `kp2`. Above
+        # the glucose the subject was closed at, the weakened slope damps a meal less; below it,
+        # the published slope defends a fall. `kp1` differs between the branches so production is
+        # continuous at basal rather than stepping as glucose crosses it.
+        if getattr(self, "_liver_asymmetric", False):
+            above = float(self.state[3]) > self._liver_gp_basal
+            self._params["kp2"] = self._liver_kp2_weak if above else self._liver_kp2_full
+            self._params["kp1"] = self._liver_kp1_weak if above else self._liver_kp1_full
         si = self.sensitivity() if getattr(self, "_varying", False) else 1.0
         if getattr(self, "_varying", False):
             self._params["kp3"] = self._kp30 * si
