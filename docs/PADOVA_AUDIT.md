@@ -685,3 +685,78 @@ liver and from a plain retune, it is what a real liver's dose-response does, and
 tried it. The symmetric version should not be run on a cohort again: its arms are a selected
 sample of the subjects that survived, which is the confound `docs/ISSUES.md` records under cohort
 attrition.
+
+## 6. Disposal is right on each axis and 28 per cent too high on both together
+
+### What was measured
+
+`examples/postprandial_clamp.py` holds glucose and insulin at the values Hinshaw's participants
+had after a meal, taken from their table by arithmetic: mean glucose 8.4 + 1657.5/360 = 13.0
+mmol/L, mean insulin 120.1 + 11808/360 = 152.9 pmol/L, over a six hour window. Their whole-body
+disposal averages 8392.1/360 = 23.3 micromol/kg of fat-free mass per minute, which on 53.6 against
+74.7 kg is 3.01 mg/kg of body weight per minute.
+
+Forty adults, held 300 minutes, read over the last 60:
+
+| Cell | Held | Model | Reference | Ratio |
+|---|---|---|---|---|
+| basal | 151 mg/dL, 120 pmol/L | 2.40 / 2.74 / 3.17 | 2.40 | 1.14 |
+| postprandial | 235 mg/dL, 153 pmol/L | 3.32 / 3.85 / 4.78 | 3.01 | 1.28 |
+
+Disposal rises 40 per cent between the two cells against a measured 25.
+
+The basal reference is the softer of the two, derived from Hinshaw's 50.8 per cent rise on the
+assumption that the mean sits midway between baseline and peak. The postprandial 3.01 is an area
+divided by a window and needs no assumption.
+
+### Why neither existing clamp could see it
+
+Each varies one axis. Study 17 measured glucose effectiveness on a hyperglycaemic clamp at basal
+insulin, finding 0.0065 min^-1 against a human 0.011 to 0.021, far too low. It measured insulin
+action on a euglycaemic clamp at 0.3 U/kg and found it matching: peak glucose infusion 9.1 against
+8.70 mg/kg/min and a ten-hour area of 2085 against 2054. So on glucose alone the model disposes
+too little and on insulin alone it disposes correctly. Raise both, which is what a bolused meal
+does, and it disposes 28 per cent too much.
+
+Brunasso et al. name this gap directly, writing that uptake at euglycaemic hyperinsulinaemia "may
+not fully capture the postprandial hepatic glucose extraction deficit, which requires both
+hyperglycaemia and hyperinsulinaemia for maximal expression".
+
+### The parameter cannot correct it
+
+Uptake is `(Vm0 + Vmx*X) * Gt / (Km0 + Gt)`. `Km0` sets how much the glucose term rises, so
+lowering it flattens the response; `Vm0` and `Vmx` are scaled by `(Km0' + Gtb)/(Km0 + Gtb)` to
+hold basal uptake, which they do exactly, at 2.74 in every cell of the sweep.
+
+| `Km0` scale | Postprandial disposal | Rise from basal |
+|---|---|---|
+| 1.00 | 3.85 | 40 per cent |
+| 0.70 | 3.74 | 37 |
+| 0.50 | 3.65 | 33 |
+| 0.35 | 3.55 | 30 |
+| target | 3.01 | 25 |
+
+At 0.35 the parameter stands at 82 against a published 186 to 279 and has closed a third of the
+gap. The reason is that the rise has two parts and `Km0` flattens only the glucose one; the other
+is `Vmx*X`, which already matches on its own axis.
+
+### What follows
+
+This is the direction the residual needs and the first quantity measured here that points that
+way. Glucose from a meal is removed faster than in the people the benchmark compares against, so
+the peak is lower, and the simulated unbolused meal rise is 14.1 mg/dL per 10 g against a real
+23.6 while the excursion peaks at 195 against 209.
+
+It is a structural property rather than a tuning error, for the same reason entry 3 is: a product
+of two terms cannot be wrong only where both move unless the product form itself is wrong.
+Correcting it would mean an interaction term S2008 does not have, which is a different model
+rather than a retuned one.
+
+### Recommendation
+
+No change, and the reason is not caution. Nothing here has yet shown that the excess produces the
+residual rather than merely pointing at it, and this package has spent two days on a liver
+mechanism that pointed the right way and moved nothing. The test that would settle it is an
+ablation of the excess against the cohort outcome, which needs a correction to build and cannot
+borrow one from the literature, since no published model of this interaction exists for type 1
+diabetes.
