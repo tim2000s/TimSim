@@ -656,3 +656,32 @@ opposite of the usual complaint and sits beside entry 4.
 They also found meal appearance and gastric emptying similar between the groups, so the appearance
 side of a meal is not where type 1 diabetes differs, which is consistent with this package's own
 appearance matching Hinshaw at `docs/measurements/hinshaw_meal.json`.
+
+### Why the glucose brake cannot simply be weakened
+
+Measured 2 September 2026, after Tim asked what the liver arms were dying of.
+
+`docs/measurements/liver_brake.json` shows that `kp2*Gp` damps a meal excursion, and weakening it
+raises the unbolused meal rise towards the real one. Running that change through a cohort rather
+than a single meal says what it costs. Under oref0 SMB, 3 of 40 subject-arms terminate early on
+the stock liver, 17 with the brake removed and 22 with the rebalanced candidate. Under the
+built-in loop the figures are 0, 3 and 9. Every one of the 54 terminations, in both arms and both
+controllers, is hypoglycaemic. None is a high.
+
+The reason is in the expression. Production is `kp1 - kp2*Gp - kp3*Id`, so a fall in glucose
+shrinks the `kp2*Gp` term and production rises. The same coefficient that damps a meal is the
+model's glucose-driven defence against hypoglycaemia, and scaling it scales both. Compensating
+`kp1` holds basal production fixed but halves the slope of production against glucose in both
+directions at once.
+
+This package already treats the lower half of that response as too weak rather than too strong.
+`HYPO_EGP_DEFENCE` ships at 0.05 to oppose insulin's suppression of production as glucose falls,
+fitted to Rickels et al. 2015. A symmetric weakening of `kp2` works against it.
+
+What follows is that the change worth testing is asymmetric: weaken the response to glucose above
+the subject's basal, where it damps meals, and leave it or strengthen it below, where it is the
+only counterregulation the stock model has. That is a different mechanism from the two-timescale
+liver and from a plain retune, it is what a real liver's dose-response does, and nothing here has
+tried it. The symmetric version should not be run on a cohort again: its arms are a selected
+sample of the subjects that survived, which is the confound `docs/ISSUES.md` records under cohort
+attrition.
