@@ -58,13 +58,17 @@ CELLS = (("basal", 151.3, 120.1, 2.40),
 
 
 def job(args):
-    name, label, g_target, i_target, hold, read_last = args
+    name, label, g_target, i_target, hold, read_last, km_scale = args
     p = V.from_population(name)
     q = p._params
     bw, Vg, Vi = float(q.BW), float(q["Vg"]), float(q["Vi"])
     basal = q.u2ss * bw / 6000.0
     for _ in range(SETTLE_MIN):
         p.step(PAction(CHO=0.0, insulin=basal))
+    if km_scale != 1.0:
+        p.set_disposal_curvature(km_scale)
+        for _ in range(120):
+            p.step(PAction(CHO=0.0, insulin=basal))
 
     gp_target = g_target * Vg              # mg/kg, the plasma compartment the clamp holds
     ip_target = i_target * Vi              # pmol/kg
@@ -93,20 +97,23 @@ def job(args):
     return {"name": name, "cell": label,
             "rd": float(a[:, 0].mean()), "uid": float(a[:, 1].mean()),
             "egp": float(a[:, 2].mean()), "renal": float(a[:, 3].mean()),
-            "infusion": float(a[:, 4].mean()), "held_mgdl": float(a[:, 5].mean())}
+            "infusion": float(a[:, 4].mean()), "held_mgdl": float(a[:, 5].mean()),
+            "km_scale": km_scale}
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--subjects", type=int, default=40)
     ap.add_argument("--hold", type=int, default=HOLD_MIN)
+    ap.add_argument("--km-scales", nargs="+", type=float, default=[1.0])
     ap.add_argument("--workers", type=int, default=WORKERS)
     ap.add_argument("--out", default=OUT)
     a = ap.parse_args()
 
     from examples.panel import dosable
     subs = dosable(a.subjects)
-    jobs = [(n, lab, g, i, a.hold, READ_LAST) for n in subs for lab, g, i, _ in CELLS]
+    jobs = [(n, lab, g, i, a.hold, READ_LAST, k)
+            for n in subs for lab, g, i, _ in CELLS for k in a.km_scales]
     with mp.Pool(a.workers) as pool:
         rows = pool.map(job, jobs)
 
@@ -115,24 +122,26 @@ def main():
            "cells": [list(c) for c in CELLS], "rows": rows, "summary": {}}
 
     print(f"{len(subs)} subjects, held {a.hold} min, read over the last {READ_LAST}\n")
-    print(f"{'cell':>14}{'held mg/dL':>12}{'disposal p10/50/90':>26}{'Hinshaw':>10}"
+    print(f"{'cell':>20}{'held mg/dL':>12}{'disposal p10/50/90':>26}{'Hinshaw':>10}"
           f"{'ratio':>8}{'production':>12}{'renal':>8}")
-    for lab, g, i, ref in CELLS:
-        r = [x for x in rows if x["cell"] == lab]
+    for km in a.km_scales:
+      for lab, g, i, ref in CELLS:
+        r = [x for x in rows if x["cell"] == lab and x["km_scale"] == km]
         rd = [x["rd"] for x in r]
-        rec["summary"][lab] = {"held_mgdl": q([x["held_mgdl"] for x in r], 50),
+        rec["summary"][f"{lab}|km{km}"] = {"held_mgdl": q([x["held_mgdl"] for x in r], 50),
                                "rd": [q(rd, 10), q(rd, 50), q(rd, 90)], "reference": ref,
                                "ratio": q(rd, 50) / ref,
                                "egp": q([x["egp"] for x in r], 50),
                                "renal": q([x["renal"] for x in r], 50),
                                "infusion": q([x["infusion"] for x in r], 50)}
-        s = rec["summary"][lab]
-        print(f"{lab:>14}{s['held_mgdl']:>12.0f}"
+        s = rec["summary"][f"{lab}|km{km}"]
+        print(f"{f'{lab} km{km}':>20}{s['held_mgdl']:>12.0f}"
               f"{f'{s[chr(114)+chr(100)][0]:.2f} / {s[chr(114)+chr(100)][1]:.2f} / {s[chr(114)+chr(100)][2]:.2f}':>26}"
               f"{ref:>10.2f}{s['ratio']:>8.2f}{s['egp']:>12.2f}{s['renal']:>8.2f}")
-    b, pp = rec["summary"]["basal"], rec["summary"]["postprandial"]
-    print(f"\ndisposal rises {100*(pp['rd'][1]/b['rd'][1]-1):.0f} per cent from basal to "
-          f"postprandial, against Hinshaw's {100*(3.01/2.40-1):.0f}")
+    print(f"\n{'km scale':>10}{'rise basal to postprandial, %':>32}{'target':>10}")
+    for km in a.km_scales:
+        b = rec["summary"][f"basal|km{km}"]; pp = rec["summary"][f"postprandial|km{km}"]
+        print(f"{km:>10.2f}{100*(pp['rd'][1]/b['rd'][1]-1):>32.0f}{100*(3.01/2.40-1):>10.0f}")
 
     json.dump(rec, open(a.out, "w"), indent=1)
     print(f"\nwrote {a.out}")

@@ -790,6 +790,33 @@ class VaryingPatient(T1DPatient):
             self._liver_kp1_full = float(q["kp1"]) + (kp2_0 - kp2) * self._liver_gp_basal
             self._liver_asymmetric = True
 
+    def set_disposal_curvature(self, km_scale):
+        """Scale `Km0`, holding basal disposal, so only the curvature of uptake against glucose moves.
+
+        Insulin-dependent uptake is `(Vm0 + Vmx*X) * Gt / (Km0 + Gt)`, a product of an insulin term
+        and a saturating glucose term. `docs/measurements/postprandial_clamp.json` measures what
+        that product does when both are raised at once: disposal is 3.85 mg/kg/min against
+        Hinshaw's 3.01, and it rises 40 per cent from basal to postprandial against a measured 25.
+        Neither clamp already in this package could see it, because each varies one axis and the
+        product is only wrong where both move.
+
+        `Km0` is what sets that rise. At the median it is 234 against a basal `Gt` of 116, so the
+        glucose term sits at 0.33 of saturation, and lowering `Km0` saturates it earlier and
+        flattens the response. It also raises the level, so `Vm0` and `Vmx` are scaled by
+        `(Km0' + Gtb) / (Km0 + Gtb)`, which returns basal uptake to exactly what it was and leaves
+        only the curvature changed.
+
+        A scale of 1.0 leaves every parameter untouched.
+        """
+        q = self._params
+        km0 = float(q["Km0"])
+        gtb = float(self.state[4])          # the closure's basal tissue glucose
+        km = km0 * float(km_scale)
+        f = (km + gtb) / (km0 + gtb)
+        q["Km0"] = km
+        q["Vm0"] = float(q["Vm0"]) * f
+        q["Vmx"] = float(q["Vmx"]) * f
+
     def set_hypo_risk(self, gain=HYPO_RISK_GAIN):
         """Switch on S2013's risk-modulated insulin action below basal glucose.
 
