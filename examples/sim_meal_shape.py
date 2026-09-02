@@ -67,8 +67,14 @@ def job(args):
     """
     name, arm, fraction, ki_scale, delay, kp2, kp3, days, windows, controller = args
     from timsim.simulation.run import simulate, DEFAULT_LAYERS
+    # `oref` is the shipped algorithm behind a node bridge and is built inside the worker,
+    # since the controller object holds pump state and cannot be pickled across a spawn.
+    ctrl = controller
+    if controller == "oref":
+        from timsim.controller import oref
+        ctrl = oref.OrefController(name)
     r = simulate(name, days=days, seed=seeds.BENCH, layers=DEFAULT_LAYERS,
-                 controller=controller,
+                 controller=ctrl,
                  liver_fast_fraction=fraction, liver_fast_ki_scale=ki_scale,
                  liver_delay=delay, liver_kp2_scale=kp2, liver_kp3_scale=kp3)
     if r.termination:
@@ -119,7 +125,8 @@ def main():
     ap.add_argument("--min-meals", type=int, default=20)
     ap.add_argument("--controller", default="trend",
                     help="trend and reference are the built-in loop, control-iq is the "
-                         "benchmark stand-in, basal-bolus is open loop")
+                         "benchmark stand-in, oref is the shipped algorithm behind its "
+                         "bridge, basal-bolus is open loop")
     ap.add_argument("--band", nargs=2, type=float, default=[40.0, 55.0],
                     help="grams band for the size-matched rise, the real interquartile range")
     ap.add_argument("--bolus-floor", type=float, default=1.0,
@@ -130,6 +137,10 @@ def main():
     ap.add_argument("--out", default=OUT)
     a = ap.parse_args()
 
+    if a.controller == "oref":
+        from timsim.controller import oref as _oref
+        if not _oref.available():
+            raise SystemExit("the oref bridge is not gathered; run bridge/oref/build.sh")
     from examples.panel import dosable
     subs = dosable(a.subjects)
 
