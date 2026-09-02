@@ -1,0 +1,65 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+panel: skipped 1 subject(s) with no titrated settings (adult#026), taking 40 of the first 41
+40 subjects, 3 arms, 42 days each, controller basal-bolus, on 7 workers
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+
+stock
+ window  common  own  meals   per-person median   within-person IQR       rise per 10 g    same, 40-55 g only        covered rise      uncovered rise            fullness      peak to return   ret
+    180      14   36    861        60 / 75 / 84       52 / 68 / 104    8.1 / 9.3 / 13.2      8.3 / 9.7 / 13.2     4.9 / 7.7 / 9.2  11.4 / 15.1 / 18.5  0.46 / 0.50 / 0.57        22 / 40 / 50  0.46
+    240      12   36    530        60 / 82 / 90       78 / 95 / 137   8.1 / 10.2 / 14.2     5.6 / 10.7 / 14.1    5.4 / 7.2 / 10.8  16.2 / 18.4 / 20.5  0.39 / 0.45 / 0.52        28 / 45 / 69  0.53
+    300       8   32    250      78 / 101 / 129     100 / 120 / 169  10.9 / 13.1 / 15.5     9.0 / 11.4 / 15.4    5.9 / 8.6 / 11.3  15.9 / 19.6 / 23.6  0.43 / 0.51 / 0.55       25 / 61 / 108  0.49
+    360       1   13     22        60 / 60 / 60     162 / 162 / 162     9.4 / 9.4 / 9.4    10.2 / 10.2 / 10.2     5.5 / 5.5 / 5.5  18.6 / 18.6 / 18.6  0.37 / 0.37 / 0.37        30 / 30 / 30  0.59
+    480       0    0      0   no subject reaches 20 meals in every arm
+    720       0    0      0   no subject reaches 20 meals in every arm
+
+no_brake
+ window  common  own  meals   per-person median   within-person IQR       rise per 10 g    same, 40-55 g only        covered rise      uncovered rise            fullness      peak to return   ret
+    180      14   21    788        53 / 64 / 75       46 / 63 / 112    7.1 / 9.5 / 13.3      4.9 / 8.4 / 13.8    4.3 / 7.0 / 10.9  12.4 / 14.8 / 19.8  0.42 / 0.49 / 0.57        18 / 30 / 51  0.53
+    240      12   20    477        60 / 75 / 98      45 / 114 / 152   7.3 / 10.7 / 13.8     7.5 / 10.1 / 14.7    4.8 / 6.9 / 10.5  15.5 / 18.0 / 23.3  0.38 / 0.45 / 0.55        25 / 45 / 71  0.55
+    300       8   11    230       63 / 88 / 118      58 / 154 / 217  10.9 / 11.5 / 14.4     8.5 / 12.0 / 16.9    6.1 / 8.9 / 11.4  18.6 / 21.6 / 26.2  0.35 / 0.45 / 0.54        27 / 44 / 88  0.54
+    360       1    5     21        90 / 90 / 90     225 / 225 / 225  11.2 / 11.2 / 11.2       nan / nan / nan     7.4 / 7.4 / 7.4  25.7 / 25.7 / 25.7  0.30 / 0.30 / 0.30        38 / 38 / 38  0.57
+    480       0    0      0   no subject reaches 20 meals in every arm
+    720       0    0      0   no subject reaches 20 meals in every arm
+
+rebalanced
+ window  common  own  meals   per-person median   within-person IQR       rise per 10 g    same, 40-55 g only        covered rise      uncovered rise            fullness      peak to return   ret
+    180      14   25    662        45 / 58 / 64       48 / 80 / 124    5.7 / 9.1 / 11.5     6.0 / 10.0 / 11.1     3.3 / 5.5 / 8.9  10.8 / 14.8 / 19.3  0.36 / 0.44 / 0.52        13 / 29 / 47  0.59
+    240      12   21    389       53 / 62 / 107     100 / 126 / 160   7.4 / 10.3 / 14.0     7.8 / 10.1 / 13.4     3.8 / 6.6 / 8.8  16.8 / 19.2 / 21.6  0.27 / 0.38 / 0.50        26 / 40 / 64  0.58
+    300       8   13    187       65 / 84 / 123     110 / 139 / 197   9.2 / 13.6 / 16.2     7.4 / 11.6 / 15.2     4.3 / 8.5 / 9.7  20.4 / 22.8 / 31.2  0.32 / 0.41 / 0.50        20 / 40 / 64  0.53
+    360       1    1     20     168 / 168 / 168     275 / 275 / 275  16.6 / 16.6 / 16.6    18.3 / 18.3 / 18.3     nan / nan / nan  23.2 / 23.2 / 23.2  0.42 / 0.42 / 0.42        38 / 38 / 38  0.50
+    480       0    0      0   no subject reaches 20 meals in every arm
+    720       0    0      0   no subject reaches 20 meals in every arm
+
+paired on the common panel: duration, and rise per 10 g, against stock
+ window  subj   duration diff           95 per cent   rise diff           95 per cent
+    180    14         -15.0        -26.3 to -10.0        -1.5          -3.2 to -0.1
+    240    12         -15.0          -28.8 to 1.2         0.0           -3.3 to 1.4
+    300     8         -23.8         -40.0 to 15.0        -1.1           -2.6 to 3.7
+    360     1         107.5        107.5 to 107.5         7.1            7.1 to 7.1
+
+38 subject-arms terminated early and are excluded
+
+real, Loop, for comparison
+ window  subj  meals   per-person median   within-person IQR       rise per 10 g             covered           uncovered            fullness      peak to return
+    180   785 193696        50 / 70 / 90        51 / 70 / 90   9.5 / 15.0 / 22.4   9.3 / 14.4 / 21.6  13.5 / 22.4 / 33.1  0.43 / 0.51 / 0.56        20 / 30 / 47
+    240   767 150678       60 / 80 / 110       65 / 90 / 115  11.2 / 17.0 / 25.1  10.7 / 16.5 / 24.0  14.0 / 23.6 / 34.7  0.42 / 0.49 / 0.55        25 / 45 / 65
+    300   742 115854       65 / 90 / 125      80 / 107 / 135  12.1 / 18.3 / 26.9  11.6 / 17.5 / 25.8  14.8 / 24.5 / 36.4  0.41 / 0.48 / 0.54        30 / 55 / 82
+    360   720  92146      70 / 100 / 135      90 / 122 / 158  12.6 / 19.2 / 27.6  12.1 / 18.4 / 27.1  15.6 / 24.6 / 37.4  0.39 / 0.47 / 0.53       30 / 62 / 100
+    480   677  68556      77 / 115 / 158     105 / 141 / 186  13.2 / 20.2 / 29.0  12.3 / 19.5 / 28.6  15.4 / 24.8 / 37.1  0.35 / 0.44 / 0.52       35 / 77 / 125
+    720   595  44354      85 / 132 / 185     112 / 160 / 220  14.0 / 21.1 / 31.0  13.2 / 20.7 / 30.0  16.7 / 25.5 / 39.1  0.28 / 0.37 / 0.46      50 / 110 / 185
+
+wrote /private/tmp/claude-501/-Users-timstreet-StudioProjects-TimSim/7d89b575-6207-4294-b227-dc7f837f0f3c/scratchpad/ctl_basal-bolus.json

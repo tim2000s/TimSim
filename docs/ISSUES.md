@@ -1164,3 +1164,43 @@ The rule is one this log keeps finding in new forms. A comparison is like-for-li
 respect or in none, and a controller running on one side and not the other is as large a mismatch
 as a different definition. `meal_response.py` says what it measures plainly; the paper quoted it
 against something else.
+
+## 50. The controller was blamed for a difference that was the panel
+
+Found 2 September 2026, immediately after issue 49 attributed 8.5 mg/dL per 10 g of an unannounced
+meal's rise to the built-in correction loop.
+
+Tim's objection was that the built-in loop is a substrate rather than part of the person, so
+nothing it does bears on the bench. Running the same meals under four controllers was meant to
+test whether the algorithms actually benchmarked behave the same way.
+
+Read off each run's own common panel, they looked very different: 18.4 mg/dL per 10 g with no
+modulation, 15.8 under the Control-IQ stand-in, 13.0 under the built-in loop. That reads as the
+built-in loop removing 5.4 and the stand-in 2.6.
+
+Intersected on the ten subjects present in all four runs, they are not different at all:
+
+    no modulation        10.3 / 17.1 / 20.8
+    oref0 SMB            11.2 / 14.1 / 17.6
+    Control-IQ stand-in   9.6 / 17.4 / 19.9
+    built-in loop        12.6 / 15.3 / 19.8
+    real, Loop           14.0 / 23.6 / 34.7
+
+The built-in loop removes 1.8 rather than 5.4, the stand-in removes nothing, and the spread across
+four controllers is 3.3 mg/dL per 10 g against a gap to real of 6.5 to 9.5. Each run's panel was
+set by which subjects cleared 20 admitted meals in every liver arm of that run, and that differed
+by controller, so the columns were different people.
+
+So the controller is not the explanation and issue 49's attribution is withdrawn. The shortfall is
+in the model rather than in what is driving it, which puts it back where the liver measurements
+are.
+
+Two things bound this. The common panel is ten subjects, limited by oref0, and the liver arms in
+these runs terminated 22 and 17 subject-arms of 40 against stock's 3, so nothing about the arms
+should be read from them at all. And oref0's own usable panel is 10 against 34 for the others,
+because it microboluses on a rise and its own delivery reclassifies an unannounced meal as covered
+under the one unit threshold this measurement uses.
+
+The rule is the one this log already has twice this week, in a third place. A comparison across
+conditions holds the panel fixed across those conditions, and a panel defined by what each
+condition happened to admit is not fixed.
