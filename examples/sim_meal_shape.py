@@ -282,7 +282,7 @@ def main():
 
     # Paired, per subject, on the common panel, since the arms differ by one mechanism and the
     # subject is the strongest thing to hold fixed.
-    print(f"\npaired on the common panel: duration, and rise per 10 g, against stock")
+    print(f"\npaired on the common panel: {ARMS[-1][0]} against stock, duration and rise")
     print(f"{'window':>7}{'subj':>6}{'duration diff':>16}{'95 per cent':>22}"
           f"{'rise diff':>12}{'95 per cent':>22}")
     rng = np.random.default_rng(20260830)
@@ -290,9 +290,12 @@ def main():
         common = rec["common_panel"][w]
         if not common:
             continue
-        dm = np.array([cells[("rebalanced", w, n)]["median"] - cells[("stock", w, n)]["median"]
+        # The last arm against the first, whatever they are called, so renaming an arm cannot
+        # crash the pairing after two hours of runs. It did.
+        last = ARMS[-1][0]
+        dm = np.array([cells[(last, w, n)]["median"] - cells[("stock", w, n)]["median"]
                        for n in common])
-        di = np.array([cells[("rebalanced", w, n)]["rise_median"]
+        di = np.array([cells[(last, w, n)]["rise_median"]
                        - cells[("stock", w, n)]["rise_median"] for n in common])
         def ci(d):
             b = np.array([np.median(rng.choice(d, size=d.size, replace=True))
