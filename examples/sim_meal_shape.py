@@ -18,9 +18,11 @@ in the same field as a meal. The peak is located on the absolute trace. And the 
 rather than chosen, because the window sets the answer: on the real side the pooled median runs
 70 minutes at 180 and 135 at 720.
 
-The controller is the built-in correction loop. The real reference brackets that choice rather
-than matching it, since Loop is a closed loop and ReplaceBG a sensor-augmented pump, and the two
-agree on the per-person median at 80 minutes.
+The controller is selectable and it matters more than anything else measured here. Tim's point,
+2 September 2026: the built-in correction loop is a substrate rather than part of the person, so a
+meal flattened by it says nothing about the bench. The arms that are benchmarked run the
+Control-IQ stand-in and oref0 SMB, and `basal-bolus` is open-loop therapy with no modulation at
+all, so the three together separate what the model does from what a controller does to it.
 
     python examples/sim_meal_shape.py --subjects 40 --days 42
 """
@@ -63,9 +65,10 @@ def job(args):
     reduction happens here rather than sending the trace back. macOS spawns, so this is at
     module level and everything it needs travels in the tuple.
     """
-    name, arm, fraction, ki_scale, delay, kp2, kp3, days, windows = args
+    name, arm, fraction, ki_scale, delay, kp2, kp3, days, windows, controller = args
     from timsim.simulation.run import simulate, DEFAULT_LAYERS
     r = simulate(name, days=days, seed=seeds.BENCH, layers=DEFAULT_LAYERS,
+                 controller=controller,
                  liver_fast_fraction=fraction, liver_fast_ki_scale=ki_scale,
                  liver_delay=delay, liver_kp2_scale=kp2, liver_kp3_scale=kp3)
     if r.termination:
@@ -114,6 +117,9 @@ def main():
     ap.add_argument("--days", type=int, default=42)
     ap.add_argument("--windows", nargs="+", type=int, default=list(ms.WINDOWS))
     ap.add_argument("--min-meals", type=int, default=20)
+    ap.add_argument("--controller", default="trend",
+                    help="trend and reference are the built-in loop, control-iq is the "
+                         "benchmark stand-in, basal-bolus is open loop")
     ap.add_argument("--band", nargs=2, type=float, default=[40.0, 55.0],
                     help="grams band for the size-matched rise, the real interquartile range")
     ap.add_argument("--bolus-floor", type=float, default=1.0,
@@ -127,9 +133,10 @@ def main():
     from examples.panel import dosable
     subs = dosable(a.subjects)
 
-    jobs = [(n, arm, fr, ks, dl, k2, k3, a.days, tuple(a.windows))
+    jobs = [(n, arm, fr, ks, dl, k2, k3, a.days, tuple(a.windows), a.controller)
             for n in subs for arm, fr, ks, dl, k2, k3 in ARMS]
-    print(f"{len(subs)} subjects, {len(ARMS)} arms, {a.days} days each, on {a.workers} workers")
+    print(f"{len(subs)} subjects, {len(ARMS)} arms, {a.days} days each, "
+          f"controller {a.controller}, on {a.workers} workers")
     with mp.Pool(a.workers) as pool:
         results = pool.map(job, jobs)
 
@@ -144,7 +151,8 @@ def main():
     real_by = {(r["study"], r["window_min"]): r for r in real["rows"]}
 
     rec = {"provenance": provenance.stamp(), "subjects": list(subs), "days": a.days,
-           "seed": seeds.BENCH, "arms": [a_[0] for a_ in ARMS], "min_meals": a.min_meals,
+           "seed": seeds.BENCH, "controller": a.controller,
+           "arms": [a_[0] for a_ in ARMS], "min_meals": a.min_meals,
            "dropped": dropped, "arm_spec": [list(x) for x in ARMS],
            "rows": [], "per_subject": []}
 
