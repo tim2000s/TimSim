@@ -1125,3 +1125,42 @@ The rule is one this log already has in another form. A reproduction of a publis
 states which meal, which window and which denominator, and checks the reference against something
 it must satisfy: a meal cannot deliver more glucose than it contains, and a flux quoted per
 kilogram has to say per kilogram of what.
+
+## 49. Two like-for-like meal comparisons on one quantity reached opposite conclusions
+
+Found 2 September 2026, resolving a contradiction between study 17 and this week's measurements.
+
+Study 17 reports that the simulated rise per 10 g of carbohydrate "remained inside the real 15.9
+to 19.7 mg/dL at every scale, so the meal failure is one of timing rather than of magnitude".
+`sim_meal_shape.json` reports a simulated 13.0 against a real 23.6 on unbolused meals. Same
+physical quantity, opposite verdicts, and each comparison is internally consistent.
+
+The real references agree once the definition is matched. Measured on identical Loop meals from
+the studies database, 150 subjects, uncovered by the same bolus rule, the rise is 21.1 mg/dL per
+10 g from the trough and 18.9 from the reading at the meal at a 240 minute window, and 22.3 and
+19.7 at 360. The 19.7 is the top of the Commons range study 17 quotes, so two real cohorts on two
+continents agree to a decimal once they are asked the same question. The apparent disagreement was
+the trough clock against the entry clock, worth 2.2 to 2.6 per 10 g, plus a median over people
+rather than over meals.
+
+The simulated sides differ for a reason that is not a definition. `meal_response.py` states in its
+own first paragraph that the quantity is "a property of the metabolic model, so it is measured on
+the bare patient with no layers", and it runs `layers=()` under a basal-only controller.
+`sim_meal_shape.py` runs the full layers under the correction loop. So study 17 compared a
+simulated subject with no controller against real people whose loops were running, and the
+simulated figure is high partly because nothing was removing the rise.
+
+The gap between the two simulated protocols is 21.5 with no loop against 13.0 with one, so the
+simulated loop removes 8.5 mg/dL per 10 g from an unannounced meal. Real Loop participants, whose
+loops were also running, reach 23.6. Whatever the real algorithm does to an unannounced meal, it
+takes far less out of it than this one does.
+
+Neither producer is wrong about what it measures. The error is in the sentence study 17 draws from
+it, which compares a property of the metabolic model against a population running closed-loop
+therapy and concludes the magnitude is right. The conclusion that survives is narrower: the
+model's meal rise is right when nothing is dosing, and the gap opens once a controller is.
+
+The rule is one this log keeps finding in new forms. A comparison is like-for-like in every
+respect or in none, and a controller running on one side and not the other is as large a mismatch
+as a different definition. `meal_response.py` says what it measures plainly; the paper quoted it
+against something else.
