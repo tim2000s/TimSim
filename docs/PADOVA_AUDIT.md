@@ -740,17 +740,52 @@ At 0.35 the parameter stands at 82 against a published 186 to 279 and has closed
 gap. The reason is that the rise has two parts and `Km0` flattens only the glucose one; the other
 is `Vmx*X`, which already matches on its own axis.
 
-### What follows
+### The excess is smaller once production is counted with it
 
-This is the direction the residual needs and the first quantity measured here that points that
-way. Glucose from a meal is removed faster than in the people the benchmark compares against, so
-the peak is lower, and the simulated unbolused meal rise is 14.1 mg/dL per 10 g against a real
-23.6 while the excursion peaks at 195 against 209.
+Written after building a correction for the interaction and finding it does not work, which sent
+the arithmetic back through the whole balance rather than one flux.
 
-It is a structural property rather than a tuning error, for the same reason entry 3 is: a product
-of two terms cannot be wrong only where both move unless the product form itself is wrong.
-Correcting it would mean an interaction term S2008 does not have, which is a different model
-rather than a retuned one.
+Disposal is one side of it. The other is production, which this model under-suppresses: entry 5
+records 18.6 per cent against Hinshaw's 43.5 to 52.3. Both fluxes are therefore high, and they
+work against each other. In mg/kg of body weight per minute, with Hinshaw's production taken from
+the same table as the disposal:
+
+| | Disposal | Production | Net removal |
+|---|---|---|---|
+| human, basal | 2.40 | 2.09 | 0.31 |
+| human, postprandial | 3.01 | 1.06 | 1.95 |
+| model, basal | 2.74 | 2.34 | 0.40 |
+| model, postprandial | 3.85 | 1.66 | 2.19 |
+
+So the model removes 13 per cent more glucose than the people it is compared with, not 28. The
+larger figure is one flux quoted without the one that opposes it, and the first version of this
+entry did exactly that.
+
+Thirteen per cent still runs in the direction the residual needs, and it is one of very few
+quantities here that does. It is also a fifth of the size of the gap it would have to explain: the
+simulated unbolused meal rise is 14.1 mg/dL per 10 g against a real 23.6.
+
+### Neither knob corrects it
+
+`Km0` sets how much uptake rises with glucose. Scaled with `Vm0` and `Vmx` compensated, basal
+disposal holds at 2.74 exactly and the rise falls from 40 per cent to 30 at a scale of 0.35, where
+the parameter stands at 82 against a published 186 to 279.
+
+`set_disposal_interaction` weakens the glucose dependence of the insulin-dependent term alone,
+`Uid = Vm0*f + Vmx*X*f**beta`, with `Vmx` compensated at basal. It is a modelling choice rather
+than a published form and it barely moves the measurement: at an exponent of 0.4 disposal falls
+from 3.85 to 3.71 and the rise from 40 per cent to 35.
+
+The reason both fail is the same. Most of the rise is the glucose term acting on `Vm0`, the
+insulin-independent part, and neither knob touches that without moving the basal cell it is pinned
+to. Reaching 25 per cent would need the whole disposal response to glucose weakened, which is
+glucose effectiveness, and study 17 measures that as already too low at 0.0065 min^-1 against
+0.011 to 0.021.
+
+That is the contradiction this entry ends on. Measured on its own axis the model's disposal
+responds to glucose too weakly. Measured against Hinshaw's two states it responds too strongly.
+Both measurements are sound and they cannot both be describing the same quantity, so one of the
+protocols is not measuring what it is taken to measure, and which one is unresolved.
 
 ### Recommendation
 
