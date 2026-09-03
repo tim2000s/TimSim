@@ -1,0 +1,10 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+ transform    floor          isf_too_strong            no_iob_bound          no_low_suspend  acts_on_stale_readings
+                               shift  ratio            shift  ratio            shift  ratio            shift  ratio
+       raw    0.231       +0.262    1.13          +2.268    9.81          +0.314    1.36          +0.238    1.03   
+      sqrt    0.130       +0.142    1.09          +0.979    7.55          +0.187    1.44          +0.136    1.05   
+     log1p    0.123       +0.135    1.10          +0.929    7.57          +0.175    1.43          +0.133    1.08   
+
+ratio is shift over floor; above 1.0 is detected. A transform helps only if the
+ratio rises, since it shrinks the signal and the noise together.
