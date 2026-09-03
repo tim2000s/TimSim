@@ -1,0 +1,13 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+    n   A/A sd   floor  per-subject noise  smallest defect  pass
+   12    0.492   0.398              0.435            0.150    NO
+   20    0.511   0.320              0.418            0.240    NO
+   40    0.522   0.231              0.425            0.240   yes
+
+    n          isf_too_strong            no_iob_bound          no_low_suspend  acts_on_stale_readings
+   12                    0.15                    1.57                    0.18                    0.17
+   20                    0.25                    1.94                    0.28                    0.24
+   40                    0.26                    2.27                    0.31                    0.24
+
+wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/ranking_power.json

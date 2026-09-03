@@ -1,0 +1,58 @@
+{
+ "provenance": {
+  "population": "704cfac086df54ba",
+  "settings": "0df43fd250fadd47",
+  "commit": "2a6796e4981434a49573e54100fbe9efed7b3e7e",
+  "dirty": false,
+  "host": "Tims-Mac-mini.local",
+  "python": "3.14.7",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "when": "2026-09-03T10:00:51+00:00",
+  "simglucose": "0.2.11"
+ },
+ "days": 14,
+ "rows": [
+  {
+   "n": 12,
+   "aa_sd": 0.4915900713789958,
+   "floor": 0.39757248209121204,
+   "per_subject_noise": 0.4349332889941963,
+   "shifts": {
+    "isf_too_strong": 0.15,
+    "no_iob_bound": 1.57,
+    "no_low_suspend": 0.18,
+    "acts_on_stale_readings": 0.17
+   },
+   "smallest": 0.15,
+   "pass": false
+  },
+  {
+   "n": 20,
+   "aa_sd": 0.5112568611348052,
+   "floor": 0.32027864967138264,
+   "per_subject_noise": 0.4178490285422048,
+   "shifts": {
+    "isf_too_strong": 0.25,
+    "no_iob_bound": 1.94,
+    "no_low_suspend": 0.28,
+    "acts_on_stale_readings": 0.24
+   },
+   "smallest": 0.24,
+   "pass": false
+  },
+  {
+   "n": 40,
+   "aa_sd": 0.5220362151496377,
+   "floor": 0.23124613029789928,
+   "per_subject_noise": 0.4249413233012961,
+   "shifts": {
+    "isf_too_strong": 0.26,
+    "no_iob_bound": 2.27,
+    "no_low_suspend": 0.31,
+    "acts_on_stale_readings": 0.24
+   },
+   "smallest": 0.24,
+   "pass": true
+  }
+ ]
+}
