@@ -817,6 +817,62 @@ class VaryingPatient(T1DPatient):
         q["Vm0"] = float(q["Vm0"]) * f
         q["Vmx"] = float(q["Vmx"]) * f
 
+    def set_disposal_interaction(self, beta):
+        """Weaken how much insulin-dependent uptake rises with glucose, holding basal uptake.
+
+        `docs/PADOVA_AUDIT.md` entry 6 measures the defect this addresses. Uptake is
+        `(Vm0 + Vmx*X) * Gt / (Km0 + Gt)`, a product of an insulin term and a glucose term. On
+        glucose alone the model disposes too little, on insulin alone it matches, and on both
+        together it disposes 28 per cent more than Hinshaw's participants did. `Km0` cannot
+        correct that: with basal uptake held it moves the rise from 40 to 30 per cent against a
+        target of 25, at a value far outside the published range, because it flattens only the
+        glucose half of a rise that has two halves.
+
+        The correction here puts an exponent on the glucose dependence of the insulin-dependent
+        part alone:
+
+            Uid = Vm0 * f + Vmx * X * f**beta,   f = Gt / (Km0 + Gt)
+
+        At `beta` of 1.0 this is S2008 exactly. Below 1.0 the insulin-dependent term responds less
+        to glucose, which is the interaction the measurement says is too strong, and `Vmx` is
+        scaled by `f_basal**(1 - beta)` so uptake at the subject's own basal is unchanged.
+
+        This is a modelling choice and not a published form. No model of this interaction in type 1
+        diabetes exists to adopt, entry 6 says so, and the exponent is the smallest deviation from
+        S2008 that moves the quantity measured without touching either axis where the model
+        already agrees. It should be read as a hypothesis with a fitted parameter, not as
+        physiology.
+        """
+        from scipy.integrate import ode
+        q = self._params
+        self._disposal_beta = float(beta)
+        gtb = float(self.state[4])
+        f_b = gtb / (float(q["Km0"]) + gtb)
+        # Hold basal uptake: the insulin-dependent term is multiplied by f**beta instead of f, so
+        # `Vmx` absorbs the difference at the subject's own basal glucose.
+        q["Vmx"] = float(q["Vmx"]) * f_b ** (1.0 - float(beta))
+        if float(beta) != 1.0:
+            solver = ode(self._model_disposal).set_integrator("dopri5")
+            solver.set_initial_value(np.asarray(self._odesolver.y, float), self._odesolver.t)
+            self._odesolver = solver
+
+    @staticmethod
+    def _model_disposal(t, x, action, params, last_Qsto, last_foodtaken, beta=1.0):
+        """The published model, with the insulin-dependent uptake's glucose dependence weakened.
+
+        The base derivatives come from S2008 unchanged and the tissue compartment is corrected by
+        the difference between the two forms, so every other flux is untouched and a `beta` of 1.0
+        returns the published model exactly.
+        """
+        base = np.asarray(T1DPatient.model(t, x, action, params, last_Qsto, last_foodtaken),
+                          dtype=float)
+        if beta != 1.0 and x[4] >= 0:
+            f = x[4] / (params.Km0 + x[4])
+            pub = (params.Vm0 + params.Vmx * x[6]) * f
+            new = params.Vm0 * f + params.Vmx * x[6] * (f ** beta)
+            base[4] -= (new - pub)          # dxdt[4] carries -Uid, so a larger Uid lowers it
+        return base
+
     def set_hypo_risk(self, gain=HYPO_RISK_GAIN):
         """Switch on S2013's risk-modulated insulin action below basal glucose.
 
@@ -942,10 +998,13 @@ class VaryingPatient(T1DPatient):
         # parameters would integrate one step with the defaults, so the wrapper below patches the
         # solver's setter for the duration of the call instead.
         solver = self._odesolver
-        wants_extra = (getattr(self, "_liver_fast_fraction", 0.0) > 0.0
-                       and getattr(solver, "f", None) is self._model_two_timescale)
-        if wants_extra:
+        extra = ()
+        if (getattr(self, "_liver_fast_fraction", 0.0) > 0.0
+                and getattr(solver, "f", None) is self._model_two_timescale):
             extra = (self._liver_fast_fraction, self._liver_fast_ki)
+        elif getattr(solver, "f", None) is self._model_disposal:
+            extra = (float(getattr(self, "_disposal_beta", 1.0)),)
+        if extra:
             original = solver.set_f_params
 
             def with_extra(*args):

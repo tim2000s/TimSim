@@ -58,7 +58,7 @@ CELLS = (("basal", 151.3, 120.1, 2.40),
 
 
 def job(args):
-    name, label, g_target, i_target, hold, read_last, km_scale = args
+    name, label, g_target, i_target, hold, read_last, km_scale, beta = args
     p = V.from_population(name)
     q = p._params
     bw, Vg, Vi = float(q.BW), float(q["Vg"]), float(q["Vi"])
@@ -67,6 +67,9 @@ def job(args):
         p.step(PAction(CHO=0.0, insulin=basal))
     if km_scale != 1.0:
         p.set_disposal_curvature(km_scale)
+    if beta != 1.0:
+        p.set_disposal_interaction(beta)
+    if km_scale != 1.0 or beta != 1.0:
         for _ in range(120):
             p.step(PAction(CHO=0.0, insulin=basal))
 
@@ -89,7 +92,8 @@ def job(args):
         p._odesolver.set_initial_value(x, p._odesolver.t)
         if m >= hold - read_last:
             uii = float(q.Fsnc)
-            uid = float((q.Vm0 + q.Vmx * x[6]) * x[4] / (q.Km0 + x[4]))
+            f = float(x[4]) / (float(q.Km0) + float(x[4]))
+            uid = float(q.Vm0) * f + float(q.Vmx) * float(x[6]) * f ** beta
             egp = max(float(q.kp1 - q.kp2 * x[3] - q.kp3 * x[8]), 0.0)
             ren = float(q.ke1 * (x[3] - q.ke2)) if float(x[3]) > float(q.ke2) else 0.0
             out.append((uii + uid, uid, egp, ren, rate, float(p.observation.Gsub)))
@@ -98,7 +102,7 @@ def job(args):
             "rd": float(a[:, 0].mean()), "uid": float(a[:, 1].mean()),
             "egp": float(a[:, 2].mean()), "renal": float(a[:, 3].mean()),
             "infusion": float(a[:, 4].mean()), "held_mgdl": float(a[:, 5].mean()),
-            "km_scale": km_scale}
+            "km_scale": km_scale, "beta": beta}
 
 
 def main():
@@ -106,14 +110,15 @@ def main():
     ap.add_argument("--subjects", type=int, default=40)
     ap.add_argument("--hold", type=int, default=HOLD_MIN)
     ap.add_argument("--km-scales", nargs="+", type=float, default=[1.0])
+    ap.add_argument("--betas", nargs="+", type=float, default=[1.0])
     ap.add_argument("--workers", type=int, default=WORKERS)
     ap.add_argument("--out", default=OUT)
     a = ap.parse_args()
 
     from examples.panel import dosable
     subs = dosable(a.subjects)
-    jobs = [(n, lab, g, i, a.hold, READ_LAST, k)
-            for n in subs for lab, g, i, _ in CELLS for k in a.km_scales]
+    jobs = [(n, lab, g, i, a.hold, READ_LAST, k, b)
+            for n in subs for lab, g, i, _ in CELLS for k in a.km_scales for b in a.betas]
     with mp.Pool(a.workers) as pool:
         rows = pool.map(job, jobs)
 
@@ -125,23 +130,27 @@ def main():
     print(f"{'cell':>20}{'held mg/dL':>12}{'disposal p10/50/90':>26}{'Hinshaw':>10}"
           f"{'ratio':>8}{'production':>12}{'renal':>8}")
     for km in a.km_scales:
+     for bt in a.betas:
       for lab, g, i, ref in CELLS:
-        r = [x for x in rows if x["cell"] == lab and x["km_scale"] == km]
+        r = [x for x in rows if x["cell"] == lab and x["km_scale"] == km and x["beta"] == bt]
         rd = [x["rd"] for x in r]
-        rec["summary"][f"{lab}|km{km}"] = {"held_mgdl": q([x["held_mgdl"] for x in r], 50),
+        rec["summary"][f"{lab}|km{km}|b{bt}"] = {"held_mgdl": q([x["held_mgdl"] for x in r], 50),
                                "rd": [q(rd, 10), q(rd, 50), q(rd, 90)], "reference": ref,
                                "ratio": q(rd, 50) / ref,
                                "egp": q([x["egp"] for x in r], 50),
                                "renal": q([x["renal"] for x in r], 50),
                                "infusion": q([x["infusion"] for x in r], 50)}
-        s = rec["summary"][f"{lab}|km{km}"]
-        print(f"{f'{lab} km{km}':>20}{s['held_mgdl']:>12.0f}"
+        s = rec["summary"][f"{lab}|km{km}|b{bt}"]
+        print(f"{f'{lab} b{bt}':>20}{s['held_mgdl']:>12.0f}"
               f"{f'{s[chr(114)+chr(100)][0]:.2f} / {s[chr(114)+chr(100)][1]:.2f} / {s[chr(114)+chr(100)][2]:.2f}':>26}"
               f"{ref:>10.2f}{s['ratio']:>8.2f}{s['egp']:>12.2f}{s['renal']:>8.2f}")
     print(f"\n{'km scale':>10}{'rise basal to postprandial, %':>32}{'target':>10}")
     for km in a.km_scales:
-        b = rec["summary"][f"basal|km{km}"]; pp = rec["summary"][f"postprandial|km{km}"]
-        print(f"{km:>10.2f}{100*(pp['rd'][1]/b['rd'][1]-1):>32.0f}{100*(3.01/2.40-1):>10.0f}")
+      for bt in a.betas:
+        b = rec["summary"][f"basal|km{km}|b{bt}"]
+        pp = rec["summary"][f"postprandial|km{km}|b{bt}"]
+        print(f"{f'km{km} b{bt}':>10}{100*(pp['rd'][1]/b['rd'][1]-1):>32.0f}"
+              f"{100*(3.01/2.40-1):>10.0f}")
 
     json.dump(rec, open(a.out, "w"), indent=1)
     print(f"\nwrote {a.out}")
