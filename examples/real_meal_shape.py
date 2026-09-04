@@ -111,6 +111,7 @@ def one(cur, study, win, a, a_subsample=40, a_band=(40.0, 55.0), a_band_min=8,
                       "min_readings": int((win / 5) * a.coverage)})
     rows = cur.fetchall()
     by_subject, by_rise, by_band, hours = {}, {}, {}, []
+    by_grams = {}
     by_full, by_ptr = {}, {}
     covered, uncovered = {}, {}
     for sid, ttp, hour, rise, grams, bolus, mean_elev, ptr in rows:
@@ -124,6 +125,7 @@ def one(cur, study, win, a, a_subsample=40, a_band=(40.0, 55.0), a_band_min=8,
         (covered if float(bolus) >= a_bolus_floor else uncovered).setdefault(
             sid, []).append(float(rise) / (float(grams) / 10.0))
         by_subject.setdefault(sid, []).append(float(ttp))
+        by_grams.setdefault(sid, []).append(float(grams))
         # Rise per 10 g as logged. Logged grams under-state true intake, which the real rescue
         # and meal producers already record, so this is an upper bound on the rise per true 10 g.
         by_rise.setdefault(sid, []).append(float(rise) / (float(grams) / 10.0))
@@ -183,8 +185,11 @@ def one(cur, study, win, a, a_subsample=40, a_band=(40.0, 55.0), a_band_min=8,
             "fullness": [pct(fmed, 10), pct(fmed, 50), pct(fmed, 90)],
             "peak_to_return_min": [pct(pmed, 10), pct(pmed, 50), pct(pmed, 90)],
             "returned_share": [pct(ret, 10), pct(ret, 50), pct(ret, 90)],
-            "grams_median": float(np.median([g for v in by_band.values() for g in v]))
-                            if by_band else float("nan"),
+            # Logged grams per admitted meal, the median of the per-person medians, matching
+            # the simulated side's key. Until 4 September 2026 this held the median rise per
+            # 10 g inside the size band under the same name, and nothing read it.
+            "grams_median": float(np.median([np.median(by_grams[s_]) for s_ in kept]))
+                            if kept else float("nan"),
             "hour_share": {"05-10": float(np.mean((hours >= 5) & (hours <= 10))),
                            "11-15": float(np.mean((hours >= 11) & (hours <= 15))),
                            "16-21": float(np.mean((hours >= 16) & (hours <= 21))),

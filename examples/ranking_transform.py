@@ -1,9 +1,10 @@
 """Whether transforming the safety score buys sensitivity, or shrinks signal and noise alike.
 
-`ranking_power.json` puts the A/A detection floor at 0.231 across forty subjects, and the noise
-behind it is concentrated: five subjects carry 49 per cent of the total squared deviation, and a
-subject's paired variability correlates with its LBGI level at +0.46. Spread by level, subjects
-below LBGI 1 give a paired standard deviation of 0.405 and those between 1 and 2.5 give 0.745.
+`ranking_power.json` puts the A/A detection floor at 0.231 across forty subjects. Inspecting the
+per-subject A/A differences behind that figure suggested the noise was concentrated in a few
+subjects and grew with a subject's LBGI level, which is what prompted this check. That inspection
+was made on a per-subject table nothing stored, so its figures are not quoted here; nothing in
+`docs/measurements/` holds them and they should not be cited until a producer writes them.
 
 That invites a variance-stabilising transform, and the invitation is a trap. A square root takes
 the floor from 0.231 to 0.130, which reads as nearly doubling the bench's sensitivity, and it does
