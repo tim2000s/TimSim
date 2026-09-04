@@ -1253,6 +1253,12 @@ no plate to compare its entries against. Whether a bias below 1.0 belongs in the
 a separate question, to be pre-registered against the whole statistic table as `CONTRIBUTING.md`
 requires, and this measurement neither supports nor refutes it.
 
+That question was put on 4 September 2026 (`examples/carb_bias.py`, with the predictions and
+the result in its docstring). A bias of 0.84 moved the covered rise on the announced record from
+11.2 to 12.8 mg/dL per 10 entered grams, +1.8 [0.8, 2.8] paired on 32 subjects under oref0 SMB,
+below the 13.3 the denominator gives on its own, and moved the eaten-record rise -0.2 [-0.7,
+0.7]. It failed the registered rule and was not adopted.
+
 On duration the matched protocol moves the simulated side away from the real one. A meal nobody
 entered no longer breaks isolation, so a window that used to reject an index meal for a snack
 inside it now admits it, and the snack's rise lands inside the window and moves the peak later:

@@ -647,11 +647,17 @@ raises the rise and terminates 17 to 22 of 40 subject-arms hypoglycaemic, becaus
 coefficient is the stock model's only glucose-driven defence against a fall (audit entry 5); the
 asymmetric form has not been shown to close the gap.
 
-Two candidates remain open. The carbohydrate estimate bias, `CARB_ESTIMATE_BIAS` in
-`timsim/person/behaviour.py`, is held at 1.0 while the meal schedule already assumes people log
-0.84 of what they eat; a value below 1.0 would enter the person layer as a modelling choice under
-the bar in `CONTRIBUTING.md`, and it is being measured as this is written, with no result to
-report. The disposal interaction in audit entry 6, where disposal is right on each axis and 28 per
+The carbohydrate estimate bias was the next candidate. `CARB_ESTIMATE_BIAS` in
+`timsim/person/behaviour.py` is held at 1.0 while the meal schedule already assumes people log
+0.84 of what they eat, and a value of 0.84 was pre-registered and run on 4 September 2026
+(`examples/carb_bias.py`). Paired on the 32 subjects that completed both biases under oref0 SMB,
+the covered rise on the announced record moved from 11.2 to 12.8 mg/dL per 10 entered grams,
++1.8 [0.8, 2.8], which is less than the 13.3 the denominator alone gives and short of the 13.9
+the rule required; on the eaten record it moved -0.2 [-0.7, 0.7], so the smaller bolus added
+nothing the controller did not replace. Insulin fell under 1 per cent where the entry fell 16,
+no outcome or signature moved past its interval, and the hypoglycaemia rebound left the real
+range (28.5 to 37.7 per cent against an upper edge of 39.2 on the base interval). The parameter
+stays at 1.0. One candidate remains open. The disposal interaction in audit entry 6, where disposal is right on each axis and 28 per
 cent too high on both together (13 per cent once production is counted with it), runs in the
 direction the residual needs at about a fifth of its size, and neither `Km0` nor a disposal
 exponent moves it.

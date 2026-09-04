@@ -1,0 +1,392 @@
+{
+ "provenance": {
+  "population": "704cfac086df54ba",
+  "settings": "0df43fd250fadd47",
+  "commit": "af600c2b1463ccb3093d96bc948418c892665ecf",
+  "dirty": true,
+  "host": "Tims-Mac-mini.local",
+  "python": "3.14.7",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "when": "2026-09-04T16:13:07+00:00",
+  "simglucose": "0.2.11"
+ },
+ "base": "docs/measurements/sim_meal_shape_asym_oref.json",
+ "other": "docs/measurements/sim_meal_shape_bias084_eaten_oref.json",
+ "arm": "stock",
+ "same_runs": false,
+ "rows": [
+  {
+   "window_min": 180,
+   "key": "rise_median",
+   "subjects": 34,
+   "base": 9.94911146668035,
+   "other": 10.703915711889586,
+   "paired_diff": 0.1308144220023193,
+   "ci95": [
+    -0.204363332751762,
+    1.2528186425835681
+   ]
+  },
+  {
+   "window_min": 180,
+   "key": "rise_covered",
+   "subjects": 34,
+   "base": 9.449602643776071,
+   "other": 10.775143236635309,
+   "paired_diff": 0.14771570335071216,
+   "ci95": [
+    -0.3856197271288462,
+    0.6359215012591868
+   ]
+  },
+  {
+   "window_min": 180,
+   "key": "rise_uncovered",
+   "subjects": 16,
+   "base": 12.703323938726854,
+   "other": 12.46536458035035,
+   "paired_diff": 0.10633725053395793,
+   "ci95": [
+    -0.9186038805124523,
+    1.6238933819006967
+   ]
+  },
+  {
+   "window_min": 180,
+   "key": "median",
+   "subjects": 34,
+   "base": 80.0,
+   "other": 83.75,
+   "paired_diff": 5.0,
+   "ci95": [
+    -2.5,
+    10.0
+   ]
+  },
+  {
+   "window_min": 180,
+   "key": "grams_median",
+   "subjects": 34,
+   "base": 48.0,
+   "other": 47.5,
+   "paired_diff": 0.0,
+   "ci95": [
+    -0.5,
+    0.25624999999990905
+   ]
+  },
+  {
+   "window_min": 180,
+   "key": "meals",
+   "subjects": 34,
+   "base": 53.0,
+   "other": 54.0,
+   "paired_diff": 0.5,
+   "ci95": [
+    -1.0,
+    2.0
+   ]
+  },
+  {
+   "window_min": 180,
+   "key": "covered_meals",
+   "subjects": 34,
+   "base": 42.0,
+   "other": 43.0,
+   "paired_diff": 0.0,
+   "ci95": [
+    -2.0,
+    2.0
+   ]
+  },
+  {
+   "window_min": 180,
+   "key": "uncovered_meals",
+   "subjects": 34,
+   "base": 9.0,
+   "other": 9.5,
+   "paired_diff": 1.5,
+   "ci95": [
+    -1.0,
+    2.0
+   ]
+  },
+  {
+   "window_min": 240,
+   "key": "rise_median",
+   "subjects": 32,
+   "base": 10.983821712139633,
+   "other": 11.46207661379552,
+   "paired_diff": -0.11904093327340526,
+   "ci95": [
+    -0.5612465755702907,
+    0.9975396531792509
+   ]
+  },
+  {
+   "window_min": 240,
+   "key": "rise_covered",
+   "subjects": 32,
+   "base": 11.020071000146253,
+   "other": 10.361110524278725,
+   "paired_diff": -0.16102038096191862,
+   "ci95": [
+    -0.7189698575098458,
+    0.6774077903275115
+   ]
+  },
+  {
+   "window_min": 240,
+   "key": "rise_uncovered",
+   "subjects": 8,
+   "base": 14.135707712656712,
+   "other": 15.524025648559068,
+   "paired_diff": 0.3320333128504469,
+   "ci95": [
+    -1.697599723733095,
+    1.6669786228628816
+   ]
+  },
+  {
+   "window_min": 240,
+   "key": "median",
+   "subjects": 32,
+   "base": 85.0,
+   "other": 90.0,
+   "paired_diff": 3.75,
+   "ci95": [
+    0.0,
+    10.0
+   ]
+  },
+  {
+   "window_min": 240,
+   "key": "grams_median",
+   "subjects": 32,
+   "base": 48.25,
+   "other": 47.25,
+   "paired_diff": -0.5,
+   "ci95": [
+    -1.0,
+    0.0
+   ]
+  },
+  {
+   "window_min": 240,
+   "key": "meals",
+   "subjects": 32,
+   "base": 37.0,
+   "other": 36.5,
+   "paired_diff": 0.0,
+   "ci95": [
+    -1.0,
+    1.0
+   ]
+  },
+  {
+   "window_min": 240,
+   "key": "covered_meals",
+   "subjects": 32,
+   "base": 29.0,
+   "other": 29.0,
+   "paired_diff": -1.0,
+   "ci95": [
+    -2.0,
+    1.0
+   ]
+  },
+  {
+   "window_min": 240,
+   "key": "uncovered_meals",
+   "subjects": 32,
+   "base": 6.0,
+   "other": 6.0,
+   "paired_diff": 0.5,
+   "ci95": [
+    -0.5,
+    2.0
+   ]
+  },
+  {
+   "window_min": 300,
+   "key": "rise_median",
+   "subjects": 17,
+   "base": 10.501644790878986,
+   "other": 11.396561631073476,
+   "paired_diff": 0.6644274392394074,
+   "ci95": [
+    -0.6850614139426092,
+    1.38569456849336
+   ]
+  },
+  {
+   "window_min": 300,
+   "key": "rise_covered",
+   "subjects": 17,
+   "base": 10.659596895806665,
+   "other": 9.615002888305089,
+   "paired_diff": -0.23527863668653204,
+   "ci95": [
+    -1.0575686842775056,
+    0.5840628857423908
+   ]
+  },
+  {
+   "window_min": 300,
+   "key": "rise_uncovered",
+   "subjects": 2,
+   "base": 13.267948273281888,
+   "other": 14.749081564201578,
+   "paired_diff": 1.48113329091969,
+   "ci95": [
+    1.2546331796855306,
+    1.7076334021538493
+   ]
+  },
+  {
+   "window_min": 300,
+   "key": "median",
+   "subjects": 17,
+   "base": 90.0,
+   "other": 102.5,
+   "paired_diff": 0.0,
+   "ci95": [
+    -7.5,
+    17.5
+   ]
+  },
+  {
+   "window_min": 300,
+   "key": "grams_median",
+   "subjects": 17,
+   "base": 46.0,
+   "other": 45.5,
+   "paired_diff": 0.0,
+   "ci95": [
+    -1.0,
+    1.0
+   ]
+  },
+  {
+   "window_min": 300,
+   "key": "meals",
+   "subjects": 17,
+   "base": 26.0,
+   "other": 26.0,
+   "paired_diff": 1.0,
+   "ci95": [
+    -1.0,
+    2.0
+   ]
+  },
+  {
+   "window_min": 300,
+   "key": "covered_meals",
+   "subjects": 17,
+   "base": 21.0,
+   "other": 20.0,
+   "paired_diff": -1.0,
+   "ci95": [
+    -1.0,
+    3.0
+   ]
+  },
+  {
+   "window_min": 300,
+   "key": "uncovered_meals",
+   "subjects": 17,
+   "base": 6.0,
+   "other": 4.0,
+   "paired_diff": 1.0,
+   "ci95": [
+    -1.0,
+    1.0
+   ]
+  },
+  {
+   "window_min": 360,
+   "key": "rise_median",
+   "subjects": 2,
+   "base": 14.393513723973726,
+   "other": 11.856846402828072,
+   "paired_diff": -2.5366673211456536,
+   "ci95": [
+    -5.410459112139552,
+    0.33712446984824496
+   ]
+  },
+  {
+   "window_min": 360,
+   "key": "rise_covered",
+   "subjects": 2,
+   "base": 13.787350879142936,
+   "other": 9.956146684749061,
+   "paired_diff": -3.831204194393874,
+   "ci95": [
+    -8.193887785621634,
+    0.5314793968338858
+   ]
+  },
+  {
+   "window_min": 360,
+   "key": "median",
+   "subjects": 2,
+   "base": 122.5,
+   "other": 116.25,
+   "paired_diff": -6.25,
+   "ci95": [
+    -10.0,
+    -2.5
+   ]
+  },
+  {
+   "window_min": 360,
+   "key": "grams_median",
+   "subjects": 2,
+   "base": 43.25,
+   "other": 42.5,
+   "paired_diff": -0.75,
+   "ci95": [
+    -1.0,
+    -0.5
+   ]
+  },
+  {
+   "window_min": 360,
+   "key": "meals",
+   "subjects": 2,
+   "base": 21.0,
+   "other": 24.5,
+   "paired_diff": 3.5,
+   "ci95": [
+    3.0,
+    4.0
+   ]
+  },
+  {
+   "window_min": 360,
+   "key": "covered_meals",
+   "subjects": 2,
+   "base": 17.5,
+   "other": 20.0,
+   "paired_diff": 2.5,
+   "ci95": [
+    1.0,
+    4.0
+   ]
+  },
+  {
+   "window_min": 360,
+   "key": "uncovered_meals",
+   "subjects": 2,
+   "base": 3.5,
+   "other": 4.5,
+   "paired_diff": 1.0,
+   "ci95": [
+    -1.0,
+    3.0
+   ]
+  }
+ ],
+ "outcome": []
+}

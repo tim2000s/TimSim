@@ -2,12 +2,12 @@
  "provenance": {
   "population": "704cfac086df54ba",
   "settings": "0df43fd250fadd47",
-  "commit": "1581698816f4b6fc7c95fd166fff8c61431102f6",
+  "commit": "af600c2b1463ccb3093d96bc948418c892665ecf",
   "dirty": true,
   "host": "Tims-Mac-mini.local",
   "python": "3.14.7",
   "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
-  "when": "2026-09-04T13:40:20+00:00",
+  "when": "2026-09-04T16:10:37+00:00",
   "simglucose": "0.2.11"
  },
  "subjects": [
@@ -56,6 +56,7 @@
  "seed": 101,
  "controller": "oref",
  "record": "announced",
+ "carb_bias": null,
  "arms": [
   "stock"
  ],
@@ -429,7 +430,15 @@
    "returned_share": 0.32608695652173914,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#001"
+   "subject": "adult#001",
+   "outcome": {
+    "tir": 82.86210317460318,
+    "tbr": 4.6213624338624335,
+    "tbr54": 1.380621693121693,
+    "tar": 12.516534391534393,
+    "insulin_per_day": 71.81217477766744,
+    "rescues": 99
+   }
   },
   {
    "meals": 43,
@@ -449,7 +458,15 @@
    "returned_share": 0.4186046511627907,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#002"
+   "subject": "adult#002",
+   "outcome": {
+    "tir": 89.10383597883597,
+    "tbr": 3.629298941798942,
+    "tbr54": 0.3968253968253968,
+    "tar": 7.26686507936508,
+    "insulin_per_day": 65.51384723369523,
+    "rescues": 77
+   }
   },
   {
    "meals": 49,
@@ -469,7 +486,15 @@
    "returned_share": 0.32653061224489793,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#003"
+   "subject": "adult#003",
+   "outcome": {
+    "tir": 84.62301587301587,
+    "tbr": 1.0168650793650793,
+    "tbr54": 0.21494708994708994,
+    "tar": 14.360119047619047,
+    "insulin_per_day": 85.76034137786597,
+    "rescues": 30
+   }
   },
   {
    "meals": 51,
@@ -489,7 +514,15 @@
    "returned_share": 0.21568627450980393,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#004"
+   "subject": "adult#004",
+   "outcome": {
+    "tir": 76.66997354497354,
+    "tbr": 3.7698412698412698,
+    "tbr54": 1.281415343915344,
+    "tar": 19.560185185185187,
+    "insulin_per_day": 70.29338608611386,
+    "rescues": 80
+   }
   },
   {
    "meals": 31,
@@ -509,7 +542,15 @@
    "returned_share": 0.22580645161290322,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#005"
+   "subject": "adult#005",
+   "outcome": {
+    "tir": 84.73875661375662,
+    "tbr": 4.679232804232805,
+    "tbr54": 1.488095238095238,
+    "tar": 10.582010582010582,
+    "insulin_per_day": 73.52186190324794,
+    "rescues": 99
+   }
   },
   {
    "meals": 55,
@@ -529,7 +570,15 @@
    "returned_share": 0.2,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#006"
+   "subject": "adult#006",
+   "outcome": {
+    "tir": 75.81845238095238,
+    "tbr": 4.365079365079365,
+    "tbr54": 1.3227513227513228,
+    "tar": 19.816468253968253,
+    "insulin_per_day": 88.32011807054208,
+    "rescues": 86
+   }
   },
   {
    "meals": 53,
@@ -549,7 +598,15 @@
    "returned_share": 0.32075471698113206,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#007"
+   "subject": "adult#007",
+   "outcome": {
+    "tir": 88.64914021164022,
+    "tbr": 3.265542328042328,
+    "tbr54": 1.033399470899471,
+    "tar": 8.08531746031746,
+    "insulin_per_day": 46.24545966704843,
+    "rescues": 68
+   }
   },
   {
    "meals": 46,
@@ -569,7 +626,15 @@
    "returned_share": 0.2826086956521739,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#008"
+   "subject": "adult#008",
+   "outcome": {
+    "tir": 80.92757936507937,
+    "tbr": 3.7450396825396823,
+    "tbr54": 0.7027116402116401,
+    "tar": 15.327380952380953,
+    "insulin_per_day": 59.26982044849293,
+    "rescues": 80
+   }
   },
   {
    "meals": 45,
@@ -589,7 +654,15 @@
    "returned_share": 0.37777777777777777,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#009"
+   "subject": "adult#009",
+   "outcome": {
+    "tir": 90.39351851851852,
+    "tbr": 3.902116402116402,
+    "tbr54": 0.5787037037037037,
+    "tar": 5.704365079365079,
+    "insulin_per_day": 50.534488108139094,
+    "rescues": 81
+   }
   },
   {
    "meals": 43,
@@ -609,7 +682,15 @@
    "returned_share": 0.4418604651162791,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#010"
+   "subject": "adult#010",
+   "outcome": {
+    "tir": 90.47619047619048,
+    "tbr": 7.217261904761904,
+    "tbr54": 1.6038359788359788,
+    "tar": 2.306547619047619,
+    "insulin_per_day": 43.80456206425774,
+    "rescues": 153
+   }
   },
   {
    "meals": 51,
@@ -629,7 +710,15 @@
    "returned_share": 0.37254901960784315,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#011"
+   "subject": "adult#011",
+   "outcome": {
+    "tir": 81.38227513227513,
+    "tbr": 5.001653439153439,
+    "tbr54": 1.7609126984126984,
+    "tar": 13.616071428571427,
+    "insulin_per_day": 48.02202545129077,
+    "rescues": 99
+   }
   },
   {
    "meals": 59,
@@ -649,7 +738,15 @@
    "returned_share": 0.4067796610169492,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#012"
+   "subject": "adult#012",
+   "outcome": {
+    "tir": 86.78075396825396,
+    "tbr": 1.455026455026455,
+    "tbr54": 0.21494708994708994,
+    "tar": 11.764219576719578,
+    "insulin_per_day": 69.05229855427012,
+    "rescues": 36
+   }
   },
   {
    "meals": 60,
@@ -669,7 +766,15 @@
    "returned_share": 0.36666666666666664,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#013"
+   "subject": "adult#013",
+   "outcome": {
+    "tir": 89.92228835978835,
+    "tbr": 2.232142857142857,
+    "tbr54": 0.42162698412698413,
+    "tar": 7.845568783068783,
+    "insulin_per_day": 87.9973235745045,
+    "rescues": 61
+   }
   },
   {
    "meals": 33,
@@ -689,7 +794,15 @@
    "returned_share": 0.2727272727272727,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#014"
+   "subject": "adult#014",
+   "outcome": {
+    "tir": 79.24107142857143,
+    "tbr": 4.1253306878306875,
+    "tbr54": 1.496362433862434,
+    "tar": 16.633597883597883,
+    "insulin_per_day": 45.24239958666792,
+    "rescues": 91
+   }
   },
   {
    "meals": 55,
@@ -709,7 +822,15 @@
    "returned_share": 0.4909090909090909,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#015"
+   "subject": "adult#015",
+   "outcome": {
+    "tir": 85.05291005291006,
+    "tbr": 2.4140211640211637,
+    "tbr54": 0.5125661375661376,
+    "tar": 12.533068783068781,
+    "insulin_per_day": 47.73268678257409,
+    "rescues": 60
+   }
   },
   {
    "meals": 57,
@@ -729,7 +850,15 @@
    "returned_share": 0.38596491228070173,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#016"
+   "subject": "adult#016",
+   "outcome": {
+    "tir": 88.14484126984127,
+    "tbr": 2.5710978835978837,
+    "tbr54": 0.6035052910052909,
+    "tar": 9.284060846560847,
+    "insulin_per_day": 69.06329057370459,
+    "rescues": 62
+   }
   },
   {
    "meals": 42,
@@ -749,7 +878,15 @@
    "returned_share": 0.2857142857142857,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#017"
+   "subject": "adult#017",
+   "outcome": {
+    "tir": 81.4484126984127,
+    "tbr": 5.82010582010582,
+    "tbr54": 2.0502645502645502,
+    "tar": 12.731481481481483,
+    "insulin_per_day": 92.38767263144189,
+    "rescues": 115
+   }
   },
   {
    "meals": 58,
@@ -769,7 +906,15 @@
    "returned_share": 0.3103448275862069,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#018"
+   "subject": "adult#018",
+   "outcome": {
+    "tir": 79.36507936507937,
+    "tbr": 3.125,
+    "tbr54": 0.8267195767195766,
+    "tar": 17.509920634920633,
+    "insulin_per_day": 114.53562895881308,
+    "rescues": 70
+   }
   },
   {
    "meals": 38,
@@ -789,7 +934,15 @@
    "returned_share": 0.39473684210526316,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#019"
+   "subject": "adult#019",
+   "outcome": {
+    "tir": 84.91236772486772,
+    "tbr": 5.100859788359789,
+    "tbr54": 1.0912698412698412,
+    "tar": 9.986772486772487,
+    "insulin_per_day": 67.23968786290659,
+    "rescues": 118
+   }
   },
   {
    "meals": 43,
@@ -809,7 +962,15 @@
    "returned_share": 0.37209302325581395,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#020"
+   "subject": "adult#020",
+   "outcome": {
+    "tir": 85.06117724867724,
+    "tbr": 7.638888888888889,
+    "tbr54": 3.5135582010582014,
+    "tar": 7.299933862433862,
+    "insulin_per_day": 68.28699303887312,
+    "rescues": 147
+   }
   },
   {
    "meals": 33,
@@ -829,7 +990,15 @@
    "returned_share": 0.2727272727272727,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#021"
+   "subject": "adult#021",
+   "outcome": {
+    "tir": 75.05787037037037,
+    "tbr": 9.408068783068783,
+    "tbr54": 4.637896825396826,
+    "tar": 15.534060846560847,
+    "insulin_per_day": 71.12849962867556,
+    "rescues": 170
+   }
   },
   {
    "meals": 23,
@@ -849,7 +1018,15 @@
    "returned_share": 0.5652173913043478,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#023"
+   "subject": "adult#023",
+   "outcome": {
+    "tir": 84.83796296296296,
+    "tbr": 10.085978835978835,
+    "tbr54": 3.6623677248677247,
+    "tar": 5.076058201058201,
+    "insulin_per_day": 41.76945281746639,
+    "rescues": 199
+   }
   },
   {
    "meals": 57,
@@ -869,7 +1046,15 @@
    "returned_share": 0.43859649122807015,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#024"
+   "subject": "adult#024",
+   "outcome": {
+    "tir": 84.95370370370371,
+    "tbr": 4.497354497354497,
+    "tbr54": 1.595568783068783,
+    "tar": 10.548941798941799,
+    "insulin_per_day": 70.73734035620492,
+    "rescues": 93
+   }
   },
   {
    "meals": 57,
@@ -889,7 +1074,15 @@
    "returned_share": 0.21052631578947367,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#025"
+   "subject": "adult#025",
+   "outcome": {
+    "tir": 87.04530423280423,
+    "tbr": 2.0419973544973544,
+    "tbr54": 0.40509259259259256,
+    "tar": 10.912698412698413,
+    "insulin_per_day": 86.97939265260068,
+    "rescues": 45
+   }
   },
   {
    "meals": 37,
@@ -909,7 +1102,15 @@
    "returned_share": 0.4594594594594595,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#027"
+   "subject": "adult#027",
+   "outcome": {
+    "tir": 74.32208994708994,
+    "tbr": 11.003637566137566,
+    "tbr54": 4.935515873015873,
+    "tar": 14.674272486772486,
+    "insulin_per_day": 87.39530404585068,
+    "rescues": 213
+   }
   },
   {
    "meals": 42,
@@ -929,7 +1130,15 @@
    "returned_share": 0.38095238095238093,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#028"
+   "subject": "adult#028",
+   "outcome": {
+    "tir": 81.90310846560847,
+    "tbr": 5.729166666666666,
+    "tbr54": 1.3310185185185186,
+    "tar": 12.367724867724867,
+    "insulin_per_day": 81.0235047237428,
+    "rescues": 127
+   }
   },
   {
    "meals": 55,
@@ -949,7 +1158,15 @@
    "returned_share": 0.4,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#029"
+   "subject": "adult#029",
+   "outcome": {
+    "tir": 91.47652116402116,
+    "tbr": 2.8273809523809526,
+    "tbr54": 0.8597883597883598,
+    "tar": 5.696097883597884,
+    "insulin_per_day": 44.19344392567598,
+    "rescues": 66
+   }
   },
   {
    "meals": 47,
@@ -969,7 +1186,15 @@
    "returned_share": 0.44680851063829785,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#030"
+   "subject": "adult#030",
+   "outcome": {
+    "tir": 89.22784391534393,
+    "tbr": 3.736772486772487,
+    "tbr54": 1.033399470899471,
+    "tar": 7.035383597883597,
+    "insulin_per_day": 70.03832743944936,
+    "rescues": 82
+   }
   },
   {
    "meals": 57,
@@ -989,7 +1214,15 @@
    "returned_share": 0.22807017543859648,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#031"
+   "subject": "adult#031",
+   "outcome": {
+    "tir": 80.12566137566137,
+    "tbr": 2.0916005291005293,
+    "tbr54": 0.5539021164021164,
+    "tar": 17.782738095238095,
+    "insulin_per_day": 50.33499689568081,
+    "rescues": 49
+   }
   },
   {
    "meals": 40,
@@ -1009,7 +1242,15 @@
    "returned_share": 0.125,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#032"
+   "subject": "adult#032",
+   "outcome": {
+    "tir": 81.6550925925926,
+    "tbr": 8.225859788359788,
+    "tbr54": 2.9265873015873014,
+    "tar": 10.119047619047619,
+    "insulin_per_day": 67.72141858354597,
+    "rescues": 162
+   }
   },
   {
    "meals": 41,
@@ -1029,7 +1270,15 @@
    "returned_share": 0.3902439024390244,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#034"
+   "subject": "adult#034",
+   "outcome": {
+    "tir": 72.98280423280423,
+    "tbr": 5.696097883597884,
+    "tbr54": 2.4140211640211637,
+    "tar": 21.321097883597883,
+    "insulin_per_day": 59.86766649445403,
+    "rescues": 108
+   }
   },
   {
    "meals": 59,
@@ -1049,7 +1298,15 @@
    "returned_share": 0.2711864406779661,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#035"
+   "subject": "adult#035",
+   "outcome": {
+    "tir": 84.375,
+    "tbr": 1.1656746031746033,
+    "tbr54": 0.3224206349206349,
+    "tar": 14.459325396825399,
+    "insulin_per_day": 97.4261009180846,
+    "rescues": 31
+   }
   },
   {
    "meals": 42,
@@ -1069,7 +1326,15 @@
    "returned_share": 0.40476190476190477,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#036"
+   "subject": "adult#036",
+   "outcome": {
+    "tir": 81.58895502645503,
+    "tbr": 5.935846560846561,
+    "tbr54": 1.3558201058201058,
+    "tar": 12.475198412698413,
+    "insulin_per_day": 136.07307916810652,
+    "rescues": 124
+   }
   },
   {
    "meals": 58,
@@ -1089,7 +1354,15 @@
    "returned_share": 0.41379310344827586,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#037"
+   "subject": "adult#037",
+   "outcome": {
+    "tir": 86.79728835978835,
+    "tbr": 1.6947751322751323,
+    "tbr54": 0.42162698412698413,
+    "tar": 11.507936507936508,
+    "insulin_per_day": 88.37416511346325,
+    "rescues": 47
+   }
   },
   {
    "meals": 50,
@@ -1109,7 +1382,15 @@
    "returned_share": 0.42,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#038"
+   "subject": "adult#038",
+   "outcome": {
+    "tir": 76.78571428571429,
+    "tbr": 3.298611111111111,
+    "tbr54": 1.000330687830688,
+    "tar": 19.9156746031746,
+    "insulin_per_day": 80.99646516362763,
+    "rescues": 71
+   }
   },
   {
    "meals": 35,
@@ -1129,7 +1410,15 @@
    "returned_share": 0.2,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#040"
+   "subject": "adult#040",
+   "outcome": {
+    "tir": 82.14285714285714,
+    "tbr": 6.9940476190476195,
+    "tbr54": 1.5873015873015872,
+    "tar": 10.863095238095239,
+    "insulin_per_day": 63.11939169391069,
+    "rescues": 153
+   }
   },
   {
    "meals": 42,
@@ -1149,7 +1438,15 @@
    "returned_share": 0.42857142857142855,
    "arm": "stock",
    "window_min": 180,
-   "subject": "adult#041"
+   "subject": "adult#041",
+   "outcome": {
+    "tir": 88.39285714285714,
+    "tbr": 4.654431216931217,
+    "tbr54": 1.2235449735449735,
+    "tar": 6.952711640211639,
+    "insulin_per_day": 35.571180470349624,
+    "rescues": 99
+   }
   },
   {
    "meals": 35,
@@ -1169,7 +1466,15 @@
    "returned_share": 0.37142857142857144,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#001"
+   "subject": "adult#001",
+   "outcome": {
+    "tir": 82.86210317460318,
+    "tbr": 4.6213624338624335,
+    "tbr54": 1.380621693121693,
+    "tar": 12.516534391534393,
+    "insulin_per_day": 71.81217477766744,
+    "rescues": 99
+   }
   },
   {
    "meals": 38,
@@ -1189,7 +1494,15 @@
    "returned_share": 0.42105263157894735,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#002"
+   "subject": "adult#002",
+   "outcome": {
+    "tir": 89.10383597883597,
+    "tbr": 3.629298941798942,
+    "tbr54": 0.3968253968253968,
+    "tar": 7.26686507936508,
+    "insulin_per_day": 65.51384723369523,
+    "rescues": 77
+   }
   },
   {
    "meals": 46,
@@ -1209,7 +1522,15 @@
    "returned_share": 0.2826086956521739,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#003"
+   "subject": "adult#003",
+   "outcome": {
+    "tir": 84.62301587301587,
+    "tbr": 1.0168650793650793,
+    "tbr54": 0.21494708994708994,
+    "tar": 14.360119047619047,
+    "insulin_per_day": 85.76034137786597,
+    "rescues": 30
+   }
   },
   {
    "meals": 40,
@@ -1229,7 +1550,15 @@
    "returned_share": 0.3,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#004"
+   "subject": "adult#004",
+   "outcome": {
+    "tir": 76.66997354497354,
+    "tbr": 3.7698412698412698,
+    "tbr54": 1.281415343915344,
+    "tar": 19.560185185185187,
+    "insulin_per_day": 70.29338608611386,
+    "rescues": 80
+   }
   },
   {
    "meals": 27,
@@ -1249,7 +1578,15 @@
    "returned_share": 0.2962962962962963,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#005"
+   "subject": "adult#005",
+   "outcome": {
+    "tir": 84.73875661375662,
+    "tbr": 4.679232804232805,
+    "tbr54": 1.488095238095238,
+    "tar": 10.582010582010582,
+    "insulin_per_day": 73.52186190324794,
+    "rescues": 99
+   }
   },
   {
    "meals": 40,
@@ -1269,7 +1606,15 @@
    "returned_share": 0.35,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#006"
+   "subject": "adult#006",
+   "outcome": {
+    "tir": 75.81845238095238,
+    "tbr": 4.365079365079365,
+    "tbr54": 1.3227513227513228,
+    "tar": 19.816468253968253,
+    "insulin_per_day": 88.32011807054208,
+    "rescues": 86
+   }
   },
   {
    "meals": 46,
@@ -1289,7 +1634,15 @@
    "returned_share": 0.391304347826087,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#007"
+   "subject": "adult#007",
+   "outcome": {
+    "tir": 88.64914021164022,
+    "tbr": 3.265542328042328,
+    "tbr54": 1.033399470899471,
+    "tar": 8.08531746031746,
+    "insulin_per_day": 46.24545966704843,
+    "rescues": 68
+   }
   },
   {
    "meals": 41,
@@ -1309,7 +1662,15 @@
    "returned_share": 0.36585365853658536,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#008"
+   "subject": "adult#008",
+   "outcome": {
+    "tir": 80.92757936507937,
+    "tbr": 3.7450396825396823,
+    "tbr54": 0.7027116402116401,
+    "tar": 15.327380952380953,
+    "insulin_per_day": 59.26982044849293,
+    "rescues": 80
+   }
   },
   {
    "meals": 37,
@@ -1329,7 +1690,15 @@
    "returned_share": 0.4594594594594595,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#009"
+   "subject": "adult#009",
+   "outcome": {
+    "tir": 90.39351851851852,
+    "tbr": 3.902116402116402,
+    "tbr54": 0.5787037037037037,
+    "tar": 5.704365079365079,
+    "insulin_per_day": 50.534488108139094,
+    "rescues": 81
+   }
   },
   {
    "meals": 29,
@@ -1349,7 +1718,15 @@
    "returned_share": 0.5517241379310345,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#010"
+   "subject": "adult#010",
+   "outcome": {
+    "tir": 90.47619047619048,
+    "tbr": 7.217261904761904,
+    "tbr54": 1.6038359788359788,
+    "tar": 2.306547619047619,
+    "insulin_per_day": 43.80456206425774,
+    "rescues": 153
+   }
   },
   {
    "meals": 37,
@@ -1369,7 +1746,15 @@
    "returned_share": 0.4594594594594595,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#011"
+   "subject": "adult#011",
+   "outcome": {
+    "tir": 81.38227513227513,
+    "tbr": 5.001653439153439,
+    "tbr54": 1.7609126984126984,
+    "tar": 13.616071428571427,
+    "insulin_per_day": 48.02202545129077,
+    "rescues": 99
+   }
   },
   {
    "meals": 47,
@@ -1389,7 +1774,15 @@
    "returned_share": 0.5319148936170213,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#012"
+   "subject": "adult#012",
+   "outcome": {
+    "tir": 86.78075396825396,
+    "tbr": 1.455026455026455,
+    "tbr54": 0.21494708994708994,
+    "tar": 11.764219576719578,
+    "insulin_per_day": 69.05229855427012,
+    "rescues": 36
+   }
   },
   {
    "meals": 47,
@@ -1409,7 +1802,15 @@
    "returned_share": 0.44680851063829785,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#013"
+   "subject": "adult#013",
+   "outcome": {
+    "tir": 89.92228835978835,
+    "tbr": 2.232142857142857,
+    "tbr54": 0.42162698412698413,
+    "tar": 7.845568783068783,
+    "insulin_per_day": 87.9973235745045,
+    "rescues": 61
+   }
   },
   {
    "meals": 25,
@@ -1429,7 +1830,15 @@
    "returned_share": 0.48,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#014"
+   "subject": "adult#014",
+   "outcome": {
+    "tir": 79.24107142857143,
+    "tbr": 4.1253306878306875,
+    "tbr54": 1.496362433862434,
+    "tar": 16.633597883597883,
+    "insulin_per_day": 45.24239958666792,
+    "rescues": 91
+   }
   },
   {
    "meals": 43,
@@ -1449,7 +1858,15 @@
    "returned_share": 0.4883720930232558,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#015"
+   "subject": "adult#015",
+   "outcome": {
+    "tir": 85.05291005291006,
+    "tbr": 2.4140211640211637,
+    "tbr54": 0.5125661375661376,
+    "tar": 12.533068783068781,
+    "insulin_per_day": 47.73268678257409,
+    "rescues": 60
+   }
   },
   {
    "meals": 44,
@@ -1469,7 +1886,15 @@
    "returned_share": 0.5227272727272727,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#016"
+   "subject": "adult#016",
+   "outcome": {
+    "tir": 88.14484126984127,
+    "tbr": 2.5710978835978837,
+    "tbr54": 0.6035052910052909,
+    "tar": 9.284060846560847,
+    "insulin_per_day": 69.06329057370459,
+    "rescues": 62
+   }
   },
   {
    "meals": 32,
@@ -1489,7 +1914,15 @@
    "returned_share": 0.3125,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#017"
+   "subject": "adult#017",
+   "outcome": {
+    "tir": 81.4484126984127,
+    "tbr": 5.82010582010582,
+    "tbr54": 2.0502645502645502,
+    "tar": 12.731481481481483,
+    "insulin_per_day": 92.38767263144189,
+    "rescues": 115
+   }
   },
   {
    "meals": 44,
@@ -1509,7 +1942,15 @@
    "returned_share": 0.3409090909090909,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#018"
+   "subject": "adult#018",
+   "outcome": {
+    "tir": 79.36507936507937,
+    "tbr": 3.125,
+    "tbr54": 0.8267195767195766,
+    "tar": 17.509920634920633,
+    "insulin_per_day": 114.53562895881308,
+    "rescues": 70
+   }
   },
   {
    "meals": 31,
@@ -1529,7 +1970,15 @@
    "returned_share": 0.5483870967741935,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#019"
+   "subject": "adult#019",
+   "outcome": {
+    "tir": 84.91236772486772,
+    "tbr": 5.100859788359789,
+    "tbr54": 1.0912698412698412,
+    "tar": 9.986772486772487,
+    "insulin_per_day": 67.23968786290659,
+    "rescues": 118
+   }
   },
   {
    "meals": 32,
@@ -1549,7 +1998,15 @@
    "returned_share": 0.4375,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#020"
+   "subject": "adult#020",
+   "outcome": {
+    "tir": 85.06117724867724,
+    "tbr": 7.638888888888889,
+    "tbr54": 3.5135582010582014,
+    "tar": 7.299933862433862,
+    "insulin_per_day": 68.28699303887312,
+    "rescues": 147
+   }
   },
   {
    "meals": 29,
@@ -1569,7 +2026,15 @@
    "returned_share": 0.3793103448275862,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#021"
+   "subject": "adult#021",
+   "outcome": {
+    "tir": 75.05787037037037,
+    "tbr": 9.408068783068783,
+    "tbr54": 4.637896825396826,
+    "tar": 15.534060846560847,
+    "insulin_per_day": 71.12849962867556,
+    "rescues": 170
+   }
   },
   {
    "meals": 49,
@@ -1589,7 +2054,15 @@
    "returned_share": 0.6122448979591837,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#024"
+   "subject": "adult#024",
+   "outcome": {
+    "tir": 84.95370370370371,
+    "tbr": 4.497354497354497,
+    "tbr54": 1.595568783068783,
+    "tar": 10.548941798941799,
+    "insulin_per_day": 70.73734035620492,
+    "rescues": 93
+   }
   },
   {
    "meals": 45,
@@ -1609,7 +2082,15 @@
    "returned_share": 0.4444444444444444,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#025"
+   "subject": "adult#025",
+   "outcome": {
+    "tir": 87.04530423280423,
+    "tbr": 2.0419973544973544,
+    "tbr54": 0.40509259259259256,
+    "tar": 10.912698412698413,
+    "insulin_per_day": 86.97939265260068,
+    "rescues": 45
+   }
   },
   {
    "meals": 23,
@@ -1629,7 +2110,15 @@
    "returned_share": 0.5217391304347826,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#027"
+   "subject": "adult#027",
+   "outcome": {
+    "tir": 74.32208994708994,
+    "tbr": 11.003637566137566,
+    "tbr54": 4.935515873015873,
+    "tar": 14.674272486772486,
+    "insulin_per_day": 87.39530404585068,
+    "rescues": 213
+   }
   },
   {
    "meals": 33,
@@ -1649,7 +2138,15 @@
    "returned_share": 0.42424242424242425,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#028"
+   "subject": "adult#028",
+   "outcome": {
+    "tir": 81.90310846560847,
+    "tbr": 5.729166666666666,
+    "tbr54": 1.3310185185185186,
+    "tar": 12.367724867724867,
+    "insulin_per_day": 81.0235047237428,
+    "rescues": 127
+   }
   },
   {
    "meals": 43,
@@ -1669,7 +2166,15 @@
    "returned_share": 0.3953488372093023,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#029"
+   "subject": "adult#029",
+   "outcome": {
+    "tir": 91.47652116402116,
+    "tbr": 2.8273809523809526,
+    "tbr54": 0.8597883597883598,
+    "tar": 5.696097883597884,
+    "insulin_per_day": 44.19344392567598,
+    "rescues": 66
+   }
   },
   {
    "meals": 37,
@@ -1689,7 +2194,15 @@
    "returned_share": 0.43243243243243246,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#030"
+   "subject": "adult#030",
+   "outcome": {
+    "tir": 89.22784391534393,
+    "tbr": 3.736772486772487,
+    "tbr54": 1.033399470899471,
+    "tar": 7.035383597883597,
+    "insulin_per_day": 70.03832743944936,
+    "rescues": 82
+   }
   },
   {
    "meals": 51,
@@ -1709,7 +2222,15 @@
    "returned_share": 0.27450980392156865,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#031"
+   "subject": "adult#031",
+   "outcome": {
+    "tir": 80.12566137566137,
+    "tbr": 2.0916005291005293,
+    "tbr54": 0.5539021164021164,
+    "tar": 17.782738095238095,
+    "insulin_per_day": 50.33499689568081,
+    "rescues": 49
+   }
   },
   {
    "meals": 34,
@@ -1729,7 +2250,15 @@
    "returned_share": 0.35294117647058826,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#032"
+   "subject": "adult#032",
+   "outcome": {
+    "tir": 81.6550925925926,
+    "tbr": 8.225859788359788,
+    "tbr54": 2.9265873015873014,
+    "tar": 10.119047619047619,
+    "insulin_per_day": 67.72141858354597,
+    "rescues": 162
+   }
   },
   {
    "meals": 32,
@@ -1749,7 +2278,15 @@
    "returned_share": 0.40625,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#034"
+   "subject": "adult#034",
+   "outcome": {
+    "tir": 72.98280423280423,
+    "tbr": 5.696097883597884,
+    "tbr54": 2.4140211640211637,
+    "tar": 21.321097883597883,
+    "insulin_per_day": 59.86766649445403,
+    "rescues": 108
+   }
   },
   {
    "meals": 52,
@@ -1769,7 +2306,15 @@
    "returned_share": 0.3269230769230769,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#035"
+   "subject": "adult#035",
+   "outcome": {
+    "tir": 84.375,
+    "tbr": 1.1656746031746033,
+    "tbr54": 0.3224206349206349,
+    "tar": 14.459325396825399,
+    "insulin_per_day": 97.4261009180846,
+    "rescues": 31
+   }
   },
   {
    "meals": 37,
@@ -1789,7 +2334,15 @@
    "returned_share": 0.43243243243243246,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#036"
+   "subject": "adult#036",
+   "outcome": {
+    "tir": 81.58895502645503,
+    "tbr": 5.935846560846561,
+    "tbr54": 1.3558201058201058,
+    "tar": 12.475198412698413,
+    "insulin_per_day": 136.07307916810652,
+    "rescues": 124
+   }
   },
   {
    "meals": 51,
@@ -1809,7 +2362,15 @@
    "returned_share": 0.49019607843137253,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#037"
+   "subject": "adult#037",
+   "outcome": {
+    "tir": 86.79728835978835,
+    "tbr": 1.6947751322751323,
+    "tbr54": 0.42162698412698413,
+    "tar": 11.507936507936508,
+    "insulin_per_day": 88.37416511346325,
+    "rescues": 47
+   }
   },
   {
    "meals": 40,
@@ -1829,7 +2390,15 @@
    "returned_share": 0.475,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#038"
+   "subject": "adult#038",
+   "outcome": {
+    "tir": 76.78571428571429,
+    "tbr": 3.298611111111111,
+    "tbr54": 1.000330687830688,
+    "tar": 19.9156746031746,
+    "insulin_per_day": 80.99646516362763,
+    "rescues": 71
+   }
   },
   {
    "meals": 29,
@@ -1849,7 +2418,15 @@
    "returned_share": 0.3103448275862069,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#040"
+   "subject": "adult#040",
+   "outcome": {
+    "tir": 82.14285714285714,
+    "tbr": 6.9940476190476195,
+    "tbr54": 1.5873015873015872,
+    "tar": 10.863095238095239,
+    "insulin_per_day": 63.11939169391069,
+    "rescues": 153
+   }
   },
   {
    "meals": 34,
@@ -1869,7 +2446,15 @@
    "returned_share": 0.4117647058823529,
    "arm": "stock",
    "window_min": 240,
-   "subject": "adult#041"
+   "subject": "adult#041",
+   "outcome": {
+    "tir": 88.39285714285714,
+    "tbr": 4.654431216931217,
+    "tbr54": 1.2235449735449735,
+    "tar": 6.952711640211639,
+    "insulin_per_day": 35.571180470349624,
+    "rescues": 99
+   }
   },
   {
    "meals": 26,
@@ -1889,7 +2474,15 @@
    "returned_share": 0.4230769230769231,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#001"
+   "subject": "adult#001",
+   "outcome": {
+    "tir": 82.86210317460318,
+    "tbr": 4.6213624338624335,
+    "tbr54": 1.380621693121693,
+    "tar": 12.516534391534393,
+    "insulin_per_day": 71.81217477766744,
+    "rescues": 99
+   }
   },
   {
    "meals": 25,
@@ -1909,7 +2502,15 @@
    "returned_share": 0.4,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#002"
+   "subject": "adult#002",
+   "outcome": {
+    "tir": 89.10383597883597,
+    "tbr": 3.629298941798942,
+    "tbr54": 0.3968253968253968,
+    "tar": 7.26686507936508,
+    "insulin_per_day": 65.51384723369523,
+    "rescues": 77
+   }
   },
   {
    "meals": 40,
@@ -1929,7 +2530,15 @@
    "returned_share": 0.325,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#003"
+   "subject": "adult#003",
+   "outcome": {
+    "tir": 84.62301587301587,
+    "tbr": 1.0168650793650793,
+    "tbr54": 0.21494708994708994,
+    "tar": 14.360119047619047,
+    "insulin_per_day": 85.76034137786597,
+    "rescues": 30
+   }
   },
   {
    "meals": 32,
@@ -1949,7 +2558,15 @@
    "returned_share": 0.40625,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#004"
+   "subject": "adult#004",
+   "outcome": {
+    "tir": 76.66997354497354,
+    "tbr": 3.7698412698412698,
+    "tbr54": 1.281415343915344,
+    "tar": 19.560185185185187,
+    "insulin_per_day": 70.29338608611386,
+    "rescues": 80
+   }
   },
   {
    "meals": 20,
@@ -1969,7 +2586,15 @@
    "returned_share": 0.5,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#005"
+   "subject": "adult#005",
+   "outcome": {
+    "tir": 84.73875661375662,
+    "tbr": 4.679232804232805,
+    "tbr54": 1.488095238095238,
+    "tar": 10.582010582010582,
+    "insulin_per_day": 73.52186190324794,
+    "rescues": 99
+   }
   },
   {
    "meals": 27,
@@ -1989,7 +2614,15 @@
    "returned_share": 0.5555555555555556,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#006"
+   "subject": "adult#006",
+   "outcome": {
+    "tir": 75.81845238095238,
+    "tbr": 4.365079365079365,
+    "tbr54": 1.3227513227513228,
+    "tar": 19.816468253968253,
+    "insulin_per_day": 88.32011807054208,
+    "rescues": 86
+   }
   },
   {
    "meals": 38,
@@ -2009,7 +2642,15 @@
    "returned_share": 0.4473684210526316,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#007"
+   "subject": "adult#007",
+   "outcome": {
+    "tir": 88.64914021164022,
+    "tbr": 3.265542328042328,
+    "tbr54": 1.033399470899471,
+    "tar": 8.08531746031746,
+    "insulin_per_day": 46.24545966704843,
+    "rescues": 68
+   }
   },
   {
    "meals": 27,
@@ -2029,7 +2670,15 @@
    "returned_share": 0.48148148148148145,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#008"
+   "subject": "adult#008",
+   "outcome": {
+    "tir": 80.92757936507937,
+    "tbr": 3.7450396825396823,
+    "tbr54": 0.7027116402116401,
+    "tar": 15.327380952380953,
+    "insulin_per_day": 59.26982044849293,
+    "rescues": 80
+   }
   },
   {
    "meals": 29,
@@ -2049,7 +2698,15 @@
    "returned_share": 0.5517241379310345,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#009"
+   "subject": "adult#009",
+   "outcome": {
+    "tir": 90.39351851851852,
+    "tbr": 3.902116402116402,
+    "tbr54": 0.5787037037037037,
+    "tar": 5.704365079365079,
+    "insulin_per_day": 50.534488108139094,
+    "rescues": 81
+   }
   },
   {
    "meals": 22,
@@ -2069,7 +2726,15 @@
    "returned_share": 0.7272727272727273,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#010"
+   "subject": "adult#010",
+   "outcome": {
+    "tir": 90.47619047619048,
+    "tbr": 7.217261904761904,
+    "tbr54": 1.6038359788359788,
+    "tar": 2.306547619047619,
+    "insulin_per_day": 43.80456206425774,
+    "rescues": 153
+   }
   },
   {
    "meals": 25,
@@ -2089,7 +2754,15 @@
    "returned_share": 0.48,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#011"
+   "subject": "adult#011",
+   "outcome": {
+    "tir": 81.38227513227513,
+    "tbr": 5.001653439153439,
+    "tbr54": 1.7609126984126984,
+    "tar": 13.616071428571427,
+    "insulin_per_day": 48.02202545129077,
+    "rescues": 99
+   }
   },
   {
    "meals": 39,
@@ -2109,7 +2782,15 @@
    "returned_share": 0.48717948717948717,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#012"
+   "subject": "adult#012",
+   "outcome": {
+    "tir": 86.78075396825396,
+    "tbr": 1.455026455026455,
+    "tbr54": 0.21494708994708994,
+    "tar": 11.764219576719578,
+    "insulin_per_day": 69.05229855427012,
+    "rescues": 36
+   }
   },
   {
    "meals": 36,
@@ -2129,7 +2810,15 @@
    "returned_share": 0.4444444444444444,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#013"
+   "subject": "adult#013",
+   "outcome": {
+    "tir": 89.92228835978835,
+    "tbr": 2.232142857142857,
+    "tbr54": 0.42162698412698413,
+    "tar": 7.845568783068783,
+    "insulin_per_day": 87.9973235745045,
+    "rescues": 61
+   }
   },
   {
    "meals": 31,
@@ -2149,7 +2838,15 @@
    "returned_share": 0.5806451612903226,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#015"
+   "subject": "adult#015",
+   "outcome": {
+    "tir": 85.05291005291006,
+    "tbr": 2.4140211640211637,
+    "tbr54": 0.5125661375661376,
+    "tar": 12.533068783068781,
+    "insulin_per_day": 47.73268678257409,
+    "rescues": 60
+   }
   },
   {
    "meals": 34,
@@ -2169,7 +2866,15 @@
    "returned_share": 0.5294117647058824,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#016"
+   "subject": "adult#016",
+   "outcome": {
+    "tir": 88.14484126984127,
+    "tbr": 2.5710978835978837,
+    "tbr54": 0.6035052910052909,
+    "tar": 9.284060846560847,
+    "insulin_per_day": 69.06329057370459,
+    "rescues": 62
+   }
   },
   {
    "meals": 24,
@@ -2189,7 +2894,15 @@
    "returned_share": 0.5,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#017"
+   "subject": "adult#017",
+   "outcome": {
+    "tir": 81.4484126984127,
+    "tbr": 5.82010582010582,
+    "tbr54": 2.0502645502645502,
+    "tar": 12.731481481481483,
+    "insulin_per_day": 92.38767263144189,
+    "rescues": 115
+   }
   },
   {
    "meals": 36,
@@ -2209,7 +2922,15 @@
    "returned_share": 0.5,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#018"
+   "subject": "adult#018",
+   "outcome": {
+    "tir": 79.36507936507937,
+    "tbr": 3.125,
+    "tbr54": 0.8267195767195766,
+    "tar": 17.509920634920633,
+    "insulin_per_day": 114.53562895881308,
+    "rescues": 70
+   }
   },
   {
    "meals": 21,
@@ -2229,7 +2950,15 @@
    "returned_share": 0.6190476190476191,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#019"
+   "subject": "adult#019",
+   "outcome": {
+    "tir": 84.91236772486772,
+    "tbr": 5.100859788359789,
+    "tbr54": 1.0912698412698412,
+    "tar": 9.986772486772487,
+    "insulin_per_day": 67.23968786290659,
+    "rescues": 118
+   }
   },
   {
    "meals": 26,
@@ -2249,7 +2978,15 @@
    "returned_share": 0.5769230769230769,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#020"
+   "subject": "adult#020",
+   "outcome": {
+    "tir": 85.06117724867724,
+    "tbr": 7.638888888888889,
+    "tbr54": 3.5135582010582014,
+    "tar": 7.299933862433862,
+    "insulin_per_day": 68.28699303887312,
+    "rescues": 147
+   }
   },
   {
    "meals": 25,
@@ -2269,7 +3006,15 @@
    "returned_share": 0.44,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#021"
+   "subject": "adult#021",
+   "outcome": {
+    "tir": 75.05787037037037,
+    "tbr": 9.408068783068783,
+    "tbr54": 4.637896825396826,
+    "tar": 15.534060846560847,
+    "insulin_per_day": 71.12849962867556,
+    "rescues": 170
+   }
   },
   {
    "meals": 35,
@@ -2289,7 +3034,15 @@
    "returned_share": 0.7428571428571429,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#024"
+   "subject": "adult#024",
+   "outcome": {
+    "tir": 84.95370370370371,
+    "tbr": 4.497354497354497,
+    "tbr54": 1.595568783068783,
+    "tar": 10.548941798941799,
+    "insulin_per_day": 70.73734035620492,
+    "rescues": 93
+   }
   },
   {
    "meals": 40,
@@ -2309,7 +3062,15 @@
    "returned_share": 0.45,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#025"
+   "subject": "adult#025",
+   "outcome": {
+    "tir": 87.04530423280423,
+    "tbr": 2.0419973544973544,
+    "tbr54": 0.40509259259259256,
+    "tar": 10.912698412698413,
+    "insulin_per_day": 86.97939265260068,
+    "rescues": 45
+   }
   },
   {
    "meals": 25,
@@ -2329,7 +3090,15 @@
    "returned_share": 0.48,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#028"
+   "subject": "adult#028",
+   "outcome": {
+    "tir": 81.90310846560847,
+    "tbr": 5.729166666666666,
+    "tbr54": 1.3310185185185186,
+    "tar": 12.367724867724867,
+    "insulin_per_day": 81.0235047237428,
+    "rescues": 127
+   }
   },
   {
    "meals": 33,
@@ -2349,7 +3118,15 @@
    "returned_share": 0.5151515151515151,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#029"
+   "subject": "adult#029",
+   "outcome": {
+    "tir": 91.47652116402116,
+    "tbr": 2.8273809523809526,
+    "tbr54": 0.8597883597883598,
+    "tar": 5.696097883597884,
+    "insulin_per_day": 44.19344392567598,
+    "rescues": 66
+   }
   },
   {
    "meals": 28,
@@ -2369,7 +3146,15 @@
    "returned_share": 0.5,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#030"
+   "subject": "adult#030",
+   "outcome": {
+    "tir": 89.22784391534393,
+    "tbr": 3.736772486772487,
+    "tbr54": 1.033399470899471,
+    "tar": 7.035383597883597,
+    "insulin_per_day": 70.03832743944936,
+    "rescues": 82
+   }
   },
   {
    "meals": 40,
@@ -2389,7 +3174,15 @@
    "returned_share": 0.325,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#031"
+   "subject": "adult#031",
+   "outcome": {
+    "tir": 80.12566137566137,
+    "tbr": 2.0916005291005293,
+    "tbr54": 0.5539021164021164,
+    "tar": 17.782738095238095,
+    "insulin_per_day": 50.33499689568081,
+    "rescues": 49
+   }
   },
   {
    "meals": 21,
@@ -2409,7 +3202,15 @@
    "returned_share": 0.5238095238095238,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#032"
+   "subject": "adult#032",
+   "outcome": {
+    "tir": 81.6550925925926,
+    "tbr": 8.225859788359788,
+    "tbr54": 2.9265873015873014,
+    "tar": 10.119047619047619,
+    "insulin_per_day": 67.72141858354597,
+    "rescues": 162
+   }
   },
   {
    "meals": 29,
@@ -2429,7 +3230,15 @@
    "returned_share": 0.4482758620689655,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#034"
+   "subject": "adult#034",
+   "outcome": {
+    "tir": 72.98280423280423,
+    "tbr": 5.696097883597884,
+    "tbr54": 2.4140211640211637,
+    "tar": 21.321097883597883,
+    "insulin_per_day": 59.86766649445403,
+    "rescues": 108
+   }
   },
   {
    "meals": 45,
@@ -2449,7 +3258,15 @@
    "returned_share": 0.3333333333333333,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#035"
+   "subject": "adult#035",
+   "outcome": {
+    "tir": 84.375,
+    "tbr": 1.1656746031746033,
+    "tbr54": 0.3224206349206349,
+    "tar": 14.459325396825399,
+    "insulin_per_day": 97.4261009180846,
+    "rescues": 31
+   }
   },
   {
    "meals": 24,
@@ -2469,7 +3286,15 @@
    "returned_share": 0.5833333333333334,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#036"
+   "subject": "adult#036",
+   "outcome": {
+    "tir": 81.58895502645503,
+    "tbr": 5.935846560846561,
+    "tbr54": 1.3558201058201058,
+    "tar": 12.475198412698413,
+    "insulin_per_day": 136.07307916810652,
+    "rescues": 124
+   }
   },
   {
    "meals": 39,
@@ -2489,7 +3314,15 @@
    "returned_share": 0.5128205128205128,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#037"
+   "subject": "adult#037",
+   "outcome": {
+    "tir": 86.79728835978835,
+    "tbr": 1.6947751322751323,
+    "tbr54": 0.42162698412698413,
+    "tar": 11.507936507936508,
+    "insulin_per_day": 88.37416511346325,
+    "rescues": 47
+   }
   },
   {
    "meals": 31,
@@ -2509,7 +3342,15 @@
    "returned_share": 0.5161290322580645,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#038"
+   "subject": "adult#038",
+   "outcome": {
+    "tir": 76.78571428571429,
+    "tbr": 3.298611111111111,
+    "tbr54": 1.000330687830688,
+    "tar": 19.9156746031746,
+    "insulin_per_day": 80.99646516362763,
+    "rescues": 71
+   }
   },
   {
    "meals": 21,
@@ -2529,7 +3370,15 @@
    "returned_share": 0.5714285714285714,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#040"
+   "subject": "adult#040",
+   "outcome": {
+    "tir": 82.14285714285714,
+    "tbr": 6.9940476190476195,
+    "tbr54": 1.5873015873015872,
+    "tar": 10.863095238095239,
+    "insulin_per_day": 63.11939169391069,
+    "rescues": 153
+   }
   },
   {
    "meals": 27,
@@ -2549,7 +3398,15 @@
    "returned_share": 0.48148148148148145,
    "arm": "stock",
    "window_min": 300,
-   "subject": "adult#041"
+   "subject": "adult#041",
+   "outcome": {
+    "tir": 88.39285714285714,
+    "tbr": 4.654431216931217,
+    "tbr54": 1.2235449735449735,
+    "tar": 6.952711640211639,
+    "insulin_per_day": 35.571180470349624,
+    "rescues": 99
+   }
   },
   {
    "meals": 21,
@@ -2569,7 +3426,15 @@
    "returned_share": 0.47619047619047616,
    "arm": "stock",
    "window_min": 360,
-   "subject": "adult#001"
+   "subject": "adult#001",
+   "outcome": {
+    "tir": 82.86210317460318,
+    "tbr": 4.6213624338624335,
+    "tbr54": 1.380621693121693,
+    "tar": 12.516534391534393,
+    "insulin_per_day": 71.81217477766744,
+    "rescues": 99
+   }
   },
   {
    "meals": 20,
@@ -2589,7 +3454,15 @@
    "returned_share": 0.5,
    "arm": "stock",
    "window_min": 360,
-   "subject": "adult#002"
+   "subject": "adult#002",
+   "outcome": {
+    "tir": 89.10383597883597,
+    "tbr": 3.629298941798942,
+    "tbr54": 0.3968253968253968,
+    "tar": 7.26686507936508,
+    "insulin_per_day": 65.51384723369523,
+    "rescues": 77
+   }
   },
   {
    "meals": 29,
@@ -2609,7 +3482,15 @@
    "returned_share": 0.5862068965517241,
    "arm": "stock",
    "window_min": 360,
-   "subject": "adult#003"
+   "subject": "adult#003",
+   "outcome": {
+    "tir": 84.62301587301587,
+    "tbr": 1.0168650793650793,
+    "tbr54": 0.21494708994708994,
+    "tar": 14.360119047619047,
+    "insulin_per_day": 85.76034137786597,
+    "rescues": 30
+   }
   },
   {
    "meals": 23,
@@ -2629,7 +3510,15 @@
    "returned_share": 0.5217391304347826,
    "arm": "stock",
    "window_min": 360,
-   "subject": "adult#004"
+   "subject": "adult#004",
+   "outcome": {
+    "tir": 76.66997354497354,
+    "tbr": 3.7698412698412698,
+    "tbr54": 1.281415343915344,
+    "tar": 19.560185185185187,
+    "insulin_per_day": 70.29338608611386,
+    "rescues": 80
+   }
   },
   {
    "meals": 28,
@@ -2649,7 +3538,15 @@
    "returned_share": 0.39285714285714285,
    "arm": "stock",
    "window_min": 360,
-   "subject": "adult#007"
+   "subject": "adult#007",
+   "outcome": {
+    "tir": 88.64914021164022,
+    "tbr": 3.265542328042328,
+    "tbr54": 1.033399470899471,
+    "tar": 8.08531746031746,
+    "insulin_per_day": 46.24545966704843,
+    "rescues": 68
+   }
   },
   {
    "meals": 22,
@@ -2669,7 +3566,15 @@
    "returned_share": 0.5909090909090909,
    "arm": "stock",
    "window_min": 360,
-   "subject": "adult#008"
+   "subject": "adult#008",
+   "outcome": {
+    "tir": 80.92757936507937,
+    "tbr": 3.7450396825396823,
+    "tbr54": 0.7027116402116401,
+    "tar": 15.327380952380953,
+    "insulin_per_day": 59.26982044849293,
+    "rescues": 80
+   }
   },
   {
    "meals": 24,
@@ -2689,7 +3594,15 @@
    "returned_share": 0.5416666666666666,
    "arm": "stock",
    "window_min": 360,
-   "subject": "adult#009"
+   "subject": "adult#009",
+   "outcome": {
+    "tir": 90.39351851851852,
+    "tbr": 3.902116402116402,
+    "tbr54": 0.5787037037037037,
+    "tar": 5.704365079365079,
+    "insulin_per_day": 50.534488108139094,
+    "rescues": 81
+   }
   },
   {
    "meals": 30,
@@ -2709,7 +3622,15 @@
    "returned_share": 0.43333333333333335,
    "arm": "stock",
    "window_min": 360,
-   "subject": "adult#012"
+   "subject": "adult#012",
+   "outcome": {
+    "tir": 86.78075396825396,
+    "tbr": 1.455026455026455,
+    "tbr54": 0.21494708994708994,
+    "tar": 11.764219576719578,
+    "insulin_per_day": 69.05229855427012,
+    "rescues": 36
+   }
   },
   {
    "meals": 25,
@@ -2729,7 +3650,15 @@
    "returned_share": 0.44,
    "arm": "stock",
    "window_min": 360,
-   "subject": "adult#013"
+   "subject": "adult#013",
+   "outcome": {
+    "tir": 89.92228835978835,
+    "tbr": 2.232142857142857,
+    "tbr54": 0.42162698412698413,
+    "tar": 7.845568783068783,
+    "insulin_per_day": 87.9973235745045,
+    "rescues": 61
+   }
   },
   {
    "meals": 26,
@@ -2749,7 +3678,15 @@
    "returned_share": 0.5384615384615384,
    "arm": "stock",
    "window_min": 360,
-   "subject": "adult#015"
+   "subject": "adult#015",
+   "outcome": {
+    "tir": 85.05291005291006,
+    "tbr": 2.4140211640211637,
+    "tbr54": 0.5125661375661376,
+    "tar": 12.533068783068781,
+    "insulin_per_day": 47.73268678257409,
+    "rescues": 60
+   }
   },
   {
    "meals": 28,
@@ -2769,7 +3706,15 @@
    "returned_share": 0.6428571428571429,
    "arm": "stock",
    "window_min": 360,
-   "subject": "adult#016"
+   "subject": "adult#016",
+   "outcome": {
+    "tir": 88.14484126984127,
+    "tbr": 2.5710978835978837,
+    "tbr54": 0.6035052910052909,
+    "tar": 9.284060846560847,
+    "insulin_per_day": 69.06329057370459,
+    "rescues": 62
+   }
   },
   {
    "meals": 20,
@@ -2789,7 +3734,15 @@
    "returned_share": 0.4,
    "arm": "stock",
    "window_min": 360,
-   "subject": "adult#017"
+   "subject": "adult#017",
+   "outcome": {
+    "tir": 81.4484126984127,
+    "tbr": 5.82010582010582,
+    "tbr54": 2.0502645502645502,
+    "tar": 12.731481481481483,
+    "insulin_per_day": 92.38767263144189,
+    "rescues": 115
+   }
   },
   {
    "meals": 30,
@@ -2809,7 +3762,15 @@
    "returned_share": 0.6,
    "arm": "stock",
    "window_min": 360,
-   "subject": "adult#018"
+   "subject": "adult#018",
+   "outcome": {
+    "tir": 79.36507936507937,
+    "tbr": 3.125,
+    "tbr54": 0.8267195767195766,
+    "tar": 17.509920634920633,
+    "insulin_per_day": 114.53562895881308,
+    "rescues": 70
+   }
   },
   {
    "meals": 26,
@@ -2829,7 +3790,15 @@
    "returned_share": 0.6923076923076923,
    "arm": "stock",
    "window_min": 360,
-   "subject": "adult#024"
+   "subject": "adult#024",
+   "outcome": {
+    "tir": 84.95370370370371,
+    "tbr": 4.497354497354497,
+    "tbr54": 1.595568783068783,
+    "tar": 10.548941798941799,
+    "insulin_per_day": 70.73734035620492,
+    "rescues": 93
+   }
   },
   {
    "meals": 33,
@@ -2849,7 +3818,15 @@
    "returned_share": 0.5151515151515151,
    "arm": "stock",
    "window_min": 360,
-   "subject": "adult#025"
+   "subject": "adult#025",
+   "outcome": {
+    "tir": 87.04530423280423,
+    "tbr": 2.0419973544973544,
+    "tbr54": 0.40509259259259256,
+    "tar": 10.912698412698413,
+    "insulin_per_day": 86.97939265260068,
+    "rescues": 45
+   }
   },
   {
    "meals": 23,
@@ -2869,7 +3846,15 @@
    "returned_share": 0.5652173913043478,
    "arm": "stock",
    "window_min": 360,
-   "subject": "adult#029"
+   "subject": "adult#029",
+   "outcome": {
+    "tir": 91.47652116402116,
+    "tbr": 2.8273809523809526,
+    "tbr54": 0.8597883597883598,
+    "tar": 5.696097883597884,
+    "insulin_per_day": 44.19344392567598,
+    "rescues": 66
+   }
   },
   {
    "meals": 25,
@@ -2889,7 +3874,15 @@
    "returned_share": 0.52,
    "arm": "stock",
    "window_min": 360,
-   "subject": "adult#030"
+   "subject": "adult#030",
+   "outcome": {
+    "tir": 89.22784391534393,
+    "tbr": 3.736772486772487,
+    "tbr54": 1.033399470899471,
+    "tar": 7.035383597883597,
+    "insulin_per_day": 70.03832743944936,
+    "rescues": 82
+   }
   },
   {
    "meals": 32,
@@ -2909,7 +3902,15 @@
    "returned_share": 0.34375,
    "arm": "stock",
    "window_min": 360,
-   "subject": "adult#031"
+   "subject": "adult#031",
+   "outcome": {
+    "tir": 80.12566137566137,
+    "tbr": 2.0916005291005293,
+    "tbr54": 0.5539021164021164,
+    "tar": 17.782738095238095,
+    "insulin_per_day": 50.33499689568081,
+    "rescues": 49
+   }
   },
   {
    "meals": 34,
@@ -2929,7 +3930,15 @@
    "returned_share": 0.29411764705882354,
    "arm": "stock",
    "window_min": 360,
-   "subject": "adult#035"
+   "subject": "adult#035",
+   "outcome": {
+    "tir": 84.375,
+    "tbr": 1.1656746031746033,
+    "tbr54": 0.3224206349206349,
+    "tar": 14.459325396825399,
+    "insulin_per_day": 97.4261009180846,
+    "rescues": 31
+   }
   },
   {
    "meals": 34,
@@ -2949,7 +3958,15 @@
    "returned_share": 0.38235294117647056,
    "arm": "stock",
    "window_min": 360,
-   "subject": "adult#037"
+   "subject": "adult#037",
+   "outcome": {
+    "tir": 86.79728835978835,
+    "tbr": 1.6947751322751323,
+    "tbr54": 0.42162698412698413,
+    "tar": 11.507936507936508,
+    "insulin_per_day": 88.37416511346325,
+    "rescues": 47
+   }
   },
   {
    "meals": 23,
@@ -2969,7 +3986,15 @@
    "returned_share": 0.4782608695652174,
    "arm": "stock",
    "window_min": 360,
-   "subject": "adult#038"
+   "subject": "adult#038",
+   "outcome": {
+    "tir": 76.78571428571429,
+    "tbr": 3.298611111111111,
+    "tbr54": 1.000330687830688,
+    "tar": 19.9156746031746,
+    "insulin_per_day": 80.99646516362763,
+    "rescues": 71
+   }
   },
   {
    "meals": 22,
@@ -2989,7 +4014,15 @@
    "returned_share": 0.6363636363636364,
    "arm": "stock",
    "window_min": 360,
-   "subject": "adult#041"
+   "subject": "adult#041",
+   "outcome": {
+    "tir": 88.39285714285714,
+    "tbr": 4.654431216931217,
+    "tbr54": 1.2235449735449735,
+    "tar": 6.952711640211639,
+    "insulin_per_day": 35.571180470349624,
+    "rescues": 99
+   }
   },
   {
    "meals": 22,
@@ -3009,7 +4042,15 @@
    "returned_share": 0.5,
    "arm": "stock",
    "window_min": 480,
-   "subject": "adult#025"
+   "subject": "adult#025",
+   "outcome": {
+    "tir": 87.04530423280423,
+    "tbr": 2.0419973544973544,
+    "tbr54": 0.40509259259259256,
+    "tar": 10.912698412698413,
+    "insulin_per_day": 86.97939265260068,
+    "rescues": 45
+   }
   },
   {
    "meals": 27,
@@ -3029,7 +4070,15 @@
    "returned_share": 0.6666666666666666,
    "arm": "stock",
    "window_min": 480,
-   "subject": "adult#031"
+   "subject": "adult#031",
+   "outcome": {
+    "tir": 80.12566137566137,
+    "tbr": 2.0916005291005293,
+    "tbr54": 0.5539021164021164,
+    "tar": 17.782738095238095,
+    "insulin_per_day": 50.33499689568081,
+    "rescues": 49
+   }
   },
   {
    "meals": 25,
@@ -3049,7 +4098,15 @@
    "returned_share": 0.28,
    "arm": "stock",
    "window_min": 480,
-   "subject": "adult#035"
+   "subject": "adult#035",
+   "outcome": {
+    "tir": 84.375,
+    "tbr": 1.1656746031746033,
+    "tbr54": 0.3224206349206349,
+    "tar": 14.459325396825399,
+    "insulin_per_day": 97.4261009180846,
+    "rescues": 31
+   }
   },
   {
    "meals": 24,
@@ -3069,7 +4126,15 @@
    "returned_share": 0.3333333333333333,
    "arm": "stock",
    "window_min": 480,
-   "subject": "adult#037"
+   "subject": "adult#037",
+   "outcome": {
+    "tir": 86.79728835978835,
+    "tbr": 1.6947751322751323,
+    "tbr54": 0.42162698412698413,
+    "tar": 11.507936507936508,
+    "insulin_per_day": 88.37416511346325,
+    "rescues": 47
+   }
   }
  ],
  "common_panel": {

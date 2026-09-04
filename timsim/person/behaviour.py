@@ -81,6 +81,15 @@ CARB_ESTIMATE_CV = 0.25
 # The parameter is left at 1.0. It would be defensible on the literature, which reports mean
 # absolute error and separately documents that people under-count, but it was added to explain
 # something that turned out not to need explaining, and adopting it now would be fitting.
+#
+# A value of 0.84, the ratio the meal schedule already assumes between logged and eaten grams,
+# was pre-registered and measured on 4 September 2026 (`examples/carb_bias.py`). On the
+# announced record under oref0 SMB the covered rise per 10 entered grams moved from 11.2 to
+# 12.8 mg/dL, +1.8 [0.8, 2.8] paired on 32 subjects, which is below the 13.3 that dividing by
+# fewer grams gives on its own; on the eaten record it moved -0.2 [-0.7, 0.7], so the smaller
+# bolus was made up by the controller within the window. Daily insulin fell by under 1 per cent,
+# no outcome moved past its interval under either controller, and the hypoglycaemia rebound
+# signature left the real range. It failed the rule it was registered against and stays at 1.0.
 CARB_ESTIMATE_BIAS = 1.0
 
 # Rescue. The 15-15 rule (15 g, recheck at 15 min) is the standard advice, and the observed

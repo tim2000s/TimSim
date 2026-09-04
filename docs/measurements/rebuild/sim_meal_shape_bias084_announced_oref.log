@@ -1,0 +1,43 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+panel: skipped 1 subject(s) with no titrated settings (adult#026), taking 40 of the first 41
+40 subjects, 1 arms, 42 days each, controller oref, on 7 workers
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+
+stock
+ window  common  own  meals   per-person median   within-person IQR       rise per 10 g    same, 40-55 g only        covered rise      uncovered rise            fullness      peak to return   ret
+    180      34   34   1500       70 / 85 / 100        43 / 65 / 84   9.1 / 12.4 / 15.5     9.2 / 11.2 / 15.0   8.7 / 12.0 / 15.2  13.1 / 16.2 / 17.1  0.52 / 0.56 / 0.60        10 / 26 / 70  0.31
+    240      34   34   1235       75 / 92 / 108        46 / 72 / 99  10.4 / 13.3 / 16.2     9.7 / 12.6 / 17.0   9.5 / 13.0 / 15.9  12.6 / 16.6 / 20.1  0.47 / 0.51 / 0.56       28 / 70 / 100  0.44
+    300      29   29    861      87 / 100 / 126       47 / 80 / 118  11.1 / 14.2 / 16.2     9.3 / 13.8 / 17.2  10.5 / 13.2 / 15.9  22.0 / 22.0 / 22.0  0.44 / 0.48 / 0.52       43 / 82 / 106  0.46
+    360      17   17    445      92 / 105 / 159       57 / 81 / 114  11.0 / 14.8 / 19.1    10.6 / 14.4 / 18.5  10.7 / 14.0 / 19.0     nan / nan / nan  0.38 / 0.43 / 0.48      56 / 102 / 124  0.56
+    480       6    6    131     106 / 124 / 159      94 / 113 / 175  13.2 / 16.9 / 20.4    12.9 / 17.1 / 19.5  12.1 / 16.8 / 20.6     nan / nan / nan  0.40 / 0.46 / 0.51      78 / 131 / 172  0.52
+    720       0    0      0   no subject reaches 20 meals in every arm
+
+paired on the common panel: stock against stock, duration and rise
+ window  subj   duration diff           95 per cent   rise diff           95 per cent
+
+5 subject-arms terminated early and are excluded
+
+real, Loop, for comparison
+ window  subj  meals   per-person median   within-person IQR       rise per 10 g             covered           uncovered            fullness      peak to return
+    180   785 193696        50 / 70 / 90        51 / 70 / 90   9.5 / 15.0 / 22.4   9.3 / 14.4 / 21.6  13.5 / 22.4 / 33.1  0.43 / 0.51 / 0.56        20 / 30 / 47
+    240   767 150678       60 / 80 / 110       65 / 90 / 115  11.2 / 17.0 / 25.1  10.7 / 16.5 / 24.0  14.0 / 23.6 / 34.7  0.42 / 0.49 / 0.55        25 / 45 / 65
+    300   742 115854       65 / 90 / 125      80 / 107 / 135  12.1 / 18.3 / 26.9  11.6 / 17.5 / 25.8  14.8 / 24.5 / 36.4  0.41 / 0.48 / 0.54        30 / 55 / 82
+    360   720  92146      70 / 100 / 135      90 / 122 / 158  12.6 / 19.2 / 27.6  12.1 / 18.4 / 27.1  15.6 / 24.6 / 37.4  0.39 / 0.47 / 0.53       30 / 62 / 100
+    480   677  68556      77 / 115 / 158     105 / 141 / 186  13.2 / 20.2 / 29.0  12.3 / 19.5 / 28.6  15.4 / 24.8 / 37.1  0.35 / 0.44 / 0.52       35 / 77 / 125
+    720   595  44354      85 / 132 / 185     112 / 160 / 220  14.0 / 21.1 / 31.0  13.2 / 20.7 / 30.0  16.7 / 25.5 / 39.1  0.28 / 0.37 / 0.46      50 / 110 / 185
+
+wrote docs/measurements/sim_meal_shape_bias084_announced_oref.json
