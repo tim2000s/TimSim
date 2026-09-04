@@ -1204,3 +1204,62 @@ under the one unit threshold this measurement uses.
 The rule is the one this log already has twice this week, in a third place. A comparison across
 conditions holds the panel fixed across those conditions, and a panel defined by what each
 condition happened to admit is not fixed.
+
+## 51. The simulated meal rise was divided by grams eaten and the real one by grams logged
+
+Found 4 September 2026 in a review of the meal comparison, before the measurement that settles it.
+
+`examples/sim_meal_shape.py` read its meals from `Result.meal_log`, which holds every scheduled
+meal at the grams that reached the gut, and isolated each index meal from every other eaten meal.
+`examples/real_meal_shape.py` can only read what a person entered: the index meals are the logged
+entries, the denominator is the logged grams, and a meal nobody logged neither counts nor breaks
+another meal's isolation. The two sides therefore measured rise per gram over different grams and
+admitted meals under different rules, and the repository already assumes the two gram counts
+differ, since `run.py` scales the schedule so that 192 g eaten a day logs as 162.
+
+The fix on the simulated side is to keep the record a real person leaves. `BehaviourScenario` now
+writes `(minute, eaten grams, announced grams)` per meal into `Result.announced_log`, and the
+producer takes `--record announced`, which indexes the entered meals, divides by the entered
+grams and isolates from entered meals and rescues only. The settings store was re-stamped rather
+than retitrated, since nothing reads the new column during a run, and the five probed subjects
+agreed to nine decimals.
+
+Measured under oref0 SMB on 40 subjects over 42 days at seed `BENCH`, stock physiology, against
+the eaten record of 2 September on the same subjects, paired per subject
+(`sim_meal_shape_announced_oref.json` against the stock arm of `sim_meal_shape_asym_oref.json`,
+paired by `examples/meal_record_pairing.py` into `meal_record_pairing.json`):
+
+    window   n   rise per 10 g, eaten   announced   paired difference [95 per cent]
+      180   37                  10.3        10.2      -0.1  [-0.7, 0.4]
+      240   35                  11.1        11.8       0.4  [-0.1, 1.1]
+      300   22                  10.7        12.2       1.0  [ 0.0, 1.9]
+
+    window   n   time to peak, eaten   announced   paired difference
+      180   37                  80.0        82.5       2.5  [-2.5, 5.0]
+      240   35                  87.5        95.0       5.0  [ 0.0, 10.0]
+      300   22                  96.2       105.0      10.0  [ 1.2, 22.5]
+
+The three terminations are the same three subjects on the same days in both files, so the runs
+are one realisation read two ways and the differences above are the protocol alone.
+
+On rise per gram the defect is small. The person template's estimate is unbiased
+(`CARB_ESTIMATE_BIAS` is 1.0 with a 25 per cent coefficient of variation), so changing the
+denominator from the plate to the entry adds noise and no offset, and the 0.4 at 240 min is
+inside its own interval. The review that found this defect projected a correction of 2.8 to 5.0
+mg/dL per 10 g by applying the 0.84 logged-to-eaten ratio to the real covered rise. That
+arithmetic was entirely the ratio. With the bias at 1.0 the protocol contributes nothing to it,
+and the ratio itself is a literature assumption the record cannot test, since the real side has
+no plate to compare its entries against. Whether a bias below 1.0 belongs in the person layer is
+a separate question, to be pre-registered against the whole statistic table as `CONTRIBUTING.md`
+requires, and this measurement neither supports nor refutes it.
+
+On duration the matched protocol moves the simulated side away from the real one. A meal nobody
+entered no longer breaks isolation, so a window that used to reject an index meal for a snack
+inside it now admits it, and the snack's rise lands inside the window and moves the peak later:
+four more meals a subject at 240 min and eight more at 300. The real side has always been
+measured this way. Under the eaten record the simulated median at 240 min stood 7.5 min above
+the real 80; under the record the real side is forced to use it stands 15 above.
+
+The rule is the one issue 48 states for a published protocol, applied to a record: a comparison
+against what people logged is made on what the simulated person logged, and the eaten record
+is kept for questions about the model rather than for questions about the fit to data.

@@ -455,3 +455,29 @@ def test_the_loop_default_matches_the_simulator_default():
     from timsim.simulation.run import DEFAULT_CONTROLLER
     assert loop.DEFAULT_SHAPE == DEFAULT_CONTROLLER
     assert DEFAULT_CONTROLLER in loop.SHAPES
+
+
+def test_the_announced_record_covers_every_meal_and_only_the_entered_grams(subject):
+    """`announced_log` is the record a real person leaves, beside the record of what they ate.
+
+    A meal comparison against real data has only the entered meals and the entered grams on
+    the real side, and until issue 51 the simulated side used every eaten meal and the grams
+    that reached the gut. This is the column that lets the two protocols be matched, so it
+    has to line up with `meal_log` minute for minute, count the unannounced meals the person
+    counter counts, and carry an estimate that is the person's rather than the plate's.
+    """
+    r = simulate(subject, days=6, seed=11,
+                 layers=("physiology", "behaviour", "sensor", "site"), controller="trend")
+    assert [m for m, _, _ in r.announced_log] == [m for m, _ in r.meal_log]
+    assert [g for _, g, _ in r.announced_log] == [g for _, g in r.meal_log]
+    silent = [est for _, _, est in r.announced_log if est == 0.0]
+    assert len(silent) == r.meals_unannounced
+    assert len(r.announced_log) - len(silent) == r.meals_announced
+    spoken = [(g, est) for _, g, est in r.announced_log if est > 0]
+    assert spoken, "six days with no announced meal"
+    # An estimate equal to the plate on every meal would mean the estimate error is not
+    # being recorded; `CARB_ESTIMATE_CV` is 0.25.
+    assert any(abs(est - g) > 1e-9 for g, est in spoken)
+    # Without the behaviour layer there is no person to enter anything.
+    bare = simulate(subject, days=2, seed=11, layers=("physiology", "sensor", "site"))
+    assert bare.announced_log == ()

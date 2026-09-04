@@ -225,6 +225,9 @@ class Result:
     # `rescue_log`, because a rescue and a meal are different events and measuring the
     # response to one requires excluding the other.
     meal_log: tuple = ()
+    # (minute, eaten grams, announced grams) for every scheduled meal when the behaviour layer
+    # is on, announced being zero for a meal the person did not enter. Empty otherwise.
+    announced_log: tuple = ()
     # (start minute, minutes, intensity) for every exercise session, empty when the layer
     # is off. An exercise-driven low behaves differently from an insulin-driven one, and
     # telling them apart afterwards needs this.
@@ -827,6 +830,7 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
         # What the person was actually given, on the minutes it was given, so the log cannot
         # disagree with the gut and does not change shape when a layer is switched off.
         meal_log=tuple((m, g) for m, g, _ in delivery),
+        announced_log=tuple(getattr(scenario, "announced_log", ())),
         activity_log=() if activity is None else tuple(activity.sessions),
         meals_announced=person.announced_meals,
         meals_unannounced=person.unannounced_meals,

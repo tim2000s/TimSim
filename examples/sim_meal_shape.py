@@ -24,7 +24,16 @@ meal flattened by it says nothing about the bench. The arms that are benchmarked
 Control-IQ stand-in and oref0 SMB, and `basal-bolus` is open-loop therapy with no modulation at
 all, so the three together separate what the model does from what a controller does to it.
 
+`--record` chooses which record the simulated meals are read from. `eaten` is `meal_log`, every
+meal on the grams that reached the gut. `announced` is `announced_log`, the meals the person
+entered on the grams they entered, with unannounced meals absent from the isolation rule as
+well as from the index, which is the only record a real person leaves. The real reference is
+measured on the second kind and until issue 51 the simulated side was measured on the first,
+so rise per gram was divided by different grams on the two sides.
+
     python examples/sim_meal_shape.py --subjects 40 --days 42
+    python examples/sim_meal_shape.py --subjects 40 --days 42 --controller oref --arms stock \
+        --record announced --out docs/measurements/sim_meal_shape_announced_oref.json
 """
 import argparse
 import json
@@ -69,7 +78,8 @@ def job(args):
     reduction happens here rather than sending the trace back. macOS spawns, so this is at
     module level and everything it needs travels in the tuple.
     """
-    name, arm, fraction, ki_scale, delay, kp2, kp3, asym, days, windows, controller = args
+    (name, arm, fraction, ki_scale, delay, kp2, kp3, asym, days, windows, controller,
+     record) = args
     from timsim.simulation.run import simulate, DEFAULT_LAYERS
     # `oref` is the shipped algorithm behind a node bridge and is built inside the worker,
     # since the controller object holds pump state and cannot be pickled across a spawn.
@@ -86,7 +96,14 @@ def job(args):
         return name, arm, None, r.termination
     minutes = np.asarray(r.minutes, float)
     cgm = np.asarray(r.cgm, float)
-    meals = [(float(m), float(g)) for m, g in r.meal_log]
+    if record == "announced":
+        # The real record holds what the person entered and nothing else. An unannounced meal
+        # is absent from it, so it is neither an index meal nor a break in another meal's
+        # isolation, and the grams under the rise are the estimate rather than the plate.
+        # Issue 51 measures what the eaten record costs the comparison.
+        meals = [(float(m), float(est)) for m, _, est in r.announced_log if est > 0]
+    else:
+        meals = [(float(m), float(g)) for m, g in r.meal_log]
     # Bolus alone, from `bolus_series` rather than reconstructed by subtracting an assumed basal
     # from the total. Corrections appear in it as they do in the real bolus table, so the same
     # floor separates the strata on both sides.
@@ -138,9 +155,18 @@ def main():
                     help="units within 30 min of the meal for it to count as covered")
     ap.add_argument("--band-min", type=int, default=8,
                     help="meals a subject needs inside the band to contribute to it")
+    ap.add_argument("--record", choices=("eaten", "announced"), default="eaten",
+                    help="eaten indexes every meal by the grams that reached the gut; announced "
+                         "indexes only the meals the person entered, by the grams they entered, "
+                         "which is the protocol the real record forces")
+    ap.add_argument("--arms", nargs="+", default=[x[0] for x in ARMS],
+                    help="which of the arms to run; a one-arm run skips the pairing")
     ap.add_argument("--workers", type=int, default=WORKERS)
     ap.add_argument("--out", default=OUT)
     a = ap.parse_args()
+    arms_spec = tuple(x for x in ARMS if x[0] in a.arms)
+    if not arms_spec:
+        raise SystemExit(f"no arm among {a.arms}; known: {[x[0] for x in ARMS]}")
 
     if a.controller == "oref":
         from timsim.controller import oref as _oref
@@ -149,9 +175,9 @@ def main():
     from examples.panel import dosable
     subs = dosable(a.subjects)
 
-    jobs = [(n, arm, fr, ks, dl, k2, k3, asym, a.days, tuple(a.windows), a.controller)
-            for n in subs for arm, fr, ks, dl, k2, k3, asym in ARMS]
-    print(f"{len(subs)} subjects, {len(ARMS)} arms, {a.days} days each, "
+    jobs = [(n, arm, fr, ks, dl, k2, k3, asym, a.days, tuple(a.windows), a.controller, a.record)
+            for n in subs for arm, fr, ks, dl, k2, k3, asym in arms_spec]
+    print(f"{len(subs)} subjects, {len(arms_spec)} arms, {a.days} days each, "
           f"controller {a.controller}, on {a.workers} workers")
     with mp.Pool(a.workers) as pool:
         results = pool.map(job, jobs)
@@ -167,16 +193,16 @@ def main():
     real_by = {(r["study"], r["window_min"]): r for r in real["rows"]}
 
     rec = {"provenance": provenance.stamp(), "subjects": list(subs), "days": a.days,
-           "seed": seeds.BENCH, "controller": a.controller,
-           "arms": [a_[0] for a_ in ARMS], "min_meals": a.min_meals,
-           "dropped": dropped, "arm_spec": [list(x) for x in ARMS],
+           "seed": seeds.BENCH, "controller": a.controller, "record": a.record,
+           "arms": [a_[0] for a_ in arms_spec], "min_meals": a.min_meals,
+           "dropped": dropped, "arm_spec": [list(x) for x in arms_spec],
            "rows": [], "per_subject": []}
 
     # Per subject, per arm, per window, kept in the record. Summarising to medians and throwing
     # the subjects away is what stopped `liver_two_timescale.py` being able to answer whether two
     # rungs described the same people, which is issue 45.
     cells = {}
-    for arm, *_ in ARMS:
+    for arm, *_ in arms_spec:
         for w in a.windows:
             for n in subs:
                 cell = got.get((n, arm))
@@ -210,7 +236,7 @@ def main():
                     cells[(arm, w, n)] = p
                     rec["per_subject"].append(dict(p, arm=arm, window_min=w, subject=n))
 
-    arms = [x[0] for x in ARMS]
+    arms = [x[0] for x in arms_spec]
     for w in a.windows:
         # The common panel: subjects reaching the threshold in every arm. The fast arm admits
         # fewer meals, so an arm-by-arm panel is a different set of people in each column and a
@@ -219,7 +245,7 @@ def main():
                                            for arm in arms])) if arms else []
         rec.setdefault("common_panel", {})[w] = common
 
-    for arm, *_ in ARMS:
+    for arm, *_ in arms_spec:
         print(f"\n{arm}")
         print(f"{'window':>7}{'common':>8}{'own':>5}{'meals':>7}{'per-person median':>20}"
               f"{'within-person IQR':>20}{'rise per 10 g':>20}"
@@ -282,17 +308,19 @@ def main():
 
     # Paired, per subject, on the common panel, since the arms differ by one mechanism and the
     # subject is the strongest thing to hold fixed.
-    print(f"\npaired on the common panel: {ARMS[-1][0]} against stock, duration and rise")
+    if len(arms_spec) < 2 or arms_spec[0][0] != "stock":
+        rec["paired"] = []
+    print(f"\npaired on the common panel: {arms_spec[-1][0]} against stock, duration and rise")
     print(f"{'window':>7}{'subj':>6}{'duration diff':>16}{'95 per cent':>22}"
           f"{'rise diff':>12}{'95 per cent':>22}")
     rng = np.random.default_rng(20260830)
     for w in a.windows:
         common = rec["common_panel"][w]
-        if not common:
+        if not common or len(arms_spec) < 2 or arms_spec[0][0] != "stock":
             continue
         # The last arm against the first, whatever they are called, so renaming an arm cannot
         # crash the pairing after two hours of runs. It did.
-        last = ARMS[-1][0]
+        last = arms_spec[-1][0]
         dm = np.array([cells[(last, w, n)]["median"] - cells[("stock", w, n)]["median"]
                        for n in common])
         di = np.array([cells[(last, w, n)]["rise_median"]

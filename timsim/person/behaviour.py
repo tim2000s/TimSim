@@ -707,6 +707,10 @@ class BehaviourScenario:
         # three minutes at a time, so announcements accumulate and are drained per step.
         self._announced = 0.0
         self._true = 0.0
+        # (minute, eaten grams, announced grams) per scheduled meal, announced being zero when
+        # the person said nothing. A real record holds only the announced column, so a meal
+        # comparison run on this side under the real protocol reads this rather than `meal_log`.
+        self.announced_log = []
 
     def reset(self):
         self._announced = 0.0
@@ -725,7 +729,9 @@ class BehaviourScenario:
             g, snack = self.sched.pop(minute)
             # The algorithm is told when the person eats; the gut receives it after the delay,
             # because announcing a meal and digesting it happen at different times.
-            self._announced += self.person.announce(g, snack)
+            est = self.person.announce(g, snack)
+            self._announced += est
+            self.announced_log.append((minute, g, est))
             if self.meal_delay_min > 0:
                 self.person.pending.append((minute + self.meal_delay_min, g))
             else:

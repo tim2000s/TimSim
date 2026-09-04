@@ -1,0 +1,282 @@
+{
+ "provenance": {
+  "population": "704cfac086df54ba",
+  "settings": "0df43fd250fadd47",
+  "commit": "1581698816f4b6fc7c95fd166fff8c61431102f6",
+  "dirty": true,
+  "host": "Tims-Mac-mini.local",
+  "python": "3.14.7",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "when": "2026-09-04T13:41:49+00:00",
+  "simglucose": "0.2.11"
+ },
+ "eaten": "docs/measurements/sim_meal_shape_asym_oref.json",
+ "announced": "docs/measurements/sim_meal_shape_announced_oref.json",
+ "arm": "stock",
+ "rows": [
+  {
+   "window_min": 180,
+   "key": "rise_median",
+   "subjects": 37,
+   "eaten": 10.302979178166435,
+   "announced": 10.170880256422642,
+   "paired_diff": -0.08760393161850644,
+   "ci95": [
+    -0.6980255680126177,
+    0.3605462602550027
+   ]
+  },
+  {
+   "window_min": 180,
+   "key": "rise_covered",
+   "subjects": 37,
+   "eaten": 9.73999552112328,
+   "announced": 10.073643903366257,
+   "paired_diff": 0.11776784505045157,
+   "ci95": [
+    -0.43625953729137734,
+    0.5825685481913041
+   ]
+  },
+  {
+   "window_min": 180,
+   "key": "rise_uncovered",
+   "subjects": 5,
+   "eaten": 10.531689003032993,
+   "announced": 13.353064875925822,
+   "paired_diff": 2.0032911646445424,
+   "ci95": [
+    -2.1135329730703987,
+    6.089211360420668
+   ]
+  },
+  {
+   "window_min": 180,
+   "key": "median",
+   "subjects": 37,
+   "eaten": 80.0,
+   "announced": 82.5,
+   "paired_diff": 2.5,
+   "ci95": [
+    -2.5,
+    5.0
+   ]
+  },
+  {
+   "window_min": 180,
+   "key": "grams_median",
+   "subjects": 37,
+   "eaten": 48.0,
+   "announced": 50.300213716442144,
+   "paired_diff": 2.543192598185904,
+   "ci95": [
+    0.772138697244614,
+    4.018926666193771
+   ]
+  },
+  {
+   "window_min": 180,
+   "key": "meals",
+   "subjects": 37,
+   "eaten": 52.0,
+   "announced": 46.0,
+   "paired_diff": -5.0,
+   "ci95": [
+    -9.0,
+    -2.0
+   ]
+  },
+  {
+   "window_min": 240,
+   "key": "rise_median",
+   "subjects": 35,
+   "eaten": 11.067596506522708,
+   "announced": 11.791464600252631,
+   "paired_diff": 0.3875842075550775,
+   "ci95": [
+    -0.11343450182464565,
+    1.06564800468181
+   ]
+  },
+  {
+   "window_min": 240,
+   "key": "rise_covered",
+   "subjects": 35,
+   "eaten": 11.140095082535947,
+   "announced": 11.406530515956325,
+   "paired_diff": 0.4203055989372855,
+   "ci95": [
+    -0.05249225884167252,
+    1.4110125853736761
+   ]
+  },
+  {
+   "window_min": 240,
+   "key": "rise_uncovered",
+   "subjects": 4,
+   "eaten": 12.02297260117907,
+   "announced": 15.68593949467253,
+   "paired_diff": 3.388545523602005,
+   "ci95": [
+    1.9689101745127964,
+    5.357023612474125
+   ]
+  },
+  {
+   "window_min": 240,
+   "key": "median",
+   "subjects": 35,
+   "eaten": 87.5,
+   "announced": 95.0,
+   "paired_diff": 5.0,
+   "ci95": [
+    0.0,
+    10.0
+   ]
+  },
+  {
+   "window_min": 240,
+   "key": "grams_median",
+   "subjects": 35,
+   "eaten": 48.0,
+   "announced": 50.70063334252457,
+   "paired_diff": 2.223835483655762,
+   "ci95": [
+    0.3867438252547828,
+    4.6806075594100065
+   ]
+  },
+  {
+   "window_min": 240,
+   "key": "meals",
+   "subjects": 35,
+   "eaten": 35.0,
+   "announced": 38.0,
+   "paired_diff": 4.0,
+   "ci95": [
+    3.0,
+    5.0
+   ]
+  },
+  {
+   "window_min": 300,
+   "key": "rise_median",
+   "subjects": 22,
+   "eaten": 10.719801193882276,
+   "announced": 12.166019773804688,
+   "paired_diff": 0.956154657967522,
+   "ci95": [
+    0.044602359780769874,
+    1.9263948925875125
+   ]
+  },
+  {
+   "window_min": 300,
+   "key": "rise_covered",
+   "subjects": 22,
+   "eaten": 10.862765532480282,
+   "announced": 12.10406499026205,
+   "paired_diff": 0.7083627030808186,
+   "ci95": [
+    -0.11305321808287516,
+    2.01464806705777
+   ]
+  },
+  {
+   "window_min": 300,
+   "key": "median",
+   "subjects": 22,
+   "eaten": 96.25,
+   "announced": 105.0,
+   "paired_diff": 10.0,
+   "ci95": [
+    1.25,
+    22.5
+   ]
+  },
+  {
+   "window_min": 300,
+   "key": "grams_median",
+   "subjects": 22,
+   "eaten": 46.5,
+   "announced": 50.63463226180926,
+   "paired_diff": 4.035546356490876,
+   "ci95": [
+    1.6114336719473776,
+    6.2260719254326204
+   ]
+  },
+  {
+   "window_min": 300,
+   "key": "meals",
+   "subjects": 22,
+   "eaten": 25.0,
+   "announced": 33.5,
+   "paired_diff": 8.0,
+   "ci95": [
+    5.5,
+    10.5
+   ]
+  },
+  {
+   "window_min": 360,
+   "key": "rise_median",
+   "subjects": 4,
+   "eaten": 10.524690096207232,
+   "announced": 11.17278447966369,
+   "paired_diff": 0.4326755313980257,
+   "ci95": [
+    -4.180849317398341,
+    1.8487995353001843
+   ]
+  },
+  {
+   "window_min": 360,
+   "key": "rise_covered",
+   "subjects": 4,
+   "eaten": 9.561262753281763,
+   "announced": 10.748641596177134,
+   "paired_diff": 0.7559540949083301,
+   "ci95": [
+    -4.633450335591007,
+    1.7855491210520924
+   ]
+  },
+  {
+   "window_min": 360,
+   "key": "median",
+   "subjects": 4,
+   "eaten": 111.25,
+   "announced": 133.75,
+   "paired_diff": 22.5,
+   "ci95": [
+    12.5,
+    47.5
+   ]
+  },
+  {
+   "window_min": 360,
+   "key": "grams_median",
+   "subjects": 4,
+   "eaten": 43.5,
+   "announced": 53.99462537509902,
+   "paired_diff": 12.24462537509902,
+   "ci95": [
+    6.204289700103644,
+    17.308691373813353
+   ]
+  },
+  {
+   "window_min": 360,
+   "key": "meals",
+   "subjects": 4,
+   "eaten": 20.5,
+   "announced": 31.0,
+   "paired_diff": 10.5,
+   "ci95": [
+    6.0,
+    14.0
+   ]
+  }
+ ]
+}
