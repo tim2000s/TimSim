@@ -535,7 +535,7 @@ class Person:
                  rescue_refractory_min=RESCUE_REFRACTORY_MIN,
                  p_treat_low=None, announcement="some",
                  p_announce_main=P_ANNOUNCE_MAIN, p_announce_snack=P_ANNOUNCE_SNACK,
-                 carb_estimate_cv=CARB_ESTIMATE_CV):
+                 carb_estimate_cv=CARB_ESTIMATE_CV, carb_estimate_bias=CARB_ESTIMATE_BIAS):
         self.rng = rng
         # Per-subject rather than module-level, so an engaged and a disengaged subject differ
         # in what they do and not only in what happens to them. They default to the population
@@ -543,6 +543,10 @@ class Person:
         self.p_announce_main = float(p_announce_main)
         self.p_announce_snack = float(p_announce_snack)
         self.carb_estimate_cv = float(carb_estimate_cv)
+        # The centre of the estimate as a fraction of the plate. A run parameter rather than
+        # the module constant alone, so a value below 1.0 can be measured as an arm against the
+        # default without moving what the titration was made on.
+        self.carb_estimate_bias = float(carb_estimate_bias)
         self.p_treat_low = float(P_TREAT_LOW if p_treat_low is None else p_treat_low)
         self.rescue_on = rescue
         self.announce_on = announce
@@ -578,7 +582,7 @@ class Person:
         # backwards and was the streams diverging rather than an effect.
         u = self.rng.random()
         sigma = np.sqrt(np.log(1 + self.carb_estimate_cv ** 2))
-        estimate = float(grams * CARB_ESTIMATE_BIAS
+        estimate = float(grams * self.carb_estimate_bias
                          * self.rng.lognormal(-0.5 * sigma ** 2, sigma))
         if self.announcement == "never":
             self.unannounced_meals += 1

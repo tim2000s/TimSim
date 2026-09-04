@@ -504,7 +504,7 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
              set_life_days=None, announcement="some", meal_delay_min=None,
              engagement_cv=None, liver_delay=None, liver_fast_fraction=None,
              liver_fast_ki_scale=None, liver_kp2_scale=1.0, liver_kp3_scale=1.0,
-             liver_kp2_above_basal_only=False):
+             liver_kp2_above_basal_only=False, carb_estimate_bias=None):
     """Run one subject. Returns a Result.
 
     `layers` is any subset of LAYERS. `controller`, if given, replaces the built-in
@@ -622,7 +622,10 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
                     rescue_threshold=threshold, rescue_refractory_min=refractory,
                     announcement=announcement,
                     p_announce_main=p_main, p_announce_snack=p_snack,
-                    carb_estimate_cv=carb_cv)
+                    carb_estimate_cv=carb_cv,
+                    carb_estimate_bias=(behaviour_mod.CARB_ESTIMATE_BIAS
+                                        if carb_estimate_bias is None
+                                        else carb_estimate_bias))
     # The minutes the meals are actually delivered on, computed the same way for every arm so
     # that the record of what a subject ate does not depend on which layers ran.
     delivery = behaviour_mod.delivery_schedule(schedule)

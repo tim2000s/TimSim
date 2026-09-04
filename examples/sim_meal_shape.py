@@ -79,7 +79,7 @@ def job(args):
     module level and everything it needs travels in the tuple.
     """
     (name, arm, fraction, ki_scale, delay, kp2, kp3, asym, days, windows, controller,
-     record) = args
+     record, carb_bias) = args
     from timsim.simulation.run import simulate, DEFAULT_LAYERS
     # `oref` is the shipped algorithm behind a node bridge and is built inside the worker,
     # since the controller object holds pump state and cannot be pickled across a spawn.
@@ -91,7 +91,7 @@ def job(args):
                  controller=ctrl,
                  liver_fast_fraction=fraction, liver_fast_ki_scale=ki_scale,
                  liver_delay=delay, liver_kp2_scale=kp2, liver_kp3_scale=kp3,
-                 liver_kp2_above_basal_only=asym)
+                 liver_kp2_above_basal_only=asym, carb_estimate_bias=carb_bias)
     if r.termination:
         return name, arm, None, r.termination
     minutes = np.asarray(r.minutes, float)
@@ -136,6 +136,12 @@ def job(args):
                   "returned": [x["returned"] for x in recs],
                   "trough_at_index": int(sum(x["trough_at_index"] for x in recs)),
                   "rejected": rej}
+    # The run's outcome beside its meals, so an arm that moves the rise shows what it did to
+    # the month on the same run rather than on a second one.
+    out["outcome"] = {"tir": float(r.time_in_range), "tbr": float(r.time_below_70),
+                      "tbr54": float(100.0 * np.mean(cgm < 54)), "tar": float(r.time_above_180),
+                      "insulin_per_day": float(r.insulin_units / max(r.days_requested, 1)),
+                      "rescues": int(r.rescue_events)}
     return name, arm, out, None
 
 
@@ -161,6 +167,10 @@ def main():
                          "which is the protocol the real record forces")
     ap.add_argument("--arms", nargs="+", default=[x[0] for x in ARMS],
                     help="which of the arms to run; a one-arm run skips the pairing")
+    ap.add_argument("--carb-bias", type=float, default=None,
+                    help="centre of the carbohydrate estimate as a fraction of the plate; "
+                         "the default is the template's `CARB_ESTIMATE_BIAS`; the arm "
+                         "pre-registered in `examples/carb_bias.py` runs it at 0.84")
     ap.add_argument("--workers", type=int, default=WORKERS)
     ap.add_argument("--out", default=OUT)
     a = ap.parse_args()
@@ -175,7 +185,8 @@ def main():
     from examples.panel import dosable
     subs = dosable(a.subjects)
 
-    jobs = [(n, arm, fr, ks, dl, k2, k3, asym, a.days, tuple(a.windows), a.controller, a.record)
+    jobs = [(n, arm, fr, ks, dl, k2, k3, asym, a.days, tuple(a.windows), a.controller, a.record,
+             a.carb_bias)
             for n in subs for arm, fr, ks, dl, k2, k3, asym in arms_spec]
     print(f"{len(subs)} subjects, {len(arms_spec)} arms, {a.days} days each, "
           f"controller {a.controller}, on {a.workers} workers")
@@ -194,6 +205,7 @@ def main():
 
     rec = {"provenance": provenance.stamp(), "subjects": list(subs), "days": a.days,
            "seed": seeds.BENCH, "controller": a.controller, "record": a.record,
+           "carb_bias": a.carb_bias,
            "arms": [a_[0] for a_ in arms_spec], "min_meals": a.min_meals,
            "dropped": dropped, "arm_spec": [list(x) for x in arms_spec],
            "rows": [], "per_subject": []}
@@ -234,7 +246,8 @@ def main():
                              else float("nan"),
                              returned_share=float(np.mean(cell[w]["returned"])))
                     cells[(arm, w, n)] = p
-                    rec["per_subject"].append(dict(p, arm=arm, window_min=w, subject=n))
+                    rec["per_subject"].append(dict(p, arm=arm, window_min=w, subject=n,
+                                                   outcome=cell["outcome"]))
 
     arms = [x[0] for x in arms_spec]
     for w in a.windows:
