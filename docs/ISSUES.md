@@ -1269,3 +1269,40 @@ the real 80; under the record the real side is forced to use it stands 15 above.
 The rule is the one issue 48 states for a published protocol, applied to a record: a comparison
 against what people logged is made on what the simulated person logged, and the eaten record
 is kept for questions about the model rather than for questions about the fit to data.
+
+## 52. The real meal reference pooled children with adults, against an adult panel
+
+Found 4 September 2026 while measuring insulin delivered by the peak (`examples/insulin_by_peak.py`),
+when the daily insulin of the real reference came out at 38.7 U/day against a simulated 69.1 and
+the first place to look was who the reference was.
+
+`examples/real_meal_shape.py` admitted every participant of a study. Loop enrolled from infancy:
+371 of its 919 participants are under 18, and 297 of the 767 with twenty admitted meals at a 240
+minute window. The simulated panel is adults, `adult#001` onward, so the reference the rise gap
+has been quoted against since 30 August 2026 was a third children and adolescents, whose meals
+rise more per gram and whose daily insulin is a fraction of an adult's. ReplaceBG is unaffected,
+its youngest participant being 19.
+
+The fix is an age floor in the query, `--min-age`, at 18 by default, recorded in the file, with the
+bind parameters moved into one function so the three callers of the query (the reference, the
+insulin measurement and the keystone test) admit the same meals. Regenerated on the adults the
+Loop reference at 240 min reads:
+
+    quantity, Loop at 240 min          pooled (767)   adults (470)
+    rise per 10 g, all meals               17.0          15.8
+    rise per 10 g, covered                 16.5          15.1
+    rise per 10 g, uncovered               23.6          21.4
+    time to peak, min                      80            85
+    people at 180 min, both studies        964           654
+
+The simulated covered rise under oref0 SMB, 11.5 mg/dL per 10 entered grams, stands 3.6 short of
+the adult reference where it stood 5.0 short of the pooled one, and the time to peak, 95 against
+85, is 10 min late rather than 15. The gap did not close. The carbohydrate bias verdict of the
+same day is unchanged by the move, since its 12.8 is below the half-way mark on either reference
+(13.9 pooled, 13.2 adult) and below the 13.3 the denominator gives on its own. `liver_brake.py`
+carried the pooled uncovered figure as a constant, corrected here without rerunning its arms,
+whose simulated numbers do not depend on it; `liver_brake.json` from before this date prints the
+pooled figure in its comparison column.
+
+The pattern is issue 44 again, two sides measured on different populations, one level up: the
+protocol and the definition were matched on 2 September and the people were not.

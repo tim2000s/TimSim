@@ -27,6 +27,11 @@ the covered and uncovered strata can be separated afterwards and the threshold c
 without another run. The strata are the point: uncovered, the model rises 21.5 mg/dL per 10 g
 against a real 19.7, and covered under a loop it rises 10.5 against a real 17.1. A shortfall that
 appears only when insulin is acting on the meal is a different defect from one in absorption.
+
+Insulin delivered by the peak is recorded as well, from `bolus_window_min` before the entry to
+the minute of the peak, as the total and as the bolus part, so the covered shortfall can be split
+between the meal itself and how much insulin the loop had put in by the time the rise stopped.
+`examples/insulin_by_peak.py` reads it on both sides.
 """
 import numpy as np
 
@@ -45,13 +50,15 @@ BOLUS_WINDOW_MIN = 30.0
 def shapes(index_events, carb_minutes, minutes, glucose, window_min,
            clear_before_min=CLEAR_BEFORE_MIN, grams=GRAMS, coverage=COVERAGE,
            step_min=STEP_MIN, bolus_minutes=None, bolus_units=None,
-           bolus_window_min=BOLUS_WINDOW_MIN):
+           bolus_window_min=BOLUS_WINDOW_MIN, insulin_minutes=None, insulin_units=None):
     """Trough to peak for every isolated index meal in one trace.
 
     `index_events` is (minute, grams) for the meals that may be indexed. `carb_minutes` is every
     carbohydrate event including snacks and rescues, which is what isolation is tested against.
-    Returns one record per admitted meal, and records why nothing was admitted rather than
-    returning an empty list silently.
+    `bolus_minutes` and `bolus_units` are the boluses as events; `insulin_minutes` and
+    `insulin_units` are every delivery as events, basal included, from which the insulin by the
+    peak is read. Returns one record per admitted meal, and records why nothing was admitted
+    rather than returning an empty list silently.
     """
     minutes = np.asarray(minutes, float)
     glucose = np.asarray(glucose, float)
@@ -59,6 +66,8 @@ def shapes(index_events, carb_minutes, minutes, glucose, window_min,
     need = int((window_min / step_min) * coverage)
     bm = None if bolus_minutes is None else np.asarray(bolus_minutes, float)
     bu = None if bolus_units is None else np.asarray(bolus_units, float)
+    im = None if insulin_minutes is None else np.asarray(insulin_minutes, float)
+    iu = None if insulin_units is None else np.asarray(insulin_units, float)
 
     out, rejected = [], {"size": 0, "isolation": 0, "coverage": 0}
     for t, g in index_events:
@@ -80,12 +89,17 @@ def shapes(index_events, carb_minutes, minutes, glucose, window_min,
         wm, wg = minutes[sel], glucose[sel]
         peak_i = int(np.argmax(wg))               # argmax takes the earliest on a tie
         trough_i = int(np.argmin(wg[:peak_i + 1]))
-        bolus = float("nan")
+        bolus = bolus_to_peak = insulin_to_peak = float("nan")
+        peak_min = float(wm[peak_i])
         if bm is not None and bu is not None:
             near_b = (bm >= t - bolus_window_min) & (bm <= t + bolus_window_min)
             bolus = float(bu[near_b].sum())
+            bolus_to_peak = float(bu[(bm >= t - bolus_window_min) & (bm <= peak_min)].sum())
+        if im is not None and iu is not None:
+            insulin_to_peak = float(iu[(im >= t - bolus_window_min) & (im <= peak_min)].sum())
         f = fall(wm, wg, trough_i, peak_i, step_min)
-        out.append({"minute": t, "grams": float(g), "bolus_u": bolus, **f,
+        out.append({"minute": t, "grams": float(g), "bolus_u": bolus, "peak_minute": peak_min,
+                    "bolus_to_peak_u": bolus_to_peak, "insulin_to_peak_u": insulin_to_peak, **f,
                     "trough_to_peak_min": float(wm[peak_i] - wm[trough_i]),
                     "trough_at_index": bool(trough_i == 0),
                     "peak_mgdl": float(wg[peak_i]), "trough_mgdl": float(wg[trough_i]),

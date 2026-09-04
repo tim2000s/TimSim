@@ -1,0 +1,51 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+panel: skipped 1 subject(s) with no titrated settings (adult#026), taking 40 of the first 41
+40 subjects, 42 days each, controller oref, on 7 workers; real side on ['Loop', 'ReplaceBG'] meanwhile
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+  Loop 180 min: 784 people, 173468 covered meals, 525 in a rate gap
+  Loop 240 min: 767 people, 134602 covered meals, 438 in a rate gap
+  Loop 300 min: 742 people, 102785 covered meals, 348 in a rate gap
+  Loop daily insulin: 38.7 U/day median over 835 people, bolus share 0.40
+  ReplaceBG 180 min: 179 people, 46716 covered meals, 247 in a rate gap
+  ReplaceBG 240 min: 178 people, 39624 covered meals, 191 in a rate gap
+  ReplaceBG 300 min: 178 people, 32799 covered meals, 144 in a rate gap
+  ReplaceBG daily insulin: 42.1 U/day median over 196 people, bolus share 0.49
+
+ window              side    n  meals              rise/10g             bolus/10g           by peak/10g             added/10g            trough to peak
+    180              Loop  784 173468  9.25 / 14.39 / 21.72    0.50 / 0.95 / 1.50    0.82 / 1.51 / 2.44    0.24 / 0.52 / 0.97     45.00 / 65.02 / 89.98
+    180       Loop adults  475 110617  8.68 / 13.00 / 19.64    0.65 / 1.00 / 1.55    1.11 / 1.64 / 2.55    0.34 / 0.60 / 1.03     46.00 / 70.00 / 90.00
+    180         ReplaceBG  179  46716  7.23 / 11.78 / 18.30    0.67 / 1.00 / 1.79    0.95 / 1.55 / 2.42    0.20 / 0.37 / 0.69     39.49 / 65.00 / 82.99
+    180  ReplaceBG adults  179  46716  7.23 / 11.78 / 18.30    0.67 / 1.00 / 1.79    0.95 / 1.55 / 2.42    0.20 / 0.37 / 0.69     39.49 / 65.00 / 82.99
+    180          sim oref   37   1612  7.71 / 10.07 / 14.31    0.53 / 0.75 / 1.10    1.25 / 1.81 / 2.57    0.72 / 1.10 / 1.52     64.00 / 80.00 / 95.00
+    240              Loop  767 134602 10.69 / 16.50 / 24.08    0.52 / 0.95 / 1.51    0.88 / 1.63 / 2.59    0.30 / 0.63 / 1.19    55.01 / 80.00 / 109.99
+    240       Loop adults  470  89154 10.10 / 15.08 / 22.26    0.63 / 1.00 / 1.57    1.17 / 1.77 / 2.74    0.39 / 0.71 / 1.26    59.98 / 84.98 / 110.01
+    240         ReplaceBG  178  39624  8.90 / 14.15 / 21.01    0.67 / 1.01 / 1.80    1.02 / 1.66 / 2.60    0.23 / 0.46 / 0.84    50.00 / 80.00 / 104.99
+    240  ReplaceBG adults  178  39624  8.90 / 14.15 / 21.01    0.67 / 1.01 / 1.80    1.02 / 1.66 / 2.60    0.23 / 0.46 / 0.84    50.00 / 80.00 / 104.99
+    240          sim oref   36   1283  8.50 / 11.46 / 14.54    0.53 / 0.75 / 1.11    1.41 / 1.96 / 2.87    0.90 / 1.31 / 1.86    75.00 / 91.25 / 105.00
+    300              Loop  742 102785 11.63 / 17.55 / 25.89    0.50 / 0.95 / 1.54    0.94 / 1.73 / 2.75    0.36 / 0.73 / 1.36    62.75 / 90.00 / 122.51
+    300       Loop adults  459  71179 11.23 / 16.37 / 24.00    0.64 / 0.99 / 1.56    1.24 / 1.88 / 2.90    0.46 / 0.82 / 1.39    65.00 / 94.99 / 125.02
+    300         ReplaceBG  178  32799 10.30 / 15.78 / 23.66    0.67 / 1.00 / 1.82    1.07 / 1.76 / 2.80    0.26 / 0.56 / 0.99    60.00 / 96.25 / 123.24
+    300  ReplaceBG adults  178  32799 10.30 / 15.78 / 23.66    0.67 / 1.00 / 1.82    1.07 / 1.76 / 2.80    0.26 / 0.56 / 0.99    60.00 / 96.25 / 123.24
+    300          sim oref   34    941  9.58 / 12.56 / 15.46    0.52 / 0.76 / 1.05    1.44 / 2.10 / 3.09    0.96 / 1.48 / 2.32   85.00 / 102.50 / 120.00
+
+              side    n           U/day p10/50/90               bolus share
+              Loop  835        18.6 / 38.7 / 71.0        0.25 / 0.40 / 0.55
+       Loop adults  503        26.1 / 41.1 / 72.0        0.21 / 0.38 / 0.52
+         ReplaceBG  196        25.3 / 42.1 / 72.7        0.33 / 0.49 / 0.62
+  ReplaceBG adults  196        25.3 / 42.1 / 72.7        0.33 / 0.49 / 0.62
+          sim oref   37        44.8 / 69.1 / 90.0        0.61 / 0.70 / 0.77
+wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/insulin_by_peak.json

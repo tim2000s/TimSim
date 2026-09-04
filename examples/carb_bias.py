@@ -18,7 +18,9 @@ record of plate against entry exists on the real side to measure the centre from
 
 Where the target statistic sits. Under oref0 SMB on the announced record at a 240 minute
 window the covered rise reads 11.4 mg/dL per 10 entered grams against the real Loop 16.5
-(`sim_meal_shape_announced_oref.json`, `real_meal_shape.json`).
+(`sim_meal_shape_announced_oref.json`, `real_meal_shape.json`). That reference was found the
+same day to pool children with adults (issue 52); on the adults it is 15.1, the half-way mark
+below is 13.2 rather than 13.9, and the result reported at the end fails on either.
 
 Predictions, stated before the run.
 

@@ -53,9 +53,10 @@ WINDOW_MIN = 360
 GRAMS = 50.0
 ARMS = ("stock", "no_brake", "no_insulin")
 WORKERS = 7
-# Real per-person meal rise, `real_meal_shape.json`, Loop participants at a 240 min window,
-# unbolused meals, tenth to ninetieth percentile of per-person medians, mg/dL per 10 g.
-REAL_UNCOVERED = (14.0, 23.6, 34.7)
+# Real per-person meal rise, `real_meal_shape.json`, adult Loop participants at a 240 min window,
+# unbolused meals, tenth to ninetieth percentile of per-person medians, mg/dL per 10 g. Files
+# written before 4 September 2026 print the pooled figure, 14.0 / 23.6 / 34.7 (issue 52).
+REAL_UNCOVERED = (12.7, 21.4, 31.8)
 
 
 def job(args):

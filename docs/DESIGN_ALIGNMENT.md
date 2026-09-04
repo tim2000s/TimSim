@@ -31,7 +31,10 @@ Assigning every terminating subject a time in range of 40 per cent moves the coh
 80.8 to 80.0.
 
 Insulin quantity is not the explanation. The cohort delivers 47.6 U/day at the median against the
-trial's recorded 47.0.
+trial's recorded 47.0. That is the reference loop on the cohort of the table below; the 40
+subject meal panel under oref0 SMB delivers 69.1 U/day against 41.1 for the adult Loop
+participants, measured 4 September 2026 in `examples/insulin_by_peak.py`, and the matching does
+not carry to it.
 
 The carbohydrate ratio is not the explanation in the direction required. The population median is
 10.4 g per unit where the trial recorded 8.0, so the simulated ratio doses meals more weakly than
@@ -631,10 +634,12 @@ What is currently supported is a gap on one quantity, measured on one protocol. 
 a subject eats over 42 days through the definition in `timsim/analysis/meal_shape.py`, on the
 record a person leaves (the meals they entered, at the grams they entered), the simulated rise
 under oref0 SMB at a 240 minute window is 11.8 mg/dL per 10 g (8.8 to 14.6 across 36 subjects)
-against a real 17.0 (11.2 to 25.1 across 767 Loop participants), from
+against a real 15.8 (10.4 to 22.9 across 470 adult Loop participants), from
 `docs/measurements/sim_meal_shape_announced_oref.json` and `real_meal_shape.json`. Covered meals
-read 11.5 against 16.5 and uncovered 15.7 against 23.6. Time to peak on the same record is 95
-minutes against 80.
+read 11.5 against 15.1 and uncovered 15.7 against 21.4. Time to peak on the same record is 95
+minutes against 85. Until 4 September 2026 the reference pooled Loop's children with its adults
+and read 17.0, 16.5, 23.6 and 80 (issue 52); the panel being adult, the adult figures are the
+comparison, and the covered gap is 3.6 mg/dL per 10 g rather than 5.0.
 
 Two explanations for that gap have been tested this week and neither holds. The controller was
 not it: on a panel held fixed across four drivers the spread between them is 3.3 mg/dL per 10 g
@@ -657,10 +662,26 @@ the rule required; on the eaten record it moved -0.2 [-0.7, 0.7], so the smaller
 nothing the controller did not replace. Insulin fell under 1 per cent where the entry fell 16,
 no outcome or signature moved past its interval, and the hypoglycaemia rebound left the real
 range (28.5 to 37.7 per cent against an upper edge of 39.2 on the base interval). The parameter
-stays at 1.0. One candidate remains open. The disposal interaction in audit entry 6, where disposal is right on each axis and 28 per
-cent too high on both together (13 per cent once production is counted with it), runs in the
-direction the residual needs at about a fifth of its size, and neither `Km0` nor a disposal
-exponent moves it.
+stays at 1.0.
+
+The insulin delivered by the peak was then measured on both sides, since each of the input-side
+perturbations had been absorbed by the loop within the window (`examples/insulin_by_peak.py`,
+`docs/measurements/insulin_by_peak.json`). From 30 minutes before the entry to the peak, per 10
+entered grams on covered meals at 240 min, the simulated loop delivers 1.96 U (1.41 to 2.87
+across 36 subjects) against 1.77 for the adult Loop participants (1.17 to 2.74 across 470) and
+1.66 for ReplaceBG, arranged differently: a meal bolus of 0.75 U against 1.00, which is the
+titrated carbohydrate ratio, and 1.31 U added after the entry against 0.71. The dose by the peak
+is higher on the simulated side, by 11 per cent, on a rise 24 per cent lower, so the controller
+cannot be excluded as part of the shortfall and has not been shown to be the whole of it. A run
+delivering the real profile to the simulated subject (1.00 U per 10 g at the entry, 0.71 spread
+to the peak) would separate the two and has not been done. Over the day the panel takes 69.1
+U/day against 41.1, with the bolus share at 0.70 against 0.38; with the excess by the peak at 11
+per cent, most of that sits after the peaks, on runs recording 2.0 rescue helpings a day.
+
+One candidate remains open. The disposal interaction in audit entry 6, where disposal is right
+on each axis and 28 per cent too high on both together (13 per cent once production is counted
+with it), runs in the direction the residual needs at about a fifth of its size, and neither
+`Km0` nor a disposal exponent moves it.
 
 ## What is deliberately not proposed
 

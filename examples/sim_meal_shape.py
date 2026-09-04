@@ -1,6 +1,6 @@
 """The simulated meal shape, per subject and per meal, against the real measurement.
 
-`examples/real_meal_shape.py` measures 964 real people over 193,696 meals and separates the two
+`examples/real_meal_shape.py` measures 654 real adults over 172,028 meals and separates the two
 components of the spread. Within-person variation is the larger of them: at a 240 minute window a
 Loop participant's own meals span an interquartile range of 90 minutes, where participants differ
 from each other by 50 minutes across the tenth to ninetieth percentile of their medians.
