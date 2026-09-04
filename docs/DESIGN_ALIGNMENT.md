@@ -672,11 +672,29 @@ across 36 subjects) against 1.77 for the adult Loop participants (1.17 to 2.74 a
 1.66 for ReplaceBG, arranged differently: a meal bolus of 0.75 U against 1.00, which is the
 titrated carbohydrate ratio, and 1.31 U added after the entry against 0.71. The dose by the peak
 is higher on the simulated side, by 11 per cent, on a rise 24 per cent lower, so the controller
-cannot be excluded as part of the shortfall and has not been shown to be the whole of it. A run
-delivering the real profile to the simulated subject (1.00 U per 10 g at the entry, 0.71 spread
-to the peak) would separate the two and has not been done. Over the day the panel takes 69.1
-U/day against 41.1, with the bolus share at 0.70 against 0.38; with the excess by the peak at 11
-per cent, most of that sits after the peaks, on runs recording 2.0 rescue helpings a day.
+cannot be excluded as part of the shortfall and has not been shown to be the whole of it. Over
+the day the panel takes 69.1 U/day against 41.1, with the bolus share at 0.70 against 0.38; with
+the excess by the peak at 11 per cent, most of that sits after the peaks, on runs recording 2.0
+rescue helpings a day.
+
+The run that separates the two was done on 5 September 2026 (`examples/insulin_profile_rise.py`,
+`docs/measurements/insulin_profile_rise.json`). Forty subjects over 42 days were driven by the
+built-in correction loop between meals and by a fixed insulin profile inside them, in four arms
+paired per subject: the loop alone, the simulated loop's quantities (0.75 U per 10 g at the
+entry, 1.96 by the peak over 91 min), the adult Loop record's (1.00 and 1.77 over 85 min), and
+the real bolus with the loop back after 30 minutes. The profiles reached the body, the insulin by
+the peak ordering as the arms were built (1.84, 1.76, 1.69 U per 10 g at 240 min, the loop alone
+1.65), and the rise did not follow it: 10.3, 10.3, 10.6 and 9.9 mg/dL per 10 g, with the real
+profile against the simulated one at -0.07 [-0.75, 0.50] at 240 min and +0.03 [-0.99, 1.03] at
+300. The rule registered before the run placed the gap in the physiology at a difference under
+1.0 with the interval clear of 1.8, and both windows meet it. The method check on the simulated
+arm fell 0.2 outside its allowance (10.3 against the loop's 11.5 at 240 min, where 1.0 was the
+tolerance), which is the profile spreading to the peak what oref0 SMB places in the first half
+hour. The four arms span 1.65 to 1.84 U per 10 g by the peak and 9.9 to 10.6 mg/dL per 10 g of
+rise, against 15.1 on the adult record, so how the insulin is placed within that range moves the
+peak by under 1 mg/dL per 10 g and the shortfall of 4.5 to 5.2 sits in the model's glucose
+appearance and disposal. The rise is recorded as a bound in `docs/VALIDATION.md` and is not
+pursued further here.
 
 One candidate remains open. The disposal interaction in audit entry 6, where disposal is right
 on each axis and 28 per cent too high on both together (13 per cent once production is counted

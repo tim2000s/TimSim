@@ -359,6 +359,19 @@ Hypoglycaemia rebound is the other reason. At 66.1% against a real 23 to 28, the
 person over-treats lows roughly twice as often as these cohorts appear to, so an algorithm
 judged on how it handles the resulting highs is being judged on a harsher world.
 
+The meal rise is a third, and it is a bound rather than an open question. Per 10 entered grams
+on covered meals at a 240 minute window, the simulated adult rises 9.9 to 11.5 mg/dL depending
+on the driver, where 470 adult Loop participants rise 15.1 (10.1 to 22.3 across people,
+`docs/measurements/insulin_by_peak.json`), and time to peak is 70 to 95 minutes against 85. In
+the week to 5 September 2026 the controller, the grams denominator, the carbohydrate estimate
+bias and the insulin delivered by the peak were each excluded as the cause, the last by driving
+the simulated person with the real profile and finding the rise unchanged, -0.07 mg/dL per 10 g
+[-0.75, 0.50] against the simulated profile (`examples/insulin_profile_rise.py`; the trail is in
+`docs/DESIGN_ALIGNMENT.md`). What is left is the model's glucose appearance and disposal, which
+this package does not refit. An algorithm is therefore judged here on meals that rise about a
+third less per gram than a real adult's, and a result that depends on the size of the peak
+carries that.
+
 What the seven levels do support: stress-testing an algorithm for pathological behaviour,
 ranking options where the difference exceeds the measured noise floor, and attributing an
 effect to a named mechanism by switching layers off. Deciding what a change does to a
