@@ -261,18 +261,20 @@ original identification matched, and both need checking rather than one.
 |---|---|---|---|
 | 1. Glucose effectiveness | 0.0065 min^-1 against a published 0.011 to 0.021 | Against: correcting it would shorten excursions further | No change |
 | 2. Fasting equilibrium | 142 mg/dL against a real nadir of 134.8 | Neutral, 7 mg/dL | No change |
-| 3. Liver insulin delay | Suppression peaks at 5 h against a measured 20 to 80 min | With: explains both halves | No change: no value of `ki` meets both the clamp and the meal |
+| 3. Liver insulin delay | Suppression peaks at 5 h against a measured 20 to 80 min | With: explains both halves | No change. The gate result below is withdrawn (`docs/ISSUES.md` 44 to 46) and nothing has been shown either way |
 | 4. Nondiabetic parameter provenance | Subjects derive from a nondiabetic joint distribution | Bears on the population's narrowness | No change available |
+| 5. No hepatic uptake, and production under-suppressed | Postprandial suppression 18.6 per cent (10.3 to 29.1) against a measured 43.5 to 52.3 | With, for suppression; the missing uptake is absent in well-managed type 1 diabetes and needs no term | No change |
+| 6. Disposal interaction | Disposal rises 40 per cent between basal and postprandial states against a measured 25; net removal 13 per cent above human once production is counted | With, at a fifth of the size of the gap | No change: neither `Km0` nor a disposal exponent moves it |
 
-All three entries conclude no change, for three different reasons. Entry 1 diverges in the
-direction that would make the residual worse. Entry 2 is small enough not to matter. Entry 3
-diverges in the direction that would explain the residual and cannot be corrected by the parameter
-that carries it, because the same parameter is what makes the meal response right and the two
-requirements do not overlap.
-
-That third result is the useful one. The gap this package cannot close is, on the evidence so far,
-a structural property of the S2008 liver rather than a tuning error, and closing it would mean
-replacing one first-order delay with two rather than adjusting the one that is there.
+Every entry concludes no change, for different reasons. Entry 1 diverges in the direction that
+would make the residual worse. Entry 2 is small enough not to matter. Entries 3, 5 and 6 diverge
+in the direction that would explain the residual, and none has been shown to produce it. The
+test built for entry 3, which read the divergence as structural because no value of `ki` met both
+gates, was found to have measured its two gates on different populations and to return the same
+meal verdict with the mechanism switched off (issues 44 and 45), so that conclusion is withdrawn
+rather than replaced. The two-timescale liver built on it satisfies both gates only at a fast
+fraction of 1.0, which is a single-timescale liver at 10.5 times the published rate
+(`docs/SPEC_VS_OUTPUT.md`, `liver_two_timescale.json`).
 
 ## Testing entry 3: what would refute a faster liver delay
 
@@ -550,28 +552,39 @@ are.
 
 ### What follows
 
-The missing uptake is too small to matter and the suppression is not missing at all, both of which
-were settled after this entry was first written.
+The missing uptake is too small to matter, which was settled after this entry was first written.
+The suppression is a different matter, and the first reading of it was wrong.
 
-`docs/measurements/hinshaw_meal.json` reproduces Hinshaw's protocol at 10 kcal/kg over six hours
-and puts postprandial suppression of production at 43.3 per cent on basal insulin against a
-measured 43.5 to 52.3, so the model suppresses about as much as people do. The 23.2 per cent
-quoted earlier was the same quantity diluted over eight hours, which is what comes of comparing
-before matching a window.
+The first version of this section reported that `docs/measurements/hinshaw_meal.json` put
+postprandial suppression at 43.3 per cent against a measured 43.5 to 52.3, and concluded that the
+model suppresses about as much as people do. That reproduction used the wrong meal and the wrong
+denominator (`docs/ISSUES.md` 48): the 10 kcal/kg standardisation meal eaten the evening before,
+giving a median 112 g where the study meals carry about 50, and body weight where the tracer is
+dosed per kilogram of fat-free mass. Corrected to a 50 g meal over six hours, forty adults on basal
+insulin suppress production by 18.6 per cent (10.3 to 29.1) against Hinshaw's 43.5 to 52.3, so the
+model suppresses less than half as much as people do. The 23.2 per cent quoted earlier was the
+same quantity diluted over eight hours and is not comparable to either figure.
 
-What that comparison did find is that the model suppresses for the wrong reason. Adding a meal
-bolus makes suppression fall to 28.3 per cent, because production here is held down by
+The direction of the bolus effect survived the correction. Adding the titrated meal bolus lowers
+suppression further, to 12.8 per cent (6.2 to 28.8), because production here is held down by
 hyperglycaemia through `kp2` and insulin arriving through `kp3` peaks at five hours, so inside a
-six-hour window the bolus lowers glucose and releases the liver. Entry 3 predicts exactly that
-from Edgerton's clamp, and this is the same defect measured on a meal in the population the
-package simulates.
+six-hour window the bolus lowers glucose and releases the liver. Entry 3 predicts that from
+Edgerton's clamp, and this is the same defect measured on a meal in the population the package
+simulates.
 
-So the liver is not the explanation for the small rise. Against Hinshaw, whole-body glucose
-disappearance is 6308 micromol/kg over six hours with no bolus and 10177 with a full titrated one,
-against a measured 8392 to 8535, so the two arms straddle the human value and the disposal side is
-not obviously wrong either. Fasting production at 13.5 micromol/kg/min against a measured 16.2 to
-19.5 says the whole glucose turnover runs about three-quarters of the human rate, which is the
-remaining candidate and is a statement about the population rather than about any one channel.
+The disposal side is closer. On the corrected per-body-weight reference, whole-body disappearance
+over six hours is 5679 micromol/kg (4888 to 6598) with no bolus and 7360 (6413 to 8664) with the
+titrated one, against a measured 6022 to 6124, so the two arms straddle the human value. Fasting
+production at 13.5 micromol/kg/min (12.1 to 16.2) sits inside the corrected 11.6 to 14.0; the
+first version of this paragraph had it at three-quarters of the human rate, against a reference
+that was 28 per cent too large. Entry 6 takes disposal further and finds it right on each axis and
+too high on both together.
+
+Meal appearance cannot be read from the same file. The model's appearance over six hours is 2929
+micromol/kg, about 39 g from a 50 g meal, where Hinshaw's implies about 59 g on the fat-free
+normalisation, more glucose than the meal is said to contain. Issue 48 records that as an
+uncertainty in the reference rather than a finding about the model, and the comparison is not
+quoted until it is resolved.
 
 ### Whether the design is defensible
 
@@ -586,11 +599,13 @@ and a single insulin compartment is a defensible reading of it for fasting produ
 
 ### Recommendation
 
-No change, and read Hwang 1995 before revisiting. A hepatic uptake term is a structural addition
-to a published model, which this package has declined before on the grounds that it should stay
-close to what UVA/Padova does, and the two missing mechanisms point away from the gap that
-prompted the search. Recording it matters because the next person to find the liver absorbing 38
-per cent of a meal should know it is doing so through the only channel it has.
+No change. A hepatic uptake term is a structural addition to a published model, which this
+package has declined before on the grounds that it should stay close to what UVA/Padova does, and
+Brunasso's measurement says the term would describe nothing in the population simulated here. The
+under-suppression of production points towards the gap that prompted the search and is the same
+defect entry 3 carries, measured on a meal; entry 3 records why the parameter that carries it has
+not been shown to correct it. Recording this entry matters because the next person to find the
+liver absorbing 37 per cent of a meal should know it is doing so through the only channel it has.
 
 ### A shipping mechanism this bears on
 
@@ -654,8 +669,9 @@ population it is used on and wrong for the population its parameters came from, 
 opposite of the usual complaint and sits beside entry 4.
 
 They also found meal appearance and gastric emptying similar between the groups, so the appearance
-side of a meal is not where type 1 diabetes differs, which is consistent with this package's own
-appearance matching Hinshaw at `docs/measurements/hinshaw_meal.json`.
+side of a meal is not where type 1 diabetes differs. Whether this package's own appearance matches
+Hinshaw is unresolved, for the reason given under entry 5: the reference implies more glucose
+appearing than the meal contained (`docs/ISSUES.md` 48).
 
 ### Why the glucose brake cannot simply be weakened
 

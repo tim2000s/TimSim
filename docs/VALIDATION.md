@@ -309,13 +309,22 @@ Measured on 12 adults over 14 days, median LBGI goes 0.80, 0.88, 1.03, 1.07 as i
 sensitivity is scaled to 1, 0.85, 0.70 and 0.55 of its correct value. Passing.
 
 Every named defect has to clear the noise floor measured by running the reference twice.
-The A/A arm gives a paired LBGI standard deviation of 0.218, so twelve subjects resolve a
-shift of 0.176. Removing the insulin-on-board ceiling shifts LBGI by +2.31 and removing
-basal withdrawal by +0.25, both detected. A 30% insulin sensitivity error shifts it by
-+0.17 and is not, missing the floor by 0.006 on a design that needed 12.9 subjects and had
-twelve. That says the bench is underpowered for that hazard at that size rather than that
-the defect is benign: it more than triples minutes below 54 mg/dL. Thirty-four subjects
-would resolve a shift of 0.105 and the full hundred 0.061.
+Measured after the rebuild at three cohort sizes over 14 days
+(`docs/measurements/ranking_power.json`), the A/A arm gives a paired LBGI standard deviation
+of 0.49 at twelve subjects, 0.51 at twenty and 0.52 at forty, so the shift the design
+resolves at 80 per cent power is 0.40, 0.32 and 0.23. Removing the insulin-on-board ceiling
+shifts LBGI by +1.57 at twelve and +2.27 at forty and is detected at every size. The other
+three defects, removing basal withdrawal (+0.18 at twelve, +0.31 at forty), acting on stale
+readings (+0.17, +0.24) and a 30 per cent sensitivity error (+0.15, +0.26), all miss the
+floor at twelve and twenty. At forty the check passes on the point estimates, and two of
+the three sit inside the floor's own uncertainty: a standard deviation from forty pairs has
+a relative standard error near 11 per cent, so the floor is 0.23 give or take 0.026, and
+the shifts of 0.24 and 0.26 are not clearly above it. Two defects separate clearly at forty
+subjects and two are marginal. That says the bench is underpowered for those hazards at
+that size rather than that they are benign. A previous version of this paragraph quoted a
+floor of 0.176 at twelve subjects and projections of 0.105 at thirty-four and 0.061 at a
+hundred; those were measured before the rebuild on a spread less than half the current one
+and are superseded.
 
 A deliberately timid algorithm has to look safer on lows and worse on highs. LBGI 0.80 to
 0.30, mean glucose 143 to 156 mg/dL, time in range 73.0% to 69.4%. Passing.

@@ -614,25 +614,47 @@ headroom.
 
 ## Where the residual is now believed to live
 
-Seven mechanisms above are refuted, all of them on the input side or in the controller. The audit
-in `docs/PADOVA_AUDIT.md` measured the model itself and found one divergence whose direction
-matches: a bolus of insulin suppresses hepatic glucose production for eight hours, peaking in the
-fifth, where the measured human response falls 75 per cent within 30 minutes and is complete by 60.
-Plasma insulin and insulin-dependent uptake are both right; the liver pathway is not, and from the
-sixth hour onward it is most of what a dose is still doing.
+This section has been rewritten twice and the previous version is recorded here because it was
+acted on. It attributed the residual to the liver's insulin delay, measured in `docs/PADOVA_AUDIT.md`
+entry 3, and reported that no value of `ki` met both the clamp and the meal, so that the model
+could not represent the response and correcting it meant two insulin actions on the liver. A
+two-timescale liver was built on that reading. Both halves are withdrawn. The two gates were
+measured on different populations and the meal gate returned the same verdict with the mechanism
+switched off (`docs/ISSUES.md` 44 and 45), and the two-timescale liver satisfied both gates only at
+a fast fraction of 1.0, which is a single-timescale liver at 10.5 times the published rate with
+the published pathway carrying none of the gain (`docs/SPEC_VS_OUTPUT.md`,
+`docs/measurements/liver_two_timescale.json`). The delay is still the largest divergence the audit
+has measured whose direction matches the residual, and nothing has been shown either way about
+whether it produces it.
 
-That accounts for the shape the refutations left behind. It is a mechanism for the inter-meal
-troughs failing to ratchet through the day, for three input-side perturbations being absorbed, and
-for insulin-on-board being understated against the 300-minute duration every algorithm here is
-given.
+What is currently supported is a gap on one quantity, measured on one protocol. Reading every meal
+a subject eats over 42 days through the definition in `timsim/analysis/meal_shape.py`, on the
+record a person leaves (the meals they entered, at the grams they entered), the simulated rise
+under oref0 SMB at a 240 minute window is 11.8 mg/dL per 10 g (8.8 to 14.6 across 36 subjects)
+against a real 17.0 (11.2 to 25.1 across 767 Loop participants), from
+`docs/measurements/sim_meal_shape_announced_oref.json` and `real_meal_shape.json`. Covered meals
+read 11.5 against 16.5 and uncovered 15.7 against 23.6. Time to peak on the same record is 95
+minutes against 80.
 
-It was tested and it cannot be acted on. No value of `ki` reproduces both the clamp and the meal
-response: the clamp needs eleven times the published value and the meal response is lost above
-twice it, and the two requirements do not overlap. One first-order delay is carrying two responses
-with different timescales, and the published value sits where the meal identification put it. So
-the eighth mechanism fails differently from the seven before it. It is not absent or too small; the
-model cannot represent it, and correcting it means two insulin actions on the liver rather than a
-re-tuned one. `docs/PADOVA_AUDIT.md` entry 3 has the measurement and the arithmetic.
+Two explanations for that gap have been tested this week and neither holds. The controller was
+not it: on a panel held fixed across four drivers the spread between them is 3.3 mg/dL per 10 g
+against a gap to real of 6.5 to 9.5, and the earlier attribution to oref0 was the panel changing
+under it (issue 50). The denominator was not it either: the simulated side had divided by grams
+eaten where the real side can only divide by grams logged, and correcting the record moved the
+rise 0.4 mg/dL per 10 g [-0.1, 1.1] paired on 35 subjects (issue 51,
+`docs/measurements/meal_record_pairing.json`). Weakening the glucose brake `kp2` symmetrically
+raises the rise and terminates 17 to 22 of 40 subject-arms hypoglycaemic, because the same
+coefficient is the stock model's only glucose-driven defence against a fall (audit entry 5); the
+asymmetric form has not been shown to close the gap.
+
+Two candidates remain open. The carbohydrate estimate bias, `CARB_ESTIMATE_BIAS` in
+`timsim/person/behaviour.py`, is held at 1.0 while the meal schedule already assumes people log
+0.84 of what they eat; a value below 1.0 would enter the person layer as a modelling choice under
+the bar in `CONTRIBUTING.md`, and it is being measured as this is written, with no result to
+report. The disposal interaction in audit entry 6, where disposal is right on each axis and 28 per
+cent too high on both together (13 per cent once production is counted with it), runs in the
+direction the residual needs at about a fifth of its size, and neither `Km0` nor a disposal
+exponent moves it.
 
 ## What is deliberately not proposed
 

@@ -394,37 +394,43 @@ load-bearing result for any claim that the bench can rank, and it passes.
 
 ### Separation, and where the bench runs out of power
 
-The reference run twice on different seeds gives the noise floor: a paired standard
-deviation of 0.218 in LBGI, so at twelve subjects the smallest shift this design resolves
-at 80% power is 0.176.
+The reference run twice on different seeds gives the noise floor. Measured after the
+rebuild at three cohort sizes over 14 days (`docs/measurements/ranking_power.json`), the
+paired standard deviation in LBGI is 0.49 at twelve subjects, 0.51 at twenty and 0.52 at
+forty, so the smallest shift the design resolves at 80 per cent power is 0.40, 0.32 and
+0.23.
 
-| Defect | Paired median LBGI shift | Detected at 12 subjects |
-|---|---|---|
-| no ceiling on insulin on board | +2.31 | yes, by a factor of thirteen |
-| no basal withdrawal on a fall | +0.25 | yes |
-| acting on half-hour-old readings | +0.24 | yes |
-| insulin sensitivity 30% too strong | +0.17 | no, against a floor of 0.176 |
+| Defect | Shift at 12 | Shift at 20 | Shift at 40 | Detected at 40 |
+|---|---|---|---|---|
+| no ceiling on insulin on board | +1.57 | +1.94 | +2.27 | yes, by a factor of ten |
+| no basal withdrawal on a fall | +0.18 | +0.28 | +0.31 | yes |
+| acting on half-hour-old readings | +0.17 | +0.24 | +0.24 | marginal |
+| insulin sensitivity 30% too strong | +0.15 | +0.25 | +0.26 | marginal |
 
-Three of four separate. The sensitivity error misses by 0.006, which is as marginal as a
-result gets: the arithmetic says the design needed 12.9 subjects and it had twelve.
+At twelve and twenty subjects only the missing ceiling separates. At forty the point
+estimates all clear 0.23, and two of them by less than the floor's own uncertainty: a
+standard deviation from forty pairs carries a relative standard error near 11 per cent, so
+the floor is 0.23 give or take 0.026 and shifts of 0.24 and 0.26 are inside that. Two
+defects separate clearly at forty and two are marginal.
 
-The right reading is that the bench is underpowered for that hazard at that cohort size,
-not that the defect is benign. It more than triples minutes below 54 mg/dL in the table
-above and adds 48% to rescue carbohydrate. Thirteen subjects would resolve it, thirty-four
-would resolve a shift of 0.105, and the full hundred would resolve 0.061. Anyone reading a
-null on a hazard of this size at this cohort size is reading an underpowered design rather
-than a safe algorithm, which is exactly what this check exists to make visible.
+The right reading is that the bench is underpowered for those hazards at that cohort size
+rather than that they are benign; the sensitivity error more than triples minutes below 54
+mg/dL in the table above and adds 48% to rescue carbohydrate. A previous version of this
+section reported a floor of 0.176 at twelve subjects, three of four defects separating at
+that size, and projections of 0.105 at thirty-four and 0.061 at a hundred. Those were
+measured before the rebuild on a paired spread of 0.218, less than half the current one,
+and are superseded by measurement at three sizes rather than extrapolation from one.
 
-That is also the honest answer to what the bench can rank. It separates a gross defect
-trivially and a subtle misconfiguration only with enough subjects, and it now tells you
-which of those situations you are in.
+The bench separates a gross defect at any size and a subtle misconfiguration only with
+enough subjects, and it reports which of those situations a result is in.
 
 This check also caught a mistake in its own criterion, and the correction turned out not to
 change the verdict. It first used the mean absolute paired difference of the A/A arm as its
 floor, which is the typical size of the noise on one subject rather than the smallest shift
-detectable across a cohort, so it does not shrink as subjects are added. Measured here it
-is 0.159 against a detectable shift of 0.176, so the two are close at twelve subjects and
-diverge from there: for a roughly normal paired difference the per-subject figure stays at
+detectable across a cohort, so it does not shrink as subjects are added. In the current
+measurement it is 0.43 at twelve subjects against a detectable shift of 0.40, and 0.42 at
+forty against 0.23, so the two are close at twelve and diverge from there: for a roughly
+normal paired difference the per-subject figure stays at
 about 0.8 standard deviations whatever the cohort size, while the detectable shift falls as
 its square root. The old criterion would have been unintentionally strict on any cohort
 large enough to be worth running.
