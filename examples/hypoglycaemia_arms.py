@@ -1,4 +1,4 @@
-"""Does the rescue absorption scale move the outcome, not just the clamp?
+"""Does a hypoglycaemia mechanism move the outcome, not just the clamp?
 
 The clamp is where the defect was found and the matrix is where it matters. A subject producing
 0.3 mg/kg/min instead of nothing at a clamp may still fall just as far during a spontaneous low,
@@ -15,8 +15,67 @@ is eaten, which is what the second mechanism acts on. The floor was refuted agai
 fixed before it was built and was removed, so that ordering no longer applies and the floor is
 held at zero in both arms.
 
+Extended 5 September 2026 for the EGP defence at 0.25. `examples/low_recovery.py` found that
+with the person not eating for a low, 8 of 40 subjects under oref0 SMB fall to about 10 mg/dL
+within 28 days and none do with the defence at 0.25, at a clamp cost already recorded in
+`patient/varying.py` (median production 1.06 mg/kg/min against a human 0.42 to 0.84). This
+puts that arm on the outcome table under the shipped person, against the shipped configuration
+stated explicitly, on the same pairings. Registered: the arm is worth adopting on the outcome
+if time below 54 mg/dL falls, paired, by more than the group variation `group_floor.json`
+measures for the cell (95th percentile of the difference between disjoint halves, layered
+cells: 0.41 points under Control-IQ on DCLP3, 0.34 under oref0 SMB on DCLP3, 0.56 on the
+Commons cohort) with the interval clear of zero; a fall inside that variation says the
+fall-throughs and the outcome are separate, as the floor's were, and the defence stays at 0.05.
+Completion, rebound and recovery are reported beside it. The registration as first written gave
+0.34 for the Control-IQ cell, a transcription error against `group_floor.json`, corrected after
+the DCLP3 half had been read; the result is inside both figures.
+
+Result, 5 September 2026 (`egp_defence_outcome.json`, pooled from `_mac.json` and
+`_desktop.json`, 484 runs of 28 days, identical population and settings fingerprints). Time
+below 54 mg/dL fell in every cell and in every cell by less than the group variation:
+
+    cell                      shipped   defence   paired difference       group variation
+    DCLP3, Control-IQ          0.55      0.47     -0.14 [-0.24, -0.05]    0.41
+    DCLP3, oref0 SMB           1.00      0.77     -0.30 [-0.42, -0.18]    0.34
+    Commons, oref0 SMB         1.13      0.81     -0.31 [-0.43, -0.19]    0.56
+
+So on the criterion above the defence at 0.25 is refuted on the outcome table and the setting
+stays at 0.05. Rebound, the statistic furthest from real, did not move (-1.4 [-3.4, +0.7], -0.3
+[-2.4, +1.8] and +1.8 [-0.7, +4.3] points) and recovery moved by under three minutes.
+
+What the paired table cannot show is completion, since a subject enters it only when both of
+its runs reached 28 days, and this is where the two arms differ. `_terminations.json` and
+`_terminations_commons.json` rerun every subject that left the table under either arm, with the
+direction recorded; both reproduce the main runs to every decimal. Of the 242 subject-runs
+under the shipped configuration, 18 ended by glucose falling through 40 mg/dL to about 10, each
+with one to four rescues eaten in the six hours before the end, so the person was eating and
+still falling; 3 ended above 500. With the defence at 0.25, 4 end from below and 5 from above:
+three subjects that completed at 0.05 leave through 500 mg/dL at 0.25 (adolescent#031 and
+adult#004 on DCLP3 under oref0 SMB, child#037 on Commons), none with a site failure in
+progress, and adult#084 on Commons falls through at 0.25 having completed at 0.05. Completion
+runs 221 of 242 against 233.
+
+This is the floor's result in a different form. The mechanism that keeps a subject from reaching
+10 mg/dL moves time below 54 by a tenth to a third of a point, inside what a change of
+participants does, so the fall-throughs and the outcome are separate quantities and fixing one
+says little about the other. The decision left is whether a bench that excludes 9 subjects in
+242 rather than 21 is worth a clamp production of 1.06 mg/kg/min against a human 0.42 to 0.84,
+and two more subjects leaving through the top. It is a modelling choice and is not taken here.
+
+The pairings can run on different machines (`--pairings`, `--out`) and be reported together
+(`--from file ...`), which checks that every file carries the same arms and provenance
+fingerprints before pooling the runs.
+
     python examples/hypoglycaemia_arms.py
+    python examples/hypoglycaemia_arms.py --arms shipped defence --pairings dclp3:control-iq dclp3:oref \
+        --out docs/measurements/egp_defence_outcome_mac.json
+    python examples/hypoglycaemia_arms.py --arms shipped defence --pairings commons:oref \
+        --out docs/measurements/egp_defence_outcome_desktop.json
+    python examples/hypoglycaemia_arms.py --arms shipped defence \
+        --from docs/measurements/egp_defence_outcome_mac.json docs/measurements/egp_defence_outcome_desktop.json \
+        --out docs/measurements/egp_defence_outcome.json
 """
+import argparse
 
 import os
 import sys
@@ -44,8 +103,14 @@ RESCUE_BIO = 0.83
 # Every arm states every mechanism explicitly, including the control. Leaving the control to
 # inherit module defaults is what made an earlier run compare a configuration with itself.
 ARMS = {
-    "base":      {"hypo_egp_floor": 0.0, "rescue_bioavailability": 1.0},
-    "bio":       {"hypo_egp_floor": 0.0, "rescue_bioavailability": RESCUE_BIO},
+    "base":      {"hypo_egp_floor": 0.0, "rescue_bioavailability": 1.0, "hypo_egp_defence": 0.05},
+    "bio":       {"hypo_egp_floor": 0.0, "rescue_bioavailability": RESCUE_BIO,
+                  "hypo_egp_defence": 0.05},
+    # The shipped configuration since the bio arm was adopted, and the defence raised on it.
+    "shipped":   {"hypo_egp_floor": 0.0, "rescue_bioavailability": RESCUE_BIO,
+                  "hypo_egp_defence": 0.05},
+    "defence":   {"hypo_egp_floor": 0.0, "rescue_bioavailability": RESCUE_BIO,
+                  "hypo_egp_defence": 0.25},
 }
 
 
@@ -74,6 +139,7 @@ def one(job):
     packed = S.from_result(r)
     return {"cohort": cohort, "controller": controller, "arm": arm, "name": name,
             "completed": bool(r.completed),
+            "termination": None if r.completed else r.termination,
             "tir": float(100 * np.mean((cgm >= 70) & (cgm <= 180))),
             "tbr70": float(100 * np.mean(cgm < 70)),
             "tbr54": float(100 * np.mean(cgm < 54)),
@@ -95,24 +161,55 @@ def boot(d, n=5000, seed=0):
 
 
 def main():
-    rec = json.load(open(os.path.join(MEASUREMENTS, "cohorts.json")))
-    from timsim.therapy import titrate
-    tit = set(titrate.titrated_subjects())
-    pairings = [("dclp3", "control-iq"), ("dclp3", "oref"), ("commons", "oref")]
-    jobs = []
-    for cohort, controller in pairings:
-        subs = [s for s in rec["cohorts"][cohort]["subjects"] if s in tit]
-        for arm in ARMS:
-            jobs += [(cohort, controller, s, arm) for s in subs]
-    print(f"{len(jobs)} runs, {len(ARMS)} arms across {len(pairings)} pairings", flush=True)
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--arms", nargs="+", default=["base", "bio"], choices=list(ARMS))
+    ap.add_argument("--pairings", nargs="+",
+                    default=["dclp3:control-iq", "dclp3:oref", "commons:oref"])
+    ap.add_argument("--workers", type=int, default=int(os.environ.get("WORKERS", "7")))
+    ap.add_argument("--subjects", nargs="+", default=None,
+                    help="restrict to these subjects, for looking at particular runs")
+    ap.add_argument("--out", default=OUT)
+    ap.add_argument("--from", dest="pool", nargs="+", default=None,
+                    help="report from these files' runs instead of running")
+    a = ap.parse_args()
+    arms = a.arms
+    base_arm = arms[0]
 
-    rows, t0 = [], time.time()
-    with ProcessPoolExecutor(max_workers=int(os.environ.get("WORKERS", "12"))) as ex:
-        for i, row in enumerate(ex.map(one, jobs), 1):
-            rows.append(row)
-            if i % 40 == 0 or i == len(jobs):
-                print(f"  {i}/{len(jobs)} done, {(time.time()-t0)/60:.1f} min", flush=True)
+    if a.pool:
+        rows, stamp = [], None
+        for path in a.pool:
+            j = json.load(open(path))
+            key = {k: j["provenance"][k] for k in ("population", "settings")}
+            if stamp is None:
+                stamp, arms = key, list(j["arms"])
+            elif key != stamp or list(j["arms"]) != arms:
+                raise SystemExit(f"{path}: arms or fingerprints differ from {a.pool[0]}")
+            rows += j["runs"]
+        base_arm = arms[0]
+        print(f"{len(rows)} runs pooled from {len(a.pool)} files", flush=True)
+    else:
+        rec = json.load(open(os.path.join(MEASUREMENTS, "cohorts.json")))
+        from timsim.therapy import titrate
+        tit = set(titrate.titrated_subjects())
+        pairings = [tuple(p.split(":")) for p in a.pairings]
+        jobs = []
+        for cohort, controller in pairings:
+            subs = [s for s in rec["cohorts"][cohort]["subjects"] if s in tit]
+            if a.subjects:
+                subs = [s for s in subs if s in a.subjects]
+            for arm in arms:
+                jobs += [(cohort, controller, s, arm) for s in subs]
+        print(f"{len(jobs)} runs, {len(arms)} arms across {len(pairings)} pairings "
+              f"on {a.workers} workers", flush=True)
 
+        rows, t0 = [], time.time()
+        with ProcessPoolExecutor(max_workers=a.workers) as ex:
+            for i, row in enumerate(ex.map(one, jobs), 1):
+                rows.append(row)
+                if i % 40 == 0 or i == len(jobs):
+                    print(f"  {i}/{len(jobs)} done, {(time.time()-t0)/60:.1f} min", flush=True)
+
+    a.arms = arms
     idx = {}
     for r in rows:
         idx.setdefault((r["cohort"], r["controller"]), {}).setdefault(r["arm"], {})[r["name"]] = r
@@ -122,8 +219,8 @@ def main():
             ("rescue_g_per_day","Rescue g/day")]
     report = {}
     for key, arms in sorted(idx.items()):
-        base = arms.get("base", {})
-        for arm in ("bio",):
+        base = arms.get(base_arm, {})
+        for arm in [x for x in a.arms if x != base_arm]:
             other = arms.get(arm, {})
             keep = [n for n in base
                     if base[n].get("completed") and other.get(n, {}).get("completed")]
@@ -143,14 +240,14 @@ def main():
                       f"{f'{m:+.2f} [{lo:+.2f},{hi:+.2f}]':>26}{flag}")
 
     for key, arms in sorted(idx.items()):
-        line = "  ".join(f"{a} {sum(1 for v in arms.get(a, {}).values() if v.get('completed'))}"
-                         f"/{len(arms.get(a, {}))}" for a in ARMS)
+        line = "  ".join(f"{x} {sum(1 for v in arms.get(x, {}).values() if v.get('completed'))}"
+                         f"/{len(arms.get(x, {}))}" for x in a.arms)
         print(f"\n  completion {key[0]}/{key[1]}: {line}")
 
-    json.dump({"arms": ARMS, "rescue_bio": RESCUE_BIO, "runs": rows, "report": report,
-               "provenance": provenance.stamp()}, open(OUT, "w"), indent=1)
+    json.dump({"arms": {x: ARMS[x] for x in a.arms}, "rescue_bio": RESCUE_BIO, "runs": rows,
+               "report": report, "provenance": provenance.stamp()}, open(a.out, "w"), indent=1)
     print(f"\n  * marks a difference whose interval excludes zero")
-    print(f"written to {OUT}")
+    print(f"written to {a.out}")
 
 
 if __name__ == "__main__":

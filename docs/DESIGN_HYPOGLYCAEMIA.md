@@ -121,3 +121,18 @@ on: so F must be measured against a bench that already has E, not against the cu
 
 Both are measured on the paired matrix comparison rather than on the clamp alone, because the
 clamp is where the defect was found and the matrix is where it matters.
+
+## What was found
+
+E was refuted on 19 August 2026 on its second criterion: the floor clears the clamp and moves
+time below 54 mg/dL by less than the group variation, because a spontaneous low under a
+withdrawing loop never reaches the insulin the clamp infuses (`examples/calibrate_egp_floor.py`).
+F was adopted at a bioavailability of 0.83 (`examples/hypoglycaemia_arms.py`, `rescue_bio_alone.json`).
+
+On 5 September 2026 the same criterion was applied to `HYPO_EGP_DEFENCE` at 0.25, after
+`examples/low_recovery.py` found that gain, and not the floor, stops subjects falling through
+40 mg/dL when the person does not eat. On the outcome table under the shipped person it fell
+the same way: time below 54 mg/dL moved by 0.14 to 0.31 points paired, inside the 0.34 to 0.56
+the replicates measure, while runs ending below 40 mg/dL fell from 18 of 242 to 4 and runs
+ending above 500 rose from 3 to 5 (`egp_defence_outcome.json`). The gain stays at 0.05, and the
+completion difference is recorded as a modelling choice not taken.
