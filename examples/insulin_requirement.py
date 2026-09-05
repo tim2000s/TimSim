@@ -17,8 +17,10 @@ calibration half only; the sealed 40 per cent is not opened.
 
 The generated adults are read three ways, in order of how much of the package each involves.
 The closure gives each subject's basal rate (`derive.basal_rate`), and the screening day gives
-its requirement on three meals with matched boluses (`TDI` in the therapy table). Those two are
-the physiology alone. The delivered dose is then measured by running forty titrated adults for
+its requirement on three meals (45, 65 and 75 g) with boluses at its own physiological
+carbohydrate ratio, recomputed here with `generate._simulate_day` because the `TDI` the
+therapy table carries is basal doubled by convention rather than a simulated total. Those two
+are the physiology alone. The delivered dose is then measured by running forty titrated adults for
 28 days under the built-in correction loop and under oref0 SMB, with every layer on, and
 splitting the delivered units into bolus and the rest. Weight is the same `BW` on every row.
 
@@ -36,6 +38,42 @@ rule: a simulated median outside the real 10th to 90th percentile on a quantity 
 quantity a screening target for the generator, and one inside closes the lead on that
 quantity. The comparison on age is reported beside it, since the generated adults are older
 (median 49 against 29 for the trial's closed-loop half) and need per kilogram falls with age.
+
+Result, 5 September 2026. Medians with the 10th and 90th percentiles; 68 real adults in the
+calibration half, 300 generated adults, 40 titrated adults on the delivered rows (38 under
+oref0 SMB, which ended two runs early).
+
+    quantity          real, randomisation       real, 26 weeks        simulated
+    age, years        36.5 (24.0 to 61.0)                             47.9 (30.4 to 75.0)
+    weight, kg        76.1 (61.9 to 96.5)                             82.7 (65.8 to 102.9)
+    basal, U/kg/day   0.26 (0.17 to 0.44)       0.28 (0.16 to 0.50)   closure 0.37 (0.26 to 0.51)
+                                                                      loop 0.29, oref0 SMB 0.23
+    total, U/kg/day   0.53 (0.36 to 0.84)       0.56 (0.36 to 0.97)   screening day 0.67 (0.43 to 1.03)
+                                                                      loop 0.66, oref0 SMB 0.76
+    basal fraction    0.51 (0.36 to 0.69)       0.49 (0.35 to 0.68)   screening day 0.57 (0.41 to 0.73)
+                                                                      loop 0.44, oref0 SMB 0.29
+
+By the registered rule every simulated median is inside the real 10th to 90th percentile
+except the basal fraction under oref0 SMB, and that one is the controller's (super micro
+boluses are counted as bolus here, and the same subjects read 0.44 under the built-in loop),
+so no quantity becomes a screening target and the lead closes. The pre-registered expectation
+of a total near 0.8 was wrong: the delivered total is 0.66 under the loop and the screening
+day agrees at 0.67.
+
+What the rule does not say is that the generated adults sit above the real ones on both
+requirement quantities by about a quarter: 0.67 against 0.53 U/kg/day total (95 per cent
+intervals on the medians [0.63, 0.69] against [0.48, 0.58]) and 0.37 against 0.26 on basal at
+closure. Age does not account for it, since the generated adults are older and need per
+kilogram falls with age. Most of the excess is inherited rather than generated: the ten
+published UVA/Padova adults have a basal of 0.34 U/kg/day at closure (0.27 to 0.63, median of
+ten), and the generated 0.37 reproduces that. A screening target on U/kg would therefore move
+the population away from the published subjects it is built to reproduce, which is the
+constraint the population stands under, so the shift is recorded here and not acted on.
+
+A first pass of this script read the screening-day rows from the therapy table's `TDI`, which
+gave a basal fraction of exactly 0.50 for all 300 subjects; that is the identical-arms
+signature from `docs/ISSUES.md`, and the cause was the convention above. The rows were
+recomputed before anything was recorded.
 
     python examples/insulin_requirement.py
 """
@@ -95,17 +133,14 @@ def real_side():
     return out
 
 
-def population_side():
-    """Every generated adult: weight, age, closure basal and the screening-day requirement."""
-    from timsim.population import names, params_for, therapy_for
-    from timsim.population import derive
-    out = {}
-    for n in names("adult"):
-        p, t = params_for(n), therapy_for(n)
-        out[n] = {"weight_kg": float(p["BW"]), "age": float(t["Age"]),
+def screening_day(name):
+    """One generated adult: weight, age, closure basal and the screening-day requirement."""
+    from timsim.population import params_for, therapy_for, derive, generate
+    p, t = params_for(name), therapy_for(name)
+    _, total = generate._simulate_day(p, float(t["CR"]))
+    return name, {"weight_kg": float(p["BW"]), "age": float(t["Age"]),
                   "basal_u_day": derive.basal_rate(p) * 1440.0,
-                  "requirement_u_day": float(t["TDI"])}
-    return out
+                  "requirement_u_day": float(total)}
 
 
 def job(args):
@@ -144,13 +179,15 @@ def main():
         raise SystemExit("DCLP3 is not available; see docs/VALIDATION.md")
 
     real = real_side()
-    pop = population_side()
+    from timsim.population import names
     from examples.panel import dosable
+    adults = names("adult")
     subs = dosable(a.subjects)
     jobs = [(n, d, a.days) for d in DRIVERS for n in subs]
-    print(f"{len(real)} real adults in the calibration half, {len(pop)} generated adults, "
+    print(f"{len(real)} real adults in the calibration half, {len(adults)} generated adults, "
           f"{len(jobs)} runs on {a.workers} workers", flush=True)
     with mp.Pool(a.workers) as pool:
+        pop = dict(pool.map(screening_day, adults, chunksize=4))
         runs = pool.map(job, jobs, chunksize=1)
     delivered, dropped = {}, []
     for n, d, o in runs:
@@ -195,11 +232,11 @@ def main():
             add("total_u_kg_day", "real", lab, [r[v]["total_u_day"] / r["weight_kg"] for r in sel])
             add("basal_fraction", "real", lab,
                 [r[v]["basal_u_day"] / r[v]["total_u_day"] for r in sel if r[v]["total_u_day"] > 0])
-    add("basal_u_kg_day", "sim", "closure, 300 generated adults",
+    add("basal_u_kg_day", "sim", f"closure, {len(pop)} generated adults",
         [p["basal_u_day"] / p["weight_kg"] for p in pop.values()])
-    add("total_u_kg_day", "sim", "screening day, 300 generated adults",
+    add("total_u_kg_day", "sim", f"screening day, {len(pop)} generated adults",
         [p["requirement_u_day"] / p["weight_kg"] for p in pop.values()])
-    add("basal_fraction", "sim", "screening day, 300 generated adults",
+    add("basal_fraction", "sim", f"screening day, {len(pop)} generated adults",
         [p["basal_u_day"] / p["requirement_u_day"] for p in pop.values()])
     for d in DRIVERS:
         D = [o for (n, dd), o in delivered.items() if dd == d]

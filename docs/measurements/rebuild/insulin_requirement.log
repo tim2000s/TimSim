@@ -1,0 +1,56 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/StudioProjects/TimSim/examples/insulin_requirement.py:83: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  ps["total"] = pd.to_numeric(ps.CurrTotInsDaily, errors="coerce")
+/Users/timstreet/StudioProjects/TimSim/examples/insulin_requirement.py:84: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  ps["basal"] = pd.to_numeric(ps.TotBasalPreced7Days, errors="coerce")
+panel: skipped 1 subject(s) with no titrated settings (adult#026), taking 40 of the first 41
+68 real adults in the calibration half, 300 generated adults, 80 runs on 7 workers
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+  terminated: adult#014 oref, adult#020 oref
+
+        quantity  side     n      p10     p50     p90    95 per cent on p50  label
+       age_years  real    68    24.00   36.50   61.00        [31.50, 43.50]  DCLP3 adults  
+       age_years   sim   300    30.35   47.85   75.00        [45.47, 50.05]  generated adults  inside
+
+       weight_kg  real    68    61.89   76.10   96.52        [72.29, 82.15]  DCLP3 adults  
+       weight_kg   sim   300    65.78   82.73  102.89        [79.71, 84.01]  generated adults  inside
+
+  basal_u_kg_day  real    68     0.17    0.26    0.44          [0.23, 0.29]  DCLP3 randomization, both arms  
+  basal_u_kg_day  real    67     0.16    0.28    0.50          [0.24, 0.31]  DCLP3 26-week, both arms  
+  basal_u_kg_day  real    47     0.16    0.26    0.56          [0.21, 0.30]  DCLP3 26-week, Control-IQ  
+  basal_u_kg_day  real    20     0.19    0.31    0.43          [0.24, 0.34]  DCLP3 26-week, pump  
+  basal_u_kg_day   sim   300     0.26    0.37    0.51          [0.36, 0.39]  closure, 300 generated adults  inside
+  basal_u_kg_day   sim    40     0.22    0.29    0.46          [0.26, 0.35]  delivered under the built-in loop  inside
+  basal_u_kg_day   sim    38     0.16    0.23    0.39          [0.21, 0.26]  delivered under oref0 SMB  inside
+
+  total_u_kg_day  real    68     0.36    0.53    0.84          [0.48, 0.58]  DCLP3 randomization, both arms  
+  total_u_kg_day  real    67     0.36    0.56    0.97          [0.51, 0.63]  DCLP3 26-week, both arms  
+  total_u_kg_day  real    47     0.34    0.54    0.94          [0.51, 0.63]  DCLP3 26-week, Control-IQ  
+  total_u_kg_day  real    20     0.37    0.63    0.97          [0.48, 0.71]  DCLP3 26-week, pump  
+  total_u_kg_day   sim   300     0.43    0.67    1.03          [0.63, 0.69]  screening day, 300 generated adults  inside
+  total_u_kg_day   sim    40     0.50    0.66    1.04          [0.57, 0.73]  delivered under the built-in loop  inside
+  total_u_kg_day   sim    38     0.55    0.76    1.29          [0.67, 0.88]  delivered under oref0 SMB  inside
+
+  basal_fraction  real    68     0.36    0.51    0.69          [0.48, 0.55]  DCLP3 randomization, both arms  
+  basal_fraction  real    67     0.35    0.49    0.68          [0.44, 0.53]  DCLP3 26-week, both arms  
+  basal_fraction  real    47     0.35    0.49    0.67          [0.45, 0.53]  DCLP3 26-week, Control-IQ  
+  basal_fraction  real    20     0.35    0.49    0.68          [0.40, 0.61]  DCLP3 26-week, pump  
+  basal_fraction   sim   300     0.41    0.57    0.73          [0.55, 0.59]  screening day, 300 generated adults  inside
+  basal_fraction   sim    40     0.37    0.44    0.58          [0.42, 0.47]  delivered under the built-in loop  inside
+  basal_fraction   sim    38     0.23    0.29    0.40          [0.27, 0.32]  delivered under oref0 SMB  outside
+
+wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/insulin_requirement.json

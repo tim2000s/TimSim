@@ -34,7 +34,17 @@ Insulin quantity is not the explanation. The cohort delivers 47.6 U/day at the m
 trial's recorded 47.0. That is the reference loop on the cohort of the table below; the 40
 subject meal panel under oref0 SMB delivers 69.1 U/day against 41.1 for the adult Loop
 participants, measured 4 September 2026 in `examples/insulin_by_peak.py`, and the matching does
-not carry to it.
+not carry to it. A daily dose is not a like-for-like quantity between two sets of people, since
+it scales with weight, sensitivity and diet, so the comparison that was made instead
+(`examples/insulin_requirement.py`, 5 September 2026) is per kilogram against the 68 adults of
+the DCLP3 calibration half: the generated adults need 0.67 U/kg/day on the screening day and
+take 0.66 under the built-in loop, against 0.53 at randomisation and 0.56 at 26 weeks (real
+10th to 90th percentiles 0.36 to 0.84 and 0.36 to 0.97), with basal at closure 0.37 against 0.26
+and a basal fraction of 0.57 against 0.51. Every simulated median is inside the real 10th to
+90th percentile, which was the registered threshold for a screening target, and the quarter by
+which the generated adults sit above the real ones on both requirement quantities is inherited
+from the ten published adults (basal 0.34 U/kg/day at closure) rather than added by the
+generator.
 
 The carbohydrate ratio is not the explanation in the direction required. The population median is
 10.4 g per unit where the trial recorded 8.0, so the simulated ratio doses meals more weakly than
