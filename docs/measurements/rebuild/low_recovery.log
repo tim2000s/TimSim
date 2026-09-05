@@ -1,0 +1,33 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+panel: skipped 1 subject(s) with no titrated settings (adult#026), taking 40 of the first 41
+40 subjects, 160 runs on 5 workers
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+
+ side people   lows      recovery p10/50/90      95% on p50     rebound p10/50/90      95% on p50  label
+ real     24    758               43/72/124        [57, 84]               0/28/53        [20, 34]  Commons, window_28d, untreated  
+      pooled    770                    68.8                                  30.6
+ real     43  28731               41/65/119        [65, 75]              10/26/49        [22, 29]  Commons, whole_record, untreated  
+      pooled  28731                    75.0                                  24.6
+  sim      1      5                40/40/40      [nan, nan]                 0/0/0      [nan, nan]  trend, treatment shipped, untreated  outside
+  sim     40    981                45/65/85        [55, 70]              17/34/65        [26, 43]  trend, treatment shipped, treated  inside
+  sim     40   1107              72/105/133       [95, 115]              10/27/63        [21, 42]  trend, treatment none, untreated  inside
+  sim     11     72                40/55/90        [40, 82]               0/20/50         [0, 50]  oref, treatment shipped, untreated  inside
+  sim     40   1818                60/76/96        [70, 81]              17/34/54        [27, 44]  oref, treatment shipped, treated  inside
+  sim     40   1795              85/114/138      [104, 120]               8/22/39        [17, 27]  oref, treatment none, untreated  inside
+
+terminations and rescues per arm
+   trend  shipped  ended 0/40 (0 from below)  rescues/day 0.88  TBR 1.30  crossings 1026 of which treated 981
+   trend     none  ended 0/40 (0 from below)  rescues/day 0.00  TBR 2.53  crossings 1107 of which treated 0
+    oref  shipped  ended 2/40 (1 from below)  rescues/day 2.00  TBR 3.92  crossings 1945 of which treated 1818
+    oref     none  ended 8/40 (8 from below)  rescues/day 0.00  TBR 5.43  crossings 1795 of which treated 0
+wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/low_recovery.json
