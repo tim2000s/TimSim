@@ -77,6 +77,29 @@ of 40, is worth carrying to the outcome table; one that does neither leaves the 
 is, in the published production parameters that the clamp already showed cannot be reached by
 a gain.
 
+Result of the mechanism arms, 5 September 2026 (`low_recovery_floor.json` run here,
+`low_recovery_defence.json` on study-desktop-wsl, same population and settings fingerprints).
+Untreated stratum, per-person medians, oref0 SMB unless stated:
+
+    arm                         recovery, min        rebound, %     left range from below   TBR, %
+    stock                       114 (85 to 138)      22             8 of 40                 5.43
+    floor 0.55 mg/kg/min        115 (85 to 140)      21             6 of 40                 5.43
+    defence 0.25                108 (80 to 138)      20             0 of 40                 4.94
+    built-in loop, stock        105 (72 to 133)      27             0 of 40                 2.53
+    built-in loop, defence      104 (60 to 130)      25             0 of 40                 2.29
+
+Neither arm brings the recovery below 90 minutes; the defence moves it 6 minutes and the floor
+none, which is the clamp result again (the floor binds only where production has been driven
+to nothing, a state the insulin of a spontaneous low does not reach). On the other registered
+threshold the defence clears it and the floor does not: no subject leaves the range from below
+with the defence at 0.25, against 8 of 40 stock and 6 of 40 with the floor. What 0.25 costs is
+recorded in `patient/varying.py`: at the clamp it carries the median production from 0.62 to
+1.06 mg/kg/min, above the human band of 0.42 to 0.84, which is why 0.05 was fitted. The
+choice between a population that produces too much at a clamp plateau and one in which a
+fifth of subjects fall out of range when they do not eat is a modelling choice and is not
+taken here. The recovery gap of about 40 minutes stays where the clamp left it, in the
+published production parameters.
+
     python examples/low_recovery.py
     python examples/low_recovery.py --treat none --mechanisms floor --out low_recovery_floor.json
 """

@@ -1,0 +1,1744 @@
+{
+ "provenance": {
+  "population": "704cfac086df54ba",
+  "settings": "0df43fd250fadd47",
+  "commit": "8823ff0b69de2bc4ae82320773188cc6415be74e",
+  "dirty": false,
+  "host": "Tims-Mac-mini.local",
+  "python": "3.14.7",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "when": "2026-09-05T11:12:31+00:00",
+  "simglucose": "0.2.11"
+ },
+ "days": 28,
+ "seed": 101,
+ "subjects": [
+  "adult#001",
+  "adult#002",
+  "adult#003",
+  "adult#004",
+  "adult#005",
+  "adult#006",
+  "adult#007",
+  "adult#008",
+  "adult#009",
+  "adult#010",
+  "adult#011",
+  "adult#012",
+  "adult#013",
+  "adult#014",
+  "adult#015",
+  "adult#016",
+  "adult#017",
+  "adult#018",
+  "adult#019",
+  "adult#020",
+  "adult#021",
+  "adult#022",
+  "adult#023",
+  "adult#024",
+  "adult#025",
+  "adult#027",
+  "adult#028",
+  "adult#029",
+  "adult#030",
+  "adult#031",
+  "adult#032",
+  "adult#033",
+  "adult#034",
+  "adult#035",
+  "adult#036",
+  "adult#037",
+  "adult#038",
+  "adult#039",
+  "adult#040",
+  "adult#041"
+ ],
+ "drivers": [
+  "trend",
+  "oref"
+ ],
+ "treat": [
+  "none"
+ ],
+ "mechanisms": {
+  "floor": {
+   "hypo_egp_floor": 0.55
+  }
+ },
+ "min_lows": 5,
+ "rows": [
+  {
+   "side": "real",
+   "label": "Commons, window_28d, untreated",
+   "people": 24,
+   "lows": 758,
+   "recovery_min": {
+    "p10_50_90": [
+     43.24378083333333,
+     72.4876375,
+     123.56064916666666
+    ],
+    "ci95_median": [
+     57.49704166666667,
+     84.4078375
+    ]
+   },
+   "rebound_pct": {
+    "p10_50_90": [
+     0.0,
+     28.174603174603174,
+     52.69230769230769
+    ],
+    "ci95_median": [
+     19.642857142857142,
+     34.48275862068966
+    ]
+   },
+   "pooled": {
+    "n": 770,
+    "recovery_min": 68.82425833333333,
+    "rebound_pct": 30.649350649350648
+   }
+  },
+  {
+   "side": "real",
+   "label": "Commons, whole_record, untreated",
+   "people": 43,
+   "lows": 28731,
+   "recovery_min": {
+    "p10_50_90": [
+     41.27723,
+     65.1389,
+     119.04768000000001
+    ],
+    "ci95_median": [
+     64.82748333333333,
+     74.9431
+    ]
+   },
+   "rebound_pct": {
+    "p10_50_90": [
+     10.013212948689715,
+     26.262626262626267,
+     48.588331186075266
+    ],
+    "ci95_median": [
+     21.818181818181817,
+     29.464285714285715
+    ]
+   },
+   "pooled": {
+    "n": 28731,
+    "recovery_min": 74.95686666666667,
+    "rebound_pct": 24.631930667223557
+   }
+  },
+  {
+   "side": "sim",
+   "label": "trend, floor, treatment none, untreated",
+   "people": 40,
+   "lows": 1104,
+   "recovery_min": {
+    "p10_50_90": [
+     72.25,
+     105.0,
+     132.75
+    ],
+    "ci95_median": [
+     95.0,
+     116.25
+    ]
+   },
+   "rebound_pct": {
+    "p10_50_90": [
+     9.90909090909091,
+     26.6798418972332,
+     62.56578947368421
+    ],
+    "ci95_median": [
+     20.714285714285715,
+     41.7989417989418
+    ]
+   }
+  },
+  {
+   "side": "sim",
+   "label": "oref, floor, treatment none, untreated",
+   "people": 40,
+   "lows": 1875,
+   "recovery_min": {
+    "p10_50_90": [
+     84.75,
+     115.0,
+     140.5
+    ],
+    "ci95_median": [
+     103.75,
+     121.25
+    ]
+   },
+   "rebound_pct": {
+    "p10_50_90": [
+     8.254716981132075,
+     21.32961124896609,
+     39.1219512195122
+    ],
+    "ci95_median": [
+     16.784037558685444,
+     26.92814765985498
+    ]
+   }
+  }
+ ],
+ "verdicts": {
+  "trend, floor, treatment none, untreated": "inside",
+  "oref, floor, treatment none, untreated": "inside"
+ },
+ "terminations": [
+  {
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "runs": 40,
+   "ended": 0,
+   "from_below": 0,
+   "rescues_per_day": 0.0,
+   "tbr": 2.529761904761905,
+   "crossings": 1104,
+   "treated": 0
+  },
+  {
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "runs": 40,
+   "ended": 6,
+   "from_below": 6,
+   "rescues_per_day": 0.0,
+   "tbr": 5.432858716173694,
+   "crossings": 1875,
+   "treated": 0
+  }
+ ],
+ "per_subject": [
+  {
+   "subject": "adult#001",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 26,
+   "treated": 0,
+   "untreated": {
+    "n": 26,
+    "recovery_min": 127.5,
+    "rebound_pct": 3.8461538461538463
+   },
+   "treated_stratum": null,
+   "tbr": 1.711309523809524
+  },
+  {
+   "subject": "adult#002",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 11,
+   "treated": 0,
+   "untreated": {
+    "n": 11,
+    "recovery_min": 135.0,
+    "rebound_pct": 27.27272727272727
+   },
+   "treated_stratum": null,
+   "tbr": 1.1160714285714286
+  },
+  {
+   "subject": "adult#003",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 14,
+   "treated": 0,
+   "untreated": {
+    "n": 14,
+    "recovery_min": 80.0,
+    "rebound_pct": 21.428571428571427
+   },
+   "treated_stratum": null,
+   "tbr": 0.5456349206349206
+  },
+  {
+   "subject": "adult#004",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 14,
+   "treated": 0,
+   "untreated": {
+    "n": 14,
+    "recovery_min": 60.0,
+    "rebound_pct": 42.857142857142854
+   },
+   "treated_stratum": null,
+   "tbr": 0.8804563492063492
+  },
+  {
+   "subject": "adult#005",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 23,
+   "treated": 0,
+   "untreated": {
+    "n": 23,
+    "recovery_min": 90.0,
+    "rebound_pct": 26.08695652173913
+   },
+   "treated_stratum": null,
+   "tbr": 1.922123015873016
+  },
+  {
+   "subject": "adult#006",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 30,
+   "treated": 0,
+   "untreated": {
+    "n": 30,
+    "recovery_min": 97.5,
+    "rebound_pct": 13.333333333333334
+   },
+   "treated_stratum": null,
+   "tbr": 1.636904761904762
+  },
+  {
+   "subject": "adult#007",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 20,
+   "treated": 0,
+   "untreated": {
+    "n": 20,
+    "recovery_min": 102.5,
+    "rebound_pct": 10.0
+   },
+   "treated_stratum": null,
+   "tbr": 2.368551587301587
+  },
+  {
+   "subject": "adult#008",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 19,
+   "treated": 0,
+   "untreated": {
+    "n": 19,
+    "recovery_min": 85.0,
+    "rebound_pct": 63.1578947368421
+   },
+   "treated_stratum": null,
+   "tbr": 1.9097222222222223
+  },
+  {
+   "subject": "adult#009",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 20,
+   "treated": 0,
+   "untreated": {
+    "n": 20,
+    "recovery_min": 112.5,
+    "rebound_pct": 50.0
+   },
+   "treated_stratum": null,
+   "tbr": 1.1780753968253967
+  },
+  {
+   "subject": "adult#010",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 22,
+   "treated": 0,
+   "untreated": {
+    "n": 22,
+    "recovery_min": 115.0,
+    "rebound_pct": 9.090909090909092
+   },
+   "treated_stratum": null,
+   "tbr": 3.3482142857142856
+  },
+  {
+   "subject": "adult#011",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 26,
+   "treated": 0,
+   "untreated": {
+    "n": 26,
+    "recovery_min": 107.5,
+    "rebound_pct": 38.46153846153847
+   },
+   "treated_stratum": null,
+   "tbr": 3.4970238095238098
+  },
+  {
+   "subject": "adult#012",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 22,
+   "treated": 0,
+   "untreated": {
+    "n": 22,
+    "recovery_min": 97.5,
+    "rebound_pct": 9.090909090909092
+   },
+   "treated_stratum": null,
+   "tbr": 2.876984126984127
+  },
+  {
+   "subject": "adult#013",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 7,
+   "treated": 0,
+   "untreated": {
+    "n": 7,
+    "recovery_min": 25.0,
+    "rebound_pct": 14.285714285714285
+   },
+   "treated_stratum": null,
+   "tbr": 0.26041666666666663
+  },
+  {
+   "subject": "adult#014",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 49,
+   "treated": 0,
+   "untreated": {
+    "n": 49,
+    "recovery_min": 105.0,
+    "rebound_pct": 65.3061224489796
+   },
+   "treated_stratum": null,
+   "tbr": 4.861111111111112
+  },
+  {
+   "subject": "adult#015",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 24,
+   "treated": 0,
+   "untreated": {
+    "n": 24,
+    "recovery_min": 72.5,
+    "rebound_pct": 62.5
+   },
+   "treated_stratum": null,
+   "tbr": 2.5049603174603177
+  },
+  {
+   "subject": "adult#016",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 31,
+   "treated": 0,
+   "untreated": {
+    "n": 31,
+    "recovery_min": 125.0,
+    "rebound_pct": 48.38709677419355
+   },
+   "treated_stratum": null,
+   "tbr": 2.976190476190476
+  },
+  {
+   "subject": "adult#017",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 36,
+   "treated": 0,
+   "untreated": {
+    "n": 36,
+    "recovery_min": 132.5,
+    "rebound_pct": 25.0
+   },
+   "treated_stratum": null,
+   "tbr": 5.580357142857143
+  },
+  {
+   "subject": "adult#018",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 26,
+   "treated": 0,
+   "untreated": {
+    "n": 26,
+    "recovery_min": 117.5,
+    "rebound_pct": 46.15384615384615
+   },
+   "treated_stratum": null,
+   "tbr": 2.554563492063492
+  },
+  {
+   "subject": "adult#019",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 20,
+   "treated": 0,
+   "untreated": {
+    "n": 20,
+    "recovery_min": 92.5,
+    "rebound_pct": 10.0
+   },
+   "treated_stratum": null,
+   "tbr": 1.5500992063492065
+  },
+  {
+   "subject": "adult#020",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 60,
+   "treated": 0,
+   "untreated": {
+    "n": 60,
+    "recovery_min": 117.5,
+    "rebound_pct": 50.0
+   },
+   "treated_stratum": null,
+   "tbr": 7.192460317460317
+  },
+  {
+   "subject": "adult#021",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 35,
+   "treated": 0,
+   "untreated": {
+    "n": 35,
+    "recovery_min": 130.0,
+    "rebound_pct": 17.142857142857142
+   },
+   "treated_stratum": null,
+   "tbr": 5.158730158730158
+  },
+  {
+   "subject": "adult#022",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 23,
+   "treated": 0,
+   "untreated": {
+    "n": 23,
+    "recovery_min": 160.0,
+    "rebound_pct": 17.391304347826086
+   },
+   "treated_stratum": null,
+   "tbr": 2.864583333333333
+  },
+  {
+   "subject": "adult#023",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 35,
+   "treated": 0,
+   "untreated": {
+    "n": 35,
+    "recovery_min": 120.0,
+    "rebound_pct": 48.57142857142857
+   },
+   "treated_stratum": null,
+   "tbr": 4.625496031746032
+  },
+  {
+   "subject": "adult#024",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 13,
+   "treated": 0,
+   "untreated": {
+    "n": 13,
+    "recovery_min": 70.0,
+    "rebound_pct": 23.076923076923077
+   },
+   "treated_stratum": null,
+   "tbr": 0.6448412698412698
+  },
+  {
+   "subject": "adult#025",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 14,
+   "treated": 0,
+   "untreated": {
+    "n": 14,
+    "recovery_min": 92.5,
+    "rebound_pct": 7.142857142857142
+   },
+   "treated_stratum": null,
+   "tbr": 1.599702380952381
+  },
+  {
+   "subject": "adult#027",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 52,
+   "treated": 0,
+   "untreated": {
+    "n": 52,
+    "recovery_min": 132.5,
+    "rebound_pct": 32.69230769230769
+   },
+   "treated_stratum": null,
+   "tbr": 4.55109126984127
+  },
+  {
+   "subject": "adult#028",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 27,
+   "treated": 0,
+   "untreated": {
+    "n": 27,
+    "recovery_min": 125.0,
+    "rebound_pct": 18.51851851851852
+   },
+   "treated_stratum": null,
+   "tbr": 3.273809523809524
+  },
+  {
+   "subject": "adult#029",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 26,
+   "treated": 0,
+   "untreated": {
+    "n": 26,
+    "recovery_min": 52.5,
+    "rebound_pct": 50.0
+   },
+   "treated_stratum": null,
+   "tbr": 2.318948412698413
+  },
+  {
+   "subject": "adult#030",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 27,
+   "treated": 0,
+   "untreated": {
+    "n": 27,
+    "recovery_min": 125.0,
+    "rebound_pct": 40.74074074074074
+   },
+   "treated_stratum": null,
+   "tbr": 2.8521825396825395
+  },
+  {
+   "subject": "adult#031",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 32,
+   "treated": 0,
+   "untreated": {
+    "n": 32,
+    "recovery_min": 102.5,
+    "rebound_pct": 53.125
+   },
+   "treated_stratum": null,
+   "tbr": 2.5669642857142856
+  },
+  {
+   "subject": "adult#032",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 44,
+   "treated": 0,
+   "untreated": {
+    "n": 44,
+    "recovery_min": 140.0,
+    "rebound_pct": 27.27272727272727
+   },
+   "treated_stratum": null,
+   "tbr": 5.419146825396826
+  },
+  {
+   "subject": "adult#033",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 26,
+   "treated": 0,
+   "untreated": {
+    "n": 26,
+    "recovery_min": 87.5,
+    "rebound_pct": 84.61538461538461
+   },
+   "treated_stratum": null,
+   "tbr": 2.6909722222222223
+  },
+  {
+   "subject": "adult#034",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 31,
+   "treated": 0,
+   "untreated": {
+    "n": 31,
+    "recovery_min": 90.0,
+    "rebound_pct": 70.96774193548387
+   },
+   "treated_stratum": null,
+   "tbr": 3.7078373015873014
+  },
+  {
+   "subject": "adult#035",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 10,
+   "treated": 0,
+   "untreated": {
+    "n": 10,
+    "recovery_min": 75.0,
+    "rebound_pct": 40.0
+   },
+   "treated_stratum": null,
+   "tbr": 1.0416666666666665
+  },
+  {
+   "subject": "adult#036",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 20,
+   "treated": 0,
+   "untreated": {
+    "n": 20,
+    "recovery_min": 110.0,
+    "rebound_pct": 20.0
+   },
+   "treated_stratum": null,
+   "tbr": 2.256944444444444
+  },
+  {
+   "subject": "adult#037",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 51,
+   "treated": 0,
+   "untreated": {
+    "n": 51,
+    "recovery_min": 105.0,
+    "rebound_pct": 45.09803921568628
+   },
+   "treated_stratum": null,
+   "tbr": 2.7777777777777777
+  },
+  {
+   "subject": "adult#038",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 17,
+   "treated": 0,
+   "untreated": {
+    "n": 17,
+    "recovery_min": 80.0,
+    "rebound_pct": 17.647058823529413
+   },
+   "treated_stratum": null,
+   "tbr": 1.0788690476190477
+  },
+  {
+   "subject": "adult#039",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 75,
+   "treated": 0,
+   "untreated": {
+    "n": 75,
+    "recovery_min": 145.0,
+    "rebound_pct": 25.333333333333336
+   },
+   "treated_stratum": null,
+   "tbr": 9.610615079365079
+  },
+  {
+   "subject": "adult#040",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 32,
+   "treated": 0,
+   "untreated": {
+    "n": 32,
+    "recovery_min": 97.5,
+    "rebound_pct": 15.625
+   },
+   "treated_stratum": null,
+   "tbr": 1.9097222222222223
+  },
+  {
+   "subject": "adult#041",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 14,
+   "treated": 0,
+   "untreated": {
+    "n": 14,
+    "recovery_min": 105.0,
+    "rebound_pct": 21.428571428571427
+   },
+   "treated_stratum": null,
+   "tbr": 1.1532738095238095
+  },
+  {
+   "subject": "adult#001",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 63,
+   "treated": 0,
+   "untreated": {
+    "n": 63,
+    "recovery_min": 110.0,
+    "rebound_pct": 6.349206349206349
+   },
+   "treated_stratum": null,
+   "tbr": 5.865575396825397
+  },
+  {
+   "subject": "adult#002",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 57,
+   "treated": 0,
+   "untreated": {
+    "n": 57,
+    "recovery_min": 145.0,
+    "rebound_pct": 17.543859649122805
+   },
+   "treated_stratum": null,
+   "tbr": 5.939980158730158
+  },
+  {
+   "subject": "adult#003",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 30,
+   "treated": 0,
+   "untreated": {
+    "n": 30,
+    "recovery_min": 82.5,
+    "rebound_pct": 36.666666666666664
+   },
+   "treated_stratum": null,
+   "tbr": 1.7361111111111112
+  },
+  {
+   "subject": "adult#004",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 36,
+   "treated": 0,
+   "untreated": {
+    "n": 36,
+    "recovery_min": 70.0,
+    "rebound_pct": 11.11111111111111
+   },
+   "treated_stratum": null,
+   "tbr": 3.8566468253968256
+  },
+  {
+   "subject": "adult#005",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 42,
+   "treated": 0,
+   "untreated": {
+    "n": 42,
+    "recovery_min": 95.0,
+    "rebound_pct": 11.904761904761903
+   },
+   "treated_stratum": null,
+   "tbr": 4.451884920634921
+  },
+  {
+   "subject": "adult#006",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": {
+    "direction": "hypoglycaemic",
+    "reason": "glucose left the model's range from below",
+    "day_ended": 11.71,
+    "final_bg": 11.5,
+    "lowest_bg": 11.5,
+    "highest_bg": 298.5,
+    "insulin_last_hour_u": 0.13,
+    "insulin_last_six_hours_u": 20.94,
+    "site_failures": 4,
+    "site_units_lost": 96.9,
+    "site_failed_hours": 29.2,
+    "site_failing_at_end": false
+   },
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 40,
+   "treated": 0,
+   "untreated": {
+    "n": 40,
+    "recovery_min": 102.5,
+    "rebound_pct": 35.0
+   },
+   "treated_stratum": null,
+   "tbr": 11.236288170767862
+  },
+  {
+   "subject": "adult#007",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 12,
+   "treated": 0,
+   "untreated": {
+    "n": 12,
+    "recovery_min": 117.5,
+    "rebound_pct": 8.333333333333332
+   },
+   "treated_stratum": null,
+   "tbr": 2.132936507936508
+  },
+  {
+   "subject": "adult#008",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 37,
+   "treated": 0,
+   "untreated": {
+    "n": 37,
+    "recovery_min": 125.0,
+    "rebound_pct": 29.72972972972973
+   },
+   "treated_stratum": null,
+   "tbr": 4.141865079365079
+  },
+  {
+   "subject": "adult#009",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 45,
+   "treated": 0,
+   "untreated": {
+    "n": 45,
+    "recovery_min": 120.0,
+    "rebound_pct": 31.11111111111111
+   },
+   "treated_stratum": null,
+   "tbr": 5.5059523809523805
+  },
+  {
+   "subject": "adult#010",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 57,
+   "treated": 0,
+   "untreated": {
+    "n": 57,
+    "recovery_min": 155.0,
+    "rebound_pct": 8.771929824561402
+   },
+   "treated_stratum": null,
+   "tbr": 10.243055555555555
+  },
+  {
+   "subject": "adult#011",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": {
+    "direction": "hypoglycaemic",
+    "reason": "glucose left the model's range from below",
+    "day_ended": 6.11,
+    "final_bg": 10.1,
+    "lowest_bg": 10.1,
+    "highest_bg": 270.4,
+    "insulin_last_hour_u": 0.0,
+    "insulin_last_six_hours_u": 12.76,
+    "site_failures": 1,
+    "site_units_lost": 5.5,
+    "site_failed_hours": 4.4,
+    "site_failing_at_end": false
+   },
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 14,
+   "treated": 0,
+   "untreated": {
+    "n": 14,
+    "recovery_min": 92.5,
+    "rebound_pct": 28.57142857142857
+   },
+   "treated_stratum": null,
+   "tbr": 7.2768618533257525
+  },
+  {
+   "subject": "adult#012",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 32,
+   "treated": 0,
+   "untreated": {
+    "n": 32,
+    "recovery_min": 135.0,
+    "rebound_pct": 25.0
+   },
+   "treated_stratum": null,
+   "tbr": 5.56795634920635
+  },
+  {
+   "subject": "adult#013",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 31,
+   "treated": 0,
+   "untreated": {
+    "n": 31,
+    "recovery_min": 100.0,
+    "rebound_pct": 6.451612903225806
+   },
+   "treated_stratum": null,
+   "tbr": 2.380952380952381
+  },
+  {
+   "subject": "adult#014",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 50,
+   "treated": 0,
+   "untreated": {
+    "n": 50,
+    "recovery_min": 77.5,
+    "rebound_pct": 24.0
+   },
+   "treated_stratum": null,
+   "tbr": 3.5342261904761902
+  },
+  {
+   "subject": "adult#015",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 46,
+   "treated": 0,
+   "untreated": {
+    "n": 46,
+    "recovery_min": 95.0,
+    "rebound_pct": 65.21739130434783
+   },
+   "treated_stratum": null,
+   "tbr": 3.9930555555555554
+  },
+  {
+   "subject": "adult#016",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 41,
+   "treated": 0,
+   "untreated": {
+    "n": 41,
+    "recovery_min": 115.0,
+    "rebound_pct": 14.634146341463413
+   },
+   "treated_stratum": null,
+   "tbr": 5.592757936507937
+  },
+  {
+   "subject": "adult#017",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": {
+    "direction": "hypoglycaemic",
+    "reason": "glucose left the model's range from below",
+    "day_ended": 27.79,
+    "final_bg": 10.9,
+    "lowest_bg": 10.9,
+    "highest_bg": 333.3,
+    "insulin_last_hour_u": 0.15,
+    "insulin_last_six_hours_u": 15.81,
+    "site_failures": 6,
+    "site_units_lost": 595.9,
+    "site_failed_hours": 188.5,
+    "site_failing_at_end": false
+   },
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 44,
+   "treated": 0,
+   "untreated": {
+    "n": 44,
+    "recovery_min": 137.5,
+    "rebound_pct": 15.909090909090908
+   },
+   "treated_stratum": null,
+   "tbr": 8.734224665750343
+  },
+  {
+   "subject": "adult#018",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 27,
+   "treated": 0,
+   "untreated": {
+    "n": 27,
+    "recovery_min": 140.0,
+    "rebound_pct": 11.11111111111111
+   },
+   "treated_stratum": null,
+   "tbr": 4.104662698412699
+  },
+  {
+   "subject": "adult#019",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 90,
+   "treated": 0,
+   "untreated": {
+    "n": 90,
+    "recovery_min": 110.0,
+    "rebound_pct": 12.222222222222221
+   },
+   "treated_stratum": null,
+   "tbr": 6.981646825396826
+  },
+  {
+   "subject": "adult#020",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 82,
+   "treated": 0,
+   "untreated": {
+    "n": 82,
+    "recovery_min": 145.0,
+    "rebound_pct": 39.02439024390244
+   },
+   "treated_stratum": null,
+   "tbr": 14.335317460317459
+  },
+  {
+   "subject": "adult#021",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": {
+    "direction": "hypoglycaemic",
+    "reason": "glucose left the model's range from below",
+    "day_ended": 20.81,
+    "final_bg": 10.6,
+    "lowest_bg": 10.6,
+    "highest_bg": 324.2,
+    "insulin_last_hour_u": 0.04,
+    "insulin_last_six_hours_u": 16.7,
+    "site_failures": 5,
+    "site_units_lost": 396.4,
+    "site_failed_hours": 167.7,
+    "site_failing_at_end": false
+   },
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 37,
+   "treated": 0,
+   "untreated": {
+    "n": 37,
+    "recovery_min": 135.0,
+    "rebound_pct": 27.027027027027028
+   },
+   "treated_stratum": null,
+   "tbr": 8.311081441922564
+  },
+  {
+   "subject": "adult#022",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 69,
+   "treated": 0,
+   "untreated": {
+    "n": 69,
+    "recovery_min": 140.0,
+    "rebound_pct": 27.536231884057973
+   },
+   "treated_stratum": null,
+   "tbr": 7.552083333333333
+  },
+  {
+   "subject": "adult#023",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 93,
+   "treated": 0,
+   "untreated": {
+    "n": 93,
+    "recovery_min": 105.0,
+    "rebound_pct": 21.50537634408602
+   },
+   "treated_stratum": null,
+   "tbr": 11.743551587301587
+  },
+  {
+   "subject": "adult#024",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 28,
+   "treated": 0,
+   "untreated": {
+    "n": 28,
+    "recovery_min": 102.5,
+    "rebound_pct": 10.714285714285714
+   },
+   "treated_stratum": null,
+   "tbr": 2.7157738095238098
+  },
+  {
+   "subject": "adult#025",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 26,
+   "treated": 0,
+   "untreated": {
+    "n": 26,
+    "recovery_min": 87.5,
+    "rebound_pct": 19.230769230769234
+   },
+   "treated_stratum": null,
+   "tbr": 2.864583333333333
+  },
+  {
+   "subject": "adult#027",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": {
+    "direction": "hypoglycaemic",
+    "reason": "glucose left the model's range from below",
+    "day_ended": 10.54,
+    "final_bg": 11.0,
+    "lowest_bg": 11.0,
+    "highest_bg": 299.4,
+    "insulin_last_hour_u": 0.54,
+    "insulin_last_six_hours_u": 19.85,
+    "site_failures": 2,
+    "site_units_lost": 121.2,
+    "site_failed_hours": 59.8,
+    "site_failing_at_end": false
+   },
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 32,
+   "treated": 0,
+   "untreated": {
+    "n": 32,
+    "recovery_min": 122.5,
+    "rebound_pct": 50.0
+   },
+   "treated_stratum": null,
+   "tbr": 11.367380560131796
+  },
+  {
+   "subject": "adult#028",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 71,
+   "treated": 0,
+   "untreated": {
+    "n": 71,
+    "recovery_min": 145.0,
+    "rebound_pct": 16.901408450704224
+   },
+   "treated_stratum": null,
+   "tbr": 9.052579365079366
+  },
+  {
+   "subject": "adult#029",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 41,
+   "treated": 0,
+   "untreated": {
+    "n": 41,
+    "recovery_min": 95.0,
+    "rebound_pct": 26.82926829268293
+   },
+   "treated_stratum": null,
+   "tbr": 4.836309523809524
+  },
+  {
+   "subject": "adult#030",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 53,
+   "treated": 0,
+   "untreated": {
+    "n": 53,
+    "recovery_min": 115.0,
+    "rebound_pct": 7.547169811320755
+   },
+   "treated_stratum": null,
+   "tbr": 5.952380952380952
+  },
+  {
+   "subject": "adult#031",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 33,
+   "treated": 0,
+   "untreated": {
+    "n": 33,
+    "recovery_min": 90.0,
+    "rebound_pct": 33.33333333333333
+   },
+   "treated_stratum": null,
+   "tbr": 2.8149801587301586
+  },
+  {
+   "subject": "adult#032",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 58,
+   "treated": 0,
+   "untreated": {
+    "n": 58,
+    "recovery_min": 125.0,
+    "rebound_pct": 22.413793103448278
+   },
+   "treated_stratum": null,
+   "tbr": 8.568948412698413
+  },
+  {
+   "subject": "adult#033",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 20,
+   "treated": 0,
+   "untreated": {
+    "n": 20,
+    "recovery_min": 67.5,
+    "rebound_pct": 40.0
+   },
+   "treated_stratum": null,
+   "tbr": 1.3020833333333335
+  },
+  {
+   "subject": "adult#034",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 30,
+   "treated": 0,
+   "untreated": {
+    "n": 30,
+    "recovery_min": 115.0,
+    "rebound_pct": 53.333333333333336
+   },
+   "treated_stratum": null,
+   "tbr": 4.910714285714286
+  },
+  {
+   "subject": "adult#035",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 21,
+   "treated": 0,
+   "untreated": {
+    "n": 21,
+    "recovery_min": 85.0,
+    "rebound_pct": 4.761904761904762
+   },
+   "treated_stratum": null,
+   "tbr": 2.2197420634920637
+  },
+  {
+   "subject": "adult#036",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": {
+    "direction": "hypoglycaemic",
+    "reason": "glucose left the model's range from below",
+    "day_ended": 23.65,
+    "final_bg": 11.0,
+    "lowest_bg": 11.0,
+    "highest_bg": 315.4,
+    "insulin_last_hour_u": 0.0,
+    "insulin_last_six_hours_u": 28.91,
+    "site_failures": 9,
+    "site_units_lost": 988.6,
+    "site_failed_hours": 232.5,
+    "site_failing_at_end": false
+   },
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 31,
+   "treated": 0,
+   "untreated": {
+    "n": 31,
+    "recovery_min": 130.0,
+    "rebound_pct": 38.70967741935484
+   },
+   "treated_stratum": null,
+   "tbr": 5.359765051395008
+  },
+  {
+   "subject": "adult#037",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 51,
+   "treated": 0,
+   "untreated": {
+    "n": 51,
+    "recovery_min": 115.0,
+    "rebound_pct": 21.568627450980394
+   },
+   "treated_stratum": null,
+   "tbr": 5.307539682539683
+  },
+  {
+   "subject": "adult#038",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 52,
+   "treated": 0,
+   "untreated": {
+    "n": 52,
+    "recovery_min": 130.0,
+    "rebound_pct": 21.153846153846153
+   },
+   "treated_stratum": null,
+   "tbr": 4.82390873015873
+  },
+  {
+   "subject": "adult#039",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 127,
+   "treated": 0,
+   "untreated": {
+    "n": 127,
+    "recovery_min": 115.0,
+    "rebound_pct": 18.11023622047244
+   },
+   "treated_stratum": null,
+   "tbr": 17.5719246031746
+  },
+  {
+   "subject": "adult#040",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 84,
+   "treated": 0,
+   "untreated": {
+    "n": 84,
+    "recovery_min": 120.0,
+    "rebound_pct": 16.666666666666664
+   },
+   "treated_stratum": null,
+   "tbr": 7.924107142857142
+  },
+  {
+   "subject": "adult#041",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "floor",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 42,
+   "treated": 0,
+   "untreated": {
+    "n": 42,
+    "recovery_min": 112.5,
+    "rebound_pct": 19.047619047619047
+   },
+   "treated_stratum": null,
+   "tbr": 5.096726190476191
+  }
+ ]
+}

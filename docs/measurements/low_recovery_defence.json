@@ -1,0 +1,1666 @@
+{
+ "provenance": {
+  "population": "704cfac086df54ba",
+  "settings": "0df43fd250fadd47",
+  "commit": "917e6549fda84cb794662f6e724c35af0fd380b7",
+  "dirty": true,
+  "host": "Study-Desktop",
+  "python": "3.14.4",
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "when": "2026-09-05T11:42:31+00:00",
+  "simglucose": "0.2.11"
+ },
+ "days": 28,
+ "seed": 101,
+ "subjects": [
+  "adult#001",
+  "adult#002",
+  "adult#003",
+  "adult#004",
+  "adult#005",
+  "adult#006",
+  "adult#007",
+  "adult#008",
+  "adult#009",
+  "adult#010",
+  "adult#011",
+  "adult#012",
+  "adult#013",
+  "adult#014",
+  "adult#015",
+  "adult#016",
+  "adult#017",
+  "adult#018",
+  "adult#019",
+  "adult#020",
+  "adult#021",
+  "adult#022",
+  "adult#023",
+  "adult#024",
+  "adult#025",
+  "adult#027",
+  "adult#028",
+  "adult#029",
+  "adult#030",
+  "adult#031",
+  "adult#032",
+  "adult#033",
+  "adult#034",
+  "adult#035",
+  "adult#036",
+  "adult#037",
+  "adult#038",
+  "adult#039",
+  "adult#040",
+  "adult#041"
+ ],
+ "drivers": [
+  "trend",
+  "oref"
+ ],
+ "treat": [
+  "none"
+ ],
+ "mechanisms": {
+  "defence": {
+   "hypo_egp_defence": 0.25
+  }
+ },
+ "min_lows": 5,
+ "rows": [
+  {
+   "side": "real",
+   "label": "Commons, window_28d, untreated",
+   "people": 24,
+   "lows": 758,
+   "recovery_min": {
+    "p10_50_90": [
+     43.24378083333333,
+     72.4876375,
+     123.56064916666666
+    ],
+    "ci95_median": [
+     57.49704166666667,
+     84.4078375
+    ]
+   },
+   "rebound_pct": {
+    "p10_50_90": [
+     0.0,
+     28.174603174603174,
+     52.69230769230769
+    ],
+    "ci95_median": [
+     19.642857142857142,
+     34.48275862068966
+    ]
+   },
+   "pooled": {
+    "n": 770,
+    "recovery_min": 68.82425833333333,
+    "rebound_pct": 30.649350649350648
+   }
+  },
+  {
+   "side": "real",
+   "label": "Commons, whole_record, untreated",
+   "people": 43,
+   "lows": 28731,
+   "recovery_min": {
+    "p10_50_90": [
+     41.27723,
+     65.1389,
+     119.04768000000001
+    ],
+    "ci95_median": [
+     64.82748333333333,
+     74.9431
+    ]
+   },
+   "rebound_pct": {
+    "p10_50_90": [
+     10.013212948689715,
+     26.262626262626267,
+     48.588331186075266
+    ],
+    "ci95_median": [
+     21.818181818181817,
+     29.464285714285715
+    ]
+   },
+   "pooled": {
+    "n": 28731,
+    "recovery_min": 74.95686666666667,
+    "rebound_pct": 24.631930667223557
+   }
+  },
+  {
+   "side": "sim",
+   "label": "trend, defence, treatment none, untreated",
+   "people": 40,
+   "lows": 1108,
+   "recovery_min": {
+    "p10_50_90": [
+     59.75,
+     103.75,
+     130.25
+    ],
+    "ci95_median": [
+     95.0,
+     115.0
+    ]
+   },
+   "rebound_pct": {
+    "p10_50_90": [
+     11.699346405228757,
+     25.290697674418606,
+     56.87500000000001
+    ],
+    "ci95_median": [
+     21.13095238095238,
+     33.34415584415585
+    ]
+   }
+  },
+  {
+   "side": "sim",
+   "label": "oref, defence, treatment none, untreated",
+   "people": 40,
+   "lows": 2113,
+   "recovery_min": {
+    "p10_50_90": [
+     80.0,
+     107.5,
+     137.75
+    ],
+    "ci95_median": [
+     105.0,
+     117.5
+    ]
+   },
+   "rebound_pct": {
+    "p10_50_90": [
+     9.135174418604652,
+     20.436507936507937,
+     35.72916666666667
+    ],
+    "ci95_median": [
+     15.13911620294599,
+     26.504629629629626
+    ]
+   }
+  }
+ ],
+ "verdicts": {
+  "trend, defence, treatment none, untreated": "inside",
+  "oref, defence, treatment none, untreated": "inside"
+ },
+ "terminations": [
+  {
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "runs": 40,
+   "ended": 0,
+   "from_below": 0,
+   "rescues_per_day": 0.0,
+   "tbr": 2.294146825396825,
+   "crossings": 1108,
+   "treated": 0
+  },
+  {
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "runs": 40,
+   "ended": 0,
+   "from_below": 0,
+   "rescues_per_day": 0.0,
+   "tbr": 4.941716269841269,
+   "crossings": 2113,
+   "treated": 0
+  }
+ ],
+ "per_subject": [
+  {
+   "subject": "adult#001",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 28,
+   "treated": 0,
+   "untreated": {
+    "n": 28,
+    "recovery_min": 132.5,
+    "rebound_pct": 3.571428571428571
+   },
+   "treated_stratum": null,
+   "tbr": 1.5749007936507935
+  },
+  {
+   "subject": "adult#002",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 12,
+   "treated": 0,
+   "untreated": {
+    "n": 12,
+    "recovery_min": 152.5,
+    "rebound_pct": 25.0
+   },
+   "treated_stratum": null,
+   "tbr": 1.066468253968254
+  },
+  {
+   "subject": "adult#003",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 14,
+   "treated": 0,
+   "untreated": {
+    "n": 14,
+    "recovery_min": 80.0,
+    "rebound_pct": 21.428571428571427
+   },
+   "treated_stratum": null,
+   "tbr": 0.5084325396825397
+  },
+  {
+   "subject": "adult#004",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 14,
+   "treated": 0,
+   "untreated": {
+    "n": 14,
+    "recovery_min": 57.5,
+    "rebound_pct": 35.714285714285715
+   },
+   "treated_stratum": null,
+   "tbr": 0.8432539682539683
+  },
+  {
+   "subject": "adult#005",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 22,
+   "treated": 0,
+   "untreated": {
+    "n": 22,
+    "recovery_min": 87.5,
+    "rebound_pct": 31.818181818181817
+   },
+   "treated_stratum": null,
+   "tbr": 1.7237103174603177
+  },
+  {
+   "subject": "adult#006",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 44,
+   "treated": 0,
+   "untreated": {
+    "n": 44,
+    "recovery_min": 115.0,
+    "rebound_pct": 25.0
+   },
+   "treated_stratum": null,
+   "tbr": 3.100198412698413
+  },
+  {
+   "subject": "adult#007",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 21,
+   "treated": 0,
+   "untreated": {
+    "n": 21,
+    "recovery_min": 95.0,
+    "rebound_pct": 14.285714285714285
+   },
+   "treated_stratum": null,
+   "tbr": 1.8973214285714284
+  },
+  {
+   "subject": "adult#008",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 16,
+   "treated": 0,
+   "untreated": {
+    "n": 16,
+    "recovery_min": 60.0,
+    "rebound_pct": 56.25
+   },
+   "treated_stratum": null,
+   "tbr": 1.7485119047619049
+  },
+  {
+   "subject": "adult#009",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 15,
+   "treated": 0,
+   "untreated": {
+    "n": 15,
+    "recovery_min": 85.0,
+    "rebound_pct": 26.666666666666668
+   },
+   "treated_stratum": null,
+   "tbr": 0.9424603174603174
+  },
+  {
+   "subject": "adult#010",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 24,
+   "treated": 0,
+   "untreated": {
+    "n": 24,
+    "recovery_min": 112.5,
+    "rebound_pct": 12.5
+   },
+   "treated_stratum": null,
+   "tbr": 3.199404761904762
+  },
+  {
+   "subject": "adult#011",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 28,
+   "treated": 0,
+   "untreated": {
+    "n": 28,
+    "recovery_min": 130.0,
+    "rebound_pct": 32.142857142857146
+   },
+   "treated_stratum": null,
+   "tbr": 3.075396825396825
+  },
+  {
+   "subject": "adult#012",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 26,
+   "treated": 0,
+   "untreated": {
+    "n": 26,
+    "recovery_min": 102.5,
+    "rebound_pct": 42.30769230769231
+   },
+   "treated_stratum": null,
+   "tbr": 2.604166666666667
+  },
+  {
+   "subject": "adult#013",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 7,
+   "treated": 0,
+   "untreated": {
+    "n": 7,
+    "recovery_min": 25.0,
+    "rebound_pct": 14.285714285714285
+   },
+   "treated_stratum": null,
+   "tbr": 0.26041666666666663
+  },
+  {
+   "subject": "adult#014",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 49,
+   "treated": 0,
+   "untreated": {
+    "n": 49,
+    "recovery_min": 100.0,
+    "rebound_pct": 65.3061224489796
+   },
+   "treated_stratum": null,
+   "tbr": 4.092261904761905
+  },
+  {
+   "subject": "adult#015",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 24,
+   "treated": 0,
+   "untreated": {
+    "n": 24,
+    "recovery_min": 77.5,
+    "rebound_pct": 62.5
+   },
+   "treated_stratum": null,
+   "tbr": 2.1825396825396823
+  },
+  {
+   "subject": "adult#016",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 35,
+   "treated": 0,
+   "untreated": {
+    "n": 35,
+    "recovery_min": 110.0,
+    "rebound_pct": 45.714285714285715
+   },
+   "treated_stratum": null,
+   "tbr": 2.7405753968253967
+  },
+  {
+   "subject": "adult#017",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 43,
+   "treated": 0,
+   "untreated": {
+    "n": 43,
+    "recovery_min": 155.0,
+    "rebound_pct": 25.581395348837212
+   },
+   "treated_stratum": null,
+   "tbr": 6.659226190476191
+  },
+  {
+   "subject": "adult#018",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 26,
+   "treated": 0,
+   "untreated": {
+    "n": 26,
+    "recovery_min": 95.0,
+    "rebound_pct": 26.923076923076923
+   },
+   "treated_stratum": null,
+   "tbr": 2.6785714285714284
+  },
+  {
+   "subject": "adult#019",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 20,
+   "treated": 0,
+   "untreated": {
+    "n": 20,
+    "recovery_min": 92.5,
+    "rebound_pct": 10.0
+   },
+   "treated_stratum": null,
+   "tbr": 1.5128968253968254
+  },
+  {
+   "subject": "adult#020",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 55,
+   "treated": 0,
+   "untreated": {
+    "n": 55,
+    "recovery_min": 115.0,
+    "rebound_pct": 47.27272727272727
+   },
+   "treated_stratum": null,
+   "tbr": 5.56795634920635
+  },
+  {
+   "subject": "adult#021",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 37,
+   "treated": 0,
+   "untreated": {
+    "n": 37,
+    "recovery_min": 160.0,
+    "rebound_pct": 16.216216216216218
+   },
+   "treated_stratum": null,
+   "tbr": 4.228670634920635
+  },
+  {
+   "subject": "adult#022",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 23,
+   "treated": 0,
+   "untreated": {
+    "n": 23,
+    "recovery_min": 115.0,
+    "rebound_pct": 21.73913043478261
+   },
+   "treated_stratum": null,
+   "tbr": 2.6909722222222223
+  },
+  {
+   "subject": "adult#023",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 42,
+   "treated": 0,
+   "untreated": {
+    "n": 42,
+    "recovery_min": 112.5,
+    "rebound_pct": 23.809523809523807
+   },
+   "treated_stratum": null,
+   "tbr": 5.282738095238095
+  },
+  {
+   "subject": "adult#024",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 12,
+   "treated": 0,
+   "untreated": {
+    "n": 12,
+    "recovery_min": 60.0,
+    "rebound_pct": 16.666666666666664
+   },
+   "treated_stratum": null,
+   "tbr": 0.5580357142857143
+  },
+  {
+   "subject": "adult#025",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 13,
+   "treated": 0,
+   "untreated": {
+    "n": 13,
+    "recovery_min": 105.0,
+    "rebound_pct": 7.6923076923076925
+   },
+   "treated_stratum": null,
+   "tbr": 1.4756944444444444
+  },
+  {
+   "subject": "adult#027",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 55,
+   "treated": 0,
+   "untreated": {
+    "n": 55,
+    "recovery_min": 95.0,
+    "rebound_pct": 34.54545454545455
+   },
+   "treated_stratum": null,
+   "tbr": 3.869047619047619
+  },
+  {
+   "subject": "adult#028",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 27,
+   "treated": 0,
+   "untreated": {
+    "n": 27,
+    "recovery_min": 120.0,
+    "rebound_pct": 11.11111111111111
+   },
+   "treated_stratum": null,
+   "tbr": 2.4057539682539684
+  },
+  {
+   "subject": "adult#029",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 25,
+   "treated": 0,
+   "untreated": {
+    "n": 25,
+    "recovery_min": 55.0,
+    "rebound_pct": 48.0
+   },
+   "treated_stratum": null,
+   "tbr": 2.0089285714285716
+  },
+  {
+   "subject": "adult#030",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 30,
+   "treated": 0,
+   "untreated": {
+    "n": 30,
+    "recovery_min": 125.0,
+    "rebound_pct": 43.333333333333336
+   },
+   "treated_stratum": null,
+   "tbr": 2.579365079365079
+  },
+  {
+   "subject": "adult#031",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 24,
+   "treated": 0,
+   "untreated": {
+    "n": 24,
+    "recovery_min": 117.5,
+    "rebound_pct": 20.833333333333336
+   },
+   "treated_stratum": null,
+   "tbr": 2.0709325396825395
+  },
+  {
+   "subject": "adult#032",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 38,
+   "treated": 0,
+   "untreated": {
+    "n": 38,
+    "recovery_min": 127.5,
+    "rebound_pct": 15.789473684210526
+   },
+   "treated_stratum": null,
+   "tbr": 4.4146825396825395
+  },
+  {
+   "subject": "adult#033",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 25,
+   "treated": 0,
+   "untreated": {
+    "n": 25,
+    "recovery_min": 100.0,
+    "rebound_pct": 84.0
+   },
+   "treated_stratum": null,
+   "tbr": 2.6413690476190474
+  },
+  {
+   "subject": "adult#034",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 33,
+   "treated": 0,
+   "untreated": {
+    "n": 33,
+    "recovery_min": 110.0,
+    "rebound_pct": 78.78787878787878
+   },
+   "treated_stratum": null,
+   "tbr": 3.4722222222222223
+  },
+  {
+   "subject": "adult#035",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 10,
+   "treated": 0,
+   "untreated": {
+    "n": 10,
+    "recovery_min": 75.0,
+    "rebound_pct": 30.0
+   },
+   "treated_stratum": null,
+   "tbr": 1.0168650793650793
+  },
+  {
+   "subject": "adult#036",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 19,
+   "treated": 0,
+   "untreated": {
+    "n": 19,
+    "recovery_min": 80.0,
+    "rebound_pct": 15.789473684210526
+   },
+   "treated_stratum": null,
+   "tbr": 1.636904761904762
+  },
+  {
+   "subject": "adult#037",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 34,
+   "treated": 0,
+   "untreated": {
+    "n": 34,
+    "recovery_min": 120.0,
+    "rebound_pct": 52.94117647058824
+   },
+   "treated_stratum": null,
+   "tbr": 2.4429563492063493
+  },
+  {
+   "subject": "adult#038",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 16,
+   "treated": 0,
+   "untreated": {
+    "n": 16,
+    "recovery_min": 57.5,
+    "rebound_pct": 25.0
+   },
+   "treated_stratum": null,
+   "tbr": 0.9796626984126984
+  },
+  {
+   "subject": "adult#039",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 68,
+   "treated": 0,
+   "untreated": {
+    "n": 68,
+    "recovery_min": 122.5,
+    "rebound_pct": 11.76470588235294
+   },
+   "treated_stratum": null,
+   "tbr": 7.192460317460317
+  },
+  {
+   "subject": "adult#040",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 37,
+   "treated": 0,
+   "untreated": {
+    "n": 37,
+    "recovery_min": 125.0,
+    "rebound_pct": 13.513513513513514
+   },
+   "treated_stratum": null,
+   "tbr": 2.083333333333333
+  },
+  {
+   "subject": "adult#041",
+   "driver": "trend",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 17,
+   "treated": 0,
+   "untreated": {
+    "n": 17,
+    "recovery_min": 100.0,
+    "rebound_pct": 35.294117647058826
+   },
+   "treated_stratum": null,
+   "tbr": 1.1036706349206349
+  },
+  {
+   "subject": "adult#001",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 64,
+   "treated": 0,
+   "untreated": {
+    "n": 64,
+    "recovery_min": 107.5,
+    "rebound_pct": 9.375
+   },
+   "treated_stratum": null,
+   "tbr": 5.5059523809523805
+  },
+  {
+   "subject": "adult#002",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 50,
+   "treated": 0,
+   "untreated": {
+    "n": 50,
+    "recovery_min": 135.0,
+    "rebound_pct": 20.0
+   },
+   "treated_stratum": null,
+   "tbr": 5.592757936507937
+  },
+  {
+   "subject": "adult#003",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 31,
+   "treated": 0,
+   "untreated": {
+    "n": 31,
+    "recovery_min": 80.0,
+    "rebound_pct": 45.16129032258064
+   },
+   "treated_stratum": null,
+   "tbr": 1.6121031746031749
+  },
+  {
+   "subject": "adult#004",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 33,
+   "treated": 0,
+   "untreated": {
+    "n": 33,
+    "recovery_min": 90.0,
+    "rebound_pct": 27.27272727272727
+   },
+   "treated_stratum": null,
+   "tbr": 3.7450396825396823
+  },
+  {
+   "subject": "adult#005",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 47,
+   "treated": 0,
+   "untreated": {
+    "n": 47,
+    "recovery_min": 95.0,
+    "rebound_pct": 14.893617021276595
+   },
+   "treated_stratum": null,
+   "tbr": 4.055059523809524
+  },
+  {
+   "subject": "adult#006",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 84,
+   "treated": 0,
+   "untreated": {
+    "n": 84,
+    "recovery_min": 122.5,
+    "rebound_pct": 20.238095238095237
+   },
+   "treated_stratum": null,
+   "tbr": 8.035714285714286
+  },
+  {
+   "subject": "adult#007",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 14,
+   "treated": 0,
+   "untreated": {
+    "n": 14,
+    "recovery_min": 102.5,
+    "rebound_pct": 14.285714285714285
+   },
+   "treated_stratum": null,
+   "tbr": 2.021329365079365
+  },
+  {
+   "subject": "adult#008",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 42,
+   "treated": 0,
+   "untreated": {
+    "n": 42,
+    "recovery_min": 127.5,
+    "rebound_pct": 28.57142857142857
+   },
+   "treated_stratum": null,
+   "tbr": 3.8566468253968256
+  },
+  {
+   "subject": "adult#009",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 61,
+   "treated": 0,
+   "untreated": {
+    "n": 61,
+    "recovery_min": 125.0,
+    "rebound_pct": 16.39344262295082
+   },
+   "treated_stratum": null,
+   "tbr": 6.063988095238095
+  },
+  {
+   "subject": "adult#010",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 80,
+   "treated": 0,
+   "untreated": {
+    "n": 80,
+    "recovery_min": 145.0,
+    "rebound_pct": 17.5
+   },
+   "treated_stratum": null,
+   "tbr": 9.536210317460316
+  },
+  {
+   "subject": "adult#011",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 48,
+   "treated": 0,
+   "untreated": {
+    "n": 48,
+    "recovery_min": 110.0,
+    "rebound_pct": 27.083333333333332
+   },
+   "treated_stratum": null,
+   "tbr": 5.7415674603174605
+  },
+  {
+   "subject": "adult#012",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 33,
+   "treated": 0,
+   "untreated": {
+    "n": 33,
+    "recovery_min": 125.0,
+    "rebound_pct": 21.21212121212121
+   },
+   "treated_stratum": null,
+   "tbr": 4.947916666666666
+  },
+  {
+   "subject": "adult#013",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 31,
+   "treated": 0,
+   "untreated": {
+    "n": 31,
+    "recovery_min": 105.0,
+    "rebound_pct": 6.451612903225806
+   },
+   "treated_stratum": null,
+   "tbr": 2.232142857142857
+  },
+  {
+   "subject": "adult#014",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 54,
+   "treated": 0,
+   "untreated": {
+    "n": 54,
+    "recovery_min": 65.0,
+    "rebound_pct": 35.18518518518518
+   },
+   "treated_stratum": null,
+   "tbr": 3.7450396825396823
+  },
+  {
+   "subject": "adult#015",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 41,
+   "treated": 0,
+   "untreated": {
+    "n": 41,
+    "recovery_min": 80.0,
+    "rebound_pct": 53.65853658536586
+   },
+   "treated_stratum": null,
+   "tbr": 3.149801587301587
+  },
+  {
+   "subject": "adult#016",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 43,
+   "treated": 0,
+   "untreated": {
+    "n": 43,
+    "recovery_min": 105.0,
+    "rebound_pct": 6.976744186046512
+   },
+   "treated_stratum": null,
+   "tbr": 4.82390873015873
+  },
+  {
+   "subject": "adult#017",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 52,
+   "treated": 0,
+   "untreated": {
+    "n": 52,
+    "recovery_min": 140.0,
+    "rebound_pct": 15.384615384615385
+   },
+   "treated_stratum": null,
+   "tbr": 8.147321428571429
+  },
+  {
+   "subject": "adult#018",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 30,
+   "treated": 0,
+   "untreated": {
+    "n": 30,
+    "recovery_min": 120.0,
+    "rebound_pct": 10.0
+   },
+   "treated_stratum": null,
+   "tbr": 3.670634920634921
+  },
+  {
+   "subject": "adult#019",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 85,
+   "treated": 0,
+   "untreated": {
+    "n": 85,
+    "recovery_min": 110.0,
+    "rebound_pct": 11.76470588235294
+   },
+   "treated_stratum": null,
+   "tbr": 6.510416666666667
+  },
+  {
+   "subject": "adult#020",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 97,
+   "treated": 0,
+   "untreated": {
+    "n": 97,
+    "recovery_min": 145.0,
+    "rebound_pct": 32.98969072164948
+   },
+   "treated_stratum": null,
+   "tbr": 12.797619047619047
+  },
+  {
+   "subject": "adult#021",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 46,
+   "treated": 0,
+   "untreated": {
+    "n": 46,
+    "recovery_min": 137.5,
+    "rebound_pct": 34.78260869565217
+   },
+   "treated_stratum": null,
+   "tbr": 7.502480158730158
+  },
+  {
+   "subject": "adult#022",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 63,
+   "treated": 0,
+   "untreated": {
+    "n": 63,
+    "recovery_min": 150.0,
+    "rebound_pct": 25.396825396825395
+   },
+   "treated_stratum": null,
+   "tbr": 6.2375992063492065
+  },
+  {
+   "subject": "adult#023",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 95,
+   "treated": 0,
+   "untreated": {
+    "n": 95,
+    "recovery_min": 95.0,
+    "rebound_pct": 22.105263157894736
+   },
+   "treated_stratum": null,
+   "tbr": 10.553075396825397
+  },
+  {
+   "subject": "adult#024",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 26,
+   "treated": 0,
+   "untreated": {
+    "n": 26,
+    "recovery_min": 95.0,
+    "rebound_pct": 15.384615384615385
+   },
+   "treated_stratum": null,
+   "tbr": 2.5297619047619047
+  },
+  {
+   "subject": "adult#025",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 27,
+   "treated": 0,
+   "untreated": {
+    "n": 27,
+    "recovery_min": 90.0,
+    "rebound_pct": 25.925925925925924
+   },
+   "treated_stratum": null,
+   "tbr": 2.554563492063492
+  },
+  {
+   "subject": "adult#027",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 107,
+   "treated": 0,
+   "untreated": {
+    "n": 107,
+    "recovery_min": 105.0,
+    "rebound_pct": 33.64485981308411
+   },
+   "treated_stratum": null,
+   "tbr": 10.925099206349206
+  },
+  {
+   "subject": "adult#028",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 73,
+   "treated": 0,
+   "untreated": {
+    "n": 73,
+    "recovery_min": 135.0,
+    "rebound_pct": 13.698630136986301
+   },
+   "treated_stratum": null,
+   "tbr": 8.072916666666668
+  },
+  {
+   "subject": "adult#029",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 35,
+   "treated": 0,
+   "untreated": {
+    "n": 35,
+    "recovery_min": 105.0,
+    "rebound_pct": 28.57142857142857
+   },
+   "treated_stratum": null,
+   "tbr": 4.625496031746032
+  },
+  {
+   "subject": "adult#030",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 59,
+   "treated": 0,
+   "untreated": {
+    "n": 59,
+    "recovery_min": 105.0,
+    "rebound_pct": 6.779661016949152
+   },
+   "treated_stratum": null,
+   "tbr": 6.001984126984127
+  },
+  {
+   "subject": "adult#031",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 22,
+   "treated": 0,
+   "untreated": {
+    "n": 22,
+    "recovery_min": 75.0,
+    "rebound_pct": 27.27272727272727
+   },
+   "treated_stratum": null,
+   "tbr": 1.8973214285714284
+  },
+  {
+   "subject": "adult#032",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 66,
+   "treated": 0,
+   "untreated": {
+    "n": 66,
+    "recovery_min": 102.5,
+    "rebound_pct": 13.636363636363635
+   },
+   "treated_stratum": null,
+   "tbr": 7.738095238095238
+  },
+  {
+   "subject": "adult#033",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 15,
+   "treated": 0,
+   "untreated": {
+    "n": 15,
+    "recovery_min": 70.0,
+    "rebound_pct": 46.666666666666664
+   },
+   "treated_stratum": null,
+   "tbr": 1.4260912698412698
+  },
+  {
+   "subject": "adult#034",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 32,
+   "treated": 0,
+   "untreated": {
+    "n": 32,
+    "recovery_min": 107.5,
+    "rebound_pct": 40.625
+   },
+   "treated_stratum": null,
+   "tbr": 4.935515873015873
+  },
+  {
+   "subject": "adult#035",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 19,
+   "treated": 0,
+   "untreated": {
+    "n": 19,
+    "recovery_min": 90.0,
+    "rebound_pct": 5.263157894736842
+   },
+   "treated_stratum": null,
+   "tbr": 1.9965277777777777
+  },
+  {
+   "subject": "adult#036",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 43,
+   "treated": 0,
+   "untreated": {
+    "n": 43,
+    "recovery_min": 110.0,
+    "rebound_pct": 32.55813953488372
+   },
+   "treated_stratum": null,
+   "tbr": 4.923115079365079
+  },
+  {
+   "subject": "adult#037",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 51,
+   "treated": 0,
+   "untreated": {
+    "n": 51,
+    "recovery_min": 115.0,
+    "rebound_pct": 9.803921568627452
+   },
+   "treated_stratum": null,
+   "tbr": 5.381944444444445
+  },
+  {
+   "subject": "adult#038",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 63,
+   "treated": 0,
+   "untreated": {
+    "n": 63,
+    "recovery_min": 135.0,
+    "rebound_pct": 23.809523809523807
+   },
+   "treated_stratum": null,
+   "tbr": 3.90625
+  },
+  {
+   "subject": "adult#039",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 126,
+   "treated": 0,
+   "untreated": {
+    "n": 126,
+    "recovery_min": 120.0,
+    "rebound_pct": 20.634920634920633
+   },
+   "treated_stratum": null,
+   "tbr": 16.220238095238095
+  },
+  {
+   "subject": "adult#040",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 81,
+   "treated": 0,
+   "untreated": {
+    "n": 81,
+    "recovery_min": 110.0,
+    "rebound_pct": 13.580246913580247
+   },
+   "treated_stratum": null,
+   "tbr": 7.2544642857142865
+  },
+  {
+   "subject": "adult#041",
+   "driver": "oref",
+   "treat": "none",
+   "mechanism": "defence",
+   "termination": null,
+   "days": 28,
+   "rescues_per_day": 0.0,
+   "crossings": 44,
+   "treated": 0,
+   "untreated": {
+    "n": 44,
+    "recovery_min": 105.0,
+    "rebound_pct": 11.363636363636363
+   },
+   "treated_stratum": null,
+   "tbr": 4.885912698412699
+  }
+ ]
+}
