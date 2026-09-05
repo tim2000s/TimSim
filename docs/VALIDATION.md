@@ -369,8 +369,14 @@ the simulated person with the real profile and finding the rise unchanged, -0.07
 [-0.75, 0.50] against the simulated profile (`examples/insulin_profile_rise.py`; the trail is in
 `docs/DESIGN_ALIGNMENT.md`). What is left is the model's glucose appearance and disposal, which
 this package does not refit. An algorithm is therefore judged here on meals that rise about a
-third less per gram than a real adult's, and a result that depends on the size of the peak
-carries that.
+third less per gram than a real adult's, and what that does to a ranking was measured
+(`examples/meal_yield_ranking.py`): raising the yield of the published model until the oref0 SMB
+rise reads 15.1 leaves the order of the three closed-loop drivers and the differences between
+them where they were, within 2 points of time in range at the estimate and 3.7 at the edge of
+the interval, and moves the open-loop arm, whose shortfall on time in range to each loop widens
+by 4.4 to 7.3 points and whose time below 70 mg/dL goes from third of four to first. A
+comparison among closed loops does not depend on the bound at the size a panel of twenty
+resolves; one that includes an open-loop arm does.
 
 What the seven levels do support: stress-testing an algorithm for pathological behaviour,
 ranking options where the difference exceeds the measured noise floor, and attributing an

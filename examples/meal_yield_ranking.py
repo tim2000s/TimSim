@@ -45,6 +45,61 @@ expectation is that the order holds and the closed-loop drivers gain 2 to 4 poin
 range on the open-loop arm, since a larger rise is more glucose for a correction to act on
 and nothing for a fixed regimen to do.
 
+Result, 5 September 2026 (`docs/measurements/meal_yield_ranking.json`, 240 runs in 56 minutes).
+The knob reached the body: the covered rise under oref0 SMB read 11.3, 14.0 and 15.1 mg/dL per 10
+g at yields of 1.0, 1.3 and 1.5, so the yield read against the gap under the registered rule is
+1.5, with 1.3 one tenth outside it and shown as well. Medians over each cell's completers, and
+the paired differences and their movement from a yield of 1.0 on time in range:
+
+    yield  driver       n   rise/10 g   TIR    TBR    TAR   mean   U/day   rescues/day
+    1.0    basal-bolus  18   6.3        60.4   2.04   38.7   170   45.7    1.12
+    1.0    trend        20   9.9        77.6   1.16   20.7   149   54.8    0.73
+    1.0    boost        20  12.5        78.2   1.22   20.0   148   55.0    0.77
+    1.0    oref         18  11.3        86.6   3.97    9.4   130   67.0    2.07
+    1.3    basal-bolus  14   9.2        48.6   1.15   50.2   189   46.4    0.75
+    1.3    trend        17  10.2        73.0   1.71   25.0   153   57.6    1.04
+    1.3    boost        19  15.5        72.9   1.28   25.6   156   56.2    0.79
+    1.3    oref         18  14.0        79.0   3.46   16.1   137   68.1    1.86
+    1.5    basal-bolus  14  10.2        43.4   1.01   55.7   204   44.2    0.57
+    1.5    trend        16  12.7        70.3   1.95   28.3   160   60.3    1.07
+    1.5    boost        19  15.9        69.3   1.45   28.0   161   59.1    0.86
+    1.5    oref         15  15.1        73.3   4.15   21.9   143   68.9    2.07
+
+    pair, TIR             at 1.0                at 1.5                move, 1.0 to 1.5
+    oref - trend           6.9 [3.2, 9.6]        5.7 [1.7, 10.8]      +1.2 [-3.7, 2.5]
+    oref - boost           5.0 [2.8, 8.0]        5.1 [2.1, 8.7]       +0.8 [-3.3, 2.7]
+    boost - trend          1.0 [-0.9, 2.4]       1.8 [-2.4, 3.2]      +1.8 [-1.6, 2.4]
+    trend - basal-bolus   20.3 [17.2, 22.3]     26.4 [21.2, 30.1]     +7.3 [3.5, 10.7]
+    boost - basal-bolus   20.5 [14.8, 23.4]     25.9 [21.1, 31.3]     +4.4 [1.2, 12.8]
+    oref - basal-bolus    27.9 [23.8, 30.9]     33.9 [26.5, 37.6]     +5.9 [4.4, 8.1]
+
+Among the three closed-loop drivers the ranking holds. oref0 SMB leads the other two on time in
+range at every yield, by 5 to 7 points with intervals clear of zero, and pays for it in time
+below 70 mg/dL at every yield, by 2.0 to 2.9 points; the built-in loop and Boost are not
+separated at any yield (1.0 [-0.9, 2.4] at 1.0, 1.8 [-2.4, 3.2] at 1.5), and the swap in their
+order of medians at 1.3 and 1.5 is that pair changing sign inside its interval on differing
+completer sets. No difference among the three moved by more than 2.0 points at the point
+estimate, which is the allowance, and the intervals on the movements at 1.5 admit up to 3.7,
+since twelve to sixteen subjects completed both runs of a pair there.
+
+The open-loop arm's position does not hold. Its disadvantage on time in range to every loop
+widens by 4.4 to 7.3 points at 1.5 (3.8 to 5.7 at 1.3), past the 2 to 4 that were expected and
+past the allowance, and its time below 70 mg/dL falls from 2.04 to 1.01 per cent as its mean
+glucose rises from 170 to 204 mg/dL, while every loop's rises, so the order on time below 70
+reverses: at 1.0 the open loop sits third of four and at 1.3 and 1.5 it sits first, with the
+paired difference to the built-in loop moving from -0.8 to +1.0. A benchmark that includes an
+open-loop arm therefore depends on the bound, understating that arm's shortfall on time in
+range by 4 to 7 points and overstating its hypoglycaemia relative to the loops by about 1.3
+points, and `docs/VALIDATION.md` records it so. A comparison among closed-loop drivers, which is
+what the capability table and the bench compare, does not depend on it at the size this panel
+resolves.
+
+Completion fell with the yield and the reading is conditioned on it: 76 of 80 runs completed at
+1.0, 68 at 1.3 and 64 at 1.5, the losses hyperglycaemic under the open loop and the built-in
+loop (one open-loop run at 1.3 excepted) and split under oref0 SMB, whose three hypoglycaemic
+terminations at 1.5 are subjects #017, #018 and #020. The paired analyses at 1.5 rest on 12 to
+16 subjects.
+
     python examples/meal_yield_ranking.py
 """
 import argparse

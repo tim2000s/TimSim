@@ -694,7 +694,14 @@ hour. The four arms span 1.65 to 1.84 U per 10 g by the peak and 9.9 to 10.6 mg/
 rise, against 15.1 on the adult record, so how the insulin is placed within that range moves the
 peak by under 1 mg/dL per 10 g and the shortfall of 4.5 to 5.2 sits in the model's glucose
 appearance and disposal. The rise is recorded as a bound in `docs/VALIDATION.md` and is not
-pursued further here.
+pursued further here. What the bound costs a ranking was measured the same day
+(`examples/meal_yield_ranking.py`, `docs/measurements/meal_yield_ranking.json`) by raising the
+yield of the published model, `f`, to 1.3 and 1.5 times its value on twenty subjects under the
+four capability-table drivers, which brings the oref0 SMB rise to 14.0 and 15.1: the closed-loop
+drivers keep their order and their differences (oref0 SMB over the other two by 5 to 7 points of
+time in range at every yield, the built-in loop and Boost unseparated at every yield), and the
+open-loop arm falls further behind, by 4.4 to 7.3 points at 1.5, with its time below 70 mg/dL
+dropping from 2.0 to 1.0 per cent as it runs higher.
 
 One candidate remains open. The disposal interaction in audit entry 6, where disposal is right
 on each axis and 28 per cent too high on both together (13 per cent once production is counted

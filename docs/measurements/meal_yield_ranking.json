@@ -1,0 +1,6972 @@
+{
+ "provenance": {
+  "population": "704cfac086df54ba",
+  "settings": "0df43fd250fadd47",
+  "commit": "beaffe17c72f29ddff15fd7c7f200057c20b805b",
+  "dirty": false,
+  "host": "Tims-Mac-mini.local",
+  "python": "3.14.7",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "when": "2026-09-05T00:11:24+00:00",
+  "simglucose": "0.2.11"
+ },
+ "subjects": [
+  "adult#001",
+  "adult#002",
+  "adult#003",
+  "adult#004",
+  "adult#005",
+  "adult#006",
+  "adult#007",
+  "adult#008",
+  "adult#009",
+  "adult#010",
+  "adult#011",
+  "adult#012",
+  "adult#013",
+  "adult#014",
+  "adult#015",
+  "adult#016",
+  "adult#017",
+  "adult#018",
+  "adult#019",
+  "adult#020"
+ ],
+ "days": 28,
+ "seed": 101,
+ "drivers": [
+  "basal-bolus",
+  "trend",
+  "boost",
+  "oref"
+ ],
+ "yields": [
+  1.0,
+  1.3,
+  1.5
+ ],
+ "window_min": 240,
+ "bolus_floor": 1.0,
+ "min_meals": 15,
+ "tir_move_allowed": 2.0,
+ "dropped": [
+  {
+   "subject": "adult#014",
+   "driver": "oref",
+   "yield": 1.0,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above, with the infusion site not absorbing at the time",
+    "day_ended": 23.72,
+    "final_bg": 594.6,
+    "lowest_bg": 41.2,
+    "highest_bg": 594.6,
+    "insulin_last_hour_u": 8.49,
+    "insulin_last_six_hours_u": 14.18,
+    "site_failures": 9,
+    "site_units_lost": 283.2,
+    "site_failed_hours": 258.1,
+    "site_failing_at_end": true,
+    "rescues_last_six_hours": 3
+   }
+  },
+  {
+   "subject": "adult#020",
+   "driver": "oref",
+   "yield": 1.0,
+   "termination": {
+    "direction": "hypoglycaemic",
+    "reason": "glucose left the model's range from below",
+    "day_ended": 14.93,
+    "final_bg": 11.7,
+    "lowest_bg": 11.7,
+    "highest_bg": 437.4,
+    "insulin_last_hour_u": 0.0,
+    "insulin_last_six_hours_u": 23.02,
+    "site_failures": 1,
+    "site_units_lost": 71.3,
+    "site_failed_hours": 69.0,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 3
+   }
+  },
+  {
+   "subject": "adult#004",
+   "driver": "basal-bolus",
+   "yield": 1.0,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above",
+    "day_ended": 17.87,
+    "final_bg": 597.4,
+    "lowest_bg": 66.2,
+    "highest_bg": 597.4,
+    "insulin_last_hour_u": 1.0,
+    "insulin_last_six_hours_u": 13.15,
+    "site_failures": 10,
+    "site_units_lost": 60.4,
+    "site_failed_hours": 82.5,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 0
+   }
+  },
+  {
+   "subject": "adult#006",
+   "driver": "basal-bolus",
+   "yield": 1.0,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above",
+    "day_ended": 6.91,
+    "final_bg": 597.3,
+    "lowest_bg": 60.6,
+    "highest_bg": 597.3,
+    "insulin_last_hour_u": 1.55,
+    "insulin_last_six_hours_u": 9.3,
+    "site_failures": 2,
+    "site_units_lost": 20.5,
+    "site_failed_hours": 14.8,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 2
+   }
+  },
+  {
+   "subject": "adult#018",
+   "driver": "boost",
+   "yield": 1.3,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above",
+    "day_ended": 10.83,
+    "final_bg": 599.0,
+    "lowest_bg": 73.3,
+    "highest_bg": 599.0,
+    "insulin_last_hour_u": 3.9,
+    "insulin_last_six_hours_u": 31.95,
+    "site_failures": 5,
+    "site_units_lost": 187.3,
+    "site_failed_hours": 91.1,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 0
+   }
+  },
+  {
+   "subject": "adult#006",
+   "driver": "oref",
+   "yield": 1.3,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above",
+    "day_ended": 4.6,
+    "final_bg": 597.6,
+    "lowest_bg": 33.9,
+    "highest_bg": 597.6,
+    "insulin_last_hour_u": 12.74,
+    "insulin_last_six_hours_u": 23.1,
+    "site_failures": 2,
+    "site_units_lost": 68.1,
+    "site_failed_hours": 17.2,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 2
+   }
+  },
+  {
+   "subject": "adult#020",
+   "driver": "oref",
+   "yield": 1.3,
+   "termination": {
+    "direction": "hypoglycaemic",
+    "reason": "glucose left the model's range from below",
+    "day_ended": 5.85,
+    "final_bg": 10.3,
+    "lowest_bg": 10.3,
+    "highest_bg": 373.3,
+    "insulin_last_hour_u": 0.26,
+    "insulin_last_six_hours_u": 18.16,
+    "site_failures": 1,
+    "site_units_lost": 44.5,
+    "site_failed_hours": 38.8,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 4
+   }
+  },
+  {
+   "subject": "adult#003",
+   "driver": "basal-bolus",
+   "yield": 1.3,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above",
+    "day_ended": 17.92,
+    "final_bg": 599.2,
+    "lowest_bg": 64.3,
+    "highest_bg": 599.2,
+    "insulin_last_hour_u": 1.4,
+    "insulin_last_six_hours_u": 8.4,
+    "site_failures": 9,
+    "site_units_lost": 80.1,
+    "site_failed_hours": 76.6,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 0
+   }
+  },
+  {
+   "subject": "adult#004",
+   "driver": "basal-bolus",
+   "yield": 1.3,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above",
+    "day_ended": 11.8,
+    "final_bg": 599.7,
+    "lowest_bg": 67.9,
+    "highest_bg": 599.7,
+    "insulin_last_hour_u": 1.0,
+    "insulin_last_six_hours_u": 13.15,
+    "site_failures": 4,
+    "site_units_lost": 26.5,
+    "site_failed_hours": 27.5,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 0
+   }
+  },
+  {
+   "subject": "adult#008",
+   "driver": "basal-bolus",
+   "yield": 1.3,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above",
+    "day_ended": 4.75,
+    "final_bg": 570.9,
+    "lowest_bg": 74.4,
+    "highest_bg": 570.9,
+    "insulin_last_hour_u": 7.85,
+    "insulin_last_six_hours_u": 12.6,
+    "site_failures": 2,
+    "site_units_lost": 12.0,
+    "site_failed_hours": 17.0,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 0
+   }
+  },
+  {
+   "subject": "adult#014",
+   "driver": "basal-bolus",
+   "yield": 1.3,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above",
+    "day_ended": 12.88,
+    "final_bg": 595.5,
+    "lowest_bg": 49.9,
+    "highest_bg": 595.5,
+    "insulin_last_hour_u": 1.1,
+    "insulin_last_six_hours_u": 6.6,
+    "site_failures": 6,
+    "site_units_lost": 34.2,
+    "site_failed_hours": 31.5,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 2
+   }
+  },
+  {
+   "subject": "adult#015",
+   "driver": "basal-bolus",
+   "yield": 1.3,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above",
+    "day_ended": 27.88,
+    "final_bg": 595.7,
+    "lowest_bg": 33.8,
+    "highest_bg": 595.7,
+    "insulin_last_hour_u": 10.3,
+    "insulin_last_six_hours_u": 16.55,
+    "site_failures": 4,
+    "site_units_lost": 29.1,
+    "site_failed_hours": 19.9,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 0
+   }
+  },
+  {
+   "subject": "adult#020",
+   "driver": "basal-bolus",
+   "yield": 1.3,
+   "termination": {
+    "direction": "hypoglycaemic",
+    "reason": "glucose left the model's range from below",
+    "day_ended": 11.88,
+    "final_bg": 12.0,
+    "lowest_bg": 12.0,
+    "highest_bg": 341.2,
+    "insulin_last_hour_u": 1.5,
+    "insulin_last_six_hours_u": 20.25,
+    "site_failures": 1,
+    "site_units_lost": 13.8,
+    "site_failed_hours": 15.6,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 4
+   }
+  },
+  {
+   "subject": "adult#003",
+   "driver": "trend",
+   "yield": 1.3,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above, with the infusion site not absorbing at the time",
+    "day_ended": 14.67,
+    "final_bg": 593.7,
+    "lowest_bg": 56.5,
+    "highest_bg": 593.7,
+    "insulin_last_hour_u": 3.2,
+    "insulin_last_six_hours_u": 23.85,
+    "site_failures": 7,
+    "site_units_lost": 186.7,
+    "site_failed_hours": 96.6,
+    "site_failing_at_end": true,
+    "rescues_last_six_hours": 0
+   }
+  },
+  {
+   "subject": "adult#011",
+   "driver": "trend",
+   "yield": 1.3,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above",
+    "day_ended": 4.92,
+    "final_bg": 597.1,
+    "lowest_bg": 34.9,
+    "highest_bg": 597.1,
+    "insulin_last_hour_u": 3.8,
+    "insulin_last_six_hours_u": 16.85,
+    "site_failures": 2,
+    "site_units_lost": 38.0,
+    "site_failed_hours": 33.8,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 0
+   }
+  },
+  {
+   "subject": "adult#020",
+   "driver": "trend",
+   "yield": 1.3,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above",
+    "day_ended": 23.01,
+    "final_bg": 583.1,
+    "lowest_bg": 37.0,
+    "highest_bg": 583.1,
+    "insulin_last_hour_u": 2.7,
+    "insulin_last_six_hours_u": 11.63,
+    "site_failures": 2,
+    "site_units_lost": 46.5,
+    "site_failed_hours": 28.8,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 4
+   }
+  },
+  {
+   "subject": "adult#004",
+   "driver": "boost",
+   "yield": 1.5,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above",
+    "day_ended": 16.53,
+    "final_bg": 597.5,
+    "lowest_bg": 51.9,
+    "highest_bg": 597.5,
+    "insulin_last_hour_u": 3.4,
+    "insulin_last_six_hours_u": 21.5,
+    "site_failures": 6,
+    "site_units_lost": 111.7,
+    "site_failed_hours": 72.8,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 0
+   }
+  },
+  {
+   "subject": "adult#004",
+   "driver": "oref",
+   "yield": 1.5,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above",
+    "day_ended": 20.78,
+    "final_bg": 577.3,
+    "lowest_bg": 32.1,
+    "highest_bg": 577.3,
+    "insulin_last_hour_u": 6.46,
+    "insulin_last_six_hours_u": 16.27,
+    "site_failures": 7,
+    "site_units_lost": 178.1,
+    "site_failed_hours": 91.2,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 2
+   }
+  },
+  {
+   "subject": "adult#006",
+   "driver": "oref",
+   "yield": 1.5,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above",
+    "day_ended": 4.82,
+    "final_bg": 596.8,
+    "lowest_bg": 32.0,
+    "highest_bg": 596.8,
+    "insulin_last_hour_u": 11.84,
+    "insulin_last_six_hours_u": 24.07,
+    "site_failures": 1,
+    "site_units_lost": 30.8,
+    "site_failed_hours": 7.9,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 2
+   }
+  },
+  {
+   "subject": "adult#017",
+   "driver": "oref",
+   "yield": 1.5,
+   "termination": {
+    "direction": "hypoglycaemic",
+    "reason": "glucose left the model's range from below",
+    "day_ended": 27.9,
+    "final_bg": 11.2,
+    "lowest_bg": 11.2,
+    "highest_bg": 387.5,
+    "insulin_last_hour_u": 0.0,
+    "insulin_last_six_hours_u": 19.58,
+    "site_failures": 8,
+    "site_units_lost": 601.7,
+    "site_failed_hours": 176.9,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 4
+   }
+  },
+  {
+   "subject": "adult#018",
+   "driver": "oref",
+   "yield": 1.5,
+   "termination": {
+    "direction": "hypoglycaemic",
+    "reason": "glucose left the model's range from below",
+    "day_ended": 22.81,
+    "final_bg": 10.7,
+    "lowest_bg": 10.7,
+    "highest_bg": 436.6,
+    "insulin_last_hour_u": 0.09,
+    "insulin_last_six_hours_u": 21.98,
+    "site_failures": 9,
+    "site_units_lost": 456.3,
+    "site_failed_hours": 154.1,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 3
+   }
+  },
+  {
+   "subject": "adult#020",
+   "driver": "oref",
+   "yield": 1.5,
+   "termination": {
+    "direction": "hypoglycaemic",
+    "reason": "glucose left the model's range from below",
+    "day_ended": 14.05,
+    "final_bg": 11.4,
+    "lowest_bg": 11.4,
+    "highest_bg": 386.7,
+    "insulin_last_hour_u": 0.0,
+    "insulin_last_six_hours_u": 20.66,
+    "site_failures": 1,
+    "site_units_lost": 45.5,
+    "site_failed_hours": 38.8,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 3
+   }
+  },
+  {
+   "subject": "adult#003",
+   "driver": "basal-bolus",
+   "yield": 1.5,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above",
+    "day_ended": 5.96,
+    "final_bg": 597.7,
+    "lowest_bg": 69.9,
+    "highest_bg": 597.7,
+    "insulin_last_hour_u": 1.4,
+    "insulin_last_six_hours_u": 8.4,
+    "site_failures": 1,
+    "site_units_lost": 5.4,
+    "site_failed_hours": 8.3,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 0
+   }
+  },
+  {
+   "subject": "adult#004",
+   "driver": "basal-bolus",
+   "yield": 1.5,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above",
+    "day_ended": 11.75,
+    "final_bg": 572.3,
+    "lowest_bg": 74.9,
+    "highest_bg": 572.3,
+    "insulin_last_hour_u": 8.15,
+    "insulin_last_six_hours_u": 13.15,
+    "site_failures": 4,
+    "site_units_lost": 22.2,
+    "site_failed_hours": 32.2,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 0
+   }
+  },
+  {
+   "subject": "adult#006",
+   "driver": "basal-bolus",
+   "yield": 1.5,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above",
+    "day_ended": 26.01,
+    "final_bg": 595.3,
+    "lowest_bg": 19.9,
+    "highest_bg": 595.3,
+    "insulin_last_hour_u": 1.55,
+    "insulin_last_six_hours_u": 20.5,
+    "site_failures": 12,
+    "site_units_lost": 148.3,
+    "site_failed_hours": 100.9,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 0
+   }
+  },
+  {
+   "subject": "adult#011",
+   "driver": "basal-bolus",
+   "yield": 1.5,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above",
+    "day_ended": 15.56,
+    "final_bg": 594.0,
+    "lowest_bg": 47.0,
+    "highest_bg": 594.0,
+    "insulin_last_hour_u": 0.9,
+    "insulin_last_six_hours_u": 5.4,
+    "site_failures": 2,
+    "site_units_lost": 17.9,
+    "site_failed_hours": 17.8,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 0
+   }
+  },
+  {
+   "subject": "adult#017",
+   "driver": "basal-bolus",
+   "yield": 1.5,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above",
+    "day_ended": 6.88,
+    "final_bg": 596.6,
+    "lowest_bg": 72.2,
+    "highest_bg": 596.6,
+    "insulin_last_hour_u": 1.75,
+    "insulin_last_six_hours_u": 10.5,
+    "site_failures": 0,
+    "site_units_lost": 0.0,
+    "site_failed_hours": 0.0,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 0
+   }
+  },
+  {
+   "subject": "adult#018",
+   "driver": "basal-bolus",
+   "yield": 1.5,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above",
+    "day_ended": 10.92,
+    "final_bg": 592.5,
+    "lowest_bg": 94.7,
+    "highest_bg": 592.5,
+    "insulin_last_hour_u": 1.6,
+    "insulin_last_six_hours_u": 27.15,
+    "site_failures": 2,
+    "site_units_lost": 15.3,
+    "site_failed_hours": 9.1,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 0
+   }
+  },
+  {
+   "subject": "adult#003",
+   "driver": "trend",
+   "yield": 1.5,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above, with the infusion site not absorbing at the time",
+    "day_ended": 24.59,
+    "final_bg": 598.2,
+    "lowest_bg": 60.3,
+    "highest_bg": 598.2,
+    "insulin_last_hour_u": 1.4,
+    "insulin_last_six_hours_u": 24.45,
+    "site_failures": 15,
+    "site_units_lost": 234.8,
+    "site_failed_hours": 130.2,
+    "site_failing_at_end": true,
+    "rescues_last_six_hours": 0
+   }
+  },
+  {
+   "subject": "adult#004",
+   "driver": "trend",
+   "yield": 1.5,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above, with the infusion site not absorbing at the time",
+    "day_ended": 11.58,
+    "final_bg": 590.7,
+    "lowest_bg": 52.3,
+    "highest_bg": 590.7,
+    "insulin_last_hour_u": 1.0,
+    "insulin_last_six_hours_u": 16.48,
+    "site_failures": 3,
+    "site_units_lost": 54.9,
+    "site_failed_hours": 31.9,
+    "site_failing_at_end": true,
+    "rescues_last_six_hours": 0
+   }
+  },
+  {
+   "subject": "adult#014",
+   "driver": "trend",
+   "yield": 1.5,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above",
+    "day_ended": 16.59,
+    "final_bg": 592.5,
+    "lowest_bg": 34.9,
+    "highest_bg": 592.5,
+    "insulin_last_hour_u": 3.71,
+    "insulin_last_six_hours_u": 12.87,
+    "site_failures": 9,
+    "site_units_lost": 75.3,
+    "site_failed_hours": 53.7,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 1
+   }
+  },
+  {
+   "subject": "adult#016",
+   "driver": "trend",
+   "yield": 1.5,
+   "termination": {
+    "direction": "hyperglycaemic",
+    "reason": "glucose left the model's range from above",
+    "day_ended": 9.56,
+    "final_bg": 591.3,
+    "lowest_bg": 70.9,
+    "highest_bg": 591.3,
+    "insulin_last_hour_u": 1.35,
+    "insulin_last_six_hours_u": 23.65,
+    "site_failures": 3,
+    "site_units_lost": 66.4,
+    "site_failed_hours": 28.0,
+    "site_failing_at_end": false,
+    "rescues_last_six_hours": 0
+   }
+  }
+ ],
+ "rows": [
+  {
+   "yield": 1.0,
+   "driver": "basal-bolus",
+   "subjects": 18,
+   "rise_per_10g": 6.287262519014772,
+   "ttp": 56.25,
+   "tir": 60.43526785714286,
+   "tbr": 2.0399305555555554,
+   "tbr54": 0.4464285714285714,
+   "tar": 38.69047619047619,
+   "mean_cgm": 170.3051193248901,
+   "insulin_per_day": 45.71526816427558,
+   "rescues": 1.125
+  },
+  {
+   "yield": 1.0,
+   "driver": "trend",
+   "subjects": 20,
+   "rise_per_10g": 9.936798941287215,
+   "ttp": 67.5,
+   "tir": 77.63516865079364,
+   "tbr": 1.1594742063492065,
+   "tbr54": 0.24181547619047616,
+   "tar": 20.7093253968254,
+   "mean_cgm": 148.8692907235147,
+   "insulin_per_day": 54.8343771758298,
+   "rescues": 0.7321428571428572
+  },
+  {
+   "yield": 1.0,
+   "driver": "boost",
+   "subjects": 20,
+   "rise_per_10g": 12.495180152120977,
+   "ttp": 92.5,
+   "tir": 78.24900793650795,
+   "tbr": 1.2152777777777777,
+   "tbr54": 0.20461309523809523,
+   "tar": 20.033482142857142,
+   "mean_cgm": 148.31797512462327,
+   "insulin_per_day": 55.00031068682411,
+   "rescues": 0.7678571428571428
+  },
+  {
+   "yield": 1.0,
+   "driver": "oref",
+   "subjects": 18,
+   "rise_per_10g": 11.25497963052398,
+   "ttp": 90.0,
+   "tir": 86.62574404761905,
+   "tbr": 3.9682539682539684,
+   "tbr54": 1.0726686507936507,
+   "tar": 9.35639880952381,
+   "mean_cgm": 129.55248005312006,
+   "insulin_per_day": 67.04323411678637,
+   "rescues": 2.071428571428571
+  },
+  {
+   "yield": 1.3,
+   "driver": "basal-bolus",
+   "subjects": 14,
+   "rise_per_10g": 9.242759358851107,
+   "ttp": 66.25,
+   "tir": 48.598710317460316,
+   "tbr": 1.1470734126984126,
+   "tbr54": 0.15500992063492064,
+   "tar": 50.15500992063492,
+   "mean_cgm": 189.4436716652414,
+   "insulin_per_day": 46.43024712335864,
+   "rescues": 0.75
+  },
+  {
+   "yield": 1.3,
+   "driver": "trend",
+   "subjects": 17,
+   "rise_per_10g": 10.192497037739786,
+   "ttp": 80.0,
+   "tir": 72.95386904761905,
+   "tbr": 1.711309523809524,
+   "tbr54": 0.35962301587301587,
+   "tar": 24.97519841269841,
+   "mean_cgm": 152.909539997305,
+   "insulin_per_day": 57.62858025804401,
+   "rescues": 1.0357142857142858
+  },
+  {
+   "yield": 1.3,
+   "driver": "boost",
+   "subjects": 19,
+   "rise_per_10g": 15.487340353034336,
+   "ttp": 100.0,
+   "tir": 72.94146825396825,
+   "tbr": 1.277281746031746,
+   "tbr54": 0.3472222222222222,
+   "tar": 25.595238095238095,
+   "mean_cgm": 155.84196942446425,
+   "insulin_per_day": 56.1857328027832,
+   "rescues": 0.7857142857142857
+  },
+  {
+   "yield": 1.3,
+   "driver": "oref",
+   "subjects": 18,
+   "rise_per_10g": 14.01402648929502,
+   "ttp": 86.25,
+   "tir": 79.04885912698413,
+   "tbr": 3.459821428571429,
+   "tbr54": 0.7936507936507937,
+   "tar": 16.05902777777778,
+   "mean_cgm": 136.6925921759152,
+   "insulin_per_day": 68.08297515899602,
+   "rescues": 1.8571428571428572
+  },
+  {
+   "yield": 1.5,
+   "driver": "basal-bolus",
+   "subjects": 14,
+   "rise_per_10g": 10.153437735403614,
+   "ttp": 60.0,
+   "tir": 43.38417658730158,
+   "tbr": 1.0106646825396826,
+   "tbr54": 0.18601190476190477,
+   "tar": 55.741567460317455,
+   "mean_cgm": 204.1535954414377,
+   "insulin_per_day": 44.21424900353999,
+   "rescues": 0.5714285714285714
+  },
+  {
+   "yield": 1.5,
+   "driver": "trend",
+   "subjects": 16,
+   "rise_per_10g": 12.716973164145973,
+   "ttp": 80.0,
+   "tir": 70.34350198412699,
+   "tbr": 1.9469246031746033,
+   "tbr54": 0.4030257936507936,
+   "tar": 28.34201388888889,
+   "mean_cgm": 159.67333685891106,
+   "insulin_per_day": 60.339282340396494,
+   "rescues": 1.0714285714285714
+  },
+  {
+   "yield": 1.5,
+   "driver": "boost",
+   "subjects": 19,
+   "rise_per_10g": 15.875336782255117,
+   "ttp": 100.0,
+   "tir": 69.30803571428571,
+   "tbr": 1.4508928571428572,
+   "tbr54": 0.3100198412698413,
+   "tar": 27.976190476190478,
+   "mean_cgm": 160.50047378884153,
+   "insulin_per_day": 59.1071354464968,
+   "rescues": 0.8571428571428571
+  },
+  {
+   "yield": 1.5,
+   "driver": "oref",
+   "subjects": 15,
+   "rise_per_10g": 15.123203912375402,
+   "ttp": 107.5,
+   "tir": 73.26388888888889,
+   "tbr": 4.154265873015873,
+   "tbr54": 0.9796626984126984,
+   "tar": 21.949404761904763,
+   "mean_cgm": 143.21982290294474,
+   "insulin_per_day": 68.90031258533688,
+   "rescues": 2.0714285714285716
+  }
+ ],
+ "order": {
+  "tir": {
+   "1.0": [
+    "oref",
+    "boost",
+    "trend",
+    "basal-bolus"
+   ],
+   "1.3": [
+    "oref",
+    "trend",
+    "boost",
+    "basal-bolus"
+   ],
+   "1.5": [
+    "oref",
+    "trend",
+    "boost",
+    "basal-bolus"
+   ]
+  },
+  "tbr": {
+   "1.0": [
+    "trend",
+    "boost",
+    "basal-bolus",
+    "oref"
+   ],
+   "1.3": [
+    "basal-bolus",
+    "boost",
+    "trend",
+    "oref"
+   ],
+   "1.5": [
+    "basal-bolus",
+    "boost",
+    "trend",
+    "oref"
+   ]
+  }
+ },
+ "pairs": [
+  {
+   "yield": 1.0,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "tir",
+   "subjects": 18,
+   "paired_diff": 20.331101190476193,
+   "ci95": [
+    17.181299603174608,
+    22.296626984126988
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "tbr",
+   "subjects": 18,
+   "paired_diff": -0.7626488095238095,
+   "ci95": [
+    -1.128472222222222,
+    -0.03720238095238093
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "tbr54",
+   "subjects": 18,
+   "paired_diff": -0.13640873015873012,
+   "ci95": [
+    -0.4588293650793651,
+    0.024801587301587297
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "tar",
+   "subjects": 18,
+   "paired_diff": -19.376240079365083,
+   "ci95": [
+    -21.068948412698415,
+    -17.5843253968254
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "mean_cgm",
+   "subjects": 18,
+   "paired_diff": -22.090591222462635,
+   "ci95": [
+    -25.97392046752583,
+    -18.64741275025503
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 18,
+   "paired_diff": 6.80988937722713,
+   "ci95": [
+    2.4451179286914524,
+    10.273281556783004
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "rescues",
+   "subjects": 18,
+   "paired_diff": -0.3392857142857142,
+   "ci95": [
+    -0.5535714285714286,
+    0.035714285714285754
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "tir",
+   "subjects": 18,
+   "paired_diff": 20.510912698412696,
+   "ci95": [
+    14.843750000000004,
+    23.37549603174604
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "tbr",
+   "subjects": 18,
+   "paired_diff": -0.9672619047619051,
+   "ci95": [
+    -1.4322916666666665,
+    0.0992063492063493
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "tbr54",
+   "subjects": 18,
+   "paired_diff": -0.1240079365079365,
+   "ci95": [
+    -0.4340277777777778,
+    0.012400793650793607
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "tar",
+   "subjects": 18,
+   "paired_diff": -20.479910714285715,
+   "ci95": [
+    -22.904265873015877,
+    -14.223710317460316
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "mean_cgm",
+   "subjects": 18,
+   "paired_diff": -25.332213221706823,
+   "ci95": [
+    -28.561078444089517,
+    -16.840519507654506
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 18,
+   "paired_diff": 6.35741993035084,
+   "ci95": [
+    3.5637946548908097,
+    10.936313865526479
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "rescues",
+   "subjects": 18,
+   "paired_diff": -0.5357142857142858,
+   "ci95": [
+    -0.75,
+    -0.0714285714285714
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "tir",
+   "subjects": 16,
+   "paired_diff": 27.87698412698413,
+   "ci95": [
+    23.809523809523817,
+    30.927579365079353
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "tbr",
+   "subjects": 16,
+   "paired_diff": 1.6865079365079365,
+   "ci95": [
+    0.06200396825396837,
+    3.125
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "tbr54",
+   "subjects": 16,
+   "paired_diff": 0.4402281746031746,
+   "ci95": [
+    0.14880952380952395,
+    0.9920634920634921
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "tar",
+   "subjects": 16,
+   "paired_diff": -29.71230158730159,
+   "ci95": [
+    -31.125992063492063,
+    -27.504960317460316
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "mean_cgm",
+   "subjects": 16,
+   "paired_diff": -42.45965897293221,
+   "ci95": [
+    -45.039236993573844,
+    -38.44830038657261
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 16,
+   "paired_diff": 18.659038533506845,
+   "ci95": [
+    12.934587479210172,
+    23.807695486624134
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "rescues",
+   "subjects": 16,
+   "paired_diff": 0.732142857142857,
+   "ci95": [
+    0.03571428571428581,
+    1.5357142857142858
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "tir",
+   "subjects": 20,
+   "paired_diff": 1.0354662698412724,
+   "ci95": [
+    -0.8928571428571246,
+    2.3623511904761827
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "tbr",
+   "subjects": 20,
+   "paired_diff": -0.23561507936507942,
+   "ci95": [
+    -0.45262896825396826,
+    -0.006200396825396859
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "tbr54",
+   "subjects": 20,
+   "paired_diff": -0.03720238095238097,
+   "ci95": [
+    -0.14260912698412698,
+    0.03720238095238095
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "tar",
+   "subjects": 20,
+   "paired_diff": -0.9362599206349191,
+   "ci95": [
+    -2.064732142857144,
+    1.351686507936508
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "mean_cgm",
+   "subjects": 20,
+   "paired_diff": -1.820538305262744,
+   "ci95": [
+    -2.4297321682259394,
+    2.2440557833733976
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 20,
+   "paired_diff": -0.5933607538638768,
+   "ci95": [
+    -1.271037003143089,
+    0.9626247363101896
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "rescues",
+   "subjects": 20,
+   "paired_diff": -0.17857142857142855,
+   "ci95": [
+    -0.2857142857142858,
+    -0.05357142857142855
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "tir",
+   "subjects": 18,
+   "paired_diff": 6.919642857142854,
+   "ci95": [
+    3.230406746031754,
+    9.629216269841272
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "tbr",
+   "subjects": 18,
+   "paired_diff": 2.5421626984126986,
+   "ci95": [
+    1.5749007936507933,
+    3.1374007936507935
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "tbr54",
+   "subjects": 18,
+   "paired_diff": 0.78125,
+   "ci95": [
+    0.4092261904761906,
+    0.9610615079365079
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "tar",
+   "subjects": 18,
+   "paired_diff": -9.064980158730162,
+   "ci95": [
+    -11.42113095238095,
+    -6.746031746031746
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "mean_cgm",
+   "subjects": 18,
+   "paired_diff": -17.92657276945841,
+   "ci95": [
+    -19.499748693188295,
+    -17.13608714242345
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 18,
+   "paired_diff": 10.052047064093312,
+   "ci95": [
+    7.9893067016536286,
+    15.605464900676818
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "rescues",
+   "subjects": 18,
+   "paired_diff": 1.1607142857142856,
+   "ci95": [
+    0.75,
+    1.5
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "tir",
+   "subjects": 18,
+   "paired_diff": 4.97271825396826,
+   "ci95": [
+    2.8149801587301653,
+    7.998511904761884
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "tbr",
+   "subjects": 18,
+   "paired_diff": 2.7219742063492065,
+   "ci95": [
+    1.9211929563492072,
+    3.304811507936508
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "tbr54",
+   "subjects": 18,
+   "paired_diff": 0.8866567460317459,
+   "ci95": [
+    0.38442460317460325,
+    1.134672619047619
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "tar",
+   "subjects": 18,
+   "paired_diff": -7.025049603174605,
+   "ci95": [
+    -11.303323412698415,
+    -6.014384920634919
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "mean_cgm",
+   "subjects": 18,
+   "paired_diff": -16.67896823479822,
+   "ci95": [
+    -21.417320052287522,
+    -14.39128088661785
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 18,
+   "paired_diff": 12.29568167012949,
+   "ci95": [
+    7.810631860525053,
+    14.331038987594827
+   ]
+  },
+  {
+   "yield": 1.0,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "rescues",
+   "subjects": 18,
+   "paired_diff": 1.2678571428571428,
+   "ci95": [
+    0.9642857142857142,
+    1.5357142857142858
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "tir",
+   "subjects": 13,
+   "paired_diff": 24.714781746031754,
+   "ci95": [
+    19.667658730158728,
+    25.421626984126995
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "tbr",
+   "subjects": 13,
+   "paired_diff": 0.49603174603174605,
+   "ci95": [
+    0.3348214285714284,
+    0.7192460317460316
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "tbr54",
+   "subjects": 13,
+   "paired_diff": 0.13640873015873015,
+   "ci95": [
+    0.012400793650793634,
+    0.28521825396825407
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "tar",
+   "subjects": 13,
+   "paired_diff": -24.57837301587302,
+   "ci95": [
+    -25.880456349206355,
+    -21.2797619047619
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "mean_cgm",
+   "subjects": 13,
+   "paired_diff": -32.50931737363089,
+   "ci95": [
+    -36.15042901609871,
+    -28.436817398246433
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 13,
+   "paired_diff": 9.38716511466054,
+   "ci95": [
+    7.878587811162184,
+    13.153280889091825
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "rescues",
+   "subjects": 13,
+   "paired_diff": 0.21428571428571427,
+   "ci95": [
+    0.03571428571428581,
+    0.3928571428571429
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "tir",
+   "subjects": 13,
+   "paired_diff": 23.09027777777778,
+   "ci95": [
+    19.456845238095248,
+    25.52083333333333
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "tbr",
+   "subjects": 13,
+   "paired_diff": 0.40922619047619047,
+   "ci95": [
+    -0.3100198412698413,
+    0.8308531746031749
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "tbr54",
+   "subjects": 13,
+   "paired_diff": 0.18601190476190477,
+   "ci95": [
+    -0.0744047619047619,
+    0.33482142857142855
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "tar",
+   "subjects": 13,
+   "paired_diff": -23.809523809523807,
+   "ci95": [
+    -24.88839285714285,
+    -20.461309523809522
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "mean_cgm",
+   "subjects": 13,
+   "paired_diff": -33.79962788857418,
+   "ci95": [
+    -36.359100310376846,
+    -29.77794947742416
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 13,
+   "paired_diff": 7.169991045974008,
+   "ci95": [
+    6.7765052239591625,
+    12.055163312725547
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "rescues",
+   "subjects": 13,
+   "paired_diff": 0.14285714285714288,
+   "ci95": [
+    -0.1428571428571428,
+    0.25
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "tir",
+   "subjects": 13,
+   "paired_diff": 29.56349206349207,
+   "ci95": [
+    24.082341269841272,
+    33.358134920634924
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "tbr",
+   "subjects": 13,
+   "paired_diff": 3.0257936507936503,
+   "ci95": [
+    1.8849206349206347,
+    4.216269841269842
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "tbr54",
+   "subjects": 13,
+   "paired_diff": 0.8184523809523809,
+   "ci95": [
+    0.4092261904761905,
+    1.314484126984127
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "tar",
+   "subjects": 13,
+   "paired_diff": -32.66369047619048,
+   "ci95": [
+    -36.94196428571429,
+    -28.3110119047619
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "mean_cgm",
+   "subjects": 13,
+   "paired_diff": -52.72140644127103,
+   "ci95": [
+    -58.923623690747576,
+    -46.644113597967305
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 13,
+   "paired_diff": 21.602161100215703,
+   "ci95": [
+    16.435381479416407,
+    27.45923465438723
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "rescues",
+   "subjects": 13,
+   "paired_diff": 1.642857142857143,
+   "ci95": [
+    0.8571428571428572,
+    2.1785714285714284
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "tir",
+   "subjects": 16,
+   "paired_diff": 0.38442460317460814,
+   "ci95": [
+    -1.9097222222222285,
+    1.5128968253968225
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "tbr",
+   "subjects": 16,
+   "paired_diff": -0.465029761904762,
+   "ci95": [
+    -0.9424603174603174,
+    0.18601190476190488
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "tbr54",
+   "subjects": 16,
+   "paired_diff": -0.006200396825396831,
+   "ci95": [
+    -0.12462797619047562,
+    0.16121031746031733
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "tar",
+   "subjects": 16,
+   "paired_diff": 0.5518353174603163,
+   "ci95": [
+    -1.6989087301587276,
+    2.318948412698413
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "mean_cgm",
+   "subjects": 16,
+   "paired_diff": 1.0592918709485843,
+   "ci95": [
+    -1.6509417531279809,
+    2.854404884402129
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 16,
+   "paired_diff": -0.3211150944911587,
+   "ci95": [
+    -1.2469378775171762,
+    0.6760805748151171
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "rescues",
+   "subjects": 16,
+   "paired_diff": -0.21428571428571425,
+   "ci95": [
+    -0.4285714285714286,
+    0.03571428571428559
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "tir",
+   "subjects": 16,
+   "paired_diff": 4.873511904761905,
+   "ci95": [
+    3.038194444444443,
+    6.857638888888886
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "tbr",
+   "subjects": 16,
+   "paired_diff": 2.0337301587301586,
+   "ci95": [
+    1.0416666666666665,
+    2.889384920634921
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "tbr54",
+   "subjects": 16,
+   "paired_diff": 0.4712301587301588,
+   "ci95": [
+    0.3100198412698413,
+    0.7508680555555465
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "tar",
+   "subjects": 16,
+   "paired_diff": -7.254464285714287,
+   "ci95": [
+    -9.10218253968254,
+    -5.456349206349209
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "mean_cgm",
+   "subjects": 16,
+   "paired_diff": -17.065601469004008,
+   "ci95": [
+    -19.02365071310078,
+    -14.134796224336412
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 16,
+   "paired_diff": 12.037746936845398,
+   "ci95": [
+    9.165538373999283,
+    15.97159326497384
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "rescues",
+   "subjects": 16,
+   "paired_diff": 1.0714285714285714,
+   "ci95": [
+    0.3928571428571428,
+    1.4642857142857142
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "tir",
+   "subjects": 17,
+   "paired_diff": 4.662698412698418,
+   "ci95": [
+    2.418154761904759,
+    7.750496031746039
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "tbr",
+   "subjects": 17,
+   "paired_diff": 2.07093253968254,
+   "ci95": [
+    1.4880952380952381,
+    4.030257936507937
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "tbr54",
+   "subjects": 17,
+   "paired_diff": 0.5828373015873016,
+   "ci95": [
+    0.26041666666666663,
+    1.1408730158730158
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "tar",
+   "subjects": 17,
+   "paired_diff": -7.080853174603174,
+   "ci95": [
+    -9.871031746031743,
+    -5.580357142857142
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "mean_cgm",
+   "subjects": 17,
+   "paired_diff": -16.96789220440553,
+   "ci95": [
+    -19.96325221746386,
+    -12.844485709393126
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 17,
+   "paired_diff": 12.09862240864313,
+   "ci95": [
+    8.85844783992205,
+    15.104182734292493
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "rescues",
+   "subjects": 17,
+   "paired_diff": 1.0357142857142856,
+   "ci95": [
+    0.7142857142857143,
+    1.9285714285714284
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "tir",
+   "subjects": 12,
+   "paired_diff": 26.432291666666664,
+   "ci95": [
+    21.149553571428573,
+    30.121527777777775
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "tbr",
+   "subjects": 12,
+   "paired_diff": 0.9610615079365079,
+   "ci95": [
+    0.3224206349206349,
+    1.7857142857142856
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "tbr54",
+   "subjects": 12,
+   "paired_diff": 0.2542162698412699,
+   "ci95": [
+    0.13640873015873017,
+    0.390625
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "tar",
+   "subjects": 12,
+   "paired_diff": -27.13293650793651,
+   "ci95": [
+    -31.15079365079365,
+    -22.41443452380952
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "mean_cgm",
+   "subjects": 12,
+   "paired_diff": -44.1814023347232,
+   "ci95": [
+    -56.7640627531387,
+    -34.626800565745214
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 12,
+   "paired_diff": 11.755591114378042,
+   "ci95": [
+    7.2642661178604975,
+    15.008210645914534
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "rescues",
+   "subjects": 12,
+   "paired_diff": 0.5357142857142857,
+   "ci95": [
+    0.1250000000000001,
+    0.9285714285714286
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "tir",
+   "subjects": 14,
+   "paired_diff": 25.91765873015873,
+   "ci95": [
+    21.106150793650798,
+    31.299603174603178
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "tbr",
+   "subjects": 14,
+   "paired_diff": 0.30381944444444453,
+   "ci95": [
+    -0.11780753968253954,
+    1.0106646825396826
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "tbr54",
+   "subjects": 14,
+   "paired_diff": 0.09300595238095234,
+   "ci95": [
+    -0.049603174603174593,
+    0.1984126984126984
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "tar",
+   "subjects": 14,
+   "paired_diff": -26.097470238095234,
+   "ci95": [
+    -31.03918650793651,
+    -22.222222222222218
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "mean_cgm",
+   "subjects": 14,
+   "paired_diff": -44.43572446314636,
+   "ci95": [
+    -54.388354147663364,
+    -35.917409043588805
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 14,
+   "paired_diff": 9.445734091235146,
+   "ci95": [
+    6.017257667213904,
+    13.033908585231408
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "rescues",
+   "subjects": 14,
+   "paired_diff": 0.16071428571428573,
+   "ci95": [
+    -0.0714285714285714,
+    0.5357142857142857
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "tir",
+   "subjects": 13,
+   "paired_diff": 33.928571428571416,
+   "ci95": [
+    26.53769841269842,
+    37.599206349206355
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "tbr",
+   "subjects": 13,
+   "paired_diff": 2.703373015873016,
+   "ci95": [
+    1.599702380952381,
+    4.600694444444445
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "tbr54",
+   "subjects": 13,
+   "paired_diff": 0.6820436507936508,
+   "ci95": [
+    0.5952380952380951,
+    1.1780753968253967
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "tar",
+   "subjects": 13,
+   "paired_diff": -37.264384920634924,
+   "ci95": [
+    -39.19890873015873,
+    -30.518353174603174
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "mean_cgm",
+   "subjects": 13,
+   "paired_diff": -60.62239520834706,
+   "ci95": [
+    -69.41725650860874,
+    -55.824297275427284
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 13,
+   "paired_diff": 22.629178999170072,
+   "ci95": [
+    15.92390548978878,
+    27.56391731850288
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "rescues",
+   "subjects": 13,
+   "paired_diff": 1.5714285714285714,
+   "ci95": [
+    0.8214285714285714,
+    2.178571428571429
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "tir",
+   "subjects": 16,
+   "paired_diff": 1.7671130952380913,
+   "ci95": [
+    -2.3685515873015817,
+    3.1808035714285694
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "tbr",
+   "subjects": 16,
+   "paired_diff": -0.21081349206349187,
+   "ci95": [
+    -0.6820436507936506,
+    -0.062003968253968145
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "tbr54",
+   "subjects": 16,
+   "paired_diff": -0.13640873015873015,
+   "ci95": [
+    -0.28521825396825395,
+    -0.03720238095238093
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "tar",
+   "subjects": 16,
+   "paired_diff": -1.3454861111111143,
+   "ci95": [
+    -2.9885912698412707,
+    2.4057539682539684
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "mean_cgm",
+   "subjects": 16,
+   "paired_diff": -2.397351823664806,
+   "ci95": [
+    -3.8382437124311934,
+    0.739051757063919
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 16,
+   "paired_diff": -0.5999937029070033,
+   "ci95": [
+    -1.5008426265838324,
+    0.3005180509702825
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "rescues",
+   "subjects": 16,
+   "paired_diff": -0.1607142857142857,
+   "ci95": [
+    -0.3214285714285714,
+    -0.05357142857142855
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "tir",
+   "subjects": 12,
+   "paired_diff": 5.679563492063494,
+   "ci95": [
+    1.6989087301587205,
+    10.81349206349206
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "tbr",
+   "subjects": 12,
+   "paired_diff": 2.895585317460317,
+   "ci95": [
+    1.5190972222222223,
+    3.552827380952381
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "tbr54",
+   "subjects": 12,
+   "paired_diff": 0.8928571428571429,
+   "ci95": [
+    0.29141865079365076,
+    1.320684523809524
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "tar",
+   "subjects": 12,
+   "paired_diff": -9.201388888888888,
+   "ci95": [
+    -12.03497023809524,
+    -4.780505952380951
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "mean_cgm",
+   "subjects": 12,
+   "paired_diff": -17.644209687133966,
+   "ci95": [
+    -20.00165969894008,
+    -15.214105165338268
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 12,
+   "paired_diff": 9.617231086197979,
+   "ci95": [
+    6.255300995957725,
+    15.537910745913706
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "rescues",
+   "subjects": 12,
+   "paired_diff": 1.2500000000000002,
+   "ci95": [
+    0.7321428571428572,
+    1.75
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "tir",
+   "subjects": 15,
+   "paired_diff": 5.047123015873012,
+   "ci95": [
+    2.046130952380963,
+    8.692956349206355
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "tbr",
+   "subjects": 15,
+   "paired_diff": 2.256944444444444,
+   "ci95": [
+    1.7733134920634919,
+    3.6706349206349205
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "tbr54",
+   "subjects": 15,
+   "paired_diff": 0.7192460317460317,
+   "ci95": [
+    0.5208333333333333,
+    1.4136904761904763
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "tar",
+   "subjects": 15,
+   "paired_diff": -6.72123015873016,
+   "ci95": [
+    -10.56547619047619,
+    -5.915178571428573
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "mean_cgm",
+   "subjects": 15,
+   "paired_diff": -15.51519105798748,
+   "ci95": [
+    -19.90688823183848,
+    -11.424626252087393
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 15,
+   "paired_diff": 9.793177138840079,
+   "ci95": [
+    7.276994167171694,
+    13.63679551459272
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "rescues",
+   "subjects": 15,
+   "paired_diff": 1.1428571428571428,
+   "ci95": [
+    0.8571428571428572,
+    1.6785714285714288
+   ]
+  }
+ ],
+ "moves": [
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "tir",
+   "subjects": 12,
+   "move": 3.825644841269849,
+   "ci95": [
+    0.9238591269841265,
+    8.668154761904766
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "tbr",
+   "subjects": 12,
+   "move": 1.4384920634920637,
+   "ci95": [
+    0.4960317460317461,
+    1.7175099206349207
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "tbr54",
+   "subjects": 12,
+   "move": 0.24181547619047616,
+   "ci95": [
+    -0.012400793650793655,
+    0.6324404761904763
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "tar",
+   "subjects": 12,
+   "move": -5.505952380952378,
+   "ci95": [
+    -9.672619047619044,
+    -1.6989087301587311
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "mean_cgm",
+   "subjects": 12,
+   "move": -13.978526554992925,
+   "ci95": [
+    -16.29764012316417,
+    -7.562231469450623
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 12,
+   "move": 2.9850762196785965,
+   "ci95": [
+    2.204334757460927,
+    4.282713390889729
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "rescues",
+   "subjects": 12,
+   "move": 0.5535714285714286,
+   "ci95": [
+    0.30357142857142855,
+    0.8392857142857143
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "tir",
+   "subjects": 12,
+   "move": 5.6547619047619015,
+   "ci95": [
+    1.8663194444444429,
+    8.438740079365072
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "tbr",
+   "subjects": 12,
+   "move": 0.78125,
+   "ci95": [
+    0.22941468253968245,
+    1.9221230158730158
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "tbr54",
+   "subjects": 12,
+   "move": 0.39682539682539686,
+   "ci95": [
+    0.0868055555555555,
+    0.5890376984126985
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "tar",
+   "subjects": 12,
+   "move": -6.3740079365079385,
+   "ci95": [
+    -8.878968253968255,
+    -2.8831845238095166
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "mean_cgm",
+   "subjects": 12,
+   "move": -10.845821958517448,
+   "ci95": [
+    -16.109131858062483,
+    -9.772527345827925
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 12,
+   "move": 2.2704316788791807,
+   "ci95": [
+    1.6712258984011754,
+    2.7899085936089705
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "rescues",
+   "subjects": 12,
+   "move": 0.4107142857142856,
+   "ci95": [
+    0.2142857142857143,
+    0.75
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "tir",
+   "subjects": 13,
+   "move": 3.99305555555555,
+   "ci95": [
+    0.8804563492063622,
+    7.973710317460316
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "tbr",
+   "subjects": 13,
+   "move": 1.4012896825396832,
+   "ci95": [
+    0.3844246031746037,
+    2.157738095238096
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "tbr54",
+   "subjects": 13,
+   "move": 0.322420634920635,
+   "ci95": [
+    0.06200396825396837,
+    0.6572420634920635
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "tar",
+   "subjects": 13,
+   "move": -5.629960317460316,
+   "ci95": [
+    -8.42013888888889,
+    -2.4801587301587205
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "mean_cgm",
+   "subjects": 13,
+   "move": -13.268947386651902,
+   "ci95": [
+    -16.689208093294553,
+    -8.692981712527512
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 13,
+   "move": 4.431552281758506,
+   "ci95": [
+    1.3248810171880265,
+    5.706193107069282
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "rescues",
+   "subjects": 13,
+   "move": 0.7857142857142859,
+   "ci95": [
+    0.17857142857142794,
+    0.9999999999999996
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "tir",
+   "subjects": 16,
+   "move": -0.006200396825413179,
+   "ci95": [
+    -2.8149801587301653,
+    0.45882936507936734
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "tbr",
+   "subjects": 16,
+   "move": -0.14880952380952372,
+   "ci95": [
+    -0.682043650793651,
+    0.0868055555555558
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "tbr54",
+   "subjects": 16,
+   "move": 0.06200396825396824,
+   "ci95": [
+    -0.18601190476190477,
+    0.23561507936507936
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "tar",
+   "subjects": 16,
+   "move": 0.6882440476190457,
+   "ci95": [
+    -1.2028769841269842,
+    2.9513888888888893
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "mean_cgm",
+   "subjects": 16,
+   "move": 1.7870047398517102,
+   "ci95": [
+    -2.3132492294715803,
+    4.087289508859612
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 16,
+   "move": 0.12060232387836933,
+   "ci95": [
+    -1.1791315049445075,
+    0.7317858473273304
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "rescues",
+   "subjects": 16,
+   "move": -0.10714285714285715,
+   "ci95": [
+    -0.24999999999999994,
+    0.1071428571428571
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "tir",
+   "subjects": 15,
+   "move": -0.8680555555555713,
+   "ci95": [
+    -3.6706349206349387,
+    0.3348214285714306
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "tbr",
+   "subjects": 15,
+   "move": -0.16121031746031722,
+   "ci95": [
+    -0.6820436507936516,
+    0.6820436507936498
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "tbr54",
+   "subjects": 15,
+   "move": -0.19841269841269837,
+   "ci95": [
+    -0.5084325396825401,
+    0.4464285714285714
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "tar",
+   "subjects": 15,
+   "move": 0.7564484126984148,
+   "ci95": [
+    -1.6989087301587293,
+    3.087797619047617
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "mean_cgm",
+   "subjects": 15,
+   "move": 0.694904947070043,
+   "ci95": [
+    0.1802343453908577,
+    2.9613650493694763
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 15,
+   "move": 0.7471612418082785,
+   "ci95": [
+    -0.0562117206843169,
+    3.2048012436117403
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "rescues",
+   "subjects": 15,
+   "move": -0.03571428571428603,
+   "ci95": [
+    -0.2857142857142856,
+    0.4285714285714284
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "tir",
+   "subjects": 16,
+   "move": -0.6386408730158664,
+   "ci95": [
+    -1.810515873015845,
+    1.1284722222222143
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "tbr",
+   "subjects": 16,
+   "move": 0.11780753968253943,
+   "ci95": [
+    -0.5084325396825402,
+    0.4960317460317458
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "tbr54",
+   "subjects": 16,
+   "move": -0.20461309523809518,
+   "ci95": [
+    -0.4030257936507939,
+    0.322420634920635
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "tar",
+   "subjects": 16,
+   "move": -0.1984126984126986,
+   "ci95": [
+    -1.4260912698412689,
+    2.2941468253968296
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "mean_cgm",
+   "subjects": 16,
+   "move": -0.11780491051465702,
+   "ci95": [
+    -1.5549574970434037,
+    2.4813489408471128
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 16,
+   "move": 1.5488948369039477,
+   "ci95": [
+    0.17839666144959665,
+    3.064339875429603
+   ]
+  },
+  {
+   "yield": 1.3,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "rescues",
+   "subjects": 16,
+   "move": -0.07142857142857129,
+   "ci95": [
+    -0.2142857142857144,
+    0.2857142857142856
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "tir",
+   "subjects": 12,
+   "move": 7.248263888888889,
+   "ci95": [
+    3.5342261904761862,
+    10.714285714285719
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "tbr",
+   "subjects": 12,
+   "move": 1.2772817460317458,
+   "ci95": [
+    0.7750496031746035,
+    1.7609126984126984
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "tbr54",
+   "subjects": 12,
+   "move": 0.2914186507936508,
+   "ci95": [
+    0.10540674603174605,
+    0.8370535714285714
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "tar",
+   "subjects": 12,
+   "move": -8.023313492063492,
+   "ci95": [
+    -12.351190476190478,
+    -4.501488095238093
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "mean_cgm",
+   "subjects": 12,
+   "move": -19.935944960722097,
+   "ci95": [
+    -32.23129249981784,
+    -13.878272844301208
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 12,
+   "move": 4.421010085870357,
+   "ci95": [
+    2.2448999618713508,
+    6.1848534837983
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "trend"
+   ],
+   "key": "rescues",
+   "subjects": 12,
+   "move": 0.517857142857143,
+   "ci95": [
+    0.44642857142857156,
+    0.8928571428571428
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "tir",
+   "subjects": 14,
+   "move": 4.377480158730158,
+   "ci95": [
+    1.2124875992063597,
+    12.791418650793645
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "tbr",
+   "subjects": 14,
+   "move": 1.2338789682539684,
+   "ci95": [
+    0.8618551587301588,
+    1.6741071428571432
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "tbr54",
+   "subjects": 14,
+   "move": 0.316220238095238,
+   "ci95": [
+    0.049603174603174635,
+    0.6076388888888888
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "tar",
+   "subjects": 14,
+   "move": -5.772569444444441,
+   "ci95": [
+    -14.409722222222221,
+    -2.170138888888893
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "mean_cgm",
+   "subjects": 14,
+   "move": -22.984319816190037,
+   "ci95": [
+    -32.975413909369394,
+    -12.855312055266609
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 14,
+   "move": 2.735545253950608,
+   "ci95": [
+    2.3396128822851523,
+    3.6322439816109124
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "boost"
+   ],
+   "key": "rescues",
+   "subjects": 14,
+   "move": 0.6785714285714286,
+   "ci95": [
+    0.5357142857142858,
+    0.7857142857142858
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "tir",
+   "subjects": 12,
+   "move": 5.859375,
+   "ci95": [
+    4.383680555555564,
+    8.079117063492067
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "tbr",
+   "subjects": 12,
+   "move": 1.1346726190476193,
+   "ci95": [
+    0.849454365079365,
+    1.6307043650793653
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "tbr54",
+   "subjects": 12,
+   "move": 0.2294146825396826,
+   "ci95": [
+    0.12400793650793646,
+    0.35342261904761907
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "tar",
+   "subjects": 12,
+   "move": -8.054315476190471,
+   "ci95": [
+    -9.511408730158731,
+    -5.090525793650794
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "mean_cgm",
+   "subjects": 12,
+   "move": -20.523775105831675,
+   "ci95": [
+    -29.279944943599766,
+    -13.74649530169961
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 12,
+   "move": 5.170307297581939,
+   "ci95": [
+    3.326899587399488,
+    8.321098395290502
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "basal-bolus",
+    "oref"
+   ],
+   "key": "rescues",
+   "subjects": 12,
+   "move": 0.7321428571428572,
+   "ci95": [
+    0.6249999999999999,
+    0.7857142857142858
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "tir",
+   "subjects": 16,
+   "move": 1.7733134920634832,
+   "ci95": [
+    -1.5811011904761862,
+    2.430555555555557
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "tbr",
+   "subjects": 16,
+   "move": -0.024801587301587213,
+   "ci95": [
+    -0.39682539682539675,
+    0.3348214285714286
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "tbr54",
+   "subjects": 16,
+   "move": -0.049603174603174524,
+   "ci95": [
+    -0.27281746031746035,
+    0.14260912698412698
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "tar",
+   "subjects": 16,
+   "move": -1.419890873015877,
+   "ci95": [
+    -2.5669642857142883,
+    1.6617063492063462
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "mean_cgm",
+   "subjects": 16,
+   "move": -1.1359362018442027,
+   "ci95": [
+    -3.317966007359246,
+    2.494193499688123
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 16,
+   "move": -0.8898216285435616,
+   "ci95": [
+    -1.9464560466711376,
+    0.932703709263663
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "boost"
+   ],
+   "key": "rescues",
+   "subjects": 16,
+   "move": 0.0714285714285714,
+   "ci95": [
+    -0.25,
+    0.21428571428571436
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "tir",
+   "subjects": 12,
+   "move": 1.1532738095238102,
+   "ci95": [
+    -3.6644345238095113,
+    2.498759920634896
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "tbr",
+   "subjects": 12,
+   "move": -0.06200396825396837,
+   "ci95": [
+    -0.5146329365079361,
+    0.4278273809523805
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "tbr54",
+   "subjects": 12,
+   "move": 0.04340277777777768,
+   "ci95": [
+    -0.34102182539682535,
+    0.2232142857142857
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "tar",
+   "subjects": 12,
+   "move": -0.3720238095238093,
+   "ci95": [
+    -2.2631448412698436,
+    2.7281746031746046
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "mean_cgm",
+   "subjects": 12,
+   "move": 1.0983552395184688,
+   "ci95": [
+    -0.22165221913839872,
+    3.723239024627709
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 12,
+   "move": 0.5000650452116098,
+   "ci95": [
+    -0.5008089557606219,
+    2.4624804905318136
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "trend",
+    "oref"
+   ],
+   "key": "rescues",
+   "subjects": 12,
+   "move": 0.12500000000000017,
+   "ci95": [
+    -0.2678571428571427,
+    0.28571428571428586
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "tir",
+   "subjects": 14,
+   "move": 0.7750496031745904,
+   "ci95": [
+    -3.2490079365079367,
+    2.666170634920647
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "tbr",
+   "subjects": 14,
+   "move": -0.04960317460317465,
+   "ci95": [
+    -0.2976190476190481,
+    0.2480158730158737
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "tbr54",
+   "subjects": 14,
+   "move": 0.04340277777777776,
+   "ci95": [
+    -0.28521825396825395,
+    0.3348214285714286
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "tar",
+   "subjects": 14,
+   "move": -0.47123015873015817,
+   "ci95": [
+    -2.4677579365079336,
+    3.68303571428571
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "mean_cgm",
+   "subjects": 14,
+   "move": 0.15957091848668625,
+   "ci95": [
+    -1.7656664508739084,
+    3.1877473083730763
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "insulin_per_day",
+   "subjects": 14,
+   "move": 1.5147583960615982,
+   "ci95": [
+    -0.48169543653693836,
+    3.490310302318772
+   ]
+  },
+  {
+   "yield": 1.5,
+   "pair": [
+    "boost",
+    "oref"
+   ],
+   "key": "rescues",
+   "subjects": 14,
+   "move": -0.017857142857142683,
+   "ci95": [
+    -0.08928571428571408,
+    0.16071428571428592
+   ]
+  }
+ ],
+ "per_run": [
+  {
+   "subject": "adult#001",
+   "driver": "basal-bolus",
+   "yield": 1.0,
+   "covered": 24,
+   "rise_per_10g": 7.3786728452551475,
+   "ttp": 57.5,
+   "tir": 58.84176587301587,
+   "tbr": 1.8105158730158732,
+   "tbr54": 0.6324404761904762,
+   "tar": 39.34771825396825,
+   "mean_cgm": 171.15565286667777,
+   "insulin_per_day": 46.8659877530945,
+   "rescues": 1.0
+  },
+  {
+   "subject": "adult#001",
+   "driver": "basal-bolus",
+   "yield": 1.3,
+   "covered": 28,
+   "rise_per_10g": 6.786446469996674,
+   "ttp": 50.0,
+   "tir": 47.29662698412698,
+   "tbr": 1.1780753968253967,
+   "tbr54": 0.1736111111111111,
+   "tar": 51.52529761904761,
+   "mean_cgm": 192.59317726172628,
+   "insulin_per_day": 47.05180150592225,
+   "rescues": 0.8214285714285714
+  },
+  {
+   "subject": "adult#001",
+   "driver": "basal-bolus",
+   "yield": 1.5,
+   "covered": 24,
+   "rise_per_10g": 13.26199078713621,
+   "ttp": 57.5,
+   "tir": 35.825892857142854,
+   "tbr": 0.6572420634920635,
+   "tbr54": 0.13640873015873015,
+   "tar": 63.51686507936508,
+   "mean_cgm": 220.32580623913614,
+   "insulin_per_day": 46.262308136554964,
+   "rescues": 0.42857142857142855
+  },
+  {
+   "subject": "adult#001",
+   "driver": "boost",
+   "yield": 1.0,
+   "covered": 27,
+   "rise_per_10g": 11.600526634599136,
+   "ttp": 95.0,
+   "tir": 80.20833333333334,
+   "tbr": 1.4508928571428572,
+   "tbr54": 0.6448412698412698,
+   "tar": 18.340773809523807,
+   "mean_cgm": 145.6463578072559,
+   "insulin_per_day": 57.000717628295696,
+   "rescues": 0.7857142857142857
+  },
+  {
+   "subject": "adult#001",
+   "driver": "boost",
+   "yield": 1.3,
+   "covered": 31,
+   "rise_per_10g": 15.77343378243131,
+   "ttp": 110.0,
+   "tir": 71.35416666666666,
+   "tbr": 2.0089285714285716,
+   "tbr54": 0.6820436507936508,
+   "tar": 26.636904761904763,
+   "mean_cgm": 156.4862795912668,
+   "insulin_per_day": 60.06290380387136,
+   "rescues": 1.0714285714285714
+  },
+  {
+   "subject": "adult#001",
+   "driver": "boost",
+   "yield": 1.5,
+   "covered": 20,
+   "rise_per_10g": 17.979836788189566,
+   "ttp": 122.5,
+   "tir": 72.43303571428571,
+   "tbr": 1.0540674603174605,
+   "tbr54": 0.248015873015873,
+   "tar": 26.512896825396826,
+   "mean_cgm": 154.63850479402132,
+   "insulin_per_day": 58.75162255519045,
+   "rescues": 0.75
+  },
+  {
+   "subject": "adult#001",
+   "driver": "oref",
+   "yield": 1.0,
+   "covered": 19,
+   "rise_per_10g": 11.101273975536122,
+   "ttp": 105.0,
+   "tir": 89.76934523809523,
+   "tbr": 4.079861111111112,
+   "tbr54": 0.9548611111111112,
+   "tar": 6.15079365079365,
+   "mean_cgm": 123.06077519621151,
+   "insulin_per_day": 68.06463942331509,
+   "rescues": 2.2857142857142856
+  },
+  {
+   "subject": "adult#001",
+   "driver": "oref",
+   "yield": 1.3,
+   "covered": 20,
+   "rise_per_10g": 14.498305667322175,
+   "ttp": 107.5,
+   "tir": 79.1046626984127,
+   "tbr": 6.919642857142858,
+   "tbr54": 2.6785714285714284,
+   "tar": 13.975694444444445,
+   "mean_cgm": 131.22935220460812,
+   "insulin_per_day": 72.68200545790134,
+   "rescues": 3.107142857142857
+  },
+  {
+   "subject": "adult#001",
+   "driver": "oref",
+   "yield": 1.5,
+   "covered": 20,
+   "rise_per_10g": 18.717904976026418,
+   "ttp": 112.5,
+   "tir": 72.49503968253968,
+   "tbr": 6.907242063492064,
+   "tbr54": 2.666170634920635,
+   "tar": 20.597718253968253,
+   "mean_cgm": 143.21982290294474,
+   "insulin_per_day": 79.38768007833038,
+   "rescues": 3.2857142857142856
+  },
+  {
+   "subject": "adult#001",
+   "driver": "trend",
+   "yield": 1.0,
+   "covered": 29,
+   "rise_per_10g": 11.077756176565373,
+   "ttp": 90.0,
+   "tir": 80.39434523809523,
+   "tbr": 1.0168650793650793,
+   "tbr54": 0.18601190476190474,
+   "tar": 18.588789682539684,
+   "mean_cgm": 148.0452394745351,
+   "insulin_per_day": 58.17358252355236,
+   "rescues": 0.6428571428571429
+  },
+  {
+   "subject": "adult#001",
+   "driver": "trend",
+   "yield": 1.3,
+   "covered": 27,
+   "rise_per_10g": 9.919152455744157,
+   "ttp": 105.0,
+   "tir": 72.60664682539682,
+   "tbr": 1.7361111111111112,
+   "tbr54": 0.7192460317460317,
+   "tar": 25.657242063492063,
+   "mean_cgm": 155.28391579582666,
+   "insulin_per_day": 60.205082395014074,
+   "rescues": 1.0357142857142858
+  },
+  {
+   "subject": "adult#001",
+   "driver": "trend",
+   "yield": 1.5,
+   "covered": 32,
+   "rise_per_10g": 14.142905024791292,
+   "ttp": 92.5,
+   "tir": 67.83234126984127,
+   "tbr": 1.9345238095238095,
+   "tbr54": 0.533234126984127,
+   "tar": 30.233134920634917,
+   "mean_cgm": 162.04684620379635,
+   "insulin_per_day": 61.96236835398684,
+   "rescues": 1.0714285714285714
+  },
+  {
+   "subject": "adult#002",
+   "driver": "basal-bolus",
+   "yield": 1.0,
+   "covered": 30,
+   "rise_per_10g": 4.678710728453197,
+   "ttp": 50.0,
+   "tir": 62.22718253968254,
+   "tbr": 2.430555555555556,
+   "tbr54": 0.3224206349206349,
+   "tar": 35.342261904761905,
+   "mean_cgm": 163.45797675216147,
+   "insulin_per_day": 51.03747645604805,
+   "rescues": 1.1071428571428572
+  },
+  {
+   "subject": "adult#002",
+   "driver": "basal-bolus",
+   "yield": 1.3,
+   "covered": 27,
+   "rise_per_10g": 5.7720065121843165,
+   "ttp": 65.0,
+   "tir": 51.19047619047619,
+   "tbr": 0.6944444444444444,
+   "tbr54": 0.0992063492063492,
+   "tar": 48.11507936507937,
+   "mean_cgm": 192.22298696913427,
+   "insulin_per_day": 49.749992446881826,
+   "rescues": 0.4642857142857143
+  },
+  {
+   "subject": "adult#002",
+   "driver": "basal-bolus",
+   "yield": 1.5,
+   "covered": 23,
+   "rise_per_10g": 5.621286464861967,
+   "ttp": 35.0,
+   "tir": 43.51438492063492,
+   "tbr": 1.0912698412698412,
+   "tbr54": 0.1984126984126984,
+   "tar": 55.394345238095234,
+   "mean_cgm": 214.91071661912423,
+   "insulin_per_day": 49.974910266916275,
+   "rescues": 0.5714285714285714
+  },
+  {
+   "subject": "adult#002",
+   "driver": "boost",
+   "yield": 1.0,
+   "covered": 24,
+   "rise_per_10g": 12.495180152120977,
+   "ttp": 87.5,
+   "tir": 84.88343253968253,
+   "tbr": 0.78125,
+   "tbr54": 0.0248015873015873,
+   "tar": 14.335317460317459,
+   "mean_cgm": 142.0450365138675,
+   "insulin_per_day": 51.56786980988822,
+   "rescues": 0.5714285714285714
+  },
+  {
+   "subject": "adult#002",
+   "driver": "boost",
+   "yield": 1.3,
+   "covered": 26,
+   "rise_per_10g": 14.481526425476225,
+   "ttp": 102.5,
+   "tir": 76.71130952380952,
+   "tbr": 1.0416666666666665,
+   "tbr54": 0.28521825396825395,
+   "tar": 22.247023809523807,
+   "mean_cgm": 153.26261549585055,
+   "insulin_per_day": 56.1857328027832,
+   "rescues": 0.6785714285714286
+  },
+  {
+   "subject": "adult#002",
+   "driver": "boost",
+   "yield": 1.5,
+   "covered": 27,
+   "rise_per_10g": 9.65567938653224,
+   "ttp": 100.0,
+   "tir": 70.90773809523809,
+   "tbr": 1.1160714285714286,
+   "tbr54": 0.18601190476190474,
+   "tar": 27.976190476190478,
+   "mean_cgm": 160.52236247146087,
+   "insulin_per_day": 59.61611695454981,
+   "rescues": 0.6428571428571429
+  },
+  {
+   "subject": "adult#002",
+   "driver": "oref",
+   "yield": 1.0,
+   "covered": 24,
+   "rise_per_10g": 8.73307791713537,
+   "ttp": 92.5,
+   "tir": 86.03670634920636,
+   "tbr": 4.997519841269842,
+   "tbr54": 1.4756944444444444,
+   "tar": 8.96577380952381,
+   "mean_cgm": 125.92106080690225,
+   "insulin_per_day": 63.97206393525822,
+   "rescues": 2.2857142857142856
+  },
+  {
+   "subject": "adult#002",
+   "driver": "oref",
+   "yield": 1.3,
+   "covered": 31,
+   "rise_per_10g": 13.529747311267863,
+   "ttp": 95.0,
+   "tir": 78.99305555555556,
+   "tbr": 5.555555555555555,
+   "tbr54": 1.4260912698412698,
+   "tar": 15.45138888888889,
+   "mean_cgm": 133.2993632783867,
+   "insulin_per_day": 68.39077303316128,
+   "rescues": 2.642857142857143
+  },
+  {
+   "subject": "adult#002",
+   "driver": "oref",
+   "yield": 1.5,
+   "covered": 22,
+   "rise_per_10g": 16.73559915705237,
+   "ttp": 117.5,
+   "tir": 72.95386904761905,
+   "tbr": 5.096726190476191,
+   "tbr54": 1.599702380952381,
+   "tar": 21.949404761904763,
+   "mean_cgm": 145.49346011051549,
+   "insulin_per_day": 72.75816129348041,
+   "rescues": 2.5714285714285716
+  },
+  {
+   "subject": "adult#002",
+   "driver": "trend",
+   "yield": 1.0,
+   "covered": 27,
+   "rise_per_10g": 10.00609014254245,
+   "ttp": 65.0,
+   "tir": 82.08085317460318,
+   "tbr": 1.314484126984127,
+   "tbr54": 0.248015873015873,
+   "tar": 16.604662698412696,
+   "mean_cgm": 143.9107561811978,
+   "insulin_per_day": 53.75902670683432,
+   "rescues": 0.75
+  },
+  {
+   "subject": "adult#002",
+   "driver": "trend",
+   "yield": 1.3,
+   "covered": 25,
+   "rise_per_10g": 7.919966769602979,
+   "ttp": 60.0,
+   "tir": 78.80704365079364,
+   "tbr": 1.1904761904761905,
+   "tbr54": 0.1240079365079365,
+   "tar": 20.002480158730158,
+   "mean_cgm": 150.5941537056122,
+   "insulin_per_day": 57.62858025804401,
+   "rescues": 0.6428571428571429
+  },
+  {
+   "subject": "adult#002",
+   "driver": "trend",
+   "yield": 1.5,
+   "covered": 24,
+   "rise_per_10g": 11.508453581454074,
+   "ttp": 95.0,
+   "tir": 74.34275793650794,
+   "tbr": 1.1780753968253967,
+   "tbr54": 0.2976190476190476,
+   "tar": 24.479166666666664,
+   "mean_cgm": 156.65054993681122,
+   "insulin_per_day": 60.09107002022899,
+   "rescues": 0.75
+  },
+  {
+   "subject": "adult#003",
+   "driver": "basal-bolus",
+   "yield": 1.0,
+   "covered": 30,
+   "rise_per_10g": 6.920897628679214,
+   "ttp": 57.5,
+   "tir": 48.89632936507937,
+   "tbr": 0.9548611111111112,
+   "tbr54": 0.08680555555555555,
+   "tar": 50.148809523809526,
+   "mean_cgm": 194.96828873443275,
+   "insulin_per_day": 56.33929782826048,
+   "rescues": 0.6785714285714286
+  },
+  {
+   "subject": "adult#003",
+   "driver": "boost",
+   "yield": 1.0,
+   "covered": 43,
+   "rise_per_10g": 16.518203275984938,
+   "ttp": 115.0,
+   "tir": 70.13888888888889,
+   "tbr": 0.2728174603174603,
+   "tbr54": 0.0496031746031746,
+   "tar": 29.588293650793652,
+   "mean_cgm": 165.35026339795888,
+   "insulin_per_day": 67.27561169378696,
+   "rescues": 0.25
+  },
+  {
+   "subject": "adult#003",
+   "driver": "boost",
+   "yield": 1.3,
+   "covered": 34,
+   "rise_per_10g": 18.736479865444906,
+   "ttp": 92.5,
+   "tir": 66.09623015873017,
+   "tbr": 0.4464285714285714,
+   "tbr54": 0.1488095238095238,
+   "tar": 33.457341269841265,
+   "mean_cgm": 174.61782458748766,
+   "insulin_per_day": 69.26857393943051,
+   "rescues": 0.42857142857142855
+  },
+  {
+   "subject": "adult#003",
+   "driver": "boost",
+   "yield": 1.5,
+   "covered": 31,
+   "rise_per_10g": 15.875336782255117,
+   "ttp": 105.0,
+   "tir": 62.11557539682539,
+   "tbr": 0.5828373015873016,
+   "tbr54": 0.1488095238095238,
+   "tar": 37.301587301587304,
+   "mean_cgm": 176.9871211909578,
+   "insulin_per_day": 70.20876170387291,
+   "rescues": 0.42857142857142855
+  },
+  {
+   "subject": "adult#003",
+   "driver": "oref",
+   "yield": 1.0,
+   "covered": 30,
+   "rise_per_10g": 15.564147718539953,
+   "ttp": 90.0,
+   "tir": 82.71329365079364,
+   "tbr": 1.847718253968254,
+   "tbr54": 0.42162698412698413,
+   "tar": 15.438988095238097,
+   "mean_cgm": 143.93294334567136,
+   "insulin_per_day": 87.38906125048332,
+   "rescues": 1.2142857142857142
+  },
+  {
+   "subject": "adult#003",
+   "driver": "oref",
+   "yield": 1.3,
+   "covered": 27,
+   "rise_per_10g": 19.015098544384994,
+   "ttp": 110.0,
+   "tir": 74.47916666666666,
+   "tbr": 1.9345238095238095,
+   "tbr54": 0.3224206349206349,
+   "tar": 23.586309523809522,
+   "mean_cgm": 153.29442792850122,
+   "insulin_per_day": 90.6430094479839,
+   "rescues": 1.1428571428571428
+  },
+  {
+   "subject": "adult#003",
+   "driver": "oref",
+   "yield": 1.5,
+   "covered": 29,
+   "rise_per_10g": 19.37113027101726,
+   "ttp": 115.0,
+   "tir": 70.80853174603175,
+   "tbr": 2.3561507936507935,
+   "tbr54": 0.855654761904762,
+   "tar": 26.83531746031746,
+   "mean_cgm": 158.75754844704335,
+   "insulin_per_day": 93.85073596577307,
+   "rescues": 1.2857142857142858
+  },
+  {
+   "subject": "adult#003",
+   "driver": "trend",
+   "yield": 1.0,
+   "covered": 34,
+   "rise_per_10g": 12.776604810073398,
+   "ttp": 107.5,
+   "tir": 69.46924603174604,
+   "tbr": 0.78125,
+   "tbr54": 0.1736111111111111,
+   "tar": 29.749503968253972,
+   "mean_cgm": 162.1755047032194,
+   "insulin_per_day": 69.41413486496853,
+   "rescues": 0.6785714285714286
+  },
+  {
+   "subject": "adult#004",
+   "driver": "boost",
+   "yield": 1.0,
+   "covered": 32,
+   "rise_per_10g": 14.769943368030717,
+   "ttp": 80.0,
+   "tir": 71.1185515873016,
+   "tbr": 1.0912698412698412,
+   "tbr54": 0.1984126984126984,
+   "tar": 27.79017857142857,
+   "mean_cgm": 159.95306975458794,
+   "insulin_per_day": 58.18715274750741,
+   "rescues": 0.5357142857142857
+  },
+  {
+   "subject": "adult#004",
+   "driver": "boost",
+   "yield": 1.3,
+   "covered": 29,
+   "rise_per_10g": 20.208448965047687,
+   "ttp": 100.0,
+   "tir": 65.91021825396825,
+   "tbr": 1.1656746031746033,
+   "tbr54": 0.33482142857142855,
+   "tar": 32.924107142857146,
+   "mean_cgm": 167.90261659368352,
+   "insulin_per_day": 59.33074488618882,
+   "rescues": 0.7142857142857143
+  },
+  {
+   "subject": "adult#004",
+   "driver": "oref",
+   "yield": 1.0,
+   "covered": 27,
+   "rise_per_10g": 17.713902315621308,
+   "ttp": 95.0,
+   "tir": 74.39236111111111,
+   "tbr": 4.154265873015873,
+   "tbr54": 1.1904761904761905,
+   "tar": 21.453373015873016,
+   "mean_cgm": 144.0877060485841,
+   "insulin_per_day": 70.3743219623964,
+   "rescues": 2.2142857142857144
+  },
+  {
+   "subject": "adult#004",
+   "driver": "oref",
+   "yield": 1.3,
+   "covered": 25,
+   "rise_per_10g": 21.25108429991662,
+   "ttp": 90.0,
+   "tir": 68.32837301587301,
+   "tbr": 2.4057539682539684,
+   "tbr54": 0.5828373015873016,
+   "tar": 29.265873015873016,
+   "mean_cgm": 158.69753688086058,
+   "insulin_per_day": 76.79012265645035,
+   "rescues": 1.3214285714285714
+  },
+  {
+   "subject": "adult#004",
+   "driver": "trend",
+   "yield": 1.0,
+   "covered": 33,
+   "rise_per_10g": 16.22713408555735,
+   "ttp": 80.0,
+   "tir": 69.59325396825396,
+   "tbr": 1.0788690476190477,
+   "tbr54": 0.21081349206349206,
+   "tar": 29.327876984126984,
+   "mean_cgm": 162.41365242376062,
+   "insulin_per_day": 58.741688596941785,
+   "rescues": 0.6071428571428571
+  },
+  {
+   "subject": "adult#004",
+   "driver": "trend",
+   "yield": 1.3,
+   "covered": 38,
+   "rise_per_10g": 19.12197962089722,
+   "ttp": 92.5,
+   "tir": 64.39732142857143,
+   "tbr": 0.9796626984126984,
+   "tbr54": 0.16121031746031744,
+   "tar": 34.62301587301587,
+   "mean_cgm": 171.4892483833386,
+   "insulin_per_day": 60.81852939147651,
+   "rescues": 0.5714285714285714
+  },
+  {
+   "subject": "adult#005",
+   "driver": "basal-bolus",
+   "yield": 1.0,
+   "covered": 32,
+   "rise_per_10g": 9.613891920893693,
+   "ttp": 80.0,
+   "tir": 60.09424603174603,
+   "tbr": 0.5580357142857143,
+   "tbr54": 0.0744047619047619,
+   "tar": 39.34771825396825,
+   "mean_cgm": 170.7231907571869,
+   "insulin_per_day": 45.47885381716161,
+   "rescues": 0.4642857142857143
+  },
+  {
+   "subject": "adult#005",
+   "driver": "basal-bolus",
+   "yield": 1.3,
+   "covered": 34,
+   "rise_per_10g": 11.708169117411432,
+   "ttp": 92.5,
+   "tir": 45.473710317460316,
+   "tbr": 0.21081349206349206,
+   "tbr54": 0.0496031746031746,
+   "tar": 54.31547619047619,
+   "mean_cgm": 192.79636341734843,
+   "insulin_per_day": 44.66948754679868,
+   "rescues": 0.21428571428571427
+  },
+  {
+   "subject": "adult#005",
+   "driver": "basal-bolus",
+   "yield": 1.5,
+   "covered": 34,
+   "rise_per_10g": 11.470681169577464,
+   "ttp": 97.5,
+   "tir": 40.21577380952381,
+   "tbr": 0.3100198412698413,
+   "tbr54": 0.0744047619047619,
+   "tar": 59.47420634920635,
+   "mean_cgm": 202.80901511837163,
+   "insulin_per_day": 43.99466198645534,
+   "rescues": 0.25
+  },
+  {
+   "subject": "adult#005",
+   "driver": "boost",
+   "yield": 1.0,
+   "covered": 28,
+   "rise_per_10g": 12.340511891681814,
+   "ttp": 102.5,
+   "tir": 79.7123015873016,
+   "tbr": 1.3392857142857142,
+   "tbr54": 0.2976190476190476,
+   "tar": 18.948412698412696,
+   "mean_cgm": 146.20950465516367,
+   "insulin_per_day": 61.385881192923584,
+   "rescues": 0.8571428571428571
+  },
+  {
+   "subject": "adult#005",
+   "driver": "boost",
+   "yield": 1.3,
+   "covered": 29,
+   "rise_per_10g": 15.487340353034336,
+   "ttp": 100.0,
+   "tir": 68.70039682539682,
+   "tbr": 1.5004960317460319,
+   "tbr54": 0.38442460317460314,
+   "tar": 29.799107142857146,
+   "mean_cgm": 159.66296176293815,
+   "insulin_per_day": 63.27995968703068,
+   "rescues": 0.8571428571428571
+  },
+  {
+   "subject": "adult#005",
+   "driver": "boost",
+   "yield": 1.5,
+   "covered": 28,
+   "rise_per_10g": 18.883797321784407,
+   "ttp": 125.0,
+   "tir": 63.85168650793651,
+   "tbr": 1.4508928571428572,
+   "tbr54": 0.3100198412698413,
+   "tar": 34.69742063492063,
+   "mean_cgm": 166.89160607478283,
+   "insulin_per_day": 66.75822807874688,
+   "rescues": 0.7857142857142857
+  },
+  {
+   "subject": "adult#005",
+   "driver": "oref",
+   "yield": 1.0,
+   "covered": 23,
+   "rise_per_10g": 10.24768020456224,
+   "ttp": 105.0,
+   "tir": 88.04563492063492,
+   "tbr": 3.6830357142857144,
+   "tbr54": 1.1036706349206349,
+   "tar": 8.271329365079366,
+   "mean_cgm": 126.72574000290733,
+   "insulin_per_day": 76.48638624861805,
+   "rescues": 2.0357142857142856
+  },
+  {
+   "subject": "adult#005",
+   "driver": "oref",
+   "yield": 1.3,
+   "covered": 18,
+   "rise_per_10g": 12.424975239947756,
+   "ttp": 82.5,
+   "tir": 79.30307539682539,
+   "tbr": 3.087797619047619,
+   "tbr54": 0.4588293650793651,
+   "tar": 17.609126984126984,
+   "mean_cgm": 140.0749569760774,
+   "insulin_per_day": 81.44480461815475,
+   "rescues": 1.8571428571428572
+  },
+  {
+   "subject": "adult#005",
+   "driver": "oref",
+   "yield": 1.5,
+   "covered": 24,
+   "rise_per_10g": 16.63099439829174,
+   "ttp": 132.5,
+   "tir": 74.14434523809523,
+   "tbr": 3.6458333333333335,
+   "tbr54": 0.7564484126984127,
+   "tar": 22.209821428571427,
+   "mean_cgm": 146.98471784294435,
+   "insulin_per_day": 80.3950235933396,
+   "rescues": 1.9285714285714286
+  },
+  {
+   "subject": "adult#005",
+   "driver": "trend",
+   "yield": 1.0,
+   "covered": 35,
+   "rise_per_10g": 9.604244107734191,
+   "ttp": 100.0,
+   "tir": 78.02579365079364,
+   "tbr": 1.1656746031746033,
+   "tbr54": 0.3100198412698413,
+   "tar": 20.808531746031747,
+   "mean_cgm": 148.57542049832813,
+   "insulin_per_day": 60.08351862763324,
+   "rescues": 0.7142857142857143
+  },
+  {
+   "subject": "adult#005",
+   "driver": "trend",
+   "yield": 1.3,
+   "covered": 40,
+   "rise_per_10g": 13.0274232536167,
+   "ttp": 97.5,
+   "tir": 72.95386904761905,
+   "tbr": 1.2400793650793651,
+   "tbr54": 0.1488095238095238,
+   "tar": 25.80605158730159,
+   "mean_cgm": 156.80855687853602,
+   "insulin_per_day": 61.8371357535582,
+   "rescues": 0.8214285714285714
+  },
+  {
+   "subject": "adult#005",
+   "driver": "trend",
+   "yield": 1.5,
+   "covered": 34,
+   "rise_per_10g": 16.726120500928005,
+   "ttp": 127.5,
+   "tir": 61.520337301587304,
+   "tbr": 1.525297619047619,
+   "tbr54": 0.2976190476190476,
+   "tar": 36.95436507936508,
+   "mean_cgm": 169.02295691160612,
+   "insulin_per_day": 63.4880969445717,
+   "rescues": 0.9642857142857143
+  },
+  {
+   "subject": "adult#006",
+   "driver": "basal-bolus",
+   "yield": 1.3,
+   "covered": 26,
+   "rise_per_10g": 16.885784681664052,
+   "ttp": 72.5,
+   "tir": 46.651785714285715,
+   "tbr": 1.1408730158730158,
+   "tbr54": 0.3224206349206349,
+   "tar": 52.207341269841265,
+   "mean_cgm": 199.38646457977603,
+   "insulin_per_day": 66.16062882632245,
+   "rescues": 0.8214285714285714
+  },
+  {
+   "subject": "adult#006",
+   "driver": "boost",
+   "yield": 1.0,
+   "covered": 24,
+   "rise_per_10g": 21.165232072000062,
+   "ttp": 110.0,
+   "tir": 64.58333333333334,
+   "tbr": 2.021329365079365,
+   "tbr54": 0.6696428571428571,
+   "tar": 33.395337301587304,
+   "mean_cgm": 169.5377441286124,
+   "insulin_per_day": 71.12753703429571,
+   "rescues": 1.0357142857142858
+  },
+  {
+   "subject": "adult#006",
+   "driver": "boost",
+   "yield": 1.3,
+   "covered": 30,
+   "rise_per_10g": 23.27638111810908,
+   "ttp": 112.5,
+   "tir": 60.54067460317461,
+   "tbr": 2.1205357142857144,
+   "tbr54": 0.7688492063492063,
+   "tar": 37.338789682539684,
+   "mean_cgm": 175.48064158860785,
+   "insulin_per_day": 73.31962208456822,
+   "rescues": 1.0714285714285714
+  },
+  {
+   "subject": "adult#006",
+   "driver": "boost",
+   "yield": 1.5,
+   "covered": 31,
+   "rise_per_10g": 20.64078801605886,
+   "ttp": 110.0,
+   "tir": 58.09771825396825,
+   "tbr": 1.9593253968253967,
+   "tbr54": 0.5208333333333333,
+   "tar": 39.94295634920635,
+   "mean_cgm": 179.9395537272233,
+   "insulin_per_day": 73.41677863312584,
+   "rescues": 1.1428571428571428
+  },
+  {
+   "subject": "adult#006",
+   "driver": "oref",
+   "yield": 1.0,
+   "covered": 21,
+   "rise_per_10g": 12.475789685204749,
+   "ttp": 85.0,
+   "tir": 72.58184523809523,
+   "tbr": 5.952380952380952,
+   "tbr54": 2.6165674603174605,
+   "tar": 21.465773809523807,
+   "mean_cgm": 144.83005032744128,
+   "insulin_per_day": 90.33566464752566,
+   "rescues": 2.5
+  },
+  {
+   "subject": "adult#006",
+   "driver": "trend",
+   "yield": 1.0,
+   "covered": 27,
+   "rise_per_10g": 15.874909090826895,
+   "ttp": 105.0,
+   "tir": 66.18303571428571,
+   "tbr": 2.839781746031746,
+   "tbr54": 0.7688492063492063,
+   "tar": 30.97718253968254,
+   "mean_cgm": 162.69350049206255,
+   "insulin_per_day": 75.31381359140683,
+   "rescues": 1.5
+  },
+  {
+   "subject": "adult#006",
+   "driver": "trend",
+   "yield": 1.3,
+   "covered": 31,
+   "rise_per_10g": 15.415269617434502,
+   "ttp": 85.0,
+   "tir": 62.14037698412699,
+   "tbr": 1.7361111111111112,
+   "tbr54": 0.607638888888889,
+   "tar": 36.123511904761905,
+   "mean_cgm": 170.9496471815296,
+   "insulin_per_day": 76.01224133753173,
+   "rescues": 1.0357142857142858
+  },
+  {
+   "subject": "adult#006",
+   "driver": "trend",
+   "yield": 1.5,
+   "covered": 24,
+   "rise_per_10g": 12.095137794845467,
+   "ttp": 75.0,
+   "tir": 56.33680555555556,
+   "tbr": 2.2073412698412698,
+   "tbr54": 0.28521825396825395,
+   "tar": 41.45585317460318,
+   "mean_cgm": 183.7777974396545,
+   "insulin_per_day": 78.66885700369413,
+   "rescues": 1.2142857142857142
+  },
+  {
+   "subject": "adult#007",
+   "driver": "basal-bolus",
+   "yield": 1.0,
+   "covered": 29,
+   "rise_per_10g": 5.510456107922288,
+   "ttp": 40.0,
+   "tir": 56.845238095238095,
+   "tbr": 2.194940476190476,
+   "tbr54": 0.21081349206349206,
+   "tar": 40.95982142857143,
+   "mean_cgm": 177.0721398406797,
+   "insulin_per_day": 32.72273620302919,
+   "rescues": 1.2857142857142858
+  },
+  {
+   "subject": "adult#007",
+   "driver": "basal-bolus",
+   "yield": 1.3,
+   "covered": 31,
+   "rise_per_10g": 4.470833877436903,
+   "ttp": 50.0,
+   "tir": 60.081845238095234,
+   "tbr": 0.5828373015873016,
+   "tbr54": 0.11160714285714285,
+   "tar": 39.33531746031746,
+   "mean_cgm": 182.92807859485868,
+   "insulin_per_day": 31.917928945986908,
+   "rescues": 0.42857142857142855
+  },
+  {
+   "subject": "adult#007",
+   "driver": "basal-bolus",
+   "yield": 1.5,
+   "covered": 29,
+   "rise_per_10g": 4.012247362790463,
+   "ttp": 25.0,
+   "tir": 43.25396825396825,
+   "tbr": 0.5456349206349206,
+   "tbr54": 0.26041666666666663,
+   "tar": 56.20039682539682,
+   "mean_cgm": 209.70074201332756,
+   "insulin_per_day": 32.264233415955225,
+   "rescues": 0.35714285714285715
+  },
+  {
+   "subject": "adult#007",
+   "driver": "boost",
+   "yield": 1.0,
+   "covered": 25,
+   "rise_per_10g": 9.055814183891599,
+   "ttp": 75.0,
+   "tir": 82.11805555555556,
+   "tbr": 0.8308531746031746,
+   "tbr54": 0.11160714285714285,
+   "tar": 17.05109126984127,
+   "mean_cgm": 146.1934124915109,
+   "insulin_per_day": 39.87156967959176,
+   "rescues": 0.5357142857142857
+  },
+  {
+   "subject": "adult#007",
+   "driver": "boost",
+   "yield": 1.3,
+   "covered": 31,
+   "rise_per_10g": 12.007358226844747,
+   "ttp": 90.0,
+   "tir": 79.50148809523809,
+   "tbr": 1.066468253968254,
+   "tbr54": 0.3472222222222222,
+   "tar": 19.432043650793652,
+   "mean_cgm": 149.1284507062845,
+   "insulin_per_day": 40.05815618313027,
+   "rescues": 0.6071428571428571
+  },
+  {
+   "subject": "adult#007",
+   "driver": "boost",
+   "yield": 1.5,
+   "covered": 33,
+   "rise_per_10g": 11.249491069648332,
+   "ttp": 70.0,
+   "tir": 78.86904761904762,
+   "tbr": 0.7564484126984127,
+   "tbr54": 0.16121031746031744,
+   "tar": 20.37450396825397,
+   "mean_cgm": 150.74840899831565,
+   "insulin_per_day": 40.71447395917413,
+   "rescues": 0.5357142857142857
+  },
+  {
+   "subject": "adult#007",
+   "driver": "oref",
+   "yield": 1.0,
+   "covered": 19,
+   "rise_per_10g": 11.458023056831316,
+   "ttp": 105.0,
+   "tir": 87.90922619047619,
+   "tbr": 2.256944444444444,
+   "tbr54": 0.3720238095238095,
+   "tar": 9.833829365079366,
+   "mean_cgm": 134.002058099448,
+   "insulin_per_day": 47.988327260415204,
+   "rescues": 1.3214285714285714
+  },
+  {
+   "subject": "adult#007",
+   "driver": "oref",
+   "yield": 1.3,
+   "covered": 28,
+   "rise_per_10g": 12.28384401536401,
+   "ttp": 82.5,
+   "tir": 84.1641865079365,
+   "tbr": 2.4677579365079363,
+   "tbr54": 0.9300595238095238,
+   "tar": 13.368055555555555,
+   "mean_cgm": 136.28396499689137,
+   "insulin_per_day": 48.353310425403315,
+   "rescues": 1.2857142857142858
+  },
+  {
+   "subject": "adult#007",
+   "driver": "oref",
+   "yield": 1.5,
+   "covered": 31,
+   "rise_per_10g": 12.572685867135696,
+   "ttp": 110.0,
+   "tir": 83.91617063492063,
+   "tbr": 2.430555555555556,
+   "tbr54": 0.8804563492063492,
+   "tar": 13.653273809523808,
+   "mean_cgm": 137.08187605062145,
+   "insulin_per_day": 48.188138905744005,
+   "rescues": 1.1785714285714286
+  },
+  {
+   "subject": "adult#007",
+   "driver": "trend",
+   "yield": 1.0,
+   "covered": 33,
+   "rise_per_10g": 4.949608191773072,
+   "ttp": 55.0,
+   "tir": 77.20734126984127,
+   "tbr": 1.0540674603174605,
+   "tbr54": 0.23561507936507936,
+   "tar": 21.73859126984127,
+   "mean_cgm": 151.09821937315388,
+   "insulin_per_day": 41.33497486919521,
+   "rescues": 0.6428571428571429
+  },
+  {
+   "subject": "adult#007",
+   "driver": "trend",
+   "yield": 1.3,
+   "covered": 30,
+   "rise_per_10g": 10.544238438981667,
+   "ttp": 80.0,
+   "tir": 77.40575396825396,
+   "tbr": 1.4260912698412698,
+   "tbr54": 0.248015873015873,
+   "tar": 21.168154761904763,
+   "mean_cgm": 150.41876122122778,
+   "insulin_per_day": 41.30509406064745,
+   "rescues": 0.8928571428571429
+  },
+  {
+   "subject": "adult#007",
+   "driver": "trend",
+   "yield": 1.5,
+   "covered": 31,
+   "rise_per_10g": 10.464054785848882,
+   "ttp": 60.0,
+   "tir": 72.14781746031747,
+   "tbr": 3.038194444444444,
+   "tbr54": 1.1160714285714286,
+   "tar": 24.813988095238095,
+   "mean_cgm": 154.43278318936316,
+   "insulin_per_day": 42.22949674086542,
+   "rescues": 1.4642857142857142
+  },
+  {
+   "subject": "adult#008",
+   "driver": "basal-bolus",
+   "yield": 1.0,
+   "covered": 35,
+   "rise_per_10g": 11.92559957685268,
+   "ttp": 65.0,
+   "tir": 52.70337301587301,
+   "tbr": 1.0168650793650793,
+   "tbr54": 0.1984126984126984,
+   "tar": 46.279761904761905,
+   "mean_cgm": 183.24533410892025,
+   "insulin_per_day": 39.20532575302546,
+   "rescues": 0.5714285714285714
+  },
+  {
+   "subject": "adult#008",
+   "driver": "basal-bolus",
+   "yield": 1.5,
+   "covered": 34,
+   "rise_per_10g": 16.04427970024166,
+   "ttp": 75.0,
+   "tir": 40.35218253968254,
+   "tbr": 0.3720238095238095,
+   "tbr54": 0.08680555555555555,
+   "tar": 59.27579365079365,
+   "mean_cgm": 218.46910439723047,
+   "insulin_per_day": 40.19644672084463,
+   "rescues": 0.2857142857142857
+  },
+  {
+   "subject": "adult#008",
+   "driver": "boost",
+   "yield": 1.0,
+   "covered": 31,
+   "rise_per_10g": 18.44358628535364,
+   "ttp": 95.0,
+   "tir": 72.48263888888889,
+   "tbr": 1.6245039682539684,
+   "tbr54": 0.1984126984126984,
+   "tar": 25.892857142857146,
+   "mean_cgm": 154.49443755590184,
+   "insulin_per_day": 50.17423545762142,
+   "rescues": 0.9285714285714286
+  },
+  {
+   "subject": "adult#008",
+   "driver": "boost",
+   "yield": 1.3,
+   "covered": 30,
+   "rise_per_10g": 26.21761896426548,
+   "ttp": 112.5,
+   "tir": 68.39037698412699,
+   "tbr": 1.5749007936507935,
+   "tbr54": 0.38442460317460314,
+   "tar": 30.03472222222222,
+   "mean_cgm": 159.66470294848193,
+   "insulin_per_day": 50.792537352647365,
+   "rescues": 0.7857142857142857
+  },
+  {
+   "subject": "adult#008",
+   "driver": "boost",
+   "yield": 1.5,
+   "covered": 36,
+   "rise_per_10g": 24.18242590190566,
+   "ttp": 95.0,
+   "tir": 61.458333333333336,
+   "tbr": 2.380952380952381,
+   "tbr54": 0.5208333333333333,
+   "tar": 36.160714285714285,
+   "mean_cgm": 175.31280972034367,
+   "insulin_per_day": 53.90982962544514,
+   "rescues": 1.3928571428571428
+  },
+  {
+   "subject": "adult#008",
+   "driver": "oref",
+   "yield": 1.0,
+   "covered": 33,
+   "rise_per_10g": 15.951483074383999,
+   "ttp": 90.0,
+   "tir": 76.63690476190477,
+   "tbr": 4.58829365079365,
+   "tbr54": 1.1904761904761905,
+   "tar": 18.77480158730159,
+   "mean_cgm": 136.28607160788607,
+   "insulin_per_day": 59.257158427301775,
+   "rescues": 2.107142857142857
+  },
+  {
+   "subject": "adult#008",
+   "driver": "oref",
+   "yield": 1.3,
+   "covered": 30,
+   "rise_per_10g": 19.919980747963884,
+   "ttp": 90.0,
+   "tir": 71.14335317460318,
+   "tbr": 3.6458333333333335,
+   "tbr54": 0.78125,
+   "tar": 25.210813492063494,
+   "mean_cgm": 150.3788279746498,
+   "insulin_per_day": 63.40113433909894,
+   "rescues": 1.7142857142857142
+  },
+  {
+   "subject": "adult#008",
+   "driver": "oref",
+   "yield": 1.5,
+   "covered": 23,
+   "rise_per_10g": 24.04473028372963,
+   "ttp": 95.0,
+   "tir": 66.26984126984127,
+   "tbr": 4.972718253968254,
+   "tbr54": 1.2648809523809523,
+   "tar": 28.757440476190478,
+   "mean_cgm": 157.8467091888834,
+   "insulin_per_day": 64.53095582209794,
+   "rescues": 2.4642857142857144
+  },
+  {
+   "subject": "adult#008",
+   "driver": "trend",
+   "yield": 1.0,
+   "covered": 36,
+   "rise_per_10g": 13.826215375885837,
+   "ttp": 80.0,
+   "tir": 77.00892857142857,
+   "tbr": 0.9796626984126984,
+   "tbr54": 0.11160714285714285,
+   "tar": 22.01140873015873,
+   "mean_cgm": 153.74734866410455,
+   "insulin_per_day": 50.8064211159148,
+   "rescues": 0.6428571428571429
+  },
+  {
+   "subject": "adult#008",
+   "driver": "trend",
+   "yield": 1.3,
+   "covered": 36,
+   "rise_per_10g": 18.24999523671845,
+   "ttp": 85.0,
+   "tir": 72.78025793650794,
+   "tbr": 2.579365079365079,
+   "tbr54": 0.35962301587301587,
+   "tar": 24.640376984126984,
+   "mean_cgm": 152.909539997305,
+   "insulin_per_day": 50.692937163613415,
+   "rescues": 1.3214285714285714
+  },
+  {
+   "subject": "adult#008",
+   "driver": "trend",
+   "yield": 1.5,
+   "covered": 37,
+   "rise_per_10g": 20.280466040703786,
+   "ttp": 90.0,
+   "tir": 64.24851190476191,
+   "tbr": 1.9965277777777777,
+   "tbr54": 0.1736111111111111,
+   "tar": 33.754960317460316,
+   "mean_cgm": 175.38801539482571,
+   "insulin_per_day": 53.60931157447486,
+   "rescues": 1.2142857142857142
+  },
+  {
+   "subject": "adult#009",
+   "driver": "basal-bolus",
+   "yield": 1.0,
+   "covered": 20,
+   "rise_per_10g": 5.530599645126097,
+   "ttp": 55.0,
+   "tir": 75.50843253968253,
+   "tbr": 2.5421626984126986,
+   "tbr54": 0.6200396825396826,
+   "tar": 21.949404761904763,
+   "mean_cgm": 149.38775959826106,
+   "insulin_per_day": 41.987477685360986,
+   "rescues": 1.2857142857142858
+  },
+  {
+   "subject": "adult#009",
+   "driver": "basal-bolus",
+   "yield": 1.3,
+   "covered": 28,
+   "rise_per_10g": 4.919187172802698,
+   "ttp": 50.0,
+   "tir": 60.92509920634921,
+   "tbr": 1.1532738095238095,
+   "tbr54": 0.16121031746031744,
+   "tar": 37.92162698412698,
+   "mean_cgm": 171.53371474121641,
+   "insulin_per_day": 42.040903009166534,
+   "rescues": 0.7142857142857143
+  },
+  {
+   "subject": "adult#009",
+   "driver": "basal-bolus",
+   "yield": 1.5,
+   "covered": 27,
+   "rise_per_10g": 5.167214069733738,
+   "ttp": 60.0,
+   "tir": 60.92509920634921,
+   "tbr": 1.4756944444444444,
+   "tbr54": 0.3100198412698413,
+   "tar": 37.59920634920635,
+   "mean_cgm": 174.488359763168,
+   "insulin_per_day": 44.11956943565141,
+   "rescues": 0.7857142857142857
+  },
+  {
+   "subject": "adult#009",
+   "driver": "boost",
+   "yield": 1.0,
+   "covered": 24,
+   "rise_per_10g": 8.315010962265509,
+   "ttp": 97.5,
+   "tir": 89.57093253968253,
+   "tbr": 1.0416666666666665,
+   "tbr54": 0.1736111111111111,
+   "tar": 9.387400793650794,
+   "mean_cgm": 135.0107925292833,
+   "insulin_per_day": 43.23213959428474,
+   "rescues": 0.6785714285714286
+  },
+  {
+   "subject": "adult#009",
+   "driver": "boost",
+   "yield": 1.3,
+   "covered": 23,
+   "rise_per_10g": 11.29569613983677,
+   "ttp": 105.0,
+   "tir": 84.01537698412699,
+   "tbr": 1.8725198412698412,
+   "tbr54": 0.5704365079365079,
+   "tar": 14.112103174603174,
+   "mean_cgm": 140.598909265369,
+   "insulin_per_day": 45.15632059043776,
+   "rescues": 0.8571428571428571
+  },
+  {
+   "subject": "adult#009",
+   "driver": "boost",
+   "yield": 1.5,
+   "covered": 26,
+   "rise_per_10g": 12.783995115485085,
+   "ttp": 105.0,
+   "tir": 78.19940476190477,
+   "tbr": 1.8973214285714284,
+   "tbr54": 0.4712301587301587,
+   "tar": 19.903273809523807,
+   "mean_cgm": 147.4809856061177,
+   "insulin_per_day": 47.70384422686031,
+   "rescues": 0.9285714285714286
+  },
+  {
+   "subject": "adult#009",
+   "driver": "oref",
+   "yield": 1.0,
+   "covered": 22,
+   "rise_per_10g": 8.103662192289558,
+   "ttp": 92.5,
+   "tir": 90.20337301587301,
+   "tbr": 3.8566468253968256,
+   "tbr54": 1.2896825396825395,
+   "tar": 5.939980158730158,
+   "mean_cgm": 120.05362222753422,
+   "insulin_per_day": 49.300986214264974,
+   "rescues": 1.8928571428571428
+  },
+  {
+   "subject": "adult#009",
+   "driver": "oref",
+   "yield": 1.3,
+   "covered": 15,
+   "rise_per_10g": 8.843980558117549,
+   "ttp": 65.0,
+   "tir": 84.33779761904762,
+   "tbr": 6.051587301587301,
+   "tbr54": 1.4756944444444444,
+   "tar": 9.610615079365079,
+   "mean_cgm": 125.51036927719503,
+   "insulin_per_day": 54.01476843035981,
+   "rescues": 2.9285714285714284
+  },
+  {
+   "subject": "adult#009",
+   "driver": "oref",
+   "yield": 1.5,
+   "covered": 27,
+   "rise_per_10g": 12.880824417379692,
+   "ttp": 95.0,
+   "tir": 83.29613095238095,
+   "tbr": 4.154265873015873,
+   "tbr54": 1.1656746031746033,
+   "tar": 12.549603174603174,
+   "mean_cgm": 130.30552084042458,
+   "insulin_per_day": 56.38086338429145,
+   "rescues": 2.0714285714285716
+  },
+  {
+   "subject": "adult#009",
+   "driver": "trend",
+   "yield": 1.0,
+   "covered": 24,
+   "rise_per_10g": 8.77578730127761,
+   "ttp": 55.0,
+   "tir": 88.39285714285714,
+   "tbr": 1.2896825396825395,
+   "tbr54": 0.33482142857142855,
+   "tar": 10.317460317460316,
+   "mean_cgm": 137.3764263662532,
+   "insulin_per_day": 42.92535414772607,
+   "rescues": 0.7142857142857143
+  },
+  {
+   "subject": "adult#009",
+   "driver": "trend",
+   "yield": 1.3,
+   "covered": 23,
+   "rise_per_10g": 9.326042714537948,
+   "ttp": 70.0,
+   "tir": 82.19246031746032,
+   "tbr": 1.488095238095238,
+   "tbr54": 0.496031746031746,
+   "tar": 16.319444444444446,
+   "mean_cgm": 144.16378107824448,
+   "insulin_per_day": 46.15879665894952,
+   "rescues": 0.7857142857142857
+  },
+  {
+   "subject": "adult#009",
+   "driver": "trend",
+   "yield": 1.5,
+   "covered": 27,
+   "rise_per_10g": 10.16619285525276,
+   "ttp": 95.0,
+   "tir": 81.91964285714286,
+   "tbr": 0.9672619047619048,
+   "tbr54": 0.1240079365079365,
+   "tar": 17.113095238095237,
+   "mean_cgm": 146.16014154892085,
+   "insulin_per_day": 48.533827302507284,
+   "rescues": 0.7142857142857143
+  },
+  {
+   "subject": "adult#010",
+   "driver": "basal-bolus",
+   "yield": 1.0,
+   "covered": 32,
+   "rise_per_10g": 6.043537133322134,
+   "ttp": 65.0,
+   "tir": 66.75347222222221,
+   "tbr": 2.294146825396825,
+   "tbr54": 0.4464285714285714,
+   "tar": 30.952380952380953,
+   "mean_cgm": 158.420011754976,
+   "insulin_per_day": 38.32321428571428,
+   "rescues": 1.1428571428571428
+  },
+  {
+   "subject": "adult#010",
+   "driver": "basal-bolus",
+   "yield": 1.3,
+   "covered": 34,
+   "rise_per_10g": 7.632848260403435,
+   "ttp": 67.5,
+   "tir": 48.214285714285715,
+   "tbr": 1.8353174603174605,
+   "tbr54": 0.3472222222222222,
+   "tar": 49.95039682539682,
+   "mean_cgm": 183.3978723496922,
+   "insulin_per_day": 39.65714285714285,
+   "rescues": 0.9642857142857143
+  },
+  {
+   "subject": "adult#010",
+   "driver": "basal-bolus",
+   "yield": 1.5,
+   "covered": 32,
+   "rise_per_10g": 7.382657591520147,
+   "ttp": 70.0,
+   "tir": 38.25644841269841,
+   "tbr": 0.992063492063492,
+   "tbr54": 0.1488095238095238,
+   "tar": 60.751488095238095,
+   "mean_cgm": 209.6611785806336,
+   "insulin_per_day": 39.22137597831066,
+   "rescues": 0.5714285714285714
+  },
+  {
+   "subject": "adult#010",
+   "driver": "boost",
+   "yield": 1.0,
+   "covered": 28,
+   "rise_per_10g": 8.244243223879096,
+   "ttp": 67.5,
+   "tir": 90.71180555555556,
+   "tbr": 2.380952380952381,
+   "tbr54": 1.1408730158730158,
+   "tar": 6.907242063492064,
+   "mean_cgm": 130.32030015745687,
+   "insulin_per_day": 43.889220669853394,
+   "rescues": 1.0714285714285714
+  },
+  {
+   "subject": "adult#010",
+   "driver": "boost",
+   "yield": 1.3,
+   "covered": 28,
+   "rise_per_10g": 11.242691190307575,
+   "ttp": 110.0,
+   "tir": 83.69295634920636,
+   "tbr": 1.6741071428571428,
+   "tbr54": 0.0992063492063492,
+   "tar": 14.632936507936508,
+   "mean_cgm": 139.63773544291774,
+   "insulin_per_day": 46.82713390311686,
+   "rescues": 0.9642857142857143
+  },
+  {
+   "subject": "adult#010",
+   "driver": "boost",
+   "yield": 1.5,
+   "covered": 26,
+   "rise_per_10g": 12.428617266790358,
+   "ttp": 100.0,
+   "tir": 80.90277777777779,
+   "tbr": 2.5421626984126986,
+   "tbr54": 0.607638888888889,
+   "tar": 16.555059523809522,
+   "mean_cgm": 142.512689226078,
+   "insulin_per_day": 48.41962634406069,
+   "rescues": 1.2857142857142858
+  },
+  {
+   "subject": "adult#010",
+   "driver": "oref",
+   "yield": 1.0,
+   "covered": 23,
+   "rise_per_10g": 7.89302578543069,
+   "ttp": 85.0,
+   "tir": 90.10416666666666,
+   "tbr": 6.4980158730158735,
+   "tbr54": 2.492559523809524,
+   "tar": 3.39781746031746,
+   "mean_cgm": 116.5707755503433,
+   "insulin_per_day": 48.72368772771382,
+   "rescues": 3.107142857142857
+  },
+  {
+   "subject": "adult#010",
+   "driver": "oref",
+   "yield": 1.3,
+   "covered": 19,
+   "rise_per_10g": 10.847479340218054,
+   "ttp": 80.0,
+   "tir": 86.5203373015873,
+   "tbr": 6.051587301587301,
+   "tbr54": 1.2400793650793651,
+   "tar": 7.428075396825397,
+   "mean_cgm": 123.25318929091065,
+   "insulin_per_day": 53.46327373481213,
+   "rescues": 2.9642857142857144
+  },
+  {
+   "subject": "adult#010",
+   "driver": "oref",
+   "yield": 1.5,
+   "covered": 22,
+   "rise_per_10g": 6.505005269485808,
+   "ttp": 75.0,
+   "tir": 81.91964285714286,
+   "tbr": 7.502480158730158,
+   "tbr54": 2.430555555555556,
+   "tar": 10.577876984126984,
+   "mean_cgm": 126.99749816809053,
+   "insulin_per_day": 55.69662051123238,
+   "rescues": 3.2857142857142856
+  },
+  {
+   "subject": "adult#010",
+   "driver": "trend",
+   "yield": 1.0,
+   "covered": 28,
+   "rise_per_10g": 7.234657512876982,
+   "ttp": 77.5,
+   "tir": 84.64781746031747,
+   "tbr": 3.335813492063492,
+   "tbr54": 1.5873015873015872,
+   "tar": 12.016369047619047,
+   "mean_cgm": 137.83009714281883,
+   "insulin_per_day": 42.66779896331708,
+   "rescues": 1.5714285714285714
+  },
+  {
+   "subject": "adult#010",
+   "driver": "trend",
+   "yield": 1.3,
+   "covered": 23,
+   "rise_per_10g": 9.301538506327097,
+   "ttp": 100.0,
+   "tir": 80.91517857142857,
+   "tbr": 2.554563492063492,
+   "tbr54": 0.8432539682539683,
+   "tar": 16.530257936507937,
+   "mean_cgm": 143.0602429194201,
+   "insulin_per_day": 46.784843701525055,
+   "rescues": 1.3571428571428572
+  },
+  {
+   "subject": "adult#010",
+   "driver": "trend",
+   "yield": 1.5,
+   "covered": 31,
+   "rise_per_10g": 10.701551712728811,
+   "ttp": 75.0,
+   "tir": 75.22321428571429,
+   "tbr": 3.2614087301587302,
+   "tbr54": 1.0912698412698412,
+   "tar": 21.515376984126984,
+   "mean_cgm": 147.52829271175185,
+   "insulin_per_day": 49.144660684195514,
+   "rescues": 1.5
+  },
+  {
+   "subject": "adult#011",
+   "driver": "basal-bolus",
+   "yield": 1.0,
+   "covered": 28,
+   "rise_per_10g": 7.416781417667312,
+   "ttp": 62.5,
+   "tir": 53.45982142857143,
+   "tbr": 1.6245039682539684,
+   "tbr54": 0.4464285714285714,
+   "tar": 44.91567460317461,
+   "mean_cgm": 184.423740725463,
+   "insulin_per_day": 36.3818330339631,
+   "rescues": 0.8928571428571429
+  },
+  {
+   "subject": "adult#011",
+   "driver": "basal-bolus",
+   "yield": 1.3,
+   "covered": 29,
+   "rise_per_10g": 11.408986910904133,
+   "ttp": 75.0,
+   "tir": 39.96775793650794,
+   "tbr": 1.215277777777778,
+   "tbr54": 0.1240079365079365,
+   "tar": 58.81696428571429,
+   "mean_cgm": 208.7073288146886,
+   "insulin_per_day": 36.57843926327653,
+   "rescues": 0.7857142857142857
+  },
+  {
+   "subject": "adult#011",
+   "driver": "boost",
+   "yield": 1.0,
+   "covered": 26,
+   "rise_per_10g": 9.98034885327048,
+   "ttp": 97.5,
+   "tir": 76.25248015873017,
+   "tbr": 1.7361111111111112,
+   "tbr54": 0.607638888888889,
+   "tar": 22.01140873015873,
+   "mean_cgm": 151.35154140040655,
+   "insulin_per_day": 41.4198711229548,
+   "rescues": 0.8928571428571429
+  },
+  {
+   "subject": "adult#011",
+   "driver": "boost",
+   "yield": 1.3,
+   "covered": 29,
+   "rise_per_10g": 16.503209176809612,
+   "ttp": 100.0,
+   "tir": 71.15575396825396,
+   "tbr": 0.9052579365079366,
+   "tbr54": 0.3472222222222222,
+   "tar": 27.938988095238095,
+   "mean_cgm": 161.9614665591927,
+   "insulin_per_day": 43.35494448723569,
+   "rescues": 0.6428571428571429
+  },
+  {
+   "subject": "adult#011",
+   "driver": "boost",
+   "yield": 1.5,
+   "covered": 32,
+   "rise_per_10g": 14.532841351109221,
+   "ttp": 107.5,
+   "tir": 62.61160714285714,
+   "tbr": 1.3640873015873016,
+   "tbr54": 0.35962301587301587,
+   "tar": 36.02430555555556,
+   "mean_cgm": 174.37380141791147,
+   "insulin_per_day": 46.70215858859611,
+   "rescues": 0.6428571428571429
+  },
+  {
+   "subject": "adult#011",
+   "driver": "oref",
+   "yield": 1.0,
+   "covered": 25,
+   "rise_per_10g": 11.759907148145876,
+   "ttp": 100.0,
+   "tir": 78.84424603174604,
+   "tbr": 5.282738095238095,
+   "tbr54": 1.8353174603174605,
+   "tar": 15.873015873015872,
+   "mean_cgm": 137.52614992891992,
+   "insulin_per_day": 48.92437726318146,
+   "rescues": 2.4642857142857144
+  },
+  {
+   "subject": "adult#011",
+   "driver": "oref",
+   "yield": 1.3,
+   "covered": 27,
+   "rise_per_10g": 15.921644543030004,
+   "ttp": 110.0,
+   "tir": 73.32589285714286,
+   "tbr": 4.799107142857143,
+   "tbr54": 1.9717261904761905,
+   "tar": 21.875,
+   "mean_cgm": 147.64089313764202,
+   "insulin_per_day": 51.54270570707091,
+   "rescues": 2.25
+  },
+  {
+   "subject": "adult#011",
+   "driver": "oref",
+   "yield": 1.5,
+   "covered": 24,
+   "rise_per_10g": 19.161978620574736,
+   "ttp": 95.0,
+   "tir": 70.69692460317461,
+   "tbr": 5.009920634920635,
+   "tbr54": 1.8601190476190477,
+   "tar": 24.293154761904763,
+   "mean_cgm": 154.4481205410137,
+   "insulin_per_day": 53.724969292285834,
+   "rescues": 2.3214285714285716
+  },
+  {
+   "subject": "adult#011",
+   "driver": "trend",
+   "yield": 1.0,
+   "covered": 26,
+   "rise_per_10g": 6.69499113157948,
+   "ttp": 55.0,
+   "tir": 76.33928571428571,
+   "tbr": 1.9345238095238095,
+   "tbr54": 0.8060515873015874,
+   "tar": 21.726190476190478,
+   "mean_cgm": 149.44880754031857,
+   "insulin_per_day": 42.46160554943929,
+   "rescues": 1.0714285714285714
+  },
+  {
+   "subject": "adult#011",
+   "driver": "trend",
+   "yield": 1.5,
+   "covered": 30,
+   "rise_per_10g": 10.314492880053407,
+   "ttp": 100.0,
+   "tir": 60.83829365079365,
+   "tbr": 1.9593253968253967,
+   "tbr54": 0.5084325396825397,
+   "tar": 37.202380952380956,
+   "mean_cgm": 173.92064539523255,
+   "insulin_per_day": 48.457734458710554,
+   "rescues": 1.0714285714285714
+  },
+  {
+   "subject": "adult#012",
+   "driver": "basal-bolus",
+   "yield": 1.0,
+   "covered": 19,
+   "rise_per_10g": 6.297491885442156,
+   "ttp": 40.0,
+   "tir": 61.582341269841265,
+   "tbr": 1.8849206349206349,
+   "tbr54": 0.7068452380952381,
+   "tar": 36.532738095238095,
+   "mean_cgm": 166.93761231882573,
+   "insulin_per_day": 45.95168251138955,
+   "rescues": 1.2142857142857142
+  },
+  {
+   "subject": "adult#012",
+   "driver": "basal-bolus",
+   "yield": 1.3,
+   "covered": 22,
+   "rise_per_10g": 8.441371394506596,
+   "ttp": 57.5,
+   "tir": 57.006448412698404,
+   "tbr": 1.1780753968253967,
+   "tbr54": 0.1488095238095238,
+   "tar": 41.81547619047619,
+   "mean_cgm": 178.10784503422582,
+   "insulin_per_day": 45.80869274079503,
+   "rescues": 0.8571428571428571
+  },
+  {
+   "subject": "adult#012",
+   "driver": "basal-bolus",
+   "yield": 1.5,
+   "covered": 31,
+   "rise_per_10g": 9.290387354807503,
+   "ttp": 50.0,
+   "tir": 44.08482142857143,
+   "tbr": 1.029265873015873,
+   "tbr54": 0.1736111111111111,
+   "tar": 54.885912698412696,
+   "mean_cgm": 200.02237283155605,
+   "insulin_per_day": 46.271133586166805,
+   "rescues": 0.6071428571428571
+  },
+  {
+   "subject": "adult#012",
+   "driver": "boost",
+   "yield": 1.0,
+   "covered": 24,
+   "rise_per_10g": 8.330750194656453,
+   "ttp": 80.0,
+   "tir": 76.72371031746032,
+   "tbr": 0.9672619047619048,
+   "tbr54": 0.1736111111111111,
+   "tar": 22.30902777777778,
+   "mean_cgm": 152.30957262857765,
+   "insulin_per_day": 57.17523433728796,
+   "rescues": 0.6071428571428571
+  },
+  {
+   "subject": "adult#012",
+   "driver": "boost",
+   "yield": 1.3,
+   "covered": 30,
+   "rise_per_10g": 13.166241006287859,
+   "ttp": 112.5,
+   "tir": 79.84871031746032,
+   "tbr": 0.4464285714285714,
+   "tbr54": 0.0744047619047619,
+   "tar": 19.70486111111111,
+   "mean_cgm": 152.51311157930607,
+   "insulin_per_day": 55.750088494335806,
+   "rescues": 0.4642857142857143
+  },
+  {
+   "subject": "adult#012",
+   "driver": "boost",
+   "yield": 1.5,
+   "covered": 30,
+   "rise_per_10g": 13.691704836581332,
+   "ttp": 115.0,
+   "tir": 72.84226190476191,
+   "tbr": 0.9052579365079366,
+   "tbr54": 0.248015873015873,
+   "tar": 26.252480158730158,
+   "mean_cgm": 160.50047378884153,
+   "insulin_per_day": 59.1071354464968,
+   "rescues": 0.5357142857142857
+  },
+  {
+   "subject": "adult#012",
+   "driver": "oref",
+   "yield": 1.0,
+   "covered": 25,
+   "rise_per_10g": 9.18416066170713,
+   "ttp": 90.0,
+   "tir": 91.12103174603175,
+   "tbr": 2.2445436507936507,
+   "tbr54": 0.5704365079365079,
+   "tar": 6.634424603174603,
+   "mean_cgm": 129.3943950613944,
+   "insulin_per_day": 61.52599409846294,
+   "rescues": 1.25
+  },
+  {
+   "subject": "adult#012",
+   "driver": "oref",
+   "yield": 1.3,
+   "covered": 22,
+   "rise_per_10g": 7.641796155598669,
+   "ttp": 80.0,
+   "tir": 86.25992063492063,
+   "tbr": 2.194940476190476,
+   "tbr54": 0.8060515873015874,
+   "tar": 11.54513888888889,
+   "mean_cgm": 135.49591979540577,
+   "insulin_per_day": 67.41085384101073,
+   "rescues": 1.1785714285714286
+  },
+  {
+   "subject": "adult#012",
+   "driver": "oref",
+   "yield": 1.5,
+   "covered": 22,
+   "rise_per_10g": 9.497610572532192,
+   "ttp": 107.5,
+   "tir": 81.68402777777779,
+   "tbr": 2.628968253968254,
+   "tbr54": 0.7688492063492063,
+   "tar": 15.687003968253968,
+   "mean_cgm": 140.1000878004205,
+   "insulin_per_day": 68.90031258533688,
+   "rescues": 1.4285714285714286
+  },
+  {
+   "subject": "adult#012",
+   "driver": "trend",
+   "yield": 1.0,
+   "covered": 24,
+   "rise_per_10g": 4.645897309860367,
+   "ttp": 40.0,
+   "tir": 81.88244047619048,
+   "tbr": 1.1160714285714286,
+   "tbr54": 0.0744047619047619,
+   "tar": 17.001488095238095,
+   "mean_cgm": 149.19000738927934,
+   "insulin_per_day": 52.01015240889785,
+   "rescues": 0.8928571428571429
+  },
+  {
+   "subject": "adult#012",
+   "driver": "trend",
+   "yield": 1.3,
+   "covered": 30,
+   "rise_per_10g": 8.756250065870475,
+   "ttp": 57.5,
+   "tir": 78.86904761904762,
+   "tbr": 1.3888888888888888,
+   "tbr54": 0.16121031746031744,
+   "tar": 19.74206349206349,
+   "mean_cgm": 152.39248760905969,
+   "insulin_per_day": 54.657297890242624,
+   "rescues": 0.8928571428571429
+  },
+  {
+   "subject": "adult#012",
+   "driver": "trend",
+   "yield": 1.5,
+   "covered": 25,
+   "rise_per_10g": 10.33107449372937,
+   "ttp": 60.0,
+   "tir": 68.08035714285714,
+   "tbr": 1.5873015873015872,
+   "tbr54": 0.5580357142857143,
+   "tar": 30.33234126984127,
+   "mean_cgm": 164.55482990683115,
+   "insulin_per_day": 60.587494660564,
+   "rescues": 1.0
+  },
+  {
+   "subject": "adult#013",
+   "driver": "basal-bolus",
+   "yield": 1.0,
+   "covered": 34,
+   "rise_per_10g": 6.189640249008878,
+   "ttp": 65.0,
+   "tir": 60.776289682539684,
+   "tbr": 0.6696428571428571,
+   "tbr54": 0.248015873015873,
+   "tar": 38.55406746031746,
+   "mean_cgm": 171.95389508446797,
+   "insulin_per_day": 60.6018086806893,
+   "rescues": 0.5357142857142857
+  },
+  {
+   "subject": "adult#013",
+   "driver": "basal-bolus",
+   "yield": 1.3,
+   "covered": 30,
+   "rise_per_10g": 10.044147323195617,
+   "ttp": 70.0,
+   "tir": 48.98313492063492,
+   "tbr": 0.16121031746031744,
+   "tbr54": 0.0,
+   "tar": 50.855654761904766,
+   "mean_cgm": 188.3774573314405,
+   "insulin_per_day": 59.3552067653773,
+   "rescues": 0.21428571428571427
+  },
+  {
+   "subject": "adult#013",
+   "driver": "basal-bolus",
+   "yield": 1.5,
+   "covered": 26,
+   "rise_per_10g": 9.484933599964167,
+   "ttp": 60.0,
+   "tir": 40.463789682539684,
+   "tbr": 0.0744047619047619,
+   "tbr54": 0.0248015873015873,
+   "tar": 59.46180555555556,
+   "mean_cgm": 208.58483777871672,
+   "insulin_per_day": 59.037806728398046,
+   "rescues": 0.10714285714285714
+  },
+  {
+   "subject": "adult#013",
+   "driver": "boost",
+   "yield": 1.0,
+   "covered": 29,
+   "rise_per_10g": 10.862590910854754,
+   "ttp": 110.0,
+   "tir": 74.16914682539682,
+   "tbr": 0.8060515873015874,
+   "tbr54": 0.0992063492063492,
+   "tar": 25.02480158730159,
+   "mean_cgm": 152.90089575940704,
+   "insulin_per_day": 74.60379406016607,
+   "rescues": 0.4642857142857143
+  },
+  {
+   "subject": "adult#013",
+   "driver": "boost",
+   "yield": 1.3,
+   "covered": 30,
+   "rise_per_10g": 13.62720748168791,
+   "ttp": 110.0,
+   "tir": 70.65972222222221,
+   "tbr": 0.5704365079365079,
+   "tbr54": 0.0744047619047619,
+   "tar": 28.76984126984127,
+   "mean_cgm": 158.59950785401634,
+   "insulin_per_day": 77.29335622473171,
+   "rescues": 0.35714285714285715
+  },
+  {
+   "subject": "adult#013",
+   "driver": "boost",
+   "yield": 1.5,
+   "covered": 27,
+   "rise_per_10g": 14.278403551597838,
+   "ttp": 110.0,
+   "tir": 69.17162698412699,
+   "tbr": 0.9548611111111112,
+   "tbr54": 0.2232142857142857,
+   "tar": 29.873511904761905,
+   "mean_cgm": 160.63976930116874,
+   "insulin_per_day": 76.17972665635996,
+   "rescues": 0.5357142857142857
+  },
+  {
+   "subject": "adult#013",
+   "driver": "oref",
+   "yield": 1.0,
+   "covered": 27,
+   "rise_per_10g": 4.9617221791248465,
+   "ttp": 50.0,
+   "tir": 88.57886904761905,
+   "tbr": 2.7281746031746033,
+   "tbr54": 0.7936507936507936,
+   "tar": 8.692956349206348,
+   "mean_cgm": 127.59354868705984,
+   "insulin_per_day": 88.16536697966126,
+   "rescues": 1.3928571428571428
+  },
+  {
+   "subject": "adult#013",
+   "driver": "oref",
+   "yield": 1.3,
+   "covered": 27,
+   "rise_per_10g": 11.778232587435214,
+   "ttp": 125.0,
+   "tir": 78.54662698412699,
+   "tbr": 3.187003968253968,
+   "tbr54": 0.7068452380952381,
+   "tar": 18.266369047619047,
+   "mean_cgm": 137.10121935493902,
+   "insulin_per_day": 92.3975389590242,
+   "rescues": 1.8571428571428572
+  },
+  {
+   "subject": "adult#013",
+   "driver": "oref",
+   "yield": 1.5,
+   "covered": 21,
+   "rise_per_10g": 13.209259595221347,
+   "ttp": 110.0,
+   "tir": 73.26388888888889,
+   "tbr": 2.7777777777777777,
+   "tbr54": 0.6324404761904762,
+   "tar": 23.958333333333336,
+   "mean_cgm": 145.55600894334944,
+   "insulin_per_day": 96.18869440585432,
+   "rescues": 1.6785714285714286
+  },
+  {
+   "subject": "adult#013",
+   "driver": "trend",
+   "yield": 1.0,
+   "covered": 27,
+   "rise_per_10g": 7.89894513266947,
+   "ttp": 85.0,
+   "tir": 77.24454365079364,
+   "tbr": 0.8308531746031746,
+   "tbr54": 0.0744047619047619,
+   "tar": 21.924603174603174,
+   "mean_cgm": 148.824131343692,
+   "insulin_per_day": 70.8378741318116,
+   "rescues": 0.5357142857142857
+  },
+  {
+   "subject": "adult#013",
+   "driver": "trend",
+   "yield": 1.3,
+   "covered": 24,
+   "rise_per_10g": 10.465841619735414,
+   "ttp": 77.5,
+   "tir": 74.40476190476191,
+   "tbr": 0.6200396825396826,
+   "tbr54": 0.18601190476190474,
+   "tar": 24.97519841269841,
+   "mean_cgm": 157.6832879075593,
+   "insulin_per_day": 73.11267672626023,
+   "rescues": 0.42857142857142855
+  },
+  {
+   "subject": "adult#013",
+   "driver": "trend",
+   "yield": 1.5,
+   "covered": 31,
+   "rise_per_10g": 13.33880853344648,
+   "ttp": 85.0,
+   "tir": 69.87847222222221,
+   "tbr": 0.78125,
+   "tbr54": 0.26041666666666663,
+   "tar": 29.34027777777778,
+   "mean_cgm": 163.30312211167507,
+   "insulin_per_day": 76.0648791188349,
+   "rescues": 0.5357142857142857
+  },
+  {
+   "subject": "adult#014",
+   "driver": "basal-bolus",
+   "yield": 1.0,
+   "covered": 15,
+   "rise_per_10g": 4.781773868235109,
+   "ttp": 35.0,
+   "tir": 62.239583333333336,
+   "tbr": 6.622023809523809,
+   "tbr54": 2.864583333333333,
+   "tar": 31.138392857142854,
+   "mean_cgm": 161.0849768111675,
+   "insulin_per_day": 39.12489218476162,
+   "rescues": 2.857142857142857
+  },
+  {
+   "subject": "adult#014",
+   "driver": "basal-bolus",
+   "yield": 1.5,
+   "covered": 16,
+   "rise_per_10g": 11.708902607351096,
+   "ttp": 70.0,
+   "tir": 44.742063492063494,
+   "tbr": 4.166666666666666,
+   "tbr54": 1.7609126984126984,
+   "tar": 51.091269841269835,
+   "mean_cgm": 204.5753875279685,
+   "insulin_per_day": 39.19613197767082,
+   "rescues": 1.9642857142857142
+  },
+  {
+   "subject": "adult#014",
+   "driver": "boost",
+   "yield": 1.0,
+   "covered": 9,
+   "rise_per_10g": null,
+   "ttp": 90.0,
+   "tir": 76.78571428571429,
+   "tbr": 2.095734126984127,
+   "tbr54": 0.6200396825396826,
+   "tar": 21.11855158730159,
+   "mean_cgm": 152.32566365423884,
+   "insulin_per_day": 39.24753879342342,
+   "rescues": 1.1428571428571428
+  },
+  {
+   "subject": "adult#014",
+   "driver": "boost",
+   "yield": 1.3,
+   "covered": 16,
+   "rise_per_10g": 16.52877074084214,
+   "ttp": 77.5,
+   "tir": 71.19295634920636,
+   "tbr": 3.3854166666666665,
+   "tbr54": 1.314484126984127,
+   "tar": 25.421626984126984,
+   "mean_cgm": 155.84196942446425,
+   "insulin_per_day": 40.33822647880628,
+   "rescues": 1.75
+  },
+  {
+   "subject": "adult#014",
+   "driver": "boost",
+   "yield": 1.5,
+   "covered": 16,
+   "rise_per_10g": 20.480905549560127,
+   "ttp": 97.5,
+   "tir": 69.18402777777779,
+   "tbr": 3.0009920634920637,
+   "tbr54": 0.7316468253968254,
+   "tar": 27.814980158730158,
+   "mean_cgm": 158.8602332785626,
+   "insulin_per_day": 41.24898281562796,
+   "rescues": 1.5714285714285714
+  },
+  {
+   "subject": "adult#014",
+   "driver": "oref",
+   "yield": 1.3,
+   "covered": 16,
+   "rise_per_10g": 21.87301740008719,
+   "ttp": 117.5,
+   "tir": 68.87400793650794,
+   "tbr": 4.402281746031746,
+   "tbr54": 1.3268849206349207,
+   "tar": 26.72371031746032,
+   "mean_cgm": 149.92863520608051,
+   "insulin_per_day": 50.60402999204863,
+   "rescues": 2.5
+  },
+  {
+   "subject": "adult#014",
+   "driver": "oref",
+   "yield": 1.5,
+   "covered": 22,
+   "rise_per_10g": 11.874396373035523,
+   "ttp": 57.5,
+   "tir": 71.27976190476191,
+   "tbr": 5.592757936507937,
+   "tbr54": 2.318948412698413,
+   "tar": 23.127480158730158,
+   "mean_cgm": 147.8639515812827,
+   "insulin_per_day": 48.267016365586514,
+   "rescues": 2.607142857142857
+  },
+  {
+   "subject": "adult#014",
+   "driver": "trend",
+   "yield": 1.0,
+   "covered": 20,
+   "rise_per_10g": 9.86750774003198,
+   "ttp": 55.0,
+   "tir": 75.89285714285714,
+   "tbr": 2.0461309523809526,
+   "tbr54": 1.0168650793650793,
+   "tar": 22.061011904761905,
+   "mean_cgm": 150.7292752626377,
+   "insulin_per_day": 40.225809247431734,
+   "rescues": 1.1071428571428572
+  },
+  {
+   "subject": "adult#014",
+   "driver": "trend",
+   "yield": 1.3,
+   "covered": 13,
+   "rise_per_10g": null,
+   "ttp": 90.0,
+   "tir": 69.84126984126983,
+   "tbr": 4.476686507936508,
+   "tbr54": 1.128472222222222,
+   "tar": 25.682043650793652,
+   "mean_cgm": 152.80574755181314,
+   "insulin_per_day": 41.43849161804935,
+   "rescues": 2.2857142857142856
+  },
+  {
+   "subject": "adult#015",
+   "driver": "basal-bolus",
+   "yield": 1.0,
+   "covered": 23,
+   "rise_per_10g": 7.986951763003616,
+   "ttp": 60.0,
+   "tir": 54.73710317460318,
+   "tbr": 3.100198412698413,
+   "tbr54": 0.7688492063492063,
+   "tar": 42.16269841269841,
+   "mean_cgm": 169.88704789259324,
+   "insulin_per_day": 40.32147778865897,
+   "rescues": 1.7857142857142858
+  },
+  {
+   "subject": "adult#015",
+   "driver": "basal-bolus",
+   "yield": 1.5,
+   "covered": 26,
+   "rise_per_10g": 16.00352639547606,
+   "ttp": 60.0,
+   "tir": 41.93948412698413,
+   "tbr": 1.9717261904761905,
+   "tbr54": 0.33482142857142855,
+   "tar": 56.088789682539684,
+   "mean_cgm": 203.73180335490687,
+   "insulin_per_day": 42.02147604544474,
+   "rescues": 1.1785714285714286
+  },
+  {
+   "subject": "adult#015",
+   "driver": "boost",
+   "yield": 1.0,
+   "covered": 19,
+   "rise_per_10g": 13.785117633083207,
+   "ttp": 75.0,
+   "tir": 84.93303571428571,
+   "tbr": 1.773313492063492,
+   "tbr54": 0.5456349206349206,
+   "tar": 13.293650793650794,
+   "mean_cgm": 140.88367343547318,
+   "insulin_per_day": 43.329202572730416,
+   "rescues": 1.0357142857142858
+  },
+  {
+   "subject": "adult#015",
+   "driver": "boost",
+   "yield": 1.3,
+   "covered": 24,
+   "rise_per_10g": 11.468844243315452,
+   "ttp": 70.0,
+   "tir": 78.76984126984127,
+   "tbr": 1.7609126984126984,
+   "tbr54": 0.4340277777777778,
+   "tar": 19.46924603174603,
+   "mean_cgm": 148.20737522275638,
+   "insulin_per_day": 45.97088191567609,
+   "rescues": 1.0714285714285714
+  },
+  {
+   "subject": "adult#015",
+   "driver": "boost",
+   "yield": 1.5,
+   "covered": 21,
+   "rise_per_10g": 22.55453566869583,
+   "ttp": 70.0,
+   "tir": 73.2390873015873,
+   "tbr": 1.711309523809524,
+   "tbr54": 0.28521825396825395,
+   "tar": 25.049603174603174,
+   "mean_cgm": 153.6536486178732,
+   "insulin_per_day": 47.75581813741285,
+   "rescues": 1.1785714285714286
+  },
+  {
+   "subject": "adult#015",
+   "driver": "oref",
+   "yield": 1.0,
+   "covered": 20,
+   "rise_per_10g": 15.485066883755527,
+   "ttp": 65.0,
+   "tir": 88.20684523809523,
+   "tbr": 2.604166666666667,
+   "tbr54": 0.9176587301587302,
+   "tar": 9.188988095238097,
+   "mean_cgm": 131.43874750602063,
+   "insulin_per_day": 45.711896564058165,
+   "rescues": 1.3928571428571428
+  },
+  {
+   "subject": "adult#015",
+   "driver": "oref",
+   "yield": 1.3,
+   "covered": 22,
+   "rise_per_10g": 16.92824912136137,
+   "ttp": 67.5,
+   "tir": 84.02777777777779,
+   "tbr": 2.083333333333333,
+   "tbr54": 0.6944444444444444,
+   "tar": 13.88888888888889,
+   "mean_cgm": 137.20749179626043,
+   "insulin_per_day": 47.46223042483219,
+   "rescues": 1.3214285714285714
+  },
+  {
+   "subject": "adult#015",
+   "driver": "oref",
+   "yield": 1.5,
+   "covered": 22,
+   "rise_per_10g": 15.123203912375402,
+   "ttp": 70.0,
+   "tir": 79.17906746031747,
+   "tbr": 2.2445436507936507,
+   "tbr54": 0.5208333333333333,
+   "tar": 18.57638888888889,
+   "mean_cgm": 142.72623789184553,
+   "insulin_per_day": 49.78301756866592,
+   "rescues": 1.5357142857142858
+  },
+  {
+   "subject": "adult#015",
+   "driver": "trend",
+   "yield": 1.0,
+   "covered": 26,
+   "rise_per_10g": 12.483694570688144,
+   "ttp": 70.0,
+   "tir": 77.21974206349206,
+   "tbr": 2.170138888888889,
+   "tbr54": 0.5952380952380952,
+   "tar": 20.610119047619047,
+   "mean_cgm": 148.61476051716164,
+   "insulin_per_day": 42.2486948854933,
+   "rescues": 1.25
+  },
+  {
+   "subject": "adult#015",
+   "driver": "trend",
+   "yield": 1.3,
+   "covered": 29,
+   "rise_per_10g": 14.260059374294444,
+   "ttp": 60.0,
+   "tir": 70.65972222222221,
+   "tbr": 2.3313492063492065,
+   "tbr54": 0.7688492063492063,
+   "tar": 27.00892857142857,
+   "mean_cgm": 153.8042863057914,
+   "insulin_per_day": 44.78963094886437,
+   "rescues": 1.2142857142857142
+  },
+  {
+   "subject": "adult#015",
+   "driver": "trend",
+   "yield": 1.5,
+   "covered": 31,
+   "rise_per_10g": 13.57697284080754,
+   "ttp": 60.0,
+   "tir": 70.80853174603175,
+   "tbr": 1.847718253968254,
+   "tbr54": 0.607638888888889,
+   "tar": 27.34375,
+   "mean_cgm": 157.2998275140258,
+   "insulin_per_day": 46.626723575280884,
+   "rescues": 1.0357142857142858
+  },
+  {
+   "subject": "adult#016",
+   "driver": "basal-bolus",
+   "yield": 1.0,
+   "covered": 20,
+   "rise_per_10g": 4.622670321742333,
+   "ttp": 40.0,
+   "tir": 57.26686507936508,
+   "tbr": 3.90625,
+   "tbr54": 1.1656746031746033,
+   "tar": 38.82688492063492,
+   "mean_cgm": 170.9478622894039,
+   "insulin_per_day": 50.92700388966672,
+   "rescues": 1.8571428571428572
+  },
+  {
+   "subject": "adult#016",
+   "driver": "basal-bolus",
+   "yield": 1.3,
+   "covered": 24,
+   "rise_per_10g": 5.092484763631813,
+   "ttp": 35.0,
+   "tir": 47.38343253968254,
+   "tbr": 2.256944444444444,
+   "tbr54": 0.607638888888889,
+   "tar": 50.35962301587301,
+   "mean_cgm": 190.5098859990423,
+   "insulin_per_day": 53.24124467939474,
+   "rescues": 1.3214285714285714
+  },
+  {
+   "subject": "adult#016",
+   "driver": "basal-bolus",
+   "yield": 1.5,
+   "covered": 26,
+   "rise_per_10g": 5.584827787191273,
+   "ttp": 45.0,
+   "tir": 45.96974206349206,
+   "tbr": 2.269345238095238,
+   "tbr54": 0.5580357142857143,
+   "tar": 51.760912698412696,
+   "mean_cgm": 191.34484556103294,
+   "insulin_per_day": 52.724897200215956,
+   "rescues": 1.1428571428571428
+  },
+  {
+   "subject": "adult#016",
+   "driver": "boost",
+   "yield": 1.0,
+   "covered": 26,
+   "rise_per_10g": 7.856286481998966,
+   "ttp": 87.5,
+   "tir": 84.53621031746032,
+   "tbr": 0.5084325396825397,
+   "tbr54": 0.0744047619047619,
+   "tar": 14.955357142857142,
+   "mean_cgm": 145.79273090541213,
+   "insulin_per_day": 55.46010283985244,
+   "rescues": 0.4642857142857143
+  },
+  {
+   "subject": "adult#016",
+   "driver": "boost",
+   "yield": 1.3,
+   "covered": 30,
+   "rise_per_10g": 7.039994529630974,
+   "ttp": 67.5,
+   "tir": 73.13988095238095,
+   "tbr": 1.2648809523809523,
+   "tbr54": 0.1984126984126984,
+   "tar": 25.595238095238095,
+   "mean_cgm": 156.2218778057981,
+   "insulin_per_day": 60.20827488605361,
+   "rescues": 0.7142857142857143
+  },
+  {
+   "subject": "adult#016",
+   "driver": "boost",
+   "yield": 1.5,
+   "covered": 26,
+   "rise_per_10g": 8.452639237277982,
+   "ttp": 92.5,
+   "tir": 68.98561507936508,
+   "tbr": 1.4756944444444444,
+   "tbr54": 0.35962301587301587,
+   "tar": 29.538690476190478,
+   "mean_cgm": 161.04576494273968,
+   "insulin_per_day": 61.97515869505271,
+   "rescues": 0.8571428571428571
+  },
+  {
+   "subject": "adult#016",
+   "driver": "oref",
+   "yield": 1.0,
+   "covered": 23,
+   "rise_per_10g": 8.657309082750063,
+   "ttp": 80.0,
+   "tir": 87.21478174603175,
+   "tbr": 3.5218253968253967,
+   "tbr54": 1.0416666666666665,
+   "tar": 9.263392857142858,
+   "mean_cgm": 129.71056504484577,
+   "insulin_per_day": 68.1932482824041,
+   "rescues": 1.7857142857142858
+  },
+  {
+   "subject": "adult#016",
+   "driver": "oref",
+   "yield": 1.3,
+   "covered": 23,
+   "rise_per_10g": 4.7087799049637065,
+   "ttp": 55.0,
+   "tir": 85.61507936507937,
+   "tbr": 3.273809523809524,
+   "tbr54": 0.5456349206349206,
+   "tar": 11.11111111111111,
+   "mean_cgm": 135.3358062698428,
+   "insulin_per_day": 70.00559370680608,
+   "rescues": 1.75
+  },
+  {
+   "subject": "adult#016",
+   "driver": "oref",
+   "yield": 1.5,
+   "covered": 22,
+   "rise_per_10g": 9.39088438977748,
+   "ttp": 107.5,
+   "tir": 84.01537698412699,
+   "tbr": 2.8273809523809526,
+   "tbr54": 0.6572420634920635,
+   "tar": 13.157242063492063,
+   "mean_cgm": 136.27769042038847,
+   "insulin_per_day": 70.4084770089443,
+   "rescues": 1.5714285714285714
+  },
+  {
+   "subject": "adult#016",
+   "driver": "trend",
+   "yield": 1.0,
+   "covered": 28,
+   "rise_per_10g": 6.702751105286005,
+   "ttp": 55.0,
+   "tir": 79.77430555555556,
+   "tbr": 1.1532738095238095,
+   "tbr54": 0.0992063492063492,
+   "tar": 19.072420634920633,
+   "mean_cgm": 148.9144501033374,
+   "insulin_per_day": 58.46701012864479,
+   "rescues": 0.9642857142857143
+  },
+  {
+   "subject": "adult#016",
+   "driver": "trend",
+   "yield": 1.3,
+   "covered": 26,
+   "rise_per_10g": 8.420101391820083,
+   "ttp": 65.0,
+   "tir": 72.09821428571429,
+   "tbr": 2.591765873015873,
+   "tbr54": 0.4588293650793651,
+   "tar": 25.310019841269842,
+   "mean_cgm": 154.35945698294358,
+   "insulin_per_day": 59.53219431123849,
+   "rescues": 1.3571428571428572
+  },
+  {
+   "subject": "adult#017",
+   "driver": "basal-bolus",
+   "yield": 1.0,
+   "covered": 15,
+   "rise_per_10g": 4.966907131447696,
+   "ttp": 50.0,
+   "tir": 68.09275793650794,
+   "tbr": 5.1959325396825395,
+   "tbr54": 1.7857142857142856,
+   "tar": 26.711309523809522,
+   "mean_cgm": 151.8718895723234,
+   "insulin_per_day": 69.23556978706317,
+   "rescues": 2.642857142857143
+  },
+  {
+   "subject": "adult#017",
+   "driver": "basal-bolus",
+   "yield": 1.3,
+   "covered": 21,
+   "rise_per_10g": 10.786219725118555,
+   "ttp": 60.0,
+   "tir": 56.374007936507944,
+   "tbr": 3.7946428571428568,
+   "tbr54": 0.9176587301587302,
+   "tar": 39.8313492063492,
+   "mean_cgm": 176.54071319797112,
+   "insulin_per_day": 68.67860385413816,
+   "rescues": 1.8571428571428572
+  },
+  {
+   "subject": "adult#017",
+   "driver": "boost",
+   "yield": 1.0,
+   "covered": 24,
+   "rise_per_10g": 13.414126278392327,
+   "ttp": 130.0,
+   "tir": 76.17807539682539,
+   "tbr": 1.9593253968253967,
+   "tbr54": 0.26041666666666663,
+   "tar": 21.862599206349206,
+   "mean_cgm": 150.4264455940829,
+   "insulin_per_day": 73.35543431277334,
+   "rescues": 1.1071428571428572
+  },
+  {
+   "subject": "adult#017",
+   "driver": "boost",
+   "yield": 1.3,
+   "covered": 31,
+   "rise_per_10g": 15.685009083309016,
+   "ttp": 110.0,
+   "tir": 72.94146825396825,
+   "tbr": 1.277281746031746,
+   "tbr54": 0.18601190476190474,
+   "tar": 25.78125,
+   "mean_cgm": 155.10570347954132,
+   "insulin_per_day": 75.07437796094108,
+   "rescues": 0.75
+  },
+  {
+   "subject": "adult#017",
+   "driver": "boost",
+   "yield": 1.5,
+   "covered": 24,
+   "rise_per_10g": 15.171571101746634,
+   "ttp": 120.0,
+   "tir": 69.30803571428571,
+   "tbr": 2.021329365079365,
+   "tbr54": 0.38442460317460314,
+   "tar": 28.670634920634917,
+   "mean_cgm": 159.33280586224896,
+   "insulin_per_day": 77.93758427173759,
+   "rescues": 1.1071428571428572
+  },
+  {
+   "subject": "adult#017",
+   "driver": "oref",
+   "yield": 1.0,
+   "covered": 20,
+   "rise_per_10g": 9.978036113829873,
+   "ttp": 82.5,
+   "tir": 83.48214285714286,
+   "tbr": 4.55109126984127,
+   "tbr54": 1.4136904761904763,
+   "tar": 11.966765873015873,
+   "mean_cgm": 128.45390596403323,
+   "insulin_per_day": 89.66572834494893,
+   "rescues": 2.4642857142857144
+  },
+  {
+   "subject": "adult#017",
+   "driver": "oref",
+   "yield": 1.3,
+   "covered": 19,
+   "rise_per_10g": 16.1547600401793,
+   "ttp": 85.0,
+   "tir": 78.02579365079364,
+   "tbr": 5.307539682539683,
+   "tbr54": 1.8353174603174605,
+   "tar": 16.666666666666664,
+   "mean_cgm": 135.61451279033875,
+   "insulin_per_day": 96.13783850852539,
+   "rescues": 2.6785714285714284
+  },
+  {
+   "subject": "adult#017",
+   "driver": "trend",
+   "yield": 1.0,
+   "covered": 16,
+   "rise_per_10g": 9.076358863464648,
+   "ttp": 52.5,
+   "tir": 82.67609126984127,
+   "tbr": 2.604166666666667,
+   "tbr54": 1.0912698412698412,
+   "tar": 14.719742063492063,
+   "mean_cgm": 141.39356356778381,
+   "insulin_per_day": 70.54636725480313,
+   "rescues": 1.3214285714285714
+  },
+  {
+   "subject": "adult#017",
+   "driver": "trend",
+   "yield": 1.3,
+   "covered": 19,
+   "rise_per_10g": 9.296391354089076,
+   "ttp": 50.0,
+   "tir": 74.85119047619048,
+   "tbr": 3.0257936507936507,
+   "tbr54": 0.78125,
+   "tar": 22.123015873015873,
+   "mean_cgm": 148.82570737806728,
+   "insulin_per_day": 77.0746891390639,
+   "rescues": 1.5714285714285714
+  },
+  {
+   "subject": "adult#017",
+   "driver": "trend",
+   "yield": 1.5,
+   "covered": 24,
+   "rise_per_10g": 10.897523545983649,
+   "ttp": 70.0,
+   "tir": 73.09027777777779,
+   "tbr": 2.194940476190476,
+   "tbr54": 0.5084325396825397,
+   "tar": 24.714781746031747,
+   "mean_cgm": 153.61788984330911,
+   "insulin_per_day": 79.43842689832142,
+   "rescues": 1.25
+  },
+  {
+   "subject": "adult#018",
+   "driver": "basal-bolus",
+   "yield": 1.0,
+   "covered": 32,
+   "rise_per_10g": 9.454416315578406,
+   "ttp": 55.0,
+   "tir": 49.04513888888889,
+   "tbr": 1.6121031746031749,
+   "tbr54": 0.1984126984126984,
+   "tar": 49.34275793650794,
+   "mean_cgm": 181.95839117490013,
+   "insulin_per_day": 68.7766217482105,
+   "rescues": 0.9285714285714286
+  },
+  {
+   "subject": "adult#018",
+   "driver": "basal-bolus",
+   "yield": 1.3,
+   "covered": 30,
+   "rise_per_10g": 12.538979748934931,
+   "ttp": 67.5,
+   "tir": 40.07936507936508,
+   "tbr": 0.8432539682539683,
+   "tbr54": 0.2728174603174603,
+   "tar": 59.077380952380956,
+   "mean_cgm": 197.7959884336656,
+   "insulin_per_day": 68.09979527366099,
+   "rescues": 0.5
+  },
+  {
+   "subject": "adult#018",
+   "driver": "boost",
+   "yield": 1.0,
+   "covered": 35,
+   "rise_per_10g": 14.326140907758958,
+   "ttp": 85.0,
+   "tir": 75.44642857142857,
+   "tbr": 0.5084325396825397,
+   "tbr54": 0.21081349206349206,
+   "tar": 24.04513888888889,
+   "mean_cgm": 153.5871308397395,
+   "insulin_per_day": 84.98104762470828,
+   "rescues": 0.39285714285714285
+  },
+  {
+   "subject": "adult#018",
+   "driver": "boost",
+   "yield": 1.5,
+   "covered": 38,
+   "rise_per_10g": 20.212858668187973,
+   "ttp": 87.5,
+   "tir": 59.449404761904766,
+   "tbr": 1.1904761904761905,
+   "tbr54": 0.16121031746031744,
+   "tar": 39.360119047619044,
+   "mean_cgm": 171.78336170062914,
+   "insulin_per_day": 94.71651282054425,
+   "rescues": 0.6785714285714286
+  },
+  {
+   "subject": "adult#018",
+   "driver": "oref",
+   "yield": 1.0,
+   "covered": 24,
+   "rise_per_10g": 11.711885572753602,
+   "ttp": 80.0,
+   "tir": 81.28720238095238,
+   "tbr": 1.599702380952381,
+   "tbr54": 0.2232142857142857,
+   "tar": 17.113095238095237,
+   "mean_cgm": 142.28333542073543,
+   "insulin_per_day": 120.40881398551294,
+   "rescues": 1.1428571428571428
+  },
+  {
+   "subject": "adult#018",
+   "driver": "oref",
+   "yield": 1.3,
+   "covered": 26,
+   "rise_per_10g": 12.094751218768556,
+   "ttp": 75.0,
+   "tir": 72.20982142857143,
+   "tbr": 2.876984126984127,
+   "tbr54": 0.6200396825396826,
+   "tar": 24.913194444444446,
+   "mean_cgm": 149.42795096697338,
+   "insulin_per_day": 120.60257123444205,
+   "rescues": 1.6428571428571428
+  },
+  {
+   "subject": "adult#018",
+   "driver": "trend",
+   "yield": 1.0,
+   "covered": 30,
+   "rise_per_10g": 10.623029991910988,
+   "ttp": 62.5,
+   "tir": 73.52430555555556,
+   "tbr": 0.855654761904762,
+   "tbr54": 0.0992063492063492,
+   "tar": 25.62003968253968,
+   "mean_cgm": 155.3624877829347,
+   "insulin_per_day": 84.96928232090694,
+   "rescues": 0.6785714285714286
+  },
+  {
+   "subject": "adult#018",
+   "driver": "trend",
+   "yield": 1.3,
+   "covered": 29,
+   "rise_per_10g": 8.71124465865025,
+   "ttp": 65.0,
+   "tir": 64.84375,
+   "tbr": 0.6572420634920635,
+   "tbr54": 0.0496031746031746,
+   "tar": 34.49900793650794,
+   "mean_cgm": 169.32500446512526,
+   "insulin_per_day": 89.2481354682484,
+   "rescues": 0.5
+  },
+  {
+   "subject": "adult#018",
+   "driver": "trend",
+   "yield": 1.5,
+   "covered": 34,
+   "rise_per_10g": 16.816658045345626,
+   "ttp": 75.0,
+   "tir": 56.448412698412696,
+   "tbr": 1.2400793650793651,
+   "tbr54": 0.2728174603174603,
+   "tar": 42.31150793650794,
+   "mean_cgm": 176.51562511879618,
+   "insulin_per_day": 89.00955726865553,
+   "rescues": 0.75
+  },
+  {
+   "subject": "adult#019",
+   "driver": "basal-bolus",
+   "yield": 1.0,
+   "covered": 36,
+   "rise_per_10g": 13.457247213378935,
+   "ttp": 65.0,
+   "tir": 64.69494047619048,
+   "tbr": 0.7936507936507936,
+   "tbr54": 0.03720238095238095,
+   "tar": 34.511408730158735,
+   "mean_cgm": 166.03911375740932,
+   "insulin_per_day": 43.192924106076994,
+   "rescues": 0.5714285714285714
+  },
+  {
+   "subject": "adult#019",
+   "driver": "basal-bolus",
+   "yield": 1.3,
+   "covered": 29,
+   "rise_per_10g": 15.774755407571963,
+   "ttp": 70.0,
+   "tir": 57.738095238095234,
+   "tbr": 0.0992063492063492,
+   "tbr54": 0.01240079365079365,
+   "tar": 42.16269841269841,
+   "mean_cgm": 183.95358773245388,
+   "insulin_per_day": 43.62139156346207,
+   "rescues": 0.21428571428571427
+  },
+  {
+   "subject": "adult#019",
+   "driver": "basal-bolus",
+   "yield": 1.5,
+   "covered": 35,
+   "rise_per_10g": 18.157163392415775,
+   "ttp": 70.0,
+   "tir": 51.90972222222222,
+   "tbr": 0.1488095238095238,
+   "tbr54": 0.06200396825396825,
+   "tar": 47.94146825396825,
+   "mean_cgm": 194.69665832300575,
+   "insulin_per_day": 44.308928571428574,
+   "rescues": 0.21428571428571427
+  },
+  {
+   "subject": "adult#019",
+   "driver": "boost",
+   "yield": 1.0,
+   "covered": 24,
+   "rise_per_10g": 13.934962221924415,
+   "ttp": 97.5,
+   "tir": 83.11011904761905,
+   "tbr": 0.9548611111111112,
+   "tbr54": 0.1488095238095238,
+   "tar": 15.93501984126984,
+   "mean_cgm": 140.0921913294359,
+   "insulin_per_day": 52.98313364213693,
+   "rescues": 0.75
+  },
+  {
+   "subject": "adult#019",
+   "driver": "boost",
+   "yield": 1.3,
+   "covered": 29,
+   "rise_per_10g": 23.147998756941753,
+   "ttp": 80.0,
+   "tir": 77.19494047619048,
+   "tbr": 1.1036706349206349,
+   "tbr54": 0.0744047619047619,
+   "tar": 21.70138888888889,
+   "mean_cgm": 147.59448742207704,
+   "insulin_per_day": 55.676554876187616,
+   "rescues": 0.7857142857142857
+  },
+  {
+   "subject": "adult#019",
+   "driver": "boost",
+   "yield": 1.5,
+   "covered": 22,
+   "rise_per_10g": 20.749769295222194,
+   "ttp": 80.0,
+   "tir": 70.82093253968253,
+   "tbr": 1.2400793650793651,
+   "tbr54": 0.0744047619047619,
+   "tar": 27.938988095238095,
+   "mean_cgm": 154.4428347260647,
+   "insulin_per_day": 57.34283715665998,
+   "rescues": 0.9285714285714286
+  },
+  {
+   "subject": "adult#019",
+   "driver": "oref",
+   "yield": 1.0,
+   "covered": 33,
+   "rise_per_10g": 11.408685285511837,
+   "ttp": 90.0,
+   "tir": 85.92509920634922,
+   "tbr": 4.625496031746032,
+   "tbr54": 0.7192460317460317,
+   "tar": 9.449404761904761,
+   "mean_cgm": 122.85823056680472,
+   "insulin_per_day": 66.02182881025765,
+   "rescues": 2.7142857142857144
+  },
+  {
+   "subject": "adult#019",
+   "driver": "oref",
+   "yield": 1.3,
+   "covered": 20,
+   "rise_per_10g": 14.987461913148962,
+   "ttp": 87.5,
+   "tir": 81.06398809523809,
+   "tbr": 4.315476190476191,
+   "tbr54": 0.3472222222222222,
+   "tar": 14.620535714285715,
+   "mean_cgm": 130.6265952176715,
+   "insulin_per_day": 67.77517728483075,
+   "rescues": 2.5357142857142856
+  },
+  {
+   "subject": "adult#019",
+   "driver": "oref",
+   "yield": 1.5,
+   "covered": 27,
+   "rise_per_10g": 18.793215450814422,
+   "ttp": 80.0,
+   "tir": 72.69345238095238,
+   "tbr": 4.910714285714286,
+   "tbr54": 0.9796626984126984,
+   "tar": 22.395833333333336,
+   "mean_cgm": 143.0182084739773,
+   "insulin_per_day": 71.87284588993145,
+   "rescues": 2.9642857142857144
+  },
+  {
+   "subject": "adult#019",
+   "driver": "trend",
+   "yield": 1.0,
+   "covered": 37,
+   "rise_per_10g": 13.166738523220541,
+   "ttp": 80.0,
+   "tir": 86.99156746031747,
+   "tbr": 0.8804563492063492,
+   "tbr54": 0.0992063492063492,
+   "tar": 12.12797619047619,
+   "mean_cgm": 137.5068136227771,
+   "insulin_per_day": 52.138391856753664,
+   "rescues": 0.6785714285714286
+  },
+  {
+   "subject": "adult#019",
+   "driver": "trend",
+   "yield": 1.3,
+   "covered": 33,
+   "rise_per_10g": 16.158471912466123,
+   "ttp": 85.0,
+   "tir": 77.40575396825396,
+   "tbr": 1.711309523809524,
+   "tbr54": 0.1984126984126984,
+   "tar": 20.88293650793651,
+   "mean_cgm": 147.8612303420256,
+   "insulin_per_day": 56.17660647402722,
+   "rescues": 1.0714285714285714
+  },
+  {
+   "subject": "adult#019",
+   "driver": "trend",
+   "yield": 1.5,
+   "covered": 33,
+   "rise_per_10g": 19.143862062743253,
+   "ttp": 85.0,
+   "tir": 72.27182539682539,
+   "tbr": 2.095734126984127,
+   "tbr54": 0.23561507936507936,
+   "tar": 25.632440476190478,
+   "mean_cgm": 153.70378296900077,
+   "insulin_per_day": 57.70395104687194,
+   "rescues": 1.25
+  },
+  {
+   "subject": "adult#020",
+   "driver": "basal-bolus",
+   "yield": 1.0,
+   "covered": 18,
+   "rise_per_10g": 6.2770331525873875,
+   "ttp": 45.0,
+   "tir": 76.20287698412699,
+   "tbr": 5.183531746031746,
+   "tbr54": 1.7609126984126984,
+   "tar": 18.61359126984127,
+   "mean_cgm": 141.38494206906216,
+   "insulin_per_day": 53.741042038228656,
+   "rescues": 2.75
+  },
+  {
+   "subject": "adult#020",
+   "driver": "basal-bolus",
+   "yield": 1.5,
+   "covered": 17,
+   "rise_per_10g": 10.821941870843062,
+   "ttp": 55.0,
+   "tir": 62.425595238095234,
+   "tbr": 4.662698412698413,
+   "tbr54": 1.4632936507936507,
+   "tar": 32.91170634920635,
+   "mean_cgm": 165.3490768751616,
+   "insulin_per_day": 58.86788142111028,
+   "rescues": 2.4285714285714284
+  },
+  {
+   "subject": "adult#020",
+   "driver": "boost",
+   "yield": 1.0,
+   "covered": 20,
+   "rise_per_10g": 12.663884898967755,
+   "ttp": 82.5,
+   "tir": 85.76388888888889,
+   "tbr": 4.166666666666666,
+   "tbr54": 1.3392857142857142,
+   "tar": 10.069444444444445,
+   "mean_cgm": 132.19481046016404,
+   "insulin_per_day": 54.540518533795776,
+   "rescues": 2.0
+  },
+  {
+   "subject": "adult#020",
+   "driver": "boost",
+   "yield": 1.3,
+   "covered": 21,
+   "rise_per_10g": 12.276747195324985,
+   "ttp": 75.0,
+   "tir": 79.14186507936508,
+   "tbr": 4.216269841269842,
+   "tbr54": 1.4136904761904763,
+   "tar": 16.64186507936508,
+   "mean_cgm": 138.37187348952313,
+   "insulin_per_day": 57.823533699578356,
+   "rescues": 2.142857142857143
+  },
+  {
+   "subject": "adult#020",
+   "driver": "boost",
+   "yield": 1.5,
+   "covered": 25,
+   "rise_per_10g": 22.68981784475147,
+   "ttp": 90.0,
+   "tir": 71.63938492063492,
+   "tbr": 4.712301587301587,
+   "tbr54": 1.5749007936507935,
+   "tar": 23.64831349206349,
+   "mean_cgm": 150.51302561381414,
+   "insulin_per_day": 62.38889593662085,
+   "rescues": 2.25
+  },
+  {
+   "subject": "adult#020",
+   "driver": "trend",
+   "yield": 1.0,
+   "covered": 22,
+   "rise_per_10g": 13.29438610553374,
+   "ttp": 55.0,
+   "tir": 82.84970238095238,
+   "tbr": 4.489087301587301,
+   "tbr54": 1.1904761904761905,
+   "tar": 12.661210317460316,
+   "mean_cgm": 134.91732016627748,
+   "insulin_per_day": 55.90972764482529,
+   "rescues": 2.392857142857143
+  },
+  {
+   "subject": "adult#020",
+   "driver": "trend",
+   "yield": 1.5,
+   "covered": 17,
+   "rise_per_10g": 13.57431159814971,
+   "ttp": 60.0,
+   "tir": 74.0079365079365,
+   "tbr": 5.36954365079365,
+   "tbr54": 1.7361111111111112,
+   "tar": 20.622519841269842,
+   "mean_cgm": 144.70801284136354,
+   "insulin_per_day": 61.242838987902374,
+   "rescues": 2.5
+  }
+ ]
+}
