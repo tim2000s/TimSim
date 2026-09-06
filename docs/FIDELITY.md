@@ -471,21 +471,22 @@ below were computed by hand and pooled across pairings, and both of those turned
 
 | Statistic | DCLP3, Control-IQ | DCLP3, oref0 | Commons, oref0 | Pooled figure previously quoted |
 |---|---|---|---|---|
-| Time below 54 | 4.75 [3.34, 6.73] | 5.11 [3.77, 6.99] | 0.91 [0.63, 1.47] | 2.74 too wide |
-| Time below 70 | 1.92 [1.50, 2.47] | 2.30 [1.74, 3.02] | 0.84 [0.64, 1.12] | 1.38 too wide |
-| Variability | 1.39 [1.14, 1.69] | 1.32 [1.08, 1.60] | 0.98 [0.73, 1.27] | 1.67 too wide |
-| Time in range | 0.73 [0.59, 0.88] | 0.68 [0.56, 0.83] | 0.54 [0.37, 0.83] | 0.76 to 0.81 |
-| Time above 180 | 0.68 [0.55, 0.82] | 0.64 [0.51, 0.79] | 0.46 [0.32, 0.71] | 0.76 to 0.81 |
-| Mean glucose | 0.64 [0.51, 0.79] | 0.75 [0.59, 0.93] | 0.41 [0.29, 0.66] | 0.59 too narrow |
+| Time below 54 | 4.38 [3.26, 5.96] | 4.73 [3.61, 6.38] | 1.09 [0.77, 1.76] | 2.74 too wide |
+| Time below 70 | 1.93 [1.50, 2.50] | 2.14 [1.67, 2.79] | 0.93 [0.72, 1.23] | 1.38 too wide |
+| Variability | 1.17 [0.97, 1.43] | 1.22 [1.01, 1.47] | 1.01 [0.79, 1.29] | 1.67 too wide |
+| Time in range | 0.68 [0.57, 0.82] | 0.64 [0.51, 0.78] | 0.54 [0.39, 0.82] | 0.76 to 0.81 |
+| Time above 180 | 0.62 [0.51, 0.76] | 0.59 [0.48, 0.73] | 0.48 [0.34, 0.75] | 0.76 to 0.81 |
+| Mean glucose | 0.57 [0.46, 0.71] | 0.67 [0.54, 0.83] | 0.46 [0.32, 0.74] | 0.59 too narrow |
 
-Pooling hid the largest effect in the table. The hypoglycaemia spread is 4.75 to 5.11 times the
-trial's and 0.91 of the do-it-yourself population's, because the trial participants barely go
+Pooling hid the largest effect in the table. The hypoglycaemia spread is 4.38 to 4.73 times the
+trial's and 1.09 of the do-it-yourself population's, because the trial participants barely go
 below 54 mg/dL and their between-participant standard deviation there is 0.20 percentage points
 against 0.96 in the Commons. A single number for "the" hypoglycaemia spread does not exist.
 
 Excluding the runs that stopped early, which the table above does, understates it further.
-Including them at the duration each survived gives 7.29 and 8.80 against the trial and 1.87
-against the Commons, because the runs that stop are the ones that went furthest low.
+Including them at the duration each survived gives 6.81 and 6.08 against the trial and 1.11
+against the Commons, because the runs that stop are the ones that went furthest low and the
+Commons' own spread is wide enough to absorb them.
 
 So the population is too alike in where its glucose sits and far too different in how much
 hypoglycaemia it has. A narrow spread of mean glucose makes a bench look more decisive than
@@ -551,7 +552,7 @@ against 5% expected by chance.
 The narrow spread is therefore inherited from thirty published people whose fasting glucose
 lies between 133.4 and 152.8 mg/dL, and from what the model does not represent at all. Widening
 the marginals to reach the trial's 14.2 mg/dL needs a factor near 2.2, which widens the
-hypoglycaemia spread in the same proportion, and that spread already runs at 4.75 to 5.11
+hypoglycaemia spread in the same proportion, and that spread already runs at 4.38 to 4.73
 times the trial's.
 [The spread paper](paper/spread_paper.md) puts this beside two populations built by other
 groups, which land at 0.50 to 0.63 and about 0.35 on the same quantity.
@@ -672,8 +673,8 @@ the subject's name. At a coefficient of variation of 0.30, across all 100 subjec
 The spread-ratio rows here and in the settings table below are on the pooled basis that the
 per-pairing table earlier in this document supersedes. Both columns were computed the same
 way, so the movement between them is what the mechanism did; the levels are not comparable
-with the per-pairing figures, which put the same hypoglycaemia spread at 4.75 to 5.11 against
-the trial and 0.91 against the Commons. Recomputing these two tables per pairing needs the
+with the per-pairing figures, which put the same hypoglycaemia spread at 4.38 to 4.73 against
+the trial and 1.09 against the Commons. Recomputing these two tables per pairing needs the
 with and without arms rerunning.
 
 It is the best lever found and the only one that has improved per-subject coverage. It also

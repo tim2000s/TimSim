@@ -14,7 +14,7 @@ which may or may not be the same defect:
     time below 54 mg/dL      +1.42 spreads under Control-IQ, +2.54 under oref0 SMB
     hypoglycaemia rebound    36 to 40 per cent against a real 23.2 to 28.4
     recovery to 100 mg/dL    65 to 70 minutes against a real 50 to 59
-    production at a clamp    37 of 111 subjects produce nothing where no human produces nothing
+    production at a clamp    79 of 232 subjects produce nothing where no human produces nothing
 
 The fourth is the one nothing has touched, and the reason is structural rather than a matter of
 tuning.
@@ -31,8 +31,9 @@ multiplies something:
     glucagon secretion     adds through the same kp3 pathway    refuted, supplies 14.6 per cent
 
 Multiplying a quantity that has already reached zero returns zero. The sweep shows it plainly:
-raising `HYPO_EGP_DEFENCE` fivefold, from 0.05 to 0.25, removes nine of thirty-seven subjects
-from the floor and carries the median from 0.62 to 1.06 mg/kg/min, well outside the human band.
+raising `HYPO_EGP_DEFENCE` fivefold, from 0.05 to 0.25, removes twenty of seventy-nine subjects
+from the floor and carries the median from 0.57 to 1.03 mg/kg/min, outside the human band
+(`hypo_defence_gain.json`, 300 adults, 6 September 2026).
 It moves the centre of a distribution to reach its tail.
 
 ## E. A production floor

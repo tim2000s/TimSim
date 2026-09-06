@@ -24,8 +24,8 @@ They cost 5.4 to 12.3 points of time in range from a bare 93.1 to 95.6, against 
 4.84 points (3.58 to 7.22) and oref0 SMB 0.08 to 0.84, every interval spanning zero, against
 CLOSE-IT's 2.2.
 
-Conclusions. S2008 moves a long way towards a real closed-loop cohort without touching its
-equations. Hypoglycaemia moves the wrong way in every pairing and is the measure this bench
+Conclusions. S2008 moves a long way towards a real closed-loop cohort with its published
+parameters unaltered. Hypoglycaemia moves the wrong way in every pairing and is the measure this bench
 places worst. A distinguishability verdict depends on cohort size.
 
 Keywords. simulation, automated insulin delivery, closed-loop, validation, type 1 diabetes,
@@ -105,31 +105,41 @@ The infusion site fails at a subject-specific rate calibrated against the durati
 of prolonged hyperglycaemic excursions in the trial, passing a residual fraction of delivered
 insulin. Detection requires the reading to remain above 230 mg/dL for 90 waking minutes.
 
-### Counterregulation, and why nothing was added
+### Counterregulation
 
-S2008 contains no counterregulatory response, and none is added here. Establishing what the model
-does during hypoglycaemia requires reproducing the protocol the human
-reference figures come from, because glucose production here is a linear function of glucose and
-of insulin in a remote compartment, and a figure for it is uninterpretable without the insulin it
-was measured at.
+S2008 contains no counterregulatory response. What is added here is a single term: a hepatic
+defence that relaxes the insulin suppression of endogenous glucose production as glucose falls,
+through a logistic centred at 58 mg/dL, with one gain. Establishing where that gain should sit
+requires reproducing the protocol the human reference figures come from, because glucose
+production in the model is a linear function of glucose and of insulin in a remote compartment,
+and a figure for it is uninterpretable without the insulin it was measured at.
 
-A stepped hyperinsulinaemic clamp was reproduced in silico across 20 adults, with insulin infused
-at 1.0 mU/kg/min and glucose held at successive plateaus of 90, 80, 65, 55 and 45 mg/dL by a
-variable glucose infusion. With no defence term the model produces 0.49 mg/kg/min at the 55 mg/dL
-plateau and 0.46 at 45, both inside the 0.42 to 0.84 measured by Rickels et al. in twelve people
-with long-standing type 1 diabetes and no discernible glucagon response.
+A stepped hyperinsulinaemic clamp was reproduced in silico, with insulin infused at 1.0 mU/kg/min
+and glucose held at successive plateaus of 90, 80, 65, 55 and 45 mg/dL by a variable glucose
+infusion. With the gain at zero, 20 adults produce a median 0.49 mg/kg/min at the 55 mg/dL plateau
+and 0.46 at 45, both inside the 0.42 to 0.84 measured by Rickels et al. in twelve people with
+long-standing type 1 diabetes and no discernible glucagon response. Across all 300 generated
+adults the undefended medians are 0.46 and 0.27, the second below the interval, on the 230 and 220
+subjects the clamp brought within 3 mg/dL of each plateau. The gain was fitted on that panel as
+the value whose median sits closest to the human mean of 0.59 while staying inside the interval
+at both plateaus, which is 0.05: it gives 0.57 mg/kg/min at 55 mg/dL and 0.44 at 45 (0.58 and
+0.62 on the 20-adult panel). What the defence supplies is therefore small, and every run reported
+in this paper carries it at 0.05.
 
-The model is therefore inside the human range at this without a defence term, and the gain ships
-at zero. A figure of 0.14 mg/kg/min circulates for the same quantity and is not comparable to it:
-it reads production during a spontaneous low under a closed loop and sets it against a clamp
-measurement, which are opposite conditions. One happens because the algorithm withdrew insulin,
-the other while insulin is deliberately held high, and remote insulin is 219 in the first against
-441 in the second.
+A figure of 0.14 mg/kg/min circulates for the same quantity and is not comparable to it: it reads
+production during a spontaneous low under a closed loop and sets it against a clamp measurement,
+which are opposite conditions. One happens because the algorithm withdrew insulin, the other while
+insulin is deliberately held high, and remote insulin is 219 in the first against 441 in the
+second.
 
-What the clamp does show is a spread the median hides. Six of 20 subjects produce nothing at all
-at the 55 mg/dL plateau and nine of 20 at 45, where no real person produces nothing, and raising
-the gain far enough to lift them drives the subjects already producing over 2 mg/kg/min further
-out. That width belongs to the published `kp1`, `kp2` and `kp3` values and no gain removes it.
+What the clamp does show is a spread the gain does not move. Six of 20 subjects produce nothing at
+all at the 55 mg/dL plateau at either gain, and nine of 20 at 45 with the gain at zero against
+seven at 0.05, where no real person produces nothing; on the full panel 79 of 232 produce nothing
+at 55 mg/dL at 0.05. Raising the gain to 0.25 lifts twenty of those and carries the median to
+1.03 mg/kg/min, above the human interval, while driving the subjects already producing over 2
+mg/kg/min further out. The gain shifts the whole distribution and cannot narrow it: the tenth to
+ninetieth percentile spans 0.00 to 1.85 at 0.05 against a human 0.42 to 0.84. That width belongs
+to the published `kp1`, `kp2` and `kp3` values and no gain removes it.
 
 ### The algorithms
 
@@ -390,6 +400,23 @@ the peak 177 to 248 minutes. Logged grams under-state intake, so the real rise p
 lower still, which widens the gap rather than narrowing it. The simulated peak sits inside the
 real range on every definition.
 
+Covered meals were compared on the announced record of 470 adult Loop participants
+(`docs/measurements/insulin_by_peak.json`). At a 240 minute window the real adult rises 15.1 mg/dL
+per 10 entered grams (10.1 to 22.3 across people) and peaks at 85 minutes; the simulated adult
+under oref0 SMB rises 11.5 (8.5 to 14.5) and peaks at 91, having received 1.96 U per 10 g by the
+peak against the real 1.77, as a smaller bolus and a larger addition after the entry. Whether that
+dose accounts for the shortfall was tested by driving the simulated person with the real insulin
+profile in place of the controller. The rise then differs from the one under a simulated profile
+by -0.07 mg/dL per 10 g [-0.75, 0.50], and across a real profile, a simulated one and the
+correction loop alone it spans 9.9 to 10.6. Lowering the carbohydrate estimate to 0.84 of grams
+eaten moved the rise to 12.8 against a threshold of 13.9 and took one signature outside the real
+range, so the estimate stays at 1.0. The covered rise is therefore recorded as a bound of the
+published glucose appearance and disposal parameters, about a third under a real adult's per
+gram. What the bound does to a ranking was measured by scaling the model's meal yield until the
+oref0 SMB rise read 15.1: the order of the three closed-loop drivers and the differences between
+them stayed within 2 points of time in range, and the open-loop arm's shortfall on time in range
+to each loop widened by 4.4 to 7.3 points.
+
 ### Withdrawing meal announcement
 
 Each controller met three conditions differing only in what the person said about their meals,
@@ -425,6 +452,34 @@ ended low and 10 ended high. Completion is worse on the layered bench in every c
 of 86 against 85 or 86 of 86 bare for the DCLP3 cohort, so every median above is conditioned on a
 survival criterion the two benches do not share.
 
+### Recovery from an untreated low, and a larger defence
+
+The layered person treats every low it notices, so how a low ends when nothing is eaten is hidden
+in every table above. It was measured on 40 titrated adults over 28 days with the probability of
+treating set to zero, against the untreated stratum of the Commons record (43 users, 28,731
+crossings below 70 mg/dL with no carbohydrate entry). The real per-person median recovery to 100
+mg/dL is 65 minutes (tenth to ninetieth percentile 41 to 119). The simulated adult takes 105 (72 to
+133) under the built-in loop and 114 (85 to 138) under oref0 SMB. Swapping the controller moves
+the recovery by 9 minutes paired, so the remaining 40 to 50 minutes belongs to the person. The
+share of untreated lows followed by a reading above 180 mg/dL within two hours is inside the real
+range in every arm, at 22 to 27 per cent against 26 (10 to 49). Eight of the 40 subjects under
+oref0 SMB left the model's range from below within the 28 days, against none under the built-in
+loop and one under oref0 SMB when the person treats.
+
+Whether a larger defence changes any of that was measured at 0.25, the first gain at which the
+clamp median clears the human interval. On the untreated arm it moves the oref0 SMB recovery from
+114 to 108 minutes and the fall-throughs from 8 of 40 to none. On the outcome table it was
+registered beforehand against the criterion that time below 54 mg/dL must move by more than the
+variation between disjoint groups of the same population, 0.41, 0.34 and 0.56 points in the three
+pairings. Against the shipped 0.05 on 242 paired subjects it moves that time by -0.14 [-0.24,
+-0.05] under Control-IQ on the DCLP3 cohort, -0.30 [-0.42, -0.18] under oref0 SMB on DCLP3 and
+-0.31 [-0.43, -0.19] under oref0 SMB on the Commons cohort, inside the group variation in each.
+Rebound and recovery after a treated low are unchanged and time in range moves by under 0.6
+points. What it changes is who finishes: runs ending below 40 mg/dL fall from 18 to 4 and runs
+ending above 500 rise from 3 to 5, so 233 of 242 complete against 221. The gain stays at 0.05.
+Adopting 0.25 for completion alone would be a modelling choice rather than a finding, and the
+clamp already prices it.
+
 ## Discussion
 
 A model whose limitations are well documented can be brought closer to real cohorts from outside
@@ -447,12 +502,18 @@ between disjoint groups against a trial split-half of 0.32, so it is the worst-m
 here as much as the worst-fitting one. Separating those would need larger cohorts than a
 600-subject population supports.
 
-A hepatic defence term is not warranted on this evidence. Reproduced properly, the clamp puts the
-model inside the human range with no such term, so the case for adding one rests on a comparison
-between a spontaneous low and a clamp measurement that does not hold. What the clamp does show is
-a spread no gain repairs: a third of subjects produce nothing at the 55 mg/dL plateau, where no
-real person produces nothing, and lifting them drives the subjects already above 2 mg/kg/min
-further out.
+The hepatic defence is fitted on a clamp and does not reach the outcomes. Reproduced properly,
+the clamp puts the undefended model inside the human range at 55 mg/dL and just below it at 45, so
+the gain that ships is small, and the case for a larger one rested on a comparison between a
+spontaneous low and a clamp measurement that does not hold. Raising it to the first value the
+clamp rejects moves time below 54 mg/dL by less than the variation between groups of the same
+population, and what it changes is the count of runs that end below 40 mg/dL. That count is real:
+a fifth of the adults who do not eat for a low under oref0 SMB never turn, and those that do turn
+recover 40 to 50 minutes slower than a real user on the same algorithms. What the clamp shows
+beneath both is a spread no gain repairs. A third of subjects produce nothing at the 55 mg/dL
+plateau, where no real person produces nothing, and lifting them drives the subjects already above
+2 mg/kg/min further out. The slow recovery and the fall-throughs sit in the published production
+parameters, which this package does not refit.
 
 The distinguishability result should be read with care, because it is the part of this work most
 sensitive to a choice that is not about the simulator. At cohorts of fifteen the layered arm is
@@ -506,6 +567,16 @@ settings roughly twice as strong as the trial participants ran. Twenty-four subj
 floors at no combination and are excluded, which selects towards subjects that can be made safe
 and removes a third of the children.
 
+The stronger settings do not show as more insulin per kilogram. On the screening day 300 generated
+adults take 0.67 U/kg/day (tenth to ninetieth percentile 0.43 to 1.03) against 0.53 (0.36 to 0.84)
+for 68 DCLP3 adults at randomisation, inside the real spread and about a quarter above its median,
+with the basal at closure 0.37 U/kg/day against 0.26. The ten published UVA/Padova adults have a
+basal of 0.34 U/kg/day at closure, so the excess is inherited from the subjects the population is
+built to reproduce rather than made by the titration, and a screening target on it would move the
+population away from them. Under oref0 SMB the basal fraction reads 0.29 against a real 0.51,
+outside the real range; the same subjects read 0.44 under the built-in loop, so that one is the
+controller's accounting of super micro boluses as bolus.
+
 The distinguishability test compares a real median against a simulated interval and is not a
 formal test of equality. It answers whether a difference is establishable at the cohort size used,
 which is a weaker question than whether the two populations agree.
@@ -530,7 +601,11 @@ taken against a byte-identical store and are the same experiment.
 | Group effect | `examples/cohort_replicates.py` | `cohort_replicates*.json` |
 | Split-half baseline | `examples/cohort_variation.py` | `cohort_variation.json` |
 | Meal behaviour | `examples/meal_response.py`, `examples/real_meals.py` | `meal_response.json`, `real_meals_dia.json` |
-| Clamp | `examples/hypoglycaemic_clamp.py` | `clamp.json` |
+| Clamp | `examples/hypoglycaemic_clamp.py`, `examples/calibrate_hypo_defence.py` | `clamp.json`, `hypo_defence_gain.json` |
+| Covered meals | `examples/insulin_by_peak.py`, `examples/insulin_profile_rise.py`, `examples/carb_bias.py`, `examples/meal_yield_ranking.py` | `insulin_by_peak.json`, `insulin_profile_rise.json`, `carb_bias.json`, `meal_yield_ranking.json` |
+| Untreated low recovery | `examples/low_recovery.py` | `low_recovery.json`, `low_recovery_defence.json` |
+| Defence on the outcome table | `examples/hypoglycaemia_arms.py --arms shipped defence` | `egp_defence_outcome*.json` |
+| Insulin per kilogram | `examples/insulin_requirement.py` | `insulin_requirement.json` |
 | Cohorts | `examples/build_cohorts.py` | `cohorts.json` |
 | Commons reference | `examples/commons_cohort.py`, `examples/commons_requirement.py` | `commons_cohort.json`, `commons_requirement.json` |
 | Titration | `examples/titrate_cohort.py`, `examples/titration_reference.py` | `titrated_settings.json`, `titration_reference.json` |

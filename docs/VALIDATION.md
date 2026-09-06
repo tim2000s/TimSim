@@ -355,9 +355,27 @@ with a bootstrap interval from 22.0 to 30.7. That spread is the quantity a dosin
 bets on, so the caveat stands until the figure survives the full population and a second
 seed.
 
-Hypoglycaemia rebound is the other reason. At 66.1% against a real 23 to 28, the simulated
-person over-treats lows roughly twice as often as these cohorts appear to, so an algorithm
-judged on how it handles the resulting highs is being judged on a harsher world.
+Hypoglycaemia rebound was the other reason and has narrowed. The share of lows followed by a
+reading above 180 mg/dL within two hours was 66.1 per cent on 7 August 2026 against a Commons
+23 to 28 and a DCLP3 41 to 46; on the current outcome table it reads 31 to 36 per cent across
+the three pairings (`docs/measurements/egp_defence_outcome.json`, shipped arm, 242 subjects),
+and per person on treated lows 34 per cent (17 to 65 across 40 adults) against the Commons
+users' 26 (10 to 49), inside the real spread (`examples/low_recovery.py`).
+
+What has taken its place is the recovery from a low nobody eats for, measured on 5 September
+2026 with the person's treatment switched off. The Commons users recover to 100 mg/dL in 65
+minutes at the per-person median (41 to 119 across 43 users); the generated adults take 105
+under the built-in loop and 114 under oref0 SMB, and swapping the controller moves that by 9
+minutes paired, so about 40 minutes of it is the person's. Eight of 40 adults under oref0 SMB
+leave the range from below inside 28 days when nothing is eaten, against one when the person
+treats. Raising the hepatic defence gain from the shipped 0.05 to 0.25 stops those
+fall-throughs and moves the recovery by 6 minutes, and on the outcome table moves time below
+54 mg/dL by 0.14 to 0.31 points against a between-group variation of 0.34 to 0.56
+(`examples/hypoglycaemia_arms.py --arms shipped defence`), so it changes who completes a run
+rather than how much time completers spend low. The gain stays at 0.05, where the clamp put it.
+The shipped person hides the slow recovery by treating every low it notices, and an algorithm
+judged here on lows it lets happen is judged on a person who turns them more slowly than a real
+one and, under a fast-acting controller, sometimes not at all.
 
 The meal rise is a third, and it is a bound rather than an open question. Per 10 entered grams
 on covered meals at a 240 minute window, the simulated adult rises 9.9 to 11.5 mg/dL depending

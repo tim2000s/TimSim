@@ -712,7 +712,7 @@ mmol/L, mean insulin 120.1 + 11808/360 = 152.9 pmol/L, over a six hour window. T
 disposal averages 8392.1/360 = 23.3 micromol/kg of fat-free mass per minute, which on 53.6 against
 74.7 kg is 3.01 mg/kg of body weight per minute.
 
-Forty adults, held 300 minutes, read over the last 60:
+Twenty adults, held 300 minutes, read over the last 60 (`postprandial_clamp.json` holds 20 subjects; the script asks for 40 and was run with 20):
 
 | Cell | Held | Model | Reference | Ratio |
 |---|---|---|---|---|
@@ -748,12 +748,14 @@ hold basal uptake, which they do exactly, at 2.74 in every cell of the sweep.
 |---|---|---|
 | 1.00 | 3.85 | 40 per cent |
 | 0.70 | 3.74 | 37 |
-| 0.50 | 3.65 | 33 |
-| 0.35 | 3.55 | 30 |
+| 0.50 | 3.64 | 33 |
+| 0.35 | 3.54 | 29 |
 | target | 3.01 | 25 |
 
-At 0.35 the parameter stands at 82 against a published 186 to 279 and has closed a third of the
-gap. The reason is that the rise has two parts and `Km0` flattens only the glucose one; the other
+Forty adults, held 300 minutes, read over the last 60, in
+[postprandial_clamp_km.json](measurements/postprandial_clamp_km.json), run on 6 September 2026;
+the unscaled cell reproduces the twenty-subject medians above to two decimals. At 0.35 the
+parameter stands at 82 against a published 186 to 279 and has closed a third of the gap. The reason is that the rise has two parts and `Km0` flattens only the glucose one; the other
 is `Vmx*X`, which already matches on its own axis.
 
 ### The excess is smaller once production is counted with it
@@ -784,7 +786,7 @@ simulated unbolused meal rise is 14.1 mg/dL per 10 g against a real 23.6.
 ### Neither knob corrects it
 
 `Km0` sets how much uptake rises with glucose. Scaled with `Vm0` and `Vmx` compensated, basal
-disposal holds at 2.74 exactly and the rise falls from 40 per cent to 30 at a scale of 0.35, where
+disposal holds at 2.74 exactly and the rise falls from 40 per cent to 29 at a scale of 0.35, where
 the parameter stands at 82 against a published 186 to 279.
 
 `set_disposal_interaction` weakens the glucose dependence of the insulin-dependent term alone,

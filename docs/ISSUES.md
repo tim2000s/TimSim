@@ -1306,3 +1306,32 @@ pooled figure in its comparison column.
 
 The pattern is issue 44 again, two sides measured on different populations, one level up: the
 protocol and the definition were matched on 2 September and the people were not.
+
+## 53. Three documents quoted a spread and a calibration that no file on disk produced
+
+Found 6 September 2026 while bringing the studies up to the measurements, on checking each
+quoted figure against the file named beside it.
+
+The spread paper, `FIDELITY.md` and the new technical shortcomings article carried the
+between-subject spread ratios of the 20 August run (mean glucose 0.64, 0.75 and 0.41 of the three
+references; time below 54 mg/dL 4.75, 5.11 and 0.91), with the settings digest and commit of that
+run in the spread paper's provenance table. `spread_ratio.json` had been regenerated on 24 August
+by the full rebuild, on the settings every other figure now stands on, and reads 0.57, 0.67 and
+0.46 on mean glucose and 4.38, 4.73 and 1.09 on time below 54. The direction of every finding is
+unchanged and every new value sits inside the old interval. The as-observed hypoglycaemia ratios
+moved further, from 7.29, 8.80 and 1.87 to 6.81, 6.08 and 1.11, so the sentence saying that
+including the terminated runs widens the Commons ratio considerably was wrong on the current
+population and has been rewritten.
+
+The validation paper, `DESIGN_HYPOGLYCAEMIA.md` and the article also quoted the hepatic defence
+calibration on "150 adults" (undefended median 0.48 mg/kg/min at 55 mg/dL, 41 of 110 at zero,
+1.06 at a gain of 0.25). That `hypo_defence_gain.json` had been moved to `archive_pre_review/` on
+17 August, carried no provenance stamp, and predated the population rebuild. The calibration was
+rerun on all 300 adults with the pre-registered expectation of an undefended median near 0.5,
+about a third at zero and a recommended gain of 0.05. It reads 0.46 with 86 of 230 at zero, and
+recommends 0.05; the documents now quote it (0.57 at 0.05, 1.03 at 0.25, 79 of 232 at zero).
+
+Neither correction changed a verdict. The defect is the one this log records most often: a
+number that could not be traced to the file said to hold it, here because the file had been
+replaced by a rebuild in one case and archived in the other, and the prose was not reread against
+either.

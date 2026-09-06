@@ -29,10 +29,10 @@ subjects it is estimated from, the analytic shrinkage intensity minimising expec
 error towards a diagonal target was computed per class, and the proportion of the sample
 correlation matrix exceeding a significance threshold at n = 10 was counted.
 
-**Results.** The population carries 0.64 [0.51, 0.79] and 0.75 [0.59, 0.93] of the trial's
-between-participant standard deviation in mean glucose under two algorithms, and 0.41 [0.29,
-0.66] of the do-it-yourself population's. On time below 54 mg/dL it carries 4.75 to 5.11 times
-the trial's and 0.91 [0.63, 1.47] of the Commons', because the trial's participants barely go
+**Results.** The population carries 0.57 [0.46, 0.71] and 0.67 [0.54, 0.83] of the trial's
+between-participant standard deviation in mean glucose under two algorithms, and 0.46 [0.32,
+0.74] of the do-it-yourself population's. On time below 54 mg/dL it carries 4.38 to 4.73 times
+the trial's and 1.09 [0.77, 1.76] of the Commons', because the trial's participants barely go
 below 54 mg/dL and their standard deviation there is 0.20 percentage points against 0.96. In an
 independently built population matched subject for subject to twenty real patients and run under
 the same algorithm, between-subject standard deviations of time in range were 0.63 and 0.50 of
@@ -96,17 +96,17 @@ both sides:
 
 | Statistic | DCLP3, Control-IQ | DCLP3, oref0 | Commons, oref0 |
 |---|---|---|---|
-| Mean glucose | 0.64 [0.51, 0.79] | 0.75 [0.59, 0.93] | 0.41 [0.29, 0.66] |
-| Time in range | 0.73 [0.59, 0.88] | 0.68 [0.56, 0.83] | 0.54 [0.37, 0.83] |
-| Time above 180 | 0.68 [0.55, 0.82] | 0.64 [0.51, 0.79] | 0.46 [0.32, 0.71] |
-| Variability | 1.39 [1.14, 1.69] | 1.32 [1.08, 1.60] | 0.98 [0.73, 1.27] |
-| Time below 70 | 1.92 [1.50, 2.47] | 2.30 [1.74, 3.02] | 0.84 [0.64, 1.12] |
-| Time below 54 | 4.75 [3.34, 6.73] | 5.11 [3.77, 6.99] | 0.91 [0.63, 1.47] |
+| Mean glucose | 0.57 [0.46, 0.71] | 0.67 [0.54, 0.83] | 0.46 [0.32, 0.74] |
+| Time in range | 0.68 [0.57, 0.82] | 0.64 [0.51, 0.78] | 0.54 [0.39, 0.82] |
+| Time above 180 | 0.62 [0.51, 0.76] | 0.59 [0.48, 0.73] | 0.48 [0.34, 0.75] |
+| Variability | 1.17 [0.97, 1.43] | 1.22 [1.01, 1.47] | 1.01 [0.79, 1.29] |
+| Time below 70 | 1.93 [1.50, 2.50] | 2.14 [1.67, 2.79] | 0.93 [0.72, 1.23] |
+| Time below 54 | 4.38 [3.26, 5.96] | 4.73 [3.61, 6.38] | 1.09 [0.77, 1.76] |
 
-The population is too narrow on where glucose sits, at 0.41 to 0.75 of the real spread in mean
-glucose, and too wide on hypoglycaemia. A single pooled figure was quoted for this previously,
+The population is too narrow on where glucose sits, at 0.46 to 0.67 of the real spread in mean
+glucose, and too wide on hypoglycaemia against one of the two references. A single pooled figure was quoted for this previously,
 2.74 times too wide on time below 54 mg/dL, and it conceals the more informative result. The
-excess is 4.75 to 5.11 against the trial and 0.91 against the do-it-yourself users, because the
+excess is 4.38 to 4.73 against the trial and 1.09 against the do-it-yourself users, because the
 trial participants barely go below 54 mg/dL at all: their between-participant standard deviation
 is 0.20 percentage points against 0.96 in the Commons. So the hypoglycaemia spread is not
 uniformly wrong. It is close to right against one real population and several times too wide
@@ -116,8 +116,9 @@ Two things the ratio does not separate. Run-to-run variation sits inside the sim
 deviation, since each subject contributes one month and a different month would move it, so the
 simulated side is inflated by an amount only seed replication can size. And subjects whose runs
 stopped early are excluded above. Including them at the duration each survived widens the
-hypoglycaemia ratios considerably, to 7.29 and 8.80 against the trial and 1.87 against the
-Commons, because the runs that stop are the ones that went furthest low.
+hypoglycaemia ratios against the trial, to 6.81 and 6.08, and leaves the Commons ratio at
+1.11, because the runs that stop are the ones that went furthest low and the Commons' own
+spread is wide enough to absorb them.
 
 A second measurement points at where the deficit sits. Correlating each subject's outcome
 against its own parameters explains little: across body weight, basal glucose, insulin
@@ -139,7 +140,7 @@ daily insulin and body weight, then ran both under the identical algorithm with 
 
 That is a different model, a different construction method and subject-level matching to a real
 cohort, landing between 0.50 and 0.63 on time in range where this package lands at 0.54
-to 0.73 on the same measure.
+to 0.68 on the same measure.
 
 Ahmad and colleagues supply the other end of the same picture [2]. They extracted meals, insulin
 and detected exercise from the records of fourteen patients at the Hospital Clínic of Barcelona
@@ -268,10 +269,10 @@ would have to answer, and it should be asked with the mechanism switched off as 
 
 ## 6. Conclusions
 
-A virtual population built by resampling thirty published subjects carries 0.41 to 0.75 of the
-real between-subject variation in mean glucose, and 0.54 to 0.73 of it in time in range. On
-hypoglycaemia it runs the other way and by a margin that depends on the reference: 4.75 to 5.11
-times the trial's variation in time below 54 mg/dL, and 0.91 of the do-it-yourself population's.
+A virtual population built by resampling thirty published subjects carries 0.46 to 0.67 of the
+real between-subject variation in mean glucose, and 0.54 to 0.68 of it in time in range. On
+hypoglycaemia it runs the other way and by a margin that depends on the reference: 4.38 to 4.73
+times the trial's variation in time below 54 mg/dL, and 1.09 of the do-it-yourself population's.
 Two populations built independently by other groups show the same under-dispersion on the
 measures describing where glucose sits, at 0.50 to 0.63 and about 0.35.
 
@@ -290,14 +291,13 @@ experiment:
 | Field | Value |
 |---|---|
 | Population fingerprint | 704cfac086df54ba |
-| Titrated settings digest | 5b66a9f91b08d0af |
-| Commit | c169447d481b42d69f271611c5ffa63f4508eb9b |
+| Titrated settings digest | 046e0da5bc380688 |
+| Commit | 86bb7bd4cfe245e45d118c5d96457efd0e4127f5 |
 | Patient model | simglucose 0.2.11 |
-| Measured | 20 August 2026 |
+| Measured | 24 August 2026 |
 
-The stamp also records the working tree as carrying uncommitted changes when the files were
-written, so these figures are reproducible from the population and the settings named here
-rather than from the commit alone.
+The stamp records a clean working tree, so the figures are reproducible from the commit, the
+population and the settings named here.
 
 Section 2 is supplied by `docs/measurements/spread_ratio.json` from `examples/spread_ratio.py`,
 and section 4 by `docs/measurements/covariance_estimator.json` from

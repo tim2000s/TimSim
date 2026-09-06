@@ -1,0 +1,30 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+panel: skipped 1 subject(s) with no titrated settings (adult#026), taking 40 of the first 41
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+40 subjects, held 300 min, read over the last 60
+
+                cell  held mg/dL        disposal p10/50/90   Hinshaw   ratio  production   renal
+          basal b1.0         151        2.32 / 2.74 / 3.43      2.40    1.14        2.33    0.00
+   postprandial b1.0         235        3.10 / 3.85 / 5.02      3.01    1.28        1.64    0.05
+          basal b1.0         151        2.32 / 2.74 / 3.42      2.40    1.14        2.33    0.00
+   postprandial b1.0         235        3.03 / 3.74 / 4.85      3.01    1.24        1.64    0.05
+          basal b1.0         151        2.31 / 2.74 / 3.41      2.40    1.14        2.33    0.00
+   postprandial b1.0         235        2.94 / 3.64 / 4.71      3.01    1.21        1.64    0.05
+          basal b1.0         151        2.30 / 2.74 / 3.38      2.40    1.14        2.33    0.00
+   postprandial b1.0         235        2.86 / 3.54 / 4.58      3.01    1.18        1.64    0.05
+
+  km scale   rise basal to postprandial, %    target
+km1.0 b1.0                              40        25
+km0.7 b1.0                              37        25
+km0.5 b1.0                              33        25
+km0.35 b1.0                              29        25
+
+wrote docs/measurements/postprandial_clamp_km.json
