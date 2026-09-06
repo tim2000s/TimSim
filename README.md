@@ -297,6 +297,8 @@ Statistics come with a bootstrap interval and a verdict against the real range. 
 estimate on its own is not a finding. Where output from this package is used to argue for
 a change in treatment, the counterfactual caveat above needs stating alongside it: the
 simulator ranks options, and a within-person trial decides.
+[docs/READING_A_RESULT.md](docs/READING_A_RESULT.md) states which comparisons the bench
+supports, at what resolution, and which it does not, with the size of each measured residual.
 
 ## Licence
 

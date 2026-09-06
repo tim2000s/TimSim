@@ -1,0 +1,83 @@
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+panel: skipped 1 subject(s) with no titrated settings (adult#026), taking 40 of the first 41
+40 subjects, arms [('trend', 101), ('control-iq', 101), ('boost', 101), ('oref', 101), ('trend', 1101)], 28 days, 200 runs on 7 workers
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/timstreet/.venvs/boost-insilico/lib/python3.14/site-packages/gym/envs/registration.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+200 runs in 51.3 min
+reproduction against docs/measurements/meal_yield_ranking.json (beaffe1): 58 shared completed runs, largest TIR discrepancy 0.0
+
+           arm   n    TIR  TBR70  TBR54  TAR180  TAR250  mean    CV  LBGI  U/day  resc g/d
+         trend  40   77.3   1.30   0.24    20.7    2.88   149  30.3  0.46   55.9      17.8
+    control-iq  39   81.4   2.49   0.63    15.5    2.01   140  30.3  0.68   59.6      28.5
+    adult#033 hypoglycaemic on day 13.85
+         boost  40   79.5   1.35   0.21    19.5    3.30   148  30.7  0.44   55.1      16.3
+          oref  38   86.1   3.92   0.99     9.8    1.14   130  31.5  1.10   65.9      39.5
+    adult#014 hyperglycaemic on day 23.72
+    adult#020 hypoglycaemic on day 14.93
+      trend@aa  40   77.4   1.63   0.32    21.1    3.68   148  32.1  0.51   55.4      22.8
+
+A/A floor, trend on 40 subjects across two months:
+               tir: median +0.86 [-2.4863591269841194, 1.9035218253968367], paired SD 6.28, resolves 2.78
+             tbr70: median +0.02 [-0.3596230158730157, 0.1798115079365079], paired SD 1.32, resolves 0.59
+             tbr54: median +0.04 [-0.1240079365079365, 0.13020833333333334], paired SD 0.57, resolves 0.25
+            tar180: median -0.20 [-2.064732142857144, 3.2428075396825378], paired SD 6.59, resolves 2.92
+              lbgi: median -0.02 [-0.10242423767936644, 0.0701667950304794], paired SD 0.31, resolves 0.14
+   insulin_per_day: median +0.42 [-1.9778837759838162, 1.38795951841373], paired SD 5.21, resolves 2.31
+
+                    pair   n             key    diff       95 per cent  floor
+      control-iq - trend  39             tir    2.17      [1.30, 4.22]   2.78
+      control-iq - trend  39           tbr70    1.07      [0.86, 1.69]   0.59  resolved
+      control-iq - trend  39           tbr54    0.36      [0.24, 0.64]   0.25  resolved
+      control-iq - trend  39          tar180   -3.70    [-5.59, -2.50]   2.92  resolved
+      control-iq - trend  39            lbgi    0.27      [0.21, 0.36]   0.14  resolved
+      control-iq - trend  39 insulin_per_day    4.42      [3.60, 6.34]   2.31  resolved
+           boost - trend  40             tir    1.23      [0.61, 2.03]   2.78
+           boost - trend  40           tbr70   -0.21     [-0.35, 0.06]   0.59
+           boost - trend  40           tbr54    0.01     [-0.06, 0.04]   0.25
+           boost - trend  40          tar180   -1.07    [-1.82, -0.38]   2.92
+           boost - trend  40            lbgi   -0.06     [-0.09, 0.01]   0.14
+           boost - trend  40 insulin_per_day    0.21     [-1.01, 1.09]   2.31
+            oref - trend  38             tir    5.78      [4.38, 8.00]   2.78  resolved
+            oref - trend  38           tbr70    2.54      [1.74, 3.14]   0.59  resolved
+            oref - trend  38           tbr54    0.74      [0.51, 0.93]   0.25  resolved
+            oref - trend  38          tar180   -8.56   [-10.24, -7.28]   2.92  resolved
+            oref - trend  38            lbgi    0.70      [0.44, 0.83]   0.14  resolved
+            oref - trend  38 insulin_per_day   10.42     [8.45, 13.92]   2.31  resolved
+      boost - control-iq  39             tir   -1.18    [-3.37, -0.21]   2.78
+      boost - control-iq  39           tbr70   -1.08    [-1.51, -0.84]   0.59  resolved
+      boost - control-iq  39           tbr54   -0.30    [-0.58, -0.24]   0.25  resolved
+      boost - control-iq  39          tar180    2.72      [1.45, 4.41]   2.92
+      boost - control-iq  39            lbgi   -0.28    [-0.35, -0.26]   0.14  resolved
+      boost - control-iq  39 insulin_per_day   -4.81    [-6.28, -3.47]   2.31  resolved
+       oref - control-iq  37             tir    4.61      [0.93, 5.33]   2.78  resolved
+       oref - control-iq  37           tbr70    1.05      [0.35, 1.72]   0.59  resolved
+       oref - control-iq  37           tbr54    0.22     [-0.02, 0.51]   0.25
+       oref - control-iq  37          tar180   -4.49    [-5.34, -3.25]   2.92  resolved
+       oref - control-iq  37            lbgi    0.35      [0.14, 0.50]   0.14  resolved
+       oref - control-iq  37 insulin_per_day    5.22      [3.89, 7.40]   2.31  resolved
+            oref - boost  38             tir    4.58      [2.98, 7.22]   2.78  resolved
+            oref - boost  38           tbr70    2.58      [1.95, 3.05]   0.59  resolved
+            oref - boost  38           tbr54    0.76      [0.60, 1.00]   0.25  resolved
+            oref - boost  38          tar180   -6.44    [-9.49, -5.87]   2.92  resolved
+            oref - boost  38            lbgi    0.72      [0.57, 0.86]   0.14  resolved
+            oref - boost  38 insulin_per_day   11.16     [9.00, 12.57]   2.31  resolved
+order on tir, best first: oref > control-iq > boost > trend
+order on tbr70, best first: trend > boost > control-iq > oref
+order on tbr54, best first: boost > trend > control-iq > oref
+order on tar180, best first: oref > control-iq > boost > trend
+order on lbgi, best first: boost > trend > control-iq > oref
+order on insulin_per_day, best first: boost > trend > control-iq > oref
+wrote /Users/timstreet/StudioProjects/TimSim/docs/measurements/driver_ranking.json

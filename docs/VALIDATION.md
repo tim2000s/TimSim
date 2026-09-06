@@ -248,6 +248,15 @@ design is not evidence of anything, however tidy the plot looks. It is also the 
 for the larger population, since thirty subjects would resolve about 1.9 points where a
 hundred resolve about 1.1.
 
+The rows below twenty are projections from the twenty-subject spread, and the one measured
+directly disagrees with them. On 6 September 2026 the trend loop was run twice on the
+forty-adult panel over 28 days, on the bench month and on `seeds.AA`
+(`docs/measurements/driver_ranking.json`): the paired median is +0.86 points [-2.49, 1.90],
+the paired standard deviation 6.28 points, and the design resolves 2.78 points rather than
+the 1.7 the table would project. The spread is not two outliers, since the median absolute
+deviation gives 6.13. Adding subjects added noisier ones, as level 7 found for the low blood
+glucose index, so a floor is read at the size and duration it was measured at.
+
 Worth recording that these figures barely moved across the harness rework. The previous
 values, measured on the three-minute grid before twelve defects were fixed, were 2.34, 1.79
 and 1.04. They were approximately right, and they are now confirmed rather than assumed.
@@ -399,7 +408,8 @@ resolves; one that includes an open-loop arm does.
 What the seven levels do support: stress-testing an algorithm for pathological behaviour,
 ranking options where the difference exceeds the measured noise floor, and attributing an
 effect to a named mechanism by switching layers off. Deciding what a change does to a
-person still needs a trial.
+person still needs a trial. `docs/READING_A_RESULT.md` lays the supported and unsupported
+comparisons out side by side, each with the residual to carry beside it.
 
 ## If you are adding a mechanism
 

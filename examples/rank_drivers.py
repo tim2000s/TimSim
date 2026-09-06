@@ -60,6 +60,38 @@ smallest resolvable difference near 2 points at forty subjects.
 Completion. 148 to 156 of the 160 driver runs completing, on the four terminations in 80 at
 this yield on twenty subjects, with the hypoglycaemic terminations under oref0 SMB.
 
+Result, 6 September 2026 (`docs/measurements/driver_ranking.json`, 200 runs in 51 minutes). The
+fifty-eight completed runs shared with the yield ranking reproduced it to the decimal. Medians
+over completers, then the pairs on the subjects that completed both:
+
+    driver       n   TIR   TBR70  TBR54  TAR180  LBGI  U/day
+    trend       40  77.3   1.30   0.24   20.7   0.46   55.9
+    control-iq  39  81.4   2.49   0.63   15.5   0.68   59.6
+    boost       40  79.5   1.35   0.21   19.5   0.44   55.1
+    oref        38  86.1   3.92   0.99    9.8   1.10   65.9
+
+    pair                      n   TIR                 TBR70               LBGI
+    oref - trend             38   5.78 [4.38, 8.00]   2.54 [1.74, 3.14]   0.70 [0.44, 0.83]
+    oref - boost             38   4.58 [2.98, 7.22]   2.58 [1.95, 3.05]   0.72 [0.57, 0.86]
+    oref - control-iq        37   4.61 [0.93, 5.33]   1.05 [0.35, 1.72]   0.35 [0.14, 0.50]
+    control-iq - trend       39   2.17 [1.30, 4.22]   1.07 [0.86, 1.69]   0.27 [0.21, 0.36]
+    boost - control-iq       39  -1.18 [-3.37, -0.21] -1.08 [-1.51, -0.84] -0.28 [-0.35, -0.26]
+    boost - trend            40   1.23 [0.61, 2.03]  -0.21 [-0.35, 0.06] -0.06 [-0.09, 0.01]
+
+The A/A arm gives a paired median of +0.86 points of time in range [-2.49, 1.90] with a paired
+standard deviation of 6.28, so the design resolves 2.78 points, 0.59 below 70 mg/dL, 0.25 below
+54 and 0.14 on the index. The order came out as registered on both ranked outcomes, oref0 SMB
+first on time in range and last on time below 70 mg/dL with the stand-in between, and the
+oref0 SMB margins sit inside the twenty-subject intervals. The trend loop and Boost are not
+separated on any outcome. Two registered figures missed: the stand-in's shortfall to oref0 SMB
+on time in range is 4.6 points against the 1 to 3 carried over from the always-announced
+DCLP3-matched cohort, and the floor's paired standard deviation is 6.28 against the 3 to 5
+expected, wider than the twenty-subject, 14-day figure rather than narrower, and not driven by
+outliers (6.13 from the median absolute deviation). Completion was 157 of 160, one above the
+registered band, with the three terminations the yield run's two under oref0 SMB and one
+hypoglycaemic under the stand-in. `docs/READING_A_RESULT.md` carries the table with the
+residuals that belong beside it.
+
     python examples/rank_drivers.py
 """
 import argparse
