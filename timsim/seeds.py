@@ -31,4 +31,8 @@ TITRATION = 11
 # The month everything is measured on. Held out from titration.
 BENCH = 101
 
-__all__ = ["TITRATION", "BENCH"]
+# A second measured month, for A/A floors: the same subjects under the same driver on this seed
+# and on BENCH differ by the noise of the design and nothing else. Never reported on its own.
+AA = 1101
+
+__all__ = ["TITRATION", "BENCH", "AA"]
