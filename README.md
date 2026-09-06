@@ -256,8 +256,10 @@ from whether the code does what it claims through to how large a difference it c
 actually resolve. Two of them carry most of the weight for a comparison.
 
 Running the same controller twice gives -0.27 percentage points of time in range
-[-1.65 to +1.72], so the null comes out null, and the design resolves about 1.1 points
-across the full 100 subjects.
+[-1.65 to +1.72] on twenty subjects over 14 days, so the null comes out null. Measured
+directly on forty subjects over 28 days the same test resolves 2.8 points, wider than a
+projection from the smaller design gives, so the floor is read at the size it was measured
+at.
 
 Closing the loop gives +12.9 points [8.2 to 15.4]. The DCLP3 trial randomised that same
 comparison in 168 people over 26 weeks of free living and measured +13.9 points, with a

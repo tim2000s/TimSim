@@ -1307,9 +1307,10 @@ they are a resampling of that cohort rather than new clinical data. They inherit
 the published cohort does not represent, and they carry no independent information about
 human variability.
 
-What they add is resolution, quantified at level 5: the design resolves about 1.8
-percentage points of time in range across 34 adults and about 1.1 across all 100,
-remeasured on the current harness.
+What they add is resolution, and the projection at level 5 overstates it: the design was
+projected to resolve about 1.8 percentage points of time in range across 34 adults and 1.1
+across 100, and measured directly on forty adults over 28 days it resolves 2.8
+(`driver_ranking.json`, `docs/SPEC_VS_OUTPUT.md`).
 
 ## Provenance of the parameters
 
