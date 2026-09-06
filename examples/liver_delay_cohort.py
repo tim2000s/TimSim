@@ -38,7 +38,22 @@ meal, so the covered rise and trough to peak per person on the announced record 
 well, at the 240 minute window, and are expected to move away from the real figures rather than
 towards them.
 
+Measured on 6 September 2026, 312 runs in 75 minutes, the published arm reproducing the
+baseline medians to the decimal (83.26 and 84.90 per cent time in range). The candidate did not
+produce it. On DCLP3 under the stand-in, paired on 74 subjects, time in range moved +0.27 points
+(-1.54 to 1.09) against a floor of 2.05, the wrong sign and inside the floor. On the Commons
+under oref0 SMB, paired on 61, it moved +2.00 (0.06 to 4.28) against a floor of 2.25, the wrong
+sign again. The fast arm completed 78 of 86 and 65 of 70 against the published arm's 79 and 65,
+so both verdicts are readable. The secondary expectation held on one controller and not the
+other: under oref0 SMB time below 70 mg/dL fell 0.95 points (-2.00 to -0.32) against a floor of
+0.48, further than expected, with time above 180 falling 2.03 (-3.57 to 0.01) rather than rising,
+and the coefficient of variation falling 2.58 (-4.12 to -0.56); under the stand-in time below 70
+rose 0.32 (-0.06 to 0.91) and insulin rose 2.5 U/day (-0.04 to 3.28), both inside their floors.
+The covered rise fell 0.57 and 1.00 mg/dL per 10 g, away from the real 15.1 as expected, and
+time to peak moved 0 and -6.25 minutes.
+
     python examples/liver_delay_cohort.py
+    python examples/liver_delay_cohort.py --resummarise   # rebuild the summary from the stored rows
 """
 
 import os
@@ -158,8 +173,10 @@ def summarise(rows, refs, floor_sd, rng):
                              "max": float(np.max(v)) if v.size else None}
             rec["arms"][arm] = {
                 "completed": len(done), "terminated": len(term),
-                "terminations": {d: sum(1 for r in term if (r.get("termination") or {})
-                                        .get("direction") == d) for d in ("low", "high")},
+                "terminations": {short: sum(1 for r in term if (r.get("termination") or {})
+                                            .get("direction") == d)
+                                 for short, d in (("low", "hypoglycaemic"),
+                                                  ("high", "hyperglycaemic"))},
                 "errors": sum(1 for r in term if r.get("error")),
                 "columns": cols}
         both = [n for n in names if by_arm["published"][n].get("completed")
@@ -187,47 +204,7 @@ def summarise(rows, refs, floor_sd, rng):
     return out
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--workers", type=int, default=WORKERS)
-    ap.add_argument("--out", default=OUT)
-    ap.add_argument("--subjects", type=int, default=None,
-                    help="cap per cohort, for a smoke test only")
-    a = ap.parse_args()
-
-    from timsim.therapy import titrate
-    from examples.bench_tables import references
-    rec = json.load(open(os.path.join(MEASUREMENTS, "cohorts.json")))
-    current = titrate.population_fingerprint()
-    if rec.get("population") != current:
-        raise SystemExit(f"cohorts.json was built against population {rec['population']} and "
-                         f"the population on disk is {current}. Rerun build_cohorts.py.")
-    titrated = set(titrate.titrated_subjects())
-    jobs = []
-    for cohort, controller in PAIRINGS:
-        subjects = [s for s in rec["cohorts"][cohort]["subjects"] if s in titrated]
-        if a.subjects:
-            subjects = subjects[:a.subjects]
-        for arm, delay in ARMS:
-            jobs += [(cohort, controller, arm, delay, n) for n in subjects]
-        print(f"  {cohort:9} {controller:11} {len(subjects)} titrated subjects", flush=True)
-    print(f"{len(jobs)} runs of {DAYS} days on {a.workers} workers", flush=True)
-
-    # The floor, from the A/A pair on the ranking run, rescaled to each cohort's paired size.
-    dr = json.load(open(os.path.join(MEASUREMENTS, "driver_ranking.json")))
-    floor_sd = {k: v["paired_sd"] for k, v in dr["floor"].items() if isinstance(v, dict)}
-
-    rows, t0 = [], time.time()
-    with mp.Pool(a.workers) as pool:
-        for i, row in enumerate(pool.imap_unordered(job, jobs, chunksize=1), 1):
-            rows.append(row)
-            if i % 20 == 0 or i == len(jobs):
-                print(f"  {i}/{len(jobs)} done, {(time.time() - t0) / 60:.1f} min", flush=True)
-            if row.get("error"):
-                print(f"  ! {row['cohort']} {row['arm']} {row['name']}: {row['error'][:110]}",
-                      flush=True)
-    refs = references()
-    summary = summarise(rows, refs, floor_sd, np.random.default_rng(20260906))
+def report(summary):
     for cohort, rec in summary.items():
         print(f"\n{cohort} under {rec['controller']}, {rec['subjects']} subjects, "
               f"{rec['paired_n']} paired")
@@ -246,13 +223,64 @@ def main():
             print(f"  {key:16}{fmt(pm, 11)}{fmt(fm, 9)}{fmt(p['fast_minus_published'], 9)}"
                   f"  [{fmt(p['ci95'][0], 6)}, {fmt(p['ci95'][1], 6)}]"
                   f"{fmt(fl, 8)}{fmt(p.get('real_median'), 8, 1)}")
-    json.dump({"provenance": provenance.stamp(), "days": DAYS, "seed": SEED,
-               "layers": list(LAYERS), "announcement": ANNOUNCEMENT,
-               "arms": [{"name": n, "liver_delay": d} for n, d in ARMS],
-               "pairings": [{"cohort": c, "controller": k} for c, k in PAIRINGS],
-               "window_min": WINDOW_MIN, "bolus_floor_u": BOLUS_FLOOR_U,
-               "floor_sd_from": "driver_ranking.json", "summary": summary, "per_run": rows},
-              open(a.out, "w"), indent=1)
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--workers", type=int, default=WORKERS)
+    ap.add_argument("--out", default=OUT)
+    ap.add_argument("--subjects", type=int, default=None,
+                    help="cap per cohort, for a smoke test only")
+    ap.add_argument("--resummarise", action="store_true",
+                    help="rebuild the summary from the per-run rows already in --out, "
+                         "without rerunning anything")
+    a = ap.parse_args()
+
+    # The floor, from the A/A pair on the ranking run, rescaled to each cohort's paired size.
+    dr = json.load(open(os.path.join(MEASUREMENTS, "driver_ranking.json")))
+    floor_sd = {k: v["paired_sd"] for k, v in dr["floor"].items() if isinstance(v, dict)}
+    from examples.bench_tables import references
+    refs = references()
+    t0 = time.time()
+
+    if a.resummarise:
+        stored = json.load(open(a.out))
+        rows = stored["per_run"]
+        summary = summarise(rows, refs, floor_sd, np.random.default_rng(20260906))
+        report(summary)
+        stored["summary"] = summary
+        json.dump(stored, open(a.out, "w"), indent=1)
+        print(f"\nrewrote the summary in {a.out}")
+        return
+
+    from timsim.therapy import titrate
+    rec = json.load(open(os.path.join(MEASUREMENTS, "cohorts.json")))
+    current = titrate.population_fingerprint()
+    if rec.get("population") != current:
+        raise SystemExit(f"cohorts.json was built against population {rec['population']} and "
+                         f"the population on disk is {current}. Rerun build_cohorts.py.")
+    titrated = set(titrate.titrated_subjects())
+    jobs = []
+    for cohort, controller in PAIRINGS:
+        subjects = [s for s in rec["cohorts"][cohort]["subjects"] if s in titrated]
+        if a.subjects:
+            subjects = subjects[:a.subjects]
+        for arm, delay in ARMS:
+            jobs += [(cohort, controller, arm, delay, n) for n in subjects]
+        print(f"  {cohort:9} {controller:11} {len(subjects)} titrated subjects", flush=True)
+    print(f"{len(jobs)} runs of {DAYS} days on {a.workers} workers", flush=True)
+
+    rows = []
+    with mp.Pool(a.workers) as pool:
+        for i, row in enumerate(pool.imap_unordered(job, jobs, chunksize=1), 1):
+            rows.append(row)
+            if i % 20 == 0 or i == len(jobs):
+                print(f"  {i}/{len(jobs)} done, {(time.time() - t0) / 60:.1f} min", flush=True)
+            if row.get("error"):
+                print(f"  ! {row['cohort']} {row['arm']} {row['name']}: {row['error'][:110]}",
+                      flush=True)
+    summary = summarise(rows, refs, floor_sd, np.random.default_rng(20260906))
+    report(summary)
     print(f"\nwrote {a.out} after {(time.time() - t0) / 60:.1f} min")
 
 

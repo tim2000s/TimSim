@@ -385,6 +385,29 @@ What has changed is that the eighth is the first to fail for a reason worth havi
 mechanism was absent or too small, but that the model cannot represent it and the published
 parameter is already at the best compromise available within the structure.
 
+### Gate 3, measured on 6 September 2026
+
+The gates above were later found to have been measured on different populations (issue 44), so
+gate 3 was run on its own, as `examples/liver_delay_cohort.py` with the expectation registered in
+its docstring: the delay alone at the clamp-fitted scale of 12.0, `kp1` to `kp3` and the fast
+fraction untouched, against the published delay on the two cohorts that carry a per-person
+reference, 28 days on the shipped layers, paired per subject. The published arm reproduced the
+baseline medians to the decimal.
+
+It does not produce the residual. On DCLP3 under the stand-in, 74 paired, time above 180 mg/dL
+moved -0.22 points (-1.43 to 1.18) against the 6.6 the gate required, time in range +0.27 (-1.54
+to 1.09) against a floor of 2.05, and time below 54 rose from 0.55 to 0.79 per cent (+0.25,
+-0.02 to 0.38) where the gate required it not to rise, so the mechanism does the opposite of what
+the entry claimed under that controller. Completion held at 78 of 86. The Commons pairing kept
+its mean (132.35 against a real 134.9) and moved its variability away, from 33.34 to 30.25 per
+cent against a real 33.5 (-2.58, -4.12 to -0.56). Under oref0 SMB the fast liver reduced time
+below 70 by 0.95 points (-2.00 to -0.32) against a floor of 0.48 and raised time in range by
+2.00 (0.06 to 4.28), the wrong direction for the residual; the sign of the hypoglycaemia change
+depending on the controller is consistent with a liver that both suppresses and releases sooner,
+gaining under a controller that suspends basal and losing under one that does not, and that
+reading is not tested here. The entry is closed as a candidate for the residual on this
+measurement (`docs/measurements/liver_delay_cohort.json`).
+
 ### What is reported either way
 
 Every signature in `docs/FIDELITY.md`, the hour-of-day profile against DCLP3, and the excursion

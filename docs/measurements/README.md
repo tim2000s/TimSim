@@ -14,6 +14,7 @@ take their paths from the repository root, so a checkout anywhere reproduces the
 | `meal_response.json` | `examples/meal_response.py` | The simulated response to one uncovered meal at 30, 50 and 70 g |
 | `paper_tables.json` | `examples/paper_tables.py` | Per-subject outcomes for every bench arm, read into tables by `examples/analyse_tables.py` |
 | `driver_ranking.json` | `examples/rank_drivers.py` | The four closed-loop drivers on the forty-adult panel over 28 days, paired per subject, with an A/A arm on a second month giving the floor each difference is read against |
+| `liver_delay_cohort.json` | `examples/liver_delay_cohort.py` | The clamp-fitted liver delay (12.0 times the published rate) against the published one on the two per-person cohorts, 28 days, paired per subject and read against the rescaled A/A floor; the log holds the printed tables |
 
 The Commons and real-meal scripts read the April 2026 OpenAPS Data Commons export, which is
 not redistributed with this package. Filenames in that export carry a user-id prefix for

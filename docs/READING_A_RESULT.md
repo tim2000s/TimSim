@@ -4,7 +4,10 @@ This page is for someone holding a figure produced by this package and deciding 
 taken to mean. It states which comparisons the bench supports, at what resolution, and which it
 does not, with the size of the residual where one has been measured. Every figure below traces
 to a file in `docs/measurements/` and to the script in `examples/` that wrote it. Where a claim
-rests on a modelling choice rather than a measurement, the sentence says so.
+rests on a modelling choice rather than a measurement, the sentence says so. The longer form,
+organised by the real cohort each simulated one is matched to and ending in a question-by-question
+table of what a run against them supports, is study 19 of the paper series
+(`Research-Papers/TimSim/19_reading_against_real_cohorts.md`).
 
 The short form. The bench compares closed-loop algorithms of similar aggressiveness against each
 other on the same simulated people, and resolves differences of about three points of time in
@@ -151,9 +154,12 @@ carbohydrate estimate bias and the insulin delivered by the peak were each exclu
 the last by driving the simulated person with the real insulin profile and finding the rise
 unchanged, -0.07 mg/dL per 10 g [-0.75, 0.50] (`insulin_profile_rise.json`). What remains is
 the published model's glucose appearance and disposal, which this package does not refit;
-`docs/PADOVA_AUDIT.md` sets out why. Of thirteen pre-registered candidates for the gap between
-the bench and real cohorts, twelve were refuted by measurement and one, a delay in the liver's
-response to insulin, is recorded as open and untested (`docs/DESIGN_ALIGNMENT.md`).
+`docs/PADOVA_AUDIT.md` sets out why. All thirteen pre-registered candidates for the gap between
+the bench and real cohorts have been refuted by measurement, the last of them, a delay in the
+liver's response to insulin, on 6 September 2026: at the clamp-fitted scale it moves time in
+range +0.27 points (-1.54 to 1.09) paired on the DCLP3 cohort and +2.00 (0.06 to 4.28) on the
+Commons, the wrong sign on both, with time above 180 mg/dL unmoved
+(`docs/measurements/liver_delay_cohort.json`, `docs/DESIGN_ALIGNMENT.md`).
 
 The slow untreated recovery is the person's. Swapping the controller moves the recovery by 9
 minutes paired, so about 40 of the 40 to 50 minutes of excess belong to the simulated person's

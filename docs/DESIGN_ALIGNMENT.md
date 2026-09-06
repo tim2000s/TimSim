@@ -636,9 +636,15 @@ measured on different populations and the meal gate returned the same verdict wi
 switched off (`docs/ISSUES.md` 44 and 45), and the two-timescale liver satisfied both gates only at
 a fast fraction of 1.0, which is a single-timescale liver at 10.5 times the published rate with
 the published pathway carrying none of the gain (`docs/SPEC_VS_OUTPUT.md`,
-`docs/measurements/liver_two_timescale.json`). The delay is still the largest divergence the audit
-has measured whose direction matches the residual, and nothing has been shown either way about
-whether it produces it.
+`docs/measurements/liver_two_timescale.json`). The delay was then run on its own, at the
+clamp-fitted scale of 12.0 with every other liver coefficient at its published value, against the
+published delay on both per-person cohorts (`examples/liver_delay_cohort.py`, 6 September 2026).
+It does not produce the residual: paired time in range moves +0.27 points (-1.54 to 1.09) on 74
+DCLP3 subjects under the stand-in and +2.00 (0.06 to 4.28) on 61 Commons subjects under oref0
+SMB, the wrong sign on both against a residual of 12.0 and 4.8, and time above 180 mg/dL moves
+-0.22 and -2.03. What it does move is hypoglycaemia, in a direction set by the controller: down
+0.95 points of time below 70 (-2.00 to -0.32) under oref0 SMB, up 0.32 (-0.06 to 0.91) under the
+stand-in, with insulin up 2.5 U/day there.
 
 What is currently supported is a gap on one quantity, measured on one protocol. Reading every meal
 a subject eats over 42 days through the definition in `timsim/analysis/meal_shape.py`, on the
@@ -713,10 +719,11 @@ time in range at every yield, the built-in loop and Boost unseparated at every y
 open-loop arm falls further behind, by 4.4 to 7.3 points at 1.5, with its time below 70 mg/dL
 dropping from 2.0 to 1.0 per cent as it runs higher.
 
-One candidate remains open. The disposal interaction in audit entry 6, where disposal is right
+The liver delay, the last of the thirteen pre-registered candidates, was refuted on 6 September
+2026 (above). What remains is the disposal interaction in audit entry 6, where disposal is right
 on each axis and 28 per cent too high on both together (13 per cent once production is counted
-with it), runs in the direction the residual needs at about a fifth of its size, and neither
-`Km0` nor a disposal exponent moves it.
+with it), which runs in the direction the residual needs at about a fifth of its size, and
+neither `Km0` nor a disposal exponent moves it. No candidate is queued.
 
 ## What is deliberately not proposed
 
