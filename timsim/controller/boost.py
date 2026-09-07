@@ -183,7 +183,12 @@ class BoostController(LoopInputs, Controller):
             cob=self.cob_g,
             base_insulin_req=base_req,
             max_iob=self.profile.limits.max_iob_u,
-            ml_hypo_risk=None,
+            # Both models have always been None here, so every published Boost result in this
+            # package is Boost with its hypo damper absent: the engine reads a null as a missing
+            # model and leaves the aggression budget unscaled. Setting `hypo_model` on the
+            # controller supplies the shipped four-column model instead, which is the arm that
+            # measures what the damper does. Default stays None so nothing already measured moves.
+            ml_hypo_risk=(self.hypo_model.score(bg) if getattr(self, "hypo_model", None) else None),
             ml_meal_likely=None,
             recent_low_bg=recent_low,
             hour=int((minute // 60) % 24),

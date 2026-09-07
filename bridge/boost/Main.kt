@@ -48,7 +48,8 @@ private fun optional(v: Double): Double? = if (v == MISSING) null else v
 fun main() {
     // The orchestrator takes a logger and marks it unused, so an empty implementation of
     // the stub interface satisfies the constructor without introducing behaviour.
-    val engine = DetermineBasalBoostV5(aapsLogger = object : app.aaps.core.interfaces.logging.AAPSLogger {})
+    // The constructor dropped its aapsLogger parameter between Boost-V6 and the V7 line.
+    val engine = DetermineBasalBoostV5()
     var persisted = V5PersistedState()
     val out = java.io.PrintWriter(java.io.BufferedWriter(java.io.OutputStreamWriter(System.out)))
 
