@@ -178,7 +178,7 @@ distance to the trial participants' 40.0 is essentially unchanged. What titratio
 the subjects whose physiological settings put them below the floors, and those 24 exclusions fall
 unevenly, at 7 of 21 children against 8 of 199 adults.
 
-### The reference populations, and what each one licenses
+### The reference populations
 
 The DCLP3 trial supplies the closed-loop arm of a six-month randomised trial of Control-IQ.
 Outcomes are computed from the trial's own traces, per participant, over the calibration half of a
