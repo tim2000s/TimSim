@@ -59,6 +59,36 @@ row saying so. If it is inside, a bridge to the full Boost engine is justified a
 piece of work, since the adapter in `controller/boost.py` reconstructs the base dose in Python
 and cannot see the change.
 
+Result, 25 September 2026 (`real_autosens.json`, `sim_autosens.json`). Of 240 users, 54 were
+admitted: 125 have no oref ratio in their records (63 of them no devicestatus at all, the rest
+on oref versions that do not log it), 57 lacked a 28-day window at 70 per cent coverage and 4 ran
+with autosens off. The simulated shipped arm reproduced the oref0 SMB column of
+`driver_ranking.json` exactly, largest time-in-range discrepancy 0.0 over 38 runs.
+
+    per person, median (real p10 to p90)   simulated   real
+    reading resistant, % of cycles          0.43       42.2 (10.7 to 70.2)   below
+    reading sensitive, % of cycles          29.5       12.2 (1.8 to 44.7)    inside
+    at exactly 1.0, % of cycles             69.8       36.4 (17.4 to 73.7)   inside
+    ratio p90                               1.00       1.20 (1.01 to 1.20)   below
+    ratio p10 to p90 width                  0.205      0.200 (0.119 to 0.347) inside
+    day-to-day SD of the daily mean         0.049      0.064 (0.035 to 0.094) inside
+
+Twelve of the forty simulated subjects never read resistant, and the highest reads it on 11.3
+per cent of cycles, near the real 10th percentile. The ablation moved outcomes (time in range by
+a median 2.0 points per subject, insulin by 3.0 U/day) and moved no ratio statistic by more than
+its interval, so under the rule every statistic is void as a test of the sensitivity terms:
+the simulated autosens does not follow the day-to-day and multi-day drift in `varying.py`. That
+is a statement about the drift terms and does not rescue the resistant share, which describes
+what the oref arm experiences whatever causes it.
+
+So the rule's first consequence applies. The bench reads resistant about a hundredth as often
+as real users, and a change acting only on resistance, Boost 6812ef3e25 included, has almost
+nothing to act on here. The bridge to the full Boost engine is not built for it.
+`examples/autosens_diagnostics.py` excludes the rig: the activity clamp moves the resistant share
+by at most 0.66 points, and 34 to 65 per cent of cycles count as non-meal. What remains is that
+the simulated person's fasting deviations centre on zero, where real users' glucose rises more
+than their insulin predicts. The cause of that is not measured here.
+
     python examples/real_autosens.py
 """
 import glob

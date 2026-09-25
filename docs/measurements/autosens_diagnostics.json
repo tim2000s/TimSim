@@ -1,0 +1,271 @@
+{
+ "provenance": {
+  "population": "704cfac086df54ba",
+  "settings": "0df43fd250fadd47",
+  "commit": "f21d9ed1eb7a0a6fc22e9068ac34f444df829ca1",
+  "dirty": true,
+  "host": "Tims-Mac-mini.local",
+  "python": "3.14.7",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "when": "2026-09-25T00:09:27+00:00",
+  "simglucose": "0.2.11"
+ },
+ "days": 10,
+ "seed": 101,
+ "subjects": [
+  "adult#001",
+  "adult#002",
+  "adult#003",
+  "adult#004",
+  "adult#005",
+  "adult#006",
+  "adult#007"
+ ],
+ "per_run": [
+  {
+   "subject": "adult#001",
+   "arm": "kinds",
+   "resistant_pct": 0.7330246913580246,
+   "sensitive_pct": 14.621913580246915,
+   "at_one_pct": 84.64506172839506,
+   "p50": 1.0,
+   "tir": 91.52777777777777,
+   "classified_pct": {
+    "non-meal": 61.31944444444444,
+    "uam": 27.22222222222222,
+    "uam_iob_above_2_basal": 25.45138888888889,
+    "csf": 11.458333333333334,
+    "uam_carryover": 1.2847222222222223,
+    "uam_meal_start": 0.4861111111111111
+   }
+  },
+  {
+   "subject": "adult#001",
+   "arm": "shipped",
+   "resistant_pct": 0.7330246913580246,
+   "sensitive_pct": 14.621913580246915,
+   "at_one_pct": 84.64506172839506,
+   "p50": 1.0,
+   "tir": 91.52777777777777
+  },
+  {
+   "subject": "adult#001",
+   "arm": "unclamped",
+   "resistant_pct": 0.9645061728395061,
+   "sensitive_pct": 18.40277777777778,
+   "at_one_pct": 80.63271604938271,
+   "p50": 1.0,
+   "tir": 91.21527777777779
+  },
+  {
+   "subject": "adult#002",
+   "arm": "kinds",
+   "resistant_pct": 1.1959876543209875,
+   "sensitive_pct": 24.074074074074073,
+   "at_one_pct": 74.72993827160494,
+   "p50": 1.0,
+   "tir": 90.24305555555556,
+   "classified_pct": {
+    "non-meal": 64.51388888888889,
+    "uam": 23.09027777777778,
+    "uam_iob_above_2_basal": 20.625,
+    "uam_carryover": 2.1180555555555554,
+    "csf": 12.395833333333334,
+    "uam_meal_start": 0.3472222222222222
+   }
+  },
+  {
+   "subject": "adult#002",
+   "arm": "shipped",
+   "resistant_pct": 1.1959876543209875,
+   "sensitive_pct": 24.074074074074073,
+   "at_one_pct": 74.72993827160494,
+   "p50": 1.0,
+   "tir": 90.24305555555556
+  },
+  {
+   "subject": "adult#002",
+   "arm": "unclamped",
+   "resistant_pct": 0.5401234567901234,
+   "sensitive_pct": 34.066358024691354,
+   "at_one_pct": 65.39351851851852,
+   "p50": 1.0,
+   "tir": 86.70138888888889
+  },
+  {
+   "subject": "adult#003",
+   "arm": "kinds",
+   "resistant_pct": 1.8132716049382718,
+   "sensitive_pct": 9.722222222222223,
+   "at_one_pct": 88.4645061728395,
+   "p50": 1.0,
+   "tir": 84.02777777777779,
+   "classified_pct": {
+    "non-meal": 60.729166666666664,
+    "uam": 25.104166666666668,
+    "uam_iob_above_2_basal": 22.53472222222222,
+    "uam_carryover": 2.1180555555555554,
+    "csf": 14.166666666666666,
+    "uam_meal_start": 0.4513888888888889
+   }
+  },
+  {
+   "subject": "adult#003",
+   "arm": "shipped",
+   "resistant_pct": 1.8132716049382718,
+   "sensitive_pct": 9.722222222222223,
+   "at_one_pct": 88.4645061728395,
+   "p50": 1.0,
+   "tir": 84.02777777777779
+  },
+  {
+   "subject": "adult#003",
+   "arm": "unclamped",
+   "resistant_pct": 1.7361111111111112,
+   "sensitive_pct": 9.1820987654321,
+   "at_one_pct": 89.0817901234568,
+   "p50": 1.0,
+   "tir": 84.23611111111111
+  },
+  {
+   "subject": "adult#004",
+   "arm": "kinds",
+   "resistant_pct": 0.0,
+   "sensitive_pct": 17.317073170731707,
+   "at_one_pct": 82.68292682926828,
+   "p50": 1.0,
+   "tir": 69.45020746887967,
+   "classified_pct": {
+    "non-meal": 33.454356846473026,
+    "uam": 48.85892116182573,
+    "uam_iob_above_2_basal": 48.08091286307054,
+    "csf": 17.686721991701244,
+    "uam_carryover": 0.6742738589211619,
+    "uam_meal_start": 0.1037344398340249
+   }
+  },
+  {
+   "subject": "adult#004",
+   "arm": "shipped",
+   "resistant_pct": 0.0,
+   "sensitive_pct": 37.92438271604938,
+   "at_one_pct": 62.07561728395061,
+   "p50": 1.0,
+   "tir": 69.13194444444444
+  },
+  {
+   "subject": "adult#004",
+   "arm": "unclamped",
+   "resistant_pct": 0.0,
+   "sensitive_pct": 37.92438271604938,
+   "at_one_pct": 62.07561728395061,
+   "p50": 1.0,
+   "tir": 69.13194444444444
+  },
+  {
+   "subject": "adult#005",
+   "arm": "kinds",
+   "resistant_pct": 0.0,
+   "sensitive_pct": 5.902777777777778,
+   "at_one_pct": 94.09722222222221,
+   "p50": 1.0,
+   "tir": 89.16666666666667,
+   "classified_pct": {
+    "non-meal": 44.791666666666664,
+    "uam": 39.375,
+    "uam_iob_above_2_basal": 37.361111111111114,
+    "uam_carryover": 1.7361111111111112,
+    "csf": 15.833333333333334,
+    "uam_meal_start": 0.2777777777777778
+   }
+  },
+  {
+   "subject": "adult#005",
+   "arm": "shipped",
+   "resistant_pct": 0.0,
+   "sensitive_pct": 5.902777777777778,
+   "at_one_pct": 94.09722222222221,
+   "p50": 1.0,
+   "tir": 89.16666666666667
+  },
+  {
+   "subject": "adult#005",
+   "arm": "unclamped",
+   "resistant_pct": 0.0,
+   "sensitive_pct": 9.143518518518519,
+   "at_one_pct": 90.85648148148148,
+   "p50": 1.0,
+   "tir": 89.34027777777777
+  },
+  {
+   "subject": "adult#006",
+   "arm": "kinds",
+   "resistant_pct": 0.0,
+   "sensitive_pct": 32.94753086419753,
+   "at_one_pct": 67.05246913580247,
+   "p50": 1.0,
+   "tir": 75.86805555555556,
+   "classified_pct": {
+    "non-meal": 62.56944444444444,
+    "csf": 21.28472222222222,
+    "uam": 16.145833333333332,
+    "uam_meal_start": 0.4166666666666667,
+    "uam_carryover": 1.2152777777777777,
+    "uam_iob_above_2_basal": 14.51388888888889
+   }
+  },
+  {
+   "subject": "adult#006",
+   "arm": "shipped",
+   "resistant_pct": 0.0,
+   "sensitive_pct": 34.72222222222222,
+   "at_one_pct": 65.27777777777779,
+   "p50": 1.0,
+   "tir": 76.90972222222221
+  },
+  {
+   "subject": "adult#006",
+   "arm": "unclamped",
+   "resistant_pct": 0.0,
+   "sensitive_pct": 34.72222222222222,
+   "at_one_pct": 65.27777777777779,
+   "p50": 1.0,
+   "tir": 76.90972222222221
+  },
+  {
+   "subject": "adult#007",
+   "arm": "kinds",
+   "resistant_pct": 0.07716049382716049,
+   "sensitive_pct": 18.51851851851852,
+   "at_one_pct": 81.40432098765432,
+   "p50": 1.0,
+   "tir": 86.49305555555556,
+   "classified_pct": {
+    "non-meal": 51.63194444444444,
+    "uam": 34.0625,
+    "uam_iob_above_2_basal": 30.694444444444443,
+    "uam_carryover": 2.6041666666666665,
+    "csf": 14.305555555555555,
+    "uam_meal_start": 0.7638888888888888
+   }
+  },
+  {
+   "subject": "adult#007",
+   "arm": "shipped",
+   "resistant_pct": 0.07716049382716049,
+   "sensitive_pct": 18.51851851851852,
+   "at_one_pct": 81.40432098765432,
+   "p50": 1.0,
+   "tir": 86.49305555555556
+  },
+  {
+   "subject": "adult#007",
+   "arm": "unclamped",
+   "resistant_pct": 0.07716049382716049,
+   "sensitive_pct": 18.51851851851852,
+   "at_one_pct": 81.40432098765432,
+   "p50": 1.0,
+   "tir": 86.49305555555556
+  }
+ ]
+}
