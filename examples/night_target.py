@@ -64,6 +64,29 @@ Rule.
   target is a settings change that would need its own titration and the full statistic table,
   and is put to Tim rather than made here.
 
+Result, 4 October 2026 (`docs/measurements/night_target.json`, 160 runs in 52.3 minutes). The
+band arms reproduced `night_exclusion.py` exactly over 80 runs, meals were identical across arms,
+and each subject kept a median 623.5 cycles in the fixed set.
+
+The control failed under the single target as well: the night deviation moved -0.50 mg/dL per
+hour (-2.48 to 1.06), against +1.17 (-0.60 to 2.35) under the band, and the interaction was -1.02
+(-2.92 to 0.63). The single target moved nothing against the band: share reading resistant 0.0
+(0.0 to 0.29) paired, cohort median 0.69 per cent, time in range -0.17 (-0.67 to 0.28). The width
+of the target range is not why autosens misses the change, and this line closes.
+
+    per subject, median          band    band, night 0.7   single 110   single, night 0.7
+    night deviation, mg/dL/h     -4.6         -3.2            -3.6            -4.4
+    night net activity, U/h      0.97         0.94            1.01            0.94
+    night mean glucose, mg/dL   123.3        138.4           124.1           139.8
+    resistant, per cent          0.43         0.71            0.69            0.63
+
+What the four arms share, reported as description: the night change raised mean night glucose
+by about 12 mg/dL under either target (band 12.4, 10.8 to 17.0; single 12.2, 9.6 to 16.2) and left
+net insulin activity where it was (band -0.005 U/h, -0.05 to 0.005; single -0.002, -0.04 to 0.02).
+Under oref0 SMB on this panel the loop's net overnight insulin does not follow a 12 mg/dL rise,
+and a deviation can only carry resistance through that insulin. Why it does not follow was not
+measured.
+
     python examples/night_target.py
 """
 import argparse
