@@ -1,0 +1,2495 @@
+{
+ "provenance": {
+  "population": "704cfac086df54ba",
+  "settings": "0df43fd250fadd47",
+  "commit": "376051ebe65ec916a3775721e52a459b0a4c29a3",
+  "dirty": false,
+  "host": "Tims-Mac-mini.local",
+  "python": "3.14.7",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "when": "2026-10-04T09:46:02+00:00",
+  "simglucose": "0.2.11"
+ },
+ "subjects": [
+  "adult#001",
+  "adult#002",
+  "adult#003",
+  "adult#004",
+  "adult#005",
+  "adult#006",
+  "adult#007",
+  "adult#008",
+  "adult#009",
+  "adult#010",
+  "adult#011",
+  "adult#012",
+  "adult#013",
+  "adult#014",
+  "adult#015",
+  "adult#016",
+  "adult#017",
+  "adult#018",
+  "adult#019",
+  "adult#020",
+  "adult#021",
+  "adult#022",
+  "adult#023",
+  "adult#024",
+  "adult#025",
+  "adult#027",
+  "adult#028",
+  "adult#029",
+  "adult#030",
+  "adult#031",
+  "adult#032",
+  "adult#033",
+  "adult#034",
+  "adult#035",
+  "adult#036",
+  "adult#037",
+  "adult#038",
+  "adult#039",
+  "adult#040",
+  "adult#041"
+ ],
+ "days": 28,
+ "seed": 101,
+ "arms": {
+  "shipped": {},
+  "slow_meal": {
+   "meal_absorption_scale": 0.5
+  }
+ },
+ "real": {
+  "source": "~/oref-investigations/results/post_cob_isf.json (5cd9f45)",
+  "n_users": 115,
+  "median_eff_post": 8.3,
+  "median_eff_night": 22.7,
+  "median_delta_night_minus_post": 13.2,
+  "frac_users_post_lower": 0.86,
+  "median_rise_frac_post": 0.38,
+  "median_rise_frac_night": 0.26,
+  "trajectory_eff_post_0_30": 6.0,
+  "trajectory_eff_post_30_60": 13.2
+ },
+ "reproduction": {
+  "compared": 38,
+  "max_abs_tir_diff": 0.0
+ },
+ "summary": {
+  "shipped/dynamic": {
+   "usable": 40,
+   "median_eff_post": -5.491523623153272,
+   "median_eff_night": 4.45714234356088,
+   "median_delta_night_minus_post": 10.536851264622872,
+   "delta_ci95": [
+    8.194376081059996,
+    13.887543351743062
+   ],
+   "frac_post_lower": 0.9,
+   "wilcoxon_p": 3.765308065339923e-10,
+   "median_rise_frac_post": 0.5561842366487989,
+   "median_rise_frac_night": 0.4340782818190005,
+   "trajectory_eff_post_0_30": -7.851400863538851,
+   "trajectory_eff_post_30_60": 6.482969362927749,
+   "median_windows_post": 64.5,
+   "median_windows_night": 1401.0,
+   "tail_present": true
+  },
+  "slow_meal/dynamic": {
+   "usable": 40,
+   "median_eff_post": -3.3497220865852135,
+   "median_eff_night": 2.9817617139602195,
+   "median_delta_night_minus_post": 7.383120843496352,
+   "delta_ci95": [
+    4.008679989138349,
+    10.484702008391508
+   ],
+   "frac_post_lower": 0.9,
+   "wilcoxon_p": 3.062996256630868e-08,
+   "median_rise_frac_post": 0.5625610948191593,
+   "median_rise_frac_night": 0.44912161200463596,
+   "trajectory_eff_post_0_30": -6.374600996364352,
+   "trajectory_eff_post_30_60": 6.086695640035143,
+   "median_windows_post": 69.0,
+   "median_windows_night": 1433.0,
+   "tail_present": true
+  },
+  "control/dynamic": {
+   "subjects": 40,
+   "paired_median": -1.504039572004095,
+   "ci95": [
+    -4.664625106078788,
+    1.4735127599688431
+   ]
+  },
+  "shipped/linear": {
+   "usable": 40,
+   "median_eff_post": 10.979046203522465,
+   "median_eff_night": 4.135026636676304,
+   "median_delta_night_minus_post": -4.331522859974492,
+   "delta_ci95": [
+    -8.404375524113505,
+    -0.3217644470431966
+   ],
+   "frac_post_lower": 0.325,
+   "wilcoxon_p": 0.004870718326856149,
+   "median_rise_frac_post": 0.36564171122994654,
+   "median_rise_frac_night": 0.4328548971846145,
+   "trajectory_eff_post_0_30": 12.461118918063912,
+   "trajectory_eff_post_30_60": 13.80864563455549,
+   "median_windows_post": 60.0,
+   "median_windows_night": 1247.5,
+   "tail_present": false
+  },
+  "slow_meal/linear": {
+   "usable": 40,
+   "median_eff_post": 6.80052121637007,
+   "median_eff_night": 3.4604427867382546,
+   "median_delta_night_minus_post": -4.07650064764141,
+   "delta_ci95": [
+    -7.974385248198116,
+    -1.8081392054804553
+   ],
+   "frac_post_lower": 0.3,
+   "wilcoxon_p": 0.006657873602307518,
+   "median_rise_frac_post": 0.3693426724137931,
+   "median_rise_frac_night": 0.44910116648482606,
+   "trajectory_eff_post_0_30": 9.455026133512437,
+   "trajectory_eff_post_30_60": 8.93446812247347,
+   "median_windows_post": 63.0,
+   "median_windows_night": 1280.0,
+   "tail_present": false
+  },
+  "control/linear": {
+   "subjects": 40,
+   "paired_median": -0.209754477856126,
+   "ci95": [
+    -3.3788078783903037,
+    2.806962902241919
+   ]
+  }
+ },
+ "per_run": [
+  {
+   "subject": "adult#001",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 136.01140189170837,
+   "tir": 89.76934523809523,
+   "dynamic": {
+    "n_post": 57,
+    "n_night": 1618,
+    "eff_post": -8.156303675713847,
+    "eff_night": 4.957207999940734,
+    "rise_post": 0.631578947368421,
+    "rise_night": 0.411619283065513,
+    "eff_post_h1": -14.375515401040143,
+    "eff_post_h2": 12.612548276454683,
+    "delta": 13.113511675654582
+   },
+   "linear": {
+    "n_post": 58,
+    "n_night": 1504,
+    "eff_post": 0.5762759925576882,
+    "eff_night": 4.261213685365643,
+    "rise_post": 0.4827586206896552,
+    "rise_night": 0.4228723404255319,
+    "eff_post_h1": 7.063952259696288,
+    "eff_post_h2": 6.1838061526590575,
+    "delta": 3.6849376928079547
+   }
+  },
+  {
+   "subject": "adult#001",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 162.6935520172119,
+   "tir": 89.95535714285714,
+   "dynamic": {
+    "n_post": 61,
+    "n_night": 1359,
+    "eff_post": -1.6861703670271262,
+    "eff_night": 1.2995418040968638,
+    "rise_post": 0.5409836065573771,
+    "rise_night": 0.4746136865342163,
+    "eff_post_h1": -3.9122500427434703,
+    "eff_post_h2": 8.330480871236606,
+    "delta": 2.98571217112399
+   },
+   "linear": {
+    "n_post": 59,
+    "n_night": 1204,
+    "eff_post": 11.374705340758398,
+    "eff_night": 0.10686442675399285,
+    "rise_post": 0.3389830508474576,
+    "rise_night": 0.4958471760797342,
+    "eff_post_h1": 11.835892508159985,
+    "eff_post_h2": 14.572807537707607,
+    "delta": -11.267840914004406
+   }
+  },
+  {
+   "subject": "adult#002",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 139.2869782447815,
+   "tir": 86.03670634920636,
+   "dynamic": {
+    "n_post": 78,
+    "n_night": 1330,
+    "eff_post": -6.569523901978645,
+    "eff_night": 3.5483040779551014,
+    "rise_post": 0.6538461538461539,
+    "rise_night": 0.4406015037593985,
+    "eff_post_h1": -6.761081018613472,
+    "eff_post_h2": 2.6930591158194113,
+    "delta": 10.117827979933747
+   },
+   "linear": {
+    "n_post": 75,
+    "n_night": 1241,
+    "eff_post": -3.3413651689535535,
+    "eff_night": 3.5384962406727465,
+    "rise_post": 0.52,
+    "rise_night": 0.4391619661563255,
+    "eff_post_h1": 2.6930591158194113,
+    "eff_post_h2": 2.9193174376700712,
+    "delta": 6.8798614096263
+   }
+  },
+  {
+   "subject": "adult#002",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 169.399258852005,
+   "tir": 90.99702380952381,
+   "dynamic": {
+    "n_post": 75,
+    "n_night": 1514,
+    "eff_post": 0.5750140470611016,
+    "eff_night": 1.0985017268846384,
+    "rise_post": 0.4666666666666667,
+    "rise_night": 0.4815059445178336,
+    "eff_post_h1": 1.801390171945485,
+    "eff_post_h2": 2.8459220962575795,
+    "delta": 0.5234876798235368
+   },
+   "linear": {
+    "n_post": 72,
+    "n_night": 1389,
+    "eff_post": -0.5944465397608728,
+    "eff_night": 1.9134542805616739,
+    "rise_post": 0.5138888888888888,
+    "rise_night": 0.46724262059035276,
+    "eff_post_h1": 2.9600109901965963,
+    "eff_post_h2": -2.1606808473980696,
+    "delta": 2.5079008203225466
+   }
+  },
+  {
+   "subject": "adult#003",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 141.43448281288147,
+   "tir": 82.71329365079364,
+   "dynamic": {
+    "n_post": 69,
+    "n_night": 1623,
+    "eff_post": -3.609440965759915,
+    "eff_night": 3.370501066154959,
+    "rise_post": 0.5507246376811594,
+    "rise_night": 0.43068391866913125,
+    "eff_post_h1": -8.357931552775568,
+    "eff_post_h2": 0.059551985004974536,
+    "delta": 6.979942031914874
+   },
+   "linear": {
+    "n_post": 67,
+    "n_night": 1529,
+    "eff_post": -3.9189039630575175,
+    "eff_night": 3.3068545424072227,
+    "rise_post": 0.5223880597014925,
+    "rise_night": 0.4316546762589928,
+    "eff_post_h1": 0.15951195531562895,
+    "eff_post_h2": 1.1028081999859907,
+    "delta": 7.22575850546474
+   }
+  },
+  {
+   "subject": "adult#003",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 199.01312899589539,
+   "tir": 87.04117063492063,
+   "dynamic": {
+    "n_post": 71,
+    "n_night": 1566,
+    "eff_post": 1.9101414675209396,
+    "eff_night": 3.054568868427471,
+    "rise_post": 0.4788732394366197,
+    "rise_night": 0.42528735632183906,
+    "eff_post_h1": 1.6781967253167411,
+    "eff_post_h2": 5.0611207344540965,
+    "delta": 1.1444274009065314
+   },
+   "linear": {
+    "n_post": 69,
+    "n_night": 1464,
+    "eff_post": -3.329381259299002,
+    "eff_night": 3.769765584522464,
+    "rise_post": 0.5942028985507246,
+    "rise_night": 0.41188524590163933,
+    "eff_post_h1": 5.553113882705072,
+    "eff_post_h2": -0.5808337692975152,
+    "delta": 7.099146843821465
+   }
+  },
+  {
+   "subject": "adult#004",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 137.80659818649292,
+   "tir": 74.39236111111111,
+   "dynamic": {
+    "n_post": 38,
+    "n_night": 1359,
+    "eff_post": -7.394623700257759,
+    "eff_night": 8.396162186281016,
+    "rise_post": 0.5789473684210527,
+    "rise_night": 0.3973509933774834,
+    "eff_post_h1": -12.144795830994216,
+    "eff_post_h2": 15.993641180827316,
+    "delta": 15.790785886538774
+   },
+   "linear": {
+    "n_post": 38,
+    "n_night": 1249,
+    "eff_post": 22.536467785791668,
+    "eff_night": 7.218468006210953,
+    "rise_post": 0.34210526315789475,
+    "rise_night": 0.40912730184147317,
+    "eff_post_h1": 24.319318814112865,
+    "eff_post_h2": 36.344422327712635,
+    "delta": -15.317999779580715
+   }
+  },
+  {
+   "subject": "adult#004",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 197.8924639225006,
+   "tir": 77.23214285714286,
+   "dynamic": {
+    "n_post": 39,
+    "n_night": 1205,
+    "eff_post": -5.5426796322698335,
+    "eff_night": 2.3660117388587265,
+    "rise_post": 0.6153846153846154,
+    "rise_night": 0.46804979253112033,
+    "eff_post_h1": -10.223070249879589,
+    "eff_post_h2": 5.4032404164659145,
+    "delta": 7.90869137112856
+   },
+   "linear": {
+    "n_post": 40,
+    "n_night": 1130,
+    "eff_post": 19.112738922175367,
+    "eff_night": 1.2252315146073554,
+    "rise_post": 0.15,
+    "rise_night": 0.4831858407079646,
+    "eff_post_h1": 31.647966890112343,
+    "eff_post_h2": 29.875112800614197,
+    "delta": -17.887507407568012
+   }
+  },
+  {
+   "subject": "adult#005",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 135.92633318901062,
+   "tir": 88.04563492063492,
+   "dynamic": {
+    "n_post": 33,
+    "n_night": 503,
+    "eff_post": 2.886973085187126,
+    "eff_night": 11.617825177244882,
+    "rise_post": 0.45454545454545453,
+    "rise_night": 0.24254473161033796,
+    "eff_post_h1": 1.3871348459370414,
+    "eff_post_h2": 10.412157325788327,
+    "delta": 8.730852092057756
+   },
+   "linear": {
+    "n_post": 17,
+    "n_night": 449,
+    "eff_post": 18.45168425687091,
+    "eff_night": 11.242360051176359,
+    "rise_post": 0.17647058823529413,
+    "rise_night": 0.26280623608017817,
+    "eff_post_h1": null,
+    "eff_post_h2": null,
+    "delta": -7.20932420569455
+   }
+  },
+  {
+   "subject": "adult#005",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 195.9980010986328,
+   "tir": 90.66220238095238,
+   "dynamic": {
+    "n_post": 40,
+    "n_night": 543,
+    "eff_post": -0.7879683543386989,
+    "eff_night": 10.041365967776022,
+    "rise_post": 0.5,
+    "rise_night": 0.27808471454880296,
+    "eff_post_h1": -6.7605018540143895,
+    "eff_post_h2": 6.675909559585452,
+    "delta": 10.82933432211472
+   },
+   "linear": {
+    "n_post": 21,
+    "n_night": 498,
+    "eff_post": 15.456785680010555,
+    "eff_night": 10.484692093199424,
+    "rise_post": 0.14285714285714285,
+    "rise_night": 0.26506024096385544,
+    "eff_post_h1": null,
+    "eff_post_h2": null,
+    "delta": -4.9720935868111305
+   }
+  },
+  {
+   "subject": "adult#006",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 138.48796892166138,
+   "tir": 72.58184523809523,
+   "dynamic": {
+    "n_post": 76,
+    "n_night": 1432,
+    "eff_post": -14.89786392646493,
+    "eff_night": 3.840879973543098,
+    "rise_post": 0.6447368421052632,
+    "rise_night": 0.4476256983240223,
+    "eff_post_h1": -13.752756254427634,
+    "eff_post_h2": -1.6682037021707294,
+    "delta": 18.73874390000803
+   },
+   "linear": {
+    "n_post": 75,
+    "n_night": 1325,
+    "eff_post": -5.307238420350314,
+    "eff_night": 3.990732788336011,
+    "rise_post": 0.5333333333333333,
+    "rise_night": 0.4422641509433962,
+    "eff_post_h1": -4.962083364536935,
+    "eff_post_h2": 2.937643272109326,
+    "delta": 9.297971208686324
+   }
+  },
+  {
+   "subject": "adult#006",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 196.87325501441956,
+   "tir": 82.15525793650794,
+   "dynamic": {
+    "n_post": 85,
+    "n_night": 1122,
+    "eff_post": -4.811774521291341,
+    "eff_night": 2.558883740496783,
+    "rise_post": 0.611764705882353,
+    "rise_night": 0.4483065953654189,
+    "eff_post_h1": -5.353979799556432,
+    "eff_post_h2": 3.775685225581752,
+    "delta": 7.370658261788124
+   },
+   "linear": {
+    "n_post": 80,
+    "n_night": 1041,
+    "eff_post": 5.222527511134022,
+    "eff_night": 2.204529955328462,
+    "rise_post": 0.4125,
+    "rise_night": 0.4543707973102786,
+    "eff_post_h1": 1.1956499222085624,
+    "eff_post_h2": 10.369665662678862,
+    "delta": -3.0179975558055596
+   }
+  },
+  {
+   "subject": "adult#007",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 135.3948791027069,
+   "tir": 87.90922619047619,
+   "dynamic": {
+    "n_post": 63,
+    "n_night": 1539,
+    "eff_post": -14.894442391142958,
+    "eff_night": 0.8555210036221292,
+    "rise_post": 0.6349206349206349,
+    "rise_night": 0.49252761533463285,
+    "eff_post_h1": -15.684064510343267,
+    "eff_post_h2": 6.75755491821544,
+    "delta": 15.749963394765087
+   },
+   "linear": {
+    "n_post": 60,
+    "n_night": 1316,
+    "eff_post": 19.848668878773815,
+    "eff_night": 2.394090808264603,
+    "rise_post": 0.3333333333333333,
+    "rise_night": 0.47188449848024316,
+    "eff_post_h1": 16.016631738975832,
+    "eff_post_h2": 22.979360558011603,
+    "delta": -17.45457807050921
+   }
+  },
+  {
+   "subject": "adult#007",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 192.7793688774109,
+   "tir": 92.27430555555556,
+   "dynamic": {
+    "n_post": 66,
+    "n_night": 1578,
+    "eff_post": -8.687539909897684,
+    "eff_night": 3.8702570161366223,
+    "rise_post": 0.6818181818181818,
+    "rise_night": 0.449936628643853,
+    "eff_post_h1": -6.279487938787252,
+    "eff_post_h2": 8.670389067037714,
+    "delta": 12.557796926034307
+   },
+   "linear": {
+    "n_post": 56,
+    "n_night": 1358,
+    "eff_post": 4.672749642265016,
+    "eff_night": 4.8557803574849405,
+    "rise_post": 0.44642857142857145,
+    "rise_night": 0.44035346097201766,
+    "eff_post_h1": 12.604629238198449,
+    "eff_post_h2": 8.226303015205767,
+    "delta": 0.18303071521992464
+   }
+  },
+  {
+   "subject": "adult#008",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 137.1771628856659,
+   "tir": 76.63690476190477,
+   "dynamic": {
+    "n_post": 51,
+    "n_night": 1273,
+    "eff_post": 3.653152678359978,
+    "eff_night": 11.311052748422217,
+    "rise_post": 0.45098039215686275,
+    "rise_night": 0.3676355066771406,
+    "eff_post_h1": 0.8399981818693094,
+    "eff_post_h2": 27.045466524036893,
+    "delta": 7.657900070062238
+   },
+   "linear": {
+    "n_post": 56,
+    "n_night": 1190,
+    "eff_post": 23.03339279853259,
+    "eff_night": 10.2688789679266,
+    "rise_post": 0.30357142857142855,
+    "rise_night": 0.38235294117647056,
+    "eff_post_h1": 34.977314933061415,
+    "eff_post_h2": 23.831412814360675,
+    "delta": -12.764513830605988
+   }
+  },
+  {
+   "subject": "adult#008",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 194.25461292266846,
+   "tir": 85.3546626984127,
+   "dynamic": {
+    "n_post": 57,
+    "n_night": 1377,
+    "eff_post": -16.19905073981355,
+    "eff_night": 5.882865444056391,
+    "rise_post": 0.6842105263157895,
+    "rise_night": 0.429920116194626,
+    "eff_post_h1": -8.217802170560953,
+    "eff_post_h2": 10.077067080123571,
+    "delta": 22.081916183869943
+   },
+   "linear": {
+    "n_post": 56,
+    "n_night": 1311,
+    "eff_post": -1.5317820236584085,
+    "eff_night": 4.738731042328815,
+    "rise_post": 0.5178571428571429,
+    "rise_night": 0.4439359267734554,
+    "eff_post_h1": 12.670220616387862,
+    "eff_post_h2": 11.376407669398299,
+    "delta": 6.270513065987223
+   }
+  },
+  {
+   "subject": "adult#009",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 137.2318079471588,
+   "tir": 90.20337301587301,
+   "dynamic": {
+    "n_post": 78,
+    "n_night": 1597,
+    "eff_post": -16.758265415237645,
+    "eff_night": 4.137119291988446,
+    "rise_post": 0.6538461538461539,
+    "rise_night": 0.45648090169067,
+    "eff_post_h1": -12.100993676893273,
+    "eff_post_h2": -0.04006783213795012,
+    "delta": 20.895384707226093
+   },
+   "linear": {
+    "n_post": 66,
+    "n_night": 1503,
+    "eff_post": -3.9069833774848015,
+    "eff_night": 4.296636226486978,
+    "rise_post": 0.5909090909090909,
+    "rise_night": 0.4517631403858949,
+    "eff_post_h1": -1.645826666197131,
+    "eff_post_h2": -1.6417693717766715,
+    "delta": 8.203619603971779
+   }
+  },
+  {
+   "subject": "adult#009",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 192.0967309474945,
+   "tir": 93.83680555555556,
+   "dynamic": {
+    "n_post": 72,
+    "n_night": 1577,
+    "eff_post": -7.50821265208196,
+    "eff_night": -0.7712115406894561,
+    "rise_post": 0.5972222222222222,
+    "rise_night": 0.5104629042485732,
+    "eff_post_h1": -5.479907722841876,
+    "eff_post_h2": 1.0524448028588413,
+    "delta": 6.737001111392504
+   },
+   "linear": {
+    "n_post": 71,
+    "n_night": 1490,
+    "eff_post": 2.1387381969193116,
+    "eff_night": -0.09396195926507209,
+    "rise_post": 0.43661971830985913,
+    "rise_night": 0.5020134228187919,
+    "eff_post_h1": 4.745826861733811,
+    "eff_post_h2": 1.1710265869714267,
+    "delta": -2.2327001561843836
+   }
+  },
+  {
+   "subject": "adult#010",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 136.06995296478271,
+   "tir": 90.10416666666666,
+   "dynamic": {
+    "n_post": 64,
+    "n_night": 1329,
+    "eff_post": -16.05256360628545,
+    "eff_night": 5.661967964852254,
+    "rise_post": 0.78125,
+    "rise_night": 0.4221218961625282,
+    "eff_post_h1": -25.34380181101115,
+    "eff_post_h2": -2.9652933124539884,
+    "delta": 21.714531571137705
+   },
+   "linear": {
+    "n_post": 55,
+    "n_night": 1016,
+    "eff_post": 17.966885939697832,
+    "eff_night": 5.70193659358749,
+    "rise_post": 0.3090909090909091,
+    "rise_night": 0.4340551181102362,
+    "eff_post_h1": 28.672710465185915,
+    "eff_post_h2": 19.69517849307813,
+    "delta": -12.264949346110342
+   }
+  },
+  {
+   "subject": "adult#010",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 168.37963008880615,
+   "tir": 92.72073412698413,
+   "dynamic": {
+    "n_post": 69,
+    "n_night": 1358,
+    "eff_post": -17.087712530094944,
+    "eff_night": 6.4301236820129315,
+    "rise_post": 0.7536231884057971,
+    "rise_night": 0.4101620029455081,
+    "eff_post_h1": -18.58136850400544,
+    "eff_post_h2": -2.8998426841982354,
+    "delta": 23.517836212107873
+   },
+   "linear": {
+    "n_post": 67,
+    "n_night": 1064,
+    "eff_post": 12.988188182606311,
+    "eff_night": 4.421366689449528,
+    "rise_post": 0.3582089552238806,
+    "rise_night": 0.4351503759398496,
+    "eff_post_h1": 14.414650319291376,
+    "eff_post_h2": 20.80772544286164,
+    "delta": -8.566821493156784
+   }
+  },
+  {
+   "subject": "adult#011",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 143.0843529701233,
+   "tir": 78.84424603174604,
+   "dynamic": {
+    "n_post": 62,
+    "n_night": 1497,
+    "eff_post": 4.760379212722327,
+    "eff_night": 4.736047147987367,
+    "rise_post": 0.46774193548387094,
+    "rise_night": 0.4696058784235137,
+    "eff_post_h1": -0.46813094738857075,
+    "eff_post_h2": 8.11485004630386,
+    "delta": -0.024332064734959857
+   },
+   "linear": {
+    "n_post": 59,
+    "n_night": 1419,
+    "eff_post": 4.0235896093673755,
+    "eff_night": 3.7751939969955925,
+    "rise_post": 0.4745762711864407,
+    "rise_night": 0.4770965468639887,
+    "eff_post_h1": 27.782486960733962,
+    "eff_post_h2": 7.9635853675359565,
+    "delta": -0.24839561237178298
+   }
+  },
+  {
+   "subject": "adult#011",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 175.4938359260559,
+   "tir": 83.5689484126984,
+   "dynamic": {
+    "n_post": 70,
+    "n_night": 1279,
+    "eff_post": 0.5878439815252897,
+    "eff_night": 7.98342740672987,
+    "rise_post": 0.5,
+    "rise_night": 0.4354964816262705,
+    "eff_post_h1": 3.959108257509449,
+    "eff_post_h2": 3.080051456621789,
+    "delta": 7.39558342520458
+   },
+   "linear": {
+    "n_post": 66,
+    "n_night": 1231,
+    "eff_post": -0.8153641308039535,
+    "eff_night": 8.496219370406079,
+    "rise_post": 0.5151515151515151,
+    "rise_night": 0.4272948822095857,
+    "eff_post_h1": 4.321766966855002,
+    "eff_post_h2": 2.6728737469042936,
+    "delta": 9.311583501210032
+   }
+  },
+  {
+   "subject": "adult#012",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 139.23557329177856,
+   "tir": 91.12103174603175,
+   "dynamic": {
+    "n_post": 77,
+    "n_night": 1566,
+    "eff_post": -0.10584302521663626,
+    "eff_night": 3.6133004198419494,
+    "rise_post": 0.5064935064935064,
+    "rise_night": 0.446360153256705,
+    "eff_post_h1": -9.285259055872622,
+    "eff_post_h2": 9.517779257681447,
+    "delta": 3.719143445058586
+   },
+   "linear": {
+    "n_post": 74,
+    "n_night": 1322,
+    "eff_post": 11.16081647334817,
+    "eff_night": 3.5859263326526643,
+    "rise_post": 0.3918918918918919,
+    "rise_night": 0.44478063540090773,
+    "eff_post_h1": 11.432871752476892,
+    "eff_post_h2": 13.80864563455549,
+    "delta": -7.574890140695506
+   }
+  },
+  {
+   "subject": "adult#012",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 171.33795714378357,
+   "tir": 94.65525793650794,
+   "dynamic": {
+    "n_post": 77,
+    "n_night": 1704,
+    "eff_post": -3.7730050609996053,
+    "eff_night": -1.7177181381769575,
+    "rise_post": 0.5844155844155844,
+    "rise_night": 0.5264084507042254,
+    "eff_post_h1": -8.504391702308839,
+    "eff_post_h2": 5.6440912872578535,
+    "delta": 2.055286922822648
+   },
+   "linear": {
+    "n_post": 63,
+    "n_night": 1528,
+    "eff_post": 13.801895015490091,
+    "eff_night": -1.9151430949107262,
+    "rise_post": 0.2698412698412698,
+    "rise_night": 0.5314136125654451,
+    "eff_post_h1": 15.171040059864346,
+    "eff_post_h2": 14.900500797926883,
+    "delta": -15.717038110400818
+   }
+  },
+  {
+   "subject": "adult#013",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 135.81048607826233,
+   "tir": 88.57886904761905,
+   "dynamic": {
+    "n_post": 67,
+    "n_night": 1475,
+    "eff_post": -5.692195088235225,
+    "eff_night": 5.156401648231371,
+    "rise_post": 0.6119402985074627,
+    "rise_night": 0.37898305084745765,
+    "eff_post_h1": -5.734343180412199,
+    "eff_post_h2": -2.2488149558028576,
+    "delta": 10.848596736466597
+   },
+   "linear": {
+    "n_post": 66,
+    "n_night": 1233,
+    "eff_post": 5.256317536161967,
+    "eff_night": 3.571912167105353,
+    "rise_post": 0.42424242424242425,
+    "rise_night": 0.40794809407948096,
+    "eff_post_h1": 12.94634619493136,
+    "eff_post_h2": 9.026789807563137,
+    "delta": -1.6844053690566145
+   }
+  },
+  {
+   "subject": "adult#013",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 170.6751046180725,
+   "tir": 90.15376984126983,
+   "dynamic": {
+    "n_post": 74,
+    "n_night": 1419,
+    "eff_post": -7.224642276617522,
+    "eff_night": 1.9190827974547673,
+    "rise_post": 0.6891891891891891,
+    "rise_night": 0.44820295983086683,
+    "eff_post_h1": -9.094730275629535,
+    "eff_post_h2": 3.4767838183957327,
+    "delta": 9.14372507407229
+   },
+   "linear": {
+    "n_post": 60,
+    "n_night": 1235,
+    "eff_post": -1.2581387898720546,
+    "eff_night": 1.9816906402102428,
+    "rise_post": 0.5166666666666667,
+    "rise_night": 0.44534412955465585,
+    "eff_post_h1": 2.9853882530849067,
+    "eff_post_h2": 5.830159306999485,
+    "delta": 3.239829430082297
+   }
+  },
+  {
+   "subject": "adult#014",
+   "arm": "shipped",
+   "completed": false,
+   "seconds": 117.72868490219116,
+   "tir": 78.84333821376282,
+   "dynamic": {
+    "n_post": 60,
+    "n_night": 1343,
+    "eff_post": 4.593368620985343,
+    "eff_night": 1.5801338000412137,
+    "rise_post": 0.48333333333333334,
+    "rise_night": 0.48845867460908415,
+    "eff_post_h1": -10.57267429073751,
+    "eff_post_h2": 6.2083838076400575,
+    "delta": -3.0132348209441293
+   },
+   "linear": {
+    "n_post": 60,
+    "n_night": 1342,
+    "eff_post": 3.5346486484726776,
+    "eff_night": 1.42992108484477,
+    "rise_post": 0.48333333333333334,
+    "rise_night": 0.48956780923994037,
+    "eff_post_h1": -10.808640355692212,
+    "eff_post_h2": 12.470481505691588,
+    "delta": -2.1047275636279075
+   }
+  },
+  {
+   "subject": "adult#014",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 174.6669340133667,
+   "tir": 85.16865079365078,
+   "dynamic": {
+    "n_post": 77,
+    "n_night": 1350,
+    "eff_post": -12.34952505420615,
+    "eff_night": 4.332788306058779,
+    "rise_post": 0.6233766233766234,
+    "rise_night": 0.4533333333333333,
+    "eff_post_h1": -16.03424995061424,
+    "eff_post_h2": -4.782668241995536,
+    "delta": 16.682313360264928
+   },
+   "linear": {
+    "n_post": 77,
+    "n_night": 1347,
+    "eff_post": -15.828192101103436,
+    "eff_night": 4.444243955446972,
+    "rise_post": 0.5974025974025974,
+    "rise_night": 0.4528582034149963,
+    "eff_post_h1": -10.55889243049583,
+    "eff_post_h2": -1.631406374552806,
+    "delta": 20.272436056550408
+   }
+  },
+  {
+   "subject": "adult#015",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 144.29646110534668,
+   "tir": 88.20684523809523,
+   "dynamic": {
+    "n_post": 81,
+    "n_night": 1440,
+    "eff_post": -25.18182750755267,
+    "eff_night": 1.1546421790440324,
+    "rise_post": 0.7160493827160493,
+    "rise_night": 0.48541666666666666,
+    "eff_post_h1": -46.324602192926825,
+    "eff_post_h2": 16.358286981073107,
+    "delta": 26.3364696865967
+   },
+   "linear": {
+    "n_post": 72,
+    "n_night": 1200,
+    "eff_post": 26.91526454679027,
+    "eff_night": -1.531442149022285,
+    "rise_post": 0.3194444444444444,
+    "rise_night": 0.515,
+    "eff_post_h1": 30.867784727583324,
+    "eff_post_h2": 31.093769953874975,
+    "delta": -28.446706695812555
+   }
+  },
+  {
+   "subject": "adult#015",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 175.93929505348206,
+   "tir": 87.21478174603175,
+   "dynamic": {
+    "n_post": 83,
+    "n_night": 1487,
+    "eff_post": -31.092848902514323,
+    "eff_night": 1.3271231615151875,
+    "rise_post": 0.7831325301204819,
+    "rise_night": 0.48150638870208473,
+    "eff_post_h1": -53.557114933329714,
+    "eff_post_h2": 5.435515302375997,
+    "delta": 32.41997206402951
+   },
+   "linear": {
+    "n_post": 76,
+    "n_night": 1165,
+    "eff_post": 30.228349787049616,
+    "eff_night": -0.0706394120135807,
+    "rise_post": 0.23684210526315788,
+    "rise_night": 0.5012875536480687,
+    "eff_post_h1": 25.118688415499534,
+    "eff_post_h2": 34.64784719983641,
+    "delta": -30.298989199063197
+   }
+  },
+  {
+   "subject": "adult#016",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 136.70223212242126,
+   "tir": 87.21478174603175,
+   "dynamic": {
+    "n_post": 67,
+    "n_night": 1595,
+    "eff_post": -6.448943585655604,
+    "eff_night": 3.7761622071235403,
+    "rise_post": 0.5373134328358209,
+    "rise_night": 0.44012539184952976,
+    "eff_post_h1": 4.132662014109693,
+    "eff_post_h2": -1.768543777594892,
+    "delta": 10.225105792779145
+   },
+   "linear": {
+    "n_post": 60,
+    "n_night": 1438,
+    "eff_post": -6.841815108763601,
+    "eff_night": 3.277998670343157,
+    "rise_post": 0.5666666666666667,
+    "rise_night": 0.44645340751043117,
+    "eff_post_h1": -4.016101027552158,
+    "eff_post_h2": -0.5580582649728406,
+    "delta": 10.119813779106758
+   }
+  },
+  {
+   "subject": "adult#016",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 172.34973692893982,
+   "tir": 86.08630952380952,
+   "dynamic": {
+    "n_post": 80,
+    "n_night": 1491,
+    "eff_post": 3.598610236568179,
+    "eff_night": 0.7583150122754528,
+    "rise_post": 0.4375,
+    "rise_night": 0.49295774647887325,
+    "eff_post_h1": 3.0984251142673784,
+    "eff_post_h2": 8.786136001066497,
+    "delta": -2.8402952242927264
+   },
+   "linear": {
+    "n_post": 74,
+    "n_night": 1310,
+    "eff_post": 4.629096975949919,
+    "eff_night": 0.760657150889519,
+    "rise_post": 0.4189189189189189,
+    "rise_night": 0.49236641221374045,
+    "eff_post_h1": 3.6048129539775626,
+    "eff_post_h2": 1.593950837787135,
+    "delta": -3.8684398250604
+   }
+  },
+  {
+   "subject": "adult#017",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 142.8383309841156,
+   "tir": 83.48214285714286,
+   "dynamic": {
+    "n_post": 66,
+    "n_night": 1425,
+    "eff_post": 3.6267522095998546,
+    "eff_night": 1.8198078244807236,
+    "rise_post": 0.45454545454545453,
+    "rise_night": 0.45824561403508773,
+    "eff_post_h1": 1.100339262894858,
+    "eff_post_h2": 9.321757431177163,
+    "delta": -1.806944385119131
+   },
+   "linear": {
+    "n_post": 65,
+    "n_night": 1363,
+    "eff_post": 6.953440117020537,
+    "eff_night": 2.0284077717459916,
+    "rise_post": 0.4153846153846154,
+    "rise_night": 0.44974321349963314,
+    "eff_post_h1": 6.36080029907671,
+    "eff_post_h2": 4.351717782040866,
+    "delta": -4.925032345274545
+   }
+  },
+  {
+   "subject": "adult#017",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 177.613507270813,
+   "tir": 85.19345238095238,
+   "dynamic": {
+    "n_post": 71,
+    "n_night": 1496,
+    "eff_post": -0.06505667670314227,
+    "eff_night": -1.1362174591433511,
+    "rise_post": 0.5070422535211268,
+    "rise_night": 0.5207219251336899,
+    "eff_post_h1": -3.222946707511355,
+    "eff_post_h2": 8.636988361557789,
+    "delta": -1.071160782440209
+   },
+   "linear": {
+    "n_post": 69,
+    "n_night": 1441,
+    "eff_post": 6.744356931663959,
+    "eff_night": -0.6375920715754888,
+    "rise_post": 0.34782608695652173,
+    "rise_night": 0.5128383067314365,
+    "eff_post_h1": 5.4913824887471385,
+    "eff_post_h2": 7.813619544181562,
+    "delta": -7.381949003239448
+   }
+  },
+  {
+   "subject": "adult#018",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 136.481271982193,
+   "tir": 81.28720238095238,
+   "dynamic": {
+    "n_post": 46,
+    "n_night": 1112,
+    "eff_post": -3.2926414141377007,
+    "eff_night": 1.8369160987255375,
+    "rise_post": 0.5434782608695652,
+    "rise_night": 0.4505395683453237,
+    "eff_post_h1": 0.4887942226875811,
+    "eff_post_h2": 9.874873943730332,
+    "delta": 5.129557512863238
+   },
+   "linear": {
+    "n_post": 44,
+    "n_night": 1018,
+    "eff_post": 9.782971901107842,
+    "eff_night": 1.7862625822969278,
+    "rise_post": 0.22727272727272727,
+    "rise_night": 0.44793713163064836,
+    "eff_post_h1": 15.441555629404863,
+    "eff_post_h2": 15.208761265955925,
+    "delta": -7.996709318810915
+   }
+  },
+  {
+   "subject": "adult#018",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 173.5706558227539,
+   "tir": 85.1314484126984,
+   "dynamic": {
+    "n_post": 52,
+    "n_night": 1187,
+    "eff_post": -4.643768849628473,
+    "eff_night": 3.6932943379925907,
+    "rise_post": 0.5961538461538461,
+    "rise_night": 0.3951137320977254,
+    "eff_post_h1": -6.839803278295317,
+    "eff_post_h2": 6.274527884819457,
+    "delta": 8.337063187621064
+   },
+   "linear": {
+    "n_post": 45,
+    "n_night": 1121,
+    "eff_post": 5.88742984178667,
+    "eff_night": 3.623379009971777,
+    "rise_post": 0.35555555555555557,
+    "rise_night": 0.39696699375557537,
+    "eff_post_h1": 12.049535799979319,
+    "eff_post_h2": 8.93446812247347,
+    "delta": -2.2640508318148926
+   }
+  },
+  {
+   "subject": "adult#019",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 135.6238489151001,
+   "tir": 85.92509920634922,
+   "dynamic": {
+    "n_post": 61,
+    "n_night": 1305,
+    "eff_post": -0.3308532945626788,
+    "eff_night": 9.598204581298468,
+    "rise_post": 0.5081967213114754,
+    "rise_night": 0.3708812260536398,
+    "eff_post_h1": -4.206628692570256,
+    "eff_post_h2": 20.56056737936615,
+    "delta": 9.929057875861147
+   },
+   "linear": {
+    "n_post": 58,
+    "n_night": 1104,
+    "eff_post": 17.43137477720687,
+    "eff_night": 8.619333047790775,
+    "rise_post": 0.2413793103448276,
+    "rise_night": 0.3903985507246377,
+    "eff_post_h1": 23.92411104104397,
+    "eff_post_h2": 23.640759016753076,
+    "delta": -8.812041729416094
+   }
+  },
+  {
+   "subject": "adult#019",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 172.09722805023193,
+   "tir": 88.95089285714286,
+   "dynamic": {
+    "n_post": 63,
+    "n_night": 1366,
+    "eff_post": -4.911026130701766,
+    "eff_night": 7.800848838274532,
+    "rise_post": 0.5555555555555556,
+    "rise_night": 0.3601756954612006,
+    "eff_post_h1": -8.66492258783685,
+    "eff_post_h2": 14.825191037524466,
+    "delta": 12.711874968976298
+   },
+   "linear": {
+    "n_post": 54,
+    "n_night": 1226,
+    "eff_post": 9.800406316087551,
+    "eff_night": 8.416828061311024,
+    "rise_post": 0.3148148148148148,
+    "rise_night": 0.3466557911908646,
+    "eff_post_h1": 19.767862473125245,
+    "eff_post_h2": 13.628049619606026,
+    "delta": -1.383578254776527
+   }
+  },
+  {
+   "subject": "adult#020",
+   "arm": "shipped",
+   "completed": false,
+   "seconds": 72.07804489135742,
+   "tir": 82.97278436845778,
+   "dynamic": {
+    "n_post": 44,
+    "n_night": 743,
+    "eff_post": 7.806022299085714,
+    "eff_night": 3.0537791253020945,
+    "rise_post": 0.38636363636363635,
+    "rise_night": 0.44952893674293404,
+    "eff_post_h1": -2.8685314646281377,
+    "eff_post_h2": 15.116949162942442,
+    "delta": -4.7522431737836195
+   },
+   "linear": {
+    "n_post": 35,
+    "n_night": 690,
+    "eff_post": 15.889490463224728,
+    "eff_night": 4.008839587986966,
+    "rise_post": 0.2571428571428571,
+    "rise_night": 0.4434782608695652,
+    "eff_post_h1": 13.548780469269111,
+    "eff_post_h2": 17.834716250630215,
+    "delta": -11.880650875237762
+   }
+  },
+  {
+   "subject": "adult#020",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 173.63575077056885,
+   "tir": 90.14136904761905,
+   "dynamic": {
+    "n_post": 74,
+    "n_night": 1410,
+    "eff_post": 5.705429064212483,
+    "eff_night": 2.372554266100662,
+    "rise_post": 0.47297297297297297,
+    "rise_night": 0.4581560283687943,
+    "eff_post_h1": -2.7284191947287617,
+    "eff_post_h2": 12.627090700432221,
+    "delta": -3.332874798111821
+   },
+   "linear": {
+    "n_post": 64,
+    "n_night": 1238,
+    "eff_post": 11.969236118831468,
+    "eff_night": 2.229989428463502,
+    "rise_post": 0.359375,
+    "rise_night": 0.4620355411954766,
+    "eff_post_h1": 8.760341807996443,
+    "eff_post_h2": 4.422194932583106,
+    "delta": -9.739246690367967
+   }
+  },
+  {
+   "subject": "adult#021",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 135.1770429611206,
+   "tir": 79.29067460317461,
+   "dynamic": {
+    "n_post": 64,
+    "n_night": 1134,
+    "eff_post": -1.6244736134512494,
+    "eff_night": 9.461177552044177,
+    "rise_post": 0.53125,
+    "rise_night": 0.41181657848324515,
+    "eff_post_h1": 7.8901470106490486,
+    "eff_post_h2": 13.214642918495018,
+    "delta": 11.085651165495426
+   },
+   "linear": {
+    "n_post": 56,
+    "n_night": 1090,
+    "eff_post": 10.885147011969908,
+    "eff_night": 8.813935180515905,
+    "rise_post": 0.3392857142857143,
+    "rise_night": 0.41743119266055045,
+    "eff_post_h1": 22.954693698936033,
+    "eff_post_h2": 10.640050773224466,
+    "delta": -2.0712118314540024
+   }
+  },
+  {
+   "subject": "adult#021",
+   "arm": "slow_meal",
+   "completed": false,
+   "seconds": 119.23903894424438,
+   "tir": 76.20137299771167,
+   "dynamic": {
+    "n_post": 48,
+    "n_night": 738,
+    "eff_post": 4.598738126256709,
+    "eff_night": 6.703656016858568,
+    "rise_post": 0.4583333333333333,
+    "rise_night": 0.42140921409214094,
+    "eff_post_h1": 4.356664058018561,
+    "eff_post_h2": 9.701960725602426,
+    "delta": 2.1049178906018593
+   },
+   "linear": {
+    "n_post": 47,
+    "n_night": 672,
+    "eff_post": -4.122686569334171,
+    "eff_night": 6.247527707429811,
+    "rise_post": 0.5319148936170213,
+    "rise_night": 0.42410714285714285,
+    "eff_post_h1": 10.646628871199727,
+    "eff_post_h2": -7.436962859538515,
+    "delta": 10.370214276763981
+   }
+  },
+  {
+   "subject": "adult#022",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 136.13060212135315,
+   "tir": 88.2564484126984,
+   "dynamic": {
+    "n_post": 48,
+    "n_night": 605,
+    "eff_post": -4.0138411550573005,
+    "eff_night": 10.907117867732255,
+    "rise_post": 0.5208333333333334,
+    "rise_night": 0.28264462809917357,
+    "eff_post_h1": -7.527725751510912,
+    "eff_post_h2": 2.8025593473232426,
+    "delta": 14.920959022789557
+   },
+   "linear": {
+    "n_post": 19,
+    "n_night": 570,
+    "eff_post": 16.64135872556712,
+    "eff_night": 10.620037458367769,
+    "rise_post": 0.15789473684210525,
+    "rise_night": 0.2894736842105263,
+    "eff_post_h1": null,
+    "eff_post_h2": null,
+    "delta": -6.021321267199351
+   }
+  },
+  {
+   "subject": "adult#022",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 173.39019799232483,
+   "tir": 91.17063492063492,
+   "dynamic": {
+    "n_post": 50,
+    "n_night": 598,
+    "eff_post": -1.733726049968399,
+    "eff_night": 12.185004928635214,
+    "rise_post": 0.52,
+    "rise_night": 0.25418060200668896,
+    "eff_post_h1": -7.428605537165605,
+    "eff_post_h2": 7.090296301229599,
+    "delta": 13.918730978603612
+   },
+   "linear": {
+    "n_post": 21,
+    "n_night": 491,
+    "eff_post": 14.278623979193902,
+    "eff_night": 10.796659370761517,
+    "rise_post": 0.23809523809523808,
+    "rise_night": 0.28105906313645623,
+    "eff_post_h1": null,
+    "eff_post_h2": null,
+    "delta": -3.481964608432385
+   }
+  },
+  {
+   "subject": "adult#023",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 134.77780413627625,
+   "tir": 85.7390873015873,
+   "dynamic": {
+    "n_post": 73,
+    "n_night": 1447,
+    "eff_post": -7.599843633938128,
+    "eff_night": 5.538593102258022,
+    "rise_post": 0.5616438356164384,
+    "rise_night": 0.4333102971665515,
+    "eff_post_h1": -13.771273737427922,
+    "eff_post_h2": 16.785908520852985,
+    "delta": 13.13843673619615
+   },
+   "linear": {
+    "n_post": 75,
+    "n_night": 1246,
+    "eff_post": 11.072945395075024,
+    "eff_night": 5.666704695539724,
+    "rise_post": 0.4266666666666667,
+    "rise_night": 0.43097913322632425,
+    "eff_post_h1": 17.693490306293075,
+    "eff_post_h2": 23.116303110801077,
+    "delta": -5.4062406995353
+   }
+  },
+  {
+   "subject": "adult#023",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 174.46021485328674,
+   "tir": 90.58779761904762,
+   "dynamic": {
+    "n_post": 74,
+    "n_night": 1480,
+    "eff_post": -2.1973887936329333,
+    "eff_night": 0.38466573040307284,
+    "rise_post": 0.527027027027027,
+    "rise_night": 0.49324324324324326,
+    "eff_post_h1": -4.499937497616355,
+    "eff_post_h2": 11.277904357929811,
+    "delta": 2.582054524036006
+   },
+   "linear": {
+    "n_post": 74,
+    "n_night": 1318,
+    "eff_post": 13.359439635653073,
+    "eff_night": -0.3964202857541356,
+    "rise_post": 0.40540540540540543,
+    "rise_night": 0.5053110773899848,
+    "eff_post_h1": 16.103584435506185,
+    "eff_post_h2": 7.850412565436965,
+    "delta": -13.75585992140721
+   }
+  },
+  {
+   "subject": "adult#024",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 133.5894808769226,
+   "tir": 86.21031746031747,
+   "dynamic": {
+    "n_post": 59,
+    "n_night": 1575,
+    "eff_post": -7.204652422424312,
+    "eff_night": 1.9857032966743902,
+    "rise_post": 0.6779661016949152,
+    "rise_night": 0.4622222222222222,
+    "eff_post_h1": -12.471738895166286,
+    "eff_post_h2": 4.961775831685769,
+    "delta": 9.190355719098703
+   },
+   "linear": {
+    "n_post": 56,
+    "n_night": 1401,
+    "eff_post": 25.922902798568614,
+    "eff_night": 2.2371353578286746,
+    "rise_post": 0.26785714285714285,
+    "rise_night": 0.4568165596002855,
+    "eff_post_h1": 26.638934741328022,
+    "eff_post_h2": 24.355203674615556,
+    "delta": -23.68576744073994
+   }
+  },
+  {
+   "subject": "adult#024",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 172.59096503257751,
+   "tir": 85.1810515873016,
+   "dynamic": {
+    "n_post": 57,
+    "n_night": 1471,
+    "eff_post": -9.274481063158307,
+    "eff_night": 3.341814732491207,
+    "rise_post": 0.631578947368421,
+    "rise_night": 0.44663494221617944,
+    "eff_post_h1": -15.48075301505298,
+    "eff_post_h2": 9.652521451668463,
+    "delta": 12.616295795649513
+   },
+   "linear": {
+    "n_post": 48,
+    "n_night": 1336,
+    "eff_post": 25.299593675467616,
+    "eff_night": 3.4586830364703074,
+    "rise_post": 0.2708333333333333,
+    "rise_night": 0.4416167664670659,
+    "eff_post_h1": 24.106487529665845,
+    "eff_post_h2": 23.6293460811308,
+    "delta": -21.840910638997308
+   }
+  },
+  {
+   "subject": "adult#025",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 133.43974900245667,
+   "tir": 90.21577380952381,
+   "dynamic": {
+    "n_post": 61,
+    "n_night": 1498,
+    "eff_post": -0.3221554882519218,
+    "eff_night": 3.258466024192974,
+    "rise_post": 0.5081967213114754,
+    "rise_night": 0.42990654205607476,
+    "eff_post_h1": -3.0683181928963847,
+    "eff_post_h2": 14.234864868748685,
+    "delta": 3.580621512444896
+   },
+   "linear": {
+    "n_post": 59,
+    "n_night": 1336,
+    "eff_post": 12.580818338500986,
+    "eff_night": 2.896214523730295,
+    "rise_post": 0.23728813559322035,
+    "rise_night": 0.43038922155688625,
+    "eff_post_h1": 8.677326076411633,
+    "eff_post_h2": 19.673913237869574,
+    "delta": -9.684603814770691
+   }
+  },
+  {
+   "subject": "adult#025",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 172.48186492919922,
+   "tir": 89.53373015873017,
+   "dynamic": {
+    "n_post": 62,
+    "n_night": 1316,
+    "eff_post": -2.851763217815062,
+    "eff_night": 1.809663275393203,
+    "rise_post": 0.5645161290322581,
+    "rise_night": 0.4566869300911854,
+    "eff_post_h1": -5.404636459720563,
+    "eff_post_h2": 12.261706571754303,
+    "delta": 4.661426493208265
+   },
+   "linear": {
+    "n_post": 69,
+    "n_night": 1190,
+    "eff_post": 11.367274623547525,
+    "eff_night": 1.3897735147078576,
+    "rise_post": 0.2318840579710145,
+    "rise_night": 0.46974789915966386,
+    "eff_post_h1": 9.075694584940964,
+    "eff_post_h2": 20.495666336924895,
+    "delta": -9.977501108839668
+   }
+  },
+  {
+   "subject": "adult#027",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 136.1801290512085,
+   "tir": 78.54662698412699,
+   "dynamic": {
+    "n_post": 70,
+    "n_night": 1217,
+    "eff_post": -6.3482775404409555,
+    "eff_night": 8.179490839813413,
+    "rise_post": 0.6142857142857143,
+    "rise_night": 0.39276910435497125,
+    "eff_post_h1": -8.17507597556679,
+    "eff_post_h2": 2.6173158993923407,
+    "delta": 14.527768380254368
+   },
+   "linear": {
+    "n_post": 66,
+    "n_night": 1028,
+    "eff_post": 8.880810618525175,
+    "eff_night": 8.485677336810564,
+    "rise_post": 0.4696969696969697,
+    "rise_night": 0.3861867704280156,
+    "eff_post_h1": 7.35018027798482,
+    "eff_post_h2": 10.26788722998478,
+    "delta": -0.39513328171461026
+   }
+  },
+  {
+   "subject": "adult#027",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 173.34253311157227,
+   "tir": 87.2891865079365,
+   "dynamic": {
+    "n_post": 66,
+    "n_night": 1461,
+    "eff_post": -3.620189481233222,
+    "eff_night": 1.6629808040453065,
+    "rise_post": 0.5606060606060606,
+    "rise_night": 0.47638603696098564,
+    "eff_post_h1": -1.4425438024140667,
+    "eff_post_h2": 5.898863395250829,
+    "delta": 5.283170285278528
+   },
+   "linear": {
+    "n_post": 58,
+    "n_night": 1250,
+    "eff_post": 6.046171249064734,
+    "eff_night": 1.2729837644238071,
+    "rise_post": 0.3793103448275862,
+    "rise_night": 0.4808,
+    "eff_post_h1": 8.33335034099891,
+    "eff_post_h2": 11.777839957853917,
+    "delta": -4.7731874846409275
+   }
+  },
+  {
+   "subject": "adult#028",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 133.9081699848175,
+   "tir": 82.19246031746032,
+   "dynamic": {
+    "n_post": 30,
+    "n_night": 477,
+    "eff_post": 2.248419202481889,
+    "eff_night": 16.389700630150482,
+    "rise_post": 0.4,
+    "rise_night": 0.1740041928721174,
+    "eff_post_h1": -4.866771772537618,
+    "eff_post_h2": 13.289390040469332,
+    "delta": 14.141281427668593
+   },
+   "linear": {
+    "n_post": 15,
+    "n_night": 438,
+    "eff_post": 39.846981509364916,
+    "eff_night": 16.13363210837501,
+    "rise_post": 0.2,
+    "rise_night": 0.1780821917808219,
+    "eff_post_h1": null,
+    "eff_post_h2": null,
+    "delta": -23.713349400989905
+   }
+  },
+  {
+   "subject": "adult#028",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 173.15293788909912,
+   "tir": 85.76388888888889,
+   "dynamic": {
+    "n_post": 30,
+    "n_night": 433,
+    "eff_post": -3.1810619241328935,
+    "eff_night": 17.801063001197154,
+    "rise_post": 0.5666666666666667,
+    "rise_night": 0.13856812933025403,
+    "eff_post_h1": -10.012006839617008,
+    "eff_post_h2": 9.099337671774283,
+    "delta": 20.982124925330048
+   },
+   "linear": {
+    "n_post": 16,
+    "n_night": 406,
+    "eff_post": 31.654386837032707,
+    "eff_night": 17.861427701955147,
+    "rise_post": 0.0,
+    "rise_night": 0.1330049261083744,
+    "eff_post_h1": null,
+    "eff_post_h2": null,
+    "delta": -13.79295913507756
+   }
+  },
+  {
+   "subject": "adult#029",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 137.63913011550903,
+   "tir": 90.74900793650794,
+   "dynamic": {
+    "n_post": 77,
+    "n_night": 1366,
+    "eff_post": -8.275786133226307,
+    "eff_night": 5.358019142591225,
+    "rise_post": 0.5974025974025974,
+    "rise_night": 0.43484626647144947,
+    "eff_post_h1": -9.868132680703443,
+    "eff_post_h2": 2.9579364708099636,
+    "delta": 13.633805275817531
+   },
+   "linear": {
+    "n_post": 69,
+    "n_night": 1217,
+    "eff_post": 1.7400359956645894,
+    "eff_night": 5.71473794960056,
+    "rise_post": 0.4782608695652174,
+    "rise_night": 0.4272801972062449,
+    "eff_post_h1": -2.431747551603624,
+    "eff_post_h2": 3.4477438781980507,
+    "delta": 3.9747019539359707
+   }
+  },
+  {
+   "subject": "adult#029",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 174.59129810333252,
+   "tir": 95.32490079365078,
+   "dynamic": {
+    "n_post": 82,
+    "n_night": 1547,
+    "eff_post": -6.24171250400253,
+    "eff_night": 3.898357190665766,
+    "rise_post": 0.5853658536585366,
+    "rise_night": 0.4440853264382676,
+    "eff_post_h1": -9.117412053184477,
+    "eff_post_h2": 11.847245965851078,
+    "delta": 10.140069694668297
+   },
+   "linear": {
+    "n_post": 79,
+    "n_night": 1371,
+    "eff_post": 8.0744645788399,
+    "eff_night": 3.7899031086174793,
+    "rise_post": 0.4050632911392405,
+    "rise_night": 0.4449307075127644,
+    "eff_post_h1": -2.1535042337230275,
+    "eff_post_h2": 13.790416261825046,
+    "delta": -4.28456147022242
+   }
+  },
+  {
+   "subject": "adult#030",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 134.84686303138733,
+   "tir": 88.46726190476191,
+   "dynamic": {
+    "n_post": 70,
+    "n_night": 1591,
+    "eff_post": -7.9164247717928875,
+    "eff_night": 1.9099445539250266,
+    "rise_post": 0.6714285714285714,
+    "rise_night": 0.47203016970458833,
+    "eff_post_h1": -13.165490261495966,
+    "eff_post_h2": -3.3227474363126817,
+    "delta": 9.826369325717915
+   },
+   "linear": {
+    "n_post": 61,
+    "n_night": 1484,
+    "eff_post": -0.7967002768539023,
+    "eff_night": 1.0222108608365328,
+    "rise_post": 0.5573770491803278,
+    "rise_night": 0.4831536388140162,
+    "eff_post_h1": -1.4796867864689285,
+    "eff_post_h2": 1.362755192974118,
+    "delta": 1.818911137690435
+   }
+  },
+  {
+   "subject": "adult#030",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 175.8212878704071,
+   "tir": 93.04315476190477,
+   "dynamic": {
+    "n_post": 67,
+    "n_night": 1631,
+    "eff_post": -1.2079264355277353,
+    "eff_night": 0.130524882997348,
+    "rise_post": 0.5074626865671642,
+    "rise_night": 0.4984671980380135,
+    "eff_post_h1": -2.620783069558636,
+    "eff_post_h2": 3.9590656836766174,
+    "delta": 1.3384513185250833
+   },
+   "linear": {
+    "n_post": 61,
+    "n_night": 1480,
+    "eff_post": -1.0637549180439994,
+    "eff_night": 0.24561699457817415,
+    "rise_post": 0.5081967213114754,
+    "rise_night": 0.4966216216216216,
+    "eff_post_h1": 1.0963677659433129,
+    "eff_post_h2": 0.9955402066875085,
+    "delta": 1.3093719126221735
+   }
+  },
+  {
+   "subject": "adult#031",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 142.78134870529175,
+   "tir": 79.91071428571429,
+   "dynamic": {
+    "n_post": 65,
+    "n_night": 1534,
+    "eff_post": -13.326984494259538,
+    "eff_night": 5.037150929887061,
+    "rise_post": 0.6153846153846154,
+    "rise_night": 0.44198174706649285,
+    "eff_post_h1": 2.1217635290549244,
+    "eff_post_h2": -2.6061180896449376,
+    "delta": 18.3641354241466
+   },
+   "linear": {
+    "n_post": 62,
+    "n_night": 1436,
+    "eff_post": -3.1962986144262304,
+    "eff_night": 5.357569459446308,
+    "rise_post": 0.5161290322580645,
+    "rise_night": 0.435933147632312,
+    "eff_post_h1": 4.701259328095072,
+    "eff_post_h2": 5.143202652987642,
+    "delta": 8.55386807387254
+   }
+  },
+  {
+   "subject": "adult#031",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 175.77516674995422,
+   "tir": 80.08432539682539,
+   "dynamic": {
+    "n_post": 70,
+    "n_night": 1451,
+    "eff_post": 0.015195273639452056,
+    "eff_night": 2.908954559492968,
+    "rise_post": 0.5,
+    "rise_night": 0.4686423156443832,
+    "eff_post_h1": 6.339519748747475,
+    "eff_post_h2": -2.6593118156616735,
+    "delta": 2.893759285853516
+   },
+   "linear": {
+    "n_post": 67,
+    "n_night": 1350,
+    "eff_post": 1.7474269896696502,
+    "eff_night": 2.9886168333958345,
+    "rise_post": 0.47761194029850745,
+    "rise_night": 0.4659259259259259,
+    "eff_post_h1": 9.83435768208391,
+    "eff_post_h2": 3.3502722203311173,
+    "delta": 1.2411898437261843
+   }
+  },
+  {
+   "subject": "adult#032",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 140.12433314323425,
+   "tir": 81.20039682539682,
+   "dynamic": {
+    "n_post": 33,
+    "n_night": 652,
+    "eff_post": -0.06728181570364747,
+    "eff_night": 11.701985995370503,
+    "rise_post": 0.5151515151515151,
+    "rise_night": 0.2776073619631902,
+    "eff_post_h1": -6.338959053564245,
+    "eff_post_h2": 3.6846410484263186,
+    "delta": 11.769267811074151
+   },
+   "linear": {
+    "n_post": 30,
+    "n_night": 542,
+    "eff_post": 33.15501960351515,
+    "eff_night": 8.29483457067506,
+    "rise_post": 0.16666666666666666,
+    "rise_night": 0.3210332103321033,
+    "eff_post_h1": 33.21368085244835,
+    "eff_post_h2": 27.599831823685626,
+    "delta": -24.86018503284009
+   }
+  },
+  {
+   "subject": "adult#032",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 173.36887001991272,
+   "tir": 89.88095238095238,
+   "dynamic": {
+    "n_post": 40,
+    "n_night": 624,
+    "eff_post": -6.456075609652031,
+    "eff_night": 6.840849345688008,
+    "rise_post": 0.7,
+    "rise_night": 0.32532051282051283,
+    "eff_post_h1": -6.469714053941452,
+    "eff_post_h2": 0.30064547154510757,
+    "delta": 13.296924955340039
+   },
+   "linear": {
+    "n_post": 28,
+    "n_night": 547,
+    "eff_post": 28.42160889605222,
+    "eff_night": 5.090094177179028,
+    "rise_post": 0.10714285714285714,
+    "rise_night": 0.3656307129798903,
+    "eff_post_h1": 32.431921002920944,
+    "eff_post_h2": 20.499640258001797,
+    "delta": -23.331514718873194
+   }
+  },
+  {
+   "subject": "adult#033",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 139.1139898300171,
+   "tir": 86.56994047619048,
+   "dynamic": {
+    "n_post": 76,
+    "n_night": 1485,
+    "eff_post": -6.254796617938176,
+    "eff_night": -1.3903667660074774,
+    "rise_post": 0.5131578947368421,
+    "rise_night": 0.5111111111111111,
+    "eff_post_h1": -12.37619227449012,
+    "eff_post_h2": 21.75254593888087,
+    "delta": 4.864429851930699
+   },
+   "linear": {
+    "n_post": 68,
+    "n_night": 1305,
+    "eff_post": 16.08062989226014,
+    "eff_night": 1.3289557173444952,
+    "rise_post": 0.36764705882352944,
+    "rise_night": 0.4888888888888889,
+    "eff_post_h1": 27.688670567386477,
+    "eff_post_h2": 22.014430122666855,
+    "delta": -14.751674174915646
+   }
+  },
+  {
+   "subject": "adult#033",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 172.83104634284973,
+   "tir": 89.28571428571429,
+   "dynamic": {
+    "n_post": 71,
+    "n_night": 1583,
+    "eff_post": -3.456591706725656,
+    "eff_night": -0.10065822165722275,
+    "rise_post": 0.5492957746478874,
+    "rise_night": 0.5015792798483891,
+    "eff_post_h1": -10.647337354925371,
+    "eff_post_h2": 15.41333165731305,
+    "delta": 3.3559334850684333
+   },
+   "linear": {
+    "n_post": 69,
+    "n_night": 1352,
+    "eff_post": 6.85668550107618,
+    "eff_night": 1.3070922162129937,
+    "rise_post": 0.43478260869565216,
+    "rise_night": 0.4874260355029586,
+    "eff_post_h1": 19.159757171015407,
+    "eff_post_h2": -4.5662906022683964,
+    "delta": -5.549593284863187
+   }
+  },
+  {
+   "subject": "adult#034",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 143.34330797195435,
+   "tir": 69.45684523809523,
+   "dynamic": {
+    "n_post": 72,
+    "n_night": 1360,
+    "eff_post": -8.480328963716723,
+    "eff_night": 10.224435386026645,
+    "rise_post": 0.5972222222222222,
+    "rise_night": 0.37279411764705883,
+    "eff_post_h1": -13.615327443315117,
+    "eff_post_h2": -4.138215063423794,
+    "delta": 18.704764349743368
+   },
+   "linear": {
+    "n_post": 71,
+    "n_night": 1253,
+    "eff_post": -2.8089158194904646,
+    "eff_night": 9.52200544733068,
+    "rise_post": 0.5211267605633803,
+    "rise_night": 0.36951316839584997,
+    "eff_post_h1": -8.69201708206654,
+    "eff_post_h2": 14.596683185475442,
+    "delta": 12.330921266821143
+   }
+  },
+  {
+   "subject": "adult#034",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 174.20336604118347,
+   "tir": 74.11954365079364,
+   "dynamic": {
+    "n_post": 69,
+    "n_night": 1455,
+    "eff_post": 10.481078414186197,
+    "eff_night": 2.6357000423050083,
+    "rise_post": 0.4057971014492754,
+    "rise_night": 0.47285223367697593,
+    "eff_post_h1": 13.863328094822327,
+    "eff_post_h2": 5.0584015324257114,
+    "delta": -7.845378371881188
+   },
+   "linear": {
+    "n_post": 63,
+    "n_night": 1312,
+    "eff_post": -8.42435843832619,
+    "eff_night": 3.4622025370062017,
+    "rise_post": 0.5555555555555556,
+    "rise_night": 0.4573170731707317,
+    "eff_post_h1": -6.002345860415407,
+    "eff_post_h2": 0.3435328911199527,
+    "delta": 11.88656097533239
+   }
+  },
+  {
+   "subject": "adult#035",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 145.93627405166626,
+   "tir": 81.75843253968253,
+   "dynamic": {
+    "n_post": 76,
+    "n_night": 1377,
+    "eff_post": 2.0185277666088255,
+    "eff_night": 4.178237539134393,
+    "rise_post": 0.4605263157894737,
+    "rise_night": 0.4241103848946986,
+    "eff_post_h1": -3.746778984096216,
+    "eff_post_h2": 12.091447607380285,
+    "delta": 2.159709772525568
+   },
+   "linear": {
+    "n_post": 68,
+    "n_night": 1297,
+    "eff_post": 3.18288719808205,
+    "eff_night": 4.755174660682048,
+    "rise_post": 0.45588235294117646,
+    "rise_night": 0.41788743253662297,
+    "eff_post_h1": 12.371076118308647,
+    "eff_post_h2": 3.676139280858865,
+    "delta": 1.572287462599998
+   }
+  },
+  {
+   "subject": "adult#035",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 176.26562428474426,
+   "tir": 93.5515873015873,
+   "dynamic": {
+    "n_post": 71,
+    "n_night": 1524,
+    "eff_post": 1.8199757352357122,
+    "eff_night": 2.0556966673513415,
+    "rise_post": 0.4788732394366197,
+    "rise_night": 0.45013123359580054,
+    "eff_post_h1": 1.4624336266812743,
+    "eff_post_h2": 5.720472578593958,
+    "delta": 0.23572093211562928
+   },
+   "linear": {
+    "n_post": 65,
+    "n_night": 1445,
+    "eff_post": 4.462188540427508,
+    "eff_night": 1.846367874234196,
+    "rise_post": 0.4,
+    "rise_night": 0.4560553633217993,
+    "eff_post_h1": 10.023899967456503,
+    "eff_post_h2": 9.232911136915238,
+    "delta": -2.6158206661933123
+   }
+  },
+  {
+   "subject": "adult#036",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 144.45178294181824,
+   "tir": 81.98164682539682,
+   "dynamic": {
+    "n_post": 48,
+    "n_night": 1235,
+    "eff_post": 0.3957674250601039,
+    "eff_night": 3.212166256208837,
+    "rise_post": 0.5,
+    "rise_night": 0.39838056680161943,
+    "eff_post_h1": -1.3425534308968603,
+    "eff_post_h2": 4.672532714713502,
+    "delta": 2.8163988311487334
+   },
+   "linear": {
+    "n_post": 56,
+    "n_night": 1151,
+    "eff_post": 6.779346749582636,
+    "eff_night": 3.0413333749081963,
+    "rise_post": 0.30357142857142855,
+    "rise_night": 0.4005212858384014,
+    "eff_post_h1": 11.169261098783219,
+    "eff_post_h2": 10.051300345038232,
+    "delta": -3.73801337467444
+   }
+  },
+  {
+   "subject": "adult#036",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 173.3617720603943,
+   "tir": 83.19692460317461,
+   "dynamic": {
+    "n_post": 59,
+    "n_night": 1207,
+    "eff_post": -0.17064180055756284,
+    "eff_night": 4.501260189096267,
+    "rise_post": 0.5423728813559322,
+    "rise_night": 0.35791217895608946,
+    "eff_post_h1": 0.510018751560438,
+    "eff_post_h2": 7.049400131730056,
+    "delta": 4.67190198965383
+   },
+   "linear": {
+    "n_post": 49,
+    "n_night": 1085,
+    "eff_post": 4.740339846014908,
+    "eff_night": 4.07689561705734,
+    "rise_post": 0.2653061224489796,
+    "rise_night": 0.3705069124423963,
+    "eff_post_h1": 8.290730150516541,
+    "eff_post_h2": 7.514888978679604,
+    "delta": -0.6634442289575686
+   }
+  },
+  {
+   "subject": "adult#037",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 159.1580789089203,
+   "tir": 87.36359126984127,
+   "dynamic": {
+    "n_post": 77,
+    "n_night": 1538,
+    "eff_post": -5.364617923323018,
+    "eff_night": 0.45883477259365024,
+    "rise_post": 0.6623376623376623,
+    "rise_night": 0.4869960988296489,
+    "eff_post_h1": -5.87259484197724,
+    "eff_post_h2": -2.694119509084183,
+    "delta": 5.823452695916668
+   },
+   "linear": {
+    "n_post": 77,
+    "n_night": 1196,
+    "eff_post": -0.05085372996115319,
+    "eff_night": 0.5949306226567981,
+    "rise_post": 0.5064935064935064,
+    "rise_night": 0.48244147157190637,
+    "eff_post_h1": 1.4498614524966582,
+    "eff_post_h2": 7.279708310606966,
+    "delta": 0.6457843526179513
+   }
+  },
+  {
+   "subject": "adult#037",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 175.05349707603455,
+   "tir": 88.95089285714286,
+   "dynamic": {
+    "n_post": 77,
+    "n_night": 1717,
+    "eff_post": -3.2428524664447704,
+    "eff_night": 2.4102336542615577,
+    "rise_post": 0.6103896103896104,
+    "rise_night": 0.46068724519510773,
+    "eff_post_h1": -5.1545635587837655,
+    "eff_post_h2": 5.293160511380248,
+    "delta": 5.6530861207063285
+   },
+   "linear": {
+    "n_post": 77,
+    "n_night": 1463,
+    "eff_post": 7.646361956684044,
+    "eff_night": 1.7306473593315819,
+    "rise_post": 0.33766233766233766,
+    "rise_night": 0.47163362952836635,
+    "eff_post_h1": 5.722766938092807,
+    "eff_post_h2": 6.418632749970472,
+    "delta": -5.915714597352462
+   }
+  },
+  {
+   "subject": "adult#038",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 161.40230679512024,
+   "tir": 78.39781746031747,
+   "dynamic": {
+    "n_post": 34,
+    "n_night": 883,
+    "eff_post": -4.304544322418639,
+    "eff_night": 14.10408293577962,
+    "rise_post": 0.7058823529411765,
+    "rise_night": 0.2853907134767837,
+    "eff_post_h1": -11.880768360971366,
+    "eff_post_h2": 14.394090516319471,
+    "delta": 18.40862725819826
+   },
+   "linear": {
+    "n_post": 23,
+    "n_night": 791,
+    "eff_post": 14.086870908001035,
+    "eff_night": 12.057254635287586,
+    "rise_post": 0.17391304347826086,
+    "rise_night": 0.30467762326169406,
+    "eff_post_h1": 12.461118918063912,
+    "eff_post_h2": 17.798008081695265,
+    "delta": -2.029616272713449
+   }
+  },
+  {
+   "subject": "adult#038",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 173.27855706214905,
+   "tir": 80.76636904761905,
+   "dynamic": {
+    "n_post": 30,
+    "n_night": 758,
+    "eff_post": -3.6791374116243287,
+    "eff_night": 8.68896178644243,
+    "rise_post": 0.6666666666666666,
+    "rise_night": 0.31926121372031663,
+    "eff_post_h1": -7.303135671145551,
+    "eff_post_h2": 9.99400992302059,
+    "delta": 12.368099198066759
+   },
+   "linear": {
+    "n_post": 19,
+    "n_night": 693,
+    "eff_post": 18.098347866934162,
+    "eff_night": 7.799738776968658,
+    "rise_post": 0.10526315789473684,
+    "rise_night": 0.3434343434343434,
+    "eff_post_h1": null,
+    "eff_post_h2": 15.862257808681296,
+    "delta": -10.298609089965504
+   }
+  },
+  {
+   "subject": "adult#039",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 160.16313076019287,
+   "tir": 87.3015873015873,
+   "dynamic": {
+    "n_post": 68,
+    "n_night": 1448,
+    "eff_post": 1.000537647977456,
+    "eff_night": 4.065145407628185,
+    "rise_post": 0.47058823529411764,
+    "rise_night": 0.4544198895027624,
+    "eff_post_h1": -13.173884538075225,
+    "eff_post_h2": 27.230890126312172,
+    "delta": 3.0646077596507286
+   },
+   "linear": {
+    "n_post": 62,
+    "n_night": 1337,
+    "eff_post": 24.62788009054336,
+    "eff_night": 3.469776836932751,
+    "rise_post": 0.25806451612903225,
+    "rise_night": 0.4607329842931937,
+    "eff_post_h1": 30.487626735902897,
+    "eff_post_h2": 36.95714818499064,
+    "delta": -21.15810325361061
+   }
+  },
+  {
+   "subject": "adult#039",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 163.53573393821716,
+   "tir": 89.58333333333334,
+   "dynamic": {
+    "n_post": 58,
+    "n_night": 1447,
+    "eff_post": -0.05957788808146794,
+    "eff_night": 9.39829595796065,
+    "rise_post": 0.5,
+    "rise_night": 0.4091223220456116,
+    "eff_post_h1": -16.48310957572513,
+    "eff_post_h2": 31.391476998785,
+    "delta": 9.45787384604212
+   },
+   "linear": {
+    "n_post": 63,
+    "n_night": 1333,
+    "eff_post": 24.450220723194494,
+    "eff_night": 8.361859759507261,
+    "rise_post": 0.30158730158730157,
+    "rise_night": 0.41935483870967744,
+    "eff_post_h1": 41.16617944463428,
+    "eff_post_h2": 24.82931989240724,
+    "delta": -16.088360963687233
+   }
+  },
+  {
+   "subject": "adult#040",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 159.49682998657227,
+   "tir": 86.30952380952381,
+   "dynamic": {
+    "n_post": 48,
+    "n_night": 1035,
+    "eff_post": -5.618429322983525,
+    "eff_night": 15.332687739113108,
+    "rise_post": 0.5625,
+    "rise_night": 0.2599033816425121,
+    "eff_post_h1": -3.705976882329954,
+    "eff_post_h2": 5.378300963097335,
+    "delta": 20.951117062096635
+   },
+   "linear": {
+    "n_post": 34,
+    "n_night": 930,
+    "eff_post": 15.029086067706444,
+    "eff_night": 15.247829526207909,
+    "rise_post": 0.35294117647058826,
+    "rise_night": 0.26129032258064516,
+    "eff_post_h1": 30.44833771592059,
+    "eff_post_h2": 22.449557267475683,
+    "delta": 0.21874345850146426
+   }
+  },
+  {
+   "subject": "adult#040",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 159.7863757610321,
+   "tir": 89.21130952380952,
+   "dynamic": {
+    "n_post": 53,
+    "n_night": 1008,
+    "eff_post": -8.042482483001,
+    "eff_night": 11.40905180194971,
+    "rise_post": 0.5849056603773585,
+    "rise_night": 0.314484126984127,
+    "eff_post_h1": -8.11714631818768,
+    "eff_post_h2": 0.5080474554685098,
+    "delta": 19.45153428495071
+   },
+   "linear": {
+    "n_post": 34,
+    "n_night": 886,
+    "eff_post": 21.188867039179097,
+    "eff_night": 8.603101287220687,
+    "rise_post": 0.17647058823529413,
+    "rise_night": 0.3431151241534989,
+    "eff_post_h1": 21.64737782829509,
+    "eff_post_h2": 23.02573220817522,
+    "delta": -12.58576575195841
+   }
+  },
+  {
+   "subject": "adult#041",
+   "arm": "shipped",
+   "completed": true,
+   "seconds": 163.82515621185303,
+   "tir": 92.7703373015873,
+   "dynamic": {
+    "n_post": 72,
+    "n_night": 1601,
+    "eff_post": -12.834859632022237,
+    "eff_night": 5.2292505045893405,
+    "rise_post": 0.6527777777777778,
+    "rise_night": 0.4453466583385384,
+    "eff_post_h1": -18.78123684116766,
+    "eff_post_h2": 0.7181313496541811,
+    "delta": 18.06411013661158
+   },
+   "linear": {
+    "n_post": 66,
+    "n_night": 1416,
+    "eff_post": 23.147875322009888,
+    "eff_night": 4.899902939203186,
+    "rise_post": 0.36363636363636365,
+    "rise_night": 0.4463276836158192,
+    "eff_post_h1": 22.110660368133612,
+    "eff_post_h2": 25.242370057135986,
+    "delta": -18.2479723828067
+   }
+  },
+  {
+   "subject": "adult#041",
+   "arm": "slow_meal",
+   "completed": true,
+   "seconds": 154.30630898475647,
+   "tir": 90.40178571428571,
+   "dynamic": {
+    "n_post": 71,
+    "n_night": 1543,
+    "eff_post": -26.18206504800789,
+    "eff_night": 11.256748869511545,
+    "rise_post": 0.7323943661971831,
+    "rise_night": 0.41607258587167856,
+    "eff_post_h1": -22.197946331414318,
+    "eff_post_h2": -1.6602361096725728,
+    "delta": 37.43881391751943
+   },
+   "linear": {
+    "n_post": 71,
+    "n_night": 1362,
+    "eff_post": 0.5903822444159662,
+    "eff_night": 11.38035789167392,
+    "rise_post": 0.4788732394366197,
+    "rise_night": 0.4177679882525698,
+    "eff_post_h1": -7.141052045914083,
+    "eff_post_h2": 21.405269827406308,
+    "delta": 10.789975647257954
+   }
+  }
+ ]
+}

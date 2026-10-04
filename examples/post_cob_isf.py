@@ -59,6 +59,34 @@ simulated person lacks a post-meal tail that real people have, and a mechanism a
 hours after a meal is the next candidate, to be registered on its own. If the shipped arm shows
 a tail of the real size, the tail is not why autosens fails to read resistant.
 
+Result, 4 October 2026 (`docs/measurements/post_cob_isf.json`, 80 runs in 31 minutes). The
+shipped arm reproduced `driver_ranking.json` exactly over 38 runs. Every subject cleared 15
+windows in both arms, with a median of 64 post-clear windows and 1,401 night windows each.
+
+    effective sensitivity, mg/dL per U   post    night   gap (95 per cent)       lower   rises post/night
+    real, 115 users                       8.3    22.7    13.2                     86%    38% / 26%
+    shipped, dynamic estimate            -5.5     4.5    10.5 (8.2 to 13.9)       90%    56% / 43%
+    slow_meal, dynamic estimate          -3.4     3.0     7.4 (4.0 to 10.5)       90%    56% / 45%
+    shipped, linear estimate             11.0     4.1    -4.3 (-8.4 to -0.3)      33%    37% / 43%
+
+The control failed. Halving the absorption rate reached the runs, moving time in range by a
+median 3.0 points per subject, and moved the gap by -1.5 (-4.7 to 1.5) on the dynamic estimate
+and -0.2 (-3.4 to 2.8) on the linear one, so under the rule the comparison is void. The
+statistic does not see how long absorption lasts in this simulator.
+
+What it does see is how carbohydrate on board is counted. On the dynamic estimate the shipped
+person passes the real script's tail test at about the real size. On the linear estimate the
+same runs show the opposite sign. The dynamic estimate decays by the larger of the observed
+deviation and the floor, so a rising glucose clears it fastest, and the clearing cycle tends to
+fall while glucose is still rising. That produces a post-clear window in which glucose climbs,
+whatever the gut is doing. The real figure was computed on the same dynamic estimate, so this
+run says the real 8.3 against 22.7 cannot be read as evidence of absorption outlasting the model,
+or of glucagon left unsuppressed after a meal, until a version of the test exists that responds
+to a known tail. The overnight figure is a separate discrepancy: 4.5 mg/dL per unit simulated
+against 22.7 real, with glucose rising in 43 per cent of night windows against 26.
+
+The glucagon question is therefore not answered here. This test cannot decide it.
+
     python examples/post_cob_isf.py
 """
 import argparse
