@@ -1,0 +1,2347 @@
+{
+ "provenance": {
+  "population": "704cfac086df54ba",
+  "settings": "0df43fd250fadd47",
+  "commit": "065cba5b3e75a4103faa84e7d8d3bad8f162c224",
+  "dirty": false,
+  "host": "Tims-Mac-mini.local",
+  "python": "3.14.7",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "when": "2026-10-04T13:33:41+00:00",
+  "simglucose": "0.2.11"
+ },
+ "subjects": [
+  "adult#001",
+  "adult#002",
+  "adult#003",
+  "adult#004",
+  "adult#005",
+  "adult#006",
+  "adult#007",
+  "adult#008",
+  "adult#009",
+  "adult#010",
+  "adult#011",
+  "adult#012",
+  "adult#013",
+  "adult#014",
+  "adult#015",
+  "adult#016",
+  "adult#017",
+  "adult#018",
+  "adult#019",
+  "adult#020",
+  "adult#021",
+  "adult#022",
+  "adult#023",
+  "adult#024",
+  "adult#025",
+  "adult#027",
+  "adult#028",
+  "adult#029",
+  "adult#030",
+  "adult#031",
+  "adult#032",
+  "adult#033",
+  "adult#034",
+  "adult#035",
+  "adult#036",
+  "adult#037",
+  "adult#038",
+  "adult#039",
+  "adult#040",
+  "adult#041"
+ ],
+ "days": 28,
+ "seed": 101,
+ "arms": {
+  "shipped": {},
+  "night_resistant": {
+   "night_si": 0.7
+  },
+  "no_iob_rule": {
+   "no_iob_rule": true
+  },
+  "night_no_iob_rule": {
+   "night_si": 0.7,
+   "no_iob_rule": true
+  }
+ },
+ "hours": [
+  1,
+  2,
+  3,
+  4
+ ],
+ "clear_after_meal_min": 180,
+ "clear_after_rescue_min": 120,
+ "same_meals": true,
+ "reproduction": {
+  "compared": 40,
+  "max_abs_tir_diff": 0.0
+ },
+ "stats": {
+  "shipped": {
+   "cycles": {
+    "median": 603.5,
+    "p10": 470.0,
+    "p90": 702.3000000000001
+   },
+   "night_dev_per_h": {
+    "median": -4.918672921770712,
+    "p10": -12.793016162747923,
+    "p90": 0.05723327233672673
+   },
+   "night_counted_share": {
+    "median": 0.7820099272093364,
+    "p10": 0.5835822756803508,
+    "p90": 0.9537275862068966
+   },
+   "night_iob_rule_share": {
+    "median": 0.2079018457157305,
+    "p10": 0.043406185567010314,
+    "p90": 0.39208516927118975
+   },
+   "night_ratio": {
+    "median": 0.9611252236422456,
+    "p10": 0.898336598540146,
+    "p90": 0.9906165214540006
+   },
+   "resistant_pct": {
+    "median": 0.43081275720164613,
+    "p10": 0.0,
+    "p90": 5.451854383766558
+   },
+   "at_one_pct": {
+    "median": 69.83024691358025,
+    "p10": 51.81069958847736,
+    "p90": 87.8395061728395
+   },
+   "tir": {
+    "median": 85.98090277777779,
+    "p10": 78.2217261904762,
+    "p90": 90.20461309523809
+   }
+  },
+  "night_resistant": {
+   "cycles": {
+    "median": 603.5,
+    "p10": 470.0,
+    "p90": 702.3000000000001
+   },
+   "night_dev_per_h": {
+    "median": -4.064869298220959,
+    "p10": -10.259401750436401,
+    "p90": 0.01713304701165994
+   },
+   "night_counted_share": {
+    "median": 0.6447788864437947,
+    "p10": 0.369461438355264,
+    "p90": 0.9505009074410163
+   },
+   "night_iob_rule_share": {
+    "median": 0.3291577487715913,
+    "p10": 0.049310344827586214,
+    "p90": 0.61472861693815
+   },
+   "night_ratio": {
+    "median": 0.9688686917389907,
+    "p10": 0.9280945007320643,
+    "p90": 0.9959864333275765
+   },
+   "resistant_pct": {
+    "median": 0.7137345679012346,
+    "p10": 0.0,
+    "p90": 4.3081275720164625
+   },
+   "at_one_pct": {
+    "median": 72.59516460905351,
+    "p10": 52.64917695473251,
+    "p90": 90.02957818930041
+   },
+   "tir": {
+    "median": 83.24652777777777,
+    "p10": 74.90699404761905,
+    "p90": 89.22867063492063
+   }
+  },
+  "no_iob_rule": {
+   "cycles": {
+    "median": 603.5,
+    "p10": 470.0,
+    "p90": 702.3000000000001
+   },
+   "night_dev_per_h": {
+    "median": -3.2460988365356513,
+    "p10": -12.198055543301415,
+    "p90": -0.2786821779361179
+   },
+   "night_counted_share": {
+    "median": 0.998566301613142,
+    "p10": 0.9979930664985818,
+    "p90": 1.0
+   },
+   "night_iob_rule_share": {
+    "median": 0.2098819881935999,
+    "p10": 0.044472657146792785,
+    "p90": 0.413066491688539
+   },
+   "night_ratio": {
+    "median": 0.9272721088435374,
+    "p10": 0.8201419361984936,
+    "p90": 0.9748142528735633
+   },
+   "resistant_pct": {
+    "median": 6.410751028806585,
+    "p10": 0.7073045267489713,
+    "p90": 16.721965020576132
+   },
+   "at_one_pct": {
+    "median": 49.90997942386831,
+    "p10": 31.298868312757204,
+    "p90": 61.653806584362144
+   },
+   "tir": {
+    "median": 85.55307539682539,
+    "p10": 78.44370039682539,
+    "p90": 89.66641865079364
+   }
+  },
+  "night_no_iob_rule": {
+   "cycles": {
+    "median": 603.5,
+    "p10": 470.0,
+    "p90": 702.3000000000001
+   },
+   "night_dev_per_h": {
+    "median": -5.518983554262002,
+    "p10": -10.533702236905151,
+    "p90": 0.35133420980419827
+   },
+   "night_counted_share": {
+    "median": 1.0,
+    "p10": 0.9975224491939295,
+    "p90": 1.0
+   },
+   "night_iob_rule_share": {
+    "median": 0.2911273240762532,
+    "p10": 0.05172413793103448,
+    "p90": 0.5919396327212022
+   },
+   "night_ratio": {
+    "median": 0.9406090158730158,
+    "p10": 0.8410305913228903,
+    "p90": 0.9859896363293763
+   },
+   "resistant_pct": {
+    "median": 5.009002057613168,
+    "p10": 0.3536522633744857,
+    "p90": 13.722993827160494
+   },
+   "at_one_pct": {
+    "median": 52.199074074074076,
+    "p10": 31.828703703703706,
+    "p90": 59.93312757201646
+   },
+   "tir": {
+    "median": 83.09771825396825,
+    "p10": 75.014146567718,
+    "p90": 89.05877976190476
+   }
+  }
+ },
+ "effects": {
+  "night_resistant-shipped": {
+   "night_dev_per_h": {
+    "paired_median": 0.25739951541779227,
+    "ci95": [
+     -0.662828158996043,
+     2.839397928510959
+    ]
+   },
+   "night_counted_share": {
+    "paired_median": -0.1185406042382007,
+    "ci95": [
+     -0.16796279292586536,
+     -0.08777296937416773
+    ]
+   },
+   "night_iob_rule_share": {
+    "paired_median": 0.11747841010708389,
+    "ci95": [
+     0.08172535211267606,
+     0.16007538150395295
+    ]
+   },
+   "night_ratio": {
+    "paired_median": 0.005762589928057504,
+    "ci95": [
+     0.001595238095238205,
+     0.012047291571605445
+    ]
+   },
+   "resistant_pct": {
+    "paired_median": 0.0,
+    "ci95": [
+     -0.10385371571850369,
+     0.0
+    ]
+   },
+   "at_one_pct": {
+    "paired_median": 1.09645908166123,
+    "ci95": [
+     -1.1316872427983569,
+     3.61368312757201
+    ]
+   },
+   "tir": {
+    "paired_median": -1.1904761904761898,
+    "ci95": [
+     -2.2259424603174693,
+     -0.06200396825396126
+    ]
+   }
+  },
+  "no_iob_rule-shipped": {
+   "night_dev_per_h": {
+    "paired_median": 0.4276722462865201,
+    "ci95": [
+     -0.7070705493932197,
+     0.9148138629678901
+    ]
+   },
+   "night_counted_share": {
+    "paired_median": 0.21708917188976273,
+    "ci95": [
+     0.1874772269334139,
+     0.27227149321266964
+    ]
+   },
+   "night_iob_rule_share": {
+    "paired_median": -0.004876107795261347,
+    "ci95": [
+     -0.02183664832839611,
+     0.010445552266708208
+    ]
+   },
+   "night_ratio": {
+    "paired_median": -0.03267834700968447,
+    "ci95": [
+     -0.05845047064409836,
+     -0.017551785355163996
+    ]
+   },
+   "resistant_pct": {
+    "paired_median": 5.369084362139917,
+    "ci95": [
+     2.263374485596708,
+     6.584362139917696
+    ]
+   },
+   "at_one_pct": {
+    "paired_median": -22.980967078189302,
+    "ci95": [
+     -28.31790123456791,
+     -15.007716049382719
+    ]
+   },
+   "tir": {
+    "paired_median": -0.1116071428571388,
+    "ci95": [
+     -0.5890376984126959,
+     0.31001984126984183
+    ]
+   }
+  },
+  "night_no_iob_rule-no_iob_rule": {
+   "night_dev_per_h": {
+    "paired_median": 0.39034804038429977,
+    "ci95": [
+     -0.5899839975707142,
+     1.7185028548376398
+    ]
+   },
+   "night_counted_share": {
+    "paired_median": 0.0,
+    "ci95": [
+     0.0,
+     0.0013810865436451603
+    ]
+   },
+   "night_iob_rule_share": {
+    "paired_median": 0.10193790113534747,
+    "ci95": [
+     0.07380864197530865,
+     0.15197992458568754
+    ]
+   },
+   "night_ratio": {
+    "paired_median": 0.017662936142198882,
+    "ci95": [
+     0.008460953346856037,
+     0.031092301452142035
+    ]
+   },
+   "resistant_pct": {
+    "paired_median": -0.1929012345679011,
+    "ci95": [
+     -1.6010802469135799,
+     1.4081790123456783
+    ]
+   },
+   "at_one_pct": {
+    "paired_median": 0.9580761316872426,
+    "ci95": [
+     -1.663802765154628,
+     2.5913065843621403
+    ]
+   },
+   "tir": {
+    "paired_median": -0.7626488095238102,
+    "ci95": [
+     -2.364831349206341,
+     0.0558035714285694
+    ]
+   }
+  }
+ },
+ "interaction": {
+  "paired_median": 0.0066750000000002085,
+  "ci95": [
+   0.0009911512497721708,
+   0.024486206823039314
+  ]
+ },
+ "verdicts": {
+  "control_sees": false,
+  "hiding": true,
+  "explanation": "partial",
+  "real_resistant_pct_p10_p90": [
+   10.716840726689192,
+   70.19798894691358
+  ],
+  "no_iob_rule_resistant_pct_median": 6.410751028806585
+ },
+ "per_subject": [
+  {
+   "subject": "adult#001",
+   "arm": "shipped",
+   "cycles": 625,
+   "night_dev_per_h": -8.532316422832508,
+   "night_counted_share": 0.7344,
+   "night_iob_rule_share": 0.2496,
+   "night_ratio": 0.9780639999999999,
+   "resistant_pct": 2.2247942386831276,
+   "at_one_pct": 85.44238683127571,
+   "tir": 89.76934523809523
+  },
+  {
+   "subject": "adult#001",
+   "arm": "night_resistant",
+   "cycles": 625,
+   "night_dev_per_h": -7.690273219303533,
+   "night_counted_share": 0.4352,
+   "night_iob_rule_share": 0.544,
+   "night_ratio": 1.003696,
+   "resistant_pct": 0.8744855967078189,
+   "at_one_pct": 89.8019547325103,
+   "tir": 85.28025793650794
+  },
+  {
+   "subject": "adult#001",
+   "arm": "no_iob_rule",
+   "cycles": 625,
+   "night_dev_per_h": -8.02943260461521,
+   "night_counted_share": 0.9984,
+   "night_iob_rule_share": 0.3264,
+   "night_ratio": 0.9748,
+   "resistant_pct": 9.683641975308642,
+   "at_one_pct": 61.16255144032922,
+   "tir": 87.07837301587301
+  },
+  {
+   "subject": "adult#001",
+   "arm": "night_no_iob_rule",
+   "cycles": 625,
+   "night_dev_per_h": -6.182442566557256,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.5824,
+   "night_ratio": 0.939472,
+   "resistant_pct": 1.8775720164609055,
+   "at_one_pct": 62.37139917695473,
+   "tir": 89.47172619047619
+  },
+  {
+   "subject": "adult#002",
+   "arm": "shipped",
+   "cycles": 529,
+   "night_dev_per_h": -10.868919155932016,
+   "night_counted_share": 0.8128544423440454,
+   "night_iob_rule_share": 0.18525519848771266,
+   "night_ratio": 0.9324763705103969,
+   "resistant_pct": 0.360082304526749,
+   "at_one_pct": 59.683641975308646,
+   "tir": 86.03670634920636
+  },
+  {
+   "subject": "adult#002",
+   "arm": "night_resistant",
+   "cycles": 529,
+   "night_dev_per_h": -8.000964190735766,
+   "night_counted_share": 0.7145557655954632,
+   "night_iob_rule_share": 0.27599243856332706,
+   "night_ratio": 0.9457088846880907,
+   "resistant_pct": 0.8873456790123456,
+   "at_one_pct": 61.2525720164609,
+   "tir": 87.45039682539682
+  },
+  {
+   "subject": "adult#002",
+   "arm": "no_iob_rule",
+   "cycles": 529,
+   "night_dev_per_h": -12.013708974998224,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.14177693761814744,
+   "night_ratio": 0.9403402646502835,
+   "resistant_pct": 7.420267489711935,
+   "at_one_pct": 51.86471193415638,
+   "tir": 86.44593253968253
+  },
+  {
+   "subject": "adult#002",
+   "arm": "night_no_iob_rule",
+   "cycles": 529,
+   "night_dev_per_h": -14.974485658277505,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.2438563327032136,
+   "night_ratio": 0.9381474480151228,
+   "resistant_pct": 2.713477366255144,
+   "at_one_pct": 55.234053497942384,
+   "tir": 86.27232142857143
+  },
+  {
+   "subject": "adult#003",
+   "arm": "shipped",
+   "cycles": 647,
+   "night_dev_per_h": 0.5971338998203587,
+   "night_counted_share": 0.7465224111282844,
+   "night_iob_rule_share": 0.2302936630602782,
+   "night_ratio": 0.9839876352395673,
+   "resistant_pct": 0.9002057613168725,
+   "at_one_pct": 81.9701646090535,
+   "tir": 82.71329365079364
+  },
+  {
+   "subject": "adult#003",
+   "arm": "night_resistant",
+   "cycles": 647,
+   "night_dev_per_h": -0.1325508060715732,
+   "night_counted_share": 0.714064914992272,
+   "night_iob_rule_share": 0.2642967542503864,
+   "night_ratio": 0.9878979907264298,
+   "resistant_pct": 4.19238683127572,
+   "at_one_pct": 79.39814814814815,
+   "tir": 86.53273809523809
+  },
+  {
+   "subject": "adult#003",
+   "arm": "no_iob_rule",
+   "cycles": 647,
+   "night_dev_per_h": 0.2080941933538345,
+   "night_counted_share": 0.9984544049459042,
+   "night_iob_rule_share": 0.17619783616692428,
+   "night_ratio": 0.9640958268933539,
+   "resistant_pct": 13.040123456790123,
+   "at_one_pct": 61.586934156378604,
+   "tir": 82.6140873015873
+  },
+  {
+   "subject": "adult#003",
+   "arm": "night_no_iob_rule",
+   "cycles": 647,
+   "night_dev_per_h": 1.528815969818607,
+   "night_counted_share": 0.9984544049459042,
+   "night_iob_rule_share": 0.2704791344667697,
+   "night_ratio": 0.9875425038639877,
+   "resistant_pct": 11.54835390946502,
+   "at_one_pct": 62.68004115226338,
+   "tir": 86.27232142857143
+  },
+  {
+   "subject": "adult#004",
+   "arm": "shipped",
+   "cycles": 655,
+   "night_dev_per_h": -2.6389758442382822,
+   "night_counted_share": 0.6961832061068702,
+   "night_iob_rule_share": 0.29465648854961835,
+   "night_ratio": 0.9254351145038169,
+   "resistant_pct": 0.0,
+   "at_one_pct": 66.91100823045268,
+   "tir": 74.39236111111111
+  },
+  {
+   "subject": "adult#004",
+   "arm": "night_resistant",
+   "cycles": 655,
+   "night_dev_per_h": 0.6698728978137476,
+   "night_counted_share": 0.37251908396946565,
+   "night_iob_rule_share": 0.6137404580152672,
+   "night_ratio": 0.9575725190839696,
+   "resistant_pct": 0.0,
+   "at_one_pct": 77.94495884773663,
+   "tir": 74.40476190476191
+  },
+  {
+   "subject": "adult#004",
+   "arm": "no_iob_rule",
+   "cycles": 655,
+   "night_dev_per_h": -2.2074785114327837,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.3053435114503817,
+   "night_ratio": 0.8691145038167939,
+   "resistant_pct": 5.864197530864197,
+   "at_one_pct": 35.59670781893004,
+   "tir": 79.32787698412699
+  },
+  {
+   "subject": "adult#004",
+   "arm": "night_no_iob_rule",
+   "cycles": 655,
+   "night_dev_per_h": -2.81234673962889,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.5450381679389313,
+   "night_ratio": 0.859648854961832,
+   "resistant_pct": 4.205246913580247,
+   "at_one_pct": 44.765946502057616,
+   "tir": 71.75099206349206
+  },
+  {
+   "subject": "adult#005",
+   "arm": "shipped",
+   "cycles": 635,
+   "night_dev_per_h": -1.697847731269178,
+   "night_counted_share": 0.6362204724409449,
+   "night_iob_rule_share": 0.3590551181102362,
+   "night_ratio": 0.9761574803149606,
+   "resistant_pct": 0.0,
+   "at_one_pct": 87.75720164609054,
+   "tir": 88.04563492063492
+  },
+  {
+   "subject": "adult#005",
+   "arm": "night_resistant",
+   "cycles": 635,
+   "night_dev_per_h": -7.308258387596233,
+   "night_counted_share": 0.3590551181102362,
+   "night_iob_rule_share": 0.6236220472440945,
+   "night_ratio": 0.9724409448818898,
+   "resistant_pct": 0.0,
+   "at_one_pct": 87.8858024691358,
+   "tir": 82.89930555555556
+  },
+  {
+   "subject": "adult#005",
+   "arm": "no_iob_rule",
+   "cycles": 635,
+   "night_dev_per_h": -2.339166104159009,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.43622047244094486,
+   "night_ratio": 0.9058897637795276,
+   "resistant_pct": 6.378600823045268,
+   "at_one_pct": 49.086934156378604,
+   "tir": 79.31547619047619
+  },
+  {
+   "subject": "adult#005",
+   "arm": "night_no_iob_rule",
+   "cycles": 635,
+   "night_dev_per_h": -0.27286659694783966,
+   "night_counted_share": 0.9984251968503937,
+   "night_iob_rule_share": 0.5811023622047244,
+   "night_ratio": 0.8853858267716536,
+   "resistant_pct": 3.5108024691358026,
+   "at_one_pct": 51.491769547325106,
+   "tir": 82.93650793650794
+  },
+  {
+   "subject": "adult#006",
+   "arm": "shipped",
+   "cycles": 501,
+   "night_dev_per_h": -9.269682083564476,
+   "night_counted_share": 0.7964071856287425,
+   "night_iob_rule_share": 0.17564870259481039,
+   "night_ratio": 0.9253493013972056,
+   "resistant_pct": 0.7330246913580246,
+   "at_one_pct": 67.48971193415639,
+   "tir": 72.58184523809523
+  },
+  {
+   "subject": "adult#006",
+   "arm": "night_resistant",
+   "cycles": 501,
+   "night_dev_per_h": -4.977705604863729,
+   "night_counted_share": 0.782435129740519,
+   "night_iob_rule_share": 0.20159680638722555,
+   "night_ratio": 0.9497205588822354,
+   "resistant_pct": 1.1059670781893005,
+   "at_one_pct": 68.47993827160494,
+   "tir": 72.87946428571429
+  },
+  {
+   "subject": "adult#006",
+   "arm": "no_iob_rule",
+   "cycles": 501,
+   "night_dev_per_h": -17.342890234421077,
+   "night_counted_share": 0.998003992015968,
+   "night_iob_rule_share": 0.1377245508982036,
+   "night_ratio": 0.8902395209580838,
+   "resistant_pct": 6.442901234567901,
+   "at_one_pct": 55.29835390946503,
+   "tir": 72.59424603174604
+  },
+  {
+   "subject": "adult#006",
+   "arm": "night_no_iob_rule",
+   "cycles": 501,
+   "night_dev_per_h": -9.556514962543844,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.14570858283433133,
+   "night_ratio": 0.9176447105788423,
+   "resistant_pct": 4.758230452674897,
+   "at_one_pct": 53.20216049382716,
+   "tir": 71.6765873015873
+  },
+  {
+   "subject": "adult#007",
+   "arm": "shipped",
+   "cycles": 830,
+   "night_dev_per_h": -0.6914840239363911,
+   "night_counted_share": 0.5855421686746988,
+   "night_iob_rule_share": 0.38433734939759034,
+   "night_ratio": 0.9864819277108433,
+   "resistant_pct": 5.542695473251029,
+   "at_one_pct": 75.97736625514403,
+   "tir": 87.90922619047619
+  },
+  {
+   "subject": "adult#007",
+   "arm": "night_resistant",
+   "cycles": 830,
+   "night_dev_per_h": -1.3906908062823957,
+   "night_counted_share": 0.4614457831325301,
+   "night_iob_rule_share": 0.5265060240963856,
+   "night_ratio": 0.9884819277108434,
+   "resistant_pct": 1.2217078189300412,
+   "at_one_pct": 82.80606995884774,
+   "tir": 84.28819444444444
+  },
+  {
+   "subject": "adult#007",
+   "arm": "no_iob_rule",
+   "cycles": 830,
+   "night_dev_per_h": -1.7635533374766663,
+   "night_counted_share": 0.9987951807228915,
+   "night_iob_rule_share": 0.3301204819277108,
+   "night_ratio": 0.9850843373493975,
+   "resistant_pct": 22.7880658436214,
+   "at_one_pct": 47.672325102880656,
+   "tir": 89.45932539682539
+  },
+  {
+   "subject": "adult#007",
+   "arm": "night_no_iob_rule",
+   "cycles": 830,
+   "night_dev_per_h": -0.5956937562082254,
+   "night_counted_share": 0.9987951807228915,
+   "night_iob_rule_share": 0.4903614457831325,
+   "night_ratio": 0.9775180722891565,
+   "resistant_pct": 13.28446502057613,
+   "at_one_pct": 53.88374485596707,
+   "tir": 83.15972222222221
+  },
+  {
+   "subject": "adult#008",
+   "arm": "shipped",
+   "cycles": 534,
+   "night_dev_per_h": -11.217534263022065,
+   "night_counted_share": 0.8277153558052435,
+   "night_iob_rule_share": 0.15917602996254682,
+   "night_ratio": 0.8888389513108615,
+   "resistant_pct": 0.4886831275720165,
+   "at_one_pct": 44.4701646090535,
+   "tir": 76.63690476190477
+  },
+  {
+   "subject": "adult#008",
+   "arm": "night_resistant",
+   "cycles": 534,
+   "night_dev_per_h": -15.137883504477418,
+   "night_counted_share": 0.7696629213483146,
+   "night_iob_rule_share": 0.2247191011235955,
+   "night_ratio": 0.8518539325842697,
+   "resistant_pct": 0.0,
+   "at_one_pct": 45.614711934156375,
+   "tir": 77.1453373015873
+  },
+  {
+   "subject": "adult#008",
+   "arm": "no_iob_rule",
+   "cycles": 534,
+   "night_dev_per_h": -10.793687103254523,
+   "night_counted_share": 0.9962546816479401,
+   "night_iob_rule_share": 0.12921348314606743,
+   "night_ratio": 0.7889325842696628,
+   "resistant_pct": 0.37294238683127573,
+   "at_one_pct": 17.438271604938272,
+   "tir": 79.60069444444444
+  },
+  {
+   "subject": "adult#008",
+   "arm": "night_no_iob_rule",
+   "cycles": 534,
+   "night_dev_per_h": -8.445925083961725,
+   "night_counted_share": 0.99812734082397,
+   "night_iob_rule_share": 0.22846441947565543,
+   "night_ratio": 0.8416479400749064,
+   "resistant_pct": 1.2345679012345678,
+   "at_one_pct": 26.273148148148145,
+   "tir": 78.31101190476191
+  },
+  {
+   "subject": "adult#009",
+   "arm": "shipped",
+   "cycles": 620,
+   "night_dev_per_h": -7.508322714112139,
+   "night_counted_share": 0.8709677419354839,
+   "night_iob_rule_share": 0.12258064516129032,
+   "night_ratio": 0.982032258064516,
+   "resistant_pct": 6.044238683127572,
+   "at_one_pct": 61.869855967078195,
+   "tir": 90.20337301587301
+  },
+  {
+   "subject": "adult#009",
+   "arm": "night_resistant",
+   "cycles": 620,
+   "night_dev_per_h": -4.134532532737756,
+   "night_counted_share": 0.8403225806451613,
+   "night_iob_rule_share": 0.14838709677419354,
+   "night_ratio": 0.9606451612903224,
+   "resistant_pct": 1.6975308641975309,
+   "at_one_pct": 68.28703703703704,
+   "tir": 90.06696428571429
+  },
+  {
+   "subject": "adult#009",
+   "arm": "no_iob_rule",
+   "cycles": 620,
+   "night_dev_per_h": -8.502185364800201,
+   "night_counted_share": 0.9983870967741936,
+   "night_iob_rule_share": 0.1532258064516129,
+   "night_ratio": 0.957032258064516,
+   "resistant_pct": 3.009259259259259,
+   "at_one_pct": 58.78343621399177,
+   "tir": 90.07936507936508
+  },
+  {
+   "subject": "adult#009",
+   "arm": "night_no_iob_rule",
+   "cycles": 620,
+   "night_dev_per_h": -5.697870907299849,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.1596774193548387,
+   "night_ratio": 0.9754193548387097,
+   "resistant_pct": 5.877057613168724,
+   "at_one_pct": 52.096193415637856,
+   "tir": 87.3015873015873
+  },
+  {
+   "subject": "adult#010",
+   "arm": "shipped",
+   "cycles": 567,
+   "night_dev_per_h": -4.597169653160176,
+   "night_counted_share": 0.6878306878306878,
+   "night_iob_rule_share": 0.2998236331569665,
+   "night_ratio": 0.9448148148148149,
+   "resistant_pct": 0.0,
+   "at_one_pct": 73.91975308641975,
+   "tir": 90.10416666666666
+  },
+  {
+   "subject": "adult#010",
+   "arm": "night_resistant",
+   "cycles": 567,
+   "night_dev_per_h": 0.9097380246141051,
+   "night_counted_share": 0.4673721340388007,
+   "night_iob_rule_share": 0.5079365079365079,
+   "night_ratio": 0.9709876543209875,
+   "resistant_pct": 0.0,
+   "at_one_pct": 66.57664609053498,
+   "tir": 88.41765873015873
+  },
+  {
+   "subject": "adult#010",
+   "arm": "no_iob_rule",
+   "cycles": 567,
+   "night_dev_per_h": -2.3694276578977407,
+   "night_counted_share": 0.9982363315696648,
+   "night_iob_rule_share": 0.18694885361552027,
+   "night_ratio": 0.9145679012345678,
+   "resistant_pct": 1.530349794238683,
+   "at_one_pct": 64.21039094650206,
+   "tir": 90.32738095238095
+  },
+  {
+   "subject": "adult#010",
+   "arm": "night_no_iob_rule",
+   "cycles": 567,
+   "night_dev_per_h": -2.944527424843063,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.47971781305114636,
+   "night_ratio": 0.9417460317460318,
+   "resistant_pct": 2.4819958847736627,
+   "at_one_pct": 45.5761316872428,
+   "tir": 87.79761904761905
+  },
+  {
+   "subject": "adult#011",
+   "arm": "shipped",
+   "cycles": 490,
+   "night_dev_per_h": -2.0633840444265257,
+   "night_counted_share": 0.7979591836734694,
+   "night_iob_rule_share": 0.17551020408163265,
+   "night_ratio": 0.928795918367347,
+   "resistant_pct": 0.5787037037037037,
+   "at_one_pct": 59.77366255144033,
+   "tir": 78.84424603174604
+  },
+  {
+   "subject": "adult#011",
+   "arm": "night_resistant",
+   "cycles": 490,
+   "night_dev_per_h": -9.780945815258857,
+   "night_counted_share": 0.6632653061224489,
+   "night_iob_rule_share": 0.32448979591836735,
+   "night_ratio": 0.9314897959183672,
+   "resistant_pct": 0.0,
+   "at_one_pct": 52.9320987654321,
+   "tir": 75.5828373015873
+  },
+  {
+   "subject": "adult#011",
+   "arm": "no_iob_rule",
+   "cycles": 490,
+   "night_dev_per_h": -6.171303121707076,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.23061224489795917,
+   "night_ratio": 0.9328775510204081,
+   "resistant_pct": 8.42335390946502,
+   "at_one_pct": 47.27366255144033,
+   "tir": 78.41021825396825
+  },
+  {
+   "subject": "adult#011",
+   "arm": "night_no_iob_rule",
+   "cycles": 490,
+   "night_dev_per_h": -7.40896170597259,
+   "night_counted_share": 0.9979591836734694,
+   "night_iob_rule_share": 0.2857142857142857,
+   "night_ratio": 0.9498163265306122,
+   "resistant_pct": 5.272633744855967,
+   "at_one_pct": 43.33847736625515,
+   "tir": 75.09920634920636
+  },
+  {
+   "subject": "adult#012",
+   "arm": "shipped",
+   "cycles": 695,
+   "night_dev_per_h": -1.8495919349651535,
+   "night_counted_share": 0.8676258992805755,
+   "night_iob_rule_share": 0.11654676258992806,
+   "night_ratio": 0.9665035971223022,
+   "resistant_pct": 2.8549382716049383,
+   "at_one_pct": 70.75617283950618,
+   "tir": 91.12103174603175
+  },
+  {
+   "subject": "adult#012",
+   "arm": "night_resistant",
+   "cycles": 695,
+   "night_dev_per_h": -5.9699116657386995,
+   "night_counted_share": 0.7352517985611511,
+   "night_iob_rule_share": 0.2446043165467626,
+   "night_ratio": 0.9720287769784172,
+   "resistant_pct": 2.983539094650206,
+   "at_one_pct": 76.82613168724279,
+   "tir": 89.21130952380952
+  },
+  {
+   "subject": "adult#012",
+   "arm": "no_iob_rule",
+   "cycles": 695,
+   "night_dev_per_h": 0.0,
+   "night_counted_share": 0.9985611510791367,
+   "night_iob_rule_share": 0.09640287769784173,
+   "night_ratio": 0.9477697841726619,
+   "resistant_pct": 9.555041152263374,
+   "at_one_pct": 53.81944444444444,
+   "tir": 89.62053571428571
+  },
+  {
+   "subject": "adult#012",
+   "arm": "night_no_iob_rule",
+   "cycles": 695,
+   "night_dev_per_h": -7.44170613227571,
+   "night_counted_share": 0.9971223021582734,
+   "night_iob_rule_share": 0.26187050359712233,
+   "night_ratio": 0.9810503597122301,
+   "resistant_pct": 12.654320987654321,
+   "at_one_pct": 53.356481481481474,
+   "tir": 90.10416666666666
+  },
+  {
+   "subject": "adult#013",
+   "arm": "shipped",
+   "cycles": 689,
+   "night_dev_per_h": -1.8388025451115395,
+   "night_counted_share": 0.7387518142235123,
+   "night_iob_rule_share": 0.251088534107402,
+   "night_ratio": 0.9687373004354137,
+   "resistant_pct": 0.7973251028806585,
+   "at_one_pct": 82.4974279835391,
+   "tir": 88.57886904761905
+  },
+  {
+   "subject": "adult#013",
+   "arm": "night_resistant",
+   "cycles": 689,
+   "night_dev_per_h": -4.157944160796092,
+   "night_counted_share": 0.590711175616836,
+   "night_iob_rule_share": 0.3889695210449927,
+   "night_ratio": 0.9776197387518141,
+   "resistant_pct": 0.565843621399177,
+   "at_one_pct": 86.38117283950618,
+   "tir": 88.16964285714286
+  },
+  {
+   "subject": "adult#013",
+   "arm": "no_iob_rule",
+   "cycles": 689,
+   "night_dev_per_h": -3.103537538679093,
+   "night_counted_share": 0.9985486211901307,
+   "night_iob_rule_share": 0.2830188679245283,
+   "night_ratio": 0.9397387518142235,
+   "resistant_pct": 9.1820987654321,
+   "at_one_pct": 59.54218106995884,
+   "tir": 88.93849206349206
+  },
+  {
+   "subject": "adult#013",
+   "arm": "night_no_iob_rule",
+   "cycles": 689,
+   "night_dev_per_h": -2.7900484909794536,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.43541364296081275,
+   "night_ratio": 0.9779245283018867,
+   "resistant_pct": 11.959876543209877,
+   "at_one_pct": 58.30761316872428,
+   "tir": 89.01289682539682
+  },
+  {
+   "subject": "adult#014",
+   "arm": "shipped",
+   "cycles": 475,
+   "night_dev_per_h": -6.998147468841303,
+   "night_counted_share": 0.9347368421052632,
+   "night_iob_rule_share": 0.05263157894736842,
+   "night_ratio": 0.9513684210526315,
+   "resistant_pct": 5.441760929379394,
+   "at_one_pct": 58.65178844390094,
+   "tir": 78.84333821376282
+  },
+  {
+   "subject": "adult#014",
+   "arm": "night_resistant",
+   "cycles": 475,
+   "night_dev_per_h": -7.624597004487384,
+   "night_counted_share": 0.9705263157894737,
+   "night_iob_rule_share": 0.02736842105263158,
+   "night_ratio": 0.9573684210526315,
+   "resistant_pct": 5.349794238683128,
+   "at_one_pct": 59.09207818930041,
+   "tir": 79.87351190476191
+  },
+  {
+   "subject": "adult#014",
+   "arm": "no_iob_rule",
+   "cycles": 475,
+   "night_dev_per_h": -2.5093894677819004,
+   "night_counted_share": 0.9978947368421053,
+   "night_iob_rule_share": 0.04631578947368421,
+   "night_ratio": 0.9747368421052631,
+   "resistant_pct": 7.240226337448559,
+   "at_one_pct": 62.25565843621399,
+   "tir": 78.44742063492063
+  },
+  {
+   "subject": "adult#014",
+   "arm": "night_no_iob_rule",
+   "cycles": 475,
+   "night_dev_per_h": -7.163343417563851,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.042105263157894736,
+   "night_ratio": 0.9312842105263157,
+   "resistant_pct": 7.060185185185184,
+   "at_one_pct": 59.7608024691358,
+   "tir": 77.83978174603175
+  },
+  {
+   "subject": "adult#015",
+   "arm": "shipped",
+   "cycles": 633,
+   "night_dev_per_h": 0.0,
+   "night_counted_share": 0.9968404423380727,
+   "night_iob_rule_share": 0.0,
+   "night_ratio": 0.9431437598736176,
+   "resistant_pct": 1.1959876543209875,
+   "at_one_pct": 51.67181069958847,
+   "tir": 88.20684523809523
+  },
+  {
+   "subject": "adult#015",
+   "arm": "night_resistant",
+   "cycles": 633,
+   "night_dev_per_h": -0.1281898159731767,
+   "night_counted_share": 0.981042654028436,
+   "night_iob_rule_share": 0.014218009478672985,
+   "night_ratio": 0.9521327014218011,
+   "resistant_pct": 2.4819958847736627,
+   "at_one_pct": 48.16100823045267,
+   "tir": 87.4751984126984
+  },
+  {
+   "subject": "adult#015",
+   "arm": "no_iob_rule",
+   "cycles": 633,
+   "night_dev_per_h": -2.6573091248809746,
+   "night_counted_share": 0.9984202211690363,
+   "night_iob_rule_share": 0.004739336492890996,
+   "night_ratio": 0.9418957345971565,
+   "resistant_pct": 5.799897119341564,
+   "at_one_pct": 43.2227366255144,
+   "tir": 85.94990079365078
+  },
+  {
+   "subject": "adult#015",
+   "arm": "night_no_iob_rule",
+   "cycles": 633,
+   "night_dev_per_h": -0.5797252119310596,
+   "night_counted_share": 0.995260663507109,
+   "night_iob_rule_share": 0.0,
+   "night_ratio": 0.9265402843601895,
+   "resistant_pct": 3.6394032921810697,
+   "at_one_pct": 44.007201646090536,
+   "tir": 88.28125
+  },
+  {
+   "subject": "adult#016",
+   "arm": "shipped",
+   "cycles": 607,
+   "night_dev_per_h": -5.954588950398093,
+   "night_counted_share": 0.8121911037891268,
+   "night_iob_rule_share": 0.17462932454695224,
+   "night_ratio": 0.9764415156507412,
+   "resistant_pct": 2.4948559670781894,
+   "at_one_pct": 82.71604938271605,
+   "tir": 87.21478174603175
+  },
+  {
+   "subject": "adult#016",
+   "arm": "night_resistant",
+   "cycles": 607,
+   "night_dev_per_h": -3.995206063704161,
+   "night_counted_share": 0.7907742998352554,
+   "night_iob_rule_share": 0.19934102141680396,
+   "night_ratio": 0.9941845140032949,
+   "resistant_pct": 3.4079218106995888,
+   "at_one_pct": 76.4917695473251,
+   "tir": 85.16865079365078
+  },
+  {
+   "subject": "adult#016",
+   "arm": "no_iob_rule",
+   "cycles": 607,
+   "night_dev_per_h": -0.39755659818401884,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.14497528830313014,
+   "night_ratio": 0.969670510708402,
+   "resistant_pct": 11.612654320987655,
+   "at_one_pct": 62.77006172839506,
+   "tir": 87.31398809523809
+  },
+  {
+   "subject": "adult#016",
+   "arm": "night_no_iob_rule",
+   "cycles": 607,
+   "night_dev_per_h": -7.140550015050737,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.29654036243822074,
+   "night_ratio": 1.000708401976936,
+   "resistant_pct": 13.477366255144032,
+   "at_one_pct": 59.27211934156379,
+   "tir": 83.03571428571429
+  },
+  {
+   "subject": "adult#017",
+   "arm": "shipped",
+   "cycles": 677,
+   "night_dev_per_h": -4.39218728077363,
+   "night_counted_share": 0.7784342688330872,
+   "night_iob_rule_share": 0.206794682422452,
+   "night_ratio": 0.9568685376661742,
+   "resistant_pct": 0.2957818930041152,
+   "at_one_pct": 65.77932098765432,
+   "tir": 83.48214285714286
+  },
+  {
+   "subject": "adult#017",
+   "arm": "night_resistant",
+   "cycles": 677,
+   "night_dev_per_h": -0.0018317738606183909,
+   "night_counted_share": 0.6262924667651403,
+   "night_iob_rule_share": 0.33382570162481534,
+   "night_ratio": 0.9537370753323486,
+   "resistant_pct": 0.051440329218107,
+   "at_one_pct": 67.12962962962963,
+   "tir": 84.12698412698413
+  },
+  {
+   "subject": "adult#017",
+   "arm": "no_iob_rule",
+   "cycles": 677,
+   "night_dev_per_h": -3.388660134392209,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.22895125553914328,
+   "night_ratio": 0.9384785819793205,
+   "resistant_pct": 7.561728395061729,
+   "at_one_pct": 56.224279835390945,
+   "tir": 82.80009920634922
+  },
+  {
+   "subject": "adult#017",
+   "arm": "night_no_iob_rule",
+   "cycles": 677,
+   "night_dev_per_h": -2.8672762382037513,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.2791728212703102,
+   "night_ratio": 0.944165435745938,
+   "resistant_pct": 4.320987654320987,
+   "at_one_pct": 61.72839506172839,
+   "tir": 81.89484126984127
+  },
+  {
+   "subject": "adult#018",
+   "arm": "shipped",
+   "cycles": 593,
+   "night_dev_per_h": -0.8934105710375588,
+   "night_counted_share": 0.4974704890387858,
+   "night_iob_rule_share": 0.4839797639123103,
+   "night_ratio": 0.9946374367622258,
+   "resistant_pct": 0.37294238683127573,
+   "at_one_pct": 89.96913580246914,
+   "tir": 81.28720238095238
+  },
+  {
+   "subject": "adult#018",
+   "arm": "night_resistant",
+   "cycles": 593,
+   "night_dev_per_h": -2.007190107890763,
+   "night_counted_share": 0.3844856661045531,
+   "night_iob_rule_share": 0.5919055649241147,
+   "night_ratio": 0.9957504215851603,
+   "resistant_pct": 0.8873456790123456,
+   "at_one_pct": 85.2366255144033,
+   "tir": 74.96279761904762
+  },
+  {
+   "subject": "adult#018",
+   "arm": "no_iob_rule",
+   "cycles": 593,
+   "night_dev_per_h": -2.2361532400934,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.4822934232715008,
+   "night_ratio": 0.9182967959527826,
+   "resistant_pct": 8.359053497942387,
+   "at_one_pct": 49.52417695473251,
+   "tir": 81.69642857142857
+  },
+  {
+   "subject": "adult#018",
+   "arm": "night_no_iob_rule",
+   "cycles": 593,
+   "night_dev_per_h": 0.8871660365263834,
+   "night_counted_share": 0.9983136593591906,
+   "night_iob_rule_share": 0.715008431703204,
+   "night_ratio": 0.9494435075885328,
+   "resistant_pct": 6.8158436213991775,
+   "at_one_pct": 52.30195473251029,
+   "tir": 77.87698412698413
+  },
+  {
+   "subject": "adult#019",
+   "arm": "shipped",
+   "cycles": 555,
+   "night_dev_per_h": -14.219345751678588,
+   "night_counted_share": 0.7855855855855856,
+   "night_iob_rule_share": 0.209009009009009,
+   "night_ratio": 0.9301081081081082,
+   "resistant_pct": 0.0,
+   "at_one_pct": 68.23559670781893,
+   "tir": 85.92509920634922
+  },
+  {
+   "subject": "adult#019",
+   "arm": "night_resistant",
+   "cycles": 555,
+   "night_dev_per_h": -7.806617907821492,
+   "night_counted_share": 0.6018018018018018,
+   "night_iob_rule_share": 0.3801801801801802,
+   "night_ratio": 0.981945945945946,
+   "resistant_pct": 1.0159465020576133,
+   "at_one_pct": 75.4372427983539,
+   "tir": 82.21726190476191
+  },
+  {
+   "subject": "adult#019",
+   "arm": "no_iob_rule",
+   "cycles": 555,
+   "night_dev_per_h": -12.102095871444519,
+   "night_counted_share": 0.9981981981981982,
+   "night_iob_rule_share": 0.2702702702702703,
+   "night_ratio": 0.8218198198198199,
+   "resistant_pct": 1.440329218106996,
+   "at_one_pct": 35.71244855967078,
+   "tir": 86.79315476190477
+  },
+  {
+   "subject": "adult#019",
+   "arm": "night_no_iob_rule",
+   "cycles": 555,
+   "night_dev_per_h": -9.193847302210402,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.34954954954954953,
+   "night_ratio": 0.8698738738738738,
+   "resistant_pct": 0.102880658436214,
+   "at_one_pct": 39.81481481481482,
+   "tir": 82.06845238095238
+  },
+  {
+   "subject": "adult#020",
+   "arm": "shipped",
+   "cycles": 137,
+   "night_dev_per_h": -13.818628671076567,
+   "night_counted_share": 0.9927007299270073,
+   "night_iob_rule_share": 0.0072992700729927005,
+   "night_ratio": 0.8989051094890511,
+   "resistant_pct": 0.0,
+   "at_one_pct": 50.211917227624035,
+   "tir": 82.97278436845778
+  },
+  {
+   "subject": "adult#020",
+   "arm": "night_resistant",
+   "cycles": 137,
+   "night_dev_per_h": -1.6742455211980811,
+   "night_counted_share": 0.9781021897810219,
+   "night_iob_rule_share": 0.021897810218978103,
+   "night_ratio": 0.9458394160583941,
+   "resistant_pct": 0.0,
+   "at_one_pct": 51.26028806584362,
+   "tir": 87.01636904761905
+  },
+  {
+   "subject": "adult#020",
+   "arm": "no_iob_rule",
+   "cycles": 137,
+   "night_dev_per_h": -16.109762679167858,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.0,
+   "night_ratio": 0.8287591240875912,
+   "resistant_pct": 0.0,
+   "at_one_pct": 53.66379310344828,
+   "tir": 85.89285714285714
+  },
+  {
+   "subject": "adult#020",
+   "arm": "night_no_iob_rule",
+   "cycles": 137,
+   "night_dev_per_h": -2.1144596165420353,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.021897810218978103,
+   "night_ratio": 0.8354744525547446,
+   "resistant_pct": 0.37294238683127573,
+   "at_one_pct": 44.50874485596708,
+   "tir": 83.69295634920636
+  },
+  {
+   "subject": "adult#021",
+   "arm": "shipped",
+   "cycles": 334,
+   "night_dev_per_h": -11.242887216841236,
+   "night_counted_share": 0.6766467065868264,
+   "night_iob_rule_share": 0.3083832335329341,
+   "night_ratio": 0.970688622754491,
+   "resistant_pct": 0.19290123456790123,
+   "at_one_pct": 69.09722222222221,
+   "tir": 79.29067460317461
+  },
+  {
+   "subject": "adult#021",
+   "arm": "night_resistant",
+   "cycles": 334,
+   "night_dev_per_h": -14.78956441217058,
+   "night_counted_share": 0.5508982035928144,
+   "night_iob_rule_share": 0.44011976047904194,
+   "night_ratio": 0.9560179640718562,
+   "resistant_pct": 0.07716049382716049,
+   "at_one_pct": 72.7366255144033,
+   "tir": 76.88492063492063
+  },
+  {
+   "subject": "adult#021",
+   "arm": "no_iob_rule",
+   "cycles": 334,
+   "night_dev_per_h": -5.677282261024449,
+   "night_counted_share": 0.9790419161676647,
+   "night_iob_rule_share": 0.3143712574850299,
+   "night_ratio": 0.9145808383233534,
+   "resistant_pct": 5.954218106995885,
+   "at_one_pct": 48.739711934156375,
+   "tir": 80.20833333333334
+  },
+  {
+   "subject": "adult#021",
+   "arm": "night_no_iob_rule",
+   "cycles": 334,
+   "night_dev_per_h": -11.554867964989437,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.4161676646706587,
+   "night_ratio": 0.9539221556886228,
+   "resistant_pct": 16.738533908271265,
+   "at_one_pct": 47.35397883183066,
+   "tir": 74.24860853432283
+  },
+  {
+   "subject": "adult#022",
+   "arm": "shipped",
+   "cycles": 588,
+   "night_dev_per_h": -5.2401761903812485,
+   "night_counted_share": 0.49829931972789115,
+   "night_iob_rule_share": 0.4897959183673469,
+   "night_ratio": 0.9987925170068026,
+   "resistant_pct": 0.0,
+   "at_one_pct": 92.43827160493827,
+   "tir": 88.2564484126984
+  },
+  {
+   "subject": "adult#022",
+   "arm": "night_resistant",
+   "cycles": 588,
+   "night_dev_per_h": -5.414877758005001,
+   "night_counted_share": 0.18877551020408162,
+   "night_iob_rule_share": 0.8078231292517006,
+   "night_ratio": 0.9999829931972789,
+   "resistant_pct": 0.0,
+   "at_one_pct": 96.82355967078189,
+   "tir": 81.25
+  },
+  {
+   "subject": "adult#022",
+   "arm": "no_iob_rule",
+   "cycles": 588,
+   "night_dev_per_h": -1.0784203567818942,
+   "night_counted_share": 0.9948979591836735,
+   "night_iob_rule_share": 0.5,
+   "night_ratio": 0.9216666666666667,
+   "resistant_pct": 1.829924650161464,
+   "at_one_pct": 54.870828848223894,
+   "tir": 87.25388601036269
+  },
+  {
+   "subject": "adult#022",
+   "arm": "night_no_iob_rule",
+   "cycles": 588,
+   "night_dev_per_h": -6.10991747801231,
+   "night_counted_share": 0.9982993197278912,
+   "night_iob_rule_share": 0.8452380952380952,
+   "night_ratio": 0.9632142857142857,
+   "resistant_pct": 4.449588477366255,
+   "at_one_pct": 58.15329218106996,
+   "tir": 85.09424603174604
+  },
+  {
+   "subject": "adult#023",
+   "arm": "shipped",
+   "cycles": 500,
+   "night_dev_per_h": -14.245097049515277,
+   "night_counted_share": 0.964,
+   "night_iob_rule_share": 0.032,
+   "night_ratio": 0.89322,
+   "resistant_pct": 0.15432098765432098,
+   "at_one_pct": 51.82613168724279,
+   "tir": 85.7390873015873
+  },
+  {
+   "subject": "adult#023",
+   "arm": "night_resistant",
+   "cycles": 500,
+   "night_dev_per_h": -11.050597160054924,
+   "night_counted_share": 0.852,
+   "night_iob_rule_share": 0.132,
+   "night_ratio": 0.9276800000000001,
+   "resistant_pct": 0.0,
+   "at_one_pct": 52.803497942386834,
+   "tir": 82.6140873015873
+  },
+  {
+   "subject": "adult#023",
+   "arm": "no_iob_rule",
+   "cycles": 500,
+   "night_dev_per_h": -13.06169259001348,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.054,
+   "night_ratio": 0.9174599999999999,
+   "resistant_pct": 0.9259259259259258,
+   "at_one_pct": 51.504629629629626,
+   "tir": 86.32192460317461
+  },
+  {
+   "subject": "adult#023",
+   "arm": "night_no_iob_rule",
+   "cycles": 500,
+   "night_dev_per_h": -11.471676918396154,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.126,
+   "night_ratio": 0.9272400000000001,
+   "resistant_pct": 3.4079218106995888,
+   "at_one_pct": 54.861111111111114,
+   "tir": 86.35912698412699
+  },
+  {
+   "subject": "adult#024",
+   "arm": "shipped",
+   "cycles": 822,
+   "night_dev_per_h": 1.1624423913701396,
+   "night_counted_share": 0.7384428223844283,
+   "night_iob_rule_share": 0.24817518248175183,
+   "night_ratio": 0.966581508515815,
+   "resistant_pct": 0.09002057613168725,
+   "at_one_pct": 69.1358024691358,
+   "tir": 86.21031746031747
+  },
+  {
+   "subject": "adult#024",
+   "arm": "night_resistant",
+   "cycles": 822,
+   "night_dev_per_h": -2.645004895594853,
+   "night_counted_share": 0.5231143552311436,
+   "night_iob_rule_share": 0.45498783454987834,
+   "night_ratio": 0.9645863746958636,
+   "resistant_pct": 0.0,
+   "at_one_pct": 66.74382716049382,
+   "tir": 84.43700396825396
+  },
+  {
+   "subject": "adult#024",
+   "arm": "no_iob_rule",
+   "cycles": 822,
+   "night_dev_per_h": -1.3474405981022377,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.22992700729927007,
+   "night_ratio": 0.8729075425790754,
+   "resistant_pct": 2.353395061728395,
+   "at_one_pct": 31.622942386831276,
+   "tir": 82.57688492063492
+  },
+  {
+   "subject": "adult#024",
+   "arm": "night_no_iob_rule",
+   "cycles": 822,
+   "night_dev_per_h": 0.5591896727874733,
+   "night_counted_share": 0.9975669099756691,
+   "night_iob_rule_share": 0.4124087591240876,
+   "night_ratio": 0.9234063260340633,
+   "resistant_pct": 4.513888888888888,
+   "at_one_pct": 32.44598765432099,
+   "tir": 84.5858134920635
+  },
+  {
+   "subject": "adult#025",
+   "arm": "shipped",
+   "cycles": 663,
+   "night_dev_per_h": -1.9451251807593186,
+   "night_counted_share": 0.717948717948718,
+   "night_iob_rule_share": 0.2730015082956259,
+   "night_ratio": 0.9523680241327301,
+   "resistant_pct": 0.0,
+   "at_one_pct": 70.5246913580247,
+   "tir": 90.21577380952381
+  },
+  {
+   "subject": "adult#025",
+   "arm": "night_resistant",
+   "cycles": 663,
+   "night_dev_per_h": -3.02498602028134,
+   "night_counted_share": 0.5128205128205128,
+   "night_iob_rule_share": 0.46304675716440424,
+   "night_ratio": 0.9620211161387631,
+   "resistant_pct": 0.0,
+   "at_one_pct": 74.16409465020575,
+   "tir": 84.48660714285714
+  },
+  {
+   "subject": "adult#025",
+   "arm": "no_iob_rule",
+   "cycles": 663,
+   "night_dev_per_h": -1.1190246012049592,
+   "night_counted_share": 0.9984917043740573,
+   "night_iob_rule_share": 0.2971342383107089,
+   "night_ratio": 0.8924886877828053,
+   "resistant_pct": 9.246399176954732,
+   "at_one_pct": 33.281893004115226,
+   "tir": 89.12450396825396
+  },
+  {
+   "subject": "adult#025",
+   "arm": "night_no_iob_rule",
+   "cycles": 663,
+   "night_dev_per_h": -8.182744713298007,
+   "night_counted_share": 0.995475113122172,
+   "night_iob_rule_share": 0.4660633484162896,
+   "night_ratio": 0.9259728506787331,
+   "resistant_pct": 9.040637860082304,
+   "at_one_pct": 35.108024691358025,
+   "tir": 85.94990079365078
+  },
+  {
+   "subject": "adult#027",
+   "arm": "shipped",
+   "cycles": 425,
+   "night_dev_per_h": -5.72359393741769,
+   "night_counted_share": 0.6,
+   "night_iob_rule_share": 0.3788235294117647,
+   "night_ratio": 0.9992705882352941,
+   "resistant_pct": 0.0,
+   "at_one_pct": 88.58024691358025,
+   "tir": 78.54662698412699
+  },
+  {
+   "subject": "adult#027",
+   "arm": "night_resistant",
+   "cycles": 425,
+   "night_dev_per_h": -5.902768709351762,
+   "night_counted_share": 0.4988235294117647,
+   "night_iob_rule_share": 0.48470588235294115,
+   "night_ratio": 0.967764705882353,
+   "resistant_pct": 0.0257201646090535,
+   "at_one_pct": 84.59362139917695,
+   "tir": 77.77777777777779
+  },
+  {
+   "subject": "adult#027",
+   "arm": "no_iob_rule",
+   "cycles": 425,
+   "night_dev_per_h": -11.398764682180555,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.30823529411764705,
+   "night_ratio": 0.9597176470588236,
+   "resistant_pct": 5.131172839506172,
+   "at_one_pct": 60.35236625514403,
+   "tir": 77.96378968253968
+  },
+  {
+   "subject": "adult#027",
+   "arm": "night_no_iob_rule",
+   "cycles": 425,
+   "night_dev_per_h": -7.582546698925726,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.43529411764705883,
+   "night_ratio": 0.9358117647058825,
+   "resistant_pct": 2.7777777777777777,
+   "at_one_pct": 59.72222222222222,
+   "tir": 77.34375
+  },
+  {
+   "subject": "adult#028",
+   "arm": "shipped",
+   "cycles": 599,
+   "night_dev_per_h": -4.457037501298574,
+   "night_counted_share": 0.5659432387312187,
+   "night_iob_rule_share": 0.4290484140233723,
+   "night_ratio": 0.9378297161936563,
+   "resistant_pct": 0.0,
+   "at_one_pct": 70.57613168724279,
+   "tir": 82.19246031746032
+  },
+  {
+   "subject": "adult#028",
+   "arm": "night_resistant",
+   "cycles": 599,
+   "night_dev_per_h": -1.6461966094729048,
+   "night_counted_share": 0.37061769616026713,
+   "night_iob_rule_share": 0.6093489148580968,
+   "night_ratio": 0.9958597662771285,
+   "resistant_pct": 0.0,
+   "at_one_pct": 89.94341563786008,
+   "tir": 80.98958333333334
+  },
+  {
+   "subject": "adult#028",
+   "arm": "no_iob_rule",
+   "cycles": 599,
+   "night_dev_per_h": -4.486580977010979,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.37061769616026713,
+   "night_ratio": 0.7937729549248749,
+   "resistant_pct": 0.4758230452674897,
+   "at_one_pct": 28.382201646090532,
+   "tir": 80.80357142857143
+  },
+  {
+   "subject": "adult#028",
+   "arm": "night_no_iob_rule",
+   "cycles": 599,
+   "night_dev_per_h": -6.185136288157572,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.67779632721202,
+   "night_ratio": 0.8078130217028382,
+   "resistant_pct": 0.102880658436214,
+   "at_one_pct": 20.769032921810698,
+   "tir": 81.23759920634922
+  },
+  {
+   "subject": "adult#029",
+   "arm": "shipped",
+   "cycles": 582,
+   "night_dev_per_h": -5.371950126155145,
+   "night_counted_share": 0.9432989690721649,
+   "night_iob_rule_share": 0.044673539518900345,
+   "night_ratio": 0.9626632302405498,
+   "resistant_pct": 3.652263374485597,
+   "at_one_pct": 66.42232510288066,
+   "tir": 90.74900793650794
+  },
+  {
+   "subject": "adult#029",
+   "arm": "night_resistant",
+   "cycles": 582,
+   "night_dev_per_h": -6.868476625651182,
+   "night_counted_share": 0.8814432989690721,
+   "night_iob_rule_share": 0.10481099656357389,
+   "night_ratio": 0.9442783505154638,
+   "resistant_pct": 1.3760288065843622,
+   "at_one_pct": 61.80555555555556,
+   "tir": 91.02182539682539
+  },
+  {
+   "subject": "adult#029",
+   "arm": "no_iob_rule",
+   "cycles": 582,
+   "night_dev_per_h": -5.093519117358147,
+   "night_counted_share": 0.9982817869415808,
+   "night_iob_rule_share": 0.041237113402061855,
+   "night_ratio": 0.8960481099656358,
+   "resistant_pct": 3.4722222222222223,
+   "at_one_pct": 50.10288065843621,
+   "tir": 90.77380952380952
+  },
+  {
+   "subject": "adult#029",
+   "arm": "night_no_iob_rule",
+   "cycles": 582,
+   "night_dev_per_h": -5.168111783313292,
+   "night_counted_share": 0.9965635738831615,
+   "night_iob_rule_share": 0.0859106529209622,
+   "night_ratio": 0.9630927835051548,
+   "resistant_pct": 3.7037037037037033,
+   "at_one_pct": 56.84156378600823,
+   "tir": 91.62946428571429
+  },
+  {
+   "subject": "adult#030",
+   "arm": "shipped",
+   "cycles": 580,
+   "night_dev_per_h": -1.2557266344369193,
+   "night_counted_share": 0.9948275862068966,
+   "night_iob_rule_share": 0.0017241379310344827,
+   "night_ratio": 0.9776724137931033,
+   "resistant_pct": 4.128086419753087,
+   "at_one_pct": 77.27623456790124,
+   "tir": 88.46726190476191
+  },
+  {
+   "subject": "adult#030",
+   "arm": "night_resistant",
+   "cycles": 580,
+   "night_dev_per_h": -1.3501879243302608,
+   "night_counted_share": 0.9706896551724138,
+   "night_iob_rule_share": 0.027586206896551724,
+   "night_ratio": 0.9805344827586208,
+   "resistant_pct": 3.2407407407407405,
+   "at_one_pct": 78.125,
+   "tir": 89.38492063492063
+  },
+  {
+   "subject": "adult#030",
+   "arm": "no_iob_rule",
+   "cycles": 580,
+   "night_dev_per_h": -2.2141533275218146,
+   "night_counted_share": 0.9982758620689656,
+   "night_iob_rule_share": 0.04482758620689655,
+   "night_ratio": 0.9776896551724137,
+   "resistant_pct": 7.934670781893003,
+   "at_one_pct": 69.59876543209876,
+   "tir": 87.79761904761905
+  },
+  {
+   "subject": "adult#030",
+   "arm": "night_no_iob_rule",
+   "cycles": 580,
+   "night_dev_per_h": -3.2697519759494433,
+   "night_counted_share": 0.9982758620689656,
+   "night_iob_rule_share": 0.05172413793103448,
+   "night_ratio": 0.9852586206896552,
+   "resistant_pct": 14.814814814814813,
+   "at_one_pct": 61.484053497942384,
+   "tir": 88.21924603174604
+  },
+  {
+   "subject": "adult#031",
+   "arm": "shipped",
+   "cycles": 683,
+   "night_dev_per_h": -4.0111646773750635,
+   "night_counted_share": 0.8038067349926794,
+   "night_iob_rule_share": 0.1815519765739385,
+   "night_ratio": 0.9273645680819914,
+   "resistant_pct": 0.19290123456790123,
+   "at_one_pct": 72.72376543209876,
+   "tir": 79.91071428571429
+  },
+  {
+   "subject": "adult#031",
+   "arm": "night_resistant",
+   "cycles": 683,
+   "night_dev_per_h": -2.416193091101728,
+   "night_counted_share": 0.7847730600292826,
+   "night_iob_rule_share": 0.19912152269399708,
+   "night_ratio": 0.9281405563689604,
+   "resistant_pct": 2.5334362139917697,
+   "at_one_pct": 53.382201646090536,
+   "tir": 82.0560515873016
+  },
+  {
+   "subject": "adult#031",
+   "arm": "no_iob_rule",
+   "cycles": 683,
+   "night_dev_per_h": -2.7636930634730086,
+   "night_counted_share": 0.9985358711566618,
+   "night_iob_rule_share": 0.10395314787701318,
+   "night_ratio": 0.8850366032210835,
+   "resistant_pct": 6.661522633744855,
+   "at_one_pct": 49.71707818930041,
+   "tir": 79.58829365079364
+  },
+  {
+   "subject": "adult#031",
+   "arm": "night_no_iob_rule",
+   "cycles": 683,
+   "night_dev_per_h": -5.340096201224155,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.13030746705710103,
+   "night_ratio": 0.9489604685212298,
+   "resistant_pct": 13.850308641975309,
+   "at_one_pct": 56.3914609053498,
+   "tir": 81.49801587301587
+  },
+  {
+   "subject": "adult#032",
+   "arm": "shipped",
+   "cycles": 488,
+   "night_dev_per_h": -14.695288024470727,
+   "night_counted_share": 0.7540983606557377,
+   "night_iob_rule_share": 0.22745901639344263,
+   "night_ratio": 0.8889959016393443,
+   "resistant_pct": 0.07716049382716049,
+   "at_one_pct": 48.23816872427983,
+   "tir": 81.20039682539682
+  },
+  {
+   "subject": "adult#032",
+   "arm": "night_resistant",
+   "cycles": 488,
+   "night_dev_per_h": -10.265251922330494,
+   "night_counted_share": 0.39959016393442626,
+   "night_iob_rule_share": 0.5737704918032787,
+   "night_ratio": 0.9232377049180328,
+   "resistant_pct": 0.0,
+   "at_one_pct": 55.90277777777778,
+   "tir": 82.72569444444444
+  },
+  {
+   "subject": "adult#032",
+   "arm": "no_iob_rule",
+   "cycles": 488,
+   "night_dev_per_h": -16.67754466320649,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.2459016393442623,
+   "night_ratio": 0.8050409836065574,
+   "resistant_pct": 0.8873456790123456,
+   "at_one_pct": 17.03960905349794,
+   "tir": 85.30505952380952
+  },
+  {
+   "subject": "adult#032",
+   "arm": "night_no_iob_rule",
+   "cycles": 488,
+   "night_dev_per_h": -10.482404503918621,
+   "night_counted_share": 0.9979508196721312,
+   "night_iob_rule_share": 0.39344262295081966,
+   "night_ratio": 0.7652254098360655,
+   "resistant_pct": 0.1800411522633745,
+   "at_one_pct": 10.00514403292181,
+   "tir": 84.85863095238095
+  },
+  {
+   "subject": "adult#033",
+   "arm": "shipped",
+   "cycles": 696,
+   "night_dev_per_h": 2.023226767389868,
+   "night_counted_share": 0.9525862068965517,
+   "night_iob_rule_share": 0.04597701149425287,
+   "night_ratio": 0.9862643678160921,
+   "resistant_pct": 11.252572016460906,
+   "at_one_pct": 56.66152263374485,
+   "tir": 86.56994047619048
+  },
+  {
+   "subject": "adult#033",
+   "arm": "night_resistant",
+   "cycles": 696,
+   "night_dev_per_h": 3.1925986928943177,
+   "night_counted_share": 0.9482758620689655,
+   "night_iob_rule_share": 0.05172413793103448,
+   "night_ratio": 0.9971264367816092,
+   "resistant_pct": 7.330246913580248,
+   "at_one_pct": 63.927469135802475,
+   "tir": 85.39186507936508
+  },
+  {
+   "subject": "adult#033",
+   "arm": "no_iob_rule",
+   "cycles": 696,
+   "night_dev_per_h": 2.594577043900155,
+   "night_counted_share": 0.9985632183908046,
+   "night_iob_rule_share": 0.05172413793103448,
+   "night_ratio": 0.9749425287356321,
+   "resistant_pct": 16.679526748971192,
+   "at_one_pct": 46.65637860082305,
+   "tir": 84.41220238095238
+  },
+  {
+   "subject": "adult#033",
+   "arm": "night_no_iob_rule",
+   "cycles": 696,
+   "night_dev_per_h": 2.287098421471902,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.05172413793103448,
+   "night_ratio": 0.9867816091954023,
+   "resistant_pct": 13.143004115226336,
+   "at_one_pct": 48.26388888888889,
+   "tir": 86.89236111111111
+  },
+  {
+   "subject": "adult#034",
+   "arm": "shipped",
+   "cycles": 639,
+   "night_dev_per_h": -5.512137719035131,
+   "night_counted_share": 0.7887323943661971,
+   "night_iob_rule_share": 0.20344287949921752,
+   "night_ratio": 0.9663380281690142,
+   "resistant_pct": 2.353395061728395,
+   "at_one_pct": 78.0221193415638,
+   "tir": 69.45684523809523
+  },
+  {
+   "subject": "adult#034",
+   "arm": "night_resistant",
+   "cycles": 639,
+   "night_dev_per_h": 0.0,
+   "night_counted_share": 0.6948356807511737,
+   "night_iob_rule_share": 0.27856025039123633,
+   "night_ratio": 0.9838497652582161,
+   "resistant_pct": 6.635802469135803,
+   "at_one_pct": 72.45370370370371,
+   "tir": 71.75099206349206
+  },
+  {
+   "subject": "adult#034",
+   "arm": "no_iob_rule",
+   "cycles": 639,
+   "night_dev_per_h": -6.284960444931739,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.2378716744913928,
+   "night_ratio": 0.9496244131455398,
+   "resistant_pct": 17.103909465020575,
+   "at_one_pct": 49.691358024691354,
+   "tir": 70.85813492063492
+  },
+  {
+   "subject": "adult#034",
+   "arm": "night_no_iob_rule",
+   "cycles": 639,
+   "night_dev_per_h": -2.5866967190469863,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.18935837245696402,
+   "night_ratio": 0.9721596244131456,
+   "resistant_pct": 13.708847736625515,
+   "at_one_pct": 56.79012345679012,
+   "tir": 72.65625
+  },
+  {
+   "subject": "adult#035",
+   "arm": "shipped",
+   "cycles": 732,
+   "night_dev_per_h": 0.5723327233672592,
+   "night_counted_share": 0.5915300546448088,
+   "night_iob_rule_share": 0.3879781420765027,
+   "night_ratio": 0.9693169398907103,
+   "resistant_pct": 0.6815843621399177,
+   "at_one_pct": 83.11471193415639,
+   "tir": 81.75843253968253
+  },
+  {
+   "subject": "adult#035",
+   "arm": "night_resistant",
+   "cycles": 732,
+   "night_dev_per_h": 0.17133047011659697,
+   "night_counted_share": 0.5300546448087432,
+   "night_iob_rule_share": 0.4521857923497268,
+   "night_ratio": 0.9699726775956284,
+   "resistant_pct": 0.8616255144032923,
+   "at_one_pct": 78.35648148148148,
+   "tir": 80.90277777777779
+  },
+  {
+   "subject": "adult#035",
+   "arm": "no_iob_rule",
+   "cycles": 732,
+   "night_dev_per_h": 2.587073428107208,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.32786885245901637,
+   "night_ratio": 0.9809289617486339,
+   "resistant_pct": 17.47685185185185,
+   "at_one_pct": 55.11831275720165,
+   "tir": 85.90029761904762
+  },
+  {
+   "subject": "adult#035",
+   "arm": "night_no_iob_rule",
+   "cycles": 732,
+   "night_dev_per_h": 0.21257861060476024,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.44398907103825136,
+   "night_ratio": 0.9859016393442623,
+   "resistant_pct": 13.477366255144032,
+   "at_one_pct": 53.17644032921811,
+   "tir": 81.88244047619048
+  },
+  {
+   "subject": "adult#036",
+   "arm": "shipped",
+   "cycles": 648,
+   "night_dev_per_h": -0.8986494320729213,
+   "night_counted_share": 0.5462962962962963,
+   "night_iob_rule_share": 0.4367283950617284,
+   "night_ratio": 0.99016975308642,
+   "resistant_pct": 2.0190329218106995,
+   "at_one_pct": 87.21707818930041,
+   "tir": 81.98164682539682
+  },
+  {
+   "subject": "adult#036",
+   "arm": "night_resistant",
+   "cycles": 648,
+   "night_dev_per_h": -3.6461033127315705,
+   "night_counted_share": 0.31790123456790126,
+   "night_iob_rule_share": 0.6666666666666666,
+   "night_ratio": 0.9856327160493829,
+   "resistant_pct": 0.0,
+   "at_one_pct": 90.80504115226337,
+   "tir": 79.17906746031747
+  },
+  {
+   "subject": "adult#036",
+   "arm": "no_iob_rule",
+   "cycles": 648,
+   "night_dev_per_h": -0.3096468643734648,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.4104938271604938,
+   "night_ratio": 0.9331481481481481,
+   "resistant_pct": 7.330246913580248,
+   "at_one_pct": 52.54629629629629,
+   "tir": 82.2420634920635
+  },
+  {
+   "subject": "adult#036",
+   "arm": "night_no_iob_rule",
+   "cycles": 648,
+   "night_dev_per_h": 0.15756016869549527,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.4861111111111111,
+   "night_ratio": 0.8893364197530864,
+   "resistant_pct": 3.5751028806584357,
+   "at_one_pct": 45.1003086419753,
+   "tir": 81.78323412698413
+  },
+  {
+   "subject": "adult#037",
+   "arm": "shipped",
+   "cycles": 751,
+   "night_dev_per_h": -1.657869775675203,
+   "night_counted_share": 0.9374167776298269,
+   "night_iob_rule_share": 0.05725699067909454,
+   "night_ratio": 0.9595872170439416,
+   "resistant_pct": 6.0056584362139915,
+   "at_one_pct": 67.73405349794238,
+   "tir": 87.36359126984127
+  },
+  {
+   "subject": "adult#037",
+   "arm": "night_resistant",
+   "cycles": 751,
+   "night_dev_per_h": -1.048609454946277,
+   "night_counted_share": 0.8468708388814914,
+   "night_iob_rule_share": 0.14647137150466044,
+   "night_ratio": 0.9842343541944075,
+   "resistant_pct": 8.50051440329218,
+   "at_one_pct": 69.34156378600824,
+   "tir": 79.03025793650794
+  },
+  {
+   "subject": "adult#037",
+   "arm": "no_iob_rule",
+   "cycles": 751,
+   "night_dev_per_h": -1.1006856156315714,
+   "night_counted_share": 0.9986684420772304,
+   "night_iob_rule_share": 0.041278295605858856,
+   "night_ratio": 0.9605059920106525,
+   "resistant_pct": 20.228909465020575,
+   "at_one_pct": 54.629629629629626,
+   "tir": 85.80109126984127
+  },
+  {
+   "subject": "adult#037",
+   "arm": "night_no_iob_rule",
+   "cycles": 751,
+   "night_dev_per_h": 0.32823915836161177,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.21571238348868177,
+   "night_ratio": 1.0220239680426098,
+   "resistant_pct": 22.74948559670782,
+   "at_one_pct": 56.19855967078189,
+   "tir": 80.6795634920635
+  },
+  {
+   "subject": "adult#038",
+   "arm": "shipped",
+   "cycles": 699,
+   "night_dev_per_h": -9.047354749120426,
+   "night_counted_share": 0.6151645207439199,
+   "night_iob_rule_share": 0.37339055793991416,
+   "night_ratio": 0.9963090128755364,
+   "resistant_pct": 0.0,
+   "at_one_pct": 94.97170781893004,
+   "tir": 78.39781746031747
+  },
+  {
+   "subject": "adult#038",
+   "arm": "night_resistant",
+   "cycles": 699,
+   "night_dev_per_h": -2.7517863133266873,
+   "night_counted_share": 0.12160228898426323,
+   "night_iob_rule_share": 0.8726752503576538,
+   "night_ratio": 1.0,
+   "resistant_pct": 0.0,
+   "at_one_pct": 98.49537037037037,
+   "tir": 73.21428571428571
+  },
+  {
+   "subject": "adult#038",
+   "arm": "no_iob_rule",
+   "cycles": 699,
+   "night_dev_per_h": -7.14586863058028,
+   "night_counted_share": 0.9985693848354793,
+   "night_iob_rule_share": 0.44206008583690987,
+   "night_ratio": 0.8446351931330474,
+   "resistant_pct": 3.6136831275720165,
+   "at_one_pct": 45.306069958847736,
+   "tir": 79.91071428571429
+  },
+  {
+   "subject": "adult#038",
+   "arm": "night_no_iob_rule",
+   "cycles": 699,
+   "night_dev_per_h": -3.9959960542126343,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.8226037195994278,
+   "night_ratio": 0.9103004291845493,
+   "resistant_pct": 8.539094650205762,
+   "at_one_pct": 41.3451646090535,
+   "tir": 76.63690476190477
+  },
+  {
+   "subject": "adult#039",
+   "arm": "shipped",
+   "cycles": 170,
+   "night_dev_per_h": -12.679059217378075,
+   "night_counted_share": 0.9294117647058824,
+   "night_iob_rule_share": 0.07058823529411765,
+   "night_ratio": 0.8507058823529412,
+   "resistant_pct": 0.0,
+   "at_one_pct": 52.68775720164609,
+   "tir": 87.3015873015873
+  },
+  {
+   "subject": "adult#039",
+   "arm": "night_resistant",
+   "cycles": 170,
+   "night_dev_per_h": -9.317957413395565,
+   "night_counted_share": 0.6941176470588235,
+   "night_iob_rule_share": 0.2823529411764706,
+   "night_ratio": 0.8197647058823531,
+   "resistant_pct": 0.0,
+   "at_one_pct": 45.846193415637856,
+   "tir": 87.62400793650794
+  },
+  {
+   "subject": "adult#039",
+   "arm": "no_iob_rule",
+   "cycles": 170,
+   "night_dev_per_h": -8.14683052772395,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.047058823529411764,
+   "night_ratio": 0.7428235294117648,
+   "resistant_pct": 0.0,
+   "at_one_pct": 22.7880658436214,
+   "tir": 85.19345238095238
+  },
+  {
+   "subject": "adult#039",
+   "arm": "night_no_iob_rule",
+   "cycles": 170,
+   "night_dev_per_h": -10.995381833783933,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.09411764705882353,
+   "night_ratio": 0.7521764705882353,
+   "resistant_pct": 0.0,
+   "at_one_pct": 14.087418783225045,
+   "tir": 81.32825258573762
+  },
+  {
+   "subject": "adult#040",
+   "arm": "shipped",
+   "cycles": 566,
+   "night_dev_per_h": -11.701217150538172,
+   "night_counted_share": 0.6943462897526502,
+   "night_iob_rule_share": 0.29328621908127206,
+   "night_ratio": 0.9553533568904594,
+   "resistant_pct": 0.0,
+   "at_one_pct": 81.71296296296296,
+   "tir": 86.30952380952381
+  },
+  {
+   "subject": "adult#040",
+   "arm": "night_resistant",
+   "cycles": 566,
+   "night_dev_per_h": -8.295011158225659,
+   "night_counted_share": 0.48939929328621906,
+   "night_iob_rule_share": 0.4929328621908127,
+   "night_ratio": 0.9808833922261483,
+   "resistant_pct": 0.0,
+   "at_one_pct": 92.14248971193416,
+   "tir": 83.59375
+  },
+  {
+   "subject": "adult#040",
+   "arm": "no_iob_rule",
+   "cycles": 566,
+   "night_dev_per_h": -6.4308310998426155,
+   "night_counted_share": 0.9982332155477032,
+   "night_iob_rule_share": 0.19081272084805653,
+   "night_ratio": 0.8607243816254417,
+   "resistant_pct": 0.7330246913580246,
+   "at_one_pct": 43.119855967078195,
+   "tir": 85.88789682539682
+  },
+  {
+   "subject": "adult#040",
+   "arm": "night_no_iob_rule",
+   "cycles": 566,
+   "night_dev_per_h": -6.678274242695931,
+   "night_counted_share": 1.0,
+   "night_iob_rule_share": 0.4363957597173145,
+   "night_ratio": 0.9113957597173143,
+   "resistant_pct": 5.25977366255144,
+   "at_one_pct": 48.7011316872428,
+   "tir": 84.98263888888889
+  },
+  {
+   "subject": "adult#041",
+   "arm": "shipped",
+   "cycles": 600,
+   "night_dev_per_h": -8.305415764123552,
+   "night_counted_share": 0.895,
+   "night_iob_rule_share": 0.08666666666666667,
+   "night_ratio": 0.9484833333333333,
+   "resistant_pct": 3.2536008230452675,
+   "at_one_pct": 58.822016460905346,
+   "tir": 92.7703373015873
+  },
+  {
+   "subject": "adult#041",
+   "arm": "night_resistant",
+   "cycles": 600,
+   "night_dev_per_h": -10.258751731337059,
+   "night_counted_share": 0.81,
+   "night_iob_rule_share": 0.175,
+   "night_ratio": 0.955,
+   "resistant_pct": 2.3791152263374484,
+   "at_one_pct": 55.169753086419746,
+   "tir": 90.95982142857143
+  },
+  {
+   "subject": "adult#041",
+   "arm": "no_iob_rule",
+   "cycles": 600,
+   "night_dev_per_h": -8.201510911132896,
+   "night_counted_share": 0.9983333333333333,
+   "night_iob_rule_share": 0.07833333333333334,
+   "night_ratio": 0.9354833333333332,
+   "resistant_pct": 2.8292181069958846,
+   "at_one_pct": 45.12602880658436,
+   "tir": 92.17509920634922
+  },
+  {
+   "subject": "adult#041",
+   "arm": "night_no_iob_rule",
+   "cycles": 600,
+   "night_dev_per_h": -8.380934910206275,
+   "night_counted_share": 0.9983333333333333,
+   "night_iob_rule_share": 0.155,
+   "night_ratio": 0.9477500000000002,
+   "resistant_pct": 7.124485596707819,
+   "at_one_pct": 48.7011316872428,
+   "tir": 92.29910714285714
+  }
+ ]
+}

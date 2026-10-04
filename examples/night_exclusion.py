@@ -62,6 +62,37 @@ Rule.
   result moves the question to why the simulated loop carries about three times the real net
   insulin overnight.
 
+Result, 4 October 2026 (`docs/measurements/night_exclusion.json`, 160 runs in 69.6 minutes).
+The shipped arm reproduced `sim_autosens.json` exactly over 40 runs, the meal schedule was the
+same in every arm, and each subject kept a median 603.5 cycles in the fixed set.
+
+The control failed and nothing past it is read as a verdict. On the fixed set the deviation
+autosens computed moved +0.26 mg/dL per hour (-0.66 to 2.84) under night sensitivity at 0.7,
+where 3 to 8 was expected. The control did reach the runs: time in range fell 1.19 points
+(-2.23 to -0.06) and the share of night cycles over the insulin-on-board clause rose 0.12 (0.08
+to 0.16). This is the third arrangement in which a known change in the simulated person's
+sensitivity has failed to show in autosens's deviations, after the drift ablation of 25
+September and the windowed control of `night_sensitivity.py`. Why the deviations do not follow
+was not established.
+
+    per subject, median                 shipped   night 0.7   clause off   both
+    night deviation, mg/dL per h          -4.9       -4.1        -3.2      -5.5
+    night share counted                   0.78       0.65        1.00      1.00
+    night share over the clause           0.21       0.33        0.21      0.29
+    night ratio received                  0.96       0.97        0.93      0.94
+    resistant, per cent of cycles         0.43       0.71        6.41      5.01
+    ratio exactly 1.0, per cent           69.8       72.6        49.9      52.2
+
+As description only, two readings bear on the lead. On cycles chosen by the clock, the shipped
+person's night deviation is negative, at -4.9 mg/dL per hour: glucose falls faster than the
+settings predict, which is sensitivity rather than hidden resistance. The +5.3 of
+`night_sensitivity.py` was a different quantity, over windows chosen by carbohydrate on board
+and with unclamped activity. Counting the clause's cycles moved the night ratio towards
+sensitive, -0.033 (-0.058 to -0.018). Removing the clause raised the share reading resistant
+from 0.43 to 6.41 per cent, +5.4 (2.3 to 6.6) paired, below the real 10.7 to 70.2. The clause
+therefore accounts for a few points of the 25 September gap at most, and on these figures not
+by hiding night resistance. The lead from `night_sensitivity.py` is closed.
+
     python examples/night_exclusion.py
 """
 import argparse
