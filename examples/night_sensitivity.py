@@ -102,7 +102,51 @@ Rule.
   Selection. Admitted minus all-window D, per person, is reported on each side as the size of
   the selection the night windows impose. It decides nothing on its own.
 
+Result, 4 October 2026 (`docs/measurements/night_sensitivity.json`, 80 simulated runs in 34.5
+minutes). The shipped arm reproduced `driver_ranking.json` exactly over 38 runs and the
+per-subject overnight figure of `post_cob_isf.json` to within 0.1. On the real side 57 of 115
+users admitted the same number of windows as the reference and the rest 1 to 5 more, the
+windows after a data gap that the reference assigns differently; the largest per-user
+difference was 1.6 mg/dL per unit and the cohort median 22.66 against 22.7.
+
+The control failed, so the comparison is void. Night sensitivity at 0.7 reached the runs,
+raising mean night glucose by 12.2 mg/dL (11.1 to 15.8) paired, and moved D the wrong way, by
+-2.6 (-3.4 to -1.5) mg/dL per hour, with the ratio +0.06 (-0.02 to 0.12). D is computed over
+windows chosen by the carbohydrate estimate, and the arm changed which windows those were (93
+more per subject), so it does not compare one set of nights under two physiologies. Why it moved
+the wrong way was not established.
+
+    per person, median (10th, 90th)      real, 115            shipped, 40          night 0.7
+    ratio to profile, admitted           0.43 (0.11, 0.78)    0.23 (0.04, 1.44)    0.37 (0.07, 1.09)
+    effective, mg/dL per U               22.7 (6.6, 54.7)     4.5 (1.5, 11.6)      6.3 (1.9, 12.6)
+    D, all windows, mg/dL per h          8.2 (-3.2, 44.2)     5.3 (0.3, 10.8)      2.5 (-2.5, 9.6)
+    D, admitted minus all                6.7 (1.3, 20.1)      -0.3 (-3.9, 0.0)     -0.1 (-2.7, 0.3)
+    admitted share                       0.64 (0.39, 0.89)    0.96 (0.52, 1.00)    0.95 (0.35, 1.00)
+    net activity, U/h                    0.29 (0.06, 0.87)    0.94 (0.72, 1.34)    0.88 (0.55, 1.32)
+    net insulin on board, U              0.44 (0.06, 1.27)    1.06 (0.40, 1.89)    1.63 (0.61, 3.27)
+    cycles over twice basal              0.10 (0.02, 0.47)    0.24 (0.08, 0.45)    0.34 (0.10, 0.63)
+
+What follows is description, since no verdict survives a failed control. The simulated ratio
+sits inside the real band, which is consistent with the 4.5 against 22.7 being mostly settings
+scale, the real profile correction factors being about three times the panel's. The simulated
+loop runs about three times the real net insulin activity overnight, and over twice basal on 24
+per cent of night cycles against 10 (difference 0.15, 0.09 to 0.22). The selection the expectation
+had in mind is real-side: admitted real windows read 6.7 mg/dL per hour higher than all real
+windows, and simulated ones do not.
+
+Outside the registered rule, the control did move the autosens side: the share of night cycles
+over twice basal by +0.10 (0.06 to 0.14), the share autosens counted as non-meal by -0.10 (-0.14
+to -0.07), and the median deviation autosens itself computed by +0.7 (0.1 to 1.0) mg/dL per hour.
+Added night resistance is therefore partly absorbed as extra exclusion, which is the mechanism
+this registration proposed, but that reading was chosen after the result and is a lead rather
+than a finding. Testing it needs a control evaluated on a fixed set of cycles, chosen without
+the carbohydrate estimate.
+
+The intervals in the last paragraph are `exploratory_control` in the result file, added by
+`--exploratory` from the stored per-run rows.
+
     python examples/night_sensitivity.py
+    python examples/night_sensitivity.py --exploratory
 """
 import argparse
 import json
@@ -349,12 +393,43 @@ def spread(values):
             "min": float(v.min()), "max": float(v.max())}
 
 
+EXPLORATORY = ("autosens_night_dev_per_h", "autosens_night_nonmeal_share",
+               "iob_over_2_basal_share", "glucose_change", "iob_u", "n_windows")
+
+
+def exploratory():
+    """Paired control effects on the autosens side, which the registered rule did not name.
+
+    Read from the stored per-run rows and written beside the registered summary under its own
+    key, so that nothing chosen after the result can be mistaken for part of the registration.
+    """
+    d = json.load(open(OUT))
+    s = {r["subject"]: r for r in d["per_run"] if r["arm"] == "shipped"}
+    c = {r["subject"]: r for r in d["per_run"] if r["arm"] == "night_resistant"}
+    rng = np.random.default_rng(20261005)
+    out = {}
+    for k in EXPLORATORY:
+        v = np.array([c[n][k] - s[n][k] for n in s
+                      if c[n].get(k) is not None and s[n].get(k) is not None], float)
+        b = [np.median(rng.choice(v, v.size)) for _ in range(10000)]
+        out[k] = {"subjects": int(v.size), "paired_median": float(np.median(v)),
+                  "ci95": [float(np.percentile(b, 2.5)), float(np.percentile(b, 97.5))]}
+        print(k, json.dumps(out[k]))
+    d["exploratory_control"] = out
+    json.dump(d, open(OUT, "w"), indent=1)
+    print(f"wrote {OUT}")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--subjects", type=int, default=40)
     ap.add_argument("--days", type=int, default=28)
     ap.add_argument("--workers", type=int, default=WORKERS)
+    ap.add_argument("--exploratory", action="store_true",
+                    help="add the post-hoc control effects to the stored result and stop")
     a = ap.parse_args()
+    if a.exploratory:
+        return exploratory()
     from examples.panel import dosable
 
     t0 = time.time()
