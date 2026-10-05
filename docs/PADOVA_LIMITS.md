@@ -117,6 +117,11 @@ nothing at all, on nine of twenty subjects, to a ninetieth percentile of 1.43 mg
 0.59 ± 0.12 across twelve real people. That width belongs to the published `kp1`, `kp2` and
 `kp3` values, so no mechanism added on top narrows it.
 
+Note added 5 October 2026: the ± 0.12 is a standard error (Rickels 2015, Table 2 footnote), so the
+spread between the twelve people is an SD near 0.42 mg/kg/min, not 0.12. Against that spread a
+ninetieth percentile of 1.43 is wider than the human one by less than this paragraph implies, and
+the comparison needs redoing before the conclusion is relied on.
+
 ## The model is undefined outside 10 to 600 mg/dL
 
 A run ends when glucose leaves that range, which is recorded as a completion flag. It is not a

@@ -46,8 +46,10 @@ subject: a subject already producing 0.6 mg/kg/min sees nothing.
 
 ### The target, and why it is not a fit
 
-Rickels et al. measured 0.42 to 0.84 mg/kg/min, mean 0.59 ± 0.12, in twelve people with
-long-standing type 1 diabetes and no glucagon response at all. That population is the right one
+Rickels et al. measured a mean of 0.59 mg/kg/min (SE 0.12, so an SD near 0.42) in twelve people
+with long-standing type 1 diabetes and no glucagon response at all. The band 0.42 to 0.84 used
+below is this package's choice around that mean; it does not appear in the paper (checked 5
+October 2026 against its Table 2, which states mean ± SE). That population is the right one
 for a floor: it is what people produce when the counterregulatory arm this package cannot model
 is absent, which is the condition the floor represents.
 

@@ -929,7 +929,9 @@ the distribution is zero-inflated and the median tracks how many subjects are pi
 The between-subject spread is not inside anything, and no gain fixes it. Seven of thirty-four
 subjects still produce nothing at the 55 mg/dL plateau at the shipped gain, where none of
 Rickels's twelve produced nothing, and the ninetieth percentile sits above 2.0 against their
-0.59 ± 0.12. The mechanism moves the centre of the
+0.59 ± 0.12 (a standard error; the spread between people is an SD near 0.42, so this comparison
+overstates how much wider the simulated population is and needs redoing; noted 5 October 2026).
+The mechanism moves the centre of the
 population into range and leaves it far wider than the human one, and that width belongs to the
 published `kp1`, `kp2` and `kp3` values rather than to the defence. A gain large enough to lift
 the subjects producing nothing drives the ones already producing too much further out, because

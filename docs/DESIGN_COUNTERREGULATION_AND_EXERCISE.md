@@ -18,9 +18,9 @@ alpha cell.
 The second ground is the one that has changed. The package says the glucagon response "is lost
 within a few years of diagnosis and clamp studies find no discernible rise in that population",
 which is true of Rickels et al. 2015: twelve people with long-standing type 1 diabetes and no
-glucagon response, producing 0.59 ± 0.12 mg/kg/min at the plateau. The Hypo-RESOLVE clamp study
+glucagon response, producing a mean 0.59 mg/kg/min (SE 0.12) at the plateau. The Hypo-RESOLVE clamp study
 measures a different and broader population. Across 47 people with type 1 diabetes the glucagon
-response to a 2.8 mmol/L clamp is 9.4 ± 0.8 pmol/L against 30.6 ± 4.7 in 16 controls: attenuated
+response to a 2.8 mmol/L clamp is 9.4 pmol/L (SE 0.8) against 30.6 (SE 4.7) in 16 controls: attenuated
 to roughly a third, not absent.
 
 Both are true of different people. What follows is that glucagon responsivity is a property that
@@ -53,6 +53,9 @@ than a restatement of the fit.
 
     target 1   glucagon at a 2.8 mmol/L clamp     9.4 pmol/L (Hypo-RESOLVE, n=47)
     target 2   EGP at the plateau                 0.42 to 0.84 mg/kg/min (Rickels, n=12)
+
+The band in target 2 is this package's choice around Rickels' mean of 0.59 (SE 0.12); the paper
+gives no such range (checked 5 October 2026).
 
 ### What would refute it
 
@@ -103,6 +106,9 @@ a far larger base than anything the layer was built against:
     acute glucose fall, aerobic          -1.43 ± 1.02
     acute glucose fall, anaerobic        -0.52 ± 0.81
     delayed hypoglycaemia within 6 h     21.2 per cent aerobic, 11.2 per cent resistance
+
+The two delayed-hypoglycaemia figures are not in the Zivkovic paper; a check against it on 3
+October 2026 found neither. The acute falls are in it, with the ± values as standard deviations.
 
 Resalat et al. 2019 provides a disclosed alternative structure with parameter values, which is
 the comparator for whether our two-gain form is adequate or needs replacing.
@@ -165,7 +171,7 @@ ends is a modelling choice.
 The layer was too weak by a factor of 2.5, and the claim beside its gains, a 23 mg/dL fall over
 a sixty-minute session, was never measured; the old values gave 10.8 mg/dL. At a scale of 2.5 it
 reproduces both the acute fall (-24.4 against a real -25.8) and the rate of delayed
-hypoglycaemia (25 per cent against a real 21.2), which are separately carried by the
+hypoglycaemia (25 per cent against 21.2, a figure the cited paper does not contain), which are separately carried by the
 insulin-independent and insulin-dependent terms.
 
 On the signatures, paired over 26 subjects with bootstrap intervals, three of ten movements

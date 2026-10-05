@@ -51,8 +51,8 @@ import numpy as np
 MW_GLUCAGON = 3482.75          # g/mol
 
 # Hypo-RESOLVE, Fabricius et al. 2024, at a 2.8 mmol/L clamp held 60 minutes.
-T1D_RESPONSE_PMOL_L = 9.4      # +/- 0.8 across 47 people with type 1 diabetes
-CONTROL_RESPONSE_PMOL_L = 30.6  # +/- 4.7 across 16 people without diabetes
+T1D_RESPONSE_PMOL_L = 9.4      # SE 0.8, across 47 people with type 1 diabetes
+CONTROL_RESPONSE_PMOL_L = 30.6  # SE 4.7, across 16 people without diabetes
 CLAMP_TARGET_MMOL_L = 2.8
 
 # How much alpha-cell response a subject retains, as a fraction of the healthy response. The

@@ -18,9 +18,10 @@ import numpy as np
 from simglucose.simulation.scenario import Action as ScenarioAction
 
 # --------------------------------------------------------------------------- parameters
-# Announcement. Carbohydrate counting error is well characterised: Brazeau et al. (2013)
-# and Meade & Rushton (2016) both put mean absolute error around 15-25% of the meal, and
-# Roversi et al. (2020) reports a similar spread from CGM-based inference. Announcement
+# Announcement. Carbohydrate counting error is well characterised: Brazeau et al. (2013) put
+# mean absolute error near 21% of the meal; Roversi et al. (2020), against a dietitian's
+# estimate in 692 meals, found it grows with meal size, with large meals underestimated.
+# Meade & Rushton (2016) measured a portion test, not meals, and is not a second estimate. Announcement
 # rate for main meals in AID users is high but not total; snacks are routinely missed,
 # which is the standard clinical account of the unannounced-carbohydrate problem.
 P_ANNOUNCE_MAIN = 0.80
