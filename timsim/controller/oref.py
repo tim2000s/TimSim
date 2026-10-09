@@ -210,7 +210,7 @@ class OrefController(LoopInputs, Controller):
 
         # Nothing older than the duration of action can reach the forward curve, and the
         # curve is walked 196 times a cycle.
-        self.prune(minute, margin=CURVE_TICKS * sample)
+        self.prune(minute)
 
         grams = float(info.get("meal", 0.0)) * sample
         cob = self.observe_carbs(grams, sample)

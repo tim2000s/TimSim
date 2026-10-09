@@ -177,6 +177,34 @@ def test_pruning_the_ledger_changes_no_arithmetic():
     assert b.doses[0][0] > 2000.0 - DIA_MIN
 
 
+def test_a_dose_over_an_hour_old_still_counts_after_a_cycle(controller):
+    """Issue 54. The adapter pruned with a 240-minute margin added to the cutoff, so a full
+    cycle dropped every dose more than an hour old and oref saw about half the insulin on
+    board. Pruning at the real call site must leave a 2-hour-old unit in the ledger."""
+    scheduled = controller.profile.basal_at(0.0) * 60.0
+    controller._apply({"units": 1.0}, 0.0, 5.0, scheduled)
+    expected = controller.bolus_iob(120.0)
+    assert expected > 0.3
+    handed = _cycle(controller, bg=140.0, delta=0.0, minute=120.0)["IOB"]
+    assert controller.doses[0] == (0.0, 1.0)
+    # what oref was given this cycle, before any microbolus it then decided on
+    assert handed == pytest.approx(expected, abs=1e-6)
+
+
+def test_the_adapters_compute_insulin_on_board_with_oref0s_curve():
+    """Issue 54. AndroidAPS and oref0 use the exponential curve of lib/iob/calculate.js. These
+    are oref0 0.7.1's own figures for one unit at a 5-hour duration and 75-minute peak; the
+    package's own curve gives 0.960, 0.840, 0.653, 0.480, 0.213 and 0.053 at the same ages."""
+    class L(LoopInputs):
+        pass
+    loop = L()
+    loop.init_inputs()
+    loop.doses = [(0.0, 1.0)]
+    oref0 = {30: 0.925, 60: 0.764, 90: 0.581, 120: 0.411, 180: 0.159, 240: 0.033}
+    for age, value in oref0.items():
+        assert loop.bolus_iob(float(age)) == pytest.approx(value, abs=5e-4), age
+
+
 # ------------------------------------------------------------------------ end to end
 @pytest.mark.slow
 def test_a_short_run_closes_the_loop_rather_than_running_open(subject):

@@ -1335,3 +1335,44 @@ Neither correction changed a verdict. The defect is the one this log records mos
 number that could not be traced to the file said to hold it, here because the file had been
 replaced by a rebuild in one case and archived in the other, and the prose was not reread against
 either.
+
+## 54. The oref adapter handed oref about half the insulin on board, on a curve AndroidAPS does not use
+
+Introduced 11 August 2026 in 11c7ffb, when the oref0 adapter was added, and found 9 October 2026
+from outside the package: the oref digital twin rebuilds insulin on board from an exported run's
+treatments with oref0's own `lib/iob`, and on one subject over three days its figure sat a median
+1.09 U above the one this adapter had logged.
+
+Two defects, one in the ledger and one in the curve.
+
+The ledger. `OrefController.policy` pruned with `margin=CURVE_TICKS * sample`, 240 minutes, and
+`LoopInputs.prune` added the margin to the cutoff, giving `minute - 300 + 240`. Every bolus and
+basal deviation more than an hour old was dropped before oref saw the ledger. The docstring's
+reasoning ran backwards: a forward tick reads the ledger at a later time, where an old entry is
+older still, so the duration of action before now is the only cutoff that changes no arithmetic.
+The existing test for pruning called `prune` without the margin and so could not see the call
+site. On adult#001, untitrated, two days, seed 7, the insulin on board oref was handed averaged
+1.31 U; with pruning off it averaged 2.60 U.
+
+The curve. `LoopInputs` computed insulin on board with the package's `iob_fraction`, which
+leaves more of each unit on board between one and four hours than the exponential curve of
+oref0's `lib/iob/calculate.js`, the curve every AndroidAPS insulin plugin uses (0.840 against
+0.764 at 60 minutes, 0.480 against 0.411 at 120, at a 300-minute duration and 75-minute peak).
+An adapter standing for AndroidAPS therefore reported more insulin on board than AndroidAPS
+would. The Boost adapter inherits the same methods.
+
+Fix: `prune` takes no margin and cuts at the duration of action, and the AndroidAPS adapters'
+ledger arithmetic uses `oref_iob_fraction`, added to `therapy/insulin.py`. The reference loop,
+the pump-limit enforcer and the simulated body keep the package curve; they do not stand for an
+application. With both fixes the twin's rebuild sat a median 0.27 U from the adapter's figure
+(74% of cycles within 0.5 U, against 27% before), the residual being the twin's 0.05 U temp
+pulses and its assumption that no temp is running at each decision.
+`test_a_dose_over_an_hour_old_still_counts_after_a_cycle` and
+`test_the_adapters_compute_insulin_on_board_with_oref0s_curve` both fail on the code before the
+fix.
+
+Not yet measured: what the fix does to the outcomes of the oref0 and Boost arms. Every oref0 run
+from 11 August to 9 October 2026 dosed against roughly half its insulin on board, which should
+have made it more aggressive, so its time below range and every comparison built on it (the
+group floor in the oref0 cells, `rank_drivers.py`, the night studies run under oref0) is open
+until the arms are rerun. The Boost arm changes by the curve alone.

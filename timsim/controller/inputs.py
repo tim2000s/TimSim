@@ -19,7 +19,11 @@ differences. Each is recorded at the method it affects.
 """
 from collections import deque
 
-from ..therapy.insulin import DIA_MIN, PEAK_MIN, iob_fraction
+# The AndroidAPS adapters compute insulin on board as AndroidAPS does, with oref0's exponential
+# curve. Until 9 October 2026 they used the package's own `iob_fraction`, which leaves more of
+# each unit on board between one and four hours; see docs/ISSUES.md 54.
+from ..therapy.insulin import DIA_MIN, PEAK_MIN
+from ..therapy.insulin import oref_iob_fraction as iob_fraction
 
 HISTORY_SAMPLES = 8               # 40 minutes at five-minute sampling
 CARB_ABSORPTION_G_PER_MIN = 0.5   # a plain linear decay, in the usual clinical region
@@ -88,7 +92,7 @@ class LoopInputs:
         if abs(deviation) > 1e-9:
             self.basal_deviations.append((float(minute), deviation))
 
-    def prune(self, minute, margin=0.0):
+    def prune(self, minute):
         """Drop ledger entries that can no longer contribute.
 
         `iob_fraction` is exactly zero once a dose is older than the duration of action, so
@@ -96,10 +100,14 @@ class LoopInputs:
         196 times a cycle, and a 28-day run appends a basal deviation on every one of 8,064
         cycles, so an unpruned ledger turns a linear run into a quadratic one.
 
-        `margin` covers the horizon the caller projects over, since a forward tick reads the
-        ledger at a later time than now.
+        The cutoff is the duration of action before now and nothing later. A forward tick
+        reads the ledger at a later time, where an old entry is older still, so no entry
+        dropped here could contribute to it. Until 9 October 2026 this took a margin for the
+        forward horizon and added it to the cutoff, which the oref adapter set to 240 minutes:
+        every dose more than an hour old was dropped and oref was handed about half the
+        insulin on board. See docs/ISSUES.md 54.
         """
-        cutoff = minute - DIA_MIN + margin
+        cutoff = minute - DIA_MIN
         self.doses = [d for d in self.doses if d[0] > cutoff]
         self.basal_deviations = [d for d in self.basal_deviations if d[0] > cutoff]
 

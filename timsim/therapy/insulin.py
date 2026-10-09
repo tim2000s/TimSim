@@ -21,9 +21,35 @@ def iob_fraction(age_min, dia_min=DIA_MIN, peak_min=PEAK_MIN):
     return ((d - age_min) ** 2) / (d * (d - p))
 
 
+def oref_iob_fraction(age_min, dia_min=DIA_MIN, peak_min=PEAK_MIN):
+    """Fraction of a bolus still to act under oref0's exponential curve.
+
+    This is the curve AndroidAPS applies in every insulin plugin it ships and that oref0 uses
+    in `lib/iob/calculate.js` (Loop's exponential model, LoopKit/Loop issue 388), so it is the
+    one the AndroidAPS adapters must compute insulin on board with. The bilinear-like
+    `iob_fraction` above leaves 0.04 to 0.08 more of each unit on board between one and four
+    hours at a 300-minute duration and 75-minute peak (0.840 against 0.764 at 60 minutes, 0.480
+    against 0.411 at 120), so an adapter using it reports more insulin on board than the
+    application it stands for. It is the loop's belief about insulin, and the simulated body's
+    insulin kinetics are not affected by it.
+    """
+    import math
+
+    if age_min <= 0:
+        return 1.0
+    end, peak = float(dia_min), float(peak_min)
+    if age_min >= end:
+        return 0.0
+    tau = peak * (1 - peak / end) / (1 - 2 * peak / end)
+    a = 2 * tau / end
+    s = 1 / (1 - a + (1 + a) * math.exp(-end / tau))
+    return 1 - s * (1 - a) * ((age_min ** 2 / (tau * end * (1 - a)) - age_min / tau - 1)
+                              * math.exp(-age_min / tau) + 1)
+
+
 def iob(minute, doses, dia_min=DIA_MIN, peak_min=PEAK_MIN):
     """Insulin on board at `minute`, from an iterable of (minute, units)."""
     return float(sum(u * iob_fraction(minute - m, dia_min, peak_min) for m, u in doses))
 
 
-__all__ = ["iob_fraction", "iob", "DIA_MIN", "PEAK_MIN"]
+__all__ = ["iob_fraction", "oref_iob_fraction", "iob", "DIA_MIN", "PEAK_MIN"]
