@@ -1371,8 +1371,25 @@ pulses and its assumption that no temp is running at each decision.
 `test_the_adapters_compute_insulin_on_board_with_oref0s_curve` both fail on the code before the
 fix.
 
-Not yet measured: what the fix does to the outcomes of the oref0 and Boost arms. Every oref0 run
-from 11 August to 9 October 2026 dosed against roughly half its insulin on board, which should
-have made it more aggressive, so its time below range and every comparison built on it (the
-group floor in the oref0 cells, `rank_drivers.py`, the night studies run under oref0) is open
-until the arms are rerun. The Boost arm changes by the curve alone.
+Measured on 9 October 2026 by `examples/issue54_effect.py` (`docs/measurements/issue54_effect.json`):
+twelve adults with settings titrated the same day, 28 days on the benchmark seed under oref0 SMB,
+run once with both defects restored and once as fixed. Before the fix oref was handed a mean
+1.70 U of insulin on board (median 1.62, range 0.97 to 2.59); after it 2.73 U (2.70, 1.64 to
+3.81), a paired rise of 1.03 U [0.90, 1.16]. On the sensor reading:
+
+| | Before: median, mean (range) | After: median, mean (range) | After − before, mean [95% CI] |
+|---|---|---|---|
+| Time below 70, % | 4.12, 4.12 (1.8–6.5) | 2.21, 1.96 (0.3–3.4) | −2.16 [−2.69, −1.69] |
+| Time below 54, % | 1.19, 1.29 (0.4–2.6) | 0.55, 0.59 (0.1–1.3) | −0.70 [−0.99, −0.44] |
+| Time in range, % | 86.97, 84.03 (72.6–91.1) | 86.06, 84.35 (74.8–94.1) | +0.32 [−1.09, +1.71] |
+| Time above 180, % | 9.40, 11.85 (3.4–21.5) | 12.05, 13.69 (3.2–22.8) | +1.84 [+0.86, +2.88] |
+| Mean glucose, mg/dL | 131.7, 131.9 | 139.1, 137.7 | +5.85 [+4.78, +7.03] |
+
+Time below 70 fell in all twelve subjects, rescue carbohydrate events from 691 to 362, and
+delivered insulin from 64.4 to 59.7 U a day. True glucose moved the same way (time below 70
+−2.04 [−2.56, −1.55]). The defect roughly doubled the oref0 arm's time below range while leaving
+time in range where it was, which is the signature a comparison of algorithms on hypoglycaemia
+cannot see past. Every oref0 figure produced between 11c7ffb and f0e5e45 is therefore suspect on
+hypoglycaemia, including the oref0 cells of the group floor, `rank_drivers.py` and the night
+studies run under oref0, and needs rerunning before it is quoted. The Boost arm changes by the
+curve alone and has not been measured.
