@@ -275,7 +275,16 @@ class BoostEngineController(LoopInputs, Controller):
         for r in ok:
             states[r.get("v6_state")] = states.get(r.get("v6_state"), 0) + 1
         units = np.array([r.get("smb") or 0.0 for r in ok], float)
+        # The aggression knob scales only the confirm shot, so this is where it shows.
+        confirm = [r for r in ok if r.get("v6_state") == "CONFIRMED"]
+        confirm_u = np.array([r.get("smb") or 0.0 for r in confirm], float)
+        capped = [r for r in confirm if r.get("v6_final") is not None and r.get("confirmed_cap") is not None
+                  and r["v6_final"] >= r["confirmed_cap"] - 1e-9]
         return {
+            "confirm_cycles": len(confirm),
+            "confirm_dose_mean_u": float(confirm_u.mean()) if confirm_u.size else None,
+            "confirm_dose_total_u": float(confirm_u.sum()),
+            "confirm_at_cap_pct": 100.0 * len(capped) / len(confirm) if confirm else None,
             "cycles": n,
             "no_result": n - len(ok),
             "state_pct": {k: 100.0 * v / max(len(ok), 1) for k, v in states.items()},
