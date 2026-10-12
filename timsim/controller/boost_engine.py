@@ -32,8 +32,16 @@ from .oref import EPOCH_MS
 
 RUNNER = os.environ.get(
     "BOOST_RUNNER", os.path.expanduser("~/StudioProjects/Boost-timsim-runner"))
-CLASSPATH = os.path.join(RUNNER, "plugins", "aps", "build", "sim-classpath.txt")
-ASSETS = os.path.join(RUNNER, "app", "src", "main", "assets")
+# A bundle (made by the trial's bundle_runner.py) carries the classpath relative to itself, its
+# own copy of the model assets and a manifest, so a second machine runs the same bytes. Without
+# one, the runner's Gradle build directory is used directly.
+BUNDLE = os.environ.get("BOOST_RUNNER_BUNDLE")
+if BUNDLE:
+    CLASSPATH = os.path.join(BUNDLE, "classpath.txt")
+    ASSETS = os.path.join(BUNDLE, "assets")
+else:
+    CLASSPATH = os.path.join(RUNNER, "plugins", "aps", "build", "sim-classpath.txt")
+    ASSETS = os.path.join(RUNNER, "app", "src", "main", "assets")
 CURVE_TICKS = 48
 MEAL_CARBS_WINDOW_MIN = 360     # AndroidAPS sums carbohydrate entered over the last six hours
 DAY_MIN = 1440
@@ -43,8 +51,17 @@ def available():
     return os.path.exists(CLASSPATH)
 
 
+def classpath():
+    entries = open(CLASSPATH).read().strip().replace("\n", os.pathsep).split(os.pathsep)
+    if BUNDLE:
+        entries = [os.path.join(BUNDLE, e) for e in entries]
+    return os.pathsep.join(entries)
+
+
 def runner_commit():
     """The Boost commit the runner was built from, for provenance."""
+    if BUNDLE:
+        return json.load(open(os.path.join(BUNDLE, "MANIFEST.json")))
     try:
         return subprocess.run(["git", "-C", RUNNER, "rev-parse", "HEAD"], capture_output=True,
                               text=True, check=True).stdout.strip()
@@ -107,8 +124,8 @@ class BoostEngineController(LoopInputs, Controller):
         self.replies = []
 
         cmd = [java_binary(), "-Djdk.attach.allowAttachSelf=true",
-               "-XX:+EnableDynamicAgentLoading", "-Xshare:auto", "-XX:TieredStopAtLevel=4",
-               "-cp", open(CLASSPATH).read().strip(), "app.aaps.plugins.aps.sim.BoostSimMain"]
+               "-XX:+EnableDynamicAgentLoading", "-Xmx512m",
+               "-cp", classpath(), "app.aaps.plugins.aps.sim.BoostSimMain"]
         if debug:
             cmd.insert(1, "-Dsim.debug=1")
         self.proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
