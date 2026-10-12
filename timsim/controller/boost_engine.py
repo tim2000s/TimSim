@@ -177,6 +177,11 @@ class BoostEngineController(LoopInputs, Controller):
         reply = json.loads(line)
         if "error" in reply:
             raise RuntimeError(f"Boost failed on a cycle: {reply['error']}\n{reply.get('stack', '')}")
+        # The runner sends a non-finite field as null and names it. In a reported field that is
+        # counted; in a dose it would silently become no dose, so the run stops instead.
+        bad = set(reply.get("non_finite") or ()) & {"smb", "rate", "duration"}
+        if bad:
+            raise RuntimeError(f"Boost returned a non-finite dose field {sorted(bad)}: {reply.get('reason', '')[:400]}")
         return reply
 
     def _clock(self, minute):
@@ -295,6 +300,8 @@ class BoostEngineController(LoopInputs, Controller):
             "state_pct": {k: 100.0 * v / max(len(ok), 1) for k, v in states.items()},
             "smb_pct": float(100.0 * (units > 0).mean()) if units.size else 0.0,
             "smb_mean_u": float(units[units > 0].mean()) if (units > 0).any() else 0.0,
+            "non_finite": {k: sum(k in (r.get("non_finite") or ()) for r in ok)
+                           for k in sorted({k for r in ok for k in (r.get("non_finite") or ())})},
             "post_rescue_pct": float(100.0 * np.mean([bool(r.get("post_rescue")) for r in ok])) if ok else 0.0,
         }
 
