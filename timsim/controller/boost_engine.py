@@ -123,9 +123,14 @@ class BoostEngineController(LoopInputs, Controller):
         self.last_carb_min = None
         self.replies = []
 
-        cmd = [java_binary(), "-Djdk.attach.allowAttachSelf=true",
-               "-XX:+EnableDynamicAgentLoading", "-Xmx512m",
-               "-cp", classpath(), "app.aaps.plugins.aps.sim.BoostSimMain"]
+        # ByteBuddy's agent jar is loaded at startup rather than attached at run time: a JRE
+        # without the jdk.attach module (the study desktop's) cannot self-attach.
+        cp = classpath()
+        agent = next((e for e in cp.split(os.pathsep) if "byte-buddy-agent" in os.path.basename(e)), None)
+        if agent is None:
+            raise FileNotFoundError("byte-buddy-agent is not on the runner classpath")
+        cmd = [java_binary(), f"-javaagent:{agent}", "-Xmx512m",
+               "-cp", cp, "app.aaps.plugins.aps.sim.BoostSimMain"]
         if debug:
             cmd.insert(1, "-Dsim.debug=1")
         self.proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
