@@ -94,11 +94,35 @@ def history_from_result(result, days_before=None):
     return {"bg": bg, "boluses": boluses, "tdd": tdd}
 
 
+def continue_state(state, length_days):
+    """A finished run's preference state, re-stamped onto the clock of a run that follows it.
+
+    `history_from_result` moves the earlier run's minute m to `m - length` in the next run, so the
+    stored timestamps (auto-config's last derivation, its re-derivation clock) move with it and a
+    re-derivation due seven days after the last one falls where it would on a phone. A long that
+    reads as a time since the epoch is taken to be a timestamp.
+    """
+    shift = int(length_days * DAY_MIN * 60_000)
+    out = {}
+    for k, (kind, v) in state.items():
+        if kind == "l" and v > 10 ** 12:
+            v = v - shift
+        out[k] = [kind, v]
+    return out
+
+
+def join_history(older, newer, newer_days):
+    """Two histories in sequence: `older` ended where `newer` began, `newer_days` before now."""
+    shift = int(newer_days * DAY_MIN * 60_000)
+    moved = {k: [[e[0] - shift, *e[1:]] for e in older.get(k, [])] for k in ("bg", "boluses", "tdd")}
+    return {k: moved[k] + list(newer.get(k, [])) for k in ("bg", "boluses", "tdd")}
+
+
 class BoostEngineController(LoopInputs, Controller):
     """Boost dev, with the temporary basal it issues held on this side of the pipe."""
 
     def __init__(self, name, profile=None, prefs=None, history=None, target_bg=None,
-                 autosens=None, debug=False):
+                 autosens=None, debug=False, state=None):
         from ..therapy import profile as profile_mod
         from .autosens import Autosens
 
@@ -137,7 +161,8 @@ class BoostEngineController(LoopInputs, Controller):
                                      stderr=subprocess.DEVNULL if not debug else None,
                                      text=True, bufsize=1)
         reply = self._send({"cmd": "init", "start_ms": EPOCH_MS, "profile": self._profile(),
-                            "prefs": self._prefs(), "history": history, "assets": ASSETS})
+                            "prefs": self._prefs(), "history": history, "assets": ASSETS,
+                            **({"state": state} if state else {})})
         if not reply.get("ok"):
             raise RuntimeError(f"the Boost runner refused init: {reply}")
 
@@ -281,6 +306,10 @@ class BoostEngineController(LoopInputs, Controller):
     def managed(self):
         return self._send({"cmd": "managed"})
 
+    def state(self):
+        """Every stored preference with its type, for `continue_state` and a later run's `state`."""
+        return self._send({"cmd": "state"})["state"]
+
     def response_profile(self):
         """What the engine did with the run: V6 state occupancy, dose sizes and failures."""
         if not self.replies:
@@ -330,4 +359,5 @@ class BoostEngineController(LoopInputs, Controller):
             pass
 
 
-__all__ = ["BoostEngineController", "history_from_result", "available", "runner_commit"]
+__all__ = ["BoostEngineController", "history_from_result", "continue_state", "join_history", "available",
+           "runner_commit"]
