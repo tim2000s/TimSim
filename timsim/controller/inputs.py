@@ -36,6 +36,13 @@ class LoopInputs:
     reconstruction and supplies only the marshalling its own algorithm needs.
     """
 
+    # The activity peak the loop assumes for its insulin. AndroidAPS takes it from the insulin
+    # plugin: 75 minutes for its rapid-acting curve, 55 for ultra-rapid and 45 for Lyumjev. It is
+    # the loop's belief only, so changing it leaves the simulated body's absorption alone; a run
+    # that models a faster insulin changes both, with the body's rates set in the subject's
+    # parameters. Boost also derives its dynamic ISF divisor from it.
+    insulin_peak_min = PEAK_MIN
+
     def init_inputs(self, history=HISTORY_SAMPLES):
         self.readings = deque(maxlen=history)
         self.doses = []                # [(minute, units)] boluses this algorithm gave
@@ -45,7 +52,7 @@ class LoopInputs:
 
     # ---------------------------------------------------------------------- insulin
     def bolus_iob(self, minute):
-        return float(sum(u * iob_fraction(minute - m, DIA_MIN, PEAK_MIN)
+        return float(sum(u * iob_fraction(minute - m, DIA_MIN, self.insulin_peak_min)
                          for m, u in self.doses))
 
     def basal_iob(self, minute):
@@ -57,7 +64,7 @@ class LoopInputs:
         from 0.7 to 2.2 and fired the headroom brake on 25.4% of decisions against a real
         2.3%.
         """
-        return float(sum(u * iob_fraction(minute - m, DIA_MIN, PEAK_MIN)
+        return float(sum(u * iob_fraction(minute - m, DIA_MIN, self.insulin_peak_min)
                          for m, u in self.basal_deviations))
 
     def iob_at(self, minute):
@@ -65,7 +72,7 @@ class LoopInputs:
 
     def iob_after(self, minute, horizon):
         """Insulin still on board `horizon` minutes from now, given no further doses."""
-        return float(sum(u * iob_fraction(minute + horizon - m, DIA_MIN, PEAK_MIN)
+        return float(sum(u * iob_fraction(minute + horizon - m, DIA_MIN, self.insulin_peak_min)
                          for m, u in self.doses))
 
     def activity_u_per_hour(self, minute, include_basal=False):
@@ -152,9 +159,9 @@ class LoopInputs:
         # below zero at the present moment and corrupted the array on every cycle with a
         # temporary basal running, which was most of them.
         def state(ledger, t):
-            v = float(sum(u * iob_fraction(t - m, DIA_MIN, PEAK_MIN)
+            v = float(sum(u * iob_fraction(t - m, DIA_MIN, self.insulin_peak_min)
                           for m, u in ledger if m <= t))
-            after = float(sum(u * iob_fraction(t + step - m, DIA_MIN, PEAK_MIN)
+            after = float(sum(u * iob_fraction(t + step - m, DIA_MIN, self.insulin_peak_min)
                               for m, u in ledger if m <= t + step))
             return v, (v - after) / step        # activity in U/min, as oref reads it
 

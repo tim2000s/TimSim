@@ -122,7 +122,7 @@ class BoostEngineController(LoopInputs, Controller):
     """Boost dev, with the temporary basal it issues held on this side of the pipe."""
 
     def __init__(self, name, profile=None, prefs=None, history=None, target_bg=None,
-                 autosens=None, debug=False, state=None):
+                 autosens=None, debug=False, state=None, insulin_peak_min=None):
         from ..therapy import profile as profile_mod
         from .autosens import Autosens
 
@@ -136,6 +136,8 @@ class BoostEngineController(LoopInputs, Controller):
         self.target_bg = None if target_bg is None else float(target_bg)
         self.pinned_autosens = None if autosens is None else float(autosens)
         self.autosens = Autosens() if autosens is None else None
+        if insulin_peak_min is not None:
+            self.insulin_peak_min = float(insulin_peak_min)
 
         self.init_inputs()
         self.temp_rate = None
@@ -176,6 +178,9 @@ class BoostEngineController(LoopInputs, Controller):
                 "cr": [float(v) for v in self.profile.cr],
                 "target_lo": float(lo), "target_hi": float(hi),
                 "dia_hours": float(self.profile.dia_min) / 60.0,
+                # The runner answers the insulin plugin's peak with this, which sets Boost's
+                # dynamic ISF divisor as well as the curve its insulin on board is read off.
+                "insulin_peak": int(round(self.insulin_peak_min)),
                 "max_basal": float(lim.max_basal_u_per_hour),
                 "max_bolus": float(lim.max_bolus_u),
                 "bolus_step": float(lim.bolus_increment_u)}

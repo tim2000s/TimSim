@@ -95,7 +95,7 @@ class OrefController(LoopInputs, Controller):
     """oref0 SMB, with the temporary basal it issues held on this side of the pipe."""
 
     def __init__(self, name, profile=None, index=INDEX, node=None, target_bg=None,
-                 microbolus=True, autosens=None, sensor_noise=1):
+                 microbolus=True, autosens=None, sensor_noise=1, insulin_peak_min=None):
         from ..therapy import profile as profile_mod
         from .autosens import Autosens
 
@@ -113,6 +113,8 @@ class OrefController(LoopInputs, Controller):
         self.autosens = Autosens() if autosens is None else None
         self.ratios = []
         self.sensor_noise = int(sensor_noise)
+        if insulin_peak_min is not None:
+            self.insulin_peak_min = float(insulin_peak_min)
 
         self.init_inputs()
         self.temp_rate = None          # U/hr the pump is running, or None for the schedule
@@ -159,7 +161,7 @@ class OrefController(LoopInputs, Controller):
             "SMBInterval": SMB_INTERVAL_MIN,
             "min_5m_carbimpact": 8.0,
             "autosens_max": 1.2, "autosens_min": 0.7,
-            "curve": "rapid-acting", "insulinPeakTime": 75,
+            "curve": "rapid-acting", "insulinPeakTime": int(round(self.insulin_peak_min)),
             "skip_neutral_temps": False, "temptargetSet": False,
             "remainingCarbsCap": 90, "remainingCarbsFraction": 1.0,
             "carbsReqThreshold": 1, "A52_risk_enable": False,
