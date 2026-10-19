@@ -67,7 +67,11 @@ to every decimal have usually been handed the same configuration. Both have happ
 once, and in both directions: an option that failed to reach the workers, and an option that
 reached them and did not apply. Check which before concluding either.
 
-`docs/SPEC_VS_OUTPUT.md` is the companion to it, holding every documented claim that the
+`REVIEW.md` at the repository root turns that log and the August 2026 review in `docs/REVIEW.md`
+into numbered checks, with the tier each path sits in. Read it before committing, and when an
+entry is added to the log, add a row to its closing table naming what now catches it.
+
+`docs/SPEC_VS_OUTPUT.md` is the companion to the log, holding every documented claim that the
 measurements no longer support. Read it before quoting a figure from any document in `docs/`.
 
 Run tests with `pytest -q` from the repository root. The suite takes about eighteen minutes
