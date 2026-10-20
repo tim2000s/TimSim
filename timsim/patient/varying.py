@@ -441,6 +441,22 @@ HYPO_DEFENCE_FLOOR = 0.15     # insulin action never falls below this fraction
 # harness fault rather than a null result. The arms pass their value explicitly now.
 HYPO_EGP_FLOOR = 0.0          # mg/kg/min at full depth; 0 restores stock S2008
 
+# Meal-linked glucagon. In type 1 diabetes glucagon rises after a meal rather than falling, and
+# production by the liver is then suppressed less than in a person without diabetes; S2008 has no
+# glucagon, so after a meal its production can only fall. This adds production after each intake
+# as a pulse `(tau/peak) * exp(1 - tau/peak)`, which is 1 at `MEAL_GLUCAGON_PEAK_MIN` and has an
+# area of `peak * e` minutes. Its height is `gain * EGPb` for every `MEAL_GLUCAGON_PER_G` grams, so
+# at gain 1 a 50 g meal adds production equal to basal at the peak. It enters through `kp1`, so
+# insulin's suppression `kp3*Id` and the clamp at zero act on it as on the rest of production.
+# Intake while glucose is below `MEAL_GLUCAGON_MIN_BG` is treated as a rescue and adds nothing,
+# since the hypoglycaemic response is modelled separately. Shape, scaling and gate are modelling
+# choices; the gain is calibrated against field highs (Boost-AAPS-core
+# backtesting/scripts/2026-10-timsim-initial-settings). 0 restores stock S2008.
+MEAL_GLUCAGON_GAIN = 0.0
+MEAL_GLUCAGON_PEAK_MIN = 30.0
+MEAL_GLUCAGON_PER_G = 50.0
+MEAL_GLUCAGON_MIN_BG = 80.0
+
 
 def hypo_defence(glucose_mgdl, centre=HYPO_DEFENCE_CENTRE, width=HYPO_DEFENCE_WIDTH):
     """How strongly glucose uptake is being opposed, from zero to one as glucose falls."""
@@ -647,6 +663,39 @@ class VaryingPatient(T1DPatient):
         self._kp10 = float(self._params["kp1"])
         self._kp30 = float(self._params["kp3"])
         self._egp_floor = float(floor)
+
+    def set_meal_glucagon(self, gain=MEAL_GLUCAGON_GAIN, peak_min=MEAL_GLUCAGON_PEAK_MIN,
+                          per_g=MEAL_GLUCAGON_PER_G, min_bg=MEAL_GLUCAGON_MIN_BG):
+        """Switch on the rise in liver production that follows each intake (see the constants)."""
+        self._mg_gain = float(gain)
+        self._mg_peak = float(peak_min)
+        self._mg_per_g = float(per_g)
+        self._mg_min_bg = float(min_bg)
+        self._mg_pulses = []      # (minute of intake, grams)
+        self._mg_written = None   # the kp1 this term last wrote, and the offset inside it
+        self.meal_glucagon_grams = 0.0   # intake that started a pulse, for checks
+        self.meal_glucagon_extra = 0.0   # mg/kg/min added to production on the last step
+
+    def _meal_glucagon(self, action):
+        """Add this step's pulse sum to `kp1`, removing last step's if nothing rewrote it since."""
+        if getattr(self, "_mg_gain", 0.0) <= 0.0:
+            return
+        t = float(self.t)
+        cho = float(getattr(action, "CHO", 0.0) or 0.0)
+        if cho > 0.0 and float(self.observation.Gsub) >= self._mg_min_bg:
+            self._mg_pulses.append((t, cho * float(self.sample_time)))
+            self.meal_glucagon_grams += cho * float(self.sample_time)
+        p = self._mg_peak
+        self._mg_pulses = [(t0, g) for t0, g in self._mg_pulses if t - t0 < 12.0 * p]
+        pulse = sum(g / self._mg_per_g * ((t - t0) / p) * np.exp(1.0 - (t - t0) / p)
+                    for t0, g in self._mg_pulses)
+        extra = self._mg_gain * float(self._params["EGPb"]) * pulse
+        kp1 = float(self._params["kp1"])
+        if self._mg_written is not None and kp1 == self._mg_written[0]:
+            kp1 -= self._mg_written[1]
+        self._params["kp1"] = kp1 + extra
+        self._mg_written = (kp1 + extra, extra)
+        self.meal_glucagon_extra = extra
 
     def set_liver_delay(self, scale=LIVER_DELAY_SCALE):
         """Scale `ki`, the rate of the delay carrying plasma insulin to its action on the liver.
@@ -979,6 +1028,9 @@ class VaryingPatient(T1DPatient):
             want = floor * hypo_defence(self.observation.Gsub)
             have = self._kp10 - q["kp2"] * self.state[3] - q["kp3"] * self.state[8]
             q["kp1"] = self._kp10 + max(0.0, want - have)
+
+        # Last of the terms on `kp1`, since it is an offset on whatever the others left there.
+        self._meal_glucagon(action)
 
         # Activity multiplies the sensitivity factor and sets the insulin-independent term,
         # so it composes with the diurnal and day-to-day variation rather than replacing it.

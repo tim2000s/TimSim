@@ -80,6 +80,7 @@ from simglucose.simulation.scenario import CustomScenario
 
 from ..controller.loop import CorrectionLoop
 from ..patient.varying import (HYPO_DEFENCE_GAIN, HYPO_EGP_DEFENCE, HYPO_EGP_FLOOR,
+                               MEAL_GLUCAGON_GAIN,
                                HYPO_RISK_GAIN, LIVER_DELAY_SCALE, LIVER_FAST_FRACTION,
                                LIVER_FAST_KI_SCALE, MEAL_ABSORPTION_CV,
                                MEAL_ABSORPTION_SCALE, VaryingPatient)
@@ -504,7 +505,8 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
              set_life_days=None, announcement="some", meal_delay_min=None,
              engagement_cv=None, liver_delay=None, liver_fast_fraction=None,
              liver_fast_ki_scale=None, liver_kp2_scale=1.0, liver_kp3_scale=1.0,
-             liver_kp2_above_basal_only=False, carb_estimate_bias=None):
+             liver_kp2_above_basal_only=False, carb_estimate_bias=None,
+             meal_glucagon_gain=None):
     """Run one subject. Returns a Result.
 
     `layers` is any subset of LAYERS. `controller`, if given, replaces the built-in
@@ -595,6 +597,10 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
         egp_floor = (HYPO_EGP_FLOOR if hypo_egp_floor is None else float(hypo_egp_floor))
         if egp_floor:
             patient.set_egp_floor(egp_floor)
+        # The rise in production after a meal (`patient/varying.py`, MEAL_GLUCAGON_GAIN).
+        mg = MEAL_GLUCAGON_GAIN if meal_glucagon_gain is None else float(meal_glucagon_gain)
+        if mg:
+            patient.set_meal_glucagon(mg)
 
     if "activity" in effective:
         from ..person.activity import Activity, draw_sessions
