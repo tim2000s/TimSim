@@ -31,8 +31,9 @@ two cancellation branches that exist to catch a pump disagreeing with the loop; 
 simulated pump delivers what it is asked for, so there is nothing for them to catch. Bolus
 wizard fields are false throughout, since nothing here uses one.
 
-One further input is supplied as a constant, and it is a real simplification rather than an
-absence with no consequence. `meal_data.slopeFromMaxDeviation` and `slopeFromMinDeviation`
+One further input is supplied as a constant unless `send_deviation_slopes` is set (see
+`LoopInputs.deviation_slopes`), and it is a real simplification rather than an absence with no
+consequence. `meal_data.slopeFromMaxDeviation` and `slopeFromMinDeviation`
 are sent as zero, where oref computes them from how its observed deviations have moved over
 the last hour. It combines them as `min(slopeFromMaxDeviation, -slopeFromMinDeviation / 3)`
 and uses the result to decay predicted carb impact along the unannounced-meal curve, so a
@@ -241,6 +242,8 @@ class OrefController(LoopInputs, Controller):
         for tick in curve:
             tick["lastBolusTime"] = self._clock(self.last_bolus_min)
 
+        s_max, s_min = (self.deviation_slopes(minute, curve[0]["activity"], isf)
+                        if self.send_deviation_slopes else (0, 0))
         result = self._send({
             "profile": {"sens": isf, "carb_ratio": cr, "current_basal": scheduled_rate},
             "glucose_status": {"glucose": bg, "delta": delta,
@@ -254,7 +257,7 @@ class OrefController(LoopInputs, Controller):
                           "lastBolusTime": self._clock(self.last_bolus_min),
                           "lastCarbTime": self._clock(self.last_carb_min), "bwFound": False,
                           "bwCarbs": 0,
-                          "slopeFromMaxDeviation": 0, "slopeFromMinDeviation": 0,
+                          "slopeFromMaxDeviation": s_max, "slopeFromMinDeviation": s_min,
                           "maxDeviation": 0, "minDeviation": 0},
             "autosens": {"ratio": ratio},
             "microBolusAllowed": self.microbolus,

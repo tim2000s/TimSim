@@ -259,6 +259,8 @@ class BoostEngineController(LoopInputs, Controller):
             temp = {"rate": self.temp_rate, "start_ms": self._clock(self.temp_start_min),
                     "duration_min": int(round(self.temp_duration))}
         carbs_window = float(sum(g for _, g in self.carb_entries))
+        slopes = (self.deviation_slopes(minute, curve[0]["activity"], isf)
+                  if self.send_deviation_slopes else None)
         message = {
             "cmd": "cycle", "now_ms": self._clock(minute), "bg": bg, "iob": curve,
             # AndroidAPS drops carbohydrate older than its maximum absorption time from COB as
@@ -267,7 +269,9 @@ class BoostEngineController(LoopInputs, Controller):
             # `fractionCarbsLeft = mealCOB / carbs` divided by zero, minPredBG went NaN and the
             # engine microbolused on it (adult#033, ablation, 12 October 2026).
             "meal": {"carbs": carbs_window, "cob": min(cob, carbs_window),
-                     "last_carb_ms": self._clock(self.last_carb_min) if self.last_carb_min is not None else 0},
+                     "last_carb_ms": self._clock(self.last_carb_min) if self.last_carb_min is not None else 0,
+                     **({"slope_from_max_deviation": slopes[0], "slope_from_min_deviation": slopes[1]}
+                        if slopes is not None else {})},
             "autosens": 1.0 if ratio is None else float(ratio),
             "temp": temp,
             "delivered": self.pending,

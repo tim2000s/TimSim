@@ -43,12 +43,48 @@ class LoopInputs:
     # parameters. Boost also derives its dynamic ISF divisor from it.
     insulin_peak_min = PEAK_MIN
 
+    # Whether the adapters send the meal-data deviation slopes AndroidAPS computes each cycle
+    # (`deviation_slopes`) or the constants they sent before 24 October 2026: zero for both on
+    # the oref bridge, which leaves its unannounced-meal forecast undecayed, and nothing on the
+    # Boost runner, whose MealData defaults of 0 and 999 make `slopeFromDeviations` -333 and cut
+    # that forecast off after its first step. Off keeps earlier results reproducible.
+    send_deviation_slopes = False
+
     def init_inputs(self, history=HISTORY_SAMPLES):
         self.readings = deque(maxlen=history)
         self.doses = []                # [(minute, units)] boluses this algorithm gave
         self.basal_deviations = []     # [(minute, delivered - scheduled)] for negative IOB
         self.delta_history = []        # successive windowed deltas, not raw differences
         self.cob_g = 0.0
+        self.deviation_history = deque(maxlen=13)  # (minute, avgDeviation), an hour and the present
+
+    def deviation_slopes(self, minute, activity_u_per_min, sens):
+        """`slopeFromMaxDeviation` and `slopeFromMinDeviation`, as AndroidAPS's IobCobOref1Worker
+        computes them (oref0 cob-autosens.js): each 5-minute bucket's average deviation is the
+        15-minute average delta less the insulin effect `-activity * sens * 5`, and the slopes
+        run from this bucket back to the largest and smallest of the eleven buckets 55 to 5
+        minutes ago, the largest floored at 0 from above and the smallest at 999 from below as
+        the worker starts them. `sens` is the profile ISF, which is what the worker reads
+        (`getIsfMgdlForCarbs`). Until an hour of buckets exists, and across a gap in them, the
+        worker's starting values 0 and 999 are returned.
+        """
+        r = list(self.readings)
+        if len(r) < 4:
+            return 0.0, 999.0
+        bgi = -float(activity_u_per_min) * float(sens) * 5.0
+        avg_dev = round(((r[-1] - r[-4]) / 3.0 - bgi) * 1000.0) / 1000.0
+        self.deviation_history.append((float(minute), avg_dev))
+        h = list(self.deviation_history)
+        if len(h) < 13 or abs(h[0][0] - (minute - 60.0)) > 1.0:
+            return 0.0, 999.0
+        s_max, s_min, d_max, d_min = 0.0, 999.0, 0.0, 999.0
+        for t, d in h[1:12]:
+            slope = (d - avg_dev) / (t - minute) * 5.0
+            if d > d_max:
+                s_max, d_max = min(0.0, slope), d
+            if d < d_min:
+                s_min, d_min = max(0.0, slope), d
+        return s_max, s_min
 
     # ---------------------------------------------------------------------- insulin
     def bolus_iob(self, minute):
