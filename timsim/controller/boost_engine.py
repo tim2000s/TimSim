@@ -122,7 +122,7 @@ class BoostEngineController(LoopInputs, Controller):
     """Boost dev, with the temporary basal it issues held on this side of the pipe."""
 
     def __init__(self, name, profile=None, prefs=None, history=None, target_bg=None,
-                 autosens=None, debug=False, state=None, insulin_peak_min=None):
+                 autosens=None, debug=False, state=None, insulin_peak_min=None, smoothing=None):
         from ..therapy import profile as profile_mod
         from .autosens import Autosens
 
@@ -164,7 +164,10 @@ class BoostEngineController(LoopInputs, Controller):
                                      text=True, bufsize=1)
         reply = self._send({"cmd": "init", "start_ms": EPOCH_MS, "profile": self._profile(),
                             "prefs": self._prefs(), "history": history, "assets": ASSETS,
-                            **({"state": state} if state else {})})
+                            **({"state": state} if state else {}),
+                            # "ukf": the runner passes readings through the app's UKF smoother before the
+                            # glucose status, as the phone does when it is the active smoother
+                            **({"smoothing": smoothing} if smoothing else {})})
         if not reply.get("ok"):
             raise RuntimeError(f"the Boost runner refused init: {reply}")
 
