@@ -110,51 +110,10 @@ hyperglycaemic, under the trend loop on day 8.7. Medians over completers:
 | oref | 40 | 74.7 | 2.75 | 0.87 | 22.4 | 0.76 | 52.0 |
 
 The A/A arm resolves 3.76 points of time in range, 1.28 below 70 mg/dL and 0.30 on the index, from
-paired standard deviations of 8.38, 2.85 and 0.68. Pairs on the subjects completing both, as median
-paired differences with bootstrap intervals, beside the S2008 figures of 6 September:
-
-| pair | outcome | Hovorka | S2008 |
-|---|---|---|---|
-| oref - trend | TIR | 10.24 [9.13, 10.95] | 5.78 [4.38, 8.00] |
-| oref - trend | TBR70 | -0.82 [-1.20, -0.30] | 2.54 [1.74, 3.14] |
-| oref - trend | LBGI | -0.14 [-0.23, -0.04] | 0.70 [0.44, 0.83] |
-| oref - boost | TIR | 7.44 [5.47, 9.13] | 4.58 [2.98, 7.22] |
-| oref - boost | TBR70 | 0.56 [0.21, 0.73] | 2.58 [1.95, 3.05] |
-| oref - boost | LBGI | 0.15 [0.10, 0.21] | 0.72 [0.57, 0.86] |
-| oref - control-iq | TIR | 4.90 [2.81, 6.58] | 4.61 [0.93, 5.33] |
-| oref - control-iq | TBR70 | -3.49 [-4.42, -2.81] | 1.05 [0.35, 1.72] |
-| oref - control-iq | LBGI | -0.78 [-0.91, -0.62] | 0.35 [0.14, 0.50] |
-| control-iq - trend | TIR | 3.71 [1.90, 7.03] | 2.17 [1.30, 4.22] |
-| control-iq - trend | TBR70 | 3.01 [1.77, 3.56] | 1.07 [0.86, 1.69] |
-| control-iq - trend | LBGI | 0.65 [0.47, 0.82] | 0.27 [0.21, 0.36] |
-| boost - control-iq | TIR | -2.52 [-4.07, 0.21] | -1.18 [-3.37, -0.21] |
-| boost - control-iq | TBR70 | -4.04 [-5.00, -3.61] | -1.08 [-1.51, -0.84] |
-| boost - control-iq | LBGI | -0.97 [-1.05, -0.87] | -0.28 [-0.35, -0.26] |
-| boost - trend | TIR | 1.95 [0.86, 4.13] | 1.23 [0.61, 2.03] |
-| boost - trend | TBR70 | -1.41 [-2.10, -0.91] | -0.21 [-0.35, 0.06] |
-| boost - trend | LBGI | -0.34 [-0.44, -0.20] | -0.06 [-0.09, 0.01] |
-
-Against the registration, the ordering on time in range survived: oref0 SMB first, the stand-in
-second, and every pair on that outcome with the S2008 sign or an interval spanning zero. The ordering
-on hypoglycaemia did not. Four pairs reverse by the registered definition, all of them oref0 SMB
-against the trend loop and against the stand-in, on time below 70 mg/dL and on the index. On S2008
-oref0 SMB had the most hypoglycaemia of the four drivers; on this body it sits below the trend loop
-and the stand-in has the most. The S2008 finding that oref0 SMB buys its time in range with
-hypoglycaemia relative to those two drivers therefore cannot be attributed to the algorithms. Against
-Boost it survives in sign at a quarter of the size, inside the floor on both outcomes.
-
-Two registered expectations missed in other ways. Boost against the trend loop resolves on time below
-70 mg/dL (-1.41) and on the index (-0.34) where it was expected inside the floor, so on this body
-Boost is the safest of the four on hypoglycaemia. Terminations came to 1 of 200 where more than the
-S2008 3 of 160 were expected. The absolute fall in time in range came in as expected, 11.1 to 11.4
-points for every driver.
-
-Agreement on time in range is one change of body. Both models lack counterregulation and both
-overstate the uncovered meal, so it is weaker evidence that the time in range ordering belongs to the
-algorithms than the reversals are that the hypoglycaemia ordering does not. No mechanism for the
-reversal has been tested. One candidate is that oref0 SMB sizes its microboluses from the correction
-factor, and the physiological factor from which titration starts is 28.9 mg/dL per unit here against
-18.6 on S2008, so the same algorithm meets differently placed settings on the two bodies.
+paired standard deviations of 8.38, 2.85 and 0.68. Every driver lost 11.1 to 11.4 points of time in
+range against its September S2008 figure, inside the registered 10 to 25, and terminations came to
+1 of 200 where more than 3 of 160 were expected. The comparison with S2008 is made in the next
+section, at the same code.
 
 ## The S2008 ranking at the same code: registration
 
@@ -163,8 +122,8 @@ was produced on 6 September at a2d609c, inside the window ISSUES.md 54 marks as 
 hypoglycaemia for every oref0 figure. The oref0 adapter then handed oref about half the insulin
 on board, and the fix measured on twelve S2008 adults lowered oref0 SMB's time below 70 mg/dL by
 2.16 points [-2.69, -1.69] while moving time in range by +0.32 [-1.09, +1.71]. The Hovorka ranking
-ran with the fix, so the two columns differ in the code as well as the body, and the reversals
-cannot be assigned to the body until S2008 is run at the same code.
+ran with the fix, so the two differ in the code as well as the body, and four hypoglycaemia
+pairs that reverse between them cannot be assigned to the body until S2008 is run at the same code.
 
 `examples/rank_drivers.py --out docs/measurements/driver_ranking_s2008_current.json` runs the
 same design on S2008 at the current commit and settings store.
@@ -178,4 +137,57 @@ has no expectation.
 Reading. Where oref0 SMB minus the trend loop, or minus the stand-in, on time below 70 mg/dL or
 the index still has an interval clear of zero with the sign opposite to Hovorka's, the reversal
 belongs to the body. Where the S2008 interval spans zero or takes Hovorka's sign, the reversal
-reported above came from issue 54, and the two bodies do not disagree on that pair.
+came from issue 54, and the two bodies do not disagree on that pair.
+
+## The S2008 ranking at the same code: result
+
+Run 9 November 2026 at 946c8f5, 200 runs in 106 minutes beside another seven-worker job, into
+`docs/measurements/driver_ranking_s2008_current.json`. The stamp is marked dirty for one untracked
+test file; no simulation or driver code differs from 07fd086, which
+`tests/test_body_comparison.py` asserts. 198 runs completed, the two terminations hypoglycaemic,
+one under the stand-in and one under oref0 SMB.
+
+The trend loop and the stand-in reproduced their September medians to the decimal, as expected
+for drivers whose code the fix did not touch. oref0 SMB moved as issue 54 predicts: time below
+70 mg/dL from 3.92 to 1.86 per cent and time in range from 86.1 to 85.1. Boost moved from 1.35 to
+1.66 below 70 mg/dL. The floor is that of September, resolving 2.78 points of time in range, 0.59
+below 70 mg/dL and 0.14 on the index.
+
+| pair | outcome | Hovorka | S2008 at the same code |
+|---|---|---|---|
+| oref - trend | TIR | 10.24 [9.13, 10.95] | 5.36 [4.63, 7.30] |
+| oref - trend | TBR70 | -0.82 [-1.20, -0.30] | 0.29 [-0.05, 1.10] |
+| oref - trend | LBGI | -0.14 [-0.23, -0.04] | 0.14 [0.05, 0.26] |
+| oref - boost | TIR | 7.44 [5.47, 9.13] | 4.03 [3.34, 5.01] |
+| oref - boost | TBR70 | 0.56 [0.21, 0.73] | 0.45 [0.11, 0.98] |
+| oref - boost | LBGI | 0.15 [0.10, 0.21] | 0.21 [0.08, 0.31] |
+| oref - control-iq | TIR | 4.90 [2.81, 6.58] | 3.63 [2.77, 4.30] |
+| oref - control-iq | TBR70 | -3.49 [-4.42, -2.81] | -0.66 [-1.59, -0.03] |
+| oref - control-iq | LBGI | -0.78 [-0.91, -0.62] | -0.13 [-0.27, 0.03] |
+| control-iq - trend | TIR | 3.71 [1.90, 7.03] | 2.17 [1.30, 4.22] |
+| control-iq - trend | TBR70 | 3.01 [1.77, 3.56] | 1.07 [0.86, 1.69] |
+| control-iq - trend | LBGI | 0.65 [0.47, 0.82] | 0.27 [0.21, 0.36] |
+| boost - control-iq | TIR | -2.52 [-4.07, 0.21] | -1.17 [-2.08, 0.32] |
+| boost - control-iq | TBR70 | -4.04 [-5.00, -3.61] | -0.84 [-1.51, -0.60] |
+| boost - control-iq | LBGI | -0.97 [-1.05, -0.87] | -0.24 [-0.33, -0.16] |
+| boost - trend | TIR | 1.95 [0.86, 4.13] | 1.18 [0.47, 2.46] |
+| boost - trend | TBR70 | -1.41 [-2.10, -0.91] | 0.04 [-0.13, 0.34] |
+| boost - trend | LBGI | -0.34 [-0.44, -0.20] | -0.00 [-0.05, 0.08] |
+
+At the same code one pair of eighteen reverses by the registered definition: oref0 SMB against the
+trend loop on the index, +0.14 [0.05, 0.26] on S2008 and -0.14 [-0.23, -0.04] on Hovorka. The S2008
+estimate clears that design's floor of 0.14 by less than 0.01 and the Hovorka one sits below its
+floor of 0.30, so the reversal is at the edge of what either design resolves. On time below 70 mg/dL the same pair spans zero on S2008, and oref0 SMB against the
+stand-in takes Hovorka's sign on both hypoglycaemia outcomes. The three other reversals counted
+against the September column came from issue 54.
+
+The two bodies therefore agree in sign on seventeen of the eighteen pairs. The order on time in
+range is the same on both, oref0 SMB first and the stand-in second, and on both the stand-in has
+the most time below 70 mg/dL and oref0 SMB has more than Boost. They differ in size: every
+hypoglycaemia difference involving the stand-in is three to five times larger on Hovorka, and
+Boost against the trend loop resolves on Hovorka (-1.41 [-2.10, -0.91] below 70 mg/dL) and not on
+S2008 (0.04 [-0.13, 0.34]). Neither difference in size has been explained.
+
+Agreement here is one change of body between two models that share the absence of
+counterregulation and both overstate the uncovered meal, so it bounds a result to those shared
+assumptions rather than establishing it as the algorithms'.

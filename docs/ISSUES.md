@@ -1393,3 +1393,20 @@ cannot see past. Every oref0 figure produced between 11c7ffb and f0e5e45 is ther
 hypoglycaemia, including the oref0 cells of the group floor, `rank_drivers.py` and the night
 studies run under oref0, and needs rerunning before it is quoted. The Boost arm changes by the
 curve alone and has not been measured.
+
+## 55. A ranking on the second body was compared with one on the first from before a fix
+
+Found 9 November 2026, the day it was made. The Hovorka driver ranking (07fd086) was set beside
+the S2008 ranking of 6 September (a2d609c), and four hypoglycaemia pairs, oref0 SMB against the
+trend loop and against the Control-IQ stand-in, were reported as reversed by the body. Between the
+two commits lay the issue 54 fix, which on its own lowered oref0 SMB's time below 70 mg/dL by 2.16
+points. Issue 54 already named `rank_drivers.py` among the figures needing a rerun, and it was not
+read before the comparison was made.
+
+Rerun at the same code (`docs/measurements/driver_ranking_s2008_current.json`), oref0 SMB minus the
+trend loop below 70 mg/dL went from 2.54 [1.74, 3.14] to 0.29 [-0.05, 1.10], and three of the four
+reversals disappeared. The one remaining, the same pair on the index, sits at the edge of both
+designs' floors. `docs/HOVORKA.md` carries the corrected comparison.
+
+`tests/test_body_comparison.py` now fails when two rankings set side by side in that document ran
+on different simulation or driver code, and fails on the September pair that was used.
