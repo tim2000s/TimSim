@@ -155,3 +155,27 @@ algorithms than the reversals are that the hypoglycaemia ordering does not. No m
 reversal has been tested. One candidate is that oref0 SMB sizes its microboluses from the correction
 factor, and the physiological factor from which titration starts is 28.9 mg/dL per unit here against
 18.6 on S2008, so the same algorithm meets differently placed settings on the two bodies.
+
+## The S2008 ranking at the same code: registration
+
+Registered 9 November 2026, before the run. The S2008 ranking quoted beside the Hovorka one above
+was produced on 6 September at a2d609c, inside the window ISSUES.md 54 marks as suspect on
+hypoglycaemia for every oref0 figure. The oref0 adapter then handed oref about half the insulin
+on board, and the fix measured on twelve S2008 adults lowered oref0 SMB's time below 70 mg/dL by
+2.16 points [-2.69, -1.69] while moving time in range by +0.32 [-1.09, +1.71]. The Hovorka ranking
+ran with the fix, so the two columns differ in the code as well as the body, and the reversals
+cannot be assigned to the body until S2008 is run at the same code.
+
+`examples/rank_drivers.py --out docs/measurements/driver_ranking_s2008_current.json` runs the
+same design on S2008 at the current commit and settings store.
+
+Expected from issue 54 alone: oref0 SMB minus the trend loop on time below 70 mg/dL near +0.4
+(2.54 less 2.16), with an interval that may include zero, and on time in range near the 5.78 of
+September. The trend loop and the Control-IQ stand-in keep the package insulin curve and are
+expected within the A/A floor of their September figures. Boost changes by the curve alone and
+has no expectation.
+
+Reading. Where oref0 SMB minus the trend loop, or minus the stand-in, on time below 70 mg/dL or
+the index still has an interval clear of zero with the sign opposite to Hovorka's, the reversal
+belongs to the body. Where the S2008 interval spans zero or takes Hovorka's sign, the reversal
+reported above came from issue 54, and the two bodies do not disagree on that pair.
