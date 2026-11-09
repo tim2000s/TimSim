@@ -1,0 +1,42 @@
+{
+ "provenance": {
+  "population": "704cfac086df54ba",
+  "settings": "0df43fd250fadd47",
+  "commit": "9d67690e4cda6e01b3c69d5a142ff31989294329",
+  "dirty": false,
+  "host": "Tims-Mac-mini.local",
+  "python": "3.14.7",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "when": "2026-11-09T02:58:07+00:00",
+  "simglucose": "0.2.11",
+  "hovorka_population": "ad9c7d606711a7f2",
+  "hovorka_settings": "8ff58e70ab3deae1"
+ },
+ "resalat": {
+  "n": 99,
+  "their_tdi_median": 42.66217082724363,
+  "our_tdi_median": 42.662167796029095,
+  "max_abs_tdi_diff": 0.006594750811885319,
+  "their_sf3_sd": 0.00645128164393424
+ },
+ "clamp": {
+  "plasma_insulin_mu_per_l": 60.386473429951685,
+  "subjects": 100,
+  "producing_nothing": 76,
+  "egp_median": 0.0,
+  "egp_p90": 0.4451211725712848
+ },
+ "titration": {
+  "titrated": 100,
+  "found": 68,
+  "levers": {
+   "basal": 47,
+   "basal and correction factor": 21
+  },
+  "tdi_median_found": 49.88192968780167,
+  "tdi_median_excluded": 33.494706501026016,
+  "cf_median_adopted": 29.07755784400762,
+  "tir_median_adopted": 63.169642857142854,
+  "excluded_missing_tbr54": 32
+ }
+}
