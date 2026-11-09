@@ -944,6 +944,13 @@ class VaryingPatient(T1DPatient):
             raise ValueError(f"unknown sensitivity pattern {pattern!r}")
         self._vmx0 = float(self._params["Vmx"])
         self._kp30 = float(self._params["kp3"])
+        self._draw_sensitivity(rng, n_days, diurnal, interday_cv, pattern, slow_cv,
+                               slow_tau_days)
+
+    def _draw_sensitivity(self, rng, n_days, diurnal, interday_cv, pattern, slow_cv,
+                          slow_tau_days):
+        """The sensitivity series alone, separate from the S2008 parameters it scales, so
+        `patient/hovorka.py` draws the same series for a different body."""
         self._diurnal = float(diurnal)
         self._pattern = pattern
         if pattern == "visentin":

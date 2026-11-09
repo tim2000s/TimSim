@@ -44,7 +44,8 @@ def main():
     ap.add_argument("--cohort", default="adults",
                     help="'adults' for adult#001 upward, 'dclp3' for a cohort whose age "
                          "distribution follows the DCLP3 closed-loop arm, or 'recorded' for "
-                         "the union of the cohorts in docs/measurements/cohorts.json")
+                         "the union of the cohorts in docs/measurements/cohorts.json, or "
+                         "'hovorka' for hovorka#001 upward, the second body")
     ap.add_argument("--days", type=int, default=28)
     ap.add_argument("--seed", type=int, default=seeds.TITRATION)
     ap.add_argument("--workers", type=int, default=6)
@@ -87,13 +88,21 @@ def main():
         print(f"DCLP3-matched cohort: {cohort.describe(names)}")
         if short:
             print(f"  age bins that could not supply their share: {short}")
+    elif a.cohort == "hovorka":
+        from timsim.population import names as population_names
+        names = population_names("hovorka#")[:a.subjects]
     else:
         names = [f"adult#{i:03d}" for i in range(1, a.subjects + 1)]
-    existing = titrate.load() if a.add else None
+    # One store per body, and a run titrates one body.
+    stores = {titrate.store_for(n) for n in names}
+    if len(stores) > 1:
+        raise SystemExit("these subjects belong to two bodies; titrate each separately")
+    store = stores.pop() if stores else titrate.STORE
+    existing = titrate.load(store) if a.add else None
     if existing is not None:
         # Only skip work that belongs to the population now on disk. A store fitted to another
         # one is refused rather than extended, since its subject names refer to other bodies.
-        titrate.check_population(existing)
+        titrate.check_population(existing, titrate._population_of(store))
         already = set(existing["subjects"])
         skipped = [n for n in names if n in already]
         names = [n for n in names if n not in already]
@@ -122,7 +131,7 @@ def main():
             f"rerun; `--add` will fill in only what is missing.")
 
     found = [r for r in out if r["found"]]
-    path = titrate.save(out, meta={"days": a.days, "seed": a.seed,
+    path = titrate.save(out, path=store, meta={"days": a.days, "seed": a.seed,
                                    "driver": titrate.REFERENCE_DRIVER,
                                    "scales": list(titrate.SCALES)})
     print(f"{len(found)}/{len(out)} subjects titrated, written to {path}\n")

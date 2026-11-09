@@ -164,9 +164,14 @@ def main():
     ap.add_argument("--drivers", nargs="+", default=list(DRIVERS))
     ap.add_argument("--workers", type=int, default=WORKERS)
     ap.add_argument("--out", default=OUT)
+    ap.add_argument("--prefix", default="adult",
+                    help="'hovorka#' ranks the drivers on the second body (docs/HOVORKA.md)")
     a = ap.parse_args()
     from examples.panel import dosable
-    subs = dosable(a.subjects)
+    subs = dosable(a.subjects, prefix=a.prefix)
+    # The second body writes beside the first rather than over it.
+    if a.prefix.startswith("hovorka#") and a.out == OUT:
+        a.out = OUT.replace(".json", "_hovorka.json")
     arms = [(d, seeds.BENCH) for d in a.drivers] + [(AA_DRIVER, seeds.AA)]
     # The bridges are the slow runs and go first, so the pool does not end on a tail of them.
     order = sorted(arms, key=lambda x: x[0] not in ("oref", "boost"))
@@ -281,7 +286,8 @@ def main():
         order_by[k] = [d for d in sorted(a.drivers, key=lambda d: sign * columns[d][k]["median"])]
         print(f"order on {k}, best first: {' > '.join(order_by[k])}")
 
-    json.dump({"provenance": provenance.stamp(), "subjects": subs, "days": a.days,
+    body = "hovorka" if a.prefix.startswith("hovorka#") else "s2008"
+    json.dump({"provenance": provenance.stamp(), "body": body, "subjects": subs, "days": a.days,
                "seed": seeds.BENCH, "aa_seed": seeds.AA, "drivers": list(a.drivers),
                "aa_driver": AA_DRIVER, "reproduction": repro, "columns": columns,
                "floor": floor, "pairs": pairs, "order": order_by,

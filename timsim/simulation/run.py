@@ -79,6 +79,8 @@ from simglucose.simulation.env import T1DSimEnv
 from simglucose.simulation.scenario import CustomScenario
 
 from ..controller.loop import CorrectionLoop
+from ..patient.hovorka import HovorkaPatient
+from ..population.hovorka import PREFIX as HOVORKA_PREFIX
 from ..patient.varying import (HYPO_DEFENCE_GAIN, HYPO_EGP_DEFENCE, HYPO_EGP_FLOOR,
                                MEAL_GLUCAGON_GAIN,
                                HYPO_RISK_GAIN, LIVER_DELAY_SCALE, LIVER_FAST_FRACTION,
@@ -546,7 +548,28 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
         isf_scale=isf_scale,
         **({} if settings_spread is None else {"settings_spread": settings_spread}))
 
-    patient = VaryingPatient(params)
+    # A `hovorka#` subject gets the second body (`patient/hovorka.py`). Everything outside the
+    # body is shared, and the S2008 hepatic mechanisms below are not applied to it because they
+    # act on S2008 parameters it does not have.
+    hovorka = str(name).startswith(HOVORKA_PREFIX)
+    if hovorka and "activity" in effective:
+        raise ValueError("the activity layer acts on S2008's Vm0 and Vmx and has no Hovorka "
+                         "counterpart here")
+    # Refused rather than ignored, so an arm cannot report a mechanism that never ran.
+    s2008_only = {"liver_delay": liver_delay, "liver_fast_fraction": liver_fast_fraction,
+                  "liver_fast_ki_scale": liver_fast_ki_scale,
+                  "hypo_risk_gain": hypo_risk_gain, "hypo_defence_gain": hypo_defence_gain,
+                  "hypo_egp_defence": hypo_egp_defence, "hypo_egp_floor": hypo_egp_floor,
+                  "meal_glucagon_gain": meal_glucagon_gain}
+    asked = sorted(k for k, v in s2008_only.items() if v is not None)
+    asked += [k for k, v in (("liver_kp2_scale", float(liver_kp2_scale) != 1.0),
+                             ("liver_kp3_scale", float(liver_kp3_scale) != 1.0),
+                             ("liver_kp2_above_basal_only", bool(liver_kp2_above_basal_only)))
+              if v]
+    if hovorka and asked:
+        raise ValueError(f"{', '.join(asked)} act on S2008 parameters and do nothing to a "
+                         f"Hovorka subject")
+    patient = HovorkaPatient(params) if hovorka else VaryingPatient(params)
     # The liver insulin delay, applied outside the layer blocks because it is a property of the
     # published model rather than of anything this package adds, so it holds for the stock arm
     # too. 1.0 is S2008 as published; `docs/PADOVA_AUDIT.md` entry 3 has the measurement.
@@ -558,13 +581,13 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
     fast_scale = (LIVER_FAST_KI_SCALE if liver_fast_ki_scale is None
                   else float(liver_fast_ki_scale))
     delay = (LIVER_DELAY_SCALE if liver_delay is None else float(liver_delay))
-    if delay != 1.0:
+    if delay != 1.0 and not hovorka:
         patient.set_liver_delay(delay)
     # The two gains on production, before anything that captures `kp3`. Both at 1.0 is stock.
-    if float(liver_kp2_scale) != 1.0 or float(liver_kp3_scale) != 1.0:
+    if (float(liver_kp2_scale) != 1.0 or float(liver_kp3_scale) != 1.0) and not hovorka:
         patient.set_liver_gains(liver_kp2_scale, liver_kp3_scale,
                                 above_basal_only=bool(liver_kp2_above_basal_only))
-    if fast > 0.0:
+    if fast > 0.0 and not hovorka:
         patient.set_liver_two_timescale(fast, fast_scale)
     # Meal-to-meal absorption variation belongs to the physiology layer: it is a property of
     # the gut rather than of anything the person decides or the sensor reports.
@@ -581,6 +604,7 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
             **({} if si_interday_cv is None else {"interday_cv": si_interday_cv}),
             **({} if si_slow_cv is None else {"slow_cv": si_slow_cv}))
         gain = HYPO_RISK_GAIN if hypo_risk_gain is None else hypo_risk_gain
+    if "physiology" in effective and not hovorka:
         if gain:
             patient.set_hypo_risk(gain)
         # The counterregulatory arrest of a falling glucose. It belongs to physiology because
@@ -822,6 +846,7 @@ def simulate(name, days=28, seed=0, layers=DEFAULT_LAYERS,
             "behaviour_spread": float(behaviour_spread or 0.0),
             "rescue_threshold": threshold, "rescue_refractory_min": refractory,
             "si_class": getattr(patient, "si_class", None),
+            "body": "hovorka" if hovorka else "s2008",
             "profile": prof.as_dict()}
     meta.update(enforcer.report())
     if site is not None:

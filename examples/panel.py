@@ -34,7 +34,7 @@ def dosable(n, prefix="adult", quiet=False):
     from timsim.population import names
     from timsim.therapy import titrate
 
-    have = set(titrate.titrated_subjects())
+    have = set(titrate.titrated_subjects(titrate.store_for(prefix or "")))
     candidates = names(prefix) if prefix else names()
     chosen, skipped = [], []
     for name in candidates:

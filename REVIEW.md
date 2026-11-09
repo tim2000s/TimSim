@@ -36,7 +36,10 @@ archived measurements under `docs/measurements/archive_*` or a pinned baseline.
 
 The nine files listed in `therapy/titrate.py::_CODE` form a subset that needs one more step: any
 edit to them invalidates every titrated settings store on disk, so it is followed by retitration
-or by the inertness proof in item 2.
+or by the inertness proof in item 2. The Hovorka store is fingerprinted on those nine and on
+`_HOVORKA_CODE` as well, and `examples/restamp_settings.py` writes only the S2008 store, so an edit
+to any of them is followed by retitrating the Hovorka subjects
+(`examples/titrate_cohort.py --cohort hovorka --subjects 100`).
 
 Medium: `timsim/analysis/**`, `timsim/validation/**` (the graded checks and the safety gate), and
 the producers in `examples/` that read real records (`real_meal_shape.py`, `real_meals.py`, the

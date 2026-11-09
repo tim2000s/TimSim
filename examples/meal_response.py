@@ -94,8 +94,15 @@ def _job(args):
 
 
 def main():
+    import argparse
     from timsim.therapy import titrate
-    subjects = sorted(titrate.titrated_subjects())
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--prefix", default="adult",
+                    help="'hovorka#' measures the second body and writes meal_response_hovorka.json")
+    a = ap.parse_args()
+    store = titrate.store_for(a.prefix)
+    out = OUT if store == titrate.STORE else OUT.replace(".json", "_hovorka.json")
+    subjects = sorted(titrate.titrated_subjects(store))
     print(f"{len(subjects)} titrated subjects, {len(GRAMS)} meal sizes", flush=True)
     rows = []
     for g in GRAMS:
@@ -112,8 +119,8 @@ def main():
               f"(IQR {np.percentile(tp,25):.0f} to {np.percentile(tp,75):.0f}); "
               f"absolute peak {np.median(pk):.0f} mg/dL", flush=True)
     json.dump({"rows": rows, "provenance": provenance.stamp()},
-              open(OUT, "w"), indent=1)
-    print(f"wrote {OUT}")
+              open(out, "w"), indent=1)
+    print(f"wrote {out}")
 
 
 if __name__ == "__main__":

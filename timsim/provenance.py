@@ -67,7 +67,7 @@ def _population():
     return titrate.population_fingerprint()
 
 
-def _settings_digest():
+def _settings_digest(path=None):
     """A digest of the titrated settings, which are as much an input as the population.
 
     Over the settings themselves rather than over the file. What binds a result is the dose each
@@ -88,7 +88,7 @@ def _settings_digest():
     file and will not match one computed here, so a stored figure older than this compares by the
     archived store rather than by the digest.
     """
-    path = os.path.join(REPO, "timsim", "population", "params", "titrated_settings.json")
+    path = path or os.path.join(REPO, "timsim", "population", "params", "titrated_settings.json")
     try:
         with open(path) as fh:
             store = json.load(fh)
@@ -132,6 +132,12 @@ def stamp(**extra):
            "platform": platform.platform(),
            "when": datetime.now(timezone.utc).isoformat(timespec="seconds")}
     out["simglucose"] = _simglucose_version()
+    # The second body's population and settings, recorded beside the first.
+    # shortcut: not in BINDING, since every stamp written before it would then refuse to combine
+    # with every one written after; make it binding once a producer combines Hovorka results.
+    from .therapy import titrate
+    out["hovorka_population"] = titrate.population_fingerprint(titrate.HOVORKA_PARAMS)
+    out["hovorka_settings"] = _settings_digest(titrate.HOVORKA_STORE)
     out.update(extra)
     return out
 

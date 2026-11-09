@@ -231,6 +231,21 @@ STORE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 PARAMS = os.path.join(os.path.dirname(STORE), "vpop_params.csv")
 
+# The Hovorka body (`population/hovorka.py`) keeps its own store against its own population, so
+# a regeneration of either body invalidates only the settings fitted to it.
+HOVORKA_STORE = os.path.join(os.path.dirname(STORE), "titrated_settings_hovorka.json")
+HOVORKA_PARAMS = os.path.join(os.path.dirname(STORE), "hovorka_params.csv")
+
+
+def store_for(name):
+    """The store a subject's titration is kept in, chosen by its name."""
+    from ..population.hovorka import PREFIX
+    return HOVORKA_STORE if str(name).startswith(PREFIX) else STORE
+
+
+def _population_of(store_path):
+    return HOVORKA_PARAMS if os.path.abspath(store_path) == HOVORKA_STORE else PARAMS
+
 
 def population_fingerprint(path=PARAMS):
     """A digest of the generated population, or None if it is not present.
@@ -260,12 +275,22 @@ _CODE = ("patient/varying.py", "patient/glucagon.py", "simulation/run.py",
          "therapy/profile.py", "therapy/insulin.py", "therapy/titrate.py")
 
 
-def code_fingerprint(root=None):
-    """A digest of the code a titration outcome depends on, or None if it cannot be read."""
+# The Hovorka body's own modules, fingerprinted for its store only, so an edit to one body does
+# not invalidate the other's settings.
+_HOVORKA_CODE = ("patient/hovorka.py", "population/hovorka.py")
+
+
+def code_fingerprint(root=None, store=None):
+    """A digest of the code a titration outcome depends on, or None if it cannot be read.
+
+    `store` selects the body: the Hovorka store adds that body's modules to the shared ones.
+    """
     import hashlib
     root = root or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    files = _CODE + (_HOVORKA_CODE if store is not None
+                     and os.path.abspath(store) == HOVORKA_STORE else ())
     h = hashlib.sha256()
-    for rel in _CODE:
+    for rel in files:
         try:
             with open(os.path.join(root, rel), "rb") as fh:
                 h.update(rel.encode())
@@ -283,8 +308,8 @@ def save(results, path=STORE, meta=None):
     produce: `load` would refuse the remains, correctly, and the work would be gone.
     """
     meta = dict(meta or {})
-    meta.setdefault("population", population_fingerprint())
-    meta.setdefault("code", code_fingerprint())
+    meta.setdefault("population", population_fingerprint(_population_of(path)))
+    meta.setdefault("code", code_fingerprint(store=path))
     try:
         from importlib import metadata as _md
         meta.setdefault("simglucose", _md.version("simglucose"))
@@ -309,6 +334,7 @@ def check_population(store, path=PARAMS):
     depends on is now recorded and compared, and a store written before that carries no code
     fingerprint and is refused rather than assumed current.
     """
+    store_path = HOVORKA_STORE if os.path.abspath(path) == HOVORKA_PARAMS else STORE
     meta = store.get("meta") or {}
     recorded = meta.get("population")
     current = population_fingerprint(path)
@@ -323,7 +349,7 @@ def check_population(store, path=PARAMS):
             f"them would dose each subject on another body's settings. Rerun "
             f"`python examples/titrate_cohort.py`.")
 
-    code_now = code_fingerprint()
+    code_now = code_fingerprint(store=store_path)
     code_was = meta.get("code")
     if code_was is None:
         raise RuntimeError(
@@ -373,7 +399,7 @@ def _positive(value, field, name):
     return v
 
 
-def profile_for(name, path=STORE, **kw):
+def profile_for(name, path=None, **kw):
     """A subject's titrated profile.
 
     Raises when the subject has no titrated settings rather than falling back to the
@@ -381,13 +407,14 @@ def profile_for(name, path=STORE, **kw):
     measuring the settings as much as the algorithm and gives no sign of it.
     """
     from . import profile as profile_mod
+    path = path or store_for(name)
     store = load(path)
     if store is None:
         raise RuntimeError(
             "No titrated settings found. Run `python examples/titrate_cohort.py` first: a "
             "controller benchmarked on settings nobody titrated is being handed a correction "
             "factor about twice as aggressive as the one real users of the same algorithm run.")
-    check_population(store)
+    check_population(store, _population_of(path))
     rec = store["subjects"].get(name)
     if rec is None or not rec.get("found"):
         raise RuntimeError(
@@ -409,12 +436,13 @@ def titrated_subjects(path=STORE):
     store = load(path)
     if store is None:
         return ()
-    check_population(store)
+    check_population(store, _population_of(path))
     return tuple(sorted(n for n, r in store["subjects"].items() if r.get("found")))
 
 
 __all__ = ["consensus_report", "hypo_floors_met", "failures", "titrate_subject",
-           "save", "load", "profile_for", "titrated_subjects", "STORE",
+           "save", "load", "profile_for", "titrated_subjects", "STORE", "HOVORKA_STORE",
+           "store_for",
            "population_fingerprint", "check_population",
            "SCALES", "BASAL_SCALES", "REFERENCE_DRIVER", "TBR54_LIMIT", "TBR70_LIMIT", "TIR_TARGET",
            "TAR250_LIMIT", "CV_LIMIT"]

@@ -30,12 +30,27 @@ def therapy():
 
 
 def names(klass=None):
-    n = patients().Name
+    h = _hovorka(klass, "params") if klass else None
+    n = (patients() if h is None else h).Name
     return list(n[n.str.startswith(klass)] if klass else n)
 
 
+def _hovorka(name, which):
+    """The Hovorka table for a `hovorka#` subject, or None for an S2008 one."""
+    from . import hovorka
+    if not str(name).startswith(hovorka.PREFIX):
+        return None
+    path = hovorka.PATIENT_FILE if which == "params" else hovorka.THERAPY_FILE
+    if not os.path.exists(path):
+        raise FileNotFoundError(
+            "No Hovorka population found. Generate one with:\n"
+            "    python -m timsim.population.hovorka --n 100")
+    return pd.read_csv(path)
+
+
 def params_for(name):
-    p = patients()
+    p = _hovorka(name, "params")
+    p = patients() if p is None else p
     row = p.loc[p.Name == name]
     if row.empty:
         raise KeyError(f"no subject named {name}")
@@ -43,7 +58,8 @@ def params_for(name):
 
 
 def therapy_for(name):
-    q = therapy()
+    q = _hovorka(name, "therapy")
+    q = therapy() if q is None else q
     row = q.loc[q.Name == name]
     if row.empty:
         raise KeyError(f"no therapy settings for {name}")

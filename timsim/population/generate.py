@@ -151,7 +151,7 @@ OBSERVE_MINUTES = 300
 PROBE_CARBS = 20.0
 
 
-def measure_settings(params):
+def measure_settings(params, make=None, basal=None):
     """Measure a subject's correction factor and carbohydrate ratio from its own model.
 
     An earlier version drew these from the published cohort's distribution conditioned on
@@ -172,14 +172,18 @@ def measure_settings(params):
     model on generated subjects and becomes a consistency check. The independent version
     of that test is `check_published_cohort_obeys_clinical_rules`, which runs on the
     published subjects, whose settings were not derived this way.
+
+    `make` and `basal` let another body be probed the same way: a factory returning a fresh
+    settled-from-scratch patient, and its basal in U/min. `population/hovorka.py` uses them.
     """
     from simglucose.patient.t1dpatient import T1DPatient, Action
 
     series = pd.Series(params)
-    basal = derive.basal_rate(params)
+    basal = derive.basal_rate(params) if basal is None else basal
+    make = make or (lambda: T1DPatient(series.copy()))
 
     def settle():
-        p = T1DPatient(series.copy())
+        p = make()
         for _ in range(SETTLE_MINUTES):
             p.step(Action(insulin=basal, CHO=0.0))
         return p
