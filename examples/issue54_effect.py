@@ -129,7 +129,8 @@ def main():
             for k in ("tir", "tbr70", "tbr54", "tar180", "mean")}
     summary["after_minus_before"]["iob_handed_mean"] = _paired(
         [by[(n, "after")]["iob_handed_mean"] - by[(n, "before")]["iob_handed_mean"] for n in names])
-    out = {"design": {"store": os.path.abspath(a.store), "store_meta": store.get("meta"),
+    from timsim import provenance
+    out = {"provenance": provenance.stamp(), "design": {"store": os.path.abspath(a.store), "store_meta": store.get("meta"),
                       "subjects": names, "days": a.days, "seed": a.seed,
                       "controller": "oref0 SMB, autosens on, TimSim defaults",
                       "before": "issue 54 defects restored: prune cutoff minute - 300 + 240, package curve",

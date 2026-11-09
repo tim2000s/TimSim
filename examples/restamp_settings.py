@@ -22,6 +22,7 @@ re-stamped is weaker evidence than one that was titrated, and it should be reada
 
     python examples/restamp_settings.py --check          # report, change nothing
     python examples/restamp_settings.py --subjects 5     # verify and re-stamp
+    python examples/restamp_settings.py --body hovorka --worktree REF   # the second body's store
 """
 import argparse
 import json
@@ -42,7 +43,7 @@ from timsim.simulation.run import simulate
 from timsim.therapy import profile as pm
 from timsim.population import names
 out = {}
-for n in names()[:%d]:
+for n in names(%r)[:%d]:
     r = simulate(n, days=28, seed=0, layers=("physiology", "behaviour", "sensor", "site"),
                  controller="trend", profile=pm.for_subject(n))
     c = np.asarray(r.cgm, float)
@@ -54,10 +55,10 @@ json.dump(out, open(sys.argv[1], "w"), indent=1)
 '''
 
 
-def run_probe(n, out, cwd=None):
+def run_probe(n, out, cwd=None, klass=None):
     """One probe run in a fresh interpreter, so the stashed and unstashed code both load clean."""
     root = cwd or REPO
-    src = PROBE % (root, n)
+    src = PROBE % (root, klass, n)
     r = subprocess.run([sys.executable, "-c", src, out], cwd=root,
                        env={**os.environ, "PYTHONPATH": root},
                        capture_output=True, text=True)
@@ -91,7 +92,25 @@ def _ast_signature(source, path):
     return hashlib.sha256(ast.dump(tree, include_attributes=False).encode()).hexdigest()[:16]
 
 
-def prose_only_against(ref):
+def _body(name):
+    """The store, the subjects the probe draws and the fingerprinted files, for one body."""
+    from timsim.therapy import titrate
+    if name == "hovorka":
+        return titrate.HOVORKA_STORE, "hovorka#", titrate._CODE + titrate._HOVORKA_CODE
+    return titrate.STORE, None, titrate._CODE
+
+
+def _write(store, path):
+    tmp_out = path + ".partial"
+    with open(tmp_out, "w") as fh:
+        json.dump(store, fh, indent=1, default=str)
+        fh.flush()
+        os.fsync(fh.fileno())
+    os.replace(tmp_out, path)
+    print(f"re-stamped {path}")
+
+
+def prose_only_against(ref, files):
     """Whether every fingerprinted file differs from `ref` in prose alone.
 
     This is the exact form of the question the probe answers by sampling. A change confined to
@@ -101,9 +120,8 @@ def prose_only_against(ref):
     Returns (verdict, per-file findings). A file that cannot be read at `ref`, or that does not
     parse, counts against the verdict rather than for it.
     """
-    from timsim.therapy import titrate
     findings, ok = [], True
-    for rel in titrate._CODE:
+    for rel in files:
         disk_path = os.path.join(REPO, "timsim", rel)
         show = git("show", f"{ref}:timsim/{rel}")
         try:
@@ -163,9 +181,9 @@ def _probe_against_worktree(a, titrate):
         new_p = os.path.join(tmp, "_restamp_new.json")
         old_p = os.path.join(tmp, "_restamp_old.json")
         print(f"probing {a.subjects} subjects with the change in place")
-        new = run_probe(a.subjects, new_p)
+        new = run_probe(a.subjects, new_p, klass=a.klass)
         print(f"probing {a.subjects} subjects at {a.worktree} in {wt}")
-        old = run_probe(a.subjects, old_p, cwd=wt)
+        old = run_probe(a.subjects, old_p, cwd=wt, klass=a.klass)
         return old, new
     finally:
         git("worktree", "remove", "--force", wt)
@@ -186,13 +204,7 @@ def _report_and_stamp(a, titrate, store, was, now, old, new, how):
         {"from": was, "to": now, "subjects_verified": sorted(old), "how": how,
          "note": a.note or "verified inert on the reference driver, no measure differed"})
     store["meta"]["code"] = now
-    tmp_out = titrate.STORE + ".partial"
-    with open(tmp_out, "w") as fh:
-        json.dump(store, fh, indent=1, default=str)
-        fh.flush()
-        os.fsync(fh.fileno())
-    os.replace(tmp_out, titrate.STORE)
-    print(f"re-stamped {titrate.STORE} from {was} to {now}")
+    _write(store, a.store_path)
 
 
 def main():
@@ -213,20 +225,23 @@ def main():
                          "tree, and a difference confined to comments and docstrings is "
                          "proved inert rather than sampled. Use this when the change is "
                          "already committed, which the probe cannot handle since it stashes.")
+    ap.add_argument("--body", choices=("s2008", "hovorka"), default="s2008",
+                    help="which body's titration store to verify (docs/HOVORKA.md)")
     a = ap.parse_args()
 
     from timsim.therapy import titrate
 
-    store = json.load(open(titrate.STORE))
+    a.store_path, a.klass, files = _body(a.body)
+    store = json.load(open(a.store_path))
     was = store["meta"].get("code")
-    now = titrate.code_fingerprint()
+    now = titrate.code_fingerprint(store=a.store_path)
     if was == now:
         print(f"The store already matches the code on disk at {now}. Nothing to do.")
         return
     print(f"store fingerprint {was}\ncode on disk      {now}\n")
 
     if a.against:
-        ok, findings = prose_only_against(a.against)
+        ok, findings = prose_only_against(a.against, files)
         width = max(len(f[0]) for f in findings)
         for rel, verdict, detail in findings:
             print(f"  {rel:<{width}}  {verdict}{'  ' + detail if detail else ''}")
@@ -240,16 +255,10 @@ def main():
             return
         store["meta"].setdefault("restamped", []).append(
             {"from": was, "to": now, "method": "ast", "reference": a.against,
-             "files_compared": list(__import__("timsim.therapy.titrate", fromlist=["x"])._CODE),
+             "files_compared": list(files),
              "note": a.note or f"prose-only against {a.against}, proved by syntax tree"})
         store["meta"]["code"] = now
-        tmp_out = titrate.STORE + ".partial"
-        with open(tmp_out, "w") as fh:
-            json.dump(store, fh, indent=1, default=str)
-            fh.flush()
-            os.fsync(fh.fileno())
-        os.replace(tmp_out, titrate.STORE)
-        print(f"re-stamped {titrate.STORE} from {was} to {now}")
+        _write(store, a.store_path)
         return
 
     if a.worktree:
@@ -270,7 +279,7 @@ def main():
     # twice, and reported three subjects identical having compared nothing. A check that passes
     # when it has tested nothing is worse than no check, so it now refuses unless a fingerprinted
     # file actually differs from HEAD. Recorded as issue 47.
-    touched = [f for f in titrate._CODE
+    touched = [f for f in files
                if git("diff", "--quiet", "HEAD", "--", "timsim/" + f).returncode != 0]
     if not touched:
         raise SystemExit(
@@ -285,12 +294,12 @@ def main():
     new_p, old_p = os.path.join(tmp, "_restamp_new.json"), os.path.join(tmp, "_restamp_old.json")
 
     print(f"probing {a.subjects} subjects with the change in place")
-    new = run_probe(a.subjects, new_p)
+    new = run_probe(a.subjects, new_p, klass=a.klass)
     if git("stash", "-q").returncode != 0:
         raise SystemExit("stash failed, nothing changed")
     try:
         print(f"probing {a.subjects} subjects with the change stashed")
-        old = run_probe(a.subjects, old_p)
+        old = run_probe(a.subjects, old_p, klass=a.klass)
     finally:
         if git("stash", "pop", "-q").returncode != 0:
             raise SystemExit("THE STASH DID NOT POP. Run `git stash pop` by hand before "
@@ -312,13 +321,7 @@ def main():
         {"from": was, "to": now, "subjects_verified": sorted(old),
          "note": a.note or "verified inert on the reference driver, no measure differed"})
     store["meta"]["code"] = now
-    tmp_out = titrate.STORE + ".partial"
-    with open(tmp_out, "w") as fh:
-        json.dump(store, fh, indent=1, default=str)
-        fh.flush()
-        os.fsync(fh.fileno())
-    os.replace(tmp_out, titrate.STORE)
-    print(f"re-stamped {titrate.STORE} from {was} to {now}")
+    _write(store, a.store_path)
 
 
 if __name__ == "__main__":

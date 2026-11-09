@@ -46,7 +46,11 @@ PENDING_REBUILD = {"control_iq_fit.json",
                    "oref_autosens_off.json", "capability_decomposition.json",
                    "hypoglycaemia_arms.json", "rescue_bio_alone.json",
                    "exercise_arm.json", "exercise_calibration.json",
-                   "glucagon_calibration.json", "egp_floor.json"}
+                   "glucagon_calibration.json", "egp_floor.json",
+                   # The producer stamped when committed; the file was written before the line.
+                   "ranking_transform.json",
+                   # The producer wrote no stamp until 9 November 2026.
+                   "issue54_effect.json"}
 
 
 def _measurements():
