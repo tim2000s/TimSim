@@ -95,3 +95,63 @@ time below 70 mg/dL or the index. One reversal means the S2008 ordering on that 
 attributed to the algorithms. Agreement means the ordering survived one change of body, which is
 weaker than showing it belongs to the algorithms, since both models share the absence of
 counterregulation and both overstate the meal response.
+
+## Driver ranking on the second body: result
+
+Run 9 November 2026 at 07fd086, 200 runs in 27 minutes, into
+`docs/measurements/driver_ranking_hovorka.json`. 199 runs completed; the one termination was
+hyperglycaemic, under the trend loop on day 8.7. Medians over completers:
+
+| driver | n | TIR | TBR70 | TBR54 | TAR180 | LBGI | U/day |
+|---|---|---|---|---|---|---|---|
+| trend | 39 | 66.2 | 3.66 | 1.13 | 29.6 | 0.90 | 49.1 |
+| control-iq | 40 | 70.0 | 6.85 | 2.24 | 22.7 | 1.66 | 55.3 |
+| boost | 40 | 68.4 | 2.18 | 0.71 | 28.2 | 0.61 | 48.2 |
+| oref | 40 | 74.7 | 2.75 | 0.87 | 22.4 | 0.76 | 52.0 |
+
+The A/A arm resolves 3.76 points of time in range, 1.28 below 70 mg/dL and 0.30 on the index, from
+paired standard deviations of 8.38, 2.85 and 0.68. Pairs on the subjects completing both, as median
+paired differences with bootstrap intervals, beside the S2008 figures of 6 September:
+
+| pair | outcome | Hovorka | S2008 |
+|---|---|---|---|
+| oref - trend | TIR | 10.24 [9.13, 10.95] | 5.78 [4.38, 8.00] |
+| oref - trend | TBR70 | -0.82 [-1.20, -0.30] | 2.54 [1.74, 3.14] |
+| oref - trend | LBGI | -0.14 [-0.23, -0.04] | 0.70 [0.44, 0.83] |
+| oref - boost | TIR | 7.44 [5.47, 9.13] | 4.58 [2.98, 7.22] |
+| oref - boost | TBR70 | 0.56 [0.21, 0.73] | 2.58 [1.95, 3.05] |
+| oref - boost | LBGI | 0.15 [0.10, 0.21] | 0.72 [0.57, 0.86] |
+| oref - control-iq | TIR | 4.90 [2.81, 6.58] | 4.61 [0.93, 5.33] |
+| oref - control-iq | TBR70 | -3.49 [-4.42, -2.81] | 1.05 [0.35, 1.72] |
+| oref - control-iq | LBGI | -0.78 [-0.91, -0.62] | 0.35 [0.14, 0.50] |
+| control-iq - trend | TIR | 3.71 [1.90, 7.03] | 2.17 [1.30, 4.22] |
+| control-iq - trend | TBR70 | 3.01 [1.77, 3.56] | 1.07 [0.86, 1.69] |
+| control-iq - trend | LBGI | 0.65 [0.47, 0.82] | 0.27 [0.21, 0.36] |
+| boost - control-iq | TIR | -2.52 [-4.07, 0.21] | -1.18 [-3.37, -0.21] |
+| boost - control-iq | TBR70 | -4.04 [-5.00, -3.61] | -1.08 [-1.51, -0.84] |
+| boost - control-iq | LBGI | -0.97 [-1.05, -0.87] | -0.28 [-0.35, -0.26] |
+| boost - trend | TIR | 1.95 [0.86, 4.13] | 1.23 [0.61, 2.03] |
+| boost - trend | TBR70 | -1.41 [-2.10, -0.91] | -0.21 [-0.35, 0.06] |
+| boost - trend | LBGI | -0.34 [-0.44, -0.20] | -0.06 [-0.09, 0.01] |
+
+Against the registration, the ordering on time in range survived: oref0 SMB first, the stand-in
+second, and every pair on that outcome with the S2008 sign or an interval spanning zero. The ordering
+on hypoglycaemia did not. Four pairs reverse by the registered definition, all of them oref0 SMB
+against the trend loop and against the stand-in, on time below 70 mg/dL and on the index. On S2008
+oref0 SMB had the most hypoglycaemia of the four drivers; on this body it sits below the trend loop
+and the stand-in has the most. The S2008 finding that oref0 SMB buys its time in range with
+hypoglycaemia relative to those two drivers therefore cannot be attributed to the algorithms. Against
+Boost it survives in sign at a quarter of the size, inside the floor on both outcomes.
+
+Two registered expectations missed in other ways. Boost against the trend loop resolves on time below
+70 mg/dL (-1.41) and on the index (-0.34) where it was expected inside the floor, so on this body
+Boost is the safest of the four on hypoglycaemia. Terminations came to 1 of 200 where more than the
+S2008 3 of 160 were expected. The absolute fall in time in range came in as expected, 11.1 to 11.4
+points for every driver.
+
+Agreement on time in range is one change of body. Both models lack counterregulation and both
+overstate the uncovered meal, so it is weaker evidence that the time in range ordering belongs to the
+algorithms than the reversals are that the hypoglycaemia ordering does not. No mechanism for the
+reversal has been tested. One candidate is that oref0 SMB sizes its microboluses from the correction
+factor, and the physiological factor from which titration starts is 28.9 mg/dL per unit here against
+18.6 on S2008, so the same algorithm meets differently placed settings on the two bodies.
