@@ -1,0 +1,265 @@
+{
+ "provenance": {
+  "population": "704cfac086df54ba",
+  "settings": "0df43fd250fadd47",
+  "commit": "651b560af54e7864c7e73a7580d7d3f1dd341147",
+  "dirty": true,
+  "host": "Tims-Mac-mini.local",
+  "python": "3.14.7",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "when": "2026-11-10T23:43:29+00:00",
+  "simglucose": "0.2.11",
+  "hovorka_population": "ad9c7d606711a7f2",
+  "hovorka_settings": "8ff58e70ab3deae1"
+ },
+ "threshold": 180.0,
+ "thin_s": 270,
+ "seed": 20261110,
+ "summary": [
+  {
+   "arm": "Commons, days with a loop record",
+   "subjects": 150,
+   "n_excursions": 56778,
+   "per_day": 2.2650895137653655,
+   "median_dur": 55.0,
+   "p90_dur": 245.0,
+   "median_peak": 203.0,
+   "p90_peak": 279.0,
+   "median_rise_min": 20.0,
+   "median_fall_min": 25.0,
+   "median_fall_rate": 60.0,
+   "p10_fall_rate": 23.145864661654144,
+   "tar180": 13.633543006028091,
+   "insulin_per_day": NaN,
+   "ci": {
+    "median_peak": [
+     201.0,
+     206.0
+    ],
+    "median_dur": [
+     50.0,
+     60.0
+    ],
+    "median_fall_rate": [
+     55.996875,
+     65.45127690759738
+    ],
+    "per_day": [
+     1.9899998466775126,
+     2.568406809140931
+    ]
+   },
+   "per_person_median_peak": 203.25
+  },
+  {
+   "arm": "Commons, no loop record",
+   "subjects": 94,
+   "n_excursions": 28175,
+   "per_day": 2.4659010412250737,
+   "median_dur": 65.0,
+   "p90_dur": 260.0,
+   "median_peak": 206.0,
+   "p90_peak": 283.0,
+   "median_rise_min": 25.0,
+   "median_fall_min": 30.0,
+   "median_fall_rate": 54.857142857142854,
+   "p10_fall_rate": 21.117333333333335,
+   "tar180": 17.667016047645642,
+   "insulin_per_day": NaN,
+   "ci": {
+    "median_peak": [
+     204.0,
+     209.0
+    ],
+    "median_dur": [
+     60.0,
+     75.0
+    ],
+    "median_fall_rate": [
+     50.085726004922066,
+     60.0
+    ],
+    "per_day": [
+     2.2733281745422045,
+     2.6458166112573904
+    ]
+   },
+   "per_person_median_peak": 206.0
+  },
+  {
+   "arm": "Commons, AAPS",
+   "subjects": 82,
+   "n_excursions": 40702,
+   "per_day": 2.3174242301431436,
+   "median_dur": 50.0,
+   "p90_dur": 235.0,
+   "median_peak": 203.0,
+   "p90_peak": 278.0,
+   "median_rise_min": 20.0,
+   "median_fall_min": 25.0,
+   "median_fall_rate": 63.0,
+   "p10_fall_rate": 24.0,
+   "tar180": 12.544925907881174,
+   "insulin_per_day": NaN,
+   "ci": {
+    "median_peak": [
+     201.0,
+     206.0
+    ],
+    "median_dur": [
+     45.0,
+     60.0
+    ],
+    "median_fall_rate": [
+     57.599999999999994,
+     69.23076923076924
+    ],
+    "per_day": [
+     1.972507258066554,
+     2.6483824440414594
+    ]
+   },
+   "per_person_median_peak": 202.0
+  },
+  {
+   "arm": "Commons, OpenAPS rig",
+   "subjects": 62,
+   "n_excursions": 11351,
+   "per_day": 2.1539665785072994,
+   "median_dur": 65.0,
+   "p90_dur": 270.0,
+   "median_peak": 205.0,
+   "p90_peak": 283.0,
+   "median_rise_min": 25.0,
+   "median_fall_min": 30.0,
+   "median_fall_rate": 55.2,
+   "p10_fall_rate": 20.57142857142857,
+   "tar180": 17.170854097709764,
+   "insulin_per_day": NaN,
+   "ci": {
+    "median_peak": [
+     200.0,
+     210.0
+    ],
+    "median_dur": [
+     55.0,
+     75.0
+    ],
+    "median_fall_rate": [
+     49.09090909090909,
+     60.667156862745095
+    ],
+    "per_day": [
+     1.7104532591355899,
+     2.8344951248861703
+    ]
+   },
+   "per_person_median_peak": 205.75
+  },
+  {
+   "arm": "Commons, Loop",
+   "subjects": 25,
+   "n_excursions": 4273,
+   "per_day": 2.0553390842512256,
+   "median_dur": 55.0,
+   "p90_dur": 230.0,
+   "median_peak": 199.0,
+   "p90_peak": 267.0,
+   "median_rise_min": 20.0,
+   "median_fall_min": 25.0,
+   "median_fall_rate": 52.0,
+   "p10_fall_rate": 19.55454545454546,
+   "tar180": 11.905186241311709,
+   "insulin_per_day": NaN,
+   "ci": {
+    "median_peak": [
+     194.0,
+     204.0
+    ],
+    "median_dur": [
+     50.0,
+     60.0
+    ],
+    "median_fall_rate": [
+     45.6,
+     61.505357142857136
+    ],
+    "per_day": [
+     1.6871559686938151,
+     2.563580889067271
+    ]
+   },
+   "per_person_median_peak": 203.5
+  },
+  {
+   "arm": "Commons, OpenAPS-format",
+   "subjects": 13,
+   "n_excursions": 452,
+   "per_day": 2.978924002837593,
+   "median_dur": 80.0,
+   "p90_dur": 279.00000000000034,
+   "median_peak": 224.0,
+   "p90_peak": 301.90000000000003,
+   "median_rise_min": 30.0,
+   "median_fall_min": 35.0,
+   "median_fall_rate": 65.6,
+   "p10_fall_rate": 26.46857142857143,
+   "tar180": 19.03438693990969,
+   "insulin_per_day": NaN,
+   "ci": {
+    "median_peak": [
+     208.0,
+     239.0
+    ],
+    "median_dur": [
+     65.0,
+     145.0
+    ],
+    "median_fall_rate": [
+     47.707142857142856,
+     72.0
+    ],
+    "per_day": [
+     1.8485266449943043,
+     3.4058348025787946
+    ]
+   },
+   "per_person_median_peak": 215.0
+  },
+  {
+   "arm": "DCLP3 (recomputed)",
+   "subjects": 67,
+   "n_excursions": 37502,
+   "per_day": 3.4871704799640453,
+   "median_dur": 60.0,
+   "p90_dur": 265.0,
+   "median_peak": 209.0,
+   "p90_peak": 290.0,
+   "median_rise_min": 20.0,
+   "median_fall_min": 30.0,
+   "median_fall_rate": 59.519999999999996,
+   "p10_fall_rate": 22.5,
+   "tar180": NaN,
+   "insulin_per_day": NaN,
+   "ci": {
+    "median_peak": [
+     206.975,
+     212.0
+    ],
+    "median_dur": [
+     55.0,
+     65.0
+    ],
+    "median_fall_rate": [
+     56.0,
+     60.379058823529405
+    ],
+    "per_day": [
+     3.2766351763368085,
+     3.677388453485869
+    ]
+   },
+   "per_person_median_peak": 208.0
+  }
+ ]
+}
