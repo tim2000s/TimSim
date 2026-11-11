@@ -21,6 +21,9 @@ Stages, each writing its own file under `docs/measurements/`:
              where each low sits (after a meal, after a correction, overnight, otherwise), and
              two swap arms                                       -> hovorka_gap_runs_<arm>.json
   report     pairs the runs and writes the decomposition               -> hovorka_gap_runs.json
+  meal       the bodies alone: a 50 g meal eaten over ten minutes from the basal steady state,
+             bolused at the meal by the subject's titrated carbohydrate ratio, basal held
+                                                                          -> hovorka_gap_meal.json
 
 The swap arms. `risk`: S2008 with S2013's risk term on at r1 = 0.05, the value calibrated in
 `patient/varying.py` and then switched off, which amplifies insulin-dependent uptake below basal
@@ -58,6 +61,12 @@ the column medians of those files had been seen when this was written).
   8. Swaps. `risk` raises the stand-in minus trend difference below 70 mg/dL on S2008. `autoreg`
      lowers it on Hovorka. Each is read as the paired change in the pair difference, with a
      bootstrap interval, against the base arm on the same subjects.
+
+  9. Meal probe (registered 11 November 2026, after the base runs had shown that most of the
+     trend loop's time below 70 mg/dL on Hovorka, 3.52 of its 4.37 points as a mean, falls within
+     four hours of a meal against 1.22 on S2008). Expected: a meal bolused at the titrated ratio
+     dips further on Hovorka, both below its starting glucose and in minutes below 70 mg/dL,
+     because its gut empties on a single 40-minute time constant and the bolus outlasts the meal.
 
     python examples/hovorka_gap.py existing
     python examples/hovorka_gap.py probe --workers 4
@@ -517,9 +526,62 @@ def stage_report():
     print(f"wrote {path}")
 
 
+MEAL_G = 50.0
+
+
+def meal_job(job):
+    name, arm, kp2 = job
+    from simglucose.patient.t1dpatient import Action
+    from timsim.therapy import titrate
+    p, basal, gb = _body(name, arm, kp2)
+    bolus = MEAL_G / float(titrate.profile_for(name).cr_at(12 * 60))
+    g = np.empty(480)
+    for m in range(480):
+        cho = 5.0 if m < MEAL_G / 5.0 else 0.0
+        p.step(Action(CHO=cho, insulin=basal + (bolus if m == 0 else 0.0)))
+        g[m] = float(p.observation.Gsub)
+    pk = int(np.argmax(g))
+    after = g[pk:]
+    return {"subject": name, "arm": arm, "gb": gb, "bolus_u": bolus, "peak": float(g[pk]),
+            "peak_min": pk + 1, "nadir_after_peak": float(after.min()),
+            "nadir_min": int(pk + 1 + np.argmin(after)), "nadir_minus_start": float(after.min() - gb),
+            "minutes_below_70": int((g < 70).sum()), "glucose_8h": float(g[-1])}
+
+
+def stage_meal(workers):
+    from timsim import provenance
+    rng = np.random.default_rng(20261112)
+    kp2 = _s2008_kp2()
+    arms = [("s2008", "base"), ("s2008", "risk"), ("hovorka", "base"), ("hovorka", "autoreg")]
+    jobs = [(s, arm, kp2) for body, arm in arms for s in json.load(open(RANK[body]))["subjects"]]
+    with mp.get_context("spawn").Pool(workers) as pool:
+        rows = pool.map(meal_job, jobs, chunksize=1)
+    summary = {}
+    for body, arm in arms:
+        rs = [r for r in rows if r["arm"] == arm and r["subject"].startswith(
+            "hovorka#" if body == "hovorka" else "adult")]
+        s = {"n": len(rs), "with_any_below_70": int(sum(r["minutes_below_70"] > 0 for r in rs))}
+        for k in ("gb", "bolus_u", "peak", "peak_min", "nadir_after_peak", "nadir_min",
+                  "nadir_minus_start", "minutes_below_70", "glucose_8h"):
+            v = np.array([r[k] for r in rs], float)
+            s[k] = {"median": float(np.median(v)), "mean": float(np.mean(v)),
+                    "ci": _boot(rng, np.median, v)}
+        summary[f"{body}/{arm}"] = s
+        print(f"{body}/{arm}: start {s['gb']['median']:.0f} bolus {s['bolus_u']['median']:.1f} U "
+              f"peak {s['peak']['median']:.0f} at {s['peak_min']['median']:.0f} min, nadir "
+              f"{s['nadir_after_peak']['median']:.0f} {np.round(s['nadir_after_peak']['ci'], 0)} at "
+              f"{s['nadir_min']['median']:.0f} min, nadir-start {s['nadir_minus_start']['median']:+.0f} "
+              f"{np.round(s['nadir_minus_start']['ci'], 0)}, min<70 mean "
+              f"{s['minutes_below_70']['mean']:.0f}, {s['with_any_below_70']}/{s['n']} below 70")
+    path = os.path.join(M, "hovorka_gap_meal.json")
+    json.dump({"provenance": provenance.stamp(), "meal_g": MEAL_G, "summary": summary,
+               "per_subject": rows}, open(path, "w"), indent=1)
+    print(f"wrote {path}")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("stage", choices=("existing", "probe", "runs", "report"))
+    ap.add_argument("stage", choices=("existing", "probe", "runs", "report", "meal"))
     ap.add_argument("--arm", choices=("base", "risk", "autoreg"), default="base")
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--days", type=int, default=28)
@@ -530,6 +592,8 @@ def main():
         stage_probe(a.workers)
     elif a.stage == "runs":
         stage_runs(a.arm, a.workers, a.days)
+    elif a.stage == "meal":
+        stage_meal(a.workers)
     else:
         stage_report()
 
