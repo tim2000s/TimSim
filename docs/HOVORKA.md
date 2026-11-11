@@ -186,8 +186,121 @@ range is the same on both, oref0 SMB first and the stand-in second, and on both 
 the most time below 70 mg/dL and oref0 SMB has more than Boost. They differ in size: every
 hypoglycaemia difference involving the stand-in is three to five times larger on Hovorka, and
 Boost against the trend loop resolves on Hovorka (-1.41 [-2.10, -0.91] below 70 mg/dL) and not on
-S2008 (0.04 [-0.13, 0.34]). Neither difference in size has been explained.
+S2008 (0.04 [-0.13, 0.34]). Neither difference in size had been explained when this was
+written; the section below locates both.
 
 Agreement here is one change of body between two models that share the absence of
 counterregulation and both overstate the uncovered meal, so it bounds a result to those shared
 assumptions rather than establishing it as the algorithms'.
+
+## Where the difference in size arises
+
+Measured 10 and 11 November 2026 by `examples/hovorka_gap.py`, whose expectations were committed
+before the probes and reruns (a879cfa, with the meal probe added in c59aff1 after the base reruns
+had been read). Outputs are `hovorka_gap_existing.json`, `hovorka_gap_runs_*.json`,
+`hovorka_gap_runs.json`, `hovorka_gap_probe.json` and `hovorka_gap_meal.json`. The reruns of
+trend, the stand-in and Boost on both panels reproduced all 240 ranking runs' time in range and
+time below 70 mg/dL to the bit, so the decomposition reads the ranking's own runs. Figures below
+are means over the subjects completing both arms, with bootstrap intervals over subjects, where
+the table above gives medians of paired differences.
+
+Part of the factor is the statistic. Time below 70 mg/dL sits near zero for many subjects and
+the median of a paired difference on it is unstable: the stand-in minus the trend loop is 3.01
+against 1.07 on medians, a factor of 2.8, and +2.75 [2.26, 3.26] against +1.57 [1.16, 2.03] on
+means, a factor of 1.75. Boost minus the stand-in goes from a factor of 4.8 on medians to 3.0 on
+means (-4.35 [-4.97, -3.76] against -1.46 [-1.97, -0.98]). The rest of this section works on
+means.
+
+### The stand-in pairs: the same dose, a body that converts it into more time low
+
+The stand-in delivers 6.8 [5.6, 8.3] U/day more than the trend loop on Hovorka and 6.2 [4.9, 7.6]
+on S2008, and the composition is the same on both: about 13 U/day more basal and temporary basal,
+less in boluses. Its algorithm is doing the same thing to both bodies. On the ratio scale its
+excess is also the same, 1.63 [1.51, 1.77] times the trend loop's time below 70 mg/dL on Hovorka
+and 1.88 [1.65, 2.15] on S2008, so the larger difference in points follows the trend loop's own
+level, 4.37 per cent on Hovorka against 1.80 on S2008 on these runs. Each extra unit a day buys
+0.41 [0.30, 0.53] points below 70 mg/dL on Hovorka and 0.25 [0.18, 0.35] on S2008. The same holds
+on the true glucose (+2.85 against +1.58), so the sensor does not produce it.
+
+The excess is spread across the panel rather than carried by a few people. The quarter of
+Hovorka subjects with the largest excess carries 40 per cent of it, against 55 per cent on S2008,
+and it does not follow insulin sensitivity on Hovorka (Spearman -0.16, p = 0.34) where it does on
+S2008 (+0.50, p = 0.001). The Hovorka panel is narrower: the coefficient of variation of the
+uptake sensitivity is 0.23 against 0.53 for S2008's `Vmx`, and with insulin held at a multiple
+of each subject's own basal every Hovorka subject settles at the same glucose to within 1 mg/dL,
+because its subjects differ only by a scaling of three sensitivities and body weight. Body weight
+(median 77 against 82 kg) and basal per kilogram (1.48 against 1.42 pmol/kg/min) barely differ.
+
+Split by where each low sits, the stand-in's excess falls 57 per cent within four hours of a meal
+on Hovorka and 55 per cent on S2008, against the 67 per cent of time those windows cover, with
+overnight lows a minor share on both (+0.32 and +0.23 points). The low type does not separate
+the bodies.
+
+The bodies alone, with no controller, separate them. Each starts at its basal steady state, and
+the two are 28 mg/dL apart there: Hovorka subjects are closed at 115 mg/dL and the S2008 panel
+has a median of 143. The first unit of a bolus lowers the Hovorka nadir by 25.8 [22.4, 29.6]
+mg/dL and the S2008 nadir by 16.7 [13.0, 18.7], so 2.2 U reach 70 mg/dL from basal on Hovorka
+against 5.6 U on S2008. Both bodies flatten by the same proportion as the nadir falls (the drop
+per unit at 70 mg/dL is 0.41 and 0.44 of the first unit's), which refuted half of expectation 7.
+Held at twice basal insulin, Hovorka reaches 39 mg/dL at twelve hours and falls through 70 at
+17.3 mg/dL per hour; S2008 reaches 54 [46, 65] and falls through 70 at 9.2. At one and a half
+times basal every Hovorka subject goes below 70 and settles at 60, while S2008 settles at 86 [73,
+96] and 10 of 40 subjects reach 70. The difference is S2008's `-kp2*Gp`, which raises production
+as glucose falls, and which Hovorka's production, `EGP0 (1 - x3)`, does not have. The shipped
+hepatic defence on S2008 contributes almost nothing to it (54 against 53 mg/dL with it removed).
+
+The swap tests put the production term in the loop. Giving Hovorka S2008's autoregulation below
+basal, at the S2008 panel's median `kp2` of 0.0036 per minute, lowered the stand-in minus trend
+difference by 1.15 [0.70, 1.64] points, from 2.81 to 1.66 on the 36 subjects completing all four runs, while lowering the trend
+loop's own level only from 4.40 to 3.91. The gap between the bodies on that pair is 1.41 points
+(2.81 against 1.40 on the 35 S2008 subjects completing all four of theirs), so the one term removes 0.5 to 1.2 of it.
+Giving S2008 S2013's risk term at r1 = 0.05, which amplifies insulin-dependent uptake below
+basal, raised the same difference by 0.72 [0.34, 1.10], from 1.40 to 2.13, and the stand-in
+against Boost by 1.04 [0.63, 1.48]. In the held-insulin probe the risk term brings S2008 to 38
+mg/dL at twice basal, beside Hovorka's 39. Both swaps used settings titrated on the unmodified
+bodies, and four of the risk arm's forty stand-in runs terminated against one in the base arm, so its
+change is measured on the survivors and is if anything an underestimate.
+
+### Boost against the trend loop: a difference in what is dosed
+
+Boost and the trend loop separate on Hovorka for a different reason, and neither swap moves it:
+-0.11 [-0.52, 0.27] points with Hovorka's autoregulation and -0.30 [-0.67, 0.05] with S2008's
+risk term. On the true glucose the risk arm moved it by -0.50 [-0.88, -0.13], towards Hovorka's
+sign, which is the only sign of a body term reaching this pair. Boost gives 10.6 U/day less in
+meal boluses than the trend loop on Hovorka and 8.1 less on S2008, and 12.5 and 15.0 U/day more in
+boluses away from meals. Its time below 70 mg/dL in the four hours after meals is lower by 1.87
+[1.56, 2.19] points on Hovorka and by 0.24 [0.07, 0.43] on S2008, against a trend-loop post-meal
+level of 3.52 and 1.25 per cent, and it pays 0.62 and 0.52 points more after its own corrections
+on the two bodies. On S2008 the two terms cancel. On Hovorka the post-meal term is larger because
+the trend loop's post-meal lows are nearly three times as common there. The ratio of Boost to the
+trend loop is 0.63 [0.55, 0.70] on Hovorka and 1.07 [0.95, 1.21] on S2008, so this pair does not
+reduce to level.
+
+A meal of 50 g bolused at the titrated ratio, with basal held and nothing else acting, falls 39
+[36, 40] mg/dL below its starting glucose on Hovorka and 26 [14, 29] on S2008, and goes below 70
+mg/dL in 6 of 40 Hovorka subjects and none of 40 S2008 ones. The nadir arrives at 334 and 416
+minutes, after the four-hour window used above, so the probe shows that a fully bolused meal
+overshoots further on Hovorka without showing that this is the post-meal low the runs record,
+which also includes whatever the loop delivers after the meal.
+
+### What this leaves
+
+The stand-in pairs are larger on Hovorka mainly because Hovorka sits closer to 70 mg/dL, responds
+more per unit and has nothing that raises production as glucose falls. Its algorithm doses both
+bodies alike. Most of the inter-body difference on those pairs is carried by the one term S2008
+has and Hovorka lacks, and `docs/MODEL.md` records that term as stronger in S2008 than in the
+people it represents. The size of a hypoglycaemia penalty for added insulin is therefore set by
+an unmeasured quantity, the slope of production against glucose at the insulin of a spontaneous
+low, and the two bodies bracket it from opposite sides. The Boost against trend difference is a
+difference in how much is bolused up front, which Hovorka's larger post-meal overshoot rewards
+and which no low-glucose term moved. Signs agree on both bodies throughout; sizes in points of
+time below 70 mg/dL are body-dependent by the factors above and are not to be quoted as the
+algorithms'.
+
+A counterregulation body is not indicated by this. What decides these sizes is how production
+responds to falling glucose at loop insulin levels, and `docs/DESIGN_HYPOGLYCAEMIA.md` records
+that the available human reference, the Rickels clamp, measures a different state; a third body
+would add a third value of the same quantity without a target to choose between them. Nothing
+here changes a sign in the ranking either, so it gives no reason to rerun the initial-settings
+trial; it does say that any absolute hypoglycaemia figure from that trial carries the body's
+choice of this slope.

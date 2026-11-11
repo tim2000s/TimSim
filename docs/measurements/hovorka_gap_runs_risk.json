@@ -1,0 +1,5062 @@
+{
+ "provenance": {
+  "population": "704cfac086df54ba",
+  "settings": "0df43fd250fadd47",
+  "commit": "c59aff1e815f86247f8957b8970e74389ff188d8",
+  "dirty": false,
+  "host": "Tims-Mac-mini.local",
+  "python": "3.14.7",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "when": "2026-11-11T01:54:58+00:00",
+  "simglucose": "0.2.11",
+  "hovorka_population": "ad9c7d606711a7f2",
+  "hovorka_settings": "8ff58e70ab3deae1"
+ },
+ "arm": "risk",
+ "days": 28,
+ "seed": 101,
+ "risk_gain": 0.05,
+ "kp2_autoreg": 0.0035887967456307,
+ "runs": [
+  {
+   "subject": "adult#001",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 148.77363085746765,
+   "days_ran": 28.0,
+   "tir": 81.91964285714286,
+   "tbr70": 1.1160714285714286,
+   "tbr54": 0.38442460317460314,
+   "tbr70_bg": 0.4836309523809524,
+   "lbgi": 0.4271051299076213,
+   "mean_cgm": 141.36388546686447,
+   "insulin_per_day": 56.46483426889112,
+   "rescue_g_per_day": 15.41836203433707,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.1984126984126984,
+     "post_correction": 0.78125,
+     "nocturnal": 0.01240079365079365,
+     "other": 0.1240079365079365
+    },
+    "bg": {
+     "post_meal": 0.1240079365079365,
+     "post_correction": 0.248015873015873,
+     "nocturnal": 0.0,
+     "other": 0.11160714285714285
+    },
+    "share_of_time": {
+     "post_meal": 0.6457093253968254,
+     "post_correction": 0.3492063492063492,
+     "nocturnal": 0.0016121031746031745,
+     "other": 0.003472222222222222
+    },
+    "insulin": {
+     "total": 56.46483426889112,
+     "bolus_meal": 8.248214285714287,
+     "bolus_other": 30.9375,
+     "basal_and_temp": 17.279119983176827
+    }
+   }
+  },
+  {
+   "subject": "adult#002",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 152.78575491905212,
+   "days_ran": 28.0,
+   "tir": 82.37847222222221,
+   "tbr70": 2.7529761904761902,
+   "tbr54": 0.7688492063492063,
+   "tbr70_bg": 2.318948412698413,
+   "lbgi": 0.7186654573579825,
+   "mean_cgm": 141.37715850251675,
+   "insulin_per_day": 53.160717663913026,
+   "rescue_g_per_day": 24.43091742093269,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.2028769841269842,
+     "post_correction": 1.2896825396825395,
+     "nocturnal": 0.03720238095238095,
+     "other": 0.2232142857142857
+    },
+    "bg": {
+     "post_meal": 1.1160714285714286,
+     "post_correction": 1.1036706349206349,
+     "nocturnal": 0.0,
+     "other": 0.0992063492063492
+    },
+    "share_of_time": {
+     "post_meal": 0.7022569444444444,
+     "post_correction": 0.28149801587301587,
+     "nocturnal": 0.006820436507936508,
+     "other": 0.009424603174603174
+    },
+    "insulin": {
+     "total": 53.160717663913026,
+     "bolus_meal": 8.071428571428571,
+     "bolus_other": 25.84642857142857,
+     "basal_and_temp": 19.24286052105588
+    }
+   }
+  },
+  {
+   "subject": "adult#003",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 157.5109691619873,
+   "days_ran": 28.0,
+   "tir": 69.27083333333334,
+   "tbr70": 0.855654761904762,
+   "tbr54": 0.248015873015873,
+   "tbr70_bg": 1.0168650793650793,
+   "lbgi": 0.31382196354051006,
+   "mean_cgm": 162.95537952694787,
+   "insulin_per_day": 67.07149617136683,
+   "rescue_g_per_day": 17.619102637341236,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.4340277777777778,
+     "post_correction": 0.3472222222222222,
+     "nocturnal": 0.0,
+     "other": 0.0744047619047619
+    },
+    "bg": {
+     "post_meal": 0.5580357142857143,
+     "post_correction": 0.3720238095238095,
+     "nocturnal": 0.0,
+     "other": 0.08680555555555555
+    },
+    "share_of_time": {
+     "post_meal": 0.6587301587301587,
+     "post_correction": 0.3375496031746032,
+     "nocturnal": 0.0021081349206349205,
+     "other": 0.0016121031746031745
+    },
+    "insulin": {
+     "total": 67.07149617136683,
+     "bolus_meal": 9.25357142857143,
+     "bolus_other": 33.246428571428574,
+     "basal_and_temp": 24.57149617136684
+    }
+   }
+  },
+  {
+   "subject": "adult#004",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 152.73546409606934,
+   "days_ran": 28.0,
+   "tir": 72.60664682539682,
+   "tbr70": 1.7609126984126984,
+   "tbr54": 0.3100198412698413,
+   "tbr70_bg": 1.5004960317460319,
+   "lbgi": 0.4588298090820603,
+   "mean_cgm": 154.61593212890998,
+   "insulin_per_day": 57.69710641162443,
+   "rescue_g_per_day": 17.36651236463215,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.6820436507936508,
+     "post_correction": 0.8928571428571428,
+     "nocturnal": 0.0496031746031746,
+     "other": 0.13640873015873015
+    },
+    "bg": {
+     "post_meal": 0.8060515873015874,
+     "post_correction": 0.5456349206349206,
+     "nocturnal": 0.03720238095238095,
+     "other": 0.11160714285714285
+    },
+    "share_of_time": {
+     "post_meal": 0.6573660714285714,
+     "post_correction": 0.33370535714285715,
+     "nocturnal": 0.0033482142857142855,
+     "other": 0.005580357142857143
+    },
+    "insulin": {
+     "total": 57.69710641162443,
+     "bolus_meal": 8.428571428571429,
+     "bolus_other": 32.07678571428572,
+     "basal_and_temp": 17.19174926876729
+    }
+   }
+  },
+  {
+   "subject": "adult#005",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 154.09370708465576,
+   "days_ran": 28.0,
+   "tir": 78.75744047619048,
+   "tbr70": 1.984126984126984,
+   "tbr54": 0.5208333333333333,
+   "tbr70_bg": 1.1532738095238095,
+   "lbgi": 0.5805949792515396,
+   "mean_cgm": 145.19666808180847,
+   "insulin_per_day": 63.836124140279004,
+   "rescue_g_per_day": 26.6753346117768,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.1408730158730158,
+     "post_correction": 0.8432539682539683,
+     "nocturnal": 0.0,
+     "other": 0.0
+    },
+    "bg": {
+     "post_meal": 0.7688492063492063,
+     "post_correction": 0.38442460317460314,
+     "nocturnal": 0.0,
+     "other": 0.0
+    },
+    "share_of_time": {
+     "post_meal": 0.6653025793650794,
+     "post_correction": 0.33308531746031744,
+     "nocturnal": 0.0,
+     "other": 0.0016121031746031745
+    },
+    "insulin": {
+     "total": 63.836124140279004,
+     "bolus_meal": 10.8125,
+     "bolus_other": 35.71964285714286,
+     "basal_and_temp": 17.303981283136142
+    }
+   }
+  },
+  {
+   "subject": "adult#006",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 154.45651984214783,
+   "days_ran": 28.0,
+   "tir": 65.79861111111111,
+   "tbr70": 2.6785714285714284,
+   "tbr54": 0.855654761904762,
+   "tbr70_bg": 2.1453373015873014,
+   "lbgi": 0.6895528770826692,
+   "mean_cgm": 163.78737830128486,
+   "insulin_per_day": 70.43426819948495,
+   "rescue_g_per_day": 33.95663006483427,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.4756944444444444,
+     "post_correction": 0.7316468253968254,
+     "nocturnal": 0.28521825396825395,
+     "other": 0.18601190476190474
+    },
+    "bg": {
+     "post_meal": 1.1780753968253967,
+     "post_correction": 0.6696428571428571,
+     "nocturnal": 0.1984126984126984,
+     "other": 0.0992063492063492
+    },
+    "share_of_time": {
+     "post_meal": 0.7216021825396826,
+     "post_correction": 0.27021329365079366,
+     "nocturnal": 0.004588293650793651,
+     "other": 0.0035962301587301585
+    },
+    "insulin": {
+     "total": 70.43426819948495,
+     "bolus_meal": 9.594642857142858,
+     "bolus_other": 34.044642857142854,
+     "basal_and_temp": 26.794982485199235
+    }
+   }
+  },
+  {
+   "subject": "adult#007",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 150.08450198173523,
+   "days_ran": 28.0,
+   "tir": 81.36160714285714,
+   "tbr70": 0.9176587301587302,
+   "tbr54": 0.1984126984126984,
+   "tbr70_bg": 0.7316468253968254,
+   "lbgi": 0.27235767988498255,
+   "mean_cgm": 147.23261593337895,
+   "insulin_per_day": 41.68050461963317,
+   "rescue_g_per_day": 10.114541032388056,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.5828373015873016,
+     "post_correction": 0.3100198412698413,
+     "nocturnal": 0.0,
+     "other": 0.0248015873015873
+    },
+    "bg": {
+     "post_meal": 0.3224206349206349,
+     "post_correction": 0.2976190476190476,
+     "nocturnal": 0.0,
+     "other": 0.11160714285714285
+    },
+    "share_of_time": {
+     "post_meal": 0.6405009920634921,
+     "post_correction": 0.3531746031746032,
+     "nocturnal": 0.0013640873015873015,
+     "other": 0.00496031746031746
+    },
+    "insulin": {
+     "total": 41.68050461963317,
+     "bolus_meal": 6.926785714285715,
+     "bolus_other": 21.883928571428573,
+     "basal_and_temp": 12.869790333918884
+    }
+   }
+  },
+  {
+   "subject": "adult#008",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 152.55954480171204,
+   "days_ran": 28.0,
+   "tir": 73.52430555555556,
+   "tbr70": 3.5218253968253967,
+   "tbr54": 1.314484126984127,
+   "tbr70_bg": 2.951388888888889,
+   "lbgi": 0.9637099325111006,
+   "mean_cgm": 148.45457481508816,
+   "insulin_per_day": 50.109704721106084,
+   "rescue_g_per_day": 32.10208905502312,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.69890873015873,
+     "post_correction": 1.6121031746031749,
+     "nocturnal": 0.1240079365079365,
+     "other": 0.08680555555555555
+    },
+    "bg": {
+     "post_meal": 1.711309523809524,
+     "post_correction": 1.066468253968254,
+     "nocturnal": 0.0744047619047619,
+     "other": 0.0992063492063492
+    },
+    "share_of_time": {
+     "post_meal": 0.6555059523809523,
+     "post_correction": 0.3267609126984127,
+     "nocturnal": 0.00248015873015873,
+     "other": 0.01525297619047619
+    },
+    "insulin": {
+     "total": 50.109704721106084,
+     "bolus_meal": 7.071428571428571,
+     "bolus_other": 27.833928571428572,
+     "basal_and_temp": 15.204347578248937
+    }
+   }
+  },
+  {
+   "subject": "adult#009",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 153.82177901268005,
+   "days_ran": 28.0,
+   "tir": 87.59920634920636,
+   "tbr70": 3.459821428571429,
+   "tbr54": 1.1780753968253967,
+   "tbr70_bg": 2.9265873015873014,
+   "lbgi": 0.8520050190933458,
+   "mean_cgm": 134.05331964945765,
+   "insulin_per_day": 43.31164971644386,
+   "rescue_g_per_day": 30.796893695173022,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.4012896825396826,
+     "post_correction": 1.7237103174603177,
+     "nocturnal": 0.11160714285714285,
+     "other": 0.2232142857142857
+    },
+    "bg": {
+     "post_meal": 1.0540674603174605,
+     "post_correction": 1.525297619047619,
+     "nocturnal": 0.11160714285714285,
+     "other": 0.23561507936507936
+    },
+    "share_of_time": {
+     "post_meal": 0.6775793650793651,
+     "post_correction": 0.3087797619047619,
+     "nocturnal": 0.005952380952380952,
+     "other": 0.007688492063492063
+    },
+    "insulin": {
+     "total": 43.31164971644386,
+     "bolus_meal": 6.316071428571429,
+     "bolus_other": 20.192857142857147,
+     "basal_and_temp": 16.802721145015283
+    }
+   }
+  },
+  {
+   "subject": "adult#010",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": false,
+   "seconds": 70.93647694587708,
+   "days_ran": 14.71875,
+   "tir": 91.29511677282377,
+   "tbr70": 2.0523708421797595,
+   "tbr54": 0.8492569002123143,
+   "tbr70_bg": 1.2974758197688134,
+   "lbgi": 0.7214435852029077,
+   "mean_cgm": 131.1240446786383,
+   "insulin_per_day": 45.2059173740485,
+   "rescue_g_per_day": 34.15644155523331,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.1087520641660769,
+     "post_correction": 0.8020759613116302,
+     "nocturnal": 0.09436187780136825,
+     "other": 0.04718093890068412
+    },
+    "bg": {
+     "post_meal": 0.6133522057088936,
+     "post_correction": 0.5897617362585515,
+     "nocturnal": 0.04718093890068412,
+     "other": 0.04718093890068412
+    },
+    "share_of_time": {
+     "post_meal": 0.6654871431941496,
+     "post_correction": 0.3319179051663128,
+     "nocturnal": 0.0016513328615239443,
+     "other": 0.0009436187780136825
+    },
+    "insulin": {
+     "total": 45.2059173740485,
+     "bolus_meal": 6.53927813163482,
+     "bolus_other": 24.964755838641192,
+     "basal_and_temp": 13.701883403772486
+    }
+   }
+  },
+  {
+   "subject": "adult#011",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 160.6734631061554,
+   "days_ran": 28.0,
+   "tir": 76.15327380952381,
+   "tbr70": 3.695436507936508,
+   "tbr54": 1.4136904761904763,
+   "tbr70_bg": 2.8273809523809526,
+   "lbgi": 0.9697586570456795,
+   "mean_cgm": 146.58148054929345,
+   "insulin_per_day": 41.47860183337293,
+   "rescue_g_per_day": 29.41281839145803,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.8973214285714284,
+     "post_correction": 1.3640873015873016,
+     "nocturnal": 0.2976190476190476,
+     "other": 0.13640873015873015
+    },
+    "bg": {
+     "post_meal": 1.5004960317460319,
+     "post_correction": 1.0912698412698412,
+     "nocturnal": 0.13640873015873015,
+     "other": 0.0992063492063492
+    },
+    "share_of_time": {
+     "post_meal": 0.6970486111111112,
+     "post_correction": 0.28683035714285715,
+     "nocturnal": 0.006944444444444444,
+     "other": 0.009176587301587302
+    },
+    "insulin": {
+     "total": 41.47860183337293,
+     "bolus_meal": 6.467857142857143,
+     "bolus_other": 20.332142857142856,
+     "basal_and_temp": 14.678601833372928
+    }
+   }
+  },
+  {
+   "subject": "adult#012",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 160.25886011123657,
+   "days_ran": 28.0,
+   "tir": 84.41220238095238,
+   "tbr70": 1.2524801587301588,
+   "tbr54": 0.3720238095238095,
+   "tbr70_bg": 0.7564484126984127,
+   "lbgi": 0.37917705115803046,
+   "mean_cgm": 144.87434916129453,
+   "insulin_per_day": 55.613013043833526,
+   "rescue_g_per_day": 20.786025924663704,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.1036706349206349,
+     "post_correction": 0.1488095238095238,
+     "nocturnal": 0.0,
+     "other": 0.0
+    },
+    "bg": {
+     "post_meal": 0.7068452380952381,
+     "post_correction": 0.0496031746031746,
+     "nocturnal": 0.0,
+     "other": 0.0
+    },
+    "share_of_time": {
+     "post_meal": 0.6560019841269841,
+     "post_correction": 0.34226190476190477,
+     "nocturnal": 0.000744047619047619,
+     "other": 0.000992063492063492
+    },
+    "insulin": {
+     "total": 55.613013043833526,
+     "bolus_meal": 8.521428571428572,
+     "bolus_other": 26.316071428571433,
+     "basal_and_temp": 20.775513043833524
+    }
+   }
+  },
+  {
+   "subject": "adult#013",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 167.06560707092285,
+   "days_ran": 28.0,
+   "tir": 75.24801587301587,
+   "tbr70": 1.6865079365079365,
+   "tbr54": 0.496031746031746,
+   "tbr70_bg": 0.607638888888889,
+   "lbgi": 0.4924554798863811,
+   "mean_cgm": 148.45289908627947,
+   "insulin_per_day": 73.69583512662749,
+   "rescue_g_per_day": 20.713735544547824,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.6696428571428571,
+     "post_correction": 0.7192460317460317,
+     "nocturnal": 0.13640873015873015,
+     "other": 0.16121031746031744
+    },
+    "bg": {
+     "post_meal": 0.1984126984126984,
+     "post_correction": 0.33482142857142855,
+     "nocturnal": 0.01240079365079365,
+     "other": 0.06200396825396825
+    },
+    "share_of_time": {
+     "post_meal": 0.691468253968254,
+     "post_correction": 0.2993551587301587,
+     "nocturnal": 0.003224206349206349,
+     "other": 0.005952380952380952
+    },
+    "insulin": {
+     "total": 73.69583512662749,
+     "bolus_meal": 11.985714285714286,
+     "bolus_other": 36.75,
+     "basal_and_temp": 24.96012084091321
+    }
+   }
+  },
+  {
+   "subject": "adult#014",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 185.849289894104,
+   "days_ran": 28.0,
+   "tir": 75.9796626984127,
+   "tbr70": 2.232142857142857,
+   "tbr54": 1.0788690476190477,
+   "tbr70_bg": 2.132936507936508,
+   "lbgi": 0.631885226999641,
+   "mean_cgm": 153.2351348136314,
+   "insulin_per_day": 40.43345685271118,
+   "rescue_g_per_day": 21.360863103404416,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.8849206349206349,
+     "post_correction": 0.21081349206349206,
+     "nocturnal": 0.0,
+     "other": 0.13640873015873015
+    },
+    "bg": {
+     "post_meal": 1.5004960317460319,
+     "post_correction": 0.4340277777777778,
+     "nocturnal": 0.06200396825396825,
+     "other": 0.13640873015873015
+    },
+    "share_of_time": {
+     "post_meal": 0.6883680555555556,
+     "post_correction": 0.3023313492063492,
+     "nocturnal": 0.005084325396825397,
+     "other": 0.004216269841269841
+    },
+    "insulin": {
+     "total": 40.43345685271118,
+     "bolus_meal": 5.473214285714286,
+     "bolus_other": 15.958928571428572,
+     "basal_and_temp": 19.001313995568324
+    }
+   }
+  },
+  {
+   "subject": "adult#015",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 201.10843205451965,
+   "days_ran": 28.0,
+   "tir": 83.3953373015873,
+   "tbr70": 2.6537698412698414,
+   "tbr54": 0.607638888888889,
+   "tbr70_bg": 2.269345238095238,
+   "lbgi": 0.662948034730909,
+   "mean_cgm": 140.40081889949482,
+   "insulin_per_day": 43.99901561514688,
+   "rescue_g_per_day": 33.92408913832509,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.7981150793650793,
+     "post_correction": 0.744047619047619,
+     "nocturnal": 0.06200396825396825,
+     "other": 0.0496031746031746
+    },
+    "bg": {
+     "post_meal": 1.5873015873015872,
+     "post_correction": 0.5952380952380952,
+     "nocturnal": 0.0744047619047619,
+     "other": 0.01240079365079365
+    },
+    "share_of_time": {
+     "post_meal": 0.7042410714285714,
+     "post_correction": 0.2874503968253968,
+     "nocturnal": 0.002976190476190476,
+     "other": 0.00533234126984127
+    },
+    "insulin": {
+     "total": 43.99901561514688,
+     "bolus_meal": 7.064285714285715,
+     "bolus_other": 16.751785714285713,
+     "basal_and_temp": 20.182944186575448
+    }
+   }
+  },
+  {
+   "subject": "adult#016",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 195.51948523521423,
+   "days_ran": 28.0,
+   "tir": 83.6185515873016,
+   "tbr70": 0.8680555555555556,
+   "tbr54": 0.1488095238095238,
+   "tbr70_bg": 0.5580357142857143,
+   "lbgi": 0.3282805402038488,
+   "mean_cgm": 145.99806404948498,
+   "insulin_per_day": 56.461074915610936,
+   "rescue_g_per_day": 11.491558612303354,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.4588293650793651,
+     "post_correction": 0.3224206349206349,
+     "nocturnal": 0.0,
+     "other": 0.08680555555555555
+    },
+    "bg": {
+     "post_meal": 0.4092261904761905,
+     "post_correction": 0.1488095238095238,
+     "nocturnal": 0.0,
+     "other": 0.0
+    },
+    "share_of_time": {
+     "post_meal": 0.662078373015873,
+     "post_correction": 0.33382936507936506,
+     "nocturnal": 0.0006200396825396825,
+     "other": 0.003472222222222222
+    },
+    "insulin": {
+     "total": 56.461074915610936,
+     "bolus_meal": 8.444642857142856,
+     "bolus_other": 24.869642857142857,
+     "basal_and_temp": 23.146789201325216
+    }
+   }
+  },
+  {
+   "subject": "adult#017",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 247.5998978614807,
+   "days_ran": 28.0,
+   "tir": 81.84523809523809,
+   "tbr70": 1.4756944444444444,
+   "tbr54": 0.4092261904761905,
+   "tbr70_bg": 0.6820436507936508,
+   "lbgi": 0.48033865804765197,
+   "mean_cgm": 144.38576833454178,
+   "insulin_per_day": 70.77439617401298,
+   "rescue_g_per_day": 14.448807027079807,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.8308531746031746,
+     "post_correction": 0.533234126984127,
+     "nocturnal": 0.06200396825396825,
+     "other": 0.0496031746031746
+    },
+    "bg": {
+     "post_meal": 0.4464285714285714,
+     "post_correction": 0.2232142857142857,
+     "nocturnal": 0.01240079365079365,
+     "other": 0.0
+    },
+    "share_of_time": {
+     "post_meal": 0.6661706349206349,
+     "post_correction": 0.3289930555555556,
+     "nocturnal": 0.002728174603174603,
+     "other": 0.0021081349206349205
+    },
+    "insulin": {
+     "total": 70.77439617401298,
+     "bolus_meal": 9.219642857142857,
+     "bolus_other": 32.582142857142856,
+     "basal_and_temp": 28.972610459727246
+    }
+   }
+  },
+  {
+   "subject": "adult#018",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 250.94549989700317,
+   "days_ran": 28.0,
+   "tir": 70.62251984126983,
+   "tbr70": 0.744047619047619,
+   "tbr54": 0.11160714285714285,
+   "tbr70_bg": 0.5828373015873016,
+   "lbgi": 0.2322254864610344,
+   "mean_cgm": 159.05154080471783,
+   "insulin_per_day": 95.99958423923772,
+   "rescue_g_per_day": 13.060691715851164,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.3224206349206349,
+     "post_correction": 0.4092261904761905,
+     "nocturnal": 0.0,
+     "other": 0.01240079365079365
+    },
+    "bg": {
+     "post_meal": 0.3100198412698413,
+     "post_correction": 0.2728174603174603,
+     "nocturnal": 0.0,
+     "other": 0.0
+    },
+    "share_of_time": {
+     "post_meal": 0.7030009920634921,
+     "post_correction": 0.294890873015873,
+     "nocturnal": 0.0,
+     "other": 0.0021081349206349205
+    },
+    "insulin": {
+     "total": 95.99958423923772,
+     "bolus_meal": 13.125,
+     "bolus_other": 52.875,
+     "basal_and_temp": 29.99958423923772
+    }
+   }
+  },
+  {
+   "subject": "adult#019",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 242.27002334594727,
+   "days_ran": 28.0,
+   "tir": 80.91517857142857,
+   "tbr70": 2.9389880952380953,
+   "tbr54": 0.533234126984127,
+   "tbr70_bg": 2.1825396825396823,
+   "lbgi": 0.8274231889493548,
+   "mean_cgm": 139.54665783542342,
+   "insulin_per_day": 53.966433599644496,
+   "rescue_g_per_day": 36.9211018357092,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.3888888888888888,
+     "post_correction": 1.4508928571428572,
+     "nocturnal": 0.06200396825396825,
+     "other": 0.03720238095238095
+    },
+    "bg": {
+     "post_meal": 1.1532738095238095,
+     "post_correction": 1.0168650793650793,
+     "nocturnal": 0.01240079365079365,
+     "other": 0.0
+    },
+    "share_of_time": {
+     "post_meal": 0.6773313492063492,
+     "post_correction": 0.3132440476190476,
+     "nocturnal": 0.004836309523809524,
+     "other": 0.004588293650793651
+    },
+    "insulin": {
+     "total": 53.966433599644496,
+     "bolus_meal": 8.208928571428572,
+     "bolus_other": 30.230357142857144,
+     "basal_and_temp": 15.527147885358772
+    }
+   }
+  },
+  {
+   "subject": "adult#020",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 241.82387399673462,
+   "days_ran": 28.0,
+   "tir": 84.1641865079365,
+   "tbr70": 4.662698412698413,
+   "tbr54": 1.488095238095238,
+   "tbr70_bg": 4.365079365079365,
+   "lbgi": 1.1910017610037038,
+   "mean_cgm": 132.65036138354515,
+   "insulin_per_day": 55.424865540718216,
+   "rescue_g_per_day": 59.6161384414046,
+   "low_type": {
+    "cgm": {
+     "post_meal": 2.3561507936507935,
+     "post_correction": 2.058531746031746,
+     "nocturnal": 0.1488095238095238,
+     "other": 0.0992063492063492
+    },
+    "bg": {
+     "post_meal": 2.4429563492063493,
+     "post_correction": 1.7237103174603177,
+     "nocturnal": 0.08680555555555555,
+     "other": 0.11160714285714285
+    },
+    "share_of_time": {
+     "post_meal": 0.6774553571428571,
+     "post_correction": 0.31473214285714285,
+     "nocturnal": 0.004464285714285714,
+     "other": 0.0033482142857142855
+    },
+    "insulin": {
+     "total": 55.424865540718216,
+     "bolus_meal": 8.610714285714286,
+     "bolus_other": 25.573214285714283,
+     "basal_and_temp": 21.240936969289642
+    }
+   }
+  },
+  {
+   "subject": "adult#021",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": false,
+   "seconds": 71.0894992351532,
+   "days_ran": 10.722222222222221,
+   "tir": 71.37305699481865,
+   "tbr70": 4.566062176165803,
+   "tbr54": 2.5582901554404147,
+   "tbr70_bg": 4.145077720207254,
+   "lbgi": 1.2214843102016348,
+   "mean_cgm": 148.68276030898735,
+   "insulin_per_day": 49.7412880337578,
+   "rescue_g_per_day": 38.204093957945,
+   "low_type": {
+    "cgm": {
+     "post_meal": 2.687823834196891,
+     "post_correction": 1.6839378238341969,
+     "nocturnal": 0.0,
+     "other": 0.19430051813471502
+    },
+    "bg": {
+     "post_meal": 2.655440414507772,
+     "post_correction": 1.4896373056994818,
+     "nocturnal": 0.0,
+     "other": 0.0
+    },
+    "share_of_time": {
+     "post_meal": 0.7069300518134715,
+     "post_correction": 0.28432642487046633,
+     "nocturnal": 0.0009715025906735751,
+     "other": 0.007772020725388601
+    },
+    "insulin": {
+     "total": 49.7412880337578,
+     "bolus_meal": 8.277202072538863,
+     "bolus_other": 25.936787564766842,
+     "basal_and_temp": 15.527298396452094
+    }
+   }
+  },
+  {
+   "subject": "adult#022",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 229.32575106620789,
+   "days_ran": 28.0,
+   "tir": 83.0233134920635,
+   "tbr70": 2.3313492063492065,
+   "tbr54": 0.7688492063492063,
+   "tbr70_bg": 1.6245039682539684,
+   "lbgi": 0.6859377137554007,
+   "mean_cgm": 138.25299315300765,
+   "insulin_per_day": 57.88171367270983,
+   "rescue_g_per_day": 24.445449315518225,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.992063492063492,
+     "post_correction": 0.9300595238095238,
+     "nocturnal": 0.4092261904761905,
+     "other": 0.0
+    },
+    "bg": {
+     "post_meal": 0.5208333333333333,
+     "post_correction": 0.8060515873015874,
+     "nocturnal": 0.2976190476190476,
+     "other": 0.0
+    },
+    "share_of_time": {
+     "post_meal": 0.6935763888888888,
+     "post_correction": 0.296875,
+     "nocturnal": 0.00744047619047619,
+     "other": 0.0021081349206349205
+    },
+    "insulin": {
+     "total": 57.88171367270983,
+     "bolus_meal": 9.6875,
+     "bolus_other": 34.10892857142857,
+     "basal_and_temp": 14.085285101281247
+    }
+   }
+  },
+  {
+   "subject": "adult#023",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 223.7333800792694,
+   "days_ran": 28.0,
+   "tir": 82.72569444444444,
+   "tbr70": 7.8249007936507935,
+   "tbr54": 3.0257936507936507,
+   "tbr70_bg": 6.820436507936507,
+   "lbgi": 1.9698938423514802,
+   "mean_cgm": 125.3446144516201,
+   "insulin_per_day": 38.3233630952381,
+   "rescue_g_per_day": 83.27663448432773,
+   "low_type": {
+    "cgm": {
+     "post_meal": 5.270337301587301,
+     "post_correction": 2.269345238095238,
+     "nocturnal": 0.18601190476190474,
+     "other": 0.0992063492063492
+    },
+    "bg": {
+     "post_meal": 4.58829365079365,
+     "post_correction": 2.0461309523809526,
+     "nocturnal": 0.18601190476190474,
+     "other": 0.0
+    },
+    "share_of_time": {
+     "post_meal": 0.6737351190476191,
+     "post_correction": 0.30853174603174605,
+     "nocturnal": 0.007192460317460317,
+     "other": 0.010540674603174604
+    },
+    "insulin": {
+     "total": 38.3233630952381,
+     "bolus_meal": 6.598214285714286,
+     "bolus_other": 17.994642857142857,
+     "basal_and_temp": 13.730505952380952
+    }
+   }
+  },
+  {
+   "subject": "adult#024",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 236.79528427124023,
+   "days_ran": 28.0,
+   "tir": 77.75297619047619,
+   "tbr70": 0.6200396825396826,
+   "tbr54": 0.13640873015873015,
+   "tbr70_bg": 0.3472222222222222,
+   "lbgi": 0.24198683577368302,
+   "mean_cgm": 153.08111672803867,
+   "insulin_per_day": 67.82729259978967,
+   "rescue_g_per_day": 11.679135217635382,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.3100198412698413,
+     "post_correction": 0.23561507936507936,
+     "nocturnal": 0.01240079365079365,
+     "other": 0.06200396825396825
+    },
+    "bg": {
+     "post_meal": 0.16121031746031744,
+     "post_correction": 0.18601190476190474,
+     "nocturnal": 0.0,
+     "other": 0.0
+    },
+    "share_of_time": {
+     "post_meal": 0.6303323412698413,
+     "post_correction": 0.3637152777777778,
+     "nocturnal": 0.002232142857142857,
+     "other": 0.003720238095238095
+    },
+    "insulin": {
+     "total": 67.82729259978967,
+     "bolus_meal": 9.935714285714287,
+     "bolus_other": 35.910714285714285,
+     "basal_and_temp": 21.980864028361104
+    }
+   }
+  },
+  {
+   "subject": "adult#025",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 236.3336980342865,
+   "days_ran": 28.0,
+   "tir": 80.61755952380952,
+   "tbr70": 0.6820436507936508,
+   "tbr54": 0.26041666666666663,
+   "tbr70_bg": 0.33482142857142855,
+   "lbgi": 0.30433111324962897,
+   "mean_cgm": 148.6265597338008,
+   "insulin_per_day": 73.27759171651992,
+   "rescue_g_per_day": 13.879452582216386,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.26041666666666663,
+     "post_correction": 0.4092261904761905,
+     "nocturnal": 0.01240079365079365,
+     "other": 0.0
+    },
+    "bg": {
+     "post_meal": 0.11160714285714285,
+     "post_correction": 0.2232142857142857,
+     "nocturnal": 0.0,
+     "other": 0.0
+    },
+    "share_of_time": {
+     "post_meal": 0.6951884920634921,
+     "post_correction": 0.30158730158730157,
+     "nocturnal": 0.0006200396825396825,
+     "other": 0.0026041666666666665
+    },
+    "insulin": {
+     "total": 73.27759171651992,
+     "bolus_meal": 10.869642857142859,
+     "bolus_other": 39.26428571428571,
+     "basal_and_temp": 23.143663145091345
+    }
+   }
+  },
+  {
+   "subject": "adult#027",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 274.76750588417053,
+   "days_ran": 28.0,
+   "tir": 74.44196428571429,
+   "tbr70": 4.290674603174603,
+   "tbr54": 1.4508928571428572,
+   "tbr70_bg": 3.4970238095238098,
+   "lbgi": 1.0902178949471106,
+   "mean_cgm": 146.55579529153277,
+   "insulin_per_day": 67.76517041698379,
+   "rescue_g_per_day": 38.84950255165633,
+   "low_type": {
+    "cgm": {
+     "post_meal": 3.298611111111111,
+     "post_correction": 0.818452380952381,
+     "nocturnal": 0.0744047619047619,
+     "other": 0.0992063492063492
+    },
+    "bg": {
+     "post_meal": 2.7157738095238098,
+     "post_correction": 0.6820436507936508,
+     "nocturnal": 0.06200396825396825,
+     "other": 0.03720238095238095
+    },
+    "share_of_time": {
+     "post_meal": 0.7023809523809523,
+     "post_correction": 0.29303075396825395,
+     "nocturnal": 0.002232142857142857,
+     "other": 0.0023561507936507935
+    },
+    "insulin": {
+     "total": 67.76517041698379,
+     "bolus_meal": 9.757142857142858,
+     "bolus_other": 37.24285714285715,
+     "basal_and_temp": 20.765170416983796
+    }
+   }
+  },
+  {
+   "subject": "adult#028",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 267.1940281391144,
+   "days_ran": 28.0,
+   "tir": 74.34275793650794,
+   "tbr70": 1.7237103174603177,
+   "tbr54": 0.33482142857142855,
+   "tbr70_bg": 1.8105158730158732,
+   "lbgi": 0.5520051837664668,
+   "mean_cgm": 151.24382751473556,
+   "insulin_per_day": 67.53263062471217,
+   "rescue_g_per_day": 22.884887212334796,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.6820436507936508,
+     "post_correction": 0.9052579365079366,
+     "nocturnal": 0.0496031746031746,
+     "other": 0.08680555555555555
+    },
+    "bg": {
+     "post_meal": 0.7068452380952381,
+     "post_correction": 0.8680555555555556,
+     "nocturnal": 0.0,
+     "other": 0.23561507936507936
+    },
+    "share_of_time": {
+     "post_meal": 0.6355406746031746,
+     "post_correction": 0.35639880952380953,
+     "nocturnal": 0.0016121031746031745,
+     "other": 0.006448412698412698
+    },
+    "insulin": {
+     "total": 67.53263062471217,
+     "bolus_meal": 10.137500000000001,
+     "bolus_other": 40.800000000000004,
+     "basal_and_temp": 16.59513062471217
+    }
+   }
+  },
+  {
+   "subject": "adult#029",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 281.68151807785034,
+   "days_ran": 28.0,
+   "tir": 85.86309523809523,
+   "tbr70": 2.5669642857142856,
+   "tbr54": 1.128472222222222,
+   "tbr70_bg": 2.2073412698412698,
+   "lbgi": 0.7352213283575084,
+   "mean_cgm": 136.06319071838237,
+   "insulin_per_day": 39.976802422190694,
+   "rescue_g_per_day": 25.228853204534794,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.4136904761904763,
+     "post_correction": 0.8928571428571428,
+     "nocturnal": 0.248015873015873,
+     "other": 0.01240079365079365
+    },
+    "bg": {
+     "post_meal": 1.1532738095238095,
+     "post_correction": 0.818452380952381,
+     "nocturnal": 0.23561507936507936,
+     "other": 0.0
+    },
+    "share_of_time": {
+     "post_meal": 0.6963045634920635,
+     "post_correction": 0.29055059523809523,
+     "nocturnal": 0.007688492063492063,
+     "other": 0.005456349206349206
+    },
+    "insulin": {
+     "total": 39.976802422190694,
+     "bolus_meal": 6.5446428571428585,
+     "bolus_other": 17.869642857142857,
+     "basal_and_temp": 15.562516707904974
+    }
+   }
+  },
+  {
+   "subject": "adult#030",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 282.4293749332428,
+   "days_ran": 28.0,
+   "tir": 78.27380952380952,
+   "tbr70": 4.737103174603174,
+   "tbr54": 2.7281746031746033,
+   "tbr70_bg": 4.600694444444445,
+   "lbgi": 1.372126082941479,
+   "mean_cgm": 138.5947905350627,
+   "insulin_per_day": 60.1808883662598,
+   "rescue_g_per_day": 38.89404684919486,
+   "low_type": {
+    "cgm": {
+     "post_meal": 2.5049603174603177,
+     "post_correction": 1.7485119047619049,
+     "nocturnal": 0.03720238095238095,
+     "other": 0.4464285714285714
+    },
+    "bg": {
+     "post_meal": 2.294146825396825,
+     "post_correction": 1.8601190476190477,
+     "nocturnal": 0.0,
+     "other": 0.4464285714285714
+    },
+    "share_of_time": {
+     "post_meal": 0.6463293650793651,
+     "post_correction": 0.34077380952380953,
+     "nocturnal": 0.0023561507936507935,
+     "other": 0.010540674603174604
+    },
+    "insulin": {
+     "total": 60.1808883662598,
+     "bolus_meal": 7.801785714285714,
+     "bolus_other": 26.146428571428576,
+     "basal_and_temp": 26.23267408054551
+    }
+   }
+  },
+  {
+   "subject": "adult#031",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 246.99378108978271,
+   "days_ran": 28.0,
+   "tir": 77.15773809523809,
+   "tbr70": 1.0912698412698412,
+   "tbr54": 0.2976190476190476,
+   "tbr70_bg": 0.6200396825396826,
+   "lbgi": 0.35439662524103405,
+   "mean_cgm": 154.35945915246046,
+   "insulin_per_day": 41.77015504351906,
+   "rescue_g_per_day": 17.202843480033884,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.7192460317460317,
+     "post_correction": 0.35962301587301587,
+     "nocturnal": 0.0,
+     "other": 0.01240079365079365
+    },
+    "bg": {
+     "post_meal": 0.4092261904761905,
+     "post_correction": 0.21081349206349206,
+     "nocturnal": 0.0,
+     "other": 0.0
+    },
+    "share_of_time": {
+     "post_meal": 0.6737351190476191,
+     "post_correction": 0.31981646825396826,
+     "nocturnal": 0.0031001984126984125,
+     "other": 0.0033482142857142855
+    },
+    "insulin": {
+     "total": 41.77015504351906,
+     "bolus_meal": 7.626785714285715,
+     "bolus_other": 19.548214285714288,
+     "basal_and_temp": 14.595155043519055
+    }
+   }
+  },
+  {
+   "subject": "adult#032",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 244.81650400161743,
+   "days_ran": 28.0,
+   "tir": 80.85317460317461,
+   "tbr70": 3.9930555555555554,
+   "tbr54": 1.277281746031746,
+   "tbr70_bg": 3.670634920634921,
+   "lbgi": 1.0933027528545038,
+   "mean_cgm": 135.406658130799,
+   "insulin_per_day": 59.5547302278298,
+   "rescue_g_per_day": 43.881420048630204,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.599702380952381,
+     "post_correction": 1.9345238095238095,
+     "nocturnal": 0.1736111111111111,
+     "other": 0.28521825396825395
+    },
+    "bg": {
+     "post_meal": 1.4384920634920635,
+     "post_correction": 2.021329365079365,
+     "nocturnal": 0.06200396825396825,
+     "other": 0.1488095238095238
+    },
+    "share_of_time": {
+     "post_meal": 0.6646825396825397,
+     "post_correction": 0.31845238095238093,
+     "nocturnal": 0.00992063492063492,
+     "other": 0.006944444444444444
+    },
+    "insulin": {
+     "total": 59.5547302278298,
+     "bolus_meal": 8.017857142857142,
+     "bolus_other": 35.916071428571435,
+     "basal_and_temp": 15.620801656401227
+    }
+   }
+  },
+  {
+   "subject": "adult#033",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 219.5073549747467,
+   "days_ran": 28.0,
+   "tir": 77.98859126984127,
+   "tbr70": 5.047123015873016,
+   "tbr54": 2.492559523809524,
+   "tbr70_bg": 5.381944444444445,
+   "lbgi": 1.3915165742581366,
+   "mean_cgm": 144.2243179066809,
+   "insulin_per_day": 38.36522759064805,
+   "rescue_g_per_day": 41.836152203883785,
+   "low_type": {
+    "cgm": {
+     "post_meal": 4.58829365079365,
+     "post_correction": 0.35962301587301587,
+     "nocturnal": 0.0248015873015873,
+     "other": 0.0744047619047619
+    },
+    "bg": {
+     "post_meal": 4.749503968253968,
+     "post_correction": 0.533234126984127,
+     "nocturnal": 0.0,
+     "other": 0.0992063492063492
+    },
+    "share_of_time": {
+     "post_meal": 0.6638144841269841,
+     "post_correction": 0.32415674603174605,
+     "nocturnal": 0.006200396825396825,
+     "other": 0.005828373015873016
+    },
+    "insulin": {
+     "total": 38.36522759064805,
+     "bolus_meal": 5.794642857142857,
+     "bolus_other": 15.21607142857143,
+     "basal_and_temp": 17.354513304933764
+    }
+   }
+  },
+  {
+   "subject": "adult#034",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 228.39260077476501,
+   "days_ran": 28.0,
+   "tir": 69.60565476190477,
+   "tbr70": 3.013392857142857,
+   "tbr54": 1.525297619047619,
+   "tbr70_bg": 2.876984126984127,
+   "lbgi": 0.8673300447333646,
+   "mean_cgm": 162.13569123153488,
+   "insulin_per_day": 48.4440165183288,
+   "rescue_g_per_day": 28.88206711343889,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.8928571428571428,
+     "post_correction": 1.5873015873015872,
+     "nocturnal": 0.3720238095238095,
+     "other": 0.16121031746031744
+    },
+    "bg": {
+     "post_meal": 1.0540674603174605,
+     "post_correction": 1.3888888888888888,
+     "nocturnal": 0.2976190476190476,
+     "other": 0.13640873015873015
+    },
+    "share_of_time": {
+     "post_meal": 0.6746031746031746,
+     "post_correction": 0.3132440476190476,
+     "nocturnal": 0.008928571428571428,
+     "other": 0.003224206349206349
+    },
+    "insulin": {
+     "total": 48.4440165183288,
+     "bolus_meal": 7.4767857142857155,
+     "bolus_other": 22.83571428571429,
+     "basal_and_temp": 18.1315165183288
+    }
+   }
+  },
+  {
+   "subject": "adult#035",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 220.9242868423462,
+   "days_ran": 28.0,
+   "tir": 76.61210317460318,
+   "tbr70": 0.6820436507936508,
+   "tbr54": 0.1488095238095238,
+   "tbr70_bg": 0.4712301587301587,
+   "lbgi": 0.1586084905667324,
+   "mean_cgm": 158.32895479907103,
+   "insulin_per_day": 79.5330694010989,
+   "rescue_g_per_day": 6.098982166066234,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.35962301587301587,
+     "post_correction": 0.3224206349206349,
+     "nocturnal": 0.0,
+     "other": 0.0
+    },
+    "bg": {
+     "post_meal": 0.0992063492063492,
+     "post_correction": 0.3720238095238095,
+     "nocturnal": 0.0,
+     "other": 0.0
+    },
+    "share_of_time": {
+     "post_meal": 0.6713789682539683,
+     "post_correction": 0.32787698412698413,
+     "nocturnal": 0.0,
+     "other": 0.000744047619047619
+    },
+    "insulin": {
+     "total": 79.5330694010989,
+     "bolus_meal": 11.448214285714286,
+     "bolus_other": 38.989285714285714,
+     "basal_and_temp": 29.095569401098892
+    }
+   }
+  },
+  {
+   "subject": "adult#036",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 216.35179376602173,
+   "days_ran": 28.0,
+   "tir": 71.51537698412699,
+   "tbr70": 2.4429563492063493,
+   "tbr54": 0.8308531746031746,
+   "tbr70_bg": 2.108134920634921,
+   "lbgi": 0.6370930218829018,
+   "mean_cgm": 157.97320347837555,
+   "insulin_per_day": 115.44894567803895,
+   "rescue_g_per_day": 34.5335767669126,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.6696428571428571,
+     "post_correction": 1.5873015873015872,
+     "nocturnal": 0.01240079365079365,
+     "other": 0.1736111111111111
+    },
+    "bg": {
+     "post_meal": 0.7192460317460317,
+     "post_correction": 1.1408730158730158,
+     "nocturnal": 0.08680555555555555,
+     "other": 0.16121031746031744
+    },
+    "share_of_time": {
+     "post_meal": 0.6631944444444444,
+     "post_correction": 0.33382936507936506,
+     "nocturnal": 0.000992063492063492,
+     "other": 0.001984126984126984
+    },
+    "insulin": {
+     "total": 115.44894567803895,
+     "bolus_meal": 17.930357142857144,
+     "bolus_other": 59.13571428571429,
+     "basal_and_temp": 38.38287424946753
+    }
+   }
+  },
+  {
+   "subject": "adult#037",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 213.41422605514526,
+   "days_ran": 28.0,
+   "tir": 73.72271825396825,
+   "tbr70": 2.294146825396825,
+   "tbr54": 0.6200396825396826,
+   "tbr70_bg": 1.5500992063492065,
+   "lbgi": 0.571351732550858,
+   "mean_cgm": 149.84288740614878,
+   "insulin_per_day": 74.63707226478371,
+   "rescue_g_per_day": 26.144364680428964,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.9469246031746033,
+     "post_correction": 0.248015873015873,
+     "nocturnal": 0.0992063492063492,
+     "other": 0.0
+    },
+    "bg": {
+     "post_meal": 1.488095238095238,
+     "post_correction": 0.0,
+     "nocturnal": 0.06200396825396825,
+     "other": 0.0
+    },
+    "share_of_time": {
+     "post_meal": 0.6669146825396826,
+     "post_correction": 0.33134920634920634,
+     "nocturnal": 0.001240079365079365,
+     "other": 0.000496031746031746
+    },
+    "insulin": {
+     "total": 74.63707226478371,
+     "bolus_meal": 9.600000000000003,
+     "bolus_other": 31.171428571428574,
+     "basal_and_temp": 33.86564369335514
+    }
+   }
+  },
+  {
+   "subject": "adult#038",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 213.73869633674622,
+   "days_ran": 28.0,
+   "tir": 76.27728174603175,
+   "tbr70": 0.3100198412698413,
+   "tbr54": 0.0496031746031746,
+   "tbr70_bg": 0.0,
+   "lbgi": 0.2087506626657351,
+   "mean_cgm": 156.4152451406317,
+   "insulin_per_day": 67.23406576680136,
+   "rescue_g_per_day": 5.699778823183346,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.1736111111111111,
+     "post_correction": 0.11160714285714285,
+     "nocturnal": 0.0,
+     "other": 0.0248015873015873
+    },
+    "bg": {
+     "post_meal": 0.0,
+     "post_correction": 0.0,
+     "nocturnal": 0.0,
+     "other": 0.0
+    },
+    "share_of_time": {
+     "post_meal": 0.6432291666666666,
+     "post_correction": 0.3539186507936508,
+     "nocturnal": 0.0006200396825396825,
+     "other": 0.002232142857142857
+    },
+    "insulin": {
+     "total": 67.23406576680136,
+     "bolus_meal": 11.105357142857143,
+     "bolus_other": 37.839285714285715,
+     "basal_and_temp": 18.2894229096585
+    }
+   }
+  },
+  {
+   "subject": "adult#039",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 192.86190700531006,
+   "days_ran": 28.0,
+   "tir": 85.11904761904762,
+   "tbr70": 6.535218253968254,
+   "tbr54": 2.3561507936507935,
+   "tbr70_bg": 6.336805555555555,
+   "lbgi": 1.7527494283094545,
+   "mean_cgm": 122.50509603256256,
+   "insulin_per_day": 35.92767857142858,
+   "rescue_g_per_day": 70.84329691574288,
+   "low_type": {
+    "cgm": {
+     "post_meal": 3.980654761904762,
+     "post_correction": 2.1205357142857144,
+     "nocturnal": 0.18601190476190474,
+     "other": 0.248015873015873
+    },
+    "bg": {
+     "post_meal": 4.129464285714286,
+     "post_correction": 1.773313492063492,
+     "nocturnal": 0.1736111111111111,
+     "other": 0.26041666666666663
+    },
+    "share_of_time": {
+     "post_meal": 0.642609126984127,
+     "post_correction": 0.3318452380952381,
+     "nocturnal": 0.008804563492063492,
+     "other": 0.016741071428571428
+    },
+    "insulin": {
+     "total": 35.92767857142858,
+     "bolus_meal": 5.478571428571429,
+     "bolus_other": 19.735714285714288,
+     "basal_and_temp": 10.713392857142862
+    }
+   }
+  },
+  {
+   "subject": "adult#040",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 194.83746790885925,
+   "days_ran": 28.0,
+   "tir": 83.09771825396825,
+   "tbr70": 4.092261904761905,
+   "tbr54": 1.1036706349206349,
+   "tbr70_bg": 3.39781746031746,
+   "lbgi": 1.0817975561376645,
+   "mean_cgm": 132.992604042876,
+   "insulin_per_day": 51.80058028287585,
+   "rescue_g_per_day": 34.80555701950398,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.9097222222222223,
+     "post_correction": 1.8601190476190477,
+     "nocturnal": 0.3100198412698413,
+     "other": 0.01240079365079365
+    },
+    "bg": {
+     "post_meal": 1.5128968253968254,
+     "post_correction": 1.636904761904762,
+     "nocturnal": 0.248015873015873,
+     "other": 0.0
+    },
+    "share_of_time": {
+     "post_meal": 0.6853918650793651,
+     "post_correction": 0.3029513888888889,
+     "nocturnal": 0.007068452380952381,
+     "other": 0.004588293650793651
+    },
+    "insulin": {
+     "total": 51.80058028287585,
+     "bolus_meal": 8.367857142857144,
+     "bolus_other": 29.66964285714286,
+     "basal_and_temp": 13.763080282875844
+    }
+   }
+  },
+  {
+   "subject": "adult#041",
+   "driver": "boost",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 192.9010841846466,
+   "days_ran": 28.0,
+   "tir": 88.72767857142857,
+   "tbr70": 3.087797619047619,
+   "tbr54": 0.6944444444444444,
+   "tbr70_bg": 2.4677579365079363,
+   "lbgi": 0.782506500468961,
+   "mean_cgm": 132.47306217381345,
+   "insulin_per_day": 32.77983395878416,
+   "rescue_g_per_day": 34.94208191229363,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.773313492063492,
+     "post_correction": 0.9300595238095238,
+     "nocturnal": 0.06200396825396825,
+     "other": 0.3224206349206349
+    },
+    "bg": {
+     "post_meal": 1.599702380952381,
+     "post_correction": 0.607638888888889,
+     "nocturnal": 0.03720238095238095,
+     "other": 0.2232142857142857
+    },
+    "share_of_time": {
+     "post_meal": 0.6614583333333334,
+     "post_correction": 0.31845238095238093,
+     "nocturnal": 0.006572420634920635,
+     "other": 0.01351686507936508
+    },
+    "insulin": {
+     "total": 32.77983395878416,
+     "bolus_meal": 5.200000000000001,
+     "bolus_other": 15.517857142857142,
+     "basal_and_temp": 12.061976815927014
+    }
+   }
+  },
+  {
+   "subject": "adult#001",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 138.8528609275818,
+   "days_ran": 28.0,
+   "tir": 79.42708333333334,
+   "tbr70": 2.6413690476190474,
+   "tbr54": 0.607638888888889,
+   "tbr70_bg": 1.8725198412698412,
+   "lbgi": 0.632597108262473,
+   "mean_cgm": 145.47853702109805,
+   "insulin_per_day": 56.16291477050468,
+   "rescue_g_per_day": 24.868699426322596,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.488095238095238,
+     "post_correction": 0.4092261904761905,
+     "nocturnal": 0.42162698412698413,
+     "other": 0.3224206349206349
+    },
+    "bg": {
+     "post_meal": 1.2400793650793651,
+     "post_correction": 0.21081349206349206,
+     "nocturnal": 0.248015873015873,
+     "other": 0.1736111111111111
+    },
+    "share_of_time": {
+     "post_meal": 0.6457093253968254,
+     "post_correction": 0.2282986111111111,
+     "nocturnal": 0.050347222222222224,
+     "other": 0.07564484126984126
+    },
+    "insulin": {
+     "total": 56.16291477050468,
+     "bolus_meal": 17.666071428571428,
+     "bolus_other": 15.344642857142858,
+     "basal_and_temp": 23.15220048479039
+    }
+   }
+  },
+  {
+   "subject": "adult#002",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 143.3402271270752,
+   "days_ran": 28.0,
+   "tir": 80.43154761904762,
+   "tbr70": 2.492559523809524,
+   "tbr54": 0.5828373015873016,
+   "tbr70_bg": 2.194940476190476,
+   "lbgi": 0.6862708127228985,
+   "mean_cgm": 142.47471822091688,
+   "insulin_per_day": 54.31427920756611,
+   "rescue_g_per_day": 38.0047730215562,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.6245039682539684,
+     "post_correction": 0.16121031746031744,
+     "nocturnal": 0.13640873015873015,
+     "other": 0.5704365079365079
+    },
+    "bg": {
+     "post_meal": 1.2648809523809523,
+     "post_correction": 0.18601190476190474,
+     "nocturnal": 0.16121031746031744,
+     "other": 0.5828373015873016
+    },
+    "share_of_time": {
+     "post_meal": 0.7022569444444444,
+     "post_correction": 0.15538194444444445,
+     "nocturnal": 0.0519593253968254,
+     "other": 0.09040178571428571
+    },
+    "insulin": {
+     "total": 54.31427920756611,
+     "bolus_meal": 18.666071428571428,
+     "bolus_other": 10.880357142857145,
+     "basal_and_temp": 24.76785063613753
+    }
+   }
+  },
+  {
+   "subject": "adult#003",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 147.6752848625183,
+   "days_ran": 28.0,
+   "tir": 69.70486111111111,
+   "tbr70": 1.0168650793650793,
+   "tbr54": 0.248015873015873,
+   "tbr70_bg": 0.8060515873015874,
+   "lbgi": 0.31479563690900786,
+   "mean_cgm": 162.9249331060857,
+   "insulin_per_day": 68.92907240074689,
+   "rescue_g_per_day": 15.518056138319341,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.7316468253968254,
+     "post_correction": 0.18601190476190474,
+     "nocturnal": 0.0992063492063492,
+     "other": 0.0
+    },
+    "bg": {
+     "post_meal": 0.607638888888889,
+     "post_correction": 0.1488095238095238,
+     "nocturnal": 0.0496031746031746,
+     "other": 0.0
+    },
+    "share_of_time": {
+     "post_meal": 0.6587301587301587,
+     "post_correction": 0.2554563492063492,
+     "nocturnal": 0.04563492063492063,
+     "other": 0.04017857142857143
+    },
+    "insulin": {
+     "total": 68.92907240074689,
+     "bolus_meal": 19.748214285714287,
+     "bolus_other": 18.00357142857143,
+     "basal_and_temp": 31.177286686461173
+    }
+   }
+  },
+  {
+   "subject": "adult#004",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 142.5614719390869,
+   "days_ran": 28.0,
+   "tir": 72.49503968253968,
+   "tbr70": 1.4632936507936507,
+   "tbr54": 0.5704365079365079,
+   "tbr70_bg": 1.4260912698412698,
+   "lbgi": 0.46742418907934624,
+   "mean_cgm": 159.92563121427105,
+   "insulin_per_day": 58.67042253226115,
+   "rescue_g_per_day": 14.012260069498069,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.8928571428571428,
+     "post_correction": 0.4464285714285714,
+     "nocturnal": 0.0744047619047619,
+     "other": 0.0496031746031746
+    },
+    "bg": {
+     "post_meal": 0.9176587301587302,
+     "post_correction": 0.4340277777777778,
+     "nocturnal": 0.0744047619047619,
+     "other": 0.0
+    },
+    "share_of_time": {
+     "post_meal": 0.6573660714285714,
+     "post_correction": 0.22532242063492064,
+     "nocturnal": 0.04985119047619048,
+     "other": 0.06746031746031746
+    },
+    "insulin": {
+     "total": 58.67042253226115,
+     "bolus_meal": 16.982142857142858,
+     "bolus_other": 19.81607142857143,
+     "basal_and_temp": 21.872208246546865
+    }
+   }
+  },
+  {
+   "subject": "adult#005",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 141.93926620483398,
+   "days_ran": 28.0,
+   "tir": 76.92212301587301,
+   "tbr70": 1.8601190476190477,
+   "tbr54": 0.38442460317460314,
+   "tbr70_bg": 1.2028769841269842,
+   "lbgi": 0.5221307821598138,
+   "mean_cgm": 149.03678316043317,
+   "insulin_per_day": 59.89081068052083,
+   "rescue_g_per_day": 23.219459931357015,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.1160714285714286,
+     "post_correction": 0.4836309523809524,
+     "nocturnal": 0.0,
+     "other": 0.26041666666666663
+    },
+    "bg": {
+     "post_meal": 0.7316468253968254,
+     "post_correction": 0.3720238095238095,
+     "nocturnal": 0.0496031746031746,
+     "other": 0.0496031746031746
+    },
+    "share_of_time": {
+     "post_meal": 0.6653025793650794,
+     "post_correction": 0.20771329365079366,
+     "nocturnal": 0.04774305555555555,
+     "other": 0.07924107142857142
+    },
+    "insulin": {
+     "total": 59.89081068052083,
+     "bolus_meal": 17.2625,
+     "bolus_other": 20.357142857142858,
+     "basal_and_temp": 22.271167823377976
+    }
+   }
+  },
+  {
+   "subject": "adult#006",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 141.6894929409027,
+   "days_ran": 28.0,
+   "tir": 66.91468253968253,
+   "tbr70": 3.298611111111111,
+   "tbr54": 1.2648809523809523,
+   "tbr70_bg": 3.2242063492063497,
+   "lbgi": 0.882294582625208,
+   "mean_cgm": 161.2192831430283,
+   "insulin_per_day": 73.95116428482892,
+   "rescue_g_per_day": 30.67376082207557,
+   "low_type": {
+    "cgm": {
+     "post_meal": 2.5049603174603177,
+     "post_correction": 0.3968253968253968,
+     "nocturnal": 0.0744047619047619,
+     "other": 0.3224206349206349
+    },
+    "bg": {
+     "post_meal": 2.4429563492063493,
+     "post_correction": 0.3472222222222222,
+     "nocturnal": 0.0248015873015873,
+     "other": 0.4092261904761905
+    },
+    "share_of_time": {
+     "post_meal": 0.7216021825396826,
+     "post_correction": 0.1884920634920635,
+     "nocturnal": 0.02765376984126984,
+     "other": 0.06225198412698413
+    },
+    "insulin": {
+     "total": 73.95116428482892,
+     "bolus_meal": 25.40535714285715,
+     "bolus_other": 16.294642857142858,
+     "basal_and_temp": 32.25116428482892
+    }
+   }
+  },
+  {
+   "subject": "adult#007",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 138.39284682273865,
+   "days_ran": 28.0,
+   "tir": 74.55357142857143,
+   "tbr70": 2.8149801587301586,
+   "tbr54": 1.1036706349206349,
+   "tbr70_bg": 2.3313492063492065,
+   "lbgi": 0.7042251292993107,
+   "mean_cgm": 150.76700201033188,
+   "insulin_per_day": 41.357944479001496,
+   "rescue_g_per_day": 31.882536427438986,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.9717261904761905,
+     "post_correction": 0.4092261904761905,
+     "nocturnal": 0.0992063492063492,
+     "other": 0.33482142857142855
+    },
+    "bg": {
+     "post_meal": 1.5128968253968254,
+     "post_correction": 0.3720238095238095,
+     "nocturnal": 0.08680555555555555,
+     "other": 0.35962301587301587
+    },
+    "share_of_time": {
+     "post_meal": 0.6405009920634921,
+     "post_correction": 0.22581845238095238,
+     "nocturnal": 0.05915178571428571,
+     "other": 0.07452876984126984
+    },
+    "insulin": {
+     "total": 41.357944479001496,
+     "bolus_meal": 11.907142857142857,
+     "bolus_other": 13.392857142857142,
+     "basal_and_temp": 16.057944479001492
+    }
+   }
+  },
+  {
+   "subject": "adult#008",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 137.3860960006714,
+   "days_ran": 28.0,
+   "tir": 76.06646825396825,
+   "tbr70": 3.2490079365079367,
+   "tbr54": 0.7192460317460317,
+   "tbr70_bg": 2.765376984126984,
+   "lbgi": 0.7643461831346554,
+   "mean_cgm": 149.6559923216538,
+   "insulin_per_day": 49.8995017066578,
+   "rescue_g_per_day": 36.37618842217055,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.7981150793650793,
+     "post_correction": 0.16121031746031744,
+     "nocturnal": 0.607638888888889,
+     "other": 0.6820436507936508
+    },
+    "bg": {
+     "post_meal": 1.3764880952380951,
+     "post_correction": 0.1240079365079365,
+     "nocturnal": 0.6200396825396826,
+     "other": 0.6448412698412698
+    },
+    "share_of_time": {
+     "post_meal": 0.6555059523809523,
+     "post_correction": 0.20114087301587302,
+     "nocturnal": 0.04712301587301587,
+     "other": 0.09623015873015874
+    },
+    "insulin": {
+     "total": 49.8995017066578,
+     "bolus_meal": 16.53214285714286,
+     "bolus_other": 13.476785714285715,
+     "basal_and_temp": 19.89057313522923
+    }
+   }
+  },
+  {
+   "subject": "adult#009",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 140.51024103164673,
+   "days_ran": 28.0,
+   "tir": 86.84275793650794,
+   "tbr70": 1.5004960317460319,
+   "tbr54": 0.4712301587301587,
+   "tbr70_bg": 1.2028769841269842,
+   "lbgi": 0.6095175242136567,
+   "mean_cgm": 137.72773917273253,
+   "insulin_per_day": 42.91141436523502,
+   "rescue_g_per_day": 30.48689453626164,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.9796626984126984,
+     "post_correction": 0.23561507936507936,
+     "nocturnal": 0.0992063492063492,
+     "other": 0.18601190476190474
+    },
+    "bg": {
+     "post_meal": 0.8060515873015874,
+     "post_correction": 0.21081349206349206,
+     "nocturnal": 0.06200396825396825,
+     "other": 0.1240079365079365
+    },
+    "share_of_time": {
+     "post_meal": 0.6775793650793651,
+     "post_correction": 0.17708333333333334,
+     "nocturnal": 0.047867063492063495,
+     "other": 0.0974702380952381
+    },
+    "insulin": {
+     "total": 42.91141436523502,
+     "bolus_meal": 12.660714285714286,
+     "bolus_other": 7.4750000000000005,
+     "basal_and_temp": 22.775700079520732
+    }
+   }
+  },
+  {
+   "subject": "adult#010",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 141.22657823562622,
+   "days_ran": 28.0,
+   "tir": 86.38392857142857,
+   "tbr70": 2.170138888888889,
+   "tbr54": 0.7068452380952381,
+   "tbr70_bg": 2.058531746031746,
+   "lbgi": 0.6433563153548835,
+   "mean_cgm": 138.47894978748192,
+   "insulin_per_day": 42.328876604165444,
+   "rescue_g_per_day": 25.018964754608074,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.351686507936508,
+     "post_correction": 0.08680555555555555,
+     "nocturnal": 0.1736111111111111,
+     "other": 0.5580357142857143
+    },
+    "bg": {
+     "post_meal": 1.128472222222222,
+     "post_correction": 0.0,
+     "nocturnal": 0.1488095238095238,
+     "other": 0.78125
+    },
+    "share_of_time": {
+     "post_meal": 0.6682787698412699,
+     "post_correction": 0.20089285714285715,
+     "nocturnal": 0.05022321428571429,
+     "other": 0.08060515873015874
+    },
+    "insulin": {
+     "total": 42.328876604165444,
+     "bolus_meal": 12.273214285714287,
+     "bolus_other": 11.189285714285715,
+     "basal_and_temp": 18.866376604165445
+    }
+   }
+  },
+  {
+   "subject": "adult#011",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 150.89293026924133,
+   "days_ran": 28.0,
+   "tir": 79.00545634920636,
+   "tbr70": 3.125,
+   "tbr54": 1.1780753968253967,
+   "tbr70_bg": 2.4057539682539684,
+   "lbgi": 0.8973651303076394,
+   "mean_cgm": 148.4973959511886,
+   "insulin_per_day": 41.72676975194104,
+   "rescue_g_per_day": 31.606217579223046,
+   "low_type": {
+    "cgm": {
+     "post_meal": 2.306547619047619,
+     "post_correction": 0.248015873015873,
+     "nocturnal": 0.16121031746031744,
+     "other": 0.4092261904761905
+    },
+    "bg": {
+     "post_meal": 1.8725198412698412,
+     "post_correction": 0.1240079365079365,
+     "nocturnal": 0.13640873015873015,
+     "other": 0.2728174603174603
+    },
+    "share_of_time": {
+     "post_meal": 0.6970486111111112,
+     "post_correction": 0.1892361111111111,
+     "nocturnal": 0.024677579365079364,
+     "other": 0.08903769841269842
+    },
+    "insulin": {
+     "total": 41.72676975194104,
+     "bolus_meal": 13.462500000000002,
+     "bolus_other": 9.69107142857143,
+     "basal_and_temp": 18.57319832336961
+    }
+   }
+  },
+  {
+   "subject": "adult#012",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 145.21674275398254,
+   "days_ran": 28.0,
+   "tir": 77.72817460317461,
+   "tbr70": 1.7485119047619049,
+   "tbr54": 0.4836309523809524,
+   "tbr70_bg": 2.2073412698412698,
+   "lbgi": 0.4441171418226048,
+   "mean_cgm": 152.08934060254253,
+   "insulin_per_day": 54.61291562131789,
+   "rescue_g_per_day": 20.58237448613613,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.2276785714285714,
+     "post_correction": 0.13640873015873015,
+     "nocturnal": 0.1736111111111111,
+     "other": 0.21081349206349206
+    },
+    "bg": {
+     "post_meal": 1.599702380952381,
+     "post_correction": 0.1984126984126984,
+     "nocturnal": 0.1736111111111111,
+     "other": 0.23561507936507936
+    },
+    "share_of_time": {
+     "post_meal": 0.6560019841269841,
+     "post_correction": 0.267609126984127,
+     "nocturnal": 0.021577380952380952,
+     "other": 0.054811507936507936
+    },
+    "insulin": {
+     "total": 54.61291562131789,
+     "bolus_meal": 12.40357142857143,
+     "bolus_other": 15.894642857142857,
+     "basal_and_temp": 26.314701335603598
+    }
+   }
+  },
+  {
+   "subject": "adult#013",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 146.05852913856506,
+   "days_ran": 28.0,
+   "tir": 76.92212301587301,
+   "tbr70": 1.066468253968254,
+   "tbr54": 0.38442460317460314,
+   "tbr70_bg": 0.6324404761904762,
+   "lbgi": 0.35966411439972956,
+   "mean_cgm": 149.09822099951947,
+   "insulin_per_day": 70.55796291144763,
+   "rescue_g_per_day": 12.707841290660582,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.6944444444444444,
+     "post_correction": 0.33482142857142855,
+     "nocturnal": 0.01240079365079365,
+     "other": 0.0248015873015873
+    },
+    "bg": {
+     "post_meal": 0.4092261904761905,
+     "post_correction": 0.21081349206349206,
+     "nocturnal": 0.0,
+     "other": 0.01240079365079365
+    },
+    "share_of_time": {
+     "post_meal": 0.691468253968254,
+     "post_correction": 0.16939484126984128,
+     "nocturnal": 0.05716765873015873,
+     "other": 0.08196924603174603
+    },
+    "insulin": {
+     "total": 70.55796291144763,
+     "bolus_meal": 19.673214285714288,
+     "bolus_other": 18.24642857142857,
+     "basal_and_temp": 32.63832005430478
+    }
+   }
+  },
+  {
+   "subject": "adult#014",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 142.51099395751953,
+   "days_ran": 28.0,
+   "tir": 68.12996031746032,
+   "tbr70": 4.377480158730158,
+   "tbr54": 1.5004960317460319,
+   "tbr70_bg": 4.117063492063492,
+   "lbgi": 1.0449859001520614,
+   "mean_cgm": 153.9757052123686,
+   "insulin_per_day": 39.260779377406706,
+   "rescue_g_per_day": 34.932270745906855,
+   "low_type": {
+    "cgm": {
+     "post_meal": 3.3482142857142856,
+     "post_correction": 0.0744047619047619,
+     "nocturnal": 0.26041666666666663,
+     "other": 0.6944444444444444
+    },
+    "bg": {
+     "post_meal": 3.050595238095238,
+     "post_correction": 0.11160714285714285,
+     "nocturnal": 0.2232142857142857,
+     "other": 0.7316468253968254
+    },
+    "share_of_time": {
+     "post_meal": 0.6883680555555556,
+     "post_correction": 0.20932539682539683,
+     "nocturnal": 0.043774801587301584,
+     "other": 0.05853174603174603
+    },
+    "insulin": {
+     "total": 39.260779377406706,
+     "bolus_meal": 8.964285714285714,
+     "bolus_other": 7.573214285714286,
+     "basal_and_temp": 22.7232793774067
+    }
+   }
+  },
+  {
+   "subject": "adult#015",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 151.85935306549072,
+   "days_ran": 28.0,
+   "tir": 79.50148809523809,
+   "tbr70": 1.922123015873016,
+   "tbr54": 0.6448412698412698,
+   "tbr70_bg": 1.711309523809524,
+   "lbgi": 0.5023267678351714,
+   "mean_cgm": 148.6129488945221,
+   "insulin_per_day": 41.83083461653687,
+   "rescue_g_per_day": 20.296542833724068,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.4260912698412698,
+     "post_correction": 0.06200396825396825,
+     "nocturnal": 0.18601190476190474,
+     "other": 0.248015873015873
+    },
+    "bg": {
+     "post_meal": 1.3764880952380951,
+     "post_correction": 0.06200396825396825,
+     "nocturnal": 0.248015873015873,
+     "other": 0.0248015873015873
+    },
+    "share_of_time": {
+     "post_meal": 0.7042410714285714,
+     "post_correction": 0.1786954365079365,
+     "nocturnal": 0.042534722222222224,
+     "other": 0.07452876984126984
+    },
+    "insulin": {
+     "total": 41.83083461653687,
+     "bolus_meal": 7.221428571428571,
+     "bolus_other": 7.348214285714286,
+     "basal_and_temp": 27.261191759394006
+    }
+   }
+  },
+  {
+   "subject": "adult#016",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 141.0012149810791,
+   "days_ran": 28.0,
+   "tir": 72.47023809523809,
+   "tbr70": 3.2118055555555554,
+   "tbr54": 1.1904761904761905,
+   "tbr70_bg": 3.484623015873016,
+   "lbgi": 0.9422453609162906,
+   "mean_cgm": 151.9888362711549,
+   "insulin_per_day": 60.09877979087793,
+   "rescue_g_per_day": 40.656981572264726,
+   "low_type": {
+    "cgm": {
+     "post_meal": 2.9265873015873014,
+     "post_correction": 0.1488095238095238,
+     "nocturnal": 0.0,
+     "other": 0.13640873015873015
+    },
+    "bg": {
+     "post_meal": 3.100198412698413,
+     "post_correction": 0.23561507936507936,
+     "nocturnal": 0.0,
+     "other": 0.1488095238095238
+    },
+    "share_of_time": {
+     "post_meal": 0.662078373015873,
+     "post_correction": 0.24603174603174602,
+     "nocturnal": 0.03311011904761905,
+     "other": 0.058779761904761904
+    },
+    "insulin": {
+     "total": 60.09877979087793,
+     "bolus_meal": 17.78214285714286,
+     "bolus_other": 14.666071428571428,
+     "basal_and_temp": 27.650565505163645
+    }
+   }
+  },
+  {
+   "subject": "adult#017",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 147.66739583015442,
+   "days_ran": 28.0,
+   "tir": 77.38095238095238,
+   "tbr70": 4.166666666666666,
+   "tbr54": 1.5376984126984126,
+   "tbr70_bg": 4.079861111111112,
+   "lbgi": 1.1275323028124153,
+   "mean_cgm": 142.22419533896746,
+   "insulin_per_day": 72.71822025712046,
+   "rescue_g_per_day": 52.76748874593617,
+   "low_type": {
+    "cgm": {
+     "post_meal": 2.7529761904761902,
+     "post_correction": 0.5704365079365079,
+     "nocturnal": 0.2232142857142857,
+     "other": 0.6200396825396826
+    },
+    "bg": {
+     "post_meal": 2.6537698412698414,
+     "post_correction": 0.5456349206349206,
+     "nocturnal": 0.1984126984126984,
+     "other": 0.6820436507936508
+    },
+    "share_of_time": {
+     "post_meal": 0.6661706349206349,
+     "post_correction": 0.19866071428571427,
+     "nocturnal": 0.05133928571428571,
+     "other": 0.08382936507936507
+    },
+    "insulin": {
+     "total": 72.71822025712046,
+     "bolus_meal": 21.837500000000002,
+     "bolus_other": 16.105357142857144,
+     "basal_and_temp": 34.775363114263314
+    }
+   }
+  },
+  {
+   "subject": "adult#018",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 143.1788091659546,
+   "days_ran": 28.0,
+   "tir": 70.93253968253968,
+   "tbr70": 1.6865079365079365,
+   "tbr54": 0.3224206349206349,
+   "tbr70_bg": 1.0044642857142858,
+   "lbgi": 0.45734017815646444,
+   "mean_cgm": 159.2073319317463,
+   "insulin_per_day": 86.65447048453085,
+   "rescue_g_per_day": 15.459265551553623,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.1408730158730158,
+     "post_correction": 0.0496031746031746,
+     "nocturnal": 0.0992063492063492,
+     "other": 0.3968253968253968
+    },
+    "bg": {
+     "post_meal": 0.6448412698412698,
+     "post_correction": 0.0,
+     "nocturnal": 0.03720238095238095,
+     "other": 0.3224206349206349
+    },
+    "share_of_time": {
+     "post_meal": 0.7030009920634921,
+     "post_correction": 0.21899801587301587,
+     "nocturnal": 0.020957341269841268,
+     "other": 0.05704365079365079
+    },
+    "insulin": {
+     "total": 86.65447048453085,
+     "bolus_meal": 27.139285714285716,
+     "bolus_other": 24.58392857142857,
+     "basal_and_temp": 34.93125619881656
+    }
+   }
+  },
+  {
+   "subject": "adult#019",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 137.11810493469238,
+   "days_ran": 28.0,
+   "tir": 84.44940476190477,
+   "tbr70": 1.3888888888888888,
+   "tbr54": 0.1240079365079365,
+   "tbr70_bg": 0.5828373015873016,
+   "lbgi": 0.5655922179433369,
+   "mean_cgm": 139.08742413404542,
+   "insulin_per_day": 51.73092367635871,
+   "rescue_g_per_day": 16.428842158998627,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.5828373015873016,
+     "post_correction": 0.21081349206349206,
+     "nocturnal": 0.35962301587301587,
+     "other": 0.23561507936507936
+    },
+    "bg": {
+     "post_meal": 0.3100198412698413,
+     "post_correction": 0.1240079365079365,
+     "nocturnal": 0.1488095238095238,
+     "other": 0.0
+    },
+    "share_of_time": {
+     "post_meal": 0.6773313492063492,
+     "post_correction": 0.14620535714285715,
+     "nocturnal": 0.06572420634920635,
+     "other": 0.1107390873015873
+    },
+    "insulin": {
+     "total": 51.73092367635871,
+     "bolus_meal": 18.47142857142857,
+     "bolus_other": 11.898214285714285,
+     "basal_and_temp": 21.361280819215846
+    }
+   }
+  },
+  {
+   "subject": "adult#020",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 140.13549900054932,
+   "days_ran": 28.0,
+   "tir": 85.1314484126984,
+   "tbr70": 5.307539682539683,
+   "tbr54": 2.0089285714285716,
+   "tbr70_bg": 5.158730158730158,
+   "lbgi": 1.351958033528078,
+   "mean_cgm": 131.43401573514896,
+   "insulin_per_day": 54.86552990236732,
+   "rescue_g_per_day": 51.532084232765065,
+   "low_type": {
+    "cgm": {
+     "post_meal": 4.117063492063492,
+     "post_correction": 0.5456349206349206,
+     "nocturnal": 0.03720238095238095,
+     "other": 0.607638888888889
+    },
+    "bg": {
+     "post_meal": 4.117063492063492,
+     "post_correction": 0.4712301587301587,
+     "nocturnal": 0.11160714285714285,
+     "other": 0.4588293650793651
+    },
+    "share_of_time": {
+     "post_meal": 0.6774553571428571,
+     "post_correction": 0.1687748015873016,
+     "nocturnal": 0.05803571428571429,
+     "other": 0.09573412698412699
+    },
+    "insulin": {
+     "total": 54.86552990236732,
+     "bolus_meal": 17.544642857142858,
+     "bolus_other": 8.2875,
+     "basal_and_temp": 29.033387045224465
+    }
+   }
+  },
+  {
+   "subject": "adult#021",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": false,
+   "seconds": 96.53630900382996,
+   "days_ran": 19.71875,
+   "tir": 72.45994013030463,
+   "tbr70": 3.6626166578622996,
+   "tbr54": 1.5847860538827259,
+   "tbr70_bg": 3.733051593590421,
+   "lbgi": 1.0513608718294993,
+   "mean_cgm": 149.61127570608554,
+   "insulin_per_day": 49.926294919228,
+   "rescue_g_per_day": 30.37447293934129,
+   "low_type": {
+    "cgm": {
+     "post_meal": 3.134354639901391,
+     "post_correction": 0.05282620179609086,
+     "nocturnal": 0.15847860538827258,
+     "other": 0.31695721077654515
+    },
+    "bg": {
+     "post_meal": 3.2223983095615423,
+     "post_correction": 0.0,
+     "nocturnal": 0.2993484768445149,
+     "other": 0.21130480718436345
+    },
+    "share_of_time": {
+     "post_meal": 0.7078711040676176,
+     "post_correction": 0.16129600281739742,
+     "nocturnal": 0.03380876914949815,
+     "other": 0.09702412396548687
+    },
+    "insulin": {
+     "total": 49.926294919228,
+     "bolus_meal": 19.527099841521395,
+     "bolus_other": 10.895721077654517,
+     "basal_and_temp": 19.503474000052087
+    }
+   }
+  },
+  {
+   "subject": "adult#022",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 139.37580800056458,
+   "days_ran": 28.0,
+   "tir": 82.51488095238095,
+   "tbr70": 1.7981150793650793,
+   "tbr54": 0.4340277777777778,
+   "tbr70_bg": 1.1160714285714286,
+   "lbgi": 0.5451919581456033,
+   "mean_cgm": 142.87449972042535,
+   "insulin_per_day": 55.63275287680124,
+   "rescue_g_per_day": 16.686537188688998,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.3764880952380951,
+     "post_correction": 0.1488095238095238,
+     "nocturnal": 0.1240079365079365,
+     "other": 0.1488095238095238
+    },
+    "bg": {
+     "post_meal": 0.8928571428571428,
+     "post_correction": 0.0744047619047619,
+     "nocturnal": 0.0,
+     "other": 0.1488095238095238
+    },
+    "share_of_time": {
+     "post_meal": 0.6935763888888888,
+     "post_correction": 0.19642857142857142,
+     "nocturnal": 0.03720238095238095,
+     "other": 0.07279265873015874
+    },
+    "insulin": {
+     "total": 55.63275287680124,
+     "bolus_meal": 18.78392857142857,
+     "bolus_other": 17.876785714285713,
+     "basal_and_temp": 18.972038591086953
+    }
+   }
+  },
+  {
+   "subject": "adult#023",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 142.41260075569153,
+   "days_ran": 28.0,
+   "tir": 83.25892857142857,
+   "tbr70": 6.039186507936508,
+   "tbr54": 2.8149801587301586,
+   "tbr70_bg": 5.716765873015873,
+   "lbgi": 1.6989300353738026,
+   "mean_cgm": 130.1538154409434,
+   "insulin_per_day": 36.951636904761905,
+   "rescue_g_per_day": 62.66585752392371,
+   "low_type": {
+    "cgm": {
+     "post_meal": 5.096726190476191,
+     "post_correction": 0.3968253968253968,
+     "nocturnal": 0.03720238095238095,
+     "other": 0.5084325396825397
+    },
+    "bg": {
+     "post_meal": 4.861111111111112,
+     "post_correction": 0.28521825396825395,
+     "nocturnal": 0.18601190476190474,
+     "other": 0.38442460317460314
+    },
+    "share_of_time": {
+     "post_meal": 0.6737351190476191,
+     "post_correction": 0.14260912698412698,
+     "nocturnal": 0.07390873015873016,
+     "other": 0.10974702380952381
+    },
+    "insulin": {
+     "total": 36.951636904761905,
+     "bolus_meal": 12.046428571428573,
+     "bolus_other": 5.067857142857144,
+     "basal_and_temp": 19.837351190476188
+    }
+   }
+  },
+  {
+   "subject": "adult#024",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 142.03866600990295,
+   "days_ran": 28.0,
+   "tir": 75.85565476190477,
+   "tbr70": 1.3764880952380951,
+   "tbr54": 0.5580357142857143,
+   "tbr70_bg": 1.2896825396825395,
+   "lbgi": 0.40977504424750666,
+   "mean_cgm": 155.10353584095066,
+   "insulin_per_day": 66.96215835337534,
+   "rescue_g_per_day": 17.964471128723982,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.4712301587301587,
+     "post_correction": 0.3968253968253968,
+     "nocturnal": 0.3100198412698413,
+     "other": 0.1984126984126984
+    },
+    "bg": {
+     "post_meal": 0.5208333333333333,
+     "post_correction": 0.3472222222222222,
+     "nocturnal": 0.3720238095238095,
+     "other": 0.0496031746031746
+    },
+    "share_of_time": {
+     "post_meal": 0.6303323412698413,
+     "post_correction": 0.26078869047619047,
+     "nocturnal": 0.034350198412698416,
+     "other": 0.07452876984126984
+    },
+    "insulin": {
+     "total": 66.96215835337534,
+     "bolus_meal": 19.094642857142862,
+     "bolus_other": 20.487500000000004,
+     "basal_and_temp": 27.38001549623248
+    }
+   }
+  },
+  {
+   "subject": "adult#025",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 145.2857220172882,
+   "days_ran": 28.0,
+   "tir": 79.61309523809523,
+   "tbr70": 0.818452380952381,
+   "tbr54": 0.3100198412698413,
+   "tbr70_bg": 0.5952380952380952,
+   "lbgi": 0.3192696478549392,
+   "mean_cgm": 151.17231396818934,
+   "insulin_per_day": 70.17240190463995,
+   "rescue_g_per_day": 10.199930374093771,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.6944444444444444,
+     "post_correction": 0.06200396825396825,
+     "nocturnal": 0.03720238095238095,
+     "other": 0.0248015873015873
+    },
+    "bg": {
+     "post_meal": 0.5704365079365079,
+     "post_correction": 0.0,
+     "nocturnal": 0.0248015873015873,
+     "other": 0.0
+    },
+    "share_of_time": {
+     "post_meal": 0.6951884920634921,
+     "post_correction": 0.20473710317460317,
+     "nocturnal": 0.03819444444444445,
+     "other": 0.06187996031746032
+    },
+    "insulin": {
+     "total": 70.17240190463995,
+     "bolus_meal": 18.55892857142857,
+     "bolus_other": 21.673214285714288,
+     "basal_and_temp": 29.940259047497097
+    }
+   }
+  },
+  {
+   "subject": "adult#027",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 148.8663170337677,
+   "days_ran": 28.0,
+   "tir": 73.66071428571429,
+   "tbr70": 3.7822420634920633,
+   "tbr54": 1.0416666666666665,
+   "tbr70_bg": 3.013392857142857,
+   "lbgi": 0.9128988928101925,
+   "mean_cgm": 149.24877480736274,
+   "insulin_per_day": 66.2209686100119,
+   "rescue_g_per_day": 35.14493991793062,
+   "low_type": {
+    "cgm": {
+     "post_meal": 2.7157738095238098,
+     "post_correction": 0.496031746031746,
+     "nocturnal": 0.5208333333333333,
+     "other": 0.0496031746031746
+    },
+    "bg": {
+     "post_meal": 2.1453373015873014,
+     "post_correction": 0.4588293650793651,
+     "nocturnal": 0.3720238095238095,
+     "other": 0.03720238095238095
+    },
+    "share_of_time": {
+     "post_meal": 0.7023809523809523,
+     "post_correction": 0.21726190476190477,
+     "nocturnal": 0.04451884920634921,
+     "other": 0.03583829365079365
+    },
+    "insulin": {
+     "total": 66.2209686100119,
+     "bolus_meal": 20.107142857142858,
+     "bolus_other": 19.167857142857144,
+     "basal_and_temp": 26.945968610011885
+    }
+   }
+  },
+  {
+   "subject": "adult#028",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 143.8684220314026,
+   "days_ran": 28.0,
+   "tir": 72.6810515873016,
+   "tbr70": 1.711309523809524,
+   "tbr54": 0.38442460317460314,
+   "tbr70_bg": 1.6245039682539684,
+   "lbgi": 0.49044056550965787,
+   "mean_cgm": 154.00566791637954,
+   "insulin_per_day": 63.12044009746195,
+   "rescue_g_per_day": 18.646596017876107,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.2976190476190476,
+     "post_correction": 0.3100198412698413,
+     "nocturnal": 0.38442460317460314,
+     "other": 0.7192460317460317
+    },
+    "bg": {
+     "post_meal": 0.11160714285714285,
+     "post_correction": 0.28521825396825395,
+     "nocturnal": 0.4340277777777778,
+     "other": 0.7936507936507936
+    },
+    "share_of_time": {
+     "post_meal": 0.6355406746031746,
+     "post_correction": 0.2316468253968254,
+     "nocturnal": 0.04538690476190476,
+     "other": 0.08742559523809523
+    },
+    "insulin": {
+     "total": 63.12044009746195,
+     "bolus_meal": 22.39821428571429,
+     "bolus_other": 19.173214285714288,
+     "basal_and_temp": 21.549011526033382
+    }
+   }
+  },
+  {
+   "subject": "adult#029",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 147.11060881614685,
+   "days_ran": 28.0,
+   "tir": 83.28373015873017,
+   "tbr70": 1.9097222222222223,
+   "tbr54": 0.38442460317460314,
+   "tbr70_bg": 1.4632936507936507,
+   "lbgi": 0.49078112938273977,
+   "mean_cgm": 141.8330568865084,
+   "insulin_per_day": 38.23763242191727,
+   "rescue_g_per_day": 20.777836405876286,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.599702380952381,
+     "post_correction": 0.06200396825396825,
+     "nocturnal": 0.06200396825396825,
+     "other": 0.18601190476190474
+    },
+    "bg": {
+     "post_meal": 1.3020833333333335,
+     "post_correction": 0.0992063492063492,
+     "nocturnal": 0.0,
+     "other": 0.06200396825396825
+    },
+    "share_of_time": {
+     "post_meal": 0.6963045634920635,
+     "post_correction": 0.17584325396825398,
+     "nocturnal": 0.04092261904761905,
+     "other": 0.08692956349206349
+    },
+    "insulin": {
+     "total": 38.23763242191727,
+     "bolus_meal": 10.369642857142859,
+     "bolus_other": 6.689285714285715,
+     "basal_and_temp": 21.178703850488695
+    }
+   }
+  },
+  {
+   "subject": "adult#030",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 143.51833581924438,
+   "days_ran": 28.0,
+   "tir": 78.17460317460318,
+   "tbr70": 4.600694444444445,
+   "tbr54": 2.0461309523809526,
+   "tbr70_bg": 4.923115079365079,
+   "lbgi": 1.2627521890343776,
+   "mean_cgm": 140.0044466871557,
+   "insulin_per_day": 58.31793117238709,
+   "rescue_g_per_day": 45.87588994109022,
+   "low_type": {
+    "cgm": {
+     "post_meal": 3.0629960317460316,
+     "post_correction": 0.5456349206349206,
+     "nocturnal": 0.4464285714285714,
+     "other": 0.5456349206349206
+    },
+    "bg": {
+     "post_meal": 3.2490079365079367,
+     "post_correction": 0.6820436507936508,
+     "nocturnal": 0.3224206349206349,
+     "other": 0.6696428571428571
+    },
+    "share_of_time": {
+     "post_meal": 0.6463293650793651,
+     "post_correction": 0.20300099206349206,
+     "nocturnal": 0.04985119047619048,
+     "other": 0.10081845238095238
+    },
+    "insulin": {
+     "total": 58.31793117238709,
+     "bolus_meal": 13.982142857142858,
+     "bolus_other": 11.3625,
+     "basal_and_temp": 32.97328831524423
+    }
+   }
+  },
+  {
+   "subject": "adult#031",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 140.39657282829285,
+   "days_ran": 28.0,
+   "tir": 73.51190476190477,
+   "tbr70": 2.0337301587301586,
+   "tbr54": 0.6200396825396826,
+   "tbr70_bg": 2.0089285714285716,
+   "lbgi": 0.5798531648593186,
+   "mean_cgm": 155.09600349938157,
+   "insulin_per_day": 42.28332938962189,
+   "rescue_g_per_day": 27.85321149866784,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.636904761904762,
+     "post_correction": 0.21081349206349206,
+     "nocturnal": 0.13640873015873015,
+     "other": 0.0496031746031746
+    },
+    "bg": {
+     "post_meal": 1.5004960317460319,
+     "post_correction": 0.248015873015873,
+     "nocturnal": 0.1984126984126984,
+     "other": 0.06200396825396825
+    },
+    "share_of_time": {
+     "post_meal": 0.6737351190476191,
+     "post_correction": 0.2021329365079365,
+     "nocturnal": 0.04774305555555555,
+     "other": 0.0763888888888889
+    },
+    "insulin": {
+     "total": 42.28332938962189,
+     "bolus_meal": 14.4375,
+     "bolus_other": 9.657142857142857,
+     "basal_and_temp": 18.188686532479032
+    }
+   }
+  },
+  {
+   "subject": "adult#032",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 137.09911012649536,
+   "days_ran": 28.0,
+   "tir": 82.93650793650794,
+   "tbr70": 2.9637896825396823,
+   "tbr54": 0.607638888888889,
+   "tbr70_bg": 2.492559523809524,
+   "lbgi": 0.7814348117192533,
+   "mean_cgm": 138.14189350894907,
+   "insulin_per_day": 56.753160500799304,
+   "rescue_g_per_day": 34.337424654124725,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.277281746031746,
+     "post_correction": 0.42162698412698413,
+     "nocturnal": 0.607638888888889,
+     "other": 0.6572420634920635
+    },
+    "bg": {
+     "post_meal": 1.0168650793650793,
+     "post_correction": 0.4588293650793651,
+     "nocturnal": 0.33482142857142855,
+     "other": 0.6820436507936508
+    },
+    "share_of_time": {
+     "post_meal": 0.6646825396825397,
+     "post_correction": 0.15848214285714285,
+     "nocturnal": 0.0804811507936508,
+     "other": 0.09635416666666667
+    },
+    "insulin": {
+     "total": 56.753160500799304,
+     "bolus_meal": 20.14464285714286,
+     "bolus_other": 14.376785714285717,
+     "basal_and_temp": 22.23173192937073
+    }
+   }
+  },
+  {
+   "subject": "adult#033",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 138.53284811973572,
+   "days_ran": 28.0,
+   "tir": 81.51041666666666,
+   "tbr70": 2.591765873015873,
+   "tbr54": 1.5004960317460319,
+   "tbr70_bg": 2.628968253968254,
+   "lbgi": 0.8078819405216179,
+   "mean_cgm": 148.4848714014964,
+   "insulin_per_day": 34.549074703202066,
+   "rescue_g_per_day": 31.20465778774308,
+   "low_type": {
+    "cgm": {
+     "post_meal": 2.418154761904762,
+     "post_correction": 0.06200396825396825,
+     "nocturnal": 0.0,
+     "other": 0.11160714285714285
+    },
+    "bg": {
+     "post_meal": 2.393353174603175,
+     "post_correction": 0.11160714285714285,
+     "nocturnal": 0.0,
+     "other": 0.1240079365079365
+    },
+    "share_of_time": {
+     "post_meal": 0.6638144841269841,
+     "post_correction": 0.20399305555555555,
+     "nocturnal": 0.054191468253968256,
+     "other": 0.07800099206349206
+    },
+    "insulin": {
+     "total": 34.549074703202066,
+     "bolus_meal": 5.917857142857143,
+     "bolus_other": 4.833928571428572,
+     "basal_and_temp": 23.797288988916357
+    }
+   }
+  },
+  {
+   "subject": "adult#034",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 144.9367642402649,
+   "days_ran": 28.0,
+   "tir": 56.21279761904761,
+   "tbr70": 6.79563492063492,
+   "tbr54": 3.4474206349206353,
+   "tbr70_bg": 6.845238095238096,
+   "lbgi": 1.774390460376386,
+   "mean_cgm": 164.56274107089382,
+   "insulin_per_day": 51.48512205238503,
+   "rescue_g_per_day": 76.3031224347316,
+   "low_type": {
+    "cgm": {
+     "post_meal": 5.679563492063492,
+     "post_correction": 0.1488095238095238,
+     "nocturnal": 0.3720238095238095,
+     "other": 0.5952380952380952
+    },
+    "bg": {
+     "post_meal": 5.753968253968254,
+     "post_correction": 0.1984126984126984,
+     "nocturnal": 0.2728174603174603,
+     "other": 0.6200396825396826
+    },
+    "share_of_time": {
+     "post_meal": 0.6746031746031746,
+     "post_correction": 0.24937996031746032,
+     "nocturnal": 0.023561507936507936,
+     "other": 0.052455357142857144
+    },
+    "insulin": {
+     "total": 51.48512205238503,
+     "bolus_meal": 15.43392857142857,
+     "bolus_other": 14.953571428571431,
+     "basal_and_temp": 21.09762205238503
+    }
+   }
+  },
+  {
+   "subject": "adult#035",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 146.4770781993866,
+   "days_ran": 28.0,
+   "tir": 77.3189484126984,
+   "tbr70": 0.8804563492063492,
+   "tbr54": 0.26041666666666663,
+   "tbr70_bg": 0.818452380952381,
+   "lbgi": 0.32757161748825436,
+   "mean_cgm": 155.18450777157125,
+   "insulin_per_day": 79.97935720589778,
+   "rescue_g_per_day": 9.728585505587903,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.818452380952381,
+     "post_correction": 0.06200396825396825,
+     "nocturnal": 0.0,
+     "other": 0.0
+    },
+    "bg": {
+     "post_meal": 0.6448412698412698,
+     "post_correction": 0.1736111111111111,
+     "nocturnal": 0.0,
+     "other": 0.0
+    },
+    "share_of_time": {
+     "post_meal": 0.6713789682539683,
+     "post_correction": 0.26785714285714285,
+     "nocturnal": 0.019593253968253968,
+     "other": 0.04117063492063492
+    },
+    "insulin": {
+     "total": 79.97935720589778,
+     "bolus_meal": 24.530357142857145,
+     "bolus_other": 21.2625,
+     "basal_and_temp": 34.18650006304063
+    }
+   }
+  },
+  {
+   "subject": "adult#036",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 144.75309991836548,
+   "days_ran": 28.0,
+   "tir": 68.93601190476191,
+   "tbr70": 1.6121031746031749,
+   "tbr54": 0.23561507936507936,
+   "tbr70_bg": 1.1036706349206349,
+   "lbgi": 0.3975440455128924,
+   "mean_cgm": 162.82747608995945,
+   "insulin_per_day": 109.90948512672662,
+   "rescue_g_per_day": 17.748829145142192,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.8060515873015874,
+     "post_correction": 0.3100198412698413,
+     "nocturnal": 0.06200396825396825,
+     "other": 0.4340277777777778
+    },
+    "bg": {
+     "post_meal": 0.6944444444444444,
+     "post_correction": 0.13640873015873015,
+     "nocturnal": 0.0,
+     "other": 0.2728174603174603
+    },
+    "share_of_time": {
+     "post_meal": 0.6631944444444444,
+     "post_correction": 0.2248263888888889,
+     "nocturnal": 0.03794642857142857,
+     "other": 0.0740327380952381
+    },
+    "insulin": {
+     "total": 109.90948512672662,
+     "bolus_meal": 42.56428571428571,
+     "bolus_other": 20.25,
+     "basal_and_temp": 47.09519941244091
+    }
+   }
+  },
+  {
+   "subject": "adult#037",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 142.79062414169312,
+   "days_ran": 28.0,
+   "tir": 75.38442460317461,
+   "tbr70": 3.7450396825396823,
+   "tbr54": 1.128472222222222,
+   "tbr70_bg": 2.914186507936508,
+   "lbgi": 0.9009147333550168,
+   "mean_cgm": 145.94681418198067,
+   "insulin_per_day": 67.1063696321144,
+   "rescue_g_per_day": 35.21636963006224,
+   "low_type": {
+    "cgm": {
+     "post_meal": 3.050595238095238,
+     "post_correction": 0.21081349206349206,
+     "nocturnal": 0.0992063492063492,
+     "other": 0.38442460317460314
+    },
+    "bg": {
+     "post_meal": 2.6165674603174605,
+     "post_correction": 0.0,
+     "nocturnal": 0.08680555555555555,
+     "other": 0.21081349206349206
+    },
+    "share_of_time": {
+     "post_meal": 0.6669146825396826,
+     "post_correction": 0.21044146825396826,
+     "nocturnal": 0.05146329365079365,
+     "other": 0.07118055555555555
+    },
+    "insulin": {
+     "total": 67.1063696321144,
+     "bolus_meal": 11.776785714285714,
+     "bolus_other": 15.210714285714287,
+     "basal_and_temp": 40.1188696321144
+    }
+   }
+  },
+  {
+   "subject": "adult#038",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 144.43579959869385,
+   "days_ran": 28.0,
+   "tir": 69.19642857142857,
+   "tbr70": 1.4260912698412698,
+   "tbr54": 0.4712301587301587,
+   "tbr70_bg": 1.0788690476190477,
+   "lbgi": 0.38321065906323976,
+   "mean_cgm": 165.24860016940028,
+   "insulin_per_day": 63.80586006333192,
+   "rescue_g_per_day": 18.21936551302866,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.818452380952381,
+     "post_correction": 0.3224206349206349,
+     "nocturnal": 0.13640873015873015,
+     "other": 0.1488095238095238
+    },
+    "bg": {
+     "post_meal": 0.6200396825396826,
+     "post_correction": 0.2232142857142857,
+     "nocturnal": 0.0744047619047619,
+     "other": 0.16121031746031744
+    },
+    "share_of_time": {
+     "post_meal": 0.6432291666666666,
+     "post_correction": 0.25930059523809523,
+     "nocturnal": 0.037078373015873016,
+     "other": 0.06039186507936508
+    },
+    "insulin": {
+     "total": 63.80586006333192,
+     "bolus_meal": 17.475,
+     "bolus_other": 24.162499999999998,
+     "basal_and_temp": 22.168360063331914
+    }
+   }
+  },
+  {
+   "subject": "adult#039",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 150.00126385688782,
+   "days_ran": 28.0,
+   "tir": 84.05257936507937,
+   "tbr70": 6.051587301587301,
+   "tbr54": 2.6165674603174605,
+   "tbr70_bg": 6.163194444444445,
+   "lbgi": 1.6766730563295815,
+   "mean_cgm": 128.1726051241831,
+   "insulin_per_day": 35.129017857142856,
+   "rescue_g_per_day": 72.19013703653611,
+   "low_type": {
+    "cgm": {
+     "post_meal": 4.079861111111112,
+     "post_correction": 0.992063492063492,
+     "nocturnal": 0.2976190476190476,
+     "other": 0.6820436507936508
+    },
+    "bg": {
+     "post_meal": 4.265873015873016,
+     "post_correction": 0.8804563492063492,
+     "nocturnal": 0.248015873015873,
+     "other": 0.7688492063492063
+    },
+    "share_of_time": {
+     "post_meal": 0.642609126984127,
+     "post_correction": 0.1654265873015873,
+     "nocturnal": 0.07093253968253968,
+     "other": 0.12103174603174603
+    },
+    "insulin": {
+     "total": 35.129017857142856,
+     "bolus_meal": 11.423214285714286,
+     "bolus_other": 7.757142857142858,
+     "basal_and_temp": 15.94866071428571
+    }
+   }
+  },
+  {
+   "subject": "adult#040",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 148.57800817489624,
+   "days_ran": 28.0,
+   "tir": 85.19345238095238,
+   "tbr70": 3.100198412698413,
+   "tbr54": 0.4588293650793651,
+   "tbr70_bg": 2.34375,
+   "lbgi": 0.7949917870598834,
+   "mean_cgm": 136.4234056682097,
+   "insulin_per_day": 48.98587198932336,
+   "rescue_g_per_day": 34.68551565391691,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.9345238095238095,
+     "post_correction": 0.35962301587301587,
+     "nocturnal": 0.1736111111111111,
+     "other": 0.6324404761904762
+    },
+    "bg": {
+     "post_meal": 1.599702380952381,
+     "post_correction": 0.3224206349206349,
+     "nocturnal": 0.0,
+     "other": 0.42162698412698413
+    },
+    "share_of_time": {
+     "post_meal": 0.6853918650793651,
+     "post_correction": 0.15550595238095238,
+     "nocturnal": 0.058779761904761904,
+     "other": 0.10032242063492064
+    },
+    "insulin": {
+     "total": 48.98587198932336,
+     "bolus_meal": 15.894642857142857,
+     "bolus_other": 14.158928571428573,
+     "basal_and_temp": 18.93230056075193
+    }
+   }
+  },
+  {
+   "subject": "adult#041",
+   "driver": "trend",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 150.3119683265686,
+   "days_ran": 28.0,
+   "tir": 81.07638888888889,
+   "tbr70": 2.418154761904762,
+   "tbr54": 0.496031746031746,
+   "tbr70_bg": 2.1453373015873014,
+   "lbgi": 0.5787749332853723,
+   "mean_cgm": 144.97904262029496,
+   "insulin_per_day": 31.107522684135404,
+   "rescue_g_per_day": 26.015165431022535,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.773313492063492,
+     "post_correction": 0.21081349206349206,
+     "nocturnal": 0.1984126984126984,
+     "other": 0.23561507936507936
+    },
+    "bg": {
+     "post_meal": 1.5004960317460319,
+     "post_correction": 0.0992063492063492,
+     "nocturnal": 0.1984126984126984,
+     "other": 0.3472222222222222
+    },
+    "share_of_time": {
+     "post_meal": 0.6614583333333334,
+     "post_correction": 0.1888640873015873,
+     "nocturnal": 0.05654761904761905,
+     "other": 0.09312996031746032
+    },
+    "insulin": {
+     "total": 31.107522684135404,
+     "bolus_meal": 7.305357142857143,
+     "bolus_other": 6.733928571428572,
+     "basal_and_temp": 17.06823696984969
+    }
+   }
+  },
+  {
+   "subject": "adult#001",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 147.84169483184814,
+   "days_ran": 28.0,
+   "tir": 82.66369047619048,
+   "tbr70": 4.340277777777778,
+   "tbr54": 1.847718253968254,
+   "tbr70_bg": 3.5838293650793647,
+   "lbgi": 1.1376367381239716,
+   "mean_cgm": 139.36182955547997,
+   "insulin_per_day": 59.053025078018905,
+   "rescue_g_per_day": 35.62446254824015,
+   "low_type": {
+    "cgm": {
+     "post_meal": 2.9885912698412698,
+     "post_correction": 0.3968253968253968,
+     "nocturnal": 0.4836309523809524,
+     "other": 0.4712301587301587
+    },
+    "bg": {
+     "post_meal": 2.889384920634921,
+     "post_correction": 0.28521825396825395,
+     "nocturnal": 0.21081349206349206,
+     "other": 0.1984126984126984
+    },
+    "share_of_time": {
+     "post_meal": 0.6457093253968254,
+     "post_correction": 0.16393849206349206,
+     "nocturnal": 0.07118055555555555,
+     "other": 0.11917162698412699
+    },
+    "insulin": {
+     "total": 59.053025078018905,
+     "bolus_meal": 14.75357142857143,
+     "bolus_other": 10.305357142857144,
+     "basal_and_temp": 33.99409650659034
+    }
+   }
+  },
+  {
+   "subject": "adult#002",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 150.2262020111084,
+   "days_ran": 28.0,
+   "tir": 81.57242063492063,
+   "tbr70": 4.985119047619048,
+   "tbr54": 1.3888888888888888,
+   "tbr70_bg": 5.964781746031746,
+   "lbgi": 1.3512981020299681,
+   "mean_cgm": 134.45809518833943,
+   "insulin_per_day": 58.810320272357316,
+   "rescue_g_per_day": 43.11577648378984,
+   "low_type": {
+    "cgm": {
+     "post_meal": 3.1374007936507935,
+     "post_correction": 0.0744047619047619,
+     "nocturnal": 0.8432539682539683,
+     "other": 0.9300595238095238
+    },
+    "bg": {
+     "post_meal": 3.9930555555555554,
+     "post_correction": 0.2232142857142857,
+     "nocturnal": 0.9548611111111112,
+     "other": 0.7936507936507936
+    },
+    "share_of_time": {
+     "post_meal": 0.7022569444444444,
+     "post_correction": 0.11148313492063493,
+     "nocturnal": 0.08494543650793651,
+     "other": 0.10131448412698413
+    },
+    "insulin": {
+     "total": 58.810320272357316,
+     "bolus_meal": 16.45714285714286,
+     "bolus_other": 7.558928571428573,
+     "basal_and_temp": 34.79424884378589
+    }
+   }
+  },
+  {
+   "subject": "adult#003",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 153.98970794677734,
+   "days_ran": 28.0,
+   "tir": 72.38343253968253,
+   "tbr70": 2.6909722222222223,
+   "tbr54": 0.496031746031746,
+   "tbr70_bg": 2.666170634920635,
+   "lbgi": 0.6630426843937521,
+   "mean_cgm": 154.49111325052647,
+   "insulin_per_day": 81.58601104335638,
+   "rescue_g_per_day": 27.506009754660713,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.7857142857142856,
+     "post_correction": 0.6324404761904762,
+     "nocturnal": 0.0496031746031746,
+     "other": 0.2232142857142857
+    },
+    "bg": {
+     "post_meal": 1.7237103174603177,
+     "post_correction": 0.496031746031746,
+     "nocturnal": 0.08680555555555555,
+     "other": 0.35962301587301587
+    },
+    "share_of_time": {
+     "post_meal": 0.6587301587301587,
+     "post_correction": 0.19605654761904762,
+     "nocturnal": 0.05109126984126984,
+     "other": 0.09412202380952381
+    },
+    "insulin": {
+     "total": 81.58601104335638,
+     "bolus_meal": 16.9,
+     "bolus_other": 13.173214285714286,
+     "basal_and_temp": 51.512796757642086
+    }
+   }
+  },
+  {
+   "subject": "adult#004",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 148.69458198547363,
+   "days_ran": 28.0,
+   "tir": 74.20634920634922,
+   "tbr70": 2.8149801587301586,
+   "tbr54": 1.066468253968254,
+   "tbr70_bg": 2.889384920634921,
+   "lbgi": 0.7819511267664391,
+   "mean_cgm": 150.50220805035647,
+   "insulin_per_day": 61.150507526187845,
+   "rescue_g_per_day": 29.15679087086668,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.2648809523809523,
+     "post_correction": 0.9052579365079366,
+     "nocturnal": 0.42162698412698413,
+     "other": 0.2232142857142857
+    },
+    "bg": {
+     "post_meal": 1.4632936507936507,
+     "post_correction": 1.0168650793650793,
+     "nocturnal": 0.26041666666666663,
+     "other": 0.1488095238095238
+    },
+    "share_of_time": {
+     "post_meal": 0.6573660714285714,
+     "post_correction": 0.1623263888888889,
+     "nocturnal": 0.06671626984126984,
+     "other": 0.11359126984126984
+    },
+    "insulin": {
+     "total": 61.150507526187845,
+     "bolus_meal": 14.569642857142858,
+     "bolus_other": 12.125,
+     "basal_and_temp": 34.45586466904499
+    }
+   }
+  },
+  {
+   "subject": "adult#005",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 147.98452877998352,
+   "days_ran": 28.0,
+   "tir": 78.47222222222221,
+   "tbr70": 2.2445436507936507,
+   "tbr54": 0.6696428571428571,
+   "tbr70_bg": 2.021329365079365,
+   "lbgi": 0.61879814341605,
+   "mean_cgm": 144.49521040049223,
+   "insulin_per_day": 63.87049968534601,
+   "rescue_g_per_day": 24.394595897134284,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.3640873015873016,
+     "post_correction": 0.1984126984126984,
+     "nocturnal": 0.18601190476190474,
+     "other": 0.496031746031746
+    },
+    "bg": {
+     "post_meal": 1.2028769841269842,
+     "post_correction": 0.1488095238095238,
+     "nocturnal": 0.21081349206349206,
+     "other": 0.4588293650793651
+    },
+    "share_of_time": {
+     "post_meal": 0.6653025793650794,
+     "post_correction": 0.14124503968253968,
+     "nocturnal": 0.06870039682539683,
+     "other": 0.12475198412698413
+    },
+    "insulin": {
+     "total": 63.87049968534601,
+     "bolus_meal": 17.84642857142857,
+     "bolus_other": 11.96607142857143,
+     "basal_and_temp": 34.05799968534601
+    }
+   }
+  },
+  {
+   "subject": "adult#006",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 148.67604207992554,
+   "days_ran": 28.0,
+   "tir": 67.02628968253968,
+   "tbr70": 8.370535714285714,
+   "tbr54": 4.427083333333334,
+   "tbr70_bg": 8.370535714285714,
+   "lbgi": 2.1565235907812053,
+   "mean_cgm": 148.00436280093325,
+   "insulin_per_day": 83.14703105422629,
+   "rescue_g_per_day": 71.86039078130058,
+   "low_type": {
+    "cgm": {
+     "post_meal": 5.034722222222222,
+     "post_correction": 0.4588293650793651,
+     "nocturnal": 1.4756944444444444,
+     "other": 1.4012896825396826
+    },
+    "bg": {
+     "post_meal": 5.357142857142857,
+     "post_correction": 0.4464285714285714,
+     "nocturnal": 1.1904761904761905,
+     "other": 1.3764880952380951
+    },
+    "share_of_time": {
+     "post_meal": 0.7216021825396826,
+     "post_correction": 0.14794146825396826,
+     "nocturnal": 0.04712301587301587,
+     "other": 0.08333333333333333
+    },
+    "insulin": {
+     "total": 83.14703105422629,
+     "bolus_meal": 18.076785714285716,
+     "bolus_other": 12.205357142857142,
+     "basal_and_temp": 52.864888197083424
+    }
+   }
+  },
+  {
+   "subject": "adult#007",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 146.21288084983826,
+   "days_ran": 28.0,
+   "tir": 84.43700396825396,
+   "tbr70": 2.5049603174603177,
+   "tbr54": 0.533234126984127,
+   "tbr70_bg": 1.9717261904761905,
+   "lbgi": 0.5571385711454839,
+   "mean_cgm": 143.6498232016966,
+   "insulin_per_day": 42.62129028449728,
+   "rescue_g_per_day": 23.630229108844837,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.7609126984126984,
+     "post_correction": 0.23561507936507936,
+     "nocturnal": 0.0496031746031746,
+     "other": 0.4588293650793651
+    },
+    "bg": {
+     "post_meal": 1.3268849206349207,
+     "post_correction": 0.28521825396825395,
+     "nocturnal": 0.0,
+     "other": 0.35962301587301587
+    },
+    "share_of_time": {
+     "post_meal": 0.6405009920634921,
+     "post_correction": 0.19419642857142858,
+     "nocturnal": 0.07304067460317461,
+     "other": 0.09226190476190477
+    },
+    "insulin": {
+     "total": 42.62129028449728,
+     "bolus_meal": 10.280357142857143,
+     "bolus_other": 8.226785714285715,
+     "basal_and_temp": 24.11414742735442
+    }
+   }
+  },
+  {
+   "subject": "adult#008",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 146.60719895362854,
+   "days_ran": 28.0,
+   "tir": 73.36309523809523,
+   "tbr70": 5.791170634920635,
+   "tbr54": 2.256944444444444,
+   "tbr70_bg": 5.071924603174603,
+   "lbgi": 1.434453445897903,
+   "mean_cgm": 144.9621809913895,
+   "insulin_per_day": 54.62323382608336,
+   "rescue_g_per_day": 56.254796932378326,
+   "low_type": {
+    "cgm": {
+     "post_meal": 2.368551587301587,
+     "post_correction": 0.3720238095238095,
+     "nocturnal": 1.277281746031746,
+     "other": 1.773313492063492
+    },
+    "bg": {
+     "post_meal": 2.170138888888889,
+     "post_correction": 0.248015873015873,
+     "nocturnal": 1.1656746031746033,
+     "other": 1.488095238095238
+    },
+    "share_of_time": {
+     "post_meal": 0.6555059523809523,
+     "post_correction": 0.13603670634920634,
+     "nocturnal": 0.07130456349206349,
+     "other": 0.1371527777777778
+    },
+    "insulin": {
+     "total": 54.62323382608336,
+     "bolus_meal": 14.185714285714287,
+     "bolus_other": 9.814285714285715,
+     "basal_and_temp": 30.623233826083354
+    }
+   }
+  },
+  {
+   "subject": "adult#009",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 150.6623978614807,
+   "days_ran": 28.0,
+   "tir": 85.7390873015873,
+   "tbr70": 5.022321428571429,
+   "tbr54": 1.488095238095238,
+   "tbr70_bg": 4.1790674603174605,
+   "lbgi": 1.308417064614276,
+   "mean_cgm": 129.09430576504352,
+   "insulin_per_day": 46.81748576165011,
+   "rescue_g_per_day": 52.80795413035222,
+   "low_type": {
+    "cgm": {
+     "post_meal": 3.2118055555555554,
+     "post_correction": 0.7316468253968254,
+     "nocturnal": 0.3968253968253968,
+     "other": 0.6820436507936508
+    },
+    "bg": {
+     "post_meal": 2.8521825396825395,
+     "post_correction": 0.42162698412698413,
+     "nocturnal": 0.3100198412698413,
+     "other": 0.5952380952380952
+    },
+    "share_of_time": {
+     "post_meal": 0.6775793650793651,
+     "post_correction": 0.15476190476190477,
+     "nocturnal": 0.06708829365079365,
+     "other": 0.10057043650793651
+    },
+    "insulin": {
+     "total": 46.81748576165011,
+     "bolus_meal": 10.244642857142859,
+     "bolus_other": 6.673214285714286,
+     "basal_and_temp": 29.899628618792967
+    }
+   }
+  },
+  {
+   "subject": "adult#010",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 146.59975504875183,
+   "days_ran": 28.0,
+   "tir": 91.41865079365078,
+   "tbr70": 3.1746031746031744,
+   "tbr54": 0.9672619047619048,
+   "tbr70_bg": 2.3561507936507935,
+   "lbgi": 0.887340169271994,
+   "mean_cgm": 132.06145112358297,
+   "insulin_per_day": 43.295061794134575,
+   "rescue_g_per_day": 27.814147371764783,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.9717261904761905,
+     "post_correction": 0.1240079365079365,
+     "nocturnal": 0.2976190476190476,
+     "other": 0.78125
+    },
+    "bg": {
+     "post_meal": 1.2276785714285714,
+     "post_correction": 0.13640873015873015,
+     "nocturnal": 0.26041666666666663,
+     "other": 0.7316468253968254
+    },
+    "share_of_time": {
+     "post_meal": 0.6682787698412699,
+     "post_correction": 0.13157242063492064,
+     "nocturnal": 0.07415674603174603,
+     "other": 0.1259920634920635
+    },
+    "insulin": {
+     "total": 43.295061794134575,
+     "bolus_meal": 10.364285714285716,
+     "bolus_other": 7.885714285714287,
+     "basal_and_temp": 25.045061794134572
+    }
+   }
+  },
+  {
+   "subject": "adult#011",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 158.2647271156311,
+   "days_ran": 28.0,
+   "tir": 70.25049603174604,
+   "tbr70": 8.333333333333332,
+   "tbr54": 3.7946428571428568,
+   "tbr70_bg": 8.444940476190476,
+   "lbgi": 2.1793672651298572,
+   "mean_cgm": 142.80461889394948,
+   "insulin_per_day": 48.36463691841535,
+   "rescue_g_per_day": 80.98511174911816,
+   "low_type": {
+    "cgm": {
+     "post_meal": 5.022321428571429,
+     "post_correction": 0.6200396825396826,
+     "nocturnal": 1.1780753968253967,
+     "other": 1.5128968253968254
+    },
+    "bg": {
+     "post_meal": 5.071924603174603,
+     "post_correction": 0.9300595238095238,
+     "nocturnal": 1.1408730158730158,
+     "other": 1.3020833333333335
+    },
+    "share_of_time": {
+     "post_meal": 0.6970486111111112,
+     "post_correction": 0.16691468253968253,
+     "nocturnal": 0.045510912698412696,
+     "other": 0.09052579365079365
+    },
+    "insulin": {
+     "total": 48.36463691841535,
+     "bolus_meal": 11.766071428571427,
+     "bolus_other": 7.957142857142857,
+     "basal_and_temp": 28.64142263270107
+    }
+   }
+  },
+  {
+   "subject": "adult#012",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 148.18970584869385,
+   "days_ran": 28.0,
+   "tir": 83.91617063492063,
+   "tbr70": 4.637896825396826,
+   "tbr54": 2.021329365079365,
+   "tbr70_bg": 4.737103174603174,
+   "lbgi": 1.22147477713237,
+   "mean_cgm": 139.0602620573571,
+   "insulin_per_day": 58.592676437730425,
+   "rescue_g_per_day": 41.68968715056655,
+   "low_type": {
+    "cgm": {
+     "post_meal": 2.7777777777777777,
+     "post_correction": 0.744047619047619,
+     "nocturnal": 0.4588293650793651,
+     "other": 0.6572420634920635
+    },
+    "bg": {
+     "post_meal": 3.100198412698413,
+     "post_correction": 0.7688492063492063,
+     "nocturnal": 0.38442460317460314,
+     "other": 0.4836309523809524
+    },
+    "share_of_time": {
+     "post_meal": 0.6560019841269841,
+     "post_correction": 0.19543650793650794,
+     "nocturnal": 0.04935515873015873,
+     "other": 0.0992063492063492
+    },
+    "insulin": {
+     "total": 58.592676437730425,
+     "bolus_meal": 10.810714285714287,
+     "bolus_other": 9.457142857142859,
+     "basal_and_temp": 38.324819294873286
+    }
+   }
+  },
+  {
+   "subject": "adult#013",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 147.73467206954956,
+   "days_ran": 28.0,
+   "tir": 84.05257936507937,
+   "tbr70": 2.380952380952381,
+   "tbr54": 0.7688492063492063,
+   "tbr70_bg": 1.984126984126984,
+   "lbgi": 0.6810314616831935,
+   "mean_cgm": 141.6112331369432,
+   "insulin_per_day": 78.81899799773463,
+   "rescue_g_per_day": 29.640845854816956,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.4260912698412698,
+     "post_correction": 0.0,
+     "nocturnal": 0.3100198412698413,
+     "other": 0.6448412698412698
+    },
+    "bg": {
+     "post_meal": 1.0044642857142858,
+     "post_correction": 0.1240079365079365,
+     "nocturnal": 0.2976190476190476,
+     "other": 0.5580357142857143
+    },
+    "share_of_time": {
+     "post_meal": 0.691468253968254,
+     "post_correction": 0.11396329365079365,
+     "nocturnal": 0.05915178571428571,
+     "other": 0.13541666666666666
+    },
+    "insulin": {
+     "total": 78.81899799773463,
+     "bolus_meal": 20.810714285714287,
+     "bolus_other": 11.021428571428572,
+     "basal_and_temp": 46.98685514059177
+    }
+   }
+  },
+  {
+   "subject": "adult#014",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 125.07373523712158,
+   "days_ran": 28.0,
+   "tir": 67.19990079365078,
+   "tbr70": 12.165178571428571,
+   "tbr54": 6.187996031746032,
+   "tbr70_bg": 12.028769841269842,
+   "lbgi": 3.08005617777317,
+   "mean_cgm": 138.55823908827918,
+   "insulin_per_day": 48.980825379926145,
+   "rescue_g_per_day": 110.2512836728441,
+   "low_type": {
+    "cgm": {
+     "post_meal": 8.407738095238097,
+     "post_correction": 1.3640873015873016,
+     "nocturnal": 1.1408730158730158,
+     "other": 1.2524801587301588
+    },
+    "bg": {
+     "post_meal": 8.122519841269842,
+     "post_correction": 1.2028769841269842,
+     "nocturnal": 1.351686507936508,
+     "other": 1.351686507936508
+    },
+    "share_of_time": {
+     "post_meal": 0.6883680555555556,
+     "post_correction": 0.18700396825396826,
+     "nocturnal": 0.046750992063492064,
+     "other": 0.07787698412698413
+    },
+    "insulin": {
+     "total": 48.980825379926145,
+     "bolus_meal": 9.5375,
+     "bolus_other": 5.680357142857143,
+     "basal_and_temp": 33.762968237068996
+    }
+   }
+  },
+  {
+   "subject": "adult#015",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 130.3019950389862,
+   "days_ran": 28.0,
+   "tir": 83.29613095238095,
+   "tbr70": 5.183531746031746,
+   "tbr54": 1.2896825396825395,
+   "tbr70_bg": 4.154265873015873,
+   "lbgi": 1.2942086670073496,
+   "mean_cgm": 131.95252726435038,
+   "insulin_per_day": 47.102332358089186,
+   "rescue_g_per_day": 57.49983762037362,
+   "low_type": {
+    "cgm": {
+     "post_meal": 3.844246031746032,
+     "post_correction": 0.5828373015873016,
+     "nocturnal": 0.2976190476190476,
+     "other": 0.4588293650793651
+    },
+    "bg": {
+     "post_meal": 3.3482142857142856,
+     "post_correction": 0.496031746031746,
+     "nocturnal": 0.0,
+     "other": 0.3100198412698413
+    },
+    "share_of_time": {
+     "post_meal": 0.7042410714285714,
+     "post_correction": 0.15749007936507936,
+     "nocturnal": 0.053695436507936505,
+     "other": 0.0845734126984127
+    },
+    "insulin": {
+     "total": 47.102332358089186,
+     "bolus_meal": 5.958928571428571,
+     "bolus_other": 4.680357142857143,
+     "basal_and_temp": 36.46304664380347
+    }
+   }
+  },
+  {
+   "subject": "adult#016",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 118.69586372375488,
+   "days_ran": 28.0,
+   "tir": 78.53422619047619,
+   "tbr70": 4.82390873015873,
+   "tbr54": 1.922123015873016,
+   "tbr70_bg": 4.427083333333334,
+   "lbgi": 1.260969583329585,
+   "mean_cgm": 142.79817099408538,
+   "insulin_per_day": 67.10932334326858,
+   "rescue_g_per_day": 47.933928607925786,
+   "low_type": {
+    "cgm": {
+     "post_meal": 3.335813492063492,
+     "post_correction": 0.42162698412698413,
+     "nocturnal": 0.5456349206349206,
+     "other": 0.5208333333333333
+    },
+    "bg": {
+     "post_meal": 3.1125992063492065,
+     "post_correction": 0.28521825396825395,
+     "nocturnal": 0.4588293650793651,
+     "other": 0.5704365079365079
+    },
+    "share_of_time": {
+     "post_meal": 0.662078373015873,
+     "post_correction": 0.17311507936507936,
+     "nocturnal": 0.05890376984126984,
+     "other": 0.10590277777777778
+    },
+    "insulin": {
+     "total": 67.10932334326858,
+     "bolus_meal": 13.044642857142858,
+     "bolus_other": 8.944642857142858,
+     "basal_and_temp": 45.12003762898287
+    }
+   }
+  },
+  {
+   "subject": "adult#017",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 119.82805609703064,
+   "days_ran": 28.0,
+   "tir": 80.15873015873017,
+   "tbr70": 6.001984126984127,
+   "tbr54": 2.095734126984127,
+   "tbr70_bg": 5.009920634920635,
+   "lbgi": 1.5192843893332224,
+   "mean_cgm": 134.9931791980404,
+   "insulin_per_day": 82.92172343094383,
+   "rescue_g_per_day": 67.1593432737367,
+   "low_type": {
+    "cgm": {
+     "post_meal": 4.352678571428571,
+     "post_correction": 0.5828373015873016,
+     "nocturnal": 0.5580357142857143,
+     "other": 0.5084325396825397
+    },
+    "bg": {
+     "post_meal": 3.484623015873016,
+     "post_correction": 0.4712301587301587,
+     "nocturnal": 0.4712301587301587,
+     "other": 0.5828373015873016
+    },
+    "share_of_time": {
+     "post_meal": 0.6661706349206349,
+     "post_correction": 0.16641865079365079,
+     "nocturnal": 0.062003968253968256,
+     "other": 0.10540674603174603
+    },
+    "insulin": {
+     "total": 82.92172343094383,
+     "bolus_meal": 19.3125,
+     "bolus_other": 11.5,
+     "basal_and_temp": 52.10922343094382
+    }
+   }
+  },
+  {
+   "subject": "adult#018",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 108.43781018257141,
+   "days_ran": 28.0,
+   "tir": 72.4578373015873,
+   "tbr70": 1.9469246031746033,
+   "tbr54": 0.3224206349206349,
+   "tbr70_bg": 1.4756944444444444,
+   "lbgi": 0.4953707138051708,
+   "mean_cgm": 155.39578085602676,
+   "insulin_per_day": 100.71808340613781,
+   "rescue_g_per_day": 28.96748468619696,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.1408730158730158,
+     "post_correction": 0.13640873015873015,
+     "nocturnal": 0.33482142857142855,
+     "other": 0.33482142857142855
+    },
+    "bg": {
+     "post_meal": 1.0788690476190477,
+     "post_correction": 0.03720238095238095,
+     "nocturnal": 0.01240079365079365,
+     "other": 0.3472222222222222
+    },
+    "share_of_time": {
+     "post_meal": 0.7030009920634921,
+     "post_correction": 0.1609623015873016,
+     "nocturnal": 0.04538690476190476,
+     "other": 0.09064980158730158
+    },
+    "insulin": {
+     "total": 100.71808340613781,
+     "bolus_meal": 24.83571428571429,
+     "bolus_other": 15.7375,
+     "basal_and_temp": 60.144869120423515
+    }
+   }
+  },
+  {
+   "subject": "adult#019",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 106.53241229057312,
+   "days_ran": 28.0,
+   "tir": 84.56101190476191,
+   "tbr70": 3.6210317460317465,
+   "tbr54": 0.8060515873015874,
+   "tbr70_bg": 2.8149801587301586,
+   "lbgi": 1.0283421852800563,
+   "mean_cgm": 133.18634892348072,
+   "insulin_per_day": 57.091758057026034,
+   "rescue_g_per_day": 40.47124528931736,
+   "low_type": {
+    "cgm": {
+     "post_meal": 2.232142857142857,
+     "post_correction": 0.2728174603174603,
+     "nocturnal": 0.5828373015873016,
+     "other": 0.533234126984127
+    },
+    "bg": {
+     "post_meal": 1.9717261904761905,
+     "post_correction": 0.18601190476190474,
+     "nocturnal": 0.21081349206349206,
+     "other": 0.4464285714285714
+    },
+    "share_of_time": {
+     "post_meal": 0.6773313492063492,
+     "post_correction": 0.1134672619047619,
+     "nocturnal": 0.09114583333333333,
+     "other": 0.11805555555555555
+    },
+    "insulin": {
+     "total": 57.091758057026034,
+     "bolus_meal": 17.348214285714285,
+     "bolus_other": 9.823214285714286,
+     "basal_and_temp": 29.920329485597467
+    }
+   }
+  },
+  {
+   "subject": "adult#020",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": false,
+   "seconds": 21.529580116271973,
+   "days_ran": 5.649305555555555,
+   "tir": 86.90842040565457,
+   "tbr70": 6.330669944683466,
+   "tbr54": 2.089735709895513,
+   "tbr70_bg": 5.961893054701905,
+   "lbgi": 1.539561447105375,
+   "mean_cgm": 129.01336267510382,
+   "insulin_per_day": 64.81327075154616,
+   "rescue_g_per_day": 37.8090544254917,
+   "low_type": {
+    "cgm": {
+     "post_meal": 4.30239704978488,
+     "post_correction": 0.43023970497848807,
+     "nocturnal": 0.9834050399508296,
+     "other": 0.6146281499692685
+    },
+    "bg": {
+     "post_meal": 3.7492317148125385,
+     "post_correction": 0.5531653349723417,
+     "nocturnal": 0.921942224953903,
+     "other": 0.7375537799631223
+    },
+    "share_of_time": {
+     "post_meal": 0.5900430239704979,
+     "post_correction": 0.12169637369391519,
+     "nocturnal": 0.11124769514443761,
+     "other": 0.17701290719114934
+    },
+    "insulin": {
+     "total": 64.81327075154616,
+     "bolus_meal": 19.285556238475724,
+     "bolus_other": 5.55820528580209,
+     "basal_and_temp": 39.96950922726835
+    }
+   }
+  },
+  {
+   "subject": "adult#021",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 106.7340030670166,
+   "days_ran": 28.0,
+   "tir": 75.27281746031747,
+   "tbr70": 6.48561507936508,
+   "tbr54": 2.5297619047619047,
+   "tbr70_bg": 5.642361111111112,
+   "lbgi": 1.6415527788799793,
+   "mean_cgm": 138.2631708740931,
+   "insulin_per_day": 54.86439237547485,
+   "rescue_g_per_day": 57.14505720516886,
+   "low_type": {
+    "cgm": {
+     "post_meal": 5.518353174603174,
+     "post_correction": 0.0744047619047619,
+     "nocturnal": 0.3224206349206349,
+     "other": 0.5704365079365079
+    },
+    "bg": {
+     "post_meal": 4.910714285714286,
+     "post_correction": 0.08680555555555555,
+     "nocturnal": 0.26041666666666663,
+     "other": 0.38442460317460314
+    },
+    "share_of_time": {
+     "post_meal": 0.7021329365079365,
+     "post_correction": 0.13169642857142858,
+     "nocturnal": 0.04538690476190476,
+     "other": 0.12078373015873016
+    },
+    "insulin": {
+     "total": 54.86439237547485,
+     "bolus_meal": 18.505357142857147,
+     "bolus_other": 7.694642857142857,
+     "basal_and_temp": 28.66439237547485
+    }
+   }
+  },
+  {
+   "subject": "adult#022",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 107.45507669448853,
+   "days_ran": 28.0,
+   "tir": 86.35912698412699,
+   "tbr70": 1.8849206349206349,
+   "tbr54": 0.4092261904761905,
+   "tbr70_bg": 1.1904761904761905,
+   "lbgi": 0.5794836401803918,
+   "mean_cgm": 139.17224568427847,
+   "insulin_per_day": 57.45935909533409,
+   "rescue_g_per_day": 24.099247635067826,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.1904761904761905,
+     "post_correction": 0.03720238095238095,
+     "nocturnal": 0.533234126984127,
+     "other": 0.1240079365079365
+    },
+    "bg": {
+     "post_meal": 0.6200396825396826,
+     "post_correction": 0.0744047619047619,
+     "nocturnal": 0.496031746031746,
+     "other": 0.0
+    },
+    "share_of_time": {
+     "post_meal": 0.6935763888888888,
+     "post_correction": 0.13343253968253968,
+     "nocturnal": 0.053323412698412696,
+     "other": 0.11966765873015874
+    },
+    "insulin": {
+     "total": 57.45935909533409,
+     "bolus_meal": 17.62857142857143,
+     "bolus_other": 12.564285714285715,
+     "basal_and_temp": 27.266501952476943
+    }
+   }
+  },
+  {
+   "subject": "adult#023",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": false,
+   "seconds": 33.397562980651855,
+   "days_ran": 8.659722222222221,
+   "tir": 76.50360866078589,
+   "tbr70": 15.557337610264636,
+   "tbr54": 6.295108259823577,
+   "tbr70_bg": 14.995990376904572,
+   "lbgi": 3.6709373640748098,
+   "mean_cgm": 118.56865965684837,
+   "insulin_per_day": 41.30761828388132,
+   "rescue_g_per_day": 157.7725061940659,
+   "low_type": {
+    "cgm": {
+     "post_meal": 7.417802726543705,
+     "post_correction": 2.445870088211708,
+     "nocturnal": 3.127506014434643,
+     "other": 2.566158781074579
+    },
+    "bg": {
+     "post_meal": 7.538091419406576,
+     "post_correction": 2.566158781074579,
+     "nocturnal": 2.7666399358460305,
+     "other": 2.125100240577386
+    },
+    "share_of_time": {
+     "post_meal": 0.6419406575781876,
+     "post_correction": 0.16960705693664796,
+     "nocturnal": 0.06976744186046512,
+     "other": 0.11868484362469928
+    },
+    "insulin": {
+     "total": 41.30761828388132,
+     "bolus_meal": 9.67121090617482,
+     "bolus_other": 6.738091419406578,
+     "basal_and_temp": 24.89831595829992
+    }
+   }
+  },
+  {
+   "subject": "adult#024",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 106.24672627449036,
+   "days_ran": 28.0,
+   "tir": 81.12599206349206,
+   "tbr70": 1.6617063492063493,
+   "tbr54": 0.3100198412698413,
+   "tbr70_bg": 1.2400793650793651,
+   "lbgi": 0.4621977008436021,
+   "mean_cgm": 146.69209534379013,
+   "insulin_per_day": 72.053854925213,
+   "rescue_g_per_day": 23.665544041337373,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.8308531746031746,
+     "post_correction": 0.1736111111111111,
+     "nocturnal": 0.4092261904761905,
+     "other": 0.248015873015873
+    },
+    "bg": {
+     "post_meal": 0.5828373015873016,
+     "post_correction": 0.0496031746031746,
+     "nocturnal": 0.3224206349206349,
+     "other": 0.28521825396825395
+    },
+    "share_of_time": {
+     "post_meal": 0.6303323412698413,
+     "post_correction": 0.18824404761904762,
+     "nocturnal": 0.07552083333333333,
+     "other": 0.10590277777777778
+    },
+    "insulin": {
+     "total": 72.053854925213,
+     "bolus_meal": 18.246428571428574,
+     "bolus_other": 12.52142857142857,
+     "basal_and_temp": 41.28599778235586
+    }
+   }
+  },
+  {
+   "subject": "adult#025",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 107.5163938999176,
+   "days_ran": 28.0,
+   "tir": 82.82490079365078,
+   "tbr70": 1.6493055555555556,
+   "tbr54": 0.5456349206349206,
+   "tbr70_bg": 1.1036706349206349,
+   "lbgi": 0.4720581953170779,
+   "mean_cgm": 142.42167047027743,
+   "insulin_per_day": 74.74435306810747,
+   "rescue_g_per_day": 19.64932319208471,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.2524801587301588,
+     "post_correction": 0.11160714285714285,
+     "nocturnal": 0.0496031746031746,
+     "other": 0.23561507936507936
+    },
+    "bg": {
+     "post_meal": 1.0416666666666665,
+     "post_correction": 0.06200396825396825,
+     "nocturnal": 0.0,
+     "other": 0.0
+    },
+    "share_of_time": {
+     "post_meal": 0.6951884920634921,
+     "post_correction": 0.14893353174603174,
+     "nocturnal": 0.056919642857142856,
+     "other": 0.09895833333333333
+    },
+    "insulin": {
+     "total": 74.74435306810747,
+     "bolus_meal": 16.40714285714286,
+     "bolus_other": 14.546428571428573,
+     "basal_and_temp": 43.79078163953604
+    }
+   }
+  },
+  {
+   "subject": "adult#027",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 108.1187801361084,
+   "days_ran": 28.0,
+   "tir": 79.92311507936508,
+   "tbr70": 5.4315476190476195,
+   "tbr54": 1.7857142857142856,
+   "tbr70_bg": 5.580357142857143,
+   "lbgi": 1.3341493190593143,
+   "mean_cgm": 139.1361091771941,
+   "insulin_per_day": 71.71689612867407,
+   "rescue_g_per_day": 60.635101912374395,
+   "low_type": {
+    "cgm": {
+     "post_meal": 4.216269841269842,
+     "post_correction": 0.23561507936507936,
+     "nocturnal": 0.6200396825396826,
+     "other": 0.35962301587301587
+    },
+    "bg": {
+     "post_meal": 4.451884920634921,
+     "post_correction": 0.4836309523809524,
+     "nocturnal": 0.3720238095238095,
+     "other": 0.2728174603174603
+    },
+    "share_of_time": {
+     "post_meal": 0.7023809523809523,
+     "post_correction": 0.1667906746031746,
+     "nocturnal": 0.0625,
+     "other": 0.06832837301587301
+    },
+    "insulin": {
+     "total": 71.71689612867407,
+     "bolus_meal": 18.689285714285717,
+     "bolus_other": 12.891071428571431,
+     "basal_and_temp": 40.13653898581693
+    }
+   }
+  },
+  {
+   "subject": "adult#028",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 106.39014792442322,
+   "days_ran": 28.0,
+   "tir": 75.53323412698413,
+   "tbr70": 1.6865079365079365,
+   "tbr54": 0.08680555555555555,
+   "tbr70_bg": 1.4632936507936507,
+   "lbgi": 0.43660544804274065,
+   "mean_cgm": 149.80845448716994,
+   "insulin_per_day": 67.00127119705986,
+   "rescue_g_per_day": 23.25435476065808,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.8928571428571428,
+     "post_correction": 0.06200396825396825,
+     "nocturnal": 0.0744047619047619,
+     "other": 0.6572420634920635
+    },
+    "bg": {
+     "post_meal": 0.9424603174603174,
+     "post_correction": 0.0,
+     "nocturnal": 0.0,
+     "other": 0.5208333333333333
+    },
+    "share_of_time": {
+     "post_meal": 0.6355406746031746,
+     "post_correction": 0.16145833333333334,
+     "nocturnal": 0.08060515873015874,
+     "other": 0.12239583333333333
+    },
+    "insulin": {
+     "total": 67.00127119705986,
+     "bolus_meal": 17.351785714285715,
+     "bolus_other": 14.560714285714285,
+     "basal_and_temp": 35.08877119705986
+    }
+   }
+  },
+  {
+   "subject": "adult#029",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 111.30192303657532,
+   "days_ran": 28.0,
+   "tir": 84.04017857142857,
+   "tbr70": 5.307539682539683,
+   "tbr54": 1.8725198412698412,
+   "tbr70_bg": 4.923115079365079,
+   "lbgi": 1.3371704584411326,
+   "mean_cgm": 132.46616095199573,
+   "insulin_per_day": 42.54894552249658,
+   "rescue_g_per_day": 55.89287450052016,
+   "low_type": {
+    "cgm": {
+     "post_meal": 3.422619047619048,
+     "post_correction": 0.5952380952380952,
+     "nocturnal": 0.4464285714285714,
+     "other": 0.8432539682539683
+    },
+    "bg": {
+     "post_meal": 3.075396825396825,
+     "post_correction": 0.6820436507936508,
+     "nocturnal": 0.4464285714285714,
+     "other": 0.7192460317460317
+    },
+    "share_of_time": {
+     "post_meal": 0.6963045634920635,
+     "post_correction": 0.1267361111111111,
+     "nocturnal": 0.05716765873015873,
+     "other": 0.11979166666666667
+    },
+    "insulin": {
+     "total": 42.54894552249658,
+     "bolus_meal": 9.044642857142858,
+     "bolus_other": 4.896428571428571,
+     "basal_and_temp": 28.60787409392515
+    }
+   }
+  },
+  {
+   "subject": "adult#030",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 109.63713097572327,
+   "days_ran": 28.0,
+   "tir": 76.98412698412699,
+   "tbr70": 11.644345238095239,
+   "tbr54": 6.25,
+   "tbr70_bg": 12.152777777777777,
+   "lbgi": 3.0994768473784844,
+   "mean_cgm": 127.47694804744032,
+   "insulin_per_day": 64.52892806631283,
+   "rescue_g_per_day": 95.14360862217612,
+   "low_type": {
+    "cgm": {
+     "post_meal": 7.167658730158729,
+     "post_correction": 1.5128968253968254,
+     "nocturnal": 1.0912698412698412,
+     "other": 1.8725198412698412
+    },
+    "bg": {
+     "post_meal": 7.328869047619048,
+     "post_correction": 1.5749007936507935,
+     "nocturnal": 1.1904761904761905,
+     "other": 2.058531746031746
+    },
+    "share_of_time": {
+     "post_meal": 0.6463293650793651,
+     "post_correction": 0.14732142857142858,
+     "nocturnal": 0.08196924603174603,
+     "other": 0.12437996031746032
+    },
+    "insulin": {
+     "total": 64.52892806631283,
+     "bolus_meal": 11.394642857142857,
+     "bolus_other": 7.494642857142858,
+     "basal_and_temp": 45.63964235202712
+    }
+   }
+  },
+  {
+   "subject": "adult#031",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 109.33085584640503,
+   "days_ran": 28.0,
+   "tir": 77.72817460317461,
+   "tbr70": 3.670634920634921,
+   "tbr54": 1.1408730158730158,
+   "tbr70_bg": 3.125,
+   "lbgi": 1.0004133335057477,
+   "mean_cgm": 146.22877385155482,
+   "insulin_per_day": 45.222551599281374,
+   "rescue_g_per_day": 43.66189700086152,
+   "low_type": {
+    "cgm": {
+     "post_meal": 3.0257936507936507,
+     "post_correction": 0.13640873015873015,
+     "nocturnal": 0.16121031746031744,
+     "other": 0.3472222222222222
+    },
+    "bg": {
+     "post_meal": 2.5297619047619047,
+     "post_correction": 0.0744047619047619,
+     "nocturnal": 0.0992063492063492,
+     "other": 0.42162698412698413
+    },
+    "share_of_time": {
+     "post_meal": 0.6737351190476191,
+     "post_correction": 0.1253720238095238,
+     "nocturnal": 0.0873015873015873,
+     "other": 0.11359126984126984
+    },
+    "insulin": {
+     "total": 45.222551599281374,
+     "bolus_meal": 11.548214285714286,
+     "bolus_other": 5.7125,
+     "basal_and_temp": 27.96183731356709
+    }
+   }
+  },
+  {
+   "subject": "adult#032",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 106.22108602523804,
+   "days_ran": 28.0,
+   "tir": 79.4890873015873,
+   "tbr70": 4.563492063492063,
+   "tbr54": 1.4260912698412698,
+   "tbr70_bg": 3.7202380952380953,
+   "lbgi": 1.1733912254308194,
+   "mean_cgm": 136.01978132512545,
+   "insulin_per_day": 58.60509241020804,
+   "rescue_g_per_day": 53.847016975428325,
+   "low_type": {
+    "cgm": {
+     "post_meal": 2.418154761904762,
+     "post_correction": 0.1488095238095238,
+     "nocturnal": 1.3764880952380951,
+     "other": 0.6200396825396826
+    },
+    "bg": {
+     "post_meal": 2.1453373015873014,
+     "post_correction": 0.1240079365079365,
+     "nocturnal": 0.744047619047619,
+     "other": 0.7068452380952381
+    },
+    "share_of_time": {
+     "post_meal": 0.6646825396825397,
+     "post_correction": 0.0913938492063492,
+     "nocturnal": 0.11979166666666667,
+     "other": 0.12413194444444445
+    },
+    "insulin": {
+     "total": 58.60509241020804,
+     "bolus_meal": 17.464285714285715,
+     "bolus_other": 9.108928571428573,
+     "basal_and_temp": 32.03187812449375
+    }
+   }
+  },
+  {
+   "subject": "adult#033",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": false,
+   "seconds": 35.827404737472534,
+   "days_ran": 9.70486111111111,
+   "tir": 65.76028622540251,
+   "tbr70": 16.02862254025045,
+   "tbr54": 9.26654740608229,
+   "tbr70_bg": 15.778175313059034,
+   "lbgi": 4.238076468200593,
+   "mean_cgm": 129.7614963355917,
+   "insulin_per_day": 41.74835905147936,
+   "rescue_g_per_day": 163.44851529452325,
+   "low_type": {
+    "cgm": {
+     "post_meal": 9.838998211091235,
+     "post_correction": 3.255813953488372,
+     "nocturnal": 0.46511627906976744,
+     "other": 2.4686940966010735
+    },
+    "bg": {
+     "post_meal": 10.089445438282647,
+     "post_correction": 3.184257602862254,
+     "nocturnal": 0.35778175313059035,
+     "other": 2.146690518783542
+    },
+    "share_of_time": {
+     "post_meal": 0.6547406082289803,
+     "post_correction": 0.20572450805008943,
+     "nocturnal": 0.056171735241502686,
+     "other": 0.08336314847942755
+    },
+    "insulin": {
+     "total": 41.74835905147936,
+     "bolus_meal": 5.121144901610019,
+     "bolus_other": 4.739892665474061,
+     "basal_and_temp": 31.887321484395283
+    }
+   }
+  },
+  {
+   "subject": "adult#034",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": false,
+   "seconds": 7.942032814025879,
+   "days_ran": 2.079861111111111,
+   "tir": 61.93656093489148,
+   "tbr70": 4.006677796327212,
+   "tbr54": 1.8363939899833055,
+   "tbr70_bg": 5.342237061769616,
+   "lbgi": 1.1362509851311875,
+   "mean_cgm": 167.54371386247925,
+   "insulin_per_day": 67.12566133217665,
+   "rescue_g_per_day": 24.17013305941855,
+   "low_type": {
+    "cgm": {
+     "post_meal": 2.8380634390651087,
+     "post_correction": 1.1686143572621035,
+     "nocturnal": 0.0,
+     "other": 0.0
+    },
+    "bg": {
+     "post_meal": 3.8397328881469113,
+     "post_correction": 1.5025041736227045,
+     "nocturnal": 0.0,
+     "other": 0.0
+    },
+    "share_of_time": {
+     "post_meal": 0.6894824707846411,
+     "post_correction": 0.22537562604340566,
+     "nocturnal": 0.03171953255425709,
+     "other": 0.05342237061769616
+    },
+    "insulin": {
+     "total": 67.12566133217665,
+     "bolus_meal": 12.596994991652755,
+     "bolus_other": 9.03906510851419,
+     "basal_and_temp": 45.489601232009704
+    }
+   }
+  },
+  {
+   "subject": "adult#035",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 107.69155812263489,
+   "days_ran": 28.0,
+   "tir": 76.10367063492063,
+   "tbr70": 2.604166666666667,
+   "tbr54": 0.8928571428571428,
+   "tbr70_bg": 2.095734126984127,
+   "lbgi": 0.6812935751888995,
+   "mean_cgm": 149.14360181198253,
+   "insulin_per_day": 91.52076606786697,
+   "rescue_g_per_day": 21.6771821227002,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.6493055555555556,
+     "post_correction": 0.533234126984127,
+     "nocturnal": 0.1984126984126984,
+     "other": 0.2232142857142857
+    },
+    "bg": {
+     "post_meal": 1.1656746031746033,
+     "post_correction": 0.533234126984127,
+     "nocturnal": 0.2728174603174603,
+     "other": 0.1240079365079365
+    },
+    "share_of_time": {
+     "post_meal": 0.6713789682539683,
+     "post_correction": 0.21788194444444445,
+     "nocturnal": 0.038938492063492064,
+     "other": 0.07180059523809523
+    },
+    "insulin": {
+     "total": 91.52076606786697,
+     "bolus_meal": 20.330357142857142,
+     "bolus_other": 16.460714285714285,
+     "basal_and_temp": 54.729694639295545
+    }
+   }
+  },
+  {
+   "subject": "adult#036",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 107.33093595504761,
+   "days_ran": 28.0,
+   "tir": 77.75297619047619,
+   "tbr70": 2.5049603174603177,
+   "tbr54": 0.6200396825396826,
+   "tbr70_bg": 2.170138888888889,
+   "lbgi": 0.6290764323569075,
+   "mean_cgm": 150.41204248792195,
+   "insulin_per_day": 121.9941099256915,
+   "rescue_g_per_day": 32.74697123028137,
+   "low_type": {
+    "cgm": {
+     "post_meal": 1.6493055555555556,
+     "post_correction": 0.2728174603174603,
+     "nocturnal": 0.21081349206349206,
+     "other": 0.3720238095238095
+    },
+    "bg": {
+     "post_meal": 1.488095238095238,
+     "post_correction": 0.18601190476190474,
+     "nocturnal": 0.21081349206349206,
+     "other": 0.28521825396825395
+    },
+    "share_of_time": {
+     "post_meal": 0.6631944444444444,
+     "post_correction": 0.15004960317460317,
+     "nocturnal": 0.06374007936507936,
+     "other": 0.12301587301587301
+    },
+    "insulin": {
+     "total": 121.9941099256915,
+     "bolus_meal": 34.78035714285714,
+     "bolus_other": 13.264285714285714,
+     "basal_and_temp": 73.94946706854864
+    }
+   }
+  },
+  {
+   "subject": "adult#037",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 108.39114117622375,
+   "days_ran": 28.0,
+   "tir": 74.96279761904762,
+   "tbr70": 6.510416666666667,
+   "tbr54": 3.1746031746031744,
+   "tbr70_bg": 6.572420634920635,
+   "lbgi": 1.6326947032679568,
+   "mean_cgm": 142.68958782971697,
+   "insulin_per_day": 88.68066876813853,
+   "rescue_g_per_day": 61.52310159588872,
+   "low_type": {
+    "cgm": {
+     "post_meal": 3.7822420634920633,
+     "post_correction": 0.9176587301587302,
+     "nocturnal": 0.8680555555555556,
+     "other": 0.9424603174603174
+    },
+    "bg": {
+     "post_meal": 4.067460317460317,
+     "post_correction": 0.8308531746031746,
+     "nocturnal": 0.7688492063492063,
+     "other": 0.9052579365079366
+    },
+    "share_of_time": {
+     "post_meal": 0.6669146825396826,
+     "post_correction": 0.18055555555555555,
+     "nocturnal": 0.06560019841269842,
+     "other": 0.08692956349206349
+    },
+    "insulin": {
+     "total": 88.68066876813853,
+     "bolus_meal": 10.896428571428572,
+     "bolus_other": 12.219642857142858,
+     "basal_and_temp": 65.5645973395671
+    }
+   }
+  },
+  {
+   "subject": "adult#038",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 106.31083583831787,
+   "days_ran": 28.0,
+   "tir": 71.78819444444444,
+   "tbr70": 1.2028769841269842,
+   "tbr54": 0.38442460317460314,
+   "tbr70_bg": 1.4260912698412698,
+   "lbgi": 0.3584247906196601,
+   "mean_cgm": 161.81509582829793,
+   "insulin_per_day": 67.84791883719387,
+   "rescue_g_per_day": 16.45004263136611,
+   "low_type": {
+    "cgm": {
+     "post_meal": 0.4712301587301587,
+     "post_correction": 0.13640873015873015,
+     "nocturnal": 0.2728174603174603,
+     "other": 0.3224206349206349
+    },
+    "bg": {
+     "post_meal": 0.6448412698412698,
+     "post_correction": 0.18601190476190474,
+     "nocturnal": 0.2728174603174603,
+     "other": 0.3224206349206349
+    },
+    "share_of_time": {
+     "post_meal": 0.6432291666666666,
+     "post_correction": 0.18526785714285715,
+     "nocturnal": 0.07514880952380952,
+     "other": 0.09635416666666667
+    },
+    "insulin": {
+     "total": 67.84791883719387,
+     "bolus_meal": 13.326785714285716,
+     "bolus_other": 15.585714285714287,
+     "basal_and_temp": 38.93541883719388
+    }
+   }
+  },
+  {
+   "subject": "adult#039",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 102.43071174621582,
+   "days_ran": 28.0,
+   "tir": 88.14484126984127,
+   "tbr70": 7.57688492063492,
+   "tbr54": 2.6165674603174605,
+   "tbr70_bg": 6.634424603174603,
+   "lbgi": 1.9144767234402356,
+   "mean_cgm": 118.91318560495873,
+   "insulin_per_day": 36.29594494047619,
+   "rescue_g_per_day": 67.44329737837829,
+   "low_type": {
+    "cgm": {
+     "post_meal": 4.712301587301587,
+     "post_correction": 0.533234126984127,
+     "nocturnal": 0.5828373015873016,
+     "other": 1.7485119047619049
+    },
+    "bg": {
+     "post_meal": 4.637896825396826,
+     "post_correction": 0.35962301587301587,
+     "nocturnal": 0.3224206349206349,
+     "other": 1.314484126984127
+    },
+    "share_of_time": {
+     "post_meal": 0.642609126984127,
+     "post_correction": 0.09858630952380952,
+     "nocturnal": 0.08953373015873016,
+     "other": 0.16927083333333334
+    },
+    "insulin": {
+     "total": 36.29594494047619,
+     "bolus_meal": 12.621428571428572,
+     "bolus_other": 4.385714285714286,
+     "basal_and_temp": 19.28880208333333
+    }
+   }
+  },
+  {
+   "subject": "adult#040",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 102.58822727203369,
+   "days_ran": 28.0,
+   "tir": 83.23412698412699,
+   "tbr70": 4.7247023809523805,
+   "tbr54": 1.5004960317460319,
+   "tbr70_bg": 3.546626984126984,
+   "lbgi": 1.329222405038112,
+   "mean_cgm": 132.3884890342468,
+   "insulin_per_day": 51.47426073630294,
+   "rescue_g_per_day": 42.51524639874197,
+   "low_type": {
+    "cgm": {
+     "post_meal": 2.3561507936507935,
+     "post_correction": 0.3224206349206349,
+     "nocturnal": 0.818452380952381,
+     "other": 1.2276785714285714
+    },
+    "bg": {
+     "post_meal": 2.021329365079365,
+     "post_correction": 0.21081349206349206,
+     "nocturnal": 0.4588293650793651,
+     "other": 0.855654761904762
+    },
+    "share_of_time": {
+     "post_meal": 0.6853918650793651,
+     "post_correction": 0.10057043650793651,
+     "nocturnal": 0.07998511904761904,
+     "other": 0.13405257936507936
+    },
+    "insulin": {
+     "total": 51.47426073630294,
+     "bolus_meal": 14.894642857142856,
+     "bolus_other": 9.935714285714287,
+     "basal_and_temp": 26.643903593445796
+    }
+   }
+  },
+  {
+   "subject": "adult#041",
+   "driver": "control-iq",
+   "arm": "risk",
+   "completed": true,
+   "seconds": 103.85466408729553,
+   "days_ran": 28.0,
+   "tir": 83.53174603174604,
+   "tbr70": 6.299603174603174,
+   "tbr54": 2.256944444444444,
+   "tbr70_bg": 5.952380952380952,
+   "lbgi": 1.5334670754316797,
+   "mean_cgm": 132.27888062250275,
+   "insulin_per_day": 34.113218964901534,
+   "rescue_g_per_day": 64.1431639306454,
+   "low_type": {
+    "cgm": {
+     "post_meal": 3.484623015873016,
+     "post_correction": 0.6572420634920635,
+     "nocturnal": 0.6696428571428571,
+     "other": 1.488095238095238
+    },
+    "bg": {
+     "post_meal": 3.373015873015873,
+     "post_correction": 0.6696428571428571,
+     "nocturnal": 0.4464285714285714,
+     "other": 1.4632936507936507
+    },
+    "share_of_time": {
+     "post_meal": 0.6614583333333334,
+     "post_correction": 0.1671626984126984,
+     "nocturnal": 0.06063988095238095,
+     "other": 0.1107390873015873
+    },
+    "insulin": {
+     "total": 34.113218964901534,
+     "bolus_meal": 5.7821428571428575,
+     "bolus_other": 5.0249999999999995,
+     "basal_and_temp": 23.30607610775868
+    }
+   }
+  }
+ ]
+}

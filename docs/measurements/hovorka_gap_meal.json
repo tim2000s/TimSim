@@ -1,0 +1,2404 @@
+{
+ "provenance": {
+  "population": "704cfac086df54ba",
+  "settings": "0df43fd250fadd47",
+  "commit": "c59aff1e815f86247f8957b8970e74389ff188d8",
+  "dirty": false,
+  "host": "Tims-Mac-mini.local",
+  "python": "3.14.7",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "when": "2026-11-11T03:13:07+00:00",
+  "simglucose": "0.2.11",
+  "hovorka_population": "ad9c7d606711a7f2",
+  "hovorka_settings": "8ff58e70ab3deae1"
+ },
+ "meal_g": 50.0,
+ "summary": {
+  "s2008/base": {
+   "n": 40,
+   "with_any_below_70": 0,
+   "gb": {
+    "median": 143.37968442052988,
+    "mean": 143.5160726477758,
+    "ci": [
+     140.76935446543604,
+     146.9038539466547
+    ]
+   },
+   "bolus_u": {
+    "median": 6.553071937809455,
+    "mean": 6.503138704401822,
+    "ci": [
+     4.633632951048056,
+     7.60471844979589
+    ]
+   },
+   "peak": {
+    "median": 174.63302300431934,
+    "mean": 176.21809328503048,
+    "ci": [
+     164.93556472889054,
+     183.742456102402
+    ]
+   },
+   "peak_min": {
+    "median": 69.5,
+    "mean": 94.7,
+    "ci": [
+     65.0,
+     75.0
+    ]
+   },
+   "nadir_after_peak": {
+    "median": 118.92303696495969,
+    "mean": 120.05577751230976,
+    "ci": [
+     109.23589795727926,
+     126.45125504144784
+    ]
+   },
+   "nadir_min": {
+    "median": 415.5,
+    "mean": 390.95,
+    "ci": [
+     380.5,
+     473.0
+    ]
+   },
+   "nadir_minus_start": {
+    "median": -25.849223710955137,
+    "mean": -23.46029513546604,
+    "ci": [
+     -28.8748183320384,
+     -14.462786668871857
+    ]
+   },
+   "minutes_below_70": {
+    "median": 0.0,
+    "mean": 0.0,
+    "ci": [
+     0.0,
+     0.0
+    ]
+   },
+   "glucose_8h": {
+    "median": 119.25561174876901,
+    "mean": 124.41570563492147,
+    "ci": [
+     111.80405646472511,
+     134.32348967924327
+    ]
+   }
+  },
+  "s2008/risk": {
+   "n": 40,
+   "with_any_below_70": 0,
+   "gb": {
+    "median": 143.37968442052988,
+    "mean": 143.5160726477758,
+    "ci": [
+     140.7591341883795,
+     146.9038539466547
+    ]
+   },
+   "bolus_u": {
+    "median": 6.553071937809455,
+    "mean": 6.503138704401822,
+    "ci": [
+     4.633632951048056,
+     7.60471844979589
+    ]
+   },
+   "peak": {
+    "median": 174.63302300431934,
+    "mean": 176.21605495282148,
+    "ci": [
+     165.206780617194,
+     184.34746283980354
+    ]
+   },
+   "peak_min": {
+    "median": 69.5,
+    "mean": 94.7,
+    "ci": [
+     65.0,
+     75.0
+    ]
+   },
+   "nadir_after_peak": {
+    "median": 118.54326632818513,
+    "mean": 119.33754294554899,
+    "ci": [
+     108.79353605758075,
+     126.2063590673728
+    ]
+   },
+   "nadir_min": {
+    "median": 417.5,
+    "mean": 392.275,
+    "ci": [
+     383.0,
+     473.0
+    ]
+   },
+   "nadir_minus_start": {
+    "median": -26.214030050849317,
+    "mean": -24.178529702226776,
+    "ci": [
+     -29.746317340378944,
+     -14.687569062738959
+    ]
+   },
+   "minutes_below_70": {
+    "median": 0.0,
+    "mean": 0.0,
+    "ci": [
+     0.0,
+     0.0
+    ]
+   },
+   "glucose_8h": {
+    "median": 118.9590322285564,
+    "mean": 123.69091831468138,
+    "ci": [
+     110.93346522790819,
+     134.2341372713447
+    ]
+   }
+  },
+  "hovorka/base": {
+   "n": 40,
+   "with_any_below_70": 6,
+   "gb": {
+    "median": 115.0,
+    "mean": 115.0,
+    "ci": [
+     115.0,
+     115.0
+    ]
+   },
+   "bolus_u": {
+    "median": 7.103839487030681,
+    "mean": 7.504478955779573,
+    "ci": [
+     6.4859914417885065,
+     7.807935686980334
+    ]
+   },
+   "peak": {
+    "median": 169.61168664504868,
+    "mean": 171.5186919665072,
+    "ci": [
+     168.35464224261656,
+     173.15158356660666
+    ]
+   },
+   "peak_min": {
+    "median": 78.0,
+    "mean": 77.4,
+    "ci": [
+     77.0,
+     78.0
+    ]
+   },
+   "nadir_after_peak": {
+    "median": 76.49333568171954,
+    "mean": 76.28921015790935,
+    "ci": [
+     74.93165285942302,
+     78.73684393035325
+    ]
+   },
+   "nadir_min": {
+    "median": 334.5,
+    "mean": 334.5,
+    "ci": [
+     324.5,
+     346.0
+    ]
+   },
+   "nadir_minus_start": {
+    "median": -38.50666431828045,
+    "mean": -38.71078984209065,
+    "ci": [
+     -40.06834714057697,
+     -36.26315606964675
+    ]
+   },
+   "minutes_below_70": {
+    "median": 0.0,
+    "mean": 18.45,
+    "ci": [
+     0.0,
+     0.0
+    ]
+   },
+   "glucose_8h": {
+    "median": 81.33289629132611,
+    "mean": 81.94257478048772,
+    "ci": [
+     80.89947464675487,
+     82.18660136936879
+    ]
+   }
+  },
+  "hovorka/autoreg": {
+   "n": 40,
+   "with_any_below_70": 2,
+   "gb": {
+    "median": 115.0,
+    "mean": 115.0,
+    "ci": [
+     115.0,
+     115.0
+    ]
+   },
+   "bolus_u": {
+    "median": 7.103839487030681,
+    "mean": 7.504478955779573,
+    "ci": [
+     6.464116500566062,
+     7.807935686980334
+    ]
+   },
+   "peak": {
+    "median": 169.61168664504868,
+    "mean": 171.5186919665072,
+    "ci": [
+     168.35464224261656,
+     173.15158356660666
+    ]
+   },
+   "peak_min": {
+    "median": 78.0,
+    "mean": 77.4,
+    "ci": [
+     77.0,
+     78.0
+    ]
+   },
+   "nadir_after_peak": {
+    "median": 82.08405864263631,
+    "mean": 82.01333506802231,
+    "ci": [
+     80.15457678655996,
+     85.08384189554042
+    ]
+   },
+   "nadir_min": {
+    "median": 313.0,
+    "mean": 308.825,
+    "ci": [
+     309.0,
+     315.0
+    ]
+   },
+   "nadir_minus_start": {
+    "median": -32.915941357363685,
+    "mean": -32.98666493197768,
+    "ci": [
+     -34.83140739900237,
+     -29.91615810445959
+    ]
+   },
+   "minutes_below_70": {
+    "median": 0.0,
+    "mean": 3.3,
+    "ci": [
+     0.0,
+     0.0
+    ]
+   },
+   "glucose_8h": {
+    "median": 92.2661379759625,
+    "mean": 92.66512460028343,
+    "ci": [
+     91.22461400354688,
+     94.24523711189086
+    ]
+   }
+  }
+ },
+ "per_subject": [
+  {
+   "subject": "adult#001",
+   "arm": "base",
+   "gb": 149.148945712621,
+   "bolus_u": 7.552854471429535,
+   "peak": 172.93797578477148,
+   "peak_min": 68,
+   "nadir_after_peak": 120.68436592327762,
+   "nadir_min": 480,
+   "nadir_minus_start": -28.46457978934339,
+   "minutes_below_70": 0,
+   "glucose_8h": 120.68436592327762
+  },
+  {
+   "subject": "adult#002",
+   "arm": "base",
+   "gb": 148.9811287510065,
+   "bolus_u": 7.28017423272711,
+   "peak": 176.9630337508665,
+   "peak_min": 94,
+   "nadir_after_peak": 117.16170800664175,
+   "nadir_min": 453,
+   "nadir_minus_start": -31.819420744364763,
+   "minutes_below_70": 0,
+   "glucose_8h": 117.39343149943349
+  },
+  {
+   "subject": "adult#003",
+   "arm": "base",
+   "gb": 150.5089712612879,
+   "bolus_u": 6.739377990319313,
+   "peak": 164.07374118750784,
+   "peak_min": 62,
+   "nadir_after_peak": 144.2225003848131,
+   "nadir_min": 204,
+   "nadir_minus_start": -6.286470876474823,
+   "minutes_below_70": 0,
+   "glucose_8h": 144.85167287513787
+  },
+  {
+   "subject": "adult#004",
+   "arm": "base",
+   "gb": 151.36467329292313,
+   "bolus_u": 7.903528524561483,
+   "peak": 218.87601315208974,
+   "peak_min": 71,
+   "nadir_after_peak": 123.64193362799296,
+   "nadir_min": 391,
+   "nadir_minus_start": -27.722739664930174,
+   "minutes_below_70": 0,
+   "glucose_8h": 128.80751881025182
+  },
+  {
+   "subject": "adult#005",
+   "arm": "base",
+   "gb": 136.48779539923632,
+   "bolus_u": 11.411291104303052,
+   "peak": 172.6044475007286,
+   "peak_min": 62,
+   "nadir_after_peak": 97.9374870388845,
+   "nadir_min": 465,
+   "nadir_minus_start": -38.55030836035182,
+   "minutes_below_70": 0,
+   "glucose_8h": 98.05739477046856
+  },
+  {
+   "subject": "adult#006",
+   "arm": "base",
+   "gb": 146.00922483236002,
+   "bolus_u": 7.373995908000176,
+   "peak": 190.49092030890475,
+   "peak_min": 85,
+   "nadir_after_peak": 108.83418719002944,
+   "nadir_min": 393,
+   "nadir_minus_start": -37.17503764233058,
+   "minutes_below_70": 0,
+   "glucose_8h": 112.44322041543286
+  },
+  {
+   "subject": "adult#007",
+   "arm": "base",
+   "gb": 141.34429769631214,
+   "bolus_u": 3.451907034646667,
+   "peak": 150.52548733105968,
+   "peak_min": 63,
+   "nadir_after_peak": 131.776988443216,
+   "nadir_min": 213,
+   "nadir_minus_start": -9.567309253096141,
+   "minutes_below_70": 0,
+   "glucose_8h": 136.44979703777318
+  },
+  {
+   "subject": "adult#008",
+   "arm": "base",
+   "gb": 149.84100492754175,
+   "bolus_u": 8.018913046565864,
+   "peak": 208.58377672128424,
+   "peak_min": 80,
+   "nadir_after_peak": 105.48968422544051,
+   "nadir_min": 419,
+   "nadir_minus_start": -44.35132070210123,
+   "minutes_below_70": 0,
+   "glucose_8h": 107.08595977948741
+  },
+  {
+   "subject": "adult#009",
+   "arm": "base",
+   "gb": 140.38648718050672,
+   "bolus_u": 5.208440983426354,
+   "peak": 170.24164745419966,
+   "peak_min": 80,
+   "nadir_after_peak": 114.23865327043166,
+   "nadir_min": 378,
+   "nadir_minus_start": -26.147833910075065,
+   "minutes_below_70": 0,
+   "glucose_8h": 117.82685757426042
+  },
+  {
+   "subject": "adult#010",
+   "arm": "base",
+   "gb": 139.1831267214188,
+   "bolus_u": 3.4418579055331455,
+   "peak": 165.206780617194,
+   "peak_min": 76,
+   "nadir_after_peak": 136.60652431552737,
+   "nadir_min": 480,
+   "nadir_minus_start": -2.5766024058914354,
+   "minutes_below_70": 0,
+   "glucose_8h": 136.60652431552737
+  },
+  {
+   "subject": "adult#011",
+   "arm": "base",
+   "gb": 155.14646363586544,
+   "bolus_u": 4.63773734744921,
+   "peak": 188.0952431252383,
+   "peak_min": 93,
+   "nadir_after_peak": 128.38274530996554,
+   "nadir_min": 480,
+   "nadir_minus_start": -26.7637183258999,
+   "minutes_below_70": 0,
+   "glucose_8h": 128.38274530996554
+  },
+  {
+   "subject": "adult#012",
+   "arm": "base",
+   "gb": 147.36707462262092,
+   "bolus_u": 3.146884665072078,
+   "peak": 166.02303766161248,
+   "peak_min": 453,
+   "nadir_after_peak": 164.90931522095414,
+   "nadir_min": 480,
+   "nadir_minus_start": 17.542240598333223,
+   "minutes_below_70": 0,
+   "glucose_8h": 164.90931522095414
+  },
+  {
+   "subject": "adult#013",
+   "arm": "base",
+   "gb": 137.56885765996572,
+   "bolus_u": 6.366765885299597,
+   "peak": 161.1243498252323,
+   "peak_min": 69,
+   "nadir_after_peak": 134.68716353844206,
+   "nadir_min": 295,
+   "nadir_minus_start": -2.881694121523651,
+   "minutes_below_70": 0,
+   "glucose_8h": 138.4388843202751
+  },
+  {
+   "subject": "adult#014",
+   "arm": "base",
+   "gb": 152.16237007938452,
+   "bolus_u": 3.975092037649304,
+   "peak": 200.34685111180852,
+   "peak_min": 71,
+   "nadir_after_peak": 86.32536070628973,
+   "nadir_min": 353,
+   "nadir_minus_start": -65.83700937309479,
+   "minutes_below_70": 0,
+   "glucose_8h": 95.19889431162889
+  },
+  {
+   "subject": "adult#015",
+   "arm": "base",
+   "gb": 142.72783048880515,
+   "bolus_u": 1.768254012117721,
+   "peak": 182.10171338240656,
+   "peak_min": 58,
+   "nadir_after_peak": 131.0577345812831,
+   "nadir_min": 248,
+   "nadir_minus_start": -11.67009590752204,
+   "minutes_below_70": 0,
+   "glucose_8h": 159.0840821916109
+  },
+  {
+   "subject": "adult#016",
+   "arm": "base",
+   "gb": 140.4918881894961,
+   "bolus_u": 4.629528554646901,
+   "peak": 147.27725961300996,
+   "peak_min": 52,
+   "nadir_after_peak": 125.7048948428064,
+   "nadir_min": 200,
+   "nadir_minus_start": -14.786993346689712,
+   "minutes_below_70": 0,
+   "glucose_8h": 137.13842017583028
+  },
+  {
+   "subject": "adult#017",
+   "arm": "base",
+   "gb": 134.02232512818608,
+   "bolus_u": 9.082564199757055,
+   "peak": 160.1721779279214,
+   "peak_min": 56,
+   "nadir_after_peak": 102.20652761940117,
+   "nadir_min": 480,
+   "nadir_minus_start": -31.81579750878491,
+   "minutes_below_70": 0,
+   "glucose_8h": 102.20652761940117
+  },
+  {
+   "subject": "adult#018",
+   "arm": "base",
+   "gb": 146.32262974031013,
+   "bolus_u": 9.829334548424331,
+   "peak": 187.64957694926846,
+   "peak_min": 63,
+   "nadir_after_peak": 132.18404974925613,
+   "nadir_min": 251,
+   "nadir_minus_start": -14.138579991054002,
+   "minutes_below_70": 0,
+   "glucose_8h": 137.95851579992606
+  },
+  {
+   "subject": "adult#019",
+   "arm": "base",
+   "gb": 146.11380026647066,
+   "bolus_u": 9.353985312612304,
+   "peak": 204.71284928524028,
+   "peak_min": 66,
+   "nadir_after_peak": 103.00468353255769,
+   "nadir_min": 324,
+   "nadir_minus_start": -43.10911673391297,
+   "minutes_below_70": 0,
+   "glucose_8h": 111.16489251401735
+  },
+  {
+   "subject": "adult#020",
+   "arm": "base",
+   "gb": 138.23488646125202,
+   "bolus_u": 5.773139975664164,
+   "peak": 175.3118315048821,
+   "peak_min": 59,
+   "nadir_after_peak": 109.63760872452907,
+   "nadir_min": 480,
+   "nadir_minus_start": -28.597277736722944,
+   "minutes_below_70": 0,
+   "glucose_8h": 109.63760872452907
+  },
+  {
+   "subject": "adult#021",
+   "arm": "base",
+   "gb": 133.92982138840748,
+   "bolus_u": 7.034744621887531,
+   "peak": 150.64317762574456,
+   "peak_min": 82,
+   "nadir_after_peak": 96.60529663830084,
+   "nadir_min": 480,
+   "nadir_minus_start": -37.32452475010663,
+   "minutes_below_70": 0,
+   "glucose_8h": 96.60529663830084
+  },
+  {
+   "subject": "adult#022",
+   "arm": "base",
+   "gb": 147.20715047003895,
+   "bolus_u": 7.8667047633213585,
+   "peak": 158.62548617950813,
+   "peak_min": 85,
+   "nadir_after_peak": 124.43596640878842,
+   "nadir_min": 480,
+   "nadir_minus_start": -22.771184061250537,
+   "minutes_below_70": 0,
+   "glucose_8h": 124.43596640878842
+  },
+  {
+   "subject": "adult#023",
+   "arm": "base",
+   "gb": 130.31294609739385,
+   "bolus_u": 3.7660663179295755,
+   "peak": 155.09416679004096,
+   "peak_min": 74,
+   "nadir_after_peak": 101.17749539162945,
+   "nadir_min": 408,
+   "nadir_minus_start": -29.1354507057644,
+   "minutes_below_70": 0,
+   "glucose_8h": 102.57233614107365
+  },
+  {
+   "subject": "adult#024",
+   "arm": "base",
+   "gb": 148.84365155035144,
+   "bolus_u": 5.847868544939416,
+   "peak": 184.95246957720508,
+   "peak_min": 70,
+   "nadir_after_peak": 143.07688828741107,
+   "nadir_min": 289,
+   "nadir_minus_start": -5.766763262940373,
+   "minutes_below_70": 0,
+   "glucose_8h": 165.9558187296926
+  },
+  {
+   "subject": "adult#025",
+   "arm": "base",
+   "gb": 141.85249144668188,
+   "bolus_u": 8.20622472546149,
+   "peak": 173.95421450375662,
+   "peak_min": 367,
+   "nadir_after_peak": 150.89377854282407,
+   "nadir_min": 480,
+   "nadir_minus_start": 9.041287096142185,
+   "minutes_below_70": 0,
+   "glucose_8h": 150.89377854282407
+  },
+  {
+   "subject": "adult#027",
+   "arm": "base",
+   "gb": 148.89237518700938,
+   "bolus_u": 7.4514571556404015,
+   "peak": 194.8616919973228,
+   "peak_min": 86,
+   "nadir_after_peak": 108.3514814143674,
+   "nadir_min": 387,
+   "nadir_minus_start": -40.54089377264198,
+   "minutes_below_70": 0,
+   "glucose_8h": 114.58285359246793
+  },
+  {
+   "subject": "adult#028",
+   "arm": "base",
+   "gb": 139.6073030599461,
+   "bolus_u": 13.71810580394731,
+   "peak": 193.5842848065602,
+   "peak_min": 68,
+   "nadir_after_peak": 95.55805685600154,
+   "nadir_min": 480,
+   "nadir_minus_start": -44.04924620394456,
+   "minutes_below_70": 0,
+   "glucose_8h": 95.55805685600154
+  },
+  {
+   "subject": "adult#029",
+   "arm": "base",
+   "gb": 137.25329770953869,
+   "bolus_u": 3.455525493514807,
+   "peak": 164.6643488405871,
+   "peak_min": 63,
+   "nadir_after_peak": 127.19761524008929,
+   "nadir_min": 254,
+   "nadir_minus_start": -10.055682469449394,
+   "minutes_below_70": 0,
+   "glucose_8h": 132.64988100440647
+  },
+  {
+   "subject": "adult#030",
+   "arm": "base",
+   "gb": 133.34630413230207,
+   "bolus_u": 4.183338949751538,
+   "peak": 159.11704548484917,
+   "peak_min": 82,
+   "nadir_after_peak": 104.73211817398966,
+   "nadir_min": 383,
+   "nadir_minus_start": -28.614185958312405,
+   "minutes_below_70": 0,
+   "glucose_8h": 107.86173621103262
+  },
+  {
+   "subject": "adult#031",
+   "arm": "base",
+   "gb": 136.4311575997137,
+   "bolus_u": 3.9851753298421873,
+   "peak": 156.8748571409302,
+   "peak_min": 61,
+   "nadir_after_peak": 110.8805440878785,
+   "nadir_min": 457,
+   "nadir_minus_start": -25.55061351183521,
+   "minutes_below_70": 0,
+   "glucose_8h": 110.93239123122865
+  },
+  {
+   "subject": "adult#032",
+   "arm": "base",
+   "gb": 150.72795445105967,
+   "bolus_u": 10.11909514255535,
+   "peak": 212.742470993864,
+   "peak_min": 71,
+   "nadir_after_peak": 98.53571959731816,
+   "nadir_min": 480,
+   "nadir_minus_start": -52.19223485374151,
+   "minutes_below_70": 0,
+   "glucose_8h": 98.53571959731816
+  },
+  {
+   "subject": "adult#033",
+   "arm": "base",
+   "gb": 145.32627764063054,
+   "bolus_u": 1.6023588316535808,
+   "peak": 154.71159640430588,
+   "peak_min": 65,
+   "nadir_after_peak": 125.39648272126168,
+   "nadir_min": 198,
+   "nadir_minus_start": -19.92979491936886,
+   "minutes_below_70": 0,
+   "glucose_8h": 144.45849590256745
+  },
+  {
+   "subject": "adult#034",
+   "arm": "base",
+   "gb": 141.0263801872629,
+   "bolus_u": 3.662809628747572,
+   "peak": 158.44012052653417,
+   "peak_min": 55,
+   "nadir_after_peak": 116.51718275652566,
+   "nadir_min": 458,
+   "nadir_minus_start": -24.509197430737245,
+   "minutes_below_70": 0,
+   "glucose_8h": 116.62167194446207
+  },
+  {
+   "subject": "adult#035",
+   "arm": "base",
+   "gb": 150.2075292337853,
+   "bolus_u": 8.327908383497405,
+   "peak": 187.87073794803828,
+   "peak_min": 358,
+   "nadir_after_peak": 171.10857360671477,
+   "nadir_min": 480,
+   "nadir_minus_start": 20.901044372929476,
+   "minutes_below_70": 0,
+   "glucose_8h": 171.10857360671477
+  },
+  {
+   "subject": "adult#036",
+   "arm": "base",
+   "gb": 144.0315383522546,
+   "bolus_u": 17.03816120994622,
+   "peak": 182.14728915130237,
+   "peak_min": 65,
+   "nadir_after_peak": 94.48100216449377,
+   "nadir_min": 412,
+   "nadir_minus_start": -49.55053618776084,
+   "minutes_below_70": 0,
+   "glucose_8h": 97.78122457964963
+  },
+  {
+   "subject": "adult#037",
+   "arm": "base",
+   "gb": 135.01764071633812,
+   "bolus_u": 2.996397073079883,
+   "peak": 149.45462201835934,
+   "peak_min": 70,
+   "nadir_after_peak": 122.38133712827816,
+   "nadir_min": 480,
+   "nadir_minus_start": -12.63630358805996,
+   "minutes_below_70": 0,
+   "glucose_8h": 122.38133712827816
+  },
+  {
+   "subject": "adult#038",
+   "arm": "base",
+   "gb": 153.9988698514531,
+   "bolus_u": 8.307341728907117,
+   "peak": 202.34800075837975,
+   "peak_min": 63,
+   "nadir_after_peak": 108.61700144541713,
+   "nadir_min": 466,
+   "nadir_minus_start": -45.38186840603596,
+   "minutes_below_70": 0,
+   "glucose_8h": 108.7568145255036
+  },
+  {
+   "subject": "adult#039",
+   "arm": "base",
+   "gb": 141.56905662464598,
+   "bolus_u": 5.666675708953401,
+   "peak": 184.96274314851445,
+   "peak_min": 61,
+   "nadir_after_peak": 116.38040021374509,
+   "nadir_min": 480,
+   "nadir_minus_start": -25.18865641090089,
+   "minutes_below_70": 0,
+   "glucose_8h": 116.38040021374509
+  },
+  {
+   "subject": "adult#040",
+   "arm": "base",
+   "gb": 141.04682074137594,
+   "bolus_u": 7.656582428162245,
+   "peak": 176.61323720778753,
+   "peak_min": 94,
+   "nadir_after_peak": 128.50644811568878,
+   "nadir_min": 294,
+   "nadir_minus_start": -12.540372625687155,
+   "minutes_below_70": 0,
+   "glucose_8h": 135.9970983540801
+  },
+  {
+   "subject": "adult#041",
+   "arm": "base",
+   "gb": 146.6005574232704,
+   "bolus_u": 2.287378594129087,
+   "peak": 183.742456102402,
+   "peak_min": 67,
+   "nadir_after_peak": 138.70359544992613,
+   "nadir_min": 325,
+   "nadir_minus_start": -7.8969619733442755,
+   "minutes_below_70": 0,
+   "glucose_8h": 158.2321449995342
+  },
+  {
+   "subject": "adult#001",
+   "arm": "risk",
+   "gb": 149.148945712621,
+   "bolus_u": 7.552854471429535,
+   "peak": 172.93797578477148,
+   "peak_min": 68,
+   "nadir_after_peak": 120.60355378955536,
+   "nadir_min": 480,
+   "nadir_minus_start": -28.54539192306565,
+   "minutes_below_70": 0,
+   "glucose_8h": 120.60355378955536
+  },
+  {
+   "subject": "adult#002",
+   "arm": "risk",
+   "gb": 148.9811287510065,
+   "bolus_u": 7.28017423272711,
+   "peak": 176.9630337508665,
+   "peak_min": 94,
+   "nadir_after_peak": 116.4829788668149,
+   "nadir_min": 455,
+   "nadir_minus_start": -32.498149884191605,
+   "minutes_below_70": 0,
+   "glucose_8h": 116.68377179100656
+  },
+  {
+   "subject": "adult#003",
+   "arm": "risk",
+   "gb": 150.5089712612879,
+   "bolus_u": 6.739377990319313,
+   "peak": 164.07374118750784,
+   "peak_min": 62,
+   "nadir_after_peak": 144.19775211318094,
+   "nadir_min": 204,
+   "nadir_minus_start": -6.3112191481069715,
+   "minutes_below_70": 0,
+   "glucose_8h": 144.83512743888275
+  },
+  {
+   "subject": "adult#004",
+   "arm": "risk",
+   "gb": 151.36467329292313,
+   "bolus_u": 7.903528524561483,
+   "peak": 218.87601315208974,
+   "peak_min": 71,
+   "nadir_after_peak": 123.47250464621123,
+   "nadir_min": 391,
+   "nadir_minus_start": -27.892168646711895,
+   "minutes_below_70": 0,
+   "glucose_8h": 128.65923151305984
+  },
+  {
+   "subject": "adult#005",
+   "arm": "risk",
+   "gb": 136.48779539923632,
+   "bolus_u": 11.411291104303052,
+   "peak": 172.6044475007286,
+   "peak_min": 62,
+   "nadir_after_peak": 97.65196020229465,
+   "nadir_min": 465,
+   "nadir_minus_start": -38.83583519694167,
+   "minutes_below_70": 0,
+   "glucose_8h": 97.77962482426437
+  },
+  {
+   "subject": "adult#006",
+   "arm": "risk",
+   "gb": 146.00922483236002,
+   "bolus_u": 7.373995908000176,
+   "peak": 190.49092030890475,
+   "peak_min": 85,
+   "nadir_after_peak": 107.50939466639184,
+   "nadir_min": 396,
+   "nadir_minus_start": -38.49983016596818,
+   "minutes_below_70": 0,
+   "glucose_8h": 111.17379634660526
+  },
+  {
+   "subject": "adult#007",
+   "arm": "risk",
+   "gb": 141.34429769631214,
+   "bolus_u": 3.451907034646667,
+   "peak": 150.52548733105968,
+   "peak_min": 63,
+   "nadir_after_peak": 131.6671531908654,
+   "nadir_min": 214,
+   "nadir_minus_start": -9.677144505446734,
+   "minutes_below_70": 0,
+   "glucose_8h": 136.40481833884823
+  },
+  {
+   "subject": "adult#008",
+   "arm": "risk",
+   "gb": 149.84100492754175,
+   "bolus_u": 8.018913046565864,
+   "peak": 208.58377672128424,
+   "peak_min": 80,
+   "nadir_after_peak": 103.7735137146669,
+   "nadir_min": 421,
+   "nadir_minus_start": -46.06749121287484,
+   "minutes_below_70": 0,
+   "glucose_8h": 105.43577105792797
+  },
+  {
+   "subject": "adult#009",
+   "arm": "risk",
+   "gb": 140.38648718050672,
+   "bolus_u": 5.208440983426354,
+   "peak": 170.24164745419966,
+   "peak_min": 80,
+   "nadir_after_peak": 113.76591097975354,
+   "nadir_min": 381,
+   "nadir_minus_start": -26.620576200753177,
+   "minutes_below_70": 0,
+   "glucose_8h": 117.31451066755743
+  },
+  {
+   "subject": "adult#010",
+   "arm": "risk",
+   "gb": 139.1831267214188,
+   "bolus_u": 3.4418579055331455,
+   "peak": 165.206780617194,
+   "peak_min": 76,
+   "nadir_after_peak": 136.60577578362236,
+   "nadir_min": 480,
+   "nadir_minus_start": -2.5773509377964388,
+   "minutes_below_70": 0,
+   "glucose_8h": 136.60577578362236
+  },
+  {
+   "subject": "adult#011",
+   "arm": "risk",
+   "gb": 155.14646363586544,
+   "bolus_u": 4.63773734744921,
+   "peak": 188.0952431252383,
+   "peak_min": 93,
+   "nadir_after_peak": 128.09413265606045,
+   "nadir_min": 480,
+   "nadir_minus_start": -27.052330979804992,
+   "minutes_below_70": 0,
+   "glucose_8h": 128.09413265606045
+  },
+  {
+   "subject": "adult#012",
+   "arm": "risk",
+   "gb": 147.36707462262092,
+   "bolus_u": 3.146884665072078,
+   "peak": 166.01640793918756,
+   "peak_min": 453,
+   "nadir_after_peak": 164.90341585044246,
+   "nadir_min": 480,
+   "nadir_minus_start": 17.536341227821538,
+   "minutes_below_70": 0,
+   "glucose_8h": 164.90341585044246
+  },
+  {
+   "subject": "adult#013",
+   "arm": "risk",
+   "gb": 137.56885765996572,
+   "bolus_u": 6.366765885299597,
+   "peak": 161.1243498252323,
+   "peak_min": 69,
+   "nadir_after_peak": 134.68418218494728,
+   "nadir_min": 295,
+   "nadir_minus_start": -2.8846754750184402,
+   "minutes_below_70": 0,
+   "glucose_8h": 138.4348727990434
+  },
+  {
+   "subject": "adult#014",
+   "arm": "risk",
+   "gb": 152.16237007938452,
+   "bolus_u": 3.975092037649304,
+   "peak": 200.34685111180852,
+   "peak_min": 71,
+   "nadir_after_peak": 75.2752950944852,
+   "nadir_min": 381,
+   "nadir_minus_start": -76.88707498489931,
+   "minutes_below_70": 0,
+   "glucose_8h": 82.42879493613361
+  },
+  {
+   "subject": "adult#015",
+   "arm": "risk",
+   "gb": 142.72783048880515,
+   "bolus_u": 1.768254012117721,
+   "peak": 182.10171338240656,
+   "peak_min": 58,
+   "nadir_after_peak": 130.98516157610638,
+   "nadir_min": 249,
+   "nadir_minus_start": -11.742668912698775,
+   "minutes_below_70": 0,
+   "glucose_8h": 159.0168078461588
+  },
+  {
+   "subject": "adult#016",
+   "arm": "risk",
+   "gb": 140.4918881894961,
+   "bolus_u": 4.629528554646901,
+   "peak": 147.27725961300996,
+   "peak_min": 52,
+   "nadir_after_peak": 125.31366589317645,
+   "nadir_min": 202,
+   "nadir_minus_start": -15.17822229631966,
+   "minutes_below_70": 0,
+   "glucose_8h": 136.87294223253826
+  },
+  {
+   "subject": "adult#017",
+   "arm": "risk",
+   "gb": 134.02232512818608,
+   "bolus_u": 9.082564199757055,
+   "peak": 160.1721779279214,
+   "peak_min": 56,
+   "nadir_after_peak": 101.66155682821233,
+   "nadir_min": 480,
+   "nadir_minus_start": -32.360768299973756,
+   "minutes_below_70": 0,
+   "glucose_8h": 101.66155682821233
+  },
+  {
+   "subject": "adult#018",
+   "arm": "risk",
+   "gb": 146.32262974031013,
+   "bolus_u": 9.829334548424331,
+   "peak": 187.64957694926846,
+   "peak_min": 63,
+   "nadir_after_peak": 132.12571391115188,
+   "nadir_min": 251,
+   "nadir_minus_start": -14.196915829158257,
+   "minutes_below_70": 0,
+   "glucose_8h": 137.93367653796233
+  },
+  {
+   "subject": "adult#019",
+   "arm": "risk",
+   "gb": 146.11380026647066,
+   "bolus_u": 9.353985312612304,
+   "peak": 204.71284928524028,
+   "peak_min": 66,
+   "nadir_after_peak": 100.67089756932558,
+   "nadir_min": 329,
+   "nadir_minus_start": -45.44290269714509,
+   "minutes_below_70": 0,
+   "glucose_8h": 109.55458823523368
+  },
+  {
+   "subject": "adult#020",
+   "arm": "risk",
+   "gb": 138.23488646125202,
+   "bolus_u": 5.773139975664164,
+   "peak": 175.3118315048821,
+   "peak_min": 59,
+   "nadir_after_peak": 109.43644607206168,
+   "nadir_min": 480,
+   "nadir_minus_start": -28.798440389190333,
+   "minutes_below_70": 0,
+   "glucose_8h": 109.43644607206168
+  },
+  {
+   "subject": "adult#021",
+   "arm": "risk",
+   "gb": 133.92982138840748,
+   "bolus_u": 7.034744621887531,
+   "peak": 150.64317762574456,
+   "peak_min": 82,
+   "nadir_after_peak": 96.06001596338851,
+   "nadir_min": 480,
+   "nadir_minus_start": -37.86980542501897,
+   "minutes_below_70": 0,
+   "glucose_8h": 96.06001596338851
+  },
+  {
+   "subject": "adult#022",
+   "arm": "risk",
+   "gb": 147.20715047003895,
+   "bolus_u": 7.8667047633213585,
+   "peak": 158.62548617950813,
+   "peak_min": 85,
+   "nadir_after_peak": 124.4294109333308,
+   "nadir_min": 480,
+   "nadir_minus_start": -22.777739536708154,
+   "minutes_below_70": 0,
+   "glucose_8h": 124.4294109333308
+  },
+  {
+   "subject": "adult#023",
+   "arm": "risk",
+   "gb": 130.31294609739385,
+   "bolus_u": 3.7660663179295755,
+   "peak": 155.09416679004096,
+   "peak_min": 74,
+   "nadir_after_peak": 100.33178277055056,
+   "nadir_min": 408,
+   "nadir_minus_start": -29.981163326843287,
+   "minutes_below_70": 0,
+   "glucose_8h": 101.83453718751487
+  },
+  {
+   "subject": "adult#024",
+   "arm": "risk",
+   "gb": 148.84365155035144,
+   "bolus_u": 5.847868544939416,
+   "peak": 184.95246957720508,
+   "peak_min": 70,
+   "nadir_after_peak": 143.06552404674534,
+   "nadir_min": 289,
+   "nadir_minus_start": -5.7781275036061,
+   "minutes_below_70": 0,
+   "glucose_8h": 165.94644661123434
+  },
+  {
+   "subject": "adult#025",
+   "arm": "risk",
+   "gb": 141.85249144668188,
+   "bolus_u": 8.20622472546149,
+   "peak": 173.95421450375662,
+   "peak_min": 367,
+   "nadir_after_peak": 150.89377854282407,
+   "nadir_min": 480,
+   "nadir_minus_start": 9.041287096142185,
+   "minutes_below_70": 0,
+   "glucose_8h": 150.89377854282407
+  },
+  {
+   "subject": "adult#027",
+   "arm": "risk",
+   "gb": 148.89237518700938,
+   "bolus_u": 7.4514571556404015,
+   "peak": 194.8616919973228,
+   "peak_min": 86,
+   "nadir_after_peak": 107.96455385649952,
+   "nadir_min": 388,
+   "nadir_minus_start": -40.92782133050986,
+   "minutes_below_70": 0,
+   "glucose_8h": 114.20448873030784
+  },
+  {
+   "subject": "adult#028",
+   "arm": "risk",
+   "gb": 139.6073030599461,
+   "bolus_u": 13.71810580394731,
+   "peak": 193.5842848065602,
+   "peak_min": 68,
+   "nadir_after_peak": 94.51211198871748,
+   "nadir_min": 480,
+   "nadir_minus_start": -45.095191071228626,
+   "minutes_below_70": 0,
+   "glucose_8h": 94.51211198871748
+  },
+  {
+   "subject": "adult#029",
+   "arm": "risk",
+   "gb": 137.25329770953869,
+   "bolus_u": 3.455525493514807,
+   "peak": 164.6643488405871,
+   "peak_min": 63,
+   "nadir_after_peak": 127.09905224156917,
+   "nadir_min": 255,
+   "nadir_minus_start": -10.154245467969517,
+   "minutes_below_70": 0,
+   "glucose_8h": 132.56550446300008
+  },
+  {
+   "subject": "adult#030",
+   "arm": "risk",
+   "gb": 133.34630413230207,
+   "bolus_u": 4.183338949751538,
+   "peak": 159.11704548484917,
+   "peak_min": 82,
+   "nadir_after_peak": 103.83483277838747,
+   "nadir_min": 385,
+   "nadir_minus_start": -29.5114713539146,
+   "minutes_below_70": 0,
+   "glucose_8h": 106.99086393475848
+  },
+  {
+   "subject": "adult#031",
+   "arm": "risk",
+   "gb": 136.4311575997137,
+   "bolus_u": 3.9851753298421873,
+   "peak": 156.8748571409302,
+   "peak_min": 61,
+   "nadir_after_peak": 110.62367369876826,
+   "nadir_min": 454,
+   "nadir_minus_start": -25.807483900945456,
+   "minutes_below_70": 0,
+   "glucose_8h": 110.6931341092111
+  },
+  {
+   "subject": "adult#032",
+   "arm": "risk",
+   "gb": 150.72795445105967,
+   "bolus_u": 10.11909514255535,
+   "peak": 212.742470993864,
+   "peak_min": 71,
+   "nadir_after_peak": 97.17599091634153,
+   "nadir_min": 480,
+   "nadir_minus_start": -53.55196353471814,
+   "minutes_below_70": 0,
+   "glucose_8h": 97.17599091634153
+  },
+  {
+   "subject": "adult#033",
+   "arm": "risk",
+   "gb": 145.32627764063054,
+   "bolus_u": 1.6023588316535808,
+   "peak": 154.71159640430588,
+   "peak_min": 65,
+   "nadir_after_peak": 124.89455917958682,
+   "nadir_min": 200,
+   "nadir_minus_start": -20.431718461043715,
+   "minutes_below_70": 0,
+   "glucose_8h": 144.11820907753983
+  },
+  {
+   "subject": "adult#034",
+   "arm": "risk",
+   "gb": 141.0263801872629,
+   "bolus_u": 3.662809628747572,
+   "peak": 158.44012052653417,
+   "peak_min": 55,
+   "nadir_after_peak": 116.16740485999168,
+   "nadir_min": 459,
+   "nadir_minus_start": -24.858975327271224,
+   "minutes_below_70": 0,
+   "glucose_8h": 116.27238502084091
+  },
+  {
+   "subject": "adult#035",
+   "arm": "risk",
+   "gb": 150.2075292337853,
+   "bolus_u": 8.327908383497405,
+   "peak": 187.79583438210403,
+   "peak_min": 358,
+   "nadir_after_peak": 171.07574087887866,
+   "nadir_min": 480,
+   "nadir_minus_start": 20.868211645093368,
+   "minutes_below_70": 0,
+   "glucose_8h": 171.07574087887866
+  },
+  {
+   "subject": "adult#036",
+   "arm": "risk",
+   "gb": 144.0315383522546,
+   "bolus_u": 17.03816120994622,
+   "peak": 182.14728915130237,
+   "peak_min": 65,
+   "nadir_after_peak": 93.09075193067355,
+   "nadir_min": 414,
+   "nadir_minus_start": -50.940786421581066,
+   "minutes_below_70": 0,
+   "glucose_8h": 96.45520222407976
+  },
+  {
+   "subject": "adult#037",
+   "arm": "risk",
+   "gb": 135.01764071633812,
+   "bolus_u": 2.996397073079883,
+   "peak": 149.45462201835934,
+   "peak_min": 70,
+   "nadir_after_peak": 122.29304522132063,
+   "nadir_min": 480,
+   "nadir_minus_start": -12.724595495017496,
+   "minutes_below_70": 0,
+   "glucose_8h": 122.29304522132063
+  },
+  {
+   "subject": "adult#038",
+   "arm": "risk",
+   "gb": 153.9988698514531,
+   "bolus_u": 8.307341728907117,
+   "peak": 202.34800075837975,
+   "peak_min": 63,
+   "nadir_after_peak": 108.1506260430998,
+   "nadir_min": 466,
+   "nadir_minus_start": -45.84824380835329,
+   "minutes_below_70": 0,
+   "glucose_8h": 108.28988070240081
+  },
+  {
+   "subject": "adult#039",
+   "arm": "risk",
+   "gb": 141.56905662464598,
+   "bolus_u": 5.666675708953401,
+   "peak": 184.96274314851445,
+   "peak_min": 61,
+   "nadir_after_peak": 115.90316532380719,
+   "nadir_min": 480,
+   "nadir_minus_start": -25.665891300838794,
+   "minutes_below_70": 0,
+   "glucose_8h": 115.90316532380719
+  },
+  {
+   "subject": "adult#040",
+   "arm": "risk",
+   "gb": 141.04682074137594,
+   "bolus_u": 7.656582428162245,
+   "peak": 176.61323720778753,
+   "peak_min": 94,
+   "nadir_after_peak": 128.3834719098793,
+   "nadir_min": 294,
+   "nadir_minus_start": -12.663348831496648,
+   "minutes_below_70": 0,
+   "glucose_8h": 135.9027700796893
+  },
+  {
+   "subject": "adult#041",
+   "arm": "risk",
+   "gb": 146.6005574232704,
+   "bolus_u": 2.287378594129087,
+   "peak": 183.742456102402,
+   "peak_min": 67,
+   "nadir_after_peak": 138.67125914827307,
+   "nadir_min": 325,
+   "nadir_minus_start": -7.929298274997336,
+   "minutes_below_70": 0,
+   "glucose_8h": 158.18683513289184
+  },
+  {
+   "subject": "hovorka#001",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 7.4335547710427585,
+   "peak": 192.91190681685353,
+   "peak_min": 78,
+   "nadir_after_peak": 71.62397835924266,
+   "nadir_min": 326,
+   "nadir_minus_start": -43.376021640757344,
+   "minutes_below_70": 0,
+   "glucose_8h": 79.10852656249246
+  },
+  {
+   "subject": "hovorka#003",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 15.801947598289743,
+   "peak": 168.94866595098713,
+   "peak_min": 79,
+   "nadir_after_peak": 88.05713448657556,
+   "nadir_min": 365,
+   "nadir_minus_start": -26.942865513424437,
+   "minutes_below_70": 0,
+   "glucose_8h": 90.61946115238402
+  },
+  {
+   "subject": "hovorka#005",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 5.680295679300589,
+   "peak": 168.3045166038302,
+   "peak_min": 77,
+   "nadir_after_peak": 74.657424201643,
+   "nadir_min": 320,
+   "nadir_minus_start": -40.342575798357004,
+   "minutes_below_70": 0,
+   "glucose_8h": 80.90007407063165
+  },
+  {
+   "subject": "hovorka#006",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 6.772718936251423,
+   "peak": 167.7903594693687,
+   "peak_min": 79,
+   "nadir_after_peak": 79.18286299799207,
+   "nadir_min": 352,
+   "nadir_minus_start": -35.817137002007925,
+   "minutes_below_70": 0,
+   "glucose_8h": 82.30732792355408
+  },
+  {
+   "subject": "hovorka#007",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 7.77582419954317,
+   "peak": 169.1733330656608,
+   "peak_min": 77,
+   "nadir_after_peak": 75.57941047317878,
+   "nadir_min": 324,
+   "nadir_minus_start": -39.42058952682122,
+   "minutes_below_70": 0,
+   "glucose_8h": 81.28238756533804
+  },
+  {
+   "subject": "hovorka#008",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 6.247750189585599,
+   "peak": 168.40476788140293,
+   "peak_min": 77,
+   "nadir_after_peak": 75.20588151720307,
+   "nadir_min": 323,
+   "nadir_minus_start": -39.79411848279693,
+   "minutes_below_70": 0,
+   "glucose_8h": 81.08269871436829
+  },
+  {
+   "subject": "hovorka#009",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 7.881145679836762,
+   "peak": 166.79401508300126,
+   "peak_min": 77,
+   "nadir_after_peak": 76.32222507473982,
+   "nadir_min": 326,
+   "nadir_minus_start": -38.67777492526018,
+   "minutes_below_70": 0,
+   "glucose_8h": 81.65195947632867
+  },
+  {
+   "subject": "hovorka#011",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 5.528771371468177,
+   "peak": 173.7598005225263,
+   "peak_min": 74,
+   "nadir_after_peak": 67.62453165015633,
+   "nadir_min": 297,
+   "nadir_minus_start": -47.37546834984367,
+   "minutes_below_70": 99,
+   "glucose_8h": 78.7953667635254
+  },
+  {
+   "subject": "hovorka#013",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 6.594017051185174,
+   "peak": 165.27212084814656,
+   "peak_min": 79,
+   "nadir_after_peak": 79.05521926356828,
+   "nadir_min": 348,
+   "nadir_minus_start": -35.944780736431724,
+   "minutes_below_70": 0,
+   "glucose_8h": 82.39808207312431
+  },
+  {
+   "subject": "hovorka#014",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 6.37796583239184,
+   "peak": 170.36547167519603,
+   "peak_min": 78,
+   "nadir_after_peak": 76.95501662834636,
+   "nadir_min": 336,
+   "nadir_minus_start": -38.04498337165364,
+   "minutes_below_70": 0,
+   "glucose_8h": 81.38340501731419
+  },
+  {
+   "subject": "hovorka#015",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 5.778431081391149,
+   "peak": 175.99509358732976,
+   "peak_min": 76,
+   "nadir_after_peak": 71.87313727775891,
+   "nadir_min": 315,
+   "nadir_minus_start": -43.126862722241086,
+   "minutes_below_70": 0,
+   "glucose_8h": 79.70462605950705
+  },
+  {
+   "subject": "hovorka#016",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 8.151691692877606,
+   "peak": 167.16138810811606,
+   "peak_min": 78,
+   "nadir_after_peak": 78.92930649586283,
+   "nadir_min": 347,
+   "nadir_minus_start": -36.07069350413717,
+   "minutes_below_70": 0,
+   "glucose_8h": 82.41133001686832
+  },
+  {
+   "subject": "hovorka#017",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 7.709329154165754,
+   "peak": 162.9981488117776,
+   "peak_min": 79,
+   "nadir_after_peak": 80.37506015709629,
+   "nadir_min": 358,
+   "nadir_minus_start": -34.624939842903714,
+   "minutes_below_70": 0,
+   "glucose_8h": 83.3057969276322
+  },
+  {
+   "subject": "hovorka#019",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 7.348463784888192,
+   "peak": 168.8671542823057,
+   "peak_min": 77,
+   "nadir_after_peak": 75.24833626440483,
+   "nadir_min": 322,
+   "nadir_minus_start": -39.75166373559517,
+   "minutes_below_70": 0,
+   "glucose_8h": 81.1892911911379
+  },
+  {
+   "subject": "hovorka#020",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 9.972046871932736,
+   "peak": 171.9135086695807,
+   "peak_min": 80,
+   "nadir_after_peak": 84.33543864124847,
+   "nadir_min": 375,
+   "nadir_minus_start": -30.664561358751527,
+   "minutes_below_70": 0,
+   "glucose_8h": 86.5343476739443
+  },
+  {
+   "subject": "hovorka#021",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 6.798225685671994,
+   "peak": 179.84954489522988,
+   "peak_min": 77,
+   "nadir_after_peak": 74.4449175770665,
+   "nadir_min": 329,
+   "nadir_minus_start": -40.555082422933495,
+   "minutes_below_70": 0,
+   "glucose_8h": 80.34274334625742
+  },
+  {
+   "subject": "hovorka#022",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 5.665346761498263,
+   "peak": 174.97570923023085,
+   "peak_min": 74,
+   "nadir_after_peak": 67.12208424122078,
+   "nadir_min": 296,
+   "nadir_minus_start": -47.877915758779224,
+   "minutes_below_70": 109,
+   "glucose_8h": 78.66148788814301
+  },
+  {
+   "subject": "hovorka#023",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 7.027057873891518,
+   "peak": 188.99123713350488,
+   "peak_min": 73,
+   "nadir_after_peak": 62.09275568887257,
+   "nadir_min": 295,
+   "nadir_minus_start": -52.90724431112743,
+   "minutes_below_70": 174,
+   "glucose_8h": 76.57808714153674
+  },
+  {
+   "subject": "hovorka#024",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 6.334215949946951,
+   "peak": 182.97305023015306,
+   "peak_min": 75,
+   "nadir_after_peak": 67.06717275364191,
+   "nadir_min": 306,
+   "nadir_minus_start": -47.93282724635809,
+   "minutes_below_70": 110,
+   "glucose_8h": 78.0156215109879
+  },
+  {
+   "subject": "hovorka#027",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 7.180621100169844,
+   "peak": 179.25807211515658,
+   "peak_min": 78,
+   "nadir_after_peak": 76.66444628869928,
+   "nadir_min": 341,
+   "nadir_minus_start": -38.33555371130072,
+   "minutes_below_70": 0,
+   "glucose_8h": 81.00085635205579
+  },
+  {
+   "subject": "hovorka#028",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 5.268901307035115,
+   "peak": 171.4182518285357,
+   "peak_min": 72,
+   "nadir_after_peak": 63.70221166740087,
+   "nadir_min": 284,
+   "nadir_minus_start": -51.29778833259913,
+   "minutes_below_70": 158,
+   "glucose_8h": 78.02721982035925
+  },
+  {
+   "subject": "hovorka#029",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 9.454762574154774,
+   "peak": 168.7774769940786,
+   "peak_min": 80,
+   "nadir_after_peak": 84.63708491644748,
+   "nadir_min": 374,
+   "nadir_minus_start": -30.362915083552522,
+   "minutes_below_70": 0,
+   "glucose_8h": 86.82286920865354
+  },
+  {
+   "subject": "hovorka#030",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 5.869928604720086,
+   "peak": 173.19405352499575,
+   "peak_min": 77,
+   "nadir_after_peak": 74.6424227003477,
+   "nadir_min": 325,
+   "nadir_minus_start": -40.357577299652306,
+   "minutes_below_70": 0,
+   "glucose_8h": 80.60629917134222
+  },
+  {
+   "subject": "hovorka#031",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 8.496119325253973,
+   "peak": 182.0498652428534,
+   "peak_min": 79,
+   "nadir_after_peak": 79.11532802760992,
+   "nadir_min": 361,
+   "nadir_minus_start": -35.88467197239008,
+   "minutes_below_70": 0,
+   "glucose_8h": 81.9578447859282
+  },
+  {
+   "subject": "hovorka#034",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 5.099870628250388,
+   "peak": 169.60630665360566,
+   "peak_min": 74,
+   "nadir_after_peak": 68.17144894303532,
+   "nadir_min": 296,
+   "nadir_minus_start": -46.828551056964685,
+   "minutes_below_70": 88,
+   "glucose_8h": 79.05832298932405
+  },
+  {
+   "subject": "hovorka#035",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 8.80311740460443,
+   "peak": 173.10911360821757,
+   "peak_min": 78,
+   "nadir_after_peak": 77.18236434831779,
+   "nadir_min": 338,
+   "nadir_minus_start": -37.81763565168221,
+   "minutes_below_70": 0,
+   "glucose_8h": 81.55025901508344
+  },
+  {
+   "subject": "hovorka#037",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 8.022116188469811,
+   "peak": 158.49467349113732,
+   "peak_min": 80,
+   "nadir_after_peak": 84.39414174638455,
+   "nadir_min": 367,
+   "nadir_minus_start": -30.60585825361545,
+   "minutes_below_70": 0,
+   "glucose_8h": 86.88745031789948
+  },
+  {
+   "subject": "hovorka#038",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 6.728135181891144,
+   "peak": 160.69705638740933,
+   "peak_min": 81,
+   "nadir_after_peak": 86.89629522439826,
+   "nadir_min": 375,
+   "nadir_minus_start": -28.10370477560174,
+   "minutes_below_70": 0,
+   "glucose_8h": 88.8219215386832
+  },
+  {
+   "subject": "hovorka#041",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 6.332253292665533,
+   "peak": 164.40886468614653,
+   "peak_min": 78,
+   "nadir_after_peak": 78.16147978120351,
+   "nadir_min": 339,
+   "nadir_minus_start": -36.83852021879649,
+   "minutes_below_70": 0,
+   "glucose_8h": 82.13044619897235
+  },
+  {
+   "subject": "hovorka#042",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 8.884068383617064,
+   "peak": 162.90615035694688,
+   "peak_min": 78,
+   "nadir_after_peak": 79.73819330810794,
+   "nadir_min": 349,
+   "nadir_minus_start": -35.26180669189206,
+   "minutes_below_70": 0,
+   "glucose_8h": 83.14797445592271
+  },
+  {
+   "subject": "hovorka#043",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 9.08930716128357,
+   "peak": 165.87000600998206,
+   "peak_min": 78,
+   "nadir_after_peak": 79.796177717892,
+   "nadir_min": 353,
+   "nadir_minus_start": -35.20382228210801,
+   "minutes_below_70": 0,
+   "glucose_8h": 82.96308997130318
+  },
+  {
+   "subject": "hovorka#046",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 5.36597224895521,
+   "peak": 162.38782908508085,
+   "peak_min": 79,
+   "nadir_after_peak": 78.87046846111298,
+   "nadir_min": 345,
+   "nadir_minus_start": -36.12953153888702,
+   "minutes_below_70": 0,
+   "glucose_8h": 82.36363146948054
+  },
+  {
+   "subject": "hovorka#048",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 7.8400471744174975,
+   "peak": 186.13360664505475,
+   "peak_min": 77,
+   "nadir_after_peak": 72.83008732257278,
+   "nadir_min": 325,
+   "nadir_minus_start": -42.16991267742722,
+   "minutes_below_70": 0,
+   "glucose_8h": 79.76638279527702
+  },
+  {
+   "subject": "hovorka#053",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 7.363704268688926,
+   "peak": 173.6142275074645,
+   "peak_min": 79,
+   "nadir_after_peak": 78.22999904150433,
+   "nadir_min": 348,
+   "nadir_minus_start": -36.77000095849567,
+   "minutes_below_70": 0,
+   "glucose_8h": 81.72767150169022
+  },
+  {
+   "subject": "hovorka#054",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 5.057447004001103,
+   "peak": 166.9110038406826,
+   "peak_min": 77,
+   "nadir_after_peak": 75.37496822426549,
+   "nadir_min": 324,
+   "nadir_minus_start": -39.62503177573451,
+   "minutes_below_70": 0,
+   "glucose_8h": 81.04795873350113
+  },
+  {
+   "subject": "hovorka#057",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 6.533610920286834,
+   "peak": 174.8197417411938,
+   "peak_min": 78,
+   "nadir_after_peak": 75.90471261727352,
+   "nadir_min": 333,
+   "nadir_minus_start": -39.09528738272648,
+   "minutes_below_70": 0,
+   "glucose_8h": 80.8988752228781
+  },
+  {
+   "subject": "hovorka#058",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 6.158011185570749,
+   "peak": 170.0810152579537,
+   "peak_min": 77,
+   "nadir_after_peak": 74.61153949045315,
+   "nadir_min": 321,
+   "nadir_minus_start": -40.388460509546846,
+   "minutes_below_70": 0,
+   "glucose_8h": 80.82815457691045
+  },
+  {
+   "subject": "hovorka#062",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 10.578512570865627,
+   "peak": 153.70103622882414,
+   "peak_min": 80,
+   "nadir_after_peak": 87.72103698343703,
+   "nadir_min": 363,
+   "nadir_minus_start": -27.27896301656297,
+   "minutes_below_70": 0,
+   "glucose_8h": 90.19953440873014
+  },
+  {
+   "subject": "hovorka#064",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 12.01503903988242,
+   "peak": 188.2424679532739,
+   "peak_min": 74,
+   "nadir_after_peak": 70.56888635649752,
+   "nadir_min": 314,
+   "nadir_minus_start": -44.431113643502485,
+   "minutes_below_70": 0,
+   "glucose_8h": 79.38085107067215
+  },
+  {
+   "subject": "hovorka#065",
+   "arm": "base",
+   "gb": 115.0,
+   "bolus_u": 9.158812501239366,
+   "peak": 169.61706663649167,
+   "peak_min": 78,
+   "nadir_after_peak": 78.60321939959353,
+   "nadir_min": 345,
+   "nadir_minus_start": -36.39678060040647,
+   "minutes_below_70": 0,
+   "glucose_8h": 82.24275653976524
+  },
+  {
+   "subject": "hovorka#001",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 7.4335547710427585,
+   "peak": 192.91190681685353,
+   "peak_min": 78,
+   "nadir_after_peak": 76.78838955855475,
+   "nadir_min": 310,
+   "nadir_minus_start": -38.211610441445245,
+   "minutes_below_70": 0,
+   "glucose_8h": 88.34334820413324
+  },
+  {
+   "subject": "hovorka#003",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 15.801947598289743,
+   "peak": 168.94866595098713,
+   "peak_min": 79,
+   "nadir_after_peak": 93.0806495947823,
+   "nadir_min": 322,
+   "nadir_minus_start": -21.9193504052177,
+   "minutes_below_70": 0,
+   "glucose_8h": 100.45458038969157
+  },
+  {
+   "subject": "hovorka#005",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 5.680295679300589,
+   "peak": 168.3045166038302,
+   "peak_min": 77,
+   "nadir_after_peak": 79.85013195232652,
+   "nadir_min": 305,
+   "nadir_minus_start": -35.14986804767348,
+   "minutes_below_70": 0,
+   "glucose_8h": 91.06399661696307
+  },
+  {
+   "subject": "hovorka#006",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 6.772718936251423,
+   "peak": 167.7903594693687,
+   "peak_min": 79,
+   "nadir_after_peak": 85.8062525941577,
+   "nadir_min": 318,
+   "nadir_minus_start": -29.193747405842302,
+   "minutes_below_70": 0,
+   "glucose_8h": 94.81787810861935
+  },
+  {
+   "subject": "hovorka#007",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 7.77582419954317,
+   "peak": 169.1733330656608,
+   "peak_min": 77,
+   "nadir_after_peak": 80.75652020636163,
+   "nadir_min": 309,
+   "nadir_minus_start": -34.24347979363837,
+   "minutes_below_70": 0,
+   "glucose_8h": 91.61159901163437
+  },
+  {
+   "subject": "hovorka#008",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 6.247750189585599,
+   "peak": 168.40476788140293,
+   "peak_min": 77,
+   "nadir_after_peak": 80.41932815798747,
+   "nadir_min": 308,
+   "nadir_minus_start": -34.580671842012535,
+   "minutes_below_70": 0,
+   "glucose_8h": 91.38523139013068
+  },
+  {
+   "subject": "hovorka#009",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 7.881145679836762,
+   "peak": 166.79401508300126,
+   "peak_min": 77,
+   "nadir_after_peak": 81.69153945316334,
+   "nadir_min": 310,
+   "nadir_minus_start": -33.308460546836656,
+   "minutes_below_70": 0,
+   "glucose_8h": 92.33272420134476
+  },
+  {
+   "subject": "hovorka#011",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 5.528771371468177,
+   "peak": 173.7598005225263,
+   "peak_min": 74,
+   "nadir_after_peak": 72.96912428264781,
+   "nadir_min": 282,
+   "nadir_minus_start": -42.03087571735219,
+   "minutes_below_70": 0,
+   "glucose_8h": 87.93005492717562
+  },
+  {
+   "subject": "hovorka#013",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 6.594017051185174,
+   "peak": 165.27212084814656,
+   "peak_min": 79,
+   "nadir_after_peak": 85.60032904895769,
+   "nadir_min": 315,
+   "nadir_minus_start": -29.39967095104231,
+   "minutes_below_70": 0,
+   "glucose_8h": 94.77983757081432
+  },
+  {
+   "subject": "hovorka#014",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 6.37796583239184,
+   "peak": 170.36547167519603,
+   "peak_min": 78,
+   "nadir_after_peak": 82.84118540939077,
+   "nadir_min": 316,
+   "nadir_minus_start": -32.158814590609225,
+   "minutes_below_70": 0,
+   "glucose_8h": 92.76514253947882
+  },
+  {
+   "subject": "hovorka#015",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 5.778431081391149,
+   "peak": 175.99509358732976,
+   "peak_min": 76,
+   "nadir_after_peak": 77.14613189971153,
+   "nadir_min": 299,
+   "nadir_minus_start": -37.853868100288466,
+   "minutes_below_70": 0,
+   "glucose_8h": 89.35671137998911
+  },
+  {
+   "subject": "hovorka#016",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 8.151691692877606,
+   "peak": 167.16138810811606,
+   "peak_min": 78,
+   "nadir_after_peak": 85.32097533480697,
+   "nadir_min": 315,
+   "nadir_minus_start": -29.679024665193026,
+   "minutes_below_70": 0,
+   "glucose_8h": 94.5960888012929
+  },
+  {
+   "subject": "hovorka#017",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 7.709329154165754,
+   "peak": 162.9981488117776,
+   "peak_min": 79,
+   "nadir_after_peak": 87.1081357980226,
+   "nadir_min": 315,
+   "nadir_minus_start": -27.8918642019774,
+   "minutes_below_70": 0,
+   "glucose_8h": 95.8928046781846
+  },
+  {
+   "subject": "hovorka#019",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 7.348463784888192,
+   "peak": 168.8671542823057,
+   "peak_min": 77,
+   "nadir_after_peak": 80.39129652911213,
+   "nadir_min": 307,
+   "nadir_minus_start": -34.608703470887875,
+   "minutes_below_70": 0,
+   "glucose_8h": 91.4090108423814
+  },
+  {
+   "subject": "hovorka#020",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 9.972046871932736,
+   "peak": 171.9135086695807,
+   "peak_min": 80,
+   "nadir_after_peak": 90.44974631415735,
+   "nadir_min": 325,
+   "nadir_minus_start": -24.550253685842648,
+   "minutes_below_70": 0,
+   "glucose_8h": 98.08497424023916
+  },
+  {
+   "subject": "hovorka#021",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 6.798225685671994,
+   "peak": 179.84954489522988,
+   "peak_min": 77,
+   "nadir_after_peak": 79.71407369375054,
+   "nadir_min": 313,
+   "nadir_minus_start": -35.285926306249465,
+   "minutes_below_70": 0,
+   "glucose_8h": 90.417344860913
+  },
+  {
+   "subject": "hovorka#022",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 5.665346761498263,
+   "peak": 174.97570923023085,
+   "peak_min": 74,
+   "nadir_after_peak": 72.46235466682337,
+   "nadir_min": 281,
+   "nadir_minus_start": -42.53764533317663,
+   "minutes_below_70": 0,
+   "glucose_8h": 87.71207279850404
+  },
+  {
+   "subject": "hovorka#023",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 7.027057873891518,
+   "peak": 188.99123713350488,
+   "peak_min": 73,
+   "nadir_after_peak": 67.58361995768118,
+   "nadir_min": 281,
+   "nadir_minus_start": -47.41638004231882,
+   "minutes_below_70": 82,
+   "glucose_8h": 85.27029272877415
+  },
+  {
+   "subject": "hovorka#024",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 6.334215949946951,
+   "peak": 182.97305023015306,
+   "peak_min": 75,
+   "nadir_after_peak": 72.47943227437055,
+   "nadir_min": 291,
+   "nadir_minus_start": -42.52056772562945,
+   "minutes_below_70": 0,
+   "glucose_8h": 87.07319263239842
+  },
+  {
+   "subject": "hovorka#027",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 7.180621100169844,
+   "peak": 179.25807211515658,
+   "peak_min": 78,
+   "nadir_after_peak": 82.47657783210929,
+   "nadir_min": 321,
+   "nadir_minus_start": -32.523422167890715,
+   "minutes_below_70": 0,
+   "glucose_8h": 92.19955175058021
+  },
+  {
+   "subject": "hovorka#028",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 5.268901307035115,
+   "peak": 171.4182518285357,
+   "peak_min": 72,
+   "nadir_after_peak": 69.1634241217863,
+   "nadir_min": 270,
+   "nadir_minus_start": -45.836575878213694,
+   "minutes_below_70": 50,
+   "glucose_8h": 86.85229423352499
+  },
+  {
+   "subject": "hovorka#029",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 9.454762574154774,
+   "peak": 168.7774769940786,
+   "peak_min": 80,
+   "nadir_after_peak": 90.73496155484536,
+   "nadir_min": 323,
+   "nadir_minus_start": -24.265038445154644,
+   "minutes_below_70": 0,
+   "glucose_8h": 98.27807135100741
+  },
+  {
+   "subject": "hovorka#030",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 5.869928604720086,
+   "peak": 173.19405352499575,
+   "peak_min": 77,
+   "nadir_after_peak": 79.91785704400779,
+   "nadir_min": 309,
+   "nadir_minus_start": -35.08214295599221,
+   "minutes_below_70": 0,
+   "glucose_8h": 90.80435098185086
+  },
+  {
+   "subject": "hovorka#031",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 8.496119325253973,
+   "peak": 182.0498652428534,
+   "peak_min": 79,
+   "nadir_after_peak": 85.6252801440156,
+   "nadir_min": 326,
+   "nadir_minus_start": -29.374719855984395,
+   "minutes_below_70": 0,
+   "glucose_8h": 94.34958200752169
+  },
+  {
+   "subject": "hovorka#034",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 5.099870628250388,
+   "peak": 169.60630665360566,
+   "peak_min": 74,
+   "nadir_after_peak": 73.5218748637813,
+   "nadir_min": 282,
+   "nadir_minus_start": -41.478125136218694,
+   "minutes_below_70": 0,
+   "glucose_8h": 88.31969567774694
+  },
+  {
+   "subject": "hovorka#035",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 8.80311740460443,
+   "peak": 173.10911360821757,
+   "peak_min": 78,
+   "nadir_after_peak": 82.99156881865613,
+   "nadir_min": 316,
+   "nadir_minus_start": -32.008431181343866,
+   "minutes_below_70": 0,
+   "glucose_8h": 92.87916141913759
+  },
+  {
+   "subject": "hovorka#037",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 8.022116188469811,
+   "peak": 158.49467349113732,
+   "peak_min": 80,
+   "nadir_after_peak": 90.55973320412564,
+   "nadir_min": 317,
+   "nadir_minus_start": -24.440266795874365,
+   "minutes_below_70": 0,
+   "glucose_8h": 98.2938572263763
+  },
+  {
+   "subject": "hovorka#038",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 6.728135181891144,
+   "peak": 160.69705638740933,
+   "peak_min": 81,
+   "nadir_after_peak": 92.76148383213426,
+   "nadir_min": 323,
+   "nadir_minus_start": -22.23851616786574,
+   "minutes_below_70": 0,
+   "glucose_8h": 99.65368386481056
+  },
+  {
+   "subject": "hovorka#041",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 6.332253292665533,
+   "peak": 164.40886468614653,
+   "peak_min": 78,
+   "nadir_after_peak": 84.38524420208972,
+   "nadir_min": 313,
+   "nadir_minus_start": -30.614755797910277,
+   "minutes_below_70": 0,
+   "glucose_8h": 94.04446542446728
+  },
+  {
+   "subject": "hovorka#042",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 8.884068383617064,
+   "peak": 162.90615035694688,
+   "peak_min": 78,
+   "nadir_after_peak": 86.20615396763732,
+   "nadir_min": 313,
+   "nadir_minus_start": -28.79384603236268,
+   "minutes_below_70": 0,
+   "glucose_8h": 95.3783525310399
+  },
+  {
+   "subject": "hovorka#043",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 9.08930716128357,
+   "peak": 165.87000600998206,
+   "peak_min": 78,
+   "nadir_after_peak": 86.33745115951162,
+   "nadir_min": 315,
+   "nadir_minus_start": -28.662548840488384,
+   "minutes_below_70": 0,
+   "glucose_8h": 95.34890262213432
+  },
+  {
+   "subject": "hovorka#046",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 5.36597224895521,
+   "peak": 162.38782908508085,
+   "peak_min": 79,
+   "nadir_after_peak": 85.42436247253274,
+   "nadir_min": 313,
+   "nadir_minus_start": -29.575637527467265,
+   "minutes_below_70": 0,
+   "glucose_8h": 94.74899428776486
+  },
+  {
+   "subject": "hovorka#048",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 7.8400471744174975,
+   "peak": 186.13360664505475,
+   "peak_min": 77,
+   "nadir_after_peak": 77.98081024311189,
+   "nadir_min": 309,
+   "nadir_minus_start": -37.01918975688811,
+   "minutes_below_70": 0,
+   "glucose_8h": 89.3044406405347
+  },
+  {
+   "subject": "hovorka#053",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 7.363704268688926,
+   "peak": 173.6142275074645,
+   "peak_min": 79,
+   "nadir_after_peak": 84.56748050874442,
+   "nadir_min": 320,
+   "nadir_minus_start": -30.432519491255576,
+   "minutes_below_70": 0,
+   "glucose_8h": 93.82730310190824
+  },
+  {
+   "subject": "hovorka#054",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 5.057447004001103,
+   "peak": 166.9110038406826,
+   "peak_min": 77,
+   "nadir_after_peak": 80.70292850275862,
+   "nadir_min": 309,
+   "nadir_minus_start": -34.297071497241376,
+   "minutes_below_70": 0,
+   "glucose_8h": 91.54939073810328
+  },
+  {
+   "subject": "hovorka#057",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 6.533610920286834,
+   "peak": 174.8197417411938,
+   "peak_min": 78,
+   "nadir_after_peak": 81.41917117691412,
+   "nadir_min": 317,
+   "nadir_minus_start": -33.58082882308588,
+   "minutes_below_70": 0,
+   "glucose_8h": 91.64595394251909
+  },
+  {
+   "subject": "hovorka#058",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 6.158011185570749,
+   "peak": 170.0810152579537,
+   "peak_min": 77,
+   "nadir_after_peak": 79.79764278972799,
+   "nadir_min": 306,
+   "nadir_minus_start": -35.20235721027201,
+   "minutes_below_70": 0,
+   "glucose_8h": 90.95231158233379
+  },
+  {
+   "subject": "hovorka#062",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 10.578512570865627,
+   "peak": 153.70103622882414,
+   "peak_min": 80,
+   "nadir_after_peak": 93.11144792337534,
+   "nadir_min": 315,
+   "nadir_minus_start": -21.888552076624663,
+   "minutes_below_70": 0,
+   "glucose_8h": 100.19629689246338
+  },
+  {
+   "subject": "hovorka#064",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 12.01503903988242,
+   "peak": 188.2424679532739,
+   "peak_min": 74,
+   "nadir_after_peak": 75.54202317598713,
+   "nadir_min": 298,
+   "nadir_minus_start": -39.457976824012874,
+   "minutes_below_70": 0,
+   "glucose_8h": 88.43620070095866
+  },
+  {
+   "subject": "hovorka#065",
+   "arm": "autoreg",
+   "gb": 115.0,
+   "bolus_u": 9.158812501239366,
+   "peak": 169.61706663649167,
+   "peak_min": 78,
+   "nadir_after_peak": 84.84670845627384,
+   "nadir_min": 316,
+   "nadir_minus_start": -30.153291543726155,
+   "minutes_below_70": 0,
+   "glucose_8h": 94.24523711189086
+  }
+ ]
+}
