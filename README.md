@@ -83,6 +83,7 @@ the code that measures them.
 pip install simglucose
 pip install -e .
 python -m timsim.population.build --n 100
+python -m timsim.population.hovorka --n 100      # the second body, optional
 ```
 
 The population is generated on your own machine rather than shipped with the package, so
@@ -236,13 +237,46 @@ matched boluses, needing an implausible daily insulin dose, or ending up with me
 settings outside the human range. The acceptance rate and a breakdown of the refusals go
 to `params/vpop_report.json`.
 
+## A second body
+
+Every comparison above is made on one set of equations, so an ordering that belongs to S2008
+rather than to the algorithms cannot be seen on its own. `timsim/patient/hovorka.py` supplies a
+second body, the model of Hovorka et al. (2004) with the virtual population of Resalat et al.
+(2019), behind the same interface. A subject named `hovorka#NNN` runs on it, and the person,
+sensor, site and controller layers are unchanged, so the equations are the only thing that
+differs between `simulate("adult#001")` and `simulate("hovorka#001")`. The activity layer and the
+S2008 liver options are refused for a Hovorka subject rather than ignored.
+
+Its settings are titrated the same way and kept in a store of their own
+(`python examples/titrate_cohort.py --cohort hovorka --subjects 100`), and the ranking runs on
+it with `python examples/rank_drivers.py --prefix 'hovorka#'`. Two rankings are compared only
+when they ran on the same simulation and driver code, which `tests/test_body_comparison.py`
+checks.
+
+Ranked on both bodies at the same code, 40 titrated subjects over 28 days, the four drivers agree
+in sign on 17 of 18 paired comparisons. oref0 SMB gives the most time in range on both, and the
+Control-IQ stand-in the most time below 70 mg/dL. The remaining pair, oref0 SMB against the trend
+loop on the low blood glucose index, reverses at the edge of what either design resolves. Sizes
+are not shared: differences in time below 70 mg/dL involving the stand-in are larger on Hovorka,
+mostly because S2008 raises glucose production as glucose falls and Hovorka does not, and the two
+bodies bracket that unmeasured slope from opposite sides. A hypoglycaemia difference in points is
+therefore quoted with the body it was measured on.
+
+The second body is not a better one. An uncovered meal rises 33.0 mg/dL per 10 g on it against
+15.7 to 19.7 in real data, and settings clearing the consensus hypoglycaemia limits were found for
+68 of its 100 subjects. Both bodies lack counterregulation, so agreement between them bounds a
+result to that shared assumption. [docs/HOVORKA.md](docs/HOVORKA.md) carries the checks against
+the published population, the registered rankings and the decomposition of the difference in size.
+
 ## Relationship to simglucose
 
 This sits on top of simglucose rather than forking it. simglucose supplies the
 differential equations, the sensor and pump models, and the environment loop, and its
 interfaces are used unchanged, so a controller written for simglucose runs here without
 modification. The published parameter tables are read from your simglucose install and are
-not redistributed.
+not redistributed. The Hovorka body is this package's own code and does not use simglucose's
+equations; its population is generated locally from the sampling procedure of Resalat et al.,
+whose repository carries no licence and is not redistributed either.
 
 ## Is it any good?
 
